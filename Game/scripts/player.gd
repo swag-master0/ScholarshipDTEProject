@@ -11,9 +11,9 @@ const TURN_VELOCITY = 10
 @onready var cursor = $Cursor
 
 var gravity = ProjectSettings.get_setting("physics/3d/default_gravity")
+var faceDirection = Vector3.FORWARD
 
-
-func GetMousePosition():
+func MousePosition():
 	var mousePos = get_viewport().get_mouse_position()
 	var camera = get_tree().root.get_camera_3d()
 	
@@ -31,18 +31,19 @@ func _physics_process(delta):
 	if Input.is_action_just_pressed("jump") and is_on_floor():
 		velocity.y = JUMP_VELOCITY
 	
-	cursor.global_position = GetMousePosition()
+	cursor.global_position = MousePosition()
 	
-	#var faceDirection = Vector3.FORWARD
-	var faceDirection = character.get_global_transform().basis.z
+	if (Input.is_action_pressed("forward") || Input.is_action_pressed("left") || Input.is_action_pressed("right") || Input.is_action_pressed("backward")):
+		faceDirection = Vector3(Input.get_action_strength("right") - Input.get_action_strength("left"),0,Input.get_action_strength("backward") - Input.get_action_strength("forward")).normalized()
 	
 	if Input.is_action_pressed("click"):
-		character.look_at(cursor.position)
+		character.look_at(Vector3(-MousePosition().x, character.position.y, -MousePosition().z))
+		
 	else:
-		character.rotation.y = lerp_angle(character.rotation.y, atan2(-faceDirection.x, -faceDirection.z), delta * TURN_VELOCITY)
+		character.rotation.y = lerp_angle(character.rotation.y, atan2(faceDirection.x, faceDirection.z), delta * TURN_VELOCITY)
 	
 	
-	
+	#character.rotation.y = lerp_angle(character.rotation.y, atan2(faceDirection.x, faceDirection.z), delta * TURN_VELOCITY)
 	
 	var input_dir = Input.get_vector("left", "right", "forward", "backward")
 	var direction = (transform.basis * Vector3(input_dir.x, 0, input_dir.y)).normalized()
