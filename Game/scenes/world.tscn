@@ -1,14 +1,11 @@
-[gd_scene load_steps=5 format=3 uid="uid://cov8v6858hevf"]
+[gd_scene load_steps=4 format=3 uid="uid://cov8v6858hevf"]
 
 [ext_resource type="PackedScene" uid="uid://c7ycb57houxl1" path="res://scenes/player.tscn" id="1_68ig2"]
+[ext_resource type="PackedScene" uid="uid://hcoev4d4ukcu" path="res://blend/world.blend" id="2_os2mg"]
 
 [sub_resource type="Environment" id="Environment_6u04u"]
 background_mode = 1
-background_color = Color(0.470588, 0.654902, 0.717647, 1)
-
-[sub_resource type="BoxShape3D" id="BoxShape3D_id0mg"]
-
-[sub_resource type="BoxMesh" id="BoxMesh_2tx45"]
+background_color = Color(0.313726, 0.313726, 0.313726, 1)
 
 [node name="Node3D" type="Node3D"]
 
@@ -19,13 +16,9 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0180385, 1.70523, -0.216428
 environment = SubResource("Environment_6u04u")
 
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, -0.5454, 0.838176, 0, -0.838176, -0.5454, 0, 7.73072, 0)
+transform = Transform3D(1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 0, 7.73072, 0)
+shadow_enabled = true
+sky_mode = 1
 
-[node name="StaticBody3D" type="StaticBody3D" parent="."]
-transform = Transform3D(20, 0, 0, 0, 20, 0, 0, 0, 20, 0, -10, 0)
-
-[node name="CollisionShape3D" type="CollisionShape3D" parent="StaticBody3D"]
-shape = SubResource("BoxShape3D_id0mg")
-
-[node name="MeshInstance3D" type="MeshInstance3D" parent="StaticBody3D"]
-mesh = SubResource("BoxMesh_2tx45")
+[node name="world" parent="." instance=ExtResource("2_os2mg")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 10, 0)
