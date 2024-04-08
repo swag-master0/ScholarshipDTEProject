@@ -15,12 +15,13 @@ var faceDirection = Vector3.FORWARD
 
 
 func MousePosition():
-	var mousePos = get_viewport().get_mouse_position()
-	var camera = get_tree().root.get_camera_3d()
+	if  ready: # brainrot code
+		var mousePos = get_viewport().get_mouse_position()
+		var camera = get_tree().root.get_camera_3d()
 	
-	var dropPlane = Plane(Vector3(0, 1, 0), character.global_position.y)
-	var position3D = dropPlane.intersects_ray(camera.project_ray_origin(mousePos), camera.project_ray_normal(mousePos))
-	return position3D
+		var dropPlane = Plane(Vector3(0, 1, 0), character.global_position.y)
+		var position3D = dropPlane.intersects_ray(camera.project_ray_origin(mousePos), camera.project_ray_normal(mousePos))
+		return position3D
 
 
 func _physics_process(delta):
