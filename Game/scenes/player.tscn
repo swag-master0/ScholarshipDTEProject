@@ -1,4 +1,4 @@
-[gd_scene load_steps=6 format=3 uid="uid://c7ycb57houxl1"]
+[gd_scene load_steps=5 format=3 uid="uid://c7ycb57houxl1"]
 
 [ext_resource type="Script" path="res://scripts/player.gd" id="1_m12p3"]
 
@@ -7,8 +7,6 @@
 [sub_resource type="PrismMesh" id="PrismMesh_u4gd0"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_uiem3"]
-
-[sub_resource type="SphereMesh" id="SphereMesh_mdt3j"]
 
 [node name="Player" type="CharacterBody3D"]
 script = ExtResource("1_m12p3")
@@ -34,6 +32,5 @@ fov = 70.0
 [node name="OmniLight3D" type="OmniLight3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2, 0)
 
-[node name="Cursor" type="MeshInstance3D" parent="."]
+[node name="Cursor" type="Marker3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -4)
-mesh = SubResource("SphereMesh_mdt3j")
