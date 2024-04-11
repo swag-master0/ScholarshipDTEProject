@@ -53,3 +53,8 @@ func _physics_process(delta):
 	
 	
 	move_and_slide()
+
+
+func _on_selection_body_entered(body):
+	print(body)
+	body.linear_velocity = cursor.global_position

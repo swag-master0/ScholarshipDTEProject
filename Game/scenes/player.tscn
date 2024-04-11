@@ -1,4 +1,4 @@
-[gd_scene load_steps=5 format=3 uid="uid://c7ycb57houxl1"]
+[gd_scene load_steps=6 format=3 uid="uid://c7ycb57houxl1"]
 
 [ext_resource type="Script" path="res://scripts/player.gd" id="1_m12p3"]
 
@@ -7,6 +7,9 @@
 [sub_resource type="PrismMesh" id="PrismMesh_u4gd0"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_uiem3"]
+
+[sub_resource type="CylinderShape3D" id="CylinderShape3D_kb177"]
+radius = 3.0
 
 [node name="Player" type="CharacterBody3D"]
 floor_constant_speed = true
@@ -35,3 +38,11 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2, 0)
 
 [node name="Cursor" type="Marker3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -4)
+gizmo_extents = 3.0
+
+[node name="Selection" type="Area3D" parent="."]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Selection"]
+shape = SubResource("CylinderShape3D_kb177")
+
+[connection signal="body_entered" from="Selection" to="." method="_on_selection_body_entered"]
