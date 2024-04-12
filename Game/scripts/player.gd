@@ -56,5 +56,14 @@ func _physics_process(delta):
 
 
 func _on_selection_body_entered(body):
-	print(body)
-	body.linear_velocity = cursor.global_positiona
+	if body is RigidBody3D:
+		print("yes")
+		body.apply_impulse(Vector3(), Vector3(10000, 0, 0))
+	print(str(body.get_class()))
+	
+
+
+
+
+
+
