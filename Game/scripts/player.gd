@@ -9,6 +9,7 @@ const TURN_VELOCITY = 10
 @onready var character = $PlayerModel
 @onready var pivot = $CameraPivot
 @onready var cursor = $Cursor
+@onready var detection = $Detection
 
 var gravity = ProjectSettings.get_setting("physics/3d/default_gravity")
 var faceDirection = Vector3.FORWARD
@@ -23,9 +24,20 @@ func MousePosition():
 		var position3D = dropPlane.intersects_ray(camera.project_ray_origin(mousePos), camera.project_ray_normal(mousePos))
 		return position3D
 
-func FetchObjects():
-	if $Selection.body_entered(body):
-		pass
+func NearestObject():
+	var space = get_viewport().world_3d.direct_space_state
+	
+	var origin = position
+	var end = cursor.position
+	var query = PhysicsRayQueryParameters3D.create(origin, end)
+	
+	var result = space.intersect_ray(query)
+	if result:
+		print(result)
+		return result
+	
+
+
 
 func _physics_process(delta):
 	if not is_on_floor():
@@ -56,32 +68,32 @@ func _physics_process(delta):
 	
 	move_and_slide()
 	
-func _process(delta):
-	if Input.is_action_just_pressed("click"):
-		if !Input.is_action_pressed("click"):
-			return #mouse released
+func _process(_delta):
+	#var closestObject = []
+	#for i in range(NearestObject().size()):
+	#	var playerpos = position
+	#	closestObject.append(NearestObject()[i].position)
+	#	print(closestObject[i] - playerpos) # difference = final - initial
 	
+	if NearestObject() and NearestObject()["collider"] is RigidBody3D:
+		var object = NearestObject()["collider"]
+		
+		if Input.is_action_just_pressed("click"):
+			object.position = $HoldPoint.global_position
+			#object.reparent($HoldPoint)
+			if !Input.is_action_pressed("click"):
+				#return #mouse released
+				#$HoldPoint.remove_child(object)
+				object.set_linear_velocity(cursor.global_position * 3)
+		
 		print("mouse held for 5 secs")
+		
+		
+		
 
 #func _on_selection_body_entered(body):
 	#if body is RigidBody3D:
 		#body.set_linear_velocity(cursor.global_position * 3)
-	#var isCarrying = false
-	#var carrypoint = $HoldPoint
-	
-	#if body is RigidBody3D:
-
-			
-			
-			#body.reparent(carrypoint, false)
-			
-		#if not Input.is_action_pressed("click") and isCarrying == true:
-		#	#carrypoint.remove_child(body)
-		#	body.set_linear_velocity(cursor.global_position * 3)
-		#	
-		#	#isCarrying = false
-
-
-
-
+#body.reparent(carrypoint, false)
+#carrypoint.remove_child(body)
 
