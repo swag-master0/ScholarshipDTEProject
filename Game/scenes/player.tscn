@@ -15,6 +15,9 @@ radius = 3.0
 floor_constant_speed = true
 script = ExtResource("1_m12p3")
 
+[node name="HoldPoint" type="Marker3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2, 0)
+
 [node name="PlayerModel" type="MeshInstance3D" parent="."]
 mesh = SubResource("CapsuleMesh_7nubc")
 
@@ -35,6 +38,7 @@ fov = 70.0
 
 [node name="OmniLight3D" type="OmniLight3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2, 0)
+visible = false
 
 [node name="Cursor" type="Marker3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -4)
@@ -44,5 +48,3 @@ gizmo_extents = 3.0
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Selection"]
 shape = SubResource("CylinderShape3D_kb177")
-
-[connection signal="body_entered" from="Selection" to="." method="_on_selection_body_entered"]

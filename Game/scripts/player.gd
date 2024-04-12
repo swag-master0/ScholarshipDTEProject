@@ -23,6 +23,9 @@ func MousePosition():
 		var position3D = dropPlane.intersects_ray(camera.project_ray_origin(mousePos), camera.project_ray_normal(mousePos))
 		return position3D
 
+func FetchObjects():
+	if $Selection.body_entered(body):
+		pass
 
 func _physics_process(delta):
 	if not is_on_floor():
@@ -51,17 +54,32 @@ func _physics_process(delta):
 		velocity.x = move_toward(velocity.x, 0, SPEED)
 		velocity.z = move_toward(velocity.z, 0, SPEED)
 	
-	
 	move_and_slide()
-
-
-func _on_selection_body_entered(body):
-	if body is RigidBody3D:
-		print("yes")
-		body.apply_impulse(Vector3(), Vector3(10000, 0, 0))
-	print(str(body.get_class()))
 	
+func _process(delta):
+	if Input.is_action_just_pressed("click"):
+		if !Input.is_action_pressed("click"):
+			return #mouse released
+	
+		print("mouse held for 5 secs")
 
+#func _on_selection_body_entered(body):
+	#if body is RigidBody3D:
+		#body.set_linear_velocity(cursor.global_position * 3)
+	#var isCarrying = false
+	#var carrypoint = $HoldPoint
+	
+	#if body is RigidBody3D:
+
+			
+			
+			#body.reparent(carrypoint, false)
+			
+		#if not Input.is_action_pressed("click") and isCarrying == true:
+		#	#carrypoint.remove_child(body)
+		#	body.set_linear_velocity(cursor.global_position * 3)
+		#	
+		#	#isCarrying = false
 
 
 
