@@ -7,7 +7,7 @@ const JUMP_FALLMULTIPLIER = 5
 const TURN_VELOCITY = 10
 
 @onready var character = $PlayerModel
-@onready var pivot = $CameraPivot
+@onready var pivot = $CentralCameraPoint
 @onready var cursor = $Cursor
 @onready var detection = $Cursor/Area3D
 
@@ -17,13 +17,17 @@ var faceDirection = Vector3.FORWARD
 var object = null
 var oldparent = null
 var isHolding = false
-var throwforce = 10
+var throwforce = 200
+var maxforce = 2000
+
 
 func MousePosition():
 	if  ready: # This statement looks very dumb but without it it'll sometimes crash. The crashing isn't even consistant either!
 		var mousePos = get_viewport().get_mouse_position()
 		var camera = get_tree().root.get_camera_3d()
-	
+		
+		
+		
 		var dropPlane = Plane(Vector3(0, 1, 0), character.global_position.y)
 		var position3D = dropPlane.intersects_ray(camera.project_ray_origin(mousePos), camera.project_ray_normal(mousePos))
 		return position3D
@@ -41,9 +45,6 @@ func NearestObject():
 	
 	if closest_node:
 		return closest_node
-	
-
-
 
 func _physics_process(delta):
 	if not is_on_floor():
@@ -73,13 +74,6 @@ func _physics_process(delta):
 		velocity.z = move_toward(velocity.z, 0, SPEED)
 	
 	move_and_slide()
-	
-
-
-
-
-
-
 
 func _process(_delta):
 	if Input.is_action_just_pressed("click"):
@@ -88,13 +82,12 @@ func _process(_delta):
 			object = NearestObject()
 			oldparent = object.get_parent()
 			
-			object.position = Vector3(character.global_position.x, character.global_position.y + 5, character.global_position.z)
+			#object.position = Vector3(character.global_position.x, character.global_position.y + 0.5, character.global_position.z - 3)
+			object.global_transform = $PlayerModel/HoldPoint.global_transform
 			object.reparent(character)
 			object.set_freeze_enabled(true)
-			
-		#elif !Input.is_action_pressed("click"):
-			#object.reparent(oldparent)
-			#object.set_freeze_enabled(false)
+			object.set_collision_layer_value(1, false)
+			object.set_collision_mask_value(1, false)
 		else:
 			pass
 		
@@ -103,10 +96,14 @@ func _process(_delta):
 			print(object)
 			isHolding = false
 			
+			var throw = Vector3(cursor.global_position.x * throwforce, cursor.global_position.y, cursor.global_position.z * throwforce)
+			print(throw.clamp(Vector3(-maxforce, -maxforce, -maxforce), Vector3(maxforce, maxforce, maxforce)))
+			
 			object.set_freeze_enabled(false)
 			object.reparent(oldparent)
-			#object.apply_force(Vector3(cursor.global_position.x * throwforce, cursor.global_position.y, cursor.global_position.z * throwforce))
-			object.apply_impulse(Vector3(cursor.global_position.x * throwforce, cursor.global_position.y, cursor.global_position.z * throwforce))
+			object.apply_force(throw.clamp(Vector3(-maxforce, -maxforce, -maxforce), Vector3(maxforce, maxforce, maxforce)))
+			object.set_collision_layer_value(1, true)
+			object.set_collision_mask_value(1, true)
 			
 			object = null
 

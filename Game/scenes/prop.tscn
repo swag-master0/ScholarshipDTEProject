@@ -1,0 +1,16 @@
+[gd_scene load_steps=4 format=3 uid="uid://bkgbbpaifg6uj"]
+
+[ext_resource type="Script" path="res://scripts/prop.gd" id="1_1xw8n"]
+
+[sub_resource type="PrismMesh" id="PrismMesh_u7v4c"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_e7lis"]
+
+[node name="Prop" type="RigidBody3D"]
+script = ExtResource("1_1xw8n")
+
+[node name="Mesh" type="MeshInstance3D" parent="."]
+mesh = SubResource("PrismMesh_u7v4c")
+
+[node name="Collision" type="CollisionShape3D" parent="."]
+shape = SubResource("BoxShape3D_e7lis")
