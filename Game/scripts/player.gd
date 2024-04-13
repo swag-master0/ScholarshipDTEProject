@@ -9,11 +9,15 @@ const TURN_VELOCITY = 10
 @onready var character = $PlayerModel
 @onready var pivot = $CameraPivot
 @onready var cursor = $Cursor
-@onready var detection = $Detection
+@onready var detection = $Cursor/Area3D
 
 var gravity = ProjectSettings.get_setting("physics/3d/default_gravity")
 var faceDirection = Vector3.FORWARD
 
+var object = null
+var oldparent = null
+var isHolding = false
+var throwforce = 10
 
 func MousePosition():
 	if  ready: # This statement looks very dumb but without it it'll sometimes crash. The crashing isn't even consistant either!
@@ -25,16 +29,18 @@ func MousePosition():
 		return position3D
 
 func NearestObject():
-	var space = get_viewport().world_3d.direct_space_state
+	var objects = detection.get_overlapping_bodies()
 	
-	var origin = position
-	var end = cursor.position
-	var query = PhysicsRayQueryParameters3D.create(origin, end)
+	var closest_node = null
+	var closest_node_distance = 0.0
+	for i in objects:
+		var current_node_distance = detection.global_position.distance_to(i.global_position)
+		if closest_node == null or current_node_distance < closest_node_distance:
+			closest_node = i
+			closest_node_distance = current_node_distance 
 	
-	var result = space.intersect_ray(query)
-	if result:
-		print(result)
-		return result
+	if closest_node:
+		return closest_node
 	
 
 
@@ -68,32 +74,40 @@ func _physics_process(delta):
 	
 	move_and_slide()
 	
-func _process(_delta):
-	#var closestObject = []
-	#for i in range(NearestObject().size()):
-	#	var playerpos = position
-	#	closestObject.append(NearestObject()[i].position)
-	#	print(closestObject[i] - playerpos) # difference = final - initial
-	
-	if NearestObject() and NearestObject()["collider"] is RigidBody3D:
-		var object = NearestObject()["collider"]
-		
-		if Input.is_action_just_pressed("click"):
-			object.position = $HoldPoint.global_position
-			#object.reparent($HoldPoint)
-			if !Input.is_action_pressed("click"):
-				#return #mouse released
-				#$HoldPoint.remove_child(object)
-				object.set_linear_velocity(cursor.global_position * 3)
-		
-		print("mouse held for 5 secs")
-		
-		
-		
 
-#func _on_selection_body_entered(body):
-	#if body is RigidBody3D:
-		#body.set_linear_velocity(cursor.global_position * 3)
-#body.reparent(carrypoint, false)
-#carrypoint.remove_child(body)
+
+
+
+
+
+
+func _process(_delta):
+	if Input.is_action_just_pressed("click"):
+		if NearestObject() and NearestObject() is RigidBody3D and isHolding == false:
+			isHolding = true
+			object = NearestObject()
+			oldparent = object.get_parent()
+			
+			object.position = Vector3(character.global_position.x, character.global_position.y + 5, character.global_position.z)
+			object.reparent(character)
+			object.set_freeze_enabled(true)
+			
+		#elif !Input.is_action_pressed("click"):
+			#object.reparent(oldparent)
+			#object.set_freeze_enabled(false)
+		else:
+			pass
+		
+	if Input.is_action_just_released("click"):
+		if object and isHolding == true:
+			print(object)
+			isHolding = false
+			
+			object.set_freeze_enabled(false)
+			object.reparent(oldparent)
+			#object.apply_force(Vector3(cursor.global_position.x * throwforce, cursor.global_position.y, cursor.global_position.z * throwforce))
+			object.apply_impulse(Vector3(cursor.global_position.x * throwforce, cursor.global_position.y, cursor.global_position.z * throwforce))
+			
+			object = null
+
 

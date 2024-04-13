@@ -34,6 +34,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 10, 0)
 
 [node name="RigidBody3D" type="RigidBody3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4, 2, 0)
+mass = 10.0
 physics_material_override = SubResource("PhysicsMaterial_4hx2s")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="RigidBody3D"]
