@@ -17,7 +17,7 @@ var faceDirection = Vector3.FORWARD
 var object = null
 var oldparent = null
 var isHolding = false
-var throwforce = 200
+var throwforce = 75
 var maxforce = 2000
 
 
@@ -25,8 +25,6 @@ func MousePosition():
 	if  ready: # This statement looks very dumb but without it it'll sometimes crash. The crashing isn't even consistant either!
 		var mousePos = get_viewport().get_mouse_position()
 		var camera = get_tree().root.get_camera_3d()
-		
-		
 		
 		var dropPlane = Plane(Vector3(0, 1, 0), character.global_position.y)
 		var position3D = dropPlane.intersects_ray(camera.project_ray_origin(mousePos), camera.project_ray_normal(mousePos))
@@ -100,9 +98,19 @@ func _process(_delta):
 			
 			object.set_freeze_enabled(false)
 			object.reparent(oldparent)
-			object.apply_force((cursor.global_position - position) * throwforce)
+			
 			object.set_collision_layer_value(1, true)
 			object.set_collision_mask_value(1, true)
+			
+			var force = cursor.global_position - position
+			force = force.clamp(Vector3(-maxforce, -maxforce, -maxforce), Vector3(maxforce, maxforce, maxforce))
+			
+			if character.position.distance_to(cursor.position) < 4 and character.position.distance_to(cursor.position) > -4:
+				force = Vector3(0, 0, 0)
+			
+			
+			object.apply_force(force * throwforce)
+			print(character.position.distance_to(cursor.position))
 			
 			object = null
 	

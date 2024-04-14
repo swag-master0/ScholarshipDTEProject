@@ -13,7 +13,7 @@ radius = 0.25
 height = 0.5
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_2e1ws"]
-size = Vector3(2, 2, 2)
+size = Vector3(2, 5, 2)
 
 [node name="Player" type="CharacterBody3D"]
 floor_constant_speed = true
