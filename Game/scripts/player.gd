@@ -99,7 +99,7 @@ func _process(_delta):
 			isHolding = false
 			
 			var throw = Vector3(cursor.global_position.x * throwforce, cursor.global_position.y, cursor.global_position.z * throwforce)
-			#print(throw.clamp(Vector3(-maxforce, -maxforce, -maxforce), Vector3(maxforce, maxforce, maxforce)))
+			#aprint(throw.clamp(Vector3(-maxforce, -maxforce, -maxforce), Vector3(maxforce, maxforce, maxforce)))
 			
 			print(cursor.global_position)
 			
