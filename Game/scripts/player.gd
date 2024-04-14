@@ -2,7 +2,7 @@ extends CharacterBody3D
 
 
 const SPEED = 8
-const JUMP_VELOCITY = 10
+const JUMP_VELOCITY = 25
 const JUMP_FALLMULTIPLIER = 5
 const TURN_VELOCITY = 10
 
@@ -63,6 +63,8 @@ func _physics_process(delta):
 	elif not Input.is_action_pressed("click"): # This is shitty code, but I fail to care
 		character.rotation.y = lerp_angle(character.rotation.y, atan2(faceDirection.x, faceDirection.z), delta * TURN_VELOCITY)
 	
+	if Input.is_action_just_pressed("escape"):
+		get_tree().quit()
 	
 	var input_dir = Input.get_vector("left", "right", "forward", "backward")
 	var direction = (transform.basis * Vector3(input_dir.x, 0, input_dir.y)).normalized()
@@ -97,11 +99,14 @@ func _process(_delta):
 			isHolding = false
 			
 			var throw = Vector3(cursor.global_position.x * throwforce, cursor.global_position.y, cursor.global_position.z * throwforce)
-			print(throw.clamp(Vector3(-maxforce, -maxforce, -maxforce), Vector3(maxforce, maxforce, maxforce)))
+			#print(throw.clamp(Vector3(-maxforce, -maxforce, -maxforce), Vector3(maxforce, maxforce, maxforce)))
+			
+			print(cursor.global_position)
 			
 			object.set_freeze_enabled(false)
 			object.reparent(oldparent)
-			object.apply_force(throw.clamp(Vector3(-maxforce, -maxforce, -maxforce), Vector3(maxforce, maxforce, maxforce)))
+			#object.apply_force(throw.clamp(Vector3(-maxforce, -maxforce, -maxforce), Vector3(maxforce, maxforce, maxforce)) + position)
+			object.apply_impulse(cursor.global_position)
 			object.set_collision_layer_value(1, true)
 			object.set_collision_mask_value(1, true)
 			
