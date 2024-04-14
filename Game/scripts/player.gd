@@ -98,15 +98,9 @@ func _process(_delta):
 			print(object)
 			isHolding = false
 			
-			var throw = Vector3(cursor.global_position.x * throwforce, cursor.global_position.y, cursor.global_position.z * throwforce)
-			#aprint(throw.clamp(Vector3(-maxforce, -maxforce, -maxforce), Vector3(maxforce, maxforce, maxforce)))
-			
-			print(cursor.global_position)
-			
 			object.set_freeze_enabled(false)
 			object.reparent(oldparent)
-			#object.apply_force(throw.clamp(Vector3(-maxforce, -maxforce, -maxforce), Vector3(maxforce, maxforce, maxforce)) + position)
-			object.apply_impulse(cursor.global_position)
+			object.apply_force((cursor.global_position - position) * throwforce)
 			object.set_collision_layer_value(1, true)
 			object.set_collision_mask_value(1, true)
 			
