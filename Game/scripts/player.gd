@@ -106,5 +106,7 @@ func _process(_delta):
 			object.set_collision_mask_value(1, true)
 			
 			object = null
-
+	
+	
+	
 
