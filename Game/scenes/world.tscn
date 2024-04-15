@@ -1,24 +1,26 @@
 [gd_scene load_steps=4 format=3 uid="uid://cov8v6858hevf"]
 
 [ext_resource type="PackedScene" uid="uid://c7ycb57houxl1" path="res://scenes/player.tscn" id="1_68ig2"]
-[ext_resource type="PackedScene" uid="uid://m8urk0gkn6ut" path="res://blend/level.blend" id="2_lxw2f"]
+[ext_resource type="PackedScene" uid="uid://hkq4oypfygd4" path="res://blend/creation_testing.blend" id="2_hoxpq"]
 
 [sub_resource type="Environment" id="Environment_6u04u"]
 background_mode = 1
 ambient_light_source = 2
+ambient_light_color = Color(0.47451, 0.47451, 0.47451, 1)
 
 [node name="Node3D" type="Node3D"]
 
 [node name="Player" parent="." instance=ExtResource("1_68ig2")]
-transform = Transform3D(0.707107, 0, 0.707107, 0, 1, 0, -0.707107, 0, 0.707107, 0, 3, 0)
+transform = Transform3D(0.707107, 0, 0.707107, 0, 1, 0, -0.707107, 0, 0.707107, -51, 3, 50)
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
 environment = SubResource("Environment_6u04u")
 
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 0, 7.73072, 0)
-light_color = Color(0, 0, 0, 1)
+light_color = Color(0.533333, 0.533333, 0.533333, 1)
 shadow_enabled = true
 sky_mode = 1
 
-[node name="level" parent="." instance=ExtResource("2_lxw2f")]
+[node name="creation_testing" parent="." instance=ExtResource("2_hoxpq")]
+transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, 0, 0, 0)

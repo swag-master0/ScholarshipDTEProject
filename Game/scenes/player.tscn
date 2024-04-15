@@ -52,9 +52,3 @@ mesh = SubResource("SphereMesh_2o1p4")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Cursor/Area3D"]
 shape = SubResource("BoxShape3D_2e1ws")
-
-[node name="OmniLight3D" type="OmniLight3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2, 0)
-light_energy = 3.0
-shadow_enabled = true
-omni_range = 300.0
