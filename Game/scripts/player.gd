@@ -103,6 +103,7 @@ func _process(_delta):
 			object.set_collision_mask_value(1, true)
 			
 			var force = cursor.global_position - position
+			force.y = force.y + 4
 			force = force.clamp(Vector3(-maxforce, -maxforce, -maxforce), Vector3(maxforce, maxforce, maxforce))
 			
 			if character.position.distance_to(cursor.position) < 4 and character.position.distance_to(cursor.position) > -4:
