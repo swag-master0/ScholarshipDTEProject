@@ -8,6 +8,7 @@ const TURN_VELOCITY = 10
 
 @onready var character = $PlayerModel
 @onready var pivot = $CentralCameraPoint
+@onready var camera = $CentralCameraPoint/Camera3D
 @onready var cursor = $Cursor
 @onready var detection = $Cursor/Area3D
 
@@ -24,10 +25,10 @@ var maxforce = 2000
 func MousePosition():
 	if  ready: # This statement looks very dumb but without it it'll sometimes crash. The crashing isn't even consistant either!
 		var mousePos = get_viewport().get_mouse_position()
-		var camera = get_tree().root.get_camera_3d()
+		var cam = get_tree().root.get_camera_3d()
 		
 		var dropPlane = Plane(Vector3(0, 1, 0), character.global_position.y)
-		var position3D = dropPlane.intersects_ray(camera.project_ray_origin(mousePos), camera.project_ray_normal(mousePos))
+		var position3D = dropPlane.intersects_ray(cam.project_ray_origin(mousePos), cam.project_ray_normal(mousePos))
 		return position3D
 
 func NearestObject():
@@ -63,6 +64,14 @@ func _physics_process(delta):
 	
 	if Input.is_action_just_pressed("escape"):
 		get_tree().quit()
+	
+	if Input.is_action_just_pressed("scroll_down"):
+		pivot.rotation.x = deg_to_rad(45)
+	if Input.is_action_just_pressed("scroll_up"):
+		pivot.rotation.x = deg_to_rad(0)
+	
+	
+	
 	
 	var input_dir = Input.get_vector("left", "right", "forward", "backward")
 	var direction = (transform.basis * Vector3(input_dir.x, 0, input_dir.y)).normalized()
