@@ -1,7 +1,7 @@
 extends CharacterBody3D
 
 
-const SPEED = 8
+const SPEED = 10
 const JUMP_VELOCITY = 25
 const JUMP_FALLMULTIPLIER = 5
 const TURN_VELOCITY = 10
