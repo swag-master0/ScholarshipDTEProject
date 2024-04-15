@@ -1,4 +1,4 @@
-[gd_scene load_steps=4 format=3 uid="uid://cov8v6858hevf"]
+[gd_scene load_steps=5 format=3 uid="uid://cov8v6858hevf"]
 
 [ext_resource type="PackedScene" uid="uid://c7ycb57houxl1" path="res://scenes/player.tscn" id="1_68ig2"]
 [ext_resource type="PackedScene" uid="uid://m8urk0gkn6ut" path="res://blend/level.blend" id="2_povma"]
@@ -7,6 +7,12 @@
 background_mode = 1
 ambient_light_source = 2
 ambient_light_color = Color(0.47451, 0.47451, 0.47451, 1)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_4l420"]
+albedo_color = Color(0.996078, 0.658824, 0.380392, 1)
+distance_fade_mode = 1
+distance_fade_min_distance = 10.0
+distance_fade_max_distance = 20.0
 
 [node name="Node3D" type="Node3D"]
 
@@ -23,3 +29,8 @@ shadow_enabled = true
 sky_mode = 1
 
 [node name="level" parent="." instance=ExtResource("2_povma")]
+
+[node name="Level" parent="level" index="1"]
+material_override = SubResource("StandardMaterial3D_4l420")
+
+[editable path="level"]
