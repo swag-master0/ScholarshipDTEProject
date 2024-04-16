@@ -1,10 +1,14 @@
 extends CharacterBody3D
 
+@export var SPEED = 10
+@export var JUMP_VELOCITY = 25
+@export var JUMP_FALLMULTIPLIER = 5
+@export var TURN_VELOCITY = 10
 
-const SPEED = 10
-const JUMP_VELOCITY = 25
-const JUMP_FALLMULTIPLIER = 5
-const TURN_VELOCITY = 10
+@export var PICKUP_RANGE = 6
+@export var THROW_FORCE = 75
+@export var MAX_FORCE = 2000
+@export var PUSH_FORCE = 10
 
 @onready var character = $PlayerModel
 @onready var pivot = $CentralCameraPoint
@@ -18,9 +22,6 @@ var faceDirection = Vector3.FORWARD
 var object = null
 var oldparent = null
 var isHolding = false
-var throwforce = 75
-var maxforce = 2000
-
 
 
 func MousePosition():
@@ -45,6 +46,9 @@ func NearestObject():
 	
 	if closest_node:
 		return closest_node
+
+func _ready():
+	rotate_x(deg_to_rad(5))
 
 func _physics_process(delta):
 	if not is_on_floor():
@@ -84,15 +88,23 @@ func _physics_process(delta):
 		velocity.z = move_toward(velocity.z, 0, SPEED)
 	
 	move_and_slide()
+	
+	
+	#TODO: find a way to stop the collisions from bitching
+	"""
+	for i in get_slide_collision_count():
+		var collisions = get_slide_collision(i)
+		if collisions.get_collider() is RigidBody3D:
+			collisions.get_collider().apply_central_impulse(-collisions.get_normal() * PUSH_FORCE)
+	"""	
 
 func _process(_delta):
 	if Input.is_action_just_pressed("click"):
-		if NearestObject() and NearestObject() is RigidBody3D and isHolding == false:
+		if NearestObject() and NearestObject() is RigidBody3D and global_position.distance_to(NearestObject().position) <= PICKUP_RANGE and isHolding == false:
 			isHolding = true
 			object = NearestObject()
 			oldparent = object.get_parent()
 			
-			#object.position = Vector3(character.global_position.x, character.global_position.y + 0.5, character.global_position.z - 3)
 			object.global_transform = $PlayerModel/HoldPoint.global_transform
 			object.reparent(character)
 			object.set_freeze_enabled(true)
@@ -114,13 +126,13 @@ func _process(_delta):
 			
 			var force = cursor.global_position - position
 			force.y = force.y + 4
-			force = force.clamp(Vector3(-maxforce, -maxforce, -maxforce), Vector3(maxforce, maxforce, maxforce))
+			force = force.clamp(Vector3(-MAX_FORCE, -MAX_FORCE, -MAX_FORCE), Vector3(MAX_FORCE, MAX_FORCE, MAX_FORCE))
 			
 			if character.position.distance_to(cursor.position) < 4 and character.position.distance_to(cursor.position) > -4:
 				force = Vector3(0, 0, 0)
 			
 			
-			object.apply_force(force * throwforce)
+			object.apply_force(force * THROW_FORCE)
 			print(character.position.distance_to(cursor.position))
 			
 			object = null
