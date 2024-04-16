@@ -22,6 +22,7 @@ var throwforce = 75
 var maxforce = 2000
 
 
+
 func MousePosition():
 	if  ready: # This statement looks very dumb but without it it'll sometimes crash. The crashing isn't even consistant either!
 		var mousePos = get_viewport().get_mouse_position()
@@ -68,7 +69,7 @@ func _physics_process(delta):
 	if Input.is_action_just_pressed("scroll_down"):
 		pivot.rotation.x = deg_to_rad(45)
 	if Input.is_action_just_pressed("scroll_up"):
-		pivot.rotation.x = deg_to_rad(0)
+		pivot.rotation.x = deg_to_rad(15)
 	
 	
 	
