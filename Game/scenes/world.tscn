@@ -1,7 +1,8 @@
-[gd_scene load_steps=5 format=3 uid="uid://cov8v6858hevf"]
+[gd_scene load_steps=6 format=3 uid="uid://cov8v6858hevf"]
 
 [ext_resource type="PackedScene" uid="uid://c7ycb57houxl1" path="res://scenes/player.tscn" id="1_68ig2"]
 [ext_resource type="PackedScene" uid="uid://m8urk0gkn6ut" path="res://blend/level.blend" id="2_povma"]
+[ext_resource type="PackedScene" uid="uid://qgme1k42iyr6" path="res://scenes/breakable_glass.tscn" id="3_7f0dq"]
 
 [sub_resource type="Environment" id="Environment_6u04u"]
 background_mode = 1
@@ -32,5 +33,8 @@ sky_mode = 1
 
 [node name="Level" parent="level" index="1"]
 material_override = SubResource("StandardMaterial3D_4l420")
+
+[node name="Glass" parent="." instance=ExtResource("3_7f0dq")]
+transform = Transform3D(-5.87918e-08, 0, -1.345, 0, 1.345, 0, 1.345, 0, -5.87918e-08, -22, 0, -11)
 
 [editable path="level"]

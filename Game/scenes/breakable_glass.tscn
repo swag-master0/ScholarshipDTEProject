@@ -1,0 +1,12 @@
+[gd_scene load_steps=3 format=3 uid="uid://qgme1k42iyr6"]
+
+[ext_resource type="PackedScene" uid="uid://daymadsgic1jy" path="res://blend/glass.blend" id="1_c8plg"]
+[ext_resource type="Script" path="res://scripts/breakable_glass.gd" id="1_dfbi3"]
+
+[node name="Glass" type="Node3D"]
+script = ExtResource("1_dfbi3")
+
+[node name="glass" parent="." instance=ExtResource("1_c8plg")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.132558, 0, -0.0899639)
+
+[editable path="glass"]

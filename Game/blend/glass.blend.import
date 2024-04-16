@@ -3,13 +3,13 @@
 importer="scene"
 importer_version=1
 type="PackedScene"
-uid="uid://hcoev4d4ukcu"
-path="res://.godot/imported/world.blend-ca9371163740dcda0b429cf836ca596e.scn"
+uid="uid://daymadsgic1jy"
+path="res://.godot/imported/glass.blend-45d803847a6c5ca322fc346c8a38e4e6.scn"
 
 [deps]
 
-source_file="res://blend/world.blend"
-dest_files=["res://.godot/imported/world.blend-ca9371163740dcda0b429cf836ca596e.scn"]
+source_file="res://blend/glass.blend"
+dest_files=["res://.godot/imported/glass.blend-45d803847a6c5ca322fc346c8a38e4e6.scn"]
 
 [params]
 
