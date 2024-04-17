@@ -1,7 +1,7 @@
 [gd_resource type="VisualShader" load_steps=3 format=3 uid="uid://d328xnc5ajmxy"]
 
 [sub_resource type="VisualShaderNodeDistanceFade" id="VisualShaderNodeDistanceFade_36ihx"]
-default_input_values = [0, 17.5, 1, 10.0]
+default_input_values = [0, 15.0, 1, 10.0]
 
 [sub_resource type="VisualShaderNodeColorConstant" id="VisualShaderNodeColorConstant_kg4qs"]
 output_port_for_preview = 0
@@ -20,7 +20,7 @@ void fragment() {
 
 
 // DistanceFade:2
-	float n_in2p0 = 17.50000;
+	float n_in2p0 = 15.00000;
 	float n_in2p1 = 10.00000;
 	float n_out2p0 = clamp(smoothstep(n_in2p0, n_in2p1,-VERTEX.z),0.0,1.0);
 
@@ -32,6 +32,7 @@ void fragment() {
 
 }
 "
+graph_offset = Vector2(-82.3143, 197.844)
 nodes/fragment/2/node = SubResource("VisualShaderNodeDistanceFade_36ihx")
 nodes/fragment/2/position = Vector2(120, 320)
 nodes/fragment/3/node = SubResource("VisualShaderNodeColorConstant_kg4qs")

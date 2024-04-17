@@ -100,7 +100,7 @@ func _physics_process(delta):
 
 func _process(_delta):
 	if Input.is_action_just_pressed("click"):
-		if NearestObject() and NearestObject() is RigidBody3D and global_position.distance_to(NearestObject().position) <= PICKUP_RANGE and isHolding == false:
+		if NearestObject() and NearestObject() is RigidBody3D and global_position.distance_to(NearestObject().global_position) <= PICKUP_RANGE and isHolding == false:
 			isHolding = true
 			object = NearestObject()
 			oldparent = object.get_parent()
@@ -136,7 +136,5 @@ func _process(_delta):
 			print(character.position.distance_to(cursor.position))
 			
 			object = null
-	
-	
 	
 
