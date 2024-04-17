@@ -1,6 +1,6 @@
 [gd_scene load_steps=3 format=3 uid="uid://c4ousj15h5a10"]
 
-[ext_resource type="Script" path="res://scenes/levels/main_menu.gd" id="1_woppv"]
+[ext_resource type="Script" path="res://scripts/main_menu.gd" id="1_woppv"]
 
 [sub_resource type="Environment" id="Environment_86q37"]
 background_mode = 1

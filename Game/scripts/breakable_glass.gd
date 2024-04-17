@@ -4,8 +4,9 @@ extends Node3D
 @onready var pane = $"glass/Pane "
 @onready var staticbody = $"glass/Pane /StaticBody3D"
 
-@export var health = 10
-@export var threshold = 5
+@onready var health = $Info.health
+@onready var info = $Info
+
 
 func Toggle(value : bool):
 	for i in range(main.get_children().size()):
@@ -19,11 +20,34 @@ func _ready():
 
 func _on_hitbox_body_entered(body):
 	if body is RigidBody3D:
+		var mag = info.calculateMagnitude(body)
+		
+		health = health - info.calculateDamage(mag)
+		"""
 		var vel = body.get_linear_velocity()
 		
-		if (vel.x > threshold or vel.x < -threshold) or (vel.y > threshold or vel.y < -threshold) or (vel.z > threshold or vel.z < -threshold): #fucking retarded
-			Toggle(false)
-			pane.visible = false
-			staticbody.set_collision_layer_value(1, false)
-			staticbody.set_collision_mask_value(1, false)
+		# convert negative numbers to positive, or else square root returns 'not a number'
+		if vel.x < 0:
+			vel.x = vel.x * -1
+		if vel.y < 0:
+			vel.y = vel.y * -1
+		if vel.z < 0:
+			vel.z = vel.z * -1
+		
+		var magnitude = sqrt(vel.x + vel.y + vel.z)
+		
+		if magnitude > 1:
+			var damage = magnitude * body.mass
+			health = health - damage
 			
+			print(damage)
+			#print(health)
+		"""
+
+
+func _process(delta):
+	if health <= 0:
+		Toggle(false)
+		pane.visible = false
+		staticbody.set_collision_layer_value(1, false)
+		staticbody.set_collision_mask_value(1, false)

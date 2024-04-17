@@ -1,10 +1,14 @@
-[gd_scene load_steps=4 format=3 uid="uid://ch7t6b0c3tjwr"]
+[gd_scene load_steps=6 format=3 uid="uid://ch7t6b0c3tjwr"]
 
-[ext_resource type="Script" path="res://scenes/elements/enemy.gd" id="1_nn6r1"]
+[ext_resource type="Script" path="res://scripts/enemy.gd" id="1_nn6r1"]
+[ext_resource type="PackedScene" uid="uid://cft1b4l0aljye" path="res://scenes/elements/info.tscn" id="2_2k0xv"]
 
 [sub_resource type="SphereMesh" id="SphereMesh_o28ak"]
 
 [sub_resource type="SphereShape3D" id="SphereShape3D_4mudu"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_gxf4j"]
+size = Vector3(2, 2, 2)
 
 [node name="Enemy" type="CharacterBody3D"]
 script = ExtResource("1_nn6r1")
@@ -16,3 +20,16 @@ mesh = SubResource("SphereMesh_o28ak")
 shape = SubResource("SphereShape3D_4mudu")
 
 [node name="NavigationAgent3D" type="NavigationAgent3D" parent="."]
+
+[node name="RayCast3D" type="RayCast3D" parent="."]
+target_position = Vector3(5, 0, 0)
+
+[node name="Hitbox" type="Area3D" parent="."]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Hitbox"]
+shape = SubResource("BoxShape3D_gxf4j")
+
+[node name="Info" parent="." instance=ExtResource("2_2k0xv")]
+health = 10
+
+[connection signal="body_entered" from="Hitbox" to="." method="_on_hitbox_body_entered"]

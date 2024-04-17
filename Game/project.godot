@@ -22,6 +22,16 @@ window/size/viewport_height=1080
 window/size/mode=3
 window/size/resizable=false
 
+[file_customization]
+
+folder_colors={
+"res://assets/": "red",
+"res://blend/": "orange",
+"res://scenes/": "blue",
+"res://scenes/elements/": "green",
+"res://scripts/": "green"
+}
+
 [input]
 
 forward={
