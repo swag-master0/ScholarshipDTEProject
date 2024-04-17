@@ -12,7 +12,6 @@ func Toggle(value : bool):
 		if main.get_children()[i] is RigidBody3D:
 			main.get_children()[i].set_freeze_enabled(value)
 			main.get_children()[i].visible = !value
-			print("success")
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
@@ -20,8 +19,8 @@ func _ready():
 
 func _on_hitbox_body_entered(body):
 	if body is RigidBody3D:
-		print(body.get_linear_velocity())
 		var vel = body.get_linear_velocity()
+		
 		if (vel.x > threshold or vel.x < -threshold) or (vel.y > threshold or vel.y < -threshold) or (vel.z > threshold or vel.z < -threshold): #fucking retarded
 			Toggle(false)
 			pane.visible = false

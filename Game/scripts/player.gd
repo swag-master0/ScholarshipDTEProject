@@ -115,7 +115,6 @@ func _process(_delta):
 		
 	if Input.is_action_just_released("click"):
 		if object and isHolding == true:
-			print(object)
 			isHolding = false
 			
 			object.set_freeze_enabled(false)
@@ -133,7 +132,6 @@ func _process(_delta):
 			
 			
 			object.apply_force(force * THROW_FORCE)
-			print(character.position.distance_to(cursor.position))
 			
 			object = null
 	
