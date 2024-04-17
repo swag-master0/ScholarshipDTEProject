@@ -1,6 +1,7 @@
 extends Node3D
 
 @export var health : int
+@export var disabled : bool
 
 
 func calculateMagnitude(body):

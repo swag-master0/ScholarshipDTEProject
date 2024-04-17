@@ -24,6 +24,7 @@ var oldparent = null
 var isHolding = false
 
 
+
 func MousePosition():
 	if  ready: # This statement looks very dumb but without it it'll sometimes crash. The crashing isn't even consistant either!
 		var mousePos = get_viewport().get_mouse_position()
@@ -47,9 +48,6 @@ func NearestObject():
 	if closest_node:
 		return closest_node
 
-func _ready():
-	rotate_x(deg_to_rad(5))
-
 func _physics_process(delta):
 	if not is_on_floor():
 		velocity.y -= gravity * delta * JUMP_FALLMULTIPLIER
@@ -68,13 +66,14 @@ func _physics_process(delta):
 		character.rotation.y = lerp_angle(character.rotation.y, atan2(faceDirection.x, faceDirection.z), delta * TURN_VELOCITY)
 	
 	if Input.is_action_just_pressed("escape"):
-		get_tree().quit()
+		get_tree().change_scene_to_file("res://scenes/levels/main_menu.tscn")
 	
+	"""
 	if Input.is_action_just_pressed("scroll_down"):
 		pivot.rotation.x = deg_to_rad(45)
 	if Input.is_action_just_pressed("scroll_up"):
 		pivot.rotation.x = deg_to_rad(15)
-	
+	"""
 	
 	
 	
@@ -124,7 +123,7 @@ func _process(_delta):
 			object.set_collision_mask_value(1, true)
 			
 			var force = cursor.global_position - position
-			force.y = force.y + 4
+			force.y = force.y + 2
 			force = force.clamp(Vector3(-MAX_FORCE, -MAX_FORCE, -MAX_FORCE), Vector3(MAX_FORCE, MAX_FORCE, MAX_FORCE))
 			
 			if character.position.distance_to(cursor.position) < 4 and character.position.distance_to(cursor.position) > -4:

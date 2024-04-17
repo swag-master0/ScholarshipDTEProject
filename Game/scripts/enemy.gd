@@ -5,12 +5,27 @@ extends CharacterBody3D
 
 @onready var nav : NavigationAgent3D = $NavigationAgent3D
 @onready var raycast = $RayCast3D
+@onready var mesh = $MeshInstance3D
+@onready var coll = $CollisionShape3D
+
 @onready var info = $Info
 @onready var health = info.health
+@onready var disabled = info.disabled
 
 
 # navigating
 func _physics_process(_delta):
+	disabled = info.disabled
+	
+	if disabled == true:
+		mesh.visible = false
+		coll.disabled = true
+		return
+	
+	if disabled == false:
+		mesh.visible = true
+		coll.disabled = false
+	
 	
 	var direction = Vector3()
 	
@@ -23,7 +38,6 @@ func _physics_process(_delta):
 			
 			if raycast.get_collider() == player:
 				nav.target_position = player.position
-				print("detected player")
 			
 			else:
 				pass
@@ -38,7 +52,7 @@ func _physics_process(_delta):
 
 
 func _on_hitbox_body_entered(body):
-	if body is RigidBody3D:
+	if body is RigidBody3D and !disabled:
 		var mag = info.calculateMagnitude(body)
 		
 		health = health - info.calculateDamage(mag)
@@ -47,3 +61,5 @@ func _on_hitbox_body_entered(body):
 func _process(delta):
 	if health <= 0:
 		self.queue_free()
+	
+	

@@ -4,6 +4,7 @@
 
 [sub_resource type="Environment" id="Environment_86q37"]
 background_mode = 1
+background_color = Color(0.0784314, 0.0784314, 0.0784314, 1)
 
 [node name="MainMenu" type="Node3D"]
 script = ExtResource("1_woppv")

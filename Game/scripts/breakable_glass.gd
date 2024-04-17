@@ -23,26 +23,6 @@ func _on_hitbox_body_entered(body):
 		var mag = info.calculateMagnitude(body)
 		
 		health = health - info.calculateDamage(mag)
-		"""
-		var vel = body.get_linear_velocity()
-		
-		# convert negative numbers to positive, or else square root returns 'not a number'
-		if vel.x < 0:
-			vel.x = vel.x * -1
-		if vel.y < 0:
-			vel.y = vel.y * -1
-		if vel.z < 0:
-			vel.z = vel.z * -1
-		
-		var magnitude = sqrt(vel.x + vel.y + vel.z)
-		
-		if magnitude > 1:
-			var damage = magnitude * body.mass
-			health = health - damage
-			
-			print(damage)
-			#print(health)
-		"""
 
 
 func _process(delta):
