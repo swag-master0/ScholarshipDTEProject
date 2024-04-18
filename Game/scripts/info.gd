@@ -1,7 +1,9 @@
 extends Node3D
 
 @export var health : int
+
 @export var disabled : bool
+@export var damage : int
 
 
 func calculateMagnitude(body):
@@ -24,3 +26,9 @@ func calculateDamage(mag):
 		return mag
 	else:
 		return 0
+
+func giveHintToPlayer(player, hint):
+	##[wave][center][color=SILVER]Hint
+	pass
+	
+

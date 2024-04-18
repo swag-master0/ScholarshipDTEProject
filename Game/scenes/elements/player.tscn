@@ -1,12 +1,17 @@
-[gd_scene load_steps=7 format=3 uid="uid://c7ycb57houxl1"]
+[gd_scene load_steps=9 format=3 uid="uid://c7ycb57houxl1"]
 
 [ext_resource type="Script" path="res://scripts/player.gd" id="1_m12p3"]
+[ext_resource type="PackedScene" uid="uid://cft1b4l0aljye" path="res://scenes/elements/info.tscn" id="2_xudpl"]
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_5owcp"]
+radius = 0.6
+height = 2.1
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_uiem3"]
 
 [sub_resource type="CapsuleMesh" id="CapsuleMesh_7nubc"]
 
 [sub_resource type="PrismMesh" id="PrismMesh_u4gd0"]
-
-[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_uiem3"]
 
 [sub_resource type="SphereMesh" id="SphereMesh_2o1p4"]
 radius = 0.25
@@ -20,6 +25,20 @@ floor_constant_speed = true
 floor_max_angle = 1.22173
 script = ExtResource("1_m12p3")
 
+[node name="InvincibilityFrames" type="Timer" parent="."]
+one_shot = true
+
+[node name="Hitbox" type="Area3D" parent="."]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Hitbox"]
+shape = SubResource("CapsuleShape3D_5owcp")
+
+[node name="Info" parent="." instance=ExtResource("2_xudpl")]
+health = 20
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+shape = SubResource("CapsuleShape3D_uiem3")
+
 [node name="PlayerModel" type="MeshInstance3D" parent="."]
 mesh = SubResource("CapsuleMesh_7nubc")
 
@@ -30,9 +49,6 @@ skeleton = NodePath("../..")
 
 [node name="HoldPoint" type="Marker3D" parent="PlayerModel"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 2)
-
-[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
-shape = SubResource("CapsuleShape3D_uiem3")
 
 [node name="CentralCameraPoint" type="Marker3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 0.965926, -0.258819, 0, 0.258819, 0.965926, 0, 0.4, 0)
@@ -55,3 +71,59 @@ mesh = SubResource("SphereMesh_2o1p4")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Cursor/Area3D"]
 shape = SubResource("BoxShape3D_2e1ws")
+
+[node name="HUD" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="HealthBar" type="ColorRect" parent="HUD"]
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -100.0
+offset_top = -180.0
+offset_right = -60.0
+offset_bottom = -140.0
+grow_horizontal = 2
+grow_vertical = 0
+scale = Vector2(5, 2)
+color = Color(1, 0, 0, 1)
+
+[node name="HealthGreen" type="ColorRect" parent="HUD/HealthBar"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0, 1, 0, 1)
+
+[node name="Hints" type="RichTextLabel" parent="HUD"]
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -150.0
+offset_top = -258.0
+offset_right = 150.0
+offset_bottom = -183.0
+grow_horizontal = 2
+grow_vertical = 0
+bbcode_enabled = true
+scroll_active = false
+
+[node name="Timer" type="Timer" parent="HUD/Hints"]
+wait_time = 6.0
+one_shot = true
+
+[connection signal="body_entered" from="Hitbox" to="." method="_on_hitbox_body_entered"]
+[connection signal="timeout" from="HUD/Hints/Timer" to="." method="_hinttext_timeout"]

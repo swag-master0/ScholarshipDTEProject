@@ -86,4 +86,5 @@ scroll_up={
 
 [physics]
 
+3d/physics_engine="GodotPhysics3D"
 3d/default_gravity=14.7
