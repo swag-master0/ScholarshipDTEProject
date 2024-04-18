@@ -9,12 +9,14 @@ extends CharacterBody3D
 @export var THROW_FORCE = 75
 @export var MAX_FORCE = 2000
 @export var PUSH_FORCE = 10
+@export var CAM_FOLLOW_SPEED = 0.25
 
 @onready var character = $PlayerModel
 @onready var pivot = $CentralCameraPoint
 @onready var camera = $CentralCameraPoint/Camera3D
 @onready var cursor = $Cursor
 @onready var detection = $Cursor/Area3D
+@onready var scene_tree = get_tree()
 
 var gravity = ProjectSettings.get_setting("physics/3d/default_gravity")
 var faceDirection = Vector3.FORWARD
@@ -28,7 +30,7 @@ var isHolding = false
 func MousePosition():
 	if  ready: # This statement looks very dumb but without it it'll sometimes crash. The crashing isn't even consistant either!
 		var mousePos = get_viewport().get_mouse_position()
-		var cam = get_tree().root.get_camera_3d()
+		var cam = scene_tree.root.get_camera_3d()
 		
 		var dropPlane = Plane(Vector3(0, 1, 0), character.global_position.y)
 		var position3D = dropPlane.intersects_ray(cam.project_ray_origin(mousePos), cam.project_ray_normal(mousePos))
@@ -62,18 +64,18 @@ func _physics_process(delta):
 	
 	if Input.is_action_pressed("click"):
 		character.rotation.y = atan2(cursor.position.x, cursor.position.z)
+		cursor.visible = true
 	elif not Input.is_action_pressed("click"): # This is shitty code, but I fail to care
 		character.rotation.y = lerp_angle(character.rotation.y, atan2(faceDirection.x, faceDirection.z), delta * TURN_VELOCITY)
+		cursor.visible = false
 	
 	if Input.is_action_just_pressed("escape"):
-		get_tree().change_scene_to_file("res://scenes/levels/main_menu.tscn")
+		scene_tree.change_scene_to_file("res://scenes/levels/main_menu.tscn")
 	
-	"""
-	if Input.is_action_just_pressed("scroll_down"):
-		pivot.rotation.x = deg_to_rad(45)
-	if Input.is_action_just_pressed("scroll_up"):
-		pivot.rotation.x = deg_to_rad(15)
-	"""
+	
+	if pivot.position != character.position:
+		var camera_tween = scene_tree.create_tween().set_ease(Tween.EASE_OUT)
+		camera_tween.tween_property(pivot, "position", self.global_position, CAM_FOLLOW_SPEED)
 	
 	
 	

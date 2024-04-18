@@ -10,7 +10,7 @@ text = "objective"
 font_size = 97
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_tlk0q"]
-size = Vector3(4.20767, 0.756802, 0.07)
+size = Vector3(4.208, 0.757, 0.275)
 
 [node name="Objective" type="Node3D"]
 script = ExtResource("1_i55ny")

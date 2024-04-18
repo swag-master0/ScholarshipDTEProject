@@ -58,7 +58,7 @@ func _on_hitbox_body_entered(body):
 		health = health - info.calculateDamage(mag)
 
 
-func _process(delta):
+func _process(_delta):
 	if health <= 0:
 		self.queue_free()
 	

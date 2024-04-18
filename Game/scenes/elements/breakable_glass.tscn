@@ -97,7 +97,7 @@ shape = SubResource("BoxShape3D_nxum4")
 
 [node name="Info" parent="." instance=ExtResource("4_vrqgh")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 2)
-health = 10
+health = 3
 
 [connection signal="body_entered" from="Hitbox" to="." method="_on_hitbox_body_entered"]
 
