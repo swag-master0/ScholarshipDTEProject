@@ -3,6 +3,7 @@ extends CharacterBody3D
 #TODO: This script desperately needs organising, because this piece of shit is a pain in the ass to read, let alone work on.
 
 
+# INFO: PLAYER VARIABLES
 @export var SPEED = 10
 @export var JUMP_VELOCITY = 25
 @export var JUMP_FALLMULTIPLIER = 5
@@ -14,6 +15,8 @@ extends CharacterBody3D
 @export var PUSH_FORCE = 0.5
 @export var CAM_FOLLOW_SPEED = 0.25
 
+
+# INFO: NODE REFERENCES
 @onready var character = $PlayerModel
 @onready var pivot = $CentralCameraPoint
 @onready var camera = $CentralCameraPoint/Camera3D
@@ -23,12 +26,16 @@ extends CharacterBody3D
 @onready var info = $Info
 @onready var invincibility_frames = $InvincibilityFrames
 
+
+# INFO: HUD ELEMENTS
 @onready var HUD = $HUD
 @onready var hinttext = $HUD/Hints
 @onready var hinttimer = $HUD/Hints/Timer
 
 @onready var max_health = float(info.health)
 @onready var initial_size = $HUD/HealthBar/HealthGreen.size.x
+
+
 
 var gravity = ProjectSettings.get_setting("physics/3d/default_gravity")
 var faceDirection = Vector3.FORWARD
@@ -38,19 +45,18 @@ var oldparent = null
 var isHolding = false
 
 
+
 # _physics_process() and _process() could be combined into a single function, but at the moment i dont give a shit
 func _physics_process(delta):
-	# player falling from template script
 	if not is_on_floor():
 		velocity.y -= gravity * delta * JUMP_FALLMULTIPLIER
 	if Input.is_action_just_pressed("jump") and is_on_floor():
 		velocity.y = JUMP_VELOCITY
 	
-	# set cursor to mouse position
 	if ready: # The fact I have to do this twice is utterly fucking retarded
 		cursor.global_position = MousePosition()
 	
-	# handle player look direction
+
 	if (Input.is_action_pressed("forward") or Input.is_action_pressed("left") or Input.is_action_pressed("right") or Input.is_action_pressed("backward")):
 		faceDirection = Vector3(Input.get_action_strength("right") - Input.get_action_strength("left"), 0 ,Input.get_action_strength("backward") - Input.get_action_strength("forward")).normalized()
 	
@@ -60,16 +66,13 @@ func _physics_process(delta):
 	elif not Input.is_action_pressed("click"): # This is shitty code, but I fail to care
 		character.rotation.y = lerp_angle(character.rotation.y, atan2(faceDirection.x, faceDirection.z), delta * TURN_VELOCITY)
 		cursor.visible = false
+		
+		
 	
 	# quit to menu
 	if Input.is_action_just_pressed("escape"):
 		scene_tree.change_scene_to_file("res://scenes/levels/main_menu.tscn")
 	
-	
-	# camera tweening:
-	if pivot.position != character.position:
-		var camera_tween = scene_tree.create_tween().set_ease(Tween.EASE_OUT)
-		camera_tween.tween_property(pivot, "position", self.global_position, CAM_FOLLOW_SPEED)
 	
 	
 	# player movement from template (im too lazy to change it, nor do I need to)
@@ -142,15 +145,29 @@ func _process(_delta):
 
 
 
-
+# INFO: Fetches mouse position in 3D space
 func MousePosition():
 	if  ready: # This statement looks very dumb but without it it'll sometimes crash. The crashing isn't even consistant either!
 		var mousePos = get_viewport().get_mouse_position()
-		var cam = scene_tree.root.get_camera_3d()
+		var spaceState = get_world_3d().direct_space_state
 		
-		var dropPlane = Plane(Vector3(0, 1, 0), character.global_position.y)
-		var position3D = dropPlane.intersects_ray(cam.project_ray_origin(mousePos), cam.project_ray_normal(mousePos))
-		return position3D
+		var rayOrigin = camera.project_ray_origin(mousePos)
+		var rayEnd = rayOrigin + camera.project_ray_normal(mousePos) * 2000
+		var query = PhysicsRayQueryParameters3D.create(rayOrigin, rayEnd)
+		
+		var rayArray = spaceState.intersect_ray(query)
+		print(rayArray)
+		
+		# if raycast hit something
+		if rayArray.has("position"): 
+			return rayArray["position"]
+			
+		
+		# if raycast hit nothing, it draws a plane and sees where a raycast hits on that
+		else:
+			var dropPlane = Plane(Vector3(0, 1, 0), character.global_position.y)
+			var position3D = dropPlane.intersects_ray(camera.project_ray_origin(mousePos), camera.project_ray_normal(mousePos))
+			return position3D
 
 func NearestObject():
 	var objects = detection.get_overlapping_bodies()

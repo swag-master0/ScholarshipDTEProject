@@ -13,9 +13,9 @@ height = 2.1
 
 [sub_resource type="PrismMesh" id="PrismMesh_u4gd0"]
 
-[sub_resource type="SphereMesh" id="SphereMesh_2o1p4"]
-radius = 0.25
-height = 0.5
+[sub_resource type="TextMesh" id="TextMesh_vlix2"]
+text = "^"
+font_size = 100
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_2e1ws"]
 size = Vector3(2, 5, 2)
@@ -52,7 +52,6 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 2)
 
 [node name="CentralCameraPoint" type="Marker3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 0.965926, -0.258819, 0, 0.258819, 0.965926, 0, 0.4, 0)
-top_level = true
 
 [node name="Camera3D" type="Camera3D" parent="CentralCameraPoint"]
 transform = Transform3D(1, 0, 0, 0, 0.390731, 0.920505, 0, -0.920505, 0.390731, 0, 24, 11)
@@ -60,12 +59,15 @@ doppler_tracking = 2
 fov = 60.0
 size = 39.544
 
+[node name="RayCast3D" type="RayCast3D" parent="CentralCameraPoint/Camera3D"]
+target_position = Vector3(0, 0, -5)
+
 [node name="Cursor" type="Marker3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -4)
 gizmo_extents = 3.0
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="Cursor"]
-mesh = SubResource("SphereMesh_2o1p4")
+mesh = SubResource("TextMesh_vlix2")
 
 [node name="Area3D" type="Area3D" parent="Cursor"]
 
