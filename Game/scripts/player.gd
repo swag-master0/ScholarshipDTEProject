@@ -95,8 +95,36 @@ func _physics_process(delta):
 		var collisions = get_slide_collision(i)
 		if collisions.get_collider() is RigidBody3D:
 			collisions.get_collider().apply_central_impulse(-collisions.get_normal() * PUSH_FORCE)
+	
 
 func _process(_delta):
+	if NearestObject() and NearestObject() is RigidBody3D and global_position.distance_to(NearestObject().global_position) <= PICKUP_RANGE and isHolding == false:
+		
+		"""
+		for i in NearestObject().get_children():
+			if i is MeshInstance3D:
+				$Cursor/MeshInstance3D.material.albedo_color = Color(1, 0, 0)
+			else:
+				$Cursor/MeshInstance3D.material.albedo_color = Color(0, 1, 0)
+		"""
+		
+		if Input.is_action_just_pressed("click"): # handle picking up objects
+			isHolding = true
+			object = NearestObject()
+			oldparent = object.get_parent()
+			
+			object.global_transform = $PlayerModel/HoldPoint.global_transform
+			object.reparent(character)
+			object.set_freeze_enabled(true)
+			object.set_collision_layer_value(1, false)
+			object.set_collision_mask_value(1, false)
+		else:
+			pass
+	
+	
+	
+	
+	"""
 	if Input.is_action_just_pressed("click"): # handle picking up objects
 		if NearestObject() and NearestObject() is RigidBody3D and global_position.distance_to(NearestObject().global_position) <= PICKUP_RANGE and isHolding == false:
 			isHolding = true
@@ -110,7 +138,7 @@ func _process(_delta):
 			object.set_collision_mask_value(1, false)
 		else:
 			pass
-		
+		"""
 	if Input.is_action_just_released("click"): # handle throwing objects
 		if object and isHolding == true:
 			isHolding = false
@@ -156,7 +184,8 @@ func MousePosition():
 		var query = PhysicsRayQueryParameters3D.create(rayOrigin, rayEnd)
 		
 		var rayArray = spaceState.intersect_ray(query)
-		print(rayArray)
+		
+		# TODO: Implement a way to lock on to enemies, because it could be quite hard to aim
 		
 		# if raycast hit something
 		if rayArray.has("position"): 
@@ -174,6 +203,7 @@ func NearestObject():
 	
 	var closest_node = null
 	var closest_node_distance = 0.0
+	
 	for i in objects:
 		var current_node_distance = detection.global_position.distance_to(i.global_position)
 		if closest_node == null or current_node_distance < closest_node_distance:
@@ -184,7 +214,7 @@ func NearestObject():
 		return closest_node
 
 func PlayerDeath():
-	scene_tree.change_scene_to_file("res://scenes/levels/main_menu.tscn") #reset due to death
+	scene_tree.change_scene_to_file("res://scenes/levels/main_menu.tscn") # reset due to death
 
 func _on_hitbox_body_entered(body):
 	if body.is_in_group("enemy") and invincibility_frames.is_stopped():
@@ -194,7 +224,6 @@ func _on_hitbox_body_entered(body):
 				var damage = enemy_info.damage
 				
 				info.health = info.health - damage
-				print_rich("[color=GREEN]", info.health)
 				invincibility_frames.start()
 	
 	if info.health <= 0:
