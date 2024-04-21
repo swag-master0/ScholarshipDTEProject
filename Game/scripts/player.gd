@@ -35,6 +35,8 @@ extends CharacterBody3D
 @onready var max_health = float(info.health)
 @onready var initial_size = $HUD/HealthBar/HealthGreen.size.x
 
+@onready var shader = $Cursor/MeshInstance3D.mesh.material.next_pass
+
 
 
 var gravity = ProjectSettings.get_setting("physics/3d/default_gravity")
@@ -43,6 +45,7 @@ var faceDirection = Vector3.FORWARD
 var object = null
 var oldparent = null
 var isHolding = false
+
 
 
 
@@ -100,6 +103,17 @@ func _physics_process(delta):
 func _process(_delta):
 	if NearestObject() and NearestObject() is RigidBody3D and global_position.distance_to(NearestObject().global_position) <= PICKUP_RANGE and isHolding == false:
 		
+		
+		print(NearestObject().get_script())
+		if str(NearestObject().script) == "GDScript#-9223371994777516196":
+			print("you are retarded")
+		
+		
+		
+		
+		#NearestObject().SelectableVisual(true)
+		#_surface_set_material ( int index, Material material )
+		
 		"""
 		for i in NearestObject().get_children():
 			if i is MeshInstance3D:
@@ -118,8 +132,14 @@ func _process(_delta):
 			object.set_freeze_enabled(true)
 			object.set_collision_layer_value(1, false)
 			object.set_collision_mask_value(1, false)
+			
+			
+			#shader.set_shader_parameter("strength", 0)
 		else:
 			pass
+			#NearestObject().SelectableVisual(false)
+			#	NearestObject().SelectableVisual(false)
+			#shader.set_shader_parameter("strength", 0)
 	
 	
 	

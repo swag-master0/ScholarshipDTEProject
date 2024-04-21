@@ -1,0 +1,27 @@
+[gd_scene load_steps=7 format=3 uid="uid://cl3gi4l7hmraw"]
+
+[ext_resource type="Script" path="res://scripts/prop.gd" id="1_strqo"]
+[ext_resource type="Shader" path="res://assets/materials/selectable.gdshader" id="1_v2etu"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_wepmm"]
+render_priority = 0
+shader = ExtResource("1_v2etu")
+shader_parameter/strength = null
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_ucrbt"]
+next_pass = SubResource("ShaderMaterial_wepmm")
+albedo_color = Color(1, 0, 1, 1)
+
+[sub_resource type="BoxMesh" id="BoxMesh_f8vxc"]
+material = SubResource("StandardMaterial3D_ucrbt")
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_3kyiv"]
+
+[node name="Prop" type="RigidBody3D"]
+script = ExtResource("1_strqo")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+mesh = SubResource("BoxMesh_f8vxc")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+shape = SubResource("BoxShape3D_3kyiv")

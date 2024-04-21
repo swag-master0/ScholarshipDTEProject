@@ -1,8 +1,8 @@
-[gd_scene load_steps=11 format=3 uid="uid://c7ycb57houxl1"]
+[gd_scene load_steps=12 format=3 uid="uid://c7ycb57houxl1"]
 
 [ext_resource type="Script" path="res://scripts/player.gd" id="1_m12p3"]
 [ext_resource type="PackedScene" uid="uid://cft1b4l0aljye" path="res://scenes/elements/info.tscn" id="2_xudpl"]
-[ext_resource type="Shader" uid="uid://dwul17eglltnf" path="res://assets/materials/selection.tres" id="3_2wr50"]
+[ext_resource type="Shader" path="res://assets/materials/selectable.gdshader" id="3_hujcm"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_5owcp"]
 radius = 0.6
@@ -14,12 +14,17 @@ height = 2.1
 
 [sub_resource type="PrismMesh" id="PrismMesh_u4gd0"]
 
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_ks6rh"]
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_v48wh"]
 render_priority = 0
-shader = ExtResource("3_2wr50")
+shader = ExtResource("3_hujcm")
+shader_parameter/strength = 0.0
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_vjeak"]
+next_pass = SubResource("ShaderMaterial_v48wh")
+albedo_color = Color(0, 0.964706, 0, 1)
 
 [sub_resource type="BoxMesh" id="BoxMesh_ne1op"]
-material = SubResource("ShaderMaterial_ks6rh")
+material = SubResource("StandardMaterial3D_vjeak")
 size = Vector3(0.1, 0.1, 0.3)
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_2e1ws"]
