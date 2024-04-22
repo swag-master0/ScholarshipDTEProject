@@ -64,6 +64,15 @@ script = SubResource("GDScript_jf0va")
 
 [node name="Player" parent="." instance=ExtResource("1_cneap")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 3, 0)
+SPEED = 10
+JUMP_VELOCITY = 25
+JUMP_FALLMULTIPLIER = 5
+TURN_VELOCITY = 10
+PICKUP_RANGE = 6
+THROW_FORCE = 1500
+MAX_FORCE = 2000
+PUSH_FORCE = 0.5
+CAM_FOLLOW_SPEED = 0.25
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
 environment = SubResource("Environment_6u04u")

@@ -21,6 +21,8 @@ window/size/viewport_width=1920
 window/size/viewport_height=1080
 window/size/mode=3
 window/size/resizable=false
+mouse_cursor/custom_image="res://assets/mouse/mouse_base.png"
+mouse_cursor/custom_image_hotspot=Vector2(30, 30)
 
 [file_customization]
 

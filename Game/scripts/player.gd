@@ -10,7 +10,7 @@ extends CharacterBody3D
 @export var TURN_VELOCITY = 10
 
 @export var PICKUP_RANGE = 6
-@export var THROW_FORCE = 75
+@export var THROW_FORCE = 2000
 @export var MAX_FORCE = 2000
 @export var PUSH_FORCE = 0.5
 @export var CAM_FOLLOW_SPEED = 0.25
@@ -35,7 +35,6 @@ extends CharacterBody3D
 @onready var max_health = float(info.health)
 @onready var initial_size = $HUD/HealthBar/HealthGreen.size.x
 
-@onready var shader = $Cursor/MeshInstance3D.mesh.material.next_pass
 
 
 
@@ -56,19 +55,21 @@ func _physics_process(delta):
 	if Input.is_action_just_pressed("jump") and is_on_floor():
 		velocity.y = JUMP_VELOCITY
 	
+	"""
 	if ready: # The fact I have to do this twice is utterly fucking retarded
 		cursor.global_position = MousePosition()
-	
+	"""
+	MousePosition()
 
 	if (Input.is_action_pressed("forward") or Input.is_action_pressed("left") or Input.is_action_pressed("right") or Input.is_action_pressed("backward")):
 		faceDirection = Vector3(Input.get_action_strength("right") - Input.get_action_strength("left"), 0 ,Input.get_action_strength("backward") - Input.get_action_strength("forward")).normalized()
 	
 	if Input.is_action_pressed("click"):
 		character.rotation.y = atan2(cursor.position.x, cursor.position.z)
-		cursor.visible = true
+		$CentralCameraPoint/Camera3D/SpotLight3D.light_energy = 1000
 	elif not Input.is_action_pressed("click"): # This is shitty code, but I fail to care
 		character.rotation.y = lerp_angle(character.rotation.y, atan2(faceDirection.x, faceDirection.z), delta * TURN_VELOCITY)
-		cursor.visible = false
+		$CentralCameraPoint/Camera3D/SpotLight3D.light_energy = 0
 		
 		
 	
@@ -103,24 +104,7 @@ func _physics_process(delta):
 func _process(_delta):
 	if NearestObject() and NearestObject() is RigidBody3D and global_position.distance_to(NearestObject().global_position) <= PICKUP_RANGE and isHolding == false:
 		
-		
-		print(NearestObject().get_script())
-		if str(NearestObject().script) == "GDScript#-9223371994777516196":
-			print("you are retarded")
-		
-		
-		
-		
-		#NearestObject().SelectableVisual(true)
-		#_surface_set_material ( int index, Material material )
-		
-		"""
-		for i in NearestObject().get_children():
-			if i is MeshInstance3D:
-				$Cursor/MeshInstance3D.material.albedo_color = Color(1, 0, 0)
-			else:
-				$Cursor/MeshInstance3D.material.albedo_color = Color(0, 1, 0)
-		"""
+		# set it to play a sound, i give up with this shit
 		
 		if Input.is_action_just_pressed("click"): # handle picking up objects
 			isHolding = true
@@ -133,32 +117,10 @@ func _process(_delta):
 			object.set_collision_layer_value(1, false)
 			object.set_collision_mask_value(1, false)
 			
-			
-			#shader.set_shader_parameter("strength", 0)
 		else:
 			pass
-			#NearestObject().SelectableVisual(false)
-			#	NearestObject().SelectableVisual(false)
-			#shader.set_shader_parameter("strength", 0)
 	
 	
-	
-	
-	"""
-	if Input.is_action_just_pressed("click"): # handle picking up objects
-		if NearestObject() and NearestObject() is RigidBody3D and global_position.distance_to(NearestObject().global_position) <= PICKUP_RANGE and isHolding == false:
-			isHolding = true
-			object = NearestObject()
-			oldparent = object.get_parent()
-			
-			object.global_transform = $PlayerModel/HoldPoint.global_transform
-			object.reparent(character)
-			object.set_freeze_enabled(true)
-			object.set_collision_layer_value(1, false)
-			object.set_collision_mask_value(1, false)
-		else:
-			pass
-		"""
 	if Input.is_action_just_released("click"): # handle throwing objects
 		if object and isHolding == true:
 			isHolding = false
@@ -169,9 +131,10 @@ func _process(_delta):
 			object.set_collision_layer_value(1, true)
 			object.set_collision_mask_value(1, true)
 			
-			var force = cursor.global_position - position
-			force.y = force.y + 2
-			force = force.clamp(Vector3(-MAX_FORCE, -MAX_FORCE, -MAX_FORCE), Vector3(MAX_FORCE, MAX_FORCE, MAX_FORCE))
+			var force = (cursor.global_position - position).normalized()
+			print_rich("[rainbow]",force)
+			#force.y = force.y + 2
+			#force = force.clamp(Vector3(-MAX_FORCE, -MAX_FORCE, -MAX_FORCE), Vector3(MAX_FORCE, MAX_FORCE, MAX_FORCE))
 			
 			if character.position.distance_to(cursor.position) < 4 and character.position.distance_to(cursor.position) > -4:
 				force = Vector3(0, 0, 0)
@@ -209,7 +172,10 @@ func MousePosition():
 		
 		# if raycast hit something
 		if rayArray.has("position"): 
-			return rayArray["position"]
+			cursor.global_position = rayArray["position"]
+			
+			$CentralCameraPoint/Camera3D/SpotLight3D.look_at(cursor.global_position)
+			
 			
 		
 		# if raycast hit nothing, it draws a plane and sees where a raycast hits on that
