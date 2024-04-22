@@ -21,6 +21,7 @@ extends CharacterBody3D
 @onready var pivot = $CentralCameraPoint
 @onready var camera = $CentralCameraPoint/Camera3D
 @onready var cursor = $Cursor
+@onready var visible_cursor = $CentralCameraPoint/Camera3D/SpotLight3D
 @onready var detection = $Cursor/Area3D
 @onready var scene_tree = get_tree()
 @onready var info = $Info
@@ -47,9 +48,9 @@ var object = null
 var oldparent = null
 var isHolding = false
 
-
 func _ready():
 	pausemenu.visible = false
+
 
 # _physics_process() and _process() could be combined into a single function, but at the moment i dont give a shit
 func _physics_process(delta):
@@ -58,21 +59,17 @@ func _physics_process(delta):
 	if Input.is_action_just_pressed("jump") and is_on_floor():
 		velocity.y = JUMP_VELOCITY
 	
-	"""
-	if ready: # The fact I have to do this twice is utterly fucking retarded
-		cursor.global_position = MousePosition()
-	"""
 	MousePosition()
-
+	
 	if (Input.is_action_pressed("forward") or Input.is_action_pressed("left") or Input.is_action_pressed("right") or Input.is_action_pressed("backward")):
 		faceDirection = Vector3(Input.get_action_strength("right") - Input.get_action_strength("left"), 0 ,Input.get_action_strength("backward") - Input.get_action_strength("forward")).normalized()
 	
 	if Input.is_action_pressed("click"):
 		character.rotation.y = atan2(cursor.position.x, cursor.position.z)
-		$CentralCameraPoint/Camera3D/SpotLight3D.light_energy = 1000
+		visible_cursor.light_energy = 100
 	elif not Input.is_action_pressed("click"): # This is shitty code, but I fail to care
 		character.rotation.y = lerp_angle(character.rotation.y, atan2(faceDirection.x, faceDirection.z), delta * TURN_VELOCITY)
-		$CentralCameraPoint/Camera3D/SpotLight3D.light_energy = 0
+		visible_cursor.light_energy = 20
 		
 		
 	
@@ -101,10 +98,13 @@ func _physics_process(delta):
 			collisions.get_collider().apply_central_impulse(-collisions.get_normal() * PUSH_FORCE)
 	
 
+
+
+
 func _process(_delta):
 	if NearestObject() and NearestObject() is RigidBody3D and global_position.distance_to(NearestObject().global_position) <= PICKUP_RANGE and isHolding == false:
 		
-		# set it to play a sound, i give up with this shit
+		visible_cursor.light_energy = 200
 		
 		if Input.is_action_just_pressed("click"): # handle picking up objects
 			isHolding = true
@@ -152,6 +152,7 @@ func _process(_delta):
 		
 		var tween = get_tree().create_tween()
 		tween.tween_property($HUD/HealthBar/HealthWhite, "size", $HUD/HealthBar/HealthGreen.size, 1)
+		$HUD/HealthBar/HealthGreen/Percentage.text = str("[center]", 100 - (change * 100), "%")
 	
 	
 	# quit to menu
@@ -178,7 +179,8 @@ func MousePosition():
 		if rayArray.has("position"): 
 			cursor.global_position = rayArray["position"]
 			
-			$CentralCameraPoint/Camera3D/SpotLight3D.look_at(cursor.global_position)
+			visible_cursor.look_at(cursor.global_position)
+			visible_cursor.rotation.z = 0
 			
 			
 		
@@ -187,7 +189,8 @@ func MousePosition():
 			var dropPlane = Plane(Vector3(0, 1, 0), character.global_position.y)
 			var position3D = dropPlane.intersects_ray(camera.project_ray_origin(mousePos), camera.project_ray_normal(mousePos))
 			cursor.global_position = position3D
-			$CentralCameraPoint/Camera3D/SpotLight3D.look_at(cursor.global_position)
+			visible_cursor.look_at(cursor.global_position)
+			visible_cursor.rotation.z = 0
 
 func NearestObject():
 	var objects = detection.get_overlapping_bodies()

@@ -4,6 +4,7 @@
 [ext_resource type="PackedScene" uid="uid://qgme1k42iyr6" path="res://scenes/elements/breakable_glass.tscn" id="2_yb17d"]
 [ext_resource type="PackedScene" uid="uid://m8urk0gkn6ut" path="res://blend/level.blend" id="3_dvw0m"]
 [ext_resource type="PackedScene" uid="uid://ch7t6b0c3tjwr" path="res://scenes/elements/enemy.tscn" id="4_8i10n"]
+[ext_resource type="Material" uid="uid://sqw3aalwlobw" path="res://assets/materials/temp_terrain.tres" id="4_y8v66"]
 [ext_resource type="PackedScene" uid="uid://d4nob737a2chy" path="res://scenes/elements/objective.tscn" id="5_cdvph"]
 
 [sub_resource type="GDScript" id="GDScript_jf0va"]
@@ -48,13 +49,6 @@ polygons = [PackedInt32Array(3, 2, 0), PackedInt32Array(0, 2, 1), PackedInt32Arr
 geometry_parsed_geometry_type = 1
 agent_max_slope = 70.0
 
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_4l420"]
-transparency = 1
-albedo_color = Color(0.996078, 0.658824, 0.380392, 1)
-distance_fade_mode = 1
-distance_fade_min_distance = 10.0
-distance_fade_max_distance = 20.0
-
 [sub_resource type="BoxShape3D" id="BoxShape3D_fw0uv"]
 size = Vector3(29.615, 18.725, 33.845)
 
@@ -82,7 +76,7 @@ navigation_mesh = SubResource("NavigationMesh_a2gje")
 [node name="level" parent="NavigationRegion3D" instance=ExtResource("3_dvw0m")]
 
 [node name="Level" parent="NavigationRegion3D/level" index="1"]
-material_override = SubResource("StandardMaterial3D_4l420")
+material_override = ExtResource("4_y8v66")
 
 [node name="Enemy" parent="." instance=ExtResource("4_8i10n")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -50.3893, 3, 26.8753)

@@ -93,13 +93,13 @@ anchor_left = 0.5
 anchor_top = 1.0
 anchor_right = 0.5
 anchor_bottom = 1.0
-offset_left = -100.0
-offset_top = -113.0
-offset_right = -60.0
-offset_bottom = -106.0
+offset_left = -190.0
+offset_top = -180.0
+offset_right = 570.0
+offset_bottom = -104.001
 grow_horizontal = 2
 grow_vertical = 0
-scale = Vector2(5, 2)
+scale = Vector2(0.5, 0.5)
 color = Color(1, 0, 0, 1)
 
 [node name="HealthWhite" type="ColorRect" parent="HUD/HealthBar"]
@@ -118,6 +118,21 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 color = Color(0, 1, 0, 1)
+
+[node name="Percentage" type="RichTextLabel" parent="HUD/HealthBar/HealthGreen"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_font_sizes/normal_font_size = 35
+theme_override_font_sizes/bold_font_size = 0
+theme_override_font_sizes/italics_font_size = 0
+theme_override_font_sizes/bold_italics_font_size = 0
+theme_override_font_sizes/mono_font_size = 0
+bbcode_enabled = true
+text = "[center]100%"
 
 [node name="Hints" type="RichTextLabel" parent="HUD"]
 layout_mode = 1
