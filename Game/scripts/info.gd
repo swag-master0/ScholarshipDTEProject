@@ -27,8 +27,4 @@ func calculateDamage(mag):
 	else:
 		return 0
 
-func giveHintToPlayer(player, hint):
-	##[wave][center][color=SILVER]Hint
-	pass
-	
 
