@@ -31,6 +31,8 @@ extends CharacterBody3D
 @onready var HUD = $HUD
 @onready var hinttext = $HUD/Hints
 @onready var hinttimer = $HUD/Hints/Timer
+@onready var pausemenu = $HUD/PauseMenu
+
 
 @onready var max_health = float(info.health)
 @onready var initial_size = $HUD/HealthBar/HealthGreen.size.x
@@ -46,7 +48,8 @@ var oldparent = null
 var isHolding = false
 
 
-
+func _ready():
+	pausemenu.visible = false
 
 # _physics_process() and _process() could be combined into a single function, but at the moment i dont give a shit
 func _physics_process(delta):
@@ -73,9 +76,6 @@ func _physics_process(delta):
 		
 		
 	
-	# quit to menu
-	if Input.is_action_just_pressed("escape"):
-		scene_tree.change_scene_to_file("res://scenes/levels/main_menu.tscn")
 	
 	
 	
@@ -132,10 +132,8 @@ func _process(_delta):
 			object.set_collision_mask_value(1, true)
 			
 			var force = (cursor.global_position - position).normalized()
-			print_rich("[rainbow]",force)
-			#force.y = force.y + 2
-			#force = force.clamp(Vector3(-MAX_FORCE, -MAX_FORCE, -MAX_FORCE), Vector3(MAX_FORCE, MAX_FORCE, MAX_FORCE))
 			
+			# drop object gently
 			if character.position.distance_to(cursor.position) < 4 and character.position.distance_to(cursor.position) > -4:
 				force = Vector3(0, 0, 0)
 			
@@ -151,8 +149,14 @@ func _process(_delta):
 		
 		var change_in_size = initial_size - (change * initial_size)
 		$HUD/HealthBar/HealthGreen.size.x = change_in_size
+		
+		var tween = get_tree().create_tween()
+		tween.tween_property($HUD/HealthBar/HealthWhite, "size", $HUD/HealthBar/HealthGreen.size, 1)
 	
 	
+	# quit to menu
+	if Input.is_action_just_pressed("escape"):
+		PauseMenu(true)
 
 
 
@@ -182,7 +186,8 @@ func MousePosition():
 		else:
 			var dropPlane = Plane(Vector3(0, 1, 0), character.global_position.y)
 			var position3D = dropPlane.intersects_ray(camera.project_ray_origin(mousePos), camera.project_ray_normal(mousePos))
-			return position3D
+			cursor.global_position = position3D
+			$CentralCameraPoint/Camera3D/SpotLight3D.look_at(cursor.global_position)
 
 func NearestObject():
 	var objects = detection.get_overlapping_bodies()
@@ -224,3 +229,16 @@ func sendHintToPlayer(hint):
 
 func _hinttext_timeout():
 	hinttext.text = ""
+
+
+func PauseMenu(toggle):
+	get_tree().paused = toggle
+	pausemenu.visible = toggle
+
+func _on_resume_button_pressed():
+	PauseMenu(false)
+
+
+func _on_quit_button_pressed():
+	get_tree().paused = false
+	scene_tree.change_scene_to_file("res://scenes/levels/main_menu.tscn")

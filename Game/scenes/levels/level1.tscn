@@ -1,11 +1,10 @@
-[gd_scene load_steps=12 format=3 uid="uid://cov8v6858hevf"]
+[gd_scene load_steps=11 format=3 uid="uid://cov8v6858hevf"]
 
 [ext_resource type="PackedScene" uid="uid://c7ycb57houxl1" path="res://scenes/elements/player.tscn" id="1_cneap"]
 [ext_resource type="PackedScene" uid="uid://qgme1k42iyr6" path="res://scenes/elements/breakable_glass.tscn" id="2_yb17d"]
 [ext_resource type="PackedScene" uid="uid://m8urk0gkn6ut" path="res://blend/level.blend" id="3_dvw0m"]
 [ext_resource type="PackedScene" uid="uid://ch7t6b0c3tjwr" path="res://scenes/elements/enemy.tscn" id="4_8i10n"]
 [ext_resource type="PackedScene" uid="uid://d4nob737a2chy" path="res://scenes/elements/objective.tscn" id="5_cdvph"]
-[ext_resource type="PackedScene" uid="uid://cl3gi4l7hmraw" path="res://scenes/elements/prop.tscn" id="6_12sp8"]
 
 [sub_resource type="GDScript" id="GDScript_jf0va"]
 resource_name = "level1_functionality"
@@ -64,15 +63,6 @@ script = SubResource("GDScript_jf0va")
 
 [node name="Player" parent="." instance=ExtResource("1_cneap")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 3, 0)
-SPEED = 10
-JUMP_VELOCITY = 25
-JUMP_FALLMULTIPLIER = 5
-TURN_VELOCITY = 10
-PICKUP_RANGE = 6
-THROW_FORCE = 1500
-MAX_FORCE = 2000
-PUSH_FORCE = 0.5
-CAM_FOLLOW_SPEED = 0.25
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
 environment = SubResource("Environment_6u04u")
@@ -118,9 +108,6 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -103, 0, 0)
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Trigger"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -8, 8, -7)
 shape = SubResource("BoxShape3D_fw0uv")
-
-[node name="Prop" parent="." instance=ExtResource("6_12sp8")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -23, 2, -1)
 
 [connection signal="body_entered" from="Trigger" to="." method="_on_trigger_body_entered"]
 

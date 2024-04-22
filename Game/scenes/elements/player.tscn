@@ -102,6 +102,14 @@ grow_vertical = 0
 scale = Vector2(5, 2)
 color = Color(1, 0, 0, 1)
 
+[node name="HealthWhite" type="ColorRect" parent="HUD/HealthBar"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
 [node name="HealthGreen" type="ColorRect" parent="HUD/HealthBar"]
 layout_mode = 1
 anchors_preset = 15
@@ -131,5 +139,30 @@ scroll_active = false
 wait_time = 6.0
 one_shot = true
 
+[node name="PauseMenu" type="ColorRect" parent="HUD"]
+process_mode = 2
+layout_mode = 0
+offset_right = 613.0
+offset_bottom = 1080.0
+color = Color(0.533333, 0.533333, 0.533333, 0.490196)
+
+[node name="ResumeButton" type="Button" parent="HUD/PauseMenu"]
+layout_mode = 0
+offset_left = 188.0
+offset_top = 404.0
+offset_right = 408.0
+offset_bottom = 486.0
+text = "resume"
+
+[node name="QuitButton" type="Button" parent="HUD/PauseMenu"]
+layout_mode = 0
+offset_left = 188.0
+offset_top = 525.0
+offset_right = 408.0
+offset_bottom = 607.0
+text = "quit to menu"
+
 [connection signal="body_entered" from="Hitbox" to="." method="_on_hitbox_body_entered"]
 [connection signal="timeout" from="HUD/Hints/Timer" to="." method="_hinttext_timeout"]
+[connection signal="pressed" from="HUD/PauseMenu/ResumeButton" to="." method="_on_resume_button_pressed"]
+[connection signal="pressed" from="HUD/PauseMenu/QuitButton" to="." method="_on_quit_button_pressed"]
