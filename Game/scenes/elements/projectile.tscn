@@ -12,6 +12,7 @@ material = SubResource("StandardMaterial3D_uy4l7")
 [sub_resource type="SphereShape3D" id="SphereShape3D_s1mee"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_84m8v"]
+size = Vector3(0.1, 0.1, 0.1)
 
 [node name="Projectile" type="CharacterBody3D" groups=["projectile"]]
 script = ExtResource("1_n2k70")
@@ -28,6 +29,5 @@ shape = SubResource("SphereShape3D_s1mee")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
 shape = SubResource("BoxShape3D_84m8v")
-disabled = true
 
 [connection signal="body_entered" from="Hitbox" to="." method="_on_hitbox_body_entered"]

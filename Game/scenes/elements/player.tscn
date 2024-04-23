@@ -1,4 +1,4 @@
-[gd_scene load_steps=9 format=3 uid="uid://c7ycb57houxl1"]
+[gd_scene load_steps=10 format=3 uid="uid://c7ycb57houxl1"]
 
 [ext_resource type="Script" path="res://scripts/player.gd" id="1_m12p3"]
 [ext_resource type="PackedScene" uid="uid://cft1b4l0aljye" path="res://scenes/elements/info.tscn" id="2_xudpl"]
@@ -16,6 +16,10 @@ height = 2.1
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_2e1ws"]
 size = Vector3(2, 5, 2)
+
+[sub_resource type="CylinderShape3D" id="CylinderShape3D_chmfs"]
+height = 3.0
+radius = 3.5
 
 [node name="Player" type="CharacterBody3D" groups=["player"]]
 floor_constant_speed = true
@@ -176,6 +180,12 @@ offset_top = 525.0
 offset_right = 408.0
 offset_bottom = 607.0
 text = "quit to menu"
+
+[node name="ProjectilePickupRange" type="Area3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.68487, 0)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="ProjectilePickupRange"]
+shape = SubResource("CylinderShape3D_chmfs")
 
 [connection signal="body_entered" from="Hitbox" to="." method="_on_hitbox_body_entered"]
 [connection signal="death" from="Info" to="." method="_on_info_death"]

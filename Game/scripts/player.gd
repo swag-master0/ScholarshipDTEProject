@@ -72,9 +72,6 @@ func _physics_process(delta):
 		
 		
 	
-	
-	
-	
 	# player movement from template (im too lazy to change it, nor do I need to)
 	var input_dir = Input.get_vector("left", "right", "forward", "backward")
 	var direction = (transform.basis * Vector3(input_dir.x, 0, input_dir.y)).normalized()
@@ -105,7 +102,8 @@ func _process(_delta):
 	#[ Pick up and throw objects are below  ]
 	#[ ------------------------------------ ]
 	
-	if NearestObject() and NearestObject() is RigidBody3D and global_position.distance_to(NearestObject().global_position) <= PICKUP_RANGE and isHolding == false:
+	# Handle picking up RIGID BODIES
+	if (NearestObject() and NearestObject() is RigidBody3D and global_position.distance_to(NearestObject().global_position) <= PICKUP_RANGE) and isHolding == false:
 		
 		visible_cursor.light_energy = 200
 		
@@ -123,8 +121,28 @@ func _process(_delta):
 		else:
 			pass
 	
-	if Input.is_action_just_released("click"): # handle throwing objects
-		if object and isHolding == true:
+	# Handle picking up PROJECTILES
+	elif NearestObject() and NearestObject().is_in_group("projectile") and isHolding == false:
+		visible_cursor.light_energy = 200
+		
+		if Input.is_action_just_pressed("click"): # handle picking up objects
+			isHolding = true
+			object = NearestObject()
+			oldparent = object.get_parent()
+			
+			object.global_transform = $PlayerModel/HoldPoint.global_transform
+			object.reparent(character)
+			object.Shoot(Vector3())
+			object.set_collision_layer_value(1, false)
+			object.set_collision_mask_value(1, false)
+			
+		else:
+			pass
+	
+	
+	# Handle throwing RIGID BODIES and PROJECTILES
+	if Input.is_action_just_released("click"): 
+		if object and isHolding == true and object is RigidBody3D:
 			isHolding = false
 			
 			object.set_freeze_enabled(false)
@@ -143,8 +161,17 @@ func _process(_delta):
 			object.apply_force(force * THROW_FORCE)
 			
 			object = null
-	
-	
+		
+		elif object and object.is_in_group("projectile") and isHolding == true:
+			isHolding = false
+			
+			object.reparent(oldparent)
+			object.set_collision_layer_value(1, true)
+			object.set_collision_mask_value(1, true)
+			
+			object.Shoot(cursor.global_position - global_position)
+			
+			object = null
 	
 	# handle health bar
 	if ready: 
@@ -203,11 +230,22 @@ func NearestObject():
 	var closest_node = null
 	var closest_node_distance = 0.0
 	
+	var radius = $ProjectilePickupRange.get_overlapping_bodies()
+	
+	# fetches closest node to the cursor
 	for i in objects:
 		var current_node_distance = detection.global_position.distance_to(i.global_position)
 		if closest_node == null or current_node_distance < closest_node_distance:
 			closest_node = i
 			closest_node_distance = current_node_distance 
+	
+	# checks if any projectiles are near the player that take priority
+	for i in radius:
+		#print_rich("[color=RED]", i)
+		if i.is_in_group("projectile"):
+			closest_node = i
+			closest_node_distance = 0
+	
 	
 	if closest_node:
 		return closest_node
