@@ -1,12 +1,15 @@
 extends Node3D
 
-@export var health : int
+signal takeDamage
+signal death
 
-@export var disabled : bool
-@export var damage : int
+@onready var timer = $Timeout
+@export var health : float
+#@export var disabled : bool
+#@export var damage : int
 
 
-func calculateMagnitude(body):
+func calculateDamageBasedOnVelocity(body):
 	if body is RigidBody3D:
 		var vel = body.get_linear_velocity()
 		
@@ -19,12 +22,23 @@ func calculateMagnitude(body):
 			vel.z = vel.z * -1
 		
 		var magnitude = sqrt(vel.x + vel.y + vel.z)
-		return magnitude
+		
+		if magnitude > 1.5:
+			return magnitude # returns damage
+		else:
+			return 0
 
-func calculateDamage(mag):
-	if mag > 1.5:
-		return mag
-	else:
-		return 0
+
+# damage is the amount of damage the entity should take
+func Damage(damage):
+	
+	if timer.is_stopped():
+		health -= damage
+		emit_signal("takeDamage") # TakeDamage is to be used to indicate to objects whether they're taking damage, use to activate vfx and sfx
+		timer.start()
+	
+	
+	if health <= 0:
+		emit_signal("death") # Death is used to indicate if a object dies
 
 

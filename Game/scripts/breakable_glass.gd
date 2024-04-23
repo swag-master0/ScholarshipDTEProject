@@ -14,20 +14,25 @@ func Toggle(value : bool):
 			main.get_children()[i].set_freeze_enabled(value)
 			main.get_children()[i].visible = !value
 
+
+
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	Toggle(true)
 
+
+
 func _on_hitbox_body_entered(body):
-	if body is RigidBody3D:
-		var mag = info.calculateMagnitude(body)
+	if body is RigidBody3D and !(body.get_parent() == self):
+		info.Damage(info.calculateDamageBasedOnVelocity(body))
 		
-		health = health - info.calculateDamage(mag)
+		print(info.calculateDamageBasedOnVelocity(body))
+		
 
 
-func _process(_delta):
-	if health <= 0:
-		Toggle(false)
-		pane.visible = false
-		staticbody.set_collision_layer_value(1, false)
-		staticbody.set_collision_mask_value(1, false)
+func _on_info_death():
+	Toggle(false)
+	pane.visible = false
+	staticbody.set_collision_layer_value(1, false)
+	staticbody.set_collision_mask_value(1, false)
+	#pass # Replace with function body.

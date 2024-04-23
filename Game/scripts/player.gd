@@ -18,7 +18,6 @@ extends CharacterBody3D
 
 # INFO: NODE REFERENCES
 @onready var character = $PlayerModel
-@onready var pivot = $CentralCameraPoint
 @onready var camera = $CentralCameraPoint/Camera3D
 @onready var cursor = $Cursor
 @onready var visible_cursor = $CentralCameraPoint/Camera3D/SpotLight3D
@@ -35,7 +34,7 @@ extends CharacterBody3D
 @onready var pausemenu = $HUD/PauseMenu
 
 
-@onready var max_health = float(info.health)
+@onready var max_health = 20
 @onready var initial_size = $HUD/HealthBar/HealthGreen.size.x
 
 
@@ -102,6 +101,10 @@ func _physics_process(delta):
 
 
 func _process(_delta):
+	#[ ------------------------------------ ]
+	#[ Pick up and throw objects are below  ]
+	#[ ------------------------------------ ]
+	
 	if NearestObject() and NearestObject() is RigidBody3D and global_position.distance_to(NearestObject().global_position) <= PICKUP_RANGE and isHolding == false:
 		
 		visible_cursor.light_energy = 200
@@ -119,7 +122,6 @@ func _process(_delta):
 			
 		else:
 			pass
-	
 	
 	if Input.is_action_just_released("click"): # handle throwing objects
 		if object and isHolding == true:
@@ -142,12 +144,15 @@ func _process(_delta):
 			
 			object = null
 	
-	if ready: # handle health bar
-		var health = float(info.health)
-		var difference = float(max_health - health)
-		var change = difference / max_health 
+	
+	
+	# handle health bar
+	if ready: 
+		var health = info.health # returns 20
+		var difference = max_health - health # returns 0
+		var change = difference / max_health # returns nan
 		
-		var change_in_size = initial_size - (change * initial_size)
+		var change_in_size = initial_size - (change * initial_size) # returns nan
 		$HUD/HealthBar/HealthGreen.size.x = change_in_size
 		
 		var tween = get_tree().create_tween()
@@ -207,21 +212,15 @@ func NearestObject():
 	if closest_node:
 		return closest_node
 
-func PlayerDeath():
-	scene_tree.change_scene_to_file("res://scenes/levels/main_menu.tscn") # reset due to death
 
-func _on_hitbox_body_entered(body):
-	if body.is_in_group("enemy") and invincibility_frames.is_stopped():
-		for i in range(body.get_children().size()):
-			if body.get_children()[i].is_in_group("info"):
-				var enemy_info = body.get_children()[i]
-				var damage = enemy_info.damage
-				
-				info.health = info.health - damage
-				invincibility_frames.start()
-	
-	if info.health <= 0:
-		PlayerDeath()
+# triggers when player takes damage
+func _on_info_take_damage():
+	print(info.health) # Replace with function body.
+
+# triggers when player dies
+func _on_info_death():
+	#replace later with death scene and gameover screen
+	scene_tree.change_scene_to_file("res://scenes/levels/main_menu.tscn")
 
 
 
@@ -245,3 +244,9 @@ func _on_resume_button_pressed():
 func _on_quit_button_pressed():
 	get_tree().paused = false
 	scene_tree.change_scene_to_file("res://scenes/levels/main_menu.tscn")
+
+
+
+
+
+

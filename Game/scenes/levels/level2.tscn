@@ -1,10 +1,11 @@
-[gd_scene load_steps=12 format=3 uid="uid://4yye08ka71t1"]
+[gd_scene load_steps=13 format=3 uid="uid://4yye08ka71t1"]
 
 [ext_resource type="PackedScene" uid="uid://bk46lynwxp6mg" path="res://blend/level2.blend" id="1_8e0xo"]
 [ext_resource type="Texture2D" uid="uid://bweg3yqy8hjot" path="res://assets/icon.svg" id="2_gdsx4"]
 [ext_resource type="PackedScene" uid="uid://c7ycb57houxl1" path="res://scenes/elements/player.tscn" id="3_dwah7"]
 [ext_resource type="PackedScene" uid="uid://ces1s7p5atsbn" path="res://scenes/elements/jump_pad.tscn" id="4_dg5xr"]
 [ext_resource type="PackedScene" uid="uid://qgme1k42iyr6" path="res://scenes/elements/breakable_glass.tscn" id="5_vfsc7"]
+[ext_resource type="PackedScene" uid="uid://ch3t1bgj51uvs" path="res://scenes/elements/sentry.tscn" id="6_b4mtu"]
 
 [sub_resource type="GDScript" id="GDScript_cwja6"]
 resource_name = "level2_functionality"
@@ -111,7 +112,7 @@ skeleton = NodePath("../..")
 shape = SubResource("BoxShape3D_bbsml")
 
 [node name="Platform3" type="PathFollow3D" parent="Path3D"]
-transform = Transform3D(0.999987, 0, 0, 0, 1, 0, 0, 0, 0.999987, -80, 0, -25.4027)
+transform = Transform3D(0.999987, 0, 0, 0, 1, 0, 0, 0, 0.999987, -80, 0, -25.403)
 progress = 113.403
 rotation_mode = 0
 tilt_enabled = false
@@ -141,7 +142,7 @@ skeleton = NodePath("../..")
 shape = SubResource("BoxShape3D_bbsml")
 
 [node name="Platform5" type="PathFollow3D" parent="Path3D"]
-transform = Transform3D(0.999987, 0, 0, 0, 1, 0, 0, 0, 0.999987, -40.1947, 0, -75)
+transform = Transform3D(0.999987, 0, 0, 0, 1, 0, 0, 0, 0.999987, -40.1951, 0, -75)
 progress = 226.805
 rotation_mode = 0
 tilt_enabled = false
@@ -156,7 +157,7 @@ skeleton = NodePath("../..")
 shape = SubResource("BoxShape3D_bbsml")
 
 [node name="Platform6" type="PathFollow3D" parent="Path3D"]
-transform = Transform3D(0.999987, 0, 0, 0, 1, 0, 0, 0, 0.999987, 16.5069, 0, -75)
+transform = Transform3D(0.999987, 0, 0, 0, 1, 0, 0, 0, 0.999987, 16.5072, 0, -75)
 progress = 283.507
 rotation_mode = 0
 tilt_enabled = false
@@ -171,7 +172,7 @@ skeleton = NodePath("../..")
 shape = SubResource("BoxShape3D_bbsml")
 
 [node name="Platform7" type="PathFollow3D" parent="Path3D"]
-transform = Transform3D(0.999987, 0, 0, 0, 1, 0, 0, 0, 0.999987, 51.2081, 0, -97)
+transform = Transform3D(0.999987, 0, 0, 0, 1, 0, 0, 0, 0.999987, 51.208, 0, -97)
 progress = 340.208
 rotation_mode = 0
 tilt_enabled = false
@@ -186,7 +187,7 @@ skeleton = NodePath("../..")
 shape = SubResource("BoxShape3D_bbsml")
 
 [node name="Platform8" type="PathFollow3D" parent="Path3D"]
-transform = Transform3D(0.999987, 0, 0, 0, 1, 0, 0, 0, 0.999987, 80, 0, -69.0906)
+transform = Transform3D(0.999987, 0, 0, 0, 1, 0, 0, 0, 0.999987, 80, 0, -69.091)
 progress = 396.909
 rotation_mode = 0
 tilt_enabled = false
@@ -201,7 +202,7 @@ skeleton = NodePath("../..")
 shape = SubResource("BoxShape3D_bbsml")
 
 [node name="Platform9" type="PathFollow3D" parent="Path3D"]
-transform = Transform3D(0.999987, 0, 0, 0, 1, 0, 0, 0, 0.999987, 80, 0, -12.389)
+transform = Transform3D(0.999987, 0, 0, 0, 1, 0, 0, 0, 0.999987, 80, 0, -12.3888)
 progress = 453.611
 rotation_mode = 0
 tilt_enabled = false
@@ -216,7 +217,7 @@ skeleton = NodePath("../..")
 shape = SubResource("BoxShape3D_bbsml")
 
 [node name="Platform10" type="PathFollow3D" parent="Path3D"]
-transform = Transform3D(0.999987, 0, 0, 0, 1, 0, 0, 0, 0.999987, 45, 0, -2.29839)
+transform = Transform3D(0.999987, 0, 0, 0, 1, 0, 0, 0, 0.999987, 45, 0, -2.29827)
 progress = 510.312
 rotation_mode = 0
 tilt_enabled = false
@@ -237,6 +238,15 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.8, -15.5, -13.9)
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.8, -15.5, -75.2113)
 
 [node name="Glass" parent="." instance=ExtResource("5_vfsc7")]
-transform = Transform3D(-8.74228e-08, 0, -2, 0, 2, 0, 2, 0, -8.74228e-08, -80.5652, 1.17732, -22.7831)
+transform = Transform3D(-4.37114e-08, 0, -2, 0, 1, 0, 1, 0, -8.74228e-08, -80.5652, 2.38107, -22.7831)
+
+[node name="Glass2" parent="." instance=ExtResource("5_vfsc7")]
+transform = Transform3D(-4.37114e-08, 0, -2, 0, 1, 0, 1, 0, -8.74228e-08, -80.5652, 2.38107, -42.7831)
+
+[node name="Glass3" parent="." instance=ExtResource("5_vfsc7")]
+transform = Transform3D(-4.37114e-08, 0, -2, 0, 1, 0, 1, 0, -8.74228e-08, -80.5652, 2.38107, -62.7831)
+
+[node name="Sentry" parent="." instance=ExtResource("6_b4mtu")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2, -2)
 
 [editable path="level2"]

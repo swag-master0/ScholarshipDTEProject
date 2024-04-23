@@ -34,7 +34,7 @@ target_position = Vector3(5, 0, 0)
 shape = SubResource("BoxShape3D_gxf4j")
 
 [node name="Info" parent="." instance=ExtResource("2_2k0xv")]
-health = 5
-damage = 3
+health = 5.0
 
 [connection signal="body_entered" from="Hitbox" to="." method="_on_hitbox_body_entered"]
+[connection signal="death" from="Info" to="." method="_on_info_death"]

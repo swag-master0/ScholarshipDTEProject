@@ -4,3 +4,6 @@
 
 [node name="Info" type="Node3D" groups=["info"]]
 script = ExtResource("1_227tr")
+
+[node name="Timeout" type="Timer" parent="."]
+one_shot = true

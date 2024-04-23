@@ -1,0 +1,20 @@
+[gd_scene load_steps=4 format=3 uid="uid://ch3t1bgj51uvs"]
+
+[ext_resource type="Script" path="res://scripts/sentry.gd" id="1_j4f2o"]
+[ext_resource type="PackedScene" uid="uid://bw2f0n3c7md1a" path="res://scenes/elements/projectile.tscn" id="2_ougdt"]
+
+[sub_resource type="CapsuleMesh" id="CapsuleMesh_t30l2"]
+
+[node name="Sentry" type="Node3D"]
+script = ExtResource("1_j4f2o")
+projectile = ExtResource("2_ougdt")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+mesh = SubResource("CapsuleMesh_t30l2")
+
+[node name="RayCast3D" type="RayCast3D" parent="."]
+target_position = Vector3(5, 0, 0)
+
+[node name="ShootDelay" type="Timer" parent="."]
+wait_time = 5.0
+one_shot = true

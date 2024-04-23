@@ -2,6 +2,7 @@ extends CharacterBody3D
 
 @export var speed = 5
 @export var accel = 10
+@export var damage = 5
 
 @onready var nav : NavigationAgent3D = $NavigationAgent3D
 @onready var raycast = $RayCast3D
@@ -10,23 +11,11 @@ extends CharacterBody3D
 
 @onready var info = $Info
 @onready var health = info.health
-@onready var disabled = info.disabled
+
 
 
 # navigating
-func _physics_process(_delta):
-	disabled = info.disabled
-	
-	if disabled == true:
-		mesh.visible = false
-		coll.disabled = true
-		return
-	
-	if disabled == false:
-		mesh.visible = true
-		coll.disabled = false
-	
-	
+func _physics_process(_delta):	
 	var direction = Vector3()
 	
 	for i in range(self.get_parent_node_3d().get_children().size()):
@@ -52,14 +41,25 @@ func _physics_process(_delta):
 
 
 func _on_hitbox_body_entered(body):
-	if body is RigidBody3D and !disabled:
-		var mag = info.calculateMagnitude(body)
+	# when enemy is hit by prop
+	if body is RigidBody3D:
+		info.Damage(info.calculateDamageBasedOnVelocity(body))
 		
-		health = health - info.calculateDamage(mag)
+		print(info.calculateDamageBasedOnVelocity(body))
+	
+	# when character hits player
+	if body is CharacterBody3D and body.is_in_group("player"):
+		#find info node and damage it
+		for i in body.get_children():
+			if i.is_in_group("info"):
+				i.Damage(damage)
 
 
-func _process(_delta):
-	if health <= 0:
-		self.queue_free()
-	
-	
+func _on_info_death():
+	self.queue_free()
+
+
+
+
+
+
