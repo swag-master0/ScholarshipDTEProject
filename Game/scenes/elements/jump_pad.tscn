@@ -25,4 +25,7 @@ shape = SubResource("BoxShape3D_sbr58")
 mesh = SubResource("BoxMesh_22po1")
 skeleton = NodePath("../Trigger")
 
+[node name="Direction" type="Marker3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
+
 [connection signal="body_entered" from="Trigger" to="." method="_on_trigger_body_entered"]

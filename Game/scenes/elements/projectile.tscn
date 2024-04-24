@@ -18,6 +18,9 @@ size = Vector3(0.1, 0.1, 0.1)
 script = ExtResource("1_n2k70")
 
 [node name="Info" parent="." instance=ExtResource("2_ucsd6")]
+TakeDamageFromRigidBodies = false
+TakeDamageFromProjectiles = false
+DamagePlayerOnPlayerCollision = false
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="."]
 mesh = SubResource("SphereMesh_elgdg")

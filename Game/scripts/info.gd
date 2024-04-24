@@ -60,9 +60,11 @@ func _on_hitbox_body_entered(body):
 		# Damage function emits the signal of taking damage and emits death
 		Damage(calculateDamageBasedOnVelocity(body))
 	
+	
 	# The colliding object is a Projectile
 	if body is CharacterBody3D and body.is_in_group("projectile") and TakeDamageFromProjectiles:
 		Damage(projectileDamage)
+		body.queue_free() # delete projectile
 	
 	# The colliding object is the player
 	if body is CharacterBody3D and body.is_in_group("player") and DamagePlayerOnPlayerCollision:

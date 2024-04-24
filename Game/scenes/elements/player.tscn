@@ -165,8 +165,11 @@ text = "quit to menu"
 texture_filter = 2
 texture_repeat = 1
 layout_mode = 0
-offset_right = 62.0
-offset_bottom = 62.0
+offset_left = -31.0
+offset_top = -31.0
+offset_right = 31.0
+offset_bottom = 31.0
+pivot_offset = Vector2(31, 31)
 texture = ExtResource("3_ov0oq")
 
 [node name="ProjectilePickupRange" type="Area3D" parent="."]

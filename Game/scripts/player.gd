@@ -71,9 +71,13 @@ func _physics_process(delta):
 	# player movement from template (im too lazy to change it, nor do I need to)
 	var input_dir = Input.get_vector("left", "right", "forward", "backward")
 	var direction = (transform.basis * Vector3(input_dir.x, 0, input_dir.y)).normalized()
+	
 	if direction:
 		velocity.x = direction.x * SPEED
 		velocity.z = direction.z * SPEED
+	elif !direction and not is_on_floor():
+		velocity.x = move_toward(velocity.x, 0, 0.5)
+		velocity.z = move_toward(velocity.z, 0, 0.5)
 	else:
 		velocity.x = move_toward(velocity.x, 0, SPEED)
 		velocity.z = move_toward(velocity.z, 0, SPEED)
@@ -97,13 +101,13 @@ func _process(_delta):
 	#[ ------------------------------------ ]
 	#[ Pick up and throw objects are below  ]
 	#[ ------------------------------------ ]
-	$HUD/Indicator.visible = false
+	
+	
 	# Handle picking up RIGID BODIES
 	if (NearestObject() and NearestObject() is RigidBody3D and global_position.distance_to(NearestObject().global_position) <= PICKUP_RANGE) and isHolding == false:
 		
-		$HUD/Indicator.position = camera.unproject_position(NearestObject().global_position)
-		$HUD/Indicator.visible = true
-		print(camera.unproject_position(NearestObject().global_position))
+		setCursorPosition(NearestObject().global_position, true)
+		
 		
 		if Input.is_action_just_pressed("click"): # handle picking up objects
 			isHolding = true
@@ -121,10 +125,8 @@ func _process(_delta):
 	
 	# Handle picking up PROJECTILES
 	elif NearestObject() and NearestObject().is_in_group("projectile") and isHolding == false:
-		$HUD/Indicator.visible = true
-		$HUD/Indicator.position = camera.unproject_position(NearestObject().global_position)
-		print(camera.unproject_position(NearestObject().global_position))
 		
+		setCursorPosition(NearestObject().global_position, true)
 		
 		if Input.is_action_just_pressed("click"): # handle picking up objects
 			isHolding = true
@@ -206,17 +208,27 @@ func MousePosition():
 		
 		var rayArray = spaceState.intersect_ray(query)
 		
-		# TODO: Implement a way to lock on to enemies, because it could be quite hard to aim
-		
 		# if raycast hit something
 		if rayArray.has("position"): 
 			cursor.global_position = rayArray["position"]
 			
+			setCursorPosition(Vector3(), false)
+		
+		# lock onto enemy
+		if rayArray.has("collider"):
+			if rayArray["collider"].is_in_group("enemy") and Input.is_action_pressed("click"):
+				cursor.global_position = rayArray["collider"].global_position
+				
+				setCursorPosition(rayArray["collider"].global_position, true)
+		
+		
 		# if raycast hit nothing, it draws a plane and sees where a raycast hits on that
 		else:
 			var dropPlane = Plane(Vector3(0, 1, 0), character.global_position.y)
 			var position3D = dropPlane.intersects_ray(camera.project_ray_origin(mousePos), camera.project_ray_normal(mousePos))
 			cursor.global_position = position3D
+			
+			setCursorPosition(Vector3(), false)
 
 func NearestObject():
 	var objects = detection.get_overlapping_bodies()
@@ -277,7 +289,16 @@ func _on_quit_button_pressed():
 	get_tree().paused = false
 	scene_tree.change_scene_to_file("res://scenes/levels/main_menu.tscn")
 
-
+func setCursorPosition(pos : Vector3, visibility : bool):
+	var cursor = $HUD/Indicator
+	
+	if visibility:
+		
+		cursor.visible = true
+		cursor.position = camera.unproject_position(pos) - cursor.size / 2
+	
+	elif !visibility:
+		cursor.visible = false
 
 
 

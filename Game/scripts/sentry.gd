@@ -1,4 +1,4 @@
-extends Node3D
+extends CharacterBody3D
 
 @export var projectile: PackedScene
 @export var minimum_distance = 15

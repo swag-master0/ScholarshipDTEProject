@@ -13,7 +13,7 @@ resource_name = "level2_functionality"
 script/source = "extends Node3D
 
 @onready var platforms = $Path3D
-
+@export var platform_speed : float = 0.0001
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
@@ -24,7 +24,7 @@ func _ready():
 func _process(delta):
 	for i in platforms.get_children():
 		if i is PathFollow3D:
-			i.progress_ratio += 0.00005
+			i.progress_ratio += platform_speed
 
 "
 
@@ -49,10 +49,10 @@ distance_fade_max_distance = 25.0
 
 [sub_resource type="Curve3D" id="Curve3D_vja3j"]
 _data = {
-"points": PackedVector3Array(0, 0, 0, 0, 0, 0, 0, 0, -14, 0, 0, 0, 0, 0, 0, -45, 0, -14, 0, 0, 0, 0, 0, 0, -45, 0, -3, 0, 0, 0, 0, 0, 0, -80, 0, -3, 0, 0, 0, 0, 0, 0, -80, 0, -87, 0, 0, 0, 0, 0, 0, -44, 0, -87, 0, 0, 0, 0, 0, 0, -44, 0, -75, 0, 0, 0, 0, 0, 0, 45, 0, -75, 0, 0, 0, 0, 0, 0, 45, 0, -97, 0, 0, 0, 0, 0, 0, 80, 0, -97, 0, 0, 0, 0, 0, 0, 80, 0, 3, 0, 0, 0, 0, 0, 0, 45, 0, 4, 0, 0, 0, 0, 0, 0, 45, 0, -14, 0, 0, 0, 0, 0, 0, 0, 0, -14),
-"tilts": PackedFloat32Array(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0)
+"points": PackedVector3Array(0, 0, 0, 0, 0, 0, 0, 0, -14, 0, 0, 0, 0, 0, 0, -45, 0, -14, 0, 0, 0, 0, 0, 0, -45, 0, -75, 0, 0, 0, 0, 0, 0, 45, 0, -75, 0, 0, 0, 0, 0, 0, 45, 0, -14, 0, 0, 0, 0, 0, 0, 0, 0, -14),
+"tilts": PackedFloat32Array(0, 0, 0, 0, 0, 0)
 }
-point_count = 14
+point_count = 6
 
 [sub_resource type="BoxMesh" id="BoxMesh_000et"]
 size = Vector3(8, 1, 8)
@@ -98,8 +98,8 @@ skeleton = NodePath("../..")
 shape = SubResource("BoxShape3D_bbsml")
 
 [node name="Platform2" type="PathFollow3D" parent="Path3D"]
-transform = Transform3D(0.999987, 0, 0, 0, 1, 0, 0, 0, 0.999987, -45.7004, 0, -3)
-progress = 56.7014
+transform = Transform3D(0.999987, 0, 0, 0, 1, 0, 0, 0, 0.999987, -30.2, 0, -14)
+progress = 30.2
 rotation_mode = 0
 tilt_enabled = false
 
@@ -113,8 +113,8 @@ skeleton = NodePath("../..")
 shape = SubResource("BoxShape3D_bbsml")
 
 [node name="Platform3" type="PathFollow3D" parent="Path3D"]
-transform = Transform3D(0.999987, 0, 0, 0, 1, 0, 0, 0, 0.999987, -80, 0, -25.403)
-progress = 113.403
+transform = Transform3D(0.999987, 0, 0, 0, 1, 0, 0, 0, 0.999987, -45, 0, -29.4)
+progress = 60.4
 rotation_mode = 0
 tilt_enabled = false
 
@@ -128,8 +128,8 @@ skeleton = NodePath("../..")
 shape = SubResource("BoxShape3D_bbsml")
 
 [node name="Platform4" type="PathFollow3D" parent="Path3D"]
-transform = Transform3D(0.999987, 0, 0, 0, 1, 0, 0, 0, 0.999987, -80, 0, -82.104)
-progress = 170.104
+transform = Transform3D(0.999987, 0, 0, 0, 1, 0, 0, 0, 0.999987, -45, 0, -59.6)
+progress = 90.6
 rotation_mode = 0
 tilt_enabled = false
 
@@ -143,8 +143,8 @@ skeleton = NodePath("../..")
 shape = SubResource("BoxShape3D_bbsml")
 
 [node name="Platform5" type="PathFollow3D" parent="Path3D"]
-transform = Transform3D(0.999987, 0, 0, 0, 1, 0, 0, 0, 0.999987, -40.1951, 0, -75)
-progress = 226.805
+transform = Transform3D(0.999987, 0, 0, 0, 1, 0, 0, 0, 0.999987, -30.2001, 0, -75)
+progress = 120.8
 rotation_mode = 0
 tilt_enabled = false
 
@@ -158,8 +158,8 @@ skeleton = NodePath("../..")
 shape = SubResource("BoxShape3D_bbsml")
 
 [node name="Platform6" type="PathFollow3D" parent="Path3D"]
-transform = Transform3D(0.999987, 0, 0, 0, 1, 0, 0, 0, 0.999987, 16.5072, 0, -75)
-progress = 283.507
+transform = Transform3D(0.999987, 0, 0, 0, 1, 0, 0, 0, 0.999987, -9.15539e-05, 0, -75)
+progress = 151.0
 rotation_mode = 0
 tilt_enabled = false
 
@@ -173,8 +173,8 @@ skeleton = NodePath("../..")
 shape = SubResource("BoxShape3D_bbsml")
 
 [node name="Platform7" type="PathFollow3D" parent="Path3D"]
-transform = Transform3D(0.999987, 0, 0, 0, 1, 0, 0, 0, 0.999987, 51.208, 0, -97)
-progress = 340.208
+transform = Transform3D(0.999987, 0, 0, 0, 1, 0, 0, 0, 0.999987, 30.2, 0, -75)
+progress = 181.2
 rotation_mode = 0
 tilt_enabled = false
 
@@ -188,8 +188,8 @@ skeleton = NodePath("../..")
 shape = SubResource("BoxShape3D_bbsml")
 
 [node name="Platform8" type="PathFollow3D" parent="Path3D"]
-transform = Transform3D(0.999987, 0, 0, 0, 1, 0, 0, 0, 0.999987, 80, 0, -69.091)
-progress = 396.909
+transform = Transform3D(0.999987, 0, 0, 0, 1, 0, 0, 0, 0.999987, 45, 0, -59.6)
+progress = 211.4
 rotation_mode = 0
 tilt_enabled = false
 
@@ -203,8 +203,8 @@ skeleton = NodePath("../..")
 shape = SubResource("BoxShape3D_bbsml")
 
 [node name="Platform9" type="PathFollow3D" parent="Path3D"]
-transform = Transform3D(0.999987, 0, 0, 0, 1, 0, 0, 0, 0.999987, 80, 0, -12.3888)
-progress = 453.611
+transform = Transform3D(0.999987, 0, 0, 0, 1, 0, 0, 0, 0.999987, 45, 0, -29.4)
+progress = 241.6
 rotation_mode = 0
 tilt_enabled = false
 
@@ -218,8 +218,8 @@ skeleton = NodePath("../..")
 shape = SubResource("BoxShape3D_bbsml")
 
 [node name="Platform10" type="PathFollow3D" parent="Path3D"]
-transform = Transform3D(0.999987, 0, 0, 0, 1, 0, 0, 0, 0.999987, 45, 0, -2.29827)
-progress = 510.312
+transform = Transform3D(0.999987, 0, 0, 0, 1, 0, 0, 0, 0.999987, 30.2001, 0, -14)
+progress = 271.8
 rotation_mode = 0
 tilt_enabled = false
 
@@ -239,22 +239,28 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.8, -15.5, -13.9)
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.8, -15.5, -75.2113)
 
 [node name="Glass" parent="." instance=ExtResource("5_vfsc7")]
-transform = Transform3D(-4.37114e-08, 0, -2, 0, 1, 0, 1, 0, -8.74228e-08, -80.5652, 2.38107, -22.7831)
+transform = Transform3D(-4.37114e-08, 0, -2, 0, 1, 0, 1, 0, -8.74228e-08, -45.2233, 1.38107, -22.7831)
 
 [node name="Glass2" parent="." instance=ExtResource("5_vfsc7")]
-transform = Transform3D(-4.37114e-08, 0, -2, 0, 1, 0, 1, 0, -8.74228e-08, -80.5652, 2.38107, -42.7831)
+transform = Transform3D(-4.37114e-08, 0, -2, 0, 1, 0, 1, 0, -8.74228e-08, -45.2233, 1.38107, -42.7831)
 
 [node name="Glass3" parent="." instance=ExtResource("5_vfsc7")]
-transform = Transform3D(-4.37114e-08, 0, -2, 0, 1, 0, 1, 0, -8.74228e-08, -80.5652, 2.38107, -62.7831)
+transform = Transform3D(-4.37114e-08, 0, -2, 0, 1, 0, 1, 0, -8.74228e-08, -45.2233, 1.38107, -62.7831)
 
 [node name="Sentry" parent="." instance=ExtResource("6_b4mtu")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2, -2)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 54, 2, -82)
+
+[node name="Sentry2" parent="." instance=ExtResource("6_b4mtu")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 54, 2, -51)
+
+[node name="Sentry3" parent="." instance=ExtResource("6_b4mtu")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 54, 2, -18)
 
 [node name="Objective" parent="." instance=ExtResource("7_pi17v")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -11.2524, 3.00001, 51.8959)
 
 [node name="ObjectiveItem" parent="Objective" index="1"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 52, 3, -202)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 34, 3, -179)
 
 [editable path="level2"]
 [editable path="Objective"]
