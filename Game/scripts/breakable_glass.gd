@@ -26,8 +26,6 @@ func _on_hitbox_body_entered(body):
 	if body is RigidBody3D and !(body.get_parent() == self):
 		info.Damage(info.calculateDamageBasedOnVelocity(body))
 		
-		print(info.calculateDamageBasedOnVelocity(body))
-		
 
 
 func _on_info_death():

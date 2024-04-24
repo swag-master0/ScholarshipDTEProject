@@ -75,12 +75,18 @@ func _physics_process(delta):
 	if direction:
 		velocity.x = direction.x * SPEED
 		velocity.z = direction.z * SPEED
-	elif !direction and not is_on_floor():
-		velocity.x = move_toward(velocity.x, 0, 0.5)
-		velocity.z = move_toward(velocity.z, 0, 0.5)
 	else:
 		velocity.x = move_toward(velocity.x, 0, SPEED)
 		velocity.z = move_toward(velocity.z, 0, SPEED)
+	"""
+	elif !direction and not is_on_floor():
+		velocity.x = move_toward(velocity.x, 0, 0.5)
+		velocity.z = move_toward(velocity.z, 0, 0.5)
+	"""
+	
+	
+	
+	
 	
 	#TODO: find the reason why move_and_slide() keeps causing non-fatal errors. this shits getting annoying
 	# it might not even be my fault. i don't know though.

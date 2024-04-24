@@ -29,7 +29,6 @@ func _process(_delta):
 		$MeshInstance3D.look_at(player.global_position)
 		
 		if global_position.distance_to(player.global_position) <= minimum_distance and delay.is_stopped():
-			print_rich("[color=RED]detected")
 			
 			# fires projectile towards player
 			
