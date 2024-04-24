@@ -1,20 +1,40 @@
-[gd_scene load_steps=4 format=3 uid="uid://ch3t1bgj51uvs"]
+[gd_scene load_steps=7 format=3 uid="uid://ch3t1bgj51uvs"]
 
 [ext_resource type="Script" path="res://scripts/sentry.gd" id="1_j4f2o"]
 [ext_resource type="PackedScene" uid="uid://bw2f0n3c7md1a" path="res://scenes/elements/projectile.tscn" id="2_ougdt"]
+[ext_resource type="PackedScene" uid="uid://cft1b4l0aljye" path="res://scenes/elements/info.tscn" id="3_45p8x"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_daud3"]
+albedo_color = Color(1, 0, 0, 1)
 
 [sub_resource type="CapsuleMesh" id="CapsuleMesh_t30l2"]
+material = SubResource("StandardMaterial3D_daud3")
+
+[sub_resource type="SphereMesh" id="SphereMesh_0o5yl"]
+radius = 0.1
+height = 0.2
 
 [node name="Sentry" type="Node3D"]
 script = ExtResource("1_j4f2o")
 projectile = ExtResource("2_ougdt")
 
+[node name="Info" parent="." instance=ExtResource("3_45p8x")]
+health = 3.0
+
 [node name="MeshInstance3D" type="MeshInstance3D" parent="."]
 mesh = SubResource("CapsuleMesh_t30l2")
+
+[node name="MeshInstance3D2" type="MeshInstance3D" parent="MeshInstance3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -1)
+mesh = SubResource("SphereMesh_0o5yl")
+skeleton = NodePath("../../RayCast3D")
 
 [node name="RayCast3D" type="RayCast3D" parent="."]
 target_position = Vector3(5, 0, 0)
 
 [node name="ShootDelay" type="Timer" parent="."]
-wait_time = 5.0
+wait_time = 2.0
 one_shot = true
+
+[connection signal="death" from="Info" to="." method="_on_info_death"]
+[connection signal="takeDamage" from="Info" to="." method="_on_info_take_damage"]

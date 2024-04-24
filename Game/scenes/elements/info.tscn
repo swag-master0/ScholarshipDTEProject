@@ -1,9 +1,18 @@
-[gd_scene load_steps=2 format=3 uid="uid://cft1b4l0aljye"]
+[gd_scene load_steps=3 format=3 uid="uid://cft1b4l0aljye"]
 
 [ext_resource type="Script" path="res://scripts/info.gd" id="1_227tr"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_ju8a1"]
 
 [node name="Info" type="Node3D" groups=["info"]]
 script = ExtResource("1_227tr")
 
 [node name="Timeout" type="Timer" parent="."]
 one_shot = true
+
+[node name="Hitbox" type="Area3D" parent="."]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Hitbox"]
+shape = SubResource("BoxShape3D_ju8a1")
+
+[connection signal="body_entered" from="Hitbox" to="." method="_on_hitbox_body_entered"]

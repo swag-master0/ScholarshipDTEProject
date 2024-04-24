@@ -39,7 +39,7 @@ func _physics_process(_delta):
 	
 	move_and_slide()
 
-
+"""
 func _on_hitbox_body_entered(body):
 	# when enemy is hit by prop
 	if body is RigidBody3D:
@@ -47,18 +47,23 @@ func _on_hitbox_body_entered(body):
 		
 		print(info.calculateDamageBasedOnVelocity(body))
 	
-	# when character hits player
+	# TODO: allow the enemy to take damage when hit by projectile
+	
+	# when enemy hits player
 	if body is CharacterBody3D and body.is_in_group("player"):
 		#find info node and damage it
 		for i in body.get_children():
 			if i.is_in_group("info"):
 				i.Damage(damage)
+"""
 
+
+
+func _on_info_take_damage():
+	pass # Replace with function body.
 
 func _on_info_death():
 	self.queue_free()
-
-
 
 
 

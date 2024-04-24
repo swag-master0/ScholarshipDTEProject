@@ -6,34 +6,46 @@ extends Node3D
 @onready var raycast = $RayCast3D
 @onready var parent = self.get_parent()
 @onready var delay = $ShootDelay
+@onready var info = $Info
+@onready var spawnpoint = $MeshInstance3D/MeshInstance3D2
 
 var group_name = "projectile"
 var player = null
 
-# Called when the node enters the scene tree for the first time.
-func _ready():
-	pass # Replace with function body.
 
-#difference is final - initial
 
-# Called every frame. 'delta' is the elapsed time since the previous frame.
+
 func _process(_delta):
+	# Finds the player's position, and sends a raycast there
 	for i in parent.get_children():
 		if i.is_in_group("player") and i is CharacterBody3D:
 			raycast.target_position =  i.global_position - global_position
 			player = i
+			
 	
-	if raycast.get_collider() == player and delay.is_stopped() and player: 
-		#if (player.global_position - self.global_position) <= minimum_distance:
-		if global_position.distance_to(player.global_position) <= minimum_distance:
-			print_rich("[color=RED]detected")
+	# Checks if the player is in line of sight, delay isn't going, and player is close enough to the sentry
+	if raycast.get_collider() == player and player: 
 		
+		$MeshInstance3D.look_at(player.global_position)
+		
+		if global_position.distance_to(player.global_position) <= minimum_distance and delay.is_stopped():
+			print_rich("[color=RED]detected")
+			
+			# fires projectile towards player
+			
 			var new_projectile = projectile.instantiate()
 			parent.add_child(new_projectile)
-			new_projectile.global_position = global_position
+			new_projectile.global_position = spawnpoint.global_position
 			new_projectile.Shoot(player.position - position)
 		
 			delay.start()
-		
-	
-	
+
+
+
+
+func _on_info_take_damage():
+	pass # Replace with function body.
+
+
+func _on_info_death():
+	self.queue_free() # delete itself upon death

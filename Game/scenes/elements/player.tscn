@@ -1,12 +1,8 @@
-[gd_scene load_steps=10 format=3 uid="uid://c7ycb57houxl1"]
+[gd_scene load_steps=9 format=3 uid="uid://c7ycb57houxl1"]
 
 [ext_resource type="Script" path="res://scripts/player.gd" id="1_m12p3"]
 [ext_resource type="PackedScene" uid="uid://cft1b4l0aljye" path="res://scenes/elements/info.tscn" id="2_xudpl"]
 [ext_resource type="Texture2D" uid="uid://djwowo0gdnhek" path="res://assets/mouse_base.png" id="3_ov0oq"]
-
-[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_5owcp"]
-radius = 0.6
-height = 2.1
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_uiem3"]
 
@@ -26,16 +22,10 @@ floor_constant_speed = true
 floor_max_angle = 1.22173
 script = ExtResource("1_m12p3")
 
-[node name="InvincibilityFrames" type="Timer" parent="."]
-one_shot = true
-
-[node name="Hitbox" type="Area3D" parent="."]
-
-[node name="CollisionShape3D" type="CollisionShape3D" parent="Hitbox"]
-shape = SubResource("CapsuleShape3D_5owcp")
-
 [node name="Info" parent="." instance=ExtResource("2_xudpl")]
 health = 20.0
+TakeDamageFromRigidBodies = false
+DamagePlayerOnPlayerCollision = false
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
 shape = SubResource("CapsuleShape3D_uiem3")
@@ -62,16 +52,6 @@ size = 39.544
 
 [node name="RayCast3D" type="RayCast3D" parent="CentralCameraPoint/Camera3D"]
 target_position = Vector3(0, 0, -5)
-
-[node name="SpotLight3D" type="SpotLight3D" parent="CentralCameraPoint/Camera3D"]
-light_energy = 500.0
-light_indirect_energy = 0.0
-light_volumetric_fog_energy = 0.0
-light_projector = ExtResource("3_ov0oq")
-light_size = 1.0
-shadow_enabled = true
-spot_range = 4096.0
-spot_angle = 2.0
 
 [node name="Cursor" type="Marker3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -4)
@@ -181,13 +161,20 @@ offset_right = 408.0
 offset_bottom = 607.0
 text = "quit to menu"
 
+[node name="Indicator" type="TextureRect" parent="HUD"]
+texture_filter = 2
+texture_repeat = 1
+layout_mode = 0
+offset_right = 62.0
+offset_bottom = 62.0
+texture = ExtResource("3_ov0oq")
+
 [node name="ProjectilePickupRange" type="Area3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.68487, 0)
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="ProjectilePickupRange"]
 shape = SubResource("CylinderShape3D_chmfs")
 
-[connection signal="body_entered" from="Hitbox" to="." method="_on_hitbox_body_entered"]
 [connection signal="death" from="Info" to="." method="_on_info_death"]
 [connection signal="takeDamage" from="Info" to="." method="_on_info_take_damage"]
 [connection signal="timeout" from="HUD/Hints/Timer" to="." method="_hinttext_timeout"]

@@ -1,6 +1,6 @@
 extends CharacterBody3D
 
-#TODO: This script desperately needs organising, because this piece of shit is a pain in the ass to read, let alone work on.
+#TODO: This script desperately needs organising and annotating, because this piece of shit is a pain in the ass to read, let alone work on.
 
 
 # INFO: PLAYER VARIABLES
@@ -20,11 +20,9 @@ extends CharacterBody3D
 @onready var character = $PlayerModel
 @onready var camera = $CentralCameraPoint/Camera3D
 @onready var cursor = $Cursor
-@onready var visible_cursor = $CentralCameraPoint/Camera3D/SpotLight3D
 @onready var detection = $Cursor/Area3D
 @onready var scene_tree = get_tree()
 @onready var info = $Info
-@onready var invincibility_frames = $InvincibilityFrames
 
 
 # INFO: HUD ELEMENTS
@@ -65,10 +63,8 @@ func _physics_process(delta):
 	
 	if Input.is_action_pressed("click"):
 		character.rotation.y = atan2(cursor.position.x, cursor.position.z)
-		visible_cursor.light_energy = 100
 	elif not Input.is_action_pressed("click"): # This is shitty code, but I fail to care
 		character.rotation.y = lerp_angle(character.rotation.y, atan2(faceDirection.x, faceDirection.z), delta * TURN_VELOCITY)
-		visible_cursor.light_energy = 20
 		
 		
 	
@@ -101,11 +97,13 @@ func _process(_delta):
 	#[ ------------------------------------ ]
 	#[ Pick up and throw objects are below  ]
 	#[ ------------------------------------ ]
-	
+	$HUD/Indicator.visible = false
 	# Handle picking up RIGID BODIES
 	if (NearestObject() and NearestObject() is RigidBody3D and global_position.distance_to(NearestObject().global_position) <= PICKUP_RANGE) and isHolding == false:
 		
-		visible_cursor.light_energy = 200
+		$HUD/Indicator.position = camera.unproject_position(NearestObject().global_position)
+		$HUD/Indicator.visible = true
+		print(camera.unproject_position(NearestObject().global_position))
 		
 		if Input.is_action_just_pressed("click"): # handle picking up objects
 			isHolding = true
@@ -123,7 +121,10 @@ func _process(_delta):
 	
 	# Handle picking up PROJECTILES
 	elif NearestObject() and NearestObject().is_in_group("projectile") and isHolding == false:
-		visible_cursor.light_energy = 200
+		$HUD/Indicator.visible = true
+		$HUD/Indicator.position = camera.unproject_position(NearestObject().global_position)
+		print(camera.unproject_position(NearestObject().global_position))
+		
 		
 		if Input.is_action_just_pressed("click"): # handle picking up objects
 			isHolding = true
@@ -211,18 +212,11 @@ func MousePosition():
 		if rayArray.has("position"): 
 			cursor.global_position = rayArray["position"]
 			
-			visible_cursor.look_at(cursor.global_position)
-			visible_cursor.rotation.z = 0
-			
-			
-		
 		# if raycast hit nothing, it draws a plane and sees where a raycast hits on that
 		else:
 			var dropPlane = Plane(Vector3(0, 1, 0), character.global_position.y)
 			var position3D = dropPlane.intersects_ray(camera.project_ray_origin(mousePos), camera.project_ray_normal(mousePos))
 			cursor.global_position = position3D
-			visible_cursor.look_at(cursor.global_position)
-			visible_cursor.rotation.z = 0
 
 func NearestObject():
 	var objects = detection.get_overlapping_bodies()
