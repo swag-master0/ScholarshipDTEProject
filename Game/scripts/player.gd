@@ -78,15 +78,6 @@ func _physics_process(delta):
 	else:
 		velocity.x = move_toward(velocity.x, 0, SPEED)
 		velocity.z = move_toward(velocity.z, 0, SPEED)
-	"""
-	elif !direction and not is_on_floor():
-		velocity.x = move_toward(velocity.x, 0, 0.5)
-		velocity.z = move_toward(velocity.z, 0, 0.5)
-	"""
-	
-	
-	
-	
 	
 	#TODO: find the reason why move_and_slide() keeps causing non-fatal errors. this shits getting annoying
 	# it might not even be my fault. i don't know though.
@@ -184,15 +175,20 @@ func _process(_delta):
 	
 	# handle health bar
 	if ready: 
-		var health = info.health # returns 20
-		var difference = max_health - health # returns 0
-		var change = difference / max_health # returns nan
+		var health = info.health 
+		var difference = max_health - health 
+		var change = difference / max_health
 		
-		var change_in_size = initial_size - (change * initial_size) # returns nan
-		$HUD/HealthBar/HealthGreen.size.x = change_in_size
+		var change_in_size = initial_size - (change * initial_size) 
 		
+		# change the size of the health bar to match the difference between the max health and current health
+		$HUD/HealthBar/HealthGreen.size.x = change_in_size 
+		
+		# tween the size of an extra hidden health bar for some visual flare
 		var tween = get_tree().create_tween()
 		tween.tween_property($HUD/HealthBar/HealthWhite, "size", $HUD/HealthBar/HealthGreen.size, 1)
+		
+		# health bar text
 		$HUD/HealthBar/HealthGreen/Percentage.text = str("[center]", 100 - (change * 100), "%")
 	
 	
@@ -283,17 +279,18 @@ func _hinttext_timeout():
 	hinttext.text = ""
 
 
-func PauseMenu(toggle):
+func PauseMenu(toggle : bool):
 	get_tree().paused = toggle
 	pausemenu.visible = toggle
+
 
 func _on_resume_button_pressed():
 	PauseMenu(false)
 
-
 func _on_quit_button_pressed():
 	get_tree().paused = false
 	scene_tree.change_scene_to_file("res://scenes/levels/main_menu.tscn")
+
 
 func setCursorPosition(pos : Vector3, visibility : bool):
 	var cursor = $HUD/Indicator

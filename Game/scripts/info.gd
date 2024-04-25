@@ -11,7 +11,7 @@ var projectileDamage = 3
 @export var damage_from_collision : float = 3
 @export var invincibility_frames : float = 0.5
 
-@export_group("Damages")
+@export_group("Damage Sources")
 @export var TakeDamageFromRigidBodies : bool = true
 @export var TakeDamageFromProjectiles : bool = true
 @export var DamagePlayerOnPlayerCollision : bool = true
@@ -28,7 +28,7 @@ func calculateDamageBasedOnVelocity(body):
 		if vel.z < 0:
 			vel.z = vel.z * -1
 		
-		var magnitude = sqrt(vel.x + vel.y + vel.z)
+		var magnitude = sqrt(vel.x + vel.y + vel.z) # calculate magnitude of the force
 		
 		if magnitude > 1.5:
 			return magnitude # returns damage
@@ -50,7 +50,6 @@ func Damage(damage: float):
 	
 	# These signals can be found in the 'Signals' menu on the info node, and can call functions when they get called
 	# Use this to update health bars, play SFX and VFX, ect...
-
 
 
 # NOTE: This node has a hitbox. Please use that instead of creating a new hitbox
