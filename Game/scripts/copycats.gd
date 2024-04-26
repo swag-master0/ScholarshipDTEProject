@@ -1,8 +1,8 @@
 extends CharacterBody3D
 
-@export var speed = 5
+@export var speed = 20
 @export var accel = 10
-@export var damage = 5
+@export var damage = 10
 
 @onready var nav : NavigationAgent3D = $NavigationAgent3D
 @onready var raycast = $RayCast3D
@@ -15,18 +15,19 @@ extends CharacterBody3D
 var gravity = ProjectSettings.get_setting("physics/3d/default_gravity")
 
 
-# navigating
+
 func _physics_process(delta):
+	# fall
 	if not is_on_floor():
 		velocity.y -= gravity * delta
 	
 	
 	var direction = Vector3()
 	
-	for i in range(self.get_parent_node_3d().get_children().size()):
+	for i in self.get_parent_node_3d().get_children():
 		
-		if self.get_parent_node_3d().get_children()[i] is CharacterBody3D and self.get_parent_node_3d().get_children()[i].is_in_group("player"):
-			var player = self.get_parent_node_3d().get_children()[i]
+		if i is CharacterBody3D and i.is_in_group("player") and global_position.distance_to(i.global_position) < 5:
+			var player = i
 			
 			raycast.target_position = player.global_position - global_position
 			
@@ -43,14 +44,3 @@ func _physics_process(delta):
 	velocity = velocity.lerp(direction * speed, accel * delta)
 	
 	move_and_slide()
-
-
-func _on_info_take_damage():
-	pass # Replace with function body.
-
-func _on_info_death():
-	self.queue_free()
-
-
-
-

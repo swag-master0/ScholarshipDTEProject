@@ -3,7 +3,7 @@
 [ext_resource type="PackedScene" uid="uid://daymadsgic1jy" path="res://blend/glass.blend" id="1_c8plg"]
 [ext_resource type="Script" path="res://scripts/breakable_glass.gd" id="1_dfbi3"]
 [ext_resource type="Material" uid="uid://b11yhqe1hwaut" path="res://assets/materials/glass.tres" id="3_0f4i1"]
-[ext_resource type="PackedScene" uid="uid://cft1b4l0aljye" path="res://scenes/elements/info.tscn" id="4_vrqgh"]
+[ext_resource type="PackedScene" uid="uid://cft1b4l0aljye" path="res://scenes/elements/assets/info.tscn" id="4_vrqgh"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_nxum4"]
 size = Vector3(1.5, 6, 6)

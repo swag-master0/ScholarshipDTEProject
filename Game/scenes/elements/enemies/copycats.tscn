@@ -1,0 +1,34 @@
+[gd_scene load_steps=6 format=3 uid="uid://7w5j5rmjk11o"]
+
+[ext_resource type="Script" path="res://scripts/copycats.gd" id="1_1v06k"]
+[ext_resource type="PackedScene" uid="uid://cft1b4l0aljye" path="res://scenes/elements/assets/info.tscn" id="2_nyqpp"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_oyknd"]
+size = Vector3(2.1, 2.1, 2.1)
+
+[sub_resource type="BoxMesh" id="BoxMesh_tyx7m"]
+size = Vector3(2, 2, 2)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_4m3wi"]
+size = Vector3(2, 2, 2)
+
+[node name="Copycat" type="CharacterBody3D" groups=["enemy"]]
+script = ExtResource("1_1v06k")
+
+[node name="Info" parent="." instance=ExtResource("2_nyqpp")]
+
+[node name="CollisionShape3D" parent="Info/Hitbox" index="0"]
+shape = SubResource("BoxShape3D_oyknd")
+
+[node name="RayCast3D" type="RayCast3D" parent="."]
+target_position = Vector3(5, 0, 0)
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+mesh = SubResource("BoxMesh_tyx7m")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+shape = SubResource("BoxShape3D_4m3wi")
+
+[node name="NavigationAgent3D" type="NavigationAgent3D" parent="."]
+
+[editable path="Info"]

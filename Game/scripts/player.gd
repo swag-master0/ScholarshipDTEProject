@@ -293,15 +293,15 @@ func _on_quit_button_pressed():
 
 
 func setCursorPosition(pos : Vector3, visibility : bool):
-	var cursor = $HUD/Indicator
+	var indicator = $HUD/Indicator
 	
 	if visibility:
 		
-		cursor.visible = true
-		cursor.position = camera.unproject_position(pos) - cursor.size / 2
+		indicator.visible = true
+		indicator.position = camera.unproject_position(pos) - indicator.size / 2
 	
 	elif !visibility:
-		cursor.visible = false
+		indicator.visible = false
 
 
 

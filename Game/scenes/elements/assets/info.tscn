@@ -1,11 +1,11 @@
 [gd_scene load_steps=3 format=3 uid="uid://cft1b4l0aljye"]
 
-[ext_resource type="Script" path="res://scripts/info.gd" id="1_227tr"]
+[ext_resource type="Script" path="res://scripts/info.gd" id="1_5y1s2"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_ju8a1"]
 
 [node name="Info" type="Node3D" groups=["info"]]
-script = ExtResource("1_227tr")
+script = ExtResource("1_5y1s2")
 
 [node name="Timeout" type="Timer" parent="."]
 one_shot = true

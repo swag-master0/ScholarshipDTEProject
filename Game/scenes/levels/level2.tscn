@@ -3,10 +3,10 @@
 [ext_resource type="PackedScene" uid="uid://bk46lynwxp6mg" path="res://blend/level2.blend" id="1_8e0xo"]
 [ext_resource type="Material" uid="uid://cmakta7ngaunj" path="res://assets/materials/temp_level.tres" id="2_d75nj"]
 [ext_resource type="PackedScene" uid="uid://c7ycb57houxl1" path="res://scenes/elements/player.tscn" id="3_dwah7"]
-[ext_resource type="PackedScene" uid="uid://ces1s7p5atsbn" path="res://scenes/elements/jump_pad.tscn" id="4_dg5xr"]
-[ext_resource type="PackedScene" uid="uid://qgme1k42iyr6" path="res://scenes/elements/breakable_glass.tscn" id="5_vfsc7"]
-[ext_resource type="PackedScene" uid="uid://ch3t1bgj51uvs" path="res://scenes/elements/sentry.tscn" id="6_b4mtu"]
-[ext_resource type="PackedScene" uid="uid://d4nob737a2chy" path="res://scenes/elements/objective.tscn" id="7_pi17v"]
+[ext_resource type="PackedScene" uid="uid://ces1s7p5atsbn" path="res://scenes/elements/assets/jump_pad.tscn" id="4_dg5xr"]
+[ext_resource type="PackedScene" uid="uid://qgme1k42iyr6" path="res://scenes/elements/assets/breakable_glass.tscn" id="5_vfsc7"]
+[ext_resource type="PackedScene" uid="uid://ch3t1bgj51uvs" path="res://scenes/elements/enemies/sentry.tscn" id="6_b4mtu"]
+[ext_resource type="PackedScene" uid="uid://d4nob737a2chy" path="res://scenes/elements/assets/objective.tscn" id="7_pi17v"]
 
 [sub_resource type="GDScript" id="GDScript_cwja6"]
 resource_name = "level2_functionality"
