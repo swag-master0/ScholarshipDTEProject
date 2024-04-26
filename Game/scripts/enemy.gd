@@ -12,10 +12,15 @@ extends CharacterBody3D
 @onready var info = $Info
 @onready var health = info.health
 
+var gravity = ProjectSettings.get_setting("physics/3d/default_gravity")
 
 
 # navigating
-func _physics_process(_delta):	
+func _physics_process(delta):
+	if not is_on_floor():
+		velocity.y -= gravity * delta
+	
+	
 	var direction = Vector3()
 	
 	for i in range(self.get_parent_node_3d().get_children().size()):
@@ -35,7 +40,7 @@ func _physics_process(_delta):
 	direction = nav.get_next_path_position() - global_position
 	direction = direction.normalized()
 	
-	velocity = velocity.lerp(direction * speed, accel * _delta)
+	velocity = velocity.lerp(direction * speed, accel * delta)
 	
 	move_and_slide()
 

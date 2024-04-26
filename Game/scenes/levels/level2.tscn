@@ -1,7 +1,7 @@
-[gd_scene load_steps=14 format=3 uid="uid://4yye08ka71t1"]
+[gd_scene load_steps=13 format=3 uid="uid://4yye08ka71t1"]
 
 [ext_resource type="PackedScene" uid="uid://bk46lynwxp6mg" path="res://blend/level2.blend" id="1_8e0xo"]
-[ext_resource type="Texture2D" uid="uid://bweg3yqy8hjot" path="res://assets/icon.svg" id="2_gdsx4"]
+[ext_resource type="Material" uid="uid://cmakta7ngaunj" path="res://assets/materials/temp_level.tres" id="2_d75nj"]
 [ext_resource type="PackedScene" uid="uid://c7ycb57houxl1" path="res://scenes/elements/player.tscn" id="3_dwah7"]
 [ext_resource type="PackedScene" uid="uid://ces1s7p5atsbn" path="res://scenes/elements/jump_pad.tscn" id="4_dg5xr"]
 [ext_resource type="PackedScene" uid="uid://qgme1k42iyr6" path="res://scenes/elements/breakable_glass.tscn" id="5_vfsc7"]
@@ -39,14 +39,6 @@ volumetric_fog_density = 0.1228
 volumetric_fog_albedo = Color(0, 0, 0, 1)
 volumetric_fog_emission_energy = 0.0
 
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_tfy23"]
-transparency = 4
-albedo_texture = ExtResource("2_gdsx4")
-roughness = 0.0
-distance_fade_mode = 2
-distance_fade_min_distance = 10.0
-distance_fade_max_distance = 25.0
-
 [sub_resource type="Curve3D" id="Curve3D_vja3j"]
 _data = {
 "points": PackedVector3Array(0, 0, 0, 0, 0, 0, 0, 0, -14, 0, 0, 0, 0, 0, 0, -45, 0, -14, 0, 0, 0, 0, 0, 0, -45, 0, -75, 0, 0, 0, 0, 0, 0, 45, 0, -75, 0, 0, 0, 0, 0, 0, 45, 0, -14, 0, 0, 0, 0, 0, 0, 0, 0, -14),
@@ -69,7 +61,7 @@ environment = SubResource("Environment_wye4r")
 [node name="level2" parent="." instance=ExtResource("1_8e0xo")]
 
 [node name="Level" parent="level2" index="0"]
-material_override = SubResource("StandardMaterial3D_tfy23")
+material_override = ExtResource("2_d75nj")
 
 [node name="Player" parent="." instance=ExtResource("3_dwah7")]
 transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, -16.4767, 3.49581, 49.7648)
