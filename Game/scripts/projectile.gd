@@ -2,6 +2,7 @@ extends CharacterBody3D
 
 #@export var speed = 200
 @export var damage = 5
+@export var iscarried = false
 @onready var info = $Info
 
 var speed = Vector3()
@@ -16,7 +17,7 @@ func _process(delta):
 
 func _on_hitbox_body_entered(body):
 	# checks if the object colliding is itself
-	if body == self:
+	if body == self or iscarried == true:
 		return
 	
 	if (body is RigidBody3D) or (body is StaticBody3D):

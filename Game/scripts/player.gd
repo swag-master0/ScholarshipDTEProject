@@ -133,6 +133,7 @@ func _process(_delta):
 			object.global_transform = $PlayerModel/HoldPoint.global_transform
 			object.reparent(character)
 			object.Shoot(Vector3())
+			object.iscarried = true
 			object.set_collision_layer_value(1, false)
 			object.set_collision_mask_value(1, false)
 			
@@ -142,6 +143,7 @@ func _process(_delta):
 	
 	# Handle throwing RIGID BODIES and PROJECTILES
 	if Input.is_action_just_released("click"): 
+		# Throw RIGID BODIES
 		if object and isHolding == true and object is RigidBody3D:
 			isHolding = false
 			
@@ -162,6 +164,7 @@ func _process(_delta):
 			
 			object = null
 		
+		# Throw PROJECTILES
 		elif object and object.is_in_group("projectile") and isHolding == true:
 			isHolding = false
 			
@@ -169,7 +172,9 @@ func _process(_delta):
 			object.set_collision_layer_value(1, true)
 			object.set_collision_mask_value(1, true)
 			
-			object.Shoot(cursor.global_position - global_position)
+			object.iscarried = false
+			object.Shoot(cursor.global_position - object.global_position)
+			print_rich("[color=CORNFLOWER_BLUE]", cursor.global_position - self.global_position)
 			
 			object = null
 	
@@ -220,6 +225,7 @@ func MousePosition():
 		if rayArray.has("collider"):
 			if rayArray["collider"].is_in_group("enemy") and Input.is_action_pressed("click"):
 				cursor.global_position = rayArray["collider"].global_position
+				print_rich("[color=RED]", rayArray["collider"].global_position)
 				
 				setCursorPosition(rayArray["collider"].global_position, true)
 		
