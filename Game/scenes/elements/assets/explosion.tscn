@@ -1,0 +1,36 @@
+[gd_scene load_steps=5 format=3 uid="uid://d03b14il32qs5"]
+
+[ext_resource type="Script" path="res://scripts/explosion.gd" id="1_l0qbb"]
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_b7g5u"]
+radius = 5.0
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_6ba03"]
+albedo_color = Color(0.559139, 0.257436, 3.27289e-06, 1)
+emission_enabled = true
+emission = Color(1, 1, 0, 1)
+
+[sub_resource type="SphereMesh" id="SphereMesh_olb84"]
+material = SubResource("StandardMaterial3D_6ba03")
+radius = 5.0
+height = 10.0
+
+[node name="Explosion" type="Node3D"]
+script = ExtResource("1_l0qbb")
+
+[node name="Center" type="Marker3D" parent="."]
+
+[node name="Area3D" type="Area3D" parent="."]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Area3D"]
+shape = SubResource("SphereShape3D_b7g5u")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Area3D"]
+mesh = SubResource("SphereMesh_olb84")
+skeleton = NodePath("../..")
+
+[node name="Timer" type="Timer" parent="."]
+wait_time = 0.5
+one_shot = true
+
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]
