@@ -1,4 +1,4 @@
-[gd_scene load_steps=9 format=3 uid="uid://cx1a4ujrxixpp"]
+[gd_scene load_steps=10 format=3 uid="uid://cx1a4ujrxixpp"]
 
 [ext_resource type="PackedScene" uid="uid://cjljpsd573byh" path="res://blend/devlevel.blend" id="1_y6xwe"]
 [ext_resource type="Material" uid="uid://cmakta7ngaunj" path="res://assets/materials/temp_level.tres" id="2_2nm6t"]
@@ -6,6 +6,7 @@
 [ext_resource type="PackedScene" uid="uid://ch7t6b0c3tjwr" path="res://scenes/elements/enemies/enemy.tscn" id="4_3n1uh"]
 [ext_resource type="PackedScene" uid="uid://7w5j5rmjk11o" path="res://scenes/elements/enemies/copycats.tscn" id="5_yxa3u"]
 [ext_resource type="PackedScene" uid="uid://b5c4qe603h5o" path="res://scenes/elements/assets/explosive_barrel.tscn" id="6_v03ub"]
+[ext_resource type="PackedScene" uid="uid://ch3t1bgj51uvs" path="res://scenes/elements/enemies/sentry.tscn" id="7_xvs3o"]
 
 [sub_resource type="NavigationMesh" id="NavigationMesh_tqygt"]
 vertices = PackedVector3Array(-9.25, -11.5, -29.25, -9.25, -11.5, -10.5, 9.5, -11.5, -10.5, 9.5, -11.5, -29.25, -9.5, -9.5, -9.5, -9.5, -9.5, 9.75, 9.5, -9.5, 9.75, 9.5, -9.5, -9.5, -29.25, -11.5, -9.25, -29.25, -11.5, 9.5, -10.5, -11.5, 9.5, -10.5, -11.5, -9.25, 10.75, -11.5, -9.25, 10.75, -11.5, 9.5, 29.5, -11.5, 9.5, 29.5, -11.5, -9.25, -9.25, -11.5, 10.75, -9.25, -11.5, 29.25, 9.5, -11.5, 29.25, 9.5, -11.5, 10.75)
@@ -63,7 +64,10 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 20, 0, -1)
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4.30493, 0, 18.0679)
 
 [node name="ExplosiveBarrel" parent="." instance=ExtResource("6_v03ub")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.86664, 1.85223, 3.01014)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -18.8666, 1.85223, 3.01014)
+
+[node name="Sentry" parent="." instance=ExtResource("7_xvs3o")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0746593, 1, -21.614)
 
 [editable path="NavigationRegion3D/devlevel"]
 [editable path="Enemy"]

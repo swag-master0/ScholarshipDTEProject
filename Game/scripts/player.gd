@@ -287,6 +287,12 @@ func PauseMenu(toggle : bool):
 func _on_resume_button_pressed():
 	PauseMenu(false)
 
+
+func _on_restart_button_pressed():
+	get_tree().paused = false
+	get_tree().reload_current_scene()
+
+
 func _on_quit_button_pressed():
 	get_tree().paused = false
 	scene_tree.change_scene_to_file("res://scenes/levels/main_menu.tscn")
@@ -302,6 +308,8 @@ func setCursorPosition(pos : Vector3, visibility : bool):
 	
 	elif !visibility:
 		indicator.visible = false
+
+
 
 
 

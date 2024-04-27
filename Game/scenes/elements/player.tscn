@@ -1,4 +1,4 @@
-[gd_scene load_steps=10 format=3 uid="uid://c7ycb57houxl1"]
+[gd_scene load_steps=11 format=3 uid="uid://c7ycb57houxl1"]
 
 [ext_resource type="Script" path="res://scripts/player.gd" id="1_m12p3"]
 [ext_resource type="PackedScene" uid="uid://cft1b4l0aljye" path="res://scenes/elements/assets/info.tscn" id="2_5emkj"]
@@ -14,6 +14,8 @@
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_2e1ws"]
 size = Vector3(2, 5, 2)
+
+[sub_resource type="BoxMesh" id="BoxMesh_ic57o"]
 
 [sub_resource type="CylinderShape3D" id="CylinderShape3D_chmfs"]
 height = 3.0
@@ -66,6 +68,9 @@ gizmo_extents = 3.0
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Cursor/Area3D"]
 shape = SubResource("BoxShape3D_2e1ws")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Cursor/Area3D"]
+mesh = SubResource("BoxMesh_ic57o")
 
 [node name="HUD" type="Control" parent="."]
 layout_mode = 3
@@ -158,12 +163,20 @@ offset_right = 408.0
 offset_bottom = 486.0
 text = "resume"
 
+[node name="RestartButton" type="Button" parent="HUD/PauseMenu"]
+layout_mode = 0
+offset_left = 188.0
+offset_top = 499.0
+offset_right = 408.0
+offset_bottom = 581.0
+text = "restart level"
+
 [node name="QuitButton" type="Button" parent="HUD/PauseMenu"]
 layout_mode = 0
 offset_left = 188.0
-offset_top = 525.0
+offset_top = 593.0
 offset_right = 408.0
-offset_bottom = 607.0
+offset_bottom = 675.0
 text = "quit to menu"
 
 [node name="Indicator" type="TextureRect" parent="HUD"]
@@ -187,6 +200,7 @@ shape = SubResource("CylinderShape3D_chmfs")
 [connection signal="takeDamage" from="Info" to="." method="_on_info_take_damage"]
 [connection signal="timeout" from="HUD/Hints/Timer" to="." method="_hinttext_timeout"]
 [connection signal="pressed" from="HUD/PauseMenu/ResumeButton" to="." method="_on_resume_button_pressed"]
+[connection signal="pressed" from="HUD/PauseMenu/RestartButton" to="." method="_on_restart_button_pressed"]
 [connection signal="pressed" from="HUD/PauseMenu/QuitButton" to="." method="_on_quit_button_pressed"]
 
 [editable path="Info"]

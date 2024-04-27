@@ -1,4 +1,4 @@
-[gd_scene load_steps=11 format=3 uid="uid://cov8v6858hevf"]
+[gd_scene load_steps=12 format=3 uid="uid://cov8v6858hevf"]
 
 [ext_resource type="PackedScene" uid="uid://c7ycb57houxl1" path="res://scenes/elements/player.tscn" id="1_cneap"]
 [ext_resource type="PackedScene" uid="uid://qgme1k42iyr6" path="res://scenes/elements/assets/breakable_glass.tscn" id="2_yb17d"]
@@ -6,6 +6,7 @@
 [ext_resource type="PackedScene" uid="uid://ch7t6b0c3tjwr" path="res://scenes/elements/enemies/enemy.tscn" id="4_8i10n"]
 [ext_resource type="Material" uid="uid://sqw3aalwlobw" path="res://assets/materials/temp_terrain.tres" id="4_y8v66"]
 [ext_resource type="PackedScene" uid="uid://d4nob737a2chy" path="res://scenes/elements/assets/objective.tscn" id="5_cdvph"]
+[ext_resource type="PackedScene" uid="uid://4yye08ka71t1" path="res://scenes/levels/level2.tscn" id="7_a643m"]
 
 [sub_resource type="GDScript" id="GDScript_jf0va"]
 resource_name = "level1_functionality"
@@ -90,6 +91,7 @@ material_override = ExtResource("4_y8v66")
 
 [node name="Objective" parent="." instance=ExtResource("5_cdvph")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.49637, 4, -0.0545578)
+nextscene = ExtResource("7_a643m")
 
 [node name="ObjectiveItem" parent="Objective" index="1"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -114, 1, -8)

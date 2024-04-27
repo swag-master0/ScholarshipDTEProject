@@ -19,14 +19,6 @@ func _on_hitbox_body_entered(body):
 	if body == self:
 		return
 	
-	"""
-	# scan if body has a info node
-	for i in body.get_children():
-		if i.is_in_group("info"):
-			i.Damage(damage)
-			self.queue_free()
-	"""
-	
 	if (body is RigidBody3D) or (body is StaticBody3D):
 		self.queue_free()
 	else:
