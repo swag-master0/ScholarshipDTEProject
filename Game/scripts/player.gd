@@ -174,7 +174,6 @@ func _process(_delta):
 			
 			object.iscarried = false
 			object.Shoot(cursor.global_position - object.global_position)
-			print_rich("[color=CORNFLOWER_BLUE]", cursor.global_position - self.global_position)
 			
 			object = null
 	
@@ -225,7 +224,6 @@ func MousePosition():
 		if rayArray.has("collider"):
 			if rayArray["collider"].is_in_group("enemy") and Input.is_action_pressed("click"):
 				cursor.global_position = rayArray["collider"].global_position
-				print_rich("[color=RED]", rayArray["collider"].global_position)
 				
 				setCursorPosition(rayArray["collider"].global_position, true)
 		
@@ -255,7 +253,6 @@ func NearestObject():
 	
 	# checks if any projectiles are near the player that take priority
 	for i in radius:
-		#print_rich("[color=RED]", i)
 		if i.is_in_group("projectile"):
 			closest_node = i
 			closest_node_distance = 0

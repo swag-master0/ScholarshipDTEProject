@@ -12,8 +12,6 @@ extends CharacterBody3D
 var group_name = "projectile"
 var player = null
 
-func _ready():
-	print_rich("[rainbow]", global_position)
 
 
 func _process(_delta):

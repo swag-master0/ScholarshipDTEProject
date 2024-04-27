@@ -14,7 +14,7 @@ extends CharacterBody3D
 
 var gravity = ProjectSettings.get_setting("physics/3d/default_gravity")
 var direction = Vector3()
-
+var player = null
 
 # INFO:
 # true means the copycat will hide and attack the player when they get near
@@ -31,22 +31,28 @@ func _physics_process(delta):
 	
 	# hunt player when player is seen
 	for i in self.get_parent_node_3d().get_children():
-		if (i is CharacterBody3D) and (i.is_in_group("player")) and (global_position.distance_to(i.global_position) < 5) and (behaviorstate == true):
-			var player = i
-			
+		if (i is CharacterBody3D) and (i.is_in_group("player")) and (behaviorstate == true):
+			player = i
 			raycast.target_position = player.global_position - global_position
+			print(raycast.target_position)
 			
-			if raycast.get_collider() == player:
-				nav.target_position = player.position
-			
-			else:
-				pass
+	
+	
+	
+	if (raycast.get_collider() == player) and (global_position.distance_to(player.global_position) <= 5):
+		nav.target_position = player.position
+	
+	else:
+		pass
 	
 	direction = nav.get_next_path_position() - global_position
 	direction = direction.normalized()
 	
+
 	velocity = velocity.lerp(direction * speed, accel * delta)
-	rotation.y = atan2(direction.x, direction.z)
+	mesh.rotation.y = atan2(direction.x, direction.z)
+	coll.rotation.y = atan2(direction.x, direction.z)
+	info.rotation.y = atan2(direction.x, direction.z)
 	
 	move_and_slide()
 
