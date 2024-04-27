@@ -29,16 +29,15 @@ func _physics_process(delta):
 		velocity.y -= gravity * delta
 	
 	
-	# hunt player when player is seen
+	# set raycast position on the player
 	for i in self.get_parent_node_3d().get_children():
 		if (i is CharacterBody3D) and (i.is_in_group("player")) and (behaviorstate == true):
 			player = i
 			raycast.target_position = player.global_position - global_position
-			print(raycast.target_position)
 			
 	
 	
-	
+	# set target position to the player's position if the player is close enough
 	if (raycast.get_collider() == player) and (global_position.distance_to(player.global_position) <= 5):
 		nav.target_position = player.position
 	
@@ -54,7 +53,10 @@ func _physics_process(delta):
 	coll.rotation.y = atan2(direction.x, direction.z)
 	info.rotation.y = atan2(direction.x, direction.z)
 	
+	
 	move_and_slide()
+	
+	
 
 
 
@@ -66,8 +68,13 @@ func _on_hitbox_body_entered(body):
 		behaviorstate = false
 		$Timer.start()
 		
+		"""
 		# TODO: should replace with a better way to run away from player
-		nav.target_position = Vector3(randf_range(-500, 500), randf_range(-500, 500), randf_range(-500, 500))
+		var target_position = Vector3(randf_range(-500, 500), randf_range(-500, 500), randf_range(-500, 500))
+		
+		var closest_pos = NavigationServer3D.map_get_closest_point(get_world_3d().get_navigation_map(), target_position)
+		nav.target_position = closest_pos
+		"""
 
 
 # reset to 
@@ -78,11 +85,12 @@ func _on_timer_timeout():
 
 
 func _on_info_take_damage():
-	behaviorstate = false
+	pass
 
 
 # replace self with rigidbody upon death
 func _on_info_death():
+	print_rich("[rainbow]copycat died lmao")
 	# create a rigid body of itself upon death
 	var rigidbody = $RigidBody3D
 	rigidbody.disable_mode = false

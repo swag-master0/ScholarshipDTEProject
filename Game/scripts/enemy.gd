@@ -43,6 +43,11 @@ func _physics_process(delta):
 	velocity = velocity.lerp(direction * speed, accel * delta)
 	
 	move_and_slide()
+	
+	for i in get_slide_collision_count():
+		var collisions = get_slide_collision(i)
+		if collisions.get_collider() is RigidBody3D:
+			collisions.get_collider().apply_central_impulse(-collisions.get_normal() * 0.5)
 
 
 func _on_info_take_damage():
