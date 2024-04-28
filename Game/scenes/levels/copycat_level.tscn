@@ -33,6 +33,9 @@ func _process(delta):
 
 func _on_trigger_body_entered(body):
 	if body.is_in_group(\"player\") and !triggered:
+		triggered = true
+		
+		# randomly select some rigid bodies in the level to turn into copycats
 		for i in level.get_children():
 			if i is RigidBody3D and (randi_range(0, 100) >= 75):
 				var new_enemy = enemy.instantiate()

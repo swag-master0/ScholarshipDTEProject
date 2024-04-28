@@ -44,53 +44,43 @@ func _process(delta):
 		if raycast.get_collider() and raycast.get_collider().is_in_group("player") and raycast.get_collider().global_position.distance_to(self.global_position) < 5 and $Timer.is_stopped():
 			nav.target_position = self.global_position + raycast.target_position
 			$Timer.start()
-			#print("attacking player")
 		
 		# player is within view of copycat
 		elif raycast.get_collider() and raycast.get_collider().is_in_group("player") and raycast.get_collider().global_position.distance_to(self.global_position) > 5:
-			nav.target_position = self.global_position
-			#print("player sighted, but too far to attack")
-		
-		
-		
-		
-		
-		
-		#print_rich("[rainbow]", nav.target_position)
-		$MeshInstance3D2.global_position = nav.target_position
+			nav.target_position = self.global_position		
 		
 		direction = nav.get_next_path_position() - global_position
 		direction = direction.normalized()
 		
 		velocity = velocity.lerp(direction * speed, 10 * delta)
 		
-		"""
+		
 		if direction:
-			mesh.rotation.y = atan2(direction.x, direction.z)
-			coll.rotation.y = atan2(direction.x, direction.z)
-			info.rotation.y = atan2(direction.x, direction.z)
-		"""
+			$MeshInstance3D.rotation.y = atan2(direction.x, direction.z)
+			$CollisionShape3D.rotation.y = atan2(direction.x, direction.z)
+			$Info.rotation.y = atan2(direction.x, direction.z)
+		
 		
 		move_and_slide()
 
 
 func _on_info_death():
-	print_rich("[rainbow]copycat died lmao")
-	# create a rigid body of itself upon death
-	var rigidbody = $RigidBody3D
-	rigidbody.set_freeze_enabled(false)
-	
-	var mesh = $MeshInstance3D
-	mesh.reparent(rigidbody)
-	
-	var collision = $CollisionShape3D
-	collision.reparent(rigidbody)
-	
-	rigidbody.reparent(self.get_parent())
-	
-	
-	# delete self upon death
-	self.queue_free()
+	if ready:
+		# create a rigid body of itself upon death
+		var rigidbody = $RigidBody3D
+		rigidbody.set_freeze_enabled(false)
+		
+		var mesh = $MeshInstance3D
+		mesh.reparent(rigidbody)
+		
+		var collision = $CollisionShape3D
+		collision.reparent(rigidbody)
+		
+		rigidbody.reparent(self.get_parent())
+		
+		
+		# delete self upon death
+		self.queue_free()
 
 
 func _on_info_take_damage():
