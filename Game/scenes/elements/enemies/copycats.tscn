@@ -1,12 +1,13 @@
-[gd_scene load_steps=7 format=3 uid="uid://7w5j5rmjk11o"]
+[gd_scene load_steps=8 format=3 uid="uid://7w5j5rmjk11o"]
 
-[ext_resource type="Script" path="res://scripts/copycats.gd" id="1_1v06k"]
+[ext_resource type="Script" path="res://scripts/copycats.gd" id="1_v3iqq"]
 [ext_resource type="PackedScene" uid="uid://cft1b4l0aljye" path="res://scenes/elements/assets/info.tscn" id="2_nyqpp"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_oyknd"]
 size = Vector3(2.1, 2.1, 2.1)
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_wingw"]
+albedo_color = Color(1, 0, 0, 1)
 
 [sub_resource type="BoxMesh" id="BoxMesh_tyx7m"]
 material = SubResource("StandardMaterial3D_wingw")
@@ -15,9 +16,11 @@ size = Vector3(2, 2, 2)
 [sub_resource type="BoxShape3D" id="BoxShape3D_4m3wi"]
 size = Vector3(2, 2, 2)
 
+[sub_resource type="CapsuleMesh" id="CapsuleMesh_05jhx"]
+
 [node name="Copycat" type="CharacterBody3D" groups=["enemy"]]
 collision_priority = 2.0
-script = ExtResource("1_1v06k")
+script = ExtResource("1_v3iqq")
 
 [node name="Info" parent="." instance=ExtResource("2_nyqpp")]
 
@@ -36,15 +39,18 @@ shape = SubResource("BoxShape3D_4m3wi")
 [node name="NavigationAgent3D" type="NavigationAgent3D" parent="."]
 
 [node name="Timer" type="Timer" parent="."]
-wait_time = 5.0
+wait_time = 3.0
 one_shot = true
 
 [node name="RigidBody3D" type="RigidBody3D" parent="."]
 freeze = true
 
+[node name="MeshInstance3D2" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4, 0, 0)
+mesh = SubResource("CapsuleMesh_05jhx")
+
 [connection signal="death" from="Info" to="." method="_on_info_death"]
 [connection signal="takeDamage" from="Info" to="." method="_on_info_take_damage"]
 [connection signal="body_entered" from="Info/Hitbox" to="." method="_on_hitbox_body_entered"]
-[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]
 
 [editable path="Info"]
