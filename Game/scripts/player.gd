@@ -84,6 +84,7 @@ func _physics_process(delta):
 	move_and_slide()
 	
 	
+	
 	#TODO: find a way to stop the collisions from bitching
 	for i in get_slide_collision_count():
 		var collisions = get_slide_collision(i)
@@ -219,6 +220,7 @@ func MousePosition():
 			cursor.global_position = rayArray["position"]
 			
 			setCursorPosition(Vector3(), false)
+			
 		
 		# lock onto enemy
 		if rayArray.has("collider"):
