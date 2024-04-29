@@ -1,2 +1,9 @@
 # Godot 4+ specific ignores
-.godot/
+# .godot/
+
+# ignore everything except imported folder
+.godot/editor
+.godot/shader_cache
+.godot/.gdignore
+.godot/global_script_class_cache.cfg
+.godot/uid_cache.bin
