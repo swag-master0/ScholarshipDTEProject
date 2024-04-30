@@ -1,0 +1,35 @@
+[gd_scene load_steps=5 format=3 uid="uid://w2l3dpbjub7c"]
+
+[ext_resource type="PackedScene" uid="uid://bs5hdiefi57co" path="res://blend/level4.blend" id="1_mp2pk"]
+[ext_resource type="PackedScene" uid="uid://c7ycb57houxl1" path="res://scenes/elements/player.tscn" id="2_wpjg1"]
+[ext_resource type="PackedScene" uid="uid://b5c4qe603h5o" path="res://scenes/elements/assets/explosive_barrel.tscn" id="3_hbe0q"]
+
+[sub_resource type="Environment" id="Environment_nfxsl"]
+background_mode = 1
+ambient_light_source = 2
+ambient_light_color = Color(0.385493, 0.385492, 0.385492, 1)
+glow_bloom = 1.0
+fog_light_color = Color(0, 0, 0, 1)
+fog_density = 0.07
+volumetric_fog_density = 0.1228
+volumetric_fog_albedo = Color(0, 0, 0, 1)
+volumetric_fog_emission_energy = 0.0
+
+[node name="Level4" type="Node3D"]
+
+[node name="level4" parent="." instance=ExtResource("1_mp2pk")]
+
+[node name="Player" parent="." instance=ExtResource("2_wpjg1")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -26.0502, 3, 14.8419)
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
+transform = Transform3D(0.965926, -0.25, -0.0669872, 0, -0.258819, 0.965926, -0.258819, -0.933013, -0.25, -16.8578, 10.7307, 50.9043)
+light_color = Color(0.533333, 0.533333, 0.533333, 1)
+shadow_enabled = true
+sky_mode = 1
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource("Environment_nfxsl")
+
+[node name="ExplosiveBarrel" parent="." instance=ExtResource("3_hbe0q")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -18.3776, 12.6493, 12)

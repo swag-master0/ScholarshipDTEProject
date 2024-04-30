@@ -34,15 +34,6 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -10, 0)
 [node name="Environment " parent="NavigationRegion3D/devlevel" index="0"]
 material_override = ExtResource("2_2nm6t")
 
-[node name="WorldEnvironment" type="WorldEnvironment" parent="NavigationRegion3D/devlevel"]
-environment = SubResource("Environment_rpky6")
-
-[node name="DirectionalLight3D" type="DirectionalLight3D" parent="NavigationRegion3D/devlevel/WorldEnvironment"]
-transform = Transform3D(0.866025, 0.482963, 0.12941, 0, -0.258819, 0.965926, 0.5, -0.836516, -0.224144, -19, 7.73072, 32)
-light_color = Color(0.533333, 0.533333, 0.533333, 1)
-shadow_enabled = true
-sky_mode = 1
-
 [node name="Player" parent="." instance=ExtResource("2_6pd3h")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 3, 0)
 
@@ -78,5 +69,14 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -20.7786, 1, -2.01656)
 
 [node name="Bomber4" parent="." instance=ExtResource("5_fkrnk")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -24.7786, 1, -2.01656)
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
+transform = Transform3D(0.866025, 0.482963, 0.12941, 0, -0.258819, 0.965926, 0.5, -0.836516, -0.224144, -19, 7.73072, 32)
+light_color = Color(0.533333, 0.533333, 0.533333, 1)
+shadow_enabled = true
+sky_mode = 1
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource("Environment_rpky6")
 
 [editable path="NavigationRegion3D/devlevel"]

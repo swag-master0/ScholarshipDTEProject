@@ -23,6 +23,7 @@ extends CharacterBody3D
 @onready var detection = $Cursor/Area3D
 @onready var scene_tree = get_tree()
 @onready var info = $Info
+@onready var collision = $PlayerModel/CollisionDetection
 
 
 # INFO: HUD ELEMENTS
@@ -45,8 +46,10 @@ var object = null
 var oldparent = null
 var isHolding = false
 
+# general stuff
 func _ready():
 	pausemenu.visible = false
+	self.rotate_y(deg_to_rad(45))
 	
 	# the funny
 	print_rich("[font_size=120][color=CORNFLOWER_BLUE][wave]heck you")
@@ -102,13 +105,12 @@ func _process(_delta):
 	#[ ------------------------------------ ]
 	#[ Pick up and throw objects are below  ]
 	#[ ------------------------------------ ]
-	
+
 	
 	# Handle picking up RIGID BODIES
 	if (NearestObject() and NearestObject() is RigidBody3D and global_position.distance_to(NearestObject().global_position) <= PICKUP_RANGE) and isHolding == false:
 		
 		setCursorPosition(NearestObject().global_position, true)
-		
 		
 		if Input.is_action_just_pressed("click"): # handle picking up objects
 			isHolding = true
@@ -127,6 +129,7 @@ func _process(_delta):
 	# Handle picking up PROJECTILES
 	elif NearestObject() and NearestObject().is_in_group("projectile") and isHolding == false:
 		
+
 		setCursorPosition(NearestObject().global_position, true)
 		
 		if Input.is_action_just_pressed("click"): # handle picking up objects
@@ -148,6 +151,7 @@ func _process(_delta):
 	# Handle throwing RIGID BODIES and PROJECTILES
 	if Input.is_action_just_released("click"): 
 		# Throw RIGID BODIES
+		
 		if object and isHolding == true and object is RigidBody3D:
 			isHolding = false
 			
@@ -220,7 +224,7 @@ func MousePosition():
 			cursor.global_position = rayArray["position"]
 			
 			setCursorPosition(Vector3(), false)
-			
+		
 		
 		# lock onto enemy
 		if rayArray.has("collider"):
@@ -237,6 +241,21 @@ func MousePosition():
 			cursor.global_position = position3D
 			
 			setCursorPosition(Vector3(), false)
+		
+		
+		# display actual facing location if obstructed
+		collision.global_position = global_position
+		collision.target_position = cursor.global_position - global_position
+		
+		if (collision.get_collision_point().distance_to(cursor.global_position) > 8) and Input.is_action_pressed("click"):
+			$"3D-CursorModel".global_position = lerp($"3D-CursorModel".global_position, collision.get_collision_point(), 0.25)
+			$"3D-CursorModel".visible = true
+			$Cursor/Area3D/MeshInstance3D.visible = true
+		else:
+			$"3D-CursorModel".global_position = cursor.global_position
+			$"3D-CursorModel".visible = false
+			$Cursor/Area3D/MeshInstance3D.visible = false
+
 
 func NearestObject():
 	var objects = detection.get_overlapping_bodies()

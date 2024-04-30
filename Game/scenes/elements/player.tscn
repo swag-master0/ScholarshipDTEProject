@@ -1,8 +1,17 @@
-[gd_scene load_steps=10 format=3 uid="uid://c7ycb57houxl1"]
+[gd_scene load_steps=14 format=3 uid="uid://c7ycb57houxl1"]
 
 [ext_resource type="Script" path="res://scripts/player.gd" id="1_m12p3"]
 [ext_resource type="PackedScene" uid="uid://cft1b4l0aljye" path="res://scenes/elements/assets/info.tscn" id="2_5emkj"]
 [ext_resource type="Texture2D" uid="uid://djwowo0gdnhek" path="res://assets/mouse_base.png" id="3_ov0oq"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_4qe3w"]
+albedo_color = Color(1, 0, 0, 1)
+emission_enabled = true
+emission = Color(1, 0, 0, 1)
+emission_energy_multiplier = 5.0
+
+[sub_resource type="SphereMesh" id="SphereMesh_g5di6"]
+material = SubResource("StandardMaterial3D_4qe3w")
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_j7m3i"]
 
@@ -15,14 +24,31 @@
 [sub_resource type="BoxShape3D" id="BoxShape3D_2e1ws"]
 size = Vector3(2, 5, 2)
 
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_c5oqm"]
+albedo_color = Color(1, 0, 0, 1)
+emission_enabled = true
+emission = Color(1, 0, 0, 1)
+emission_energy_multiplier = 3.0
+
+[sub_resource type="SphereMesh" id="SphereMesh_tvgqu"]
+material = SubResource("StandardMaterial3D_c5oqm")
+radius = 0.125
+height = 0.25
+
 [sub_resource type="CylinderShape3D" id="CylinderShape3D_chmfs"]
 height = 3.0
 radius = 3.5
 
 [node name="Player" type="CharacterBody3D" groups=["player"]]
+transform = Transform3D(0.707107, 0, 0.707107, 0, 1, 0, -0.707107, 0, 0.707107, 0, 0, 0)
 floor_constant_speed = true
 floor_max_angle = 1.22173
 script = ExtResource("1_m12p3")
+
+[node name="3D-CursorModel" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 5)
+mesh = SubResource("SphereMesh_g5di6")
+skeleton = NodePath("../Cursor/Area3D")
 
 [node name="Info" parent="." instance=ExtResource("2_5emkj")]
 health = 20.0
@@ -46,6 +72,11 @@ skeleton = NodePath("../..")
 [node name="HoldPoint" type="Marker3D" parent="PlayerModel"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 2)
 
+[node name="CollisionDetection" type="RayCast3D" parent="PlayerModel"]
+top_level = true
+target_position = Vector3(0, 0, 3.545)
+debug_shape_custom_color = Color(1, 1, 1, 1)
+
 [node name="CentralCameraPoint" type="Marker3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 0.965926, -0.258819, 0, 0.258819, 0.965926, 0, 0.4, 0)
 
@@ -56,6 +87,7 @@ fov = 60.0
 size = 39.544
 
 [node name="RayCast3D" type="RayCast3D" parent="CentralCameraPoint/Camera3D"]
+visible = false
 target_position = Vector3(0, 0, -5)
 
 [node name="Cursor" type="Marker3D" parent="."]
@@ -66,6 +98,9 @@ gizmo_extents = 3.0
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Cursor/Area3D"]
 shape = SubResource("BoxShape3D_2e1ws")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Cursor/Area3D"]
+mesh = SubResource("SphereMesh_tvgqu")
 
 [node name="HUD" type="Control" parent="."]
 layout_mode = 3
