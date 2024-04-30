@@ -33,8 +33,7 @@ extends CharacterBody3D
 @onready var pausemenu = $HUD/PauseMenu
 
 
-@onready var max_health = 20
-@onready var initial_size = $HUD/HealthBar/HealthGreen.size.x
+@onready var max_health = info.health
 
 
 
@@ -187,18 +186,11 @@ func _process(_delta):
 	
 	# handle health bar
 	if ready: 
-		var health = info.health 
-		var difference = max_health - health 
-		var change = difference / max_health
+		var health = info.health
 		
-		var change_in_size = initial_size - (change * initial_size) 
+		$HUD/Health.value = health
+		$HUD/Health.max_value = max_health
 		
-		# change the size of the health bar to match the difference between the max health and current health
-		$HUD/HealthBar/HealthGreen.size.x = change_in_size 
-		
-		# tween the size of an extra hidden health bar for some visual flare
-		var tween = get_tree().create_tween()
-		tween.tween_property($HUD/HealthBar/HealthWhite, "size", $HUD/HealthBar/HealthGreen.size, 1)
 	
 	
 	# quit to menu

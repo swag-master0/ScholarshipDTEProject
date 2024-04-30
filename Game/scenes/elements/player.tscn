@@ -1,4 +1,4 @@
-[gd_scene load_steps=14 format=3 uid="uid://c7ycb57houxl1"]
+[gd_scene load_steps=16 format=3 uid="uid://c7ycb57houxl1"]
 
 [ext_resource type="Script" path="res://scripts/player.gd" id="1_m12p3"]
 [ext_resource type="PackedScene" uid="uid://cft1b4l0aljye" path="res://scenes/elements/assets/info.tscn" id="2_5emkj"]
@@ -35,6 +35,12 @@ material = SubResource("StandardMaterial3D_c5oqm")
 radius = 0.125
 height = 0.25
 
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_nqrcn"]
+bg_color = Color(0.686275, 0, 0, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_btmbw"]
+bg_color = Color(0, 0.72549, 0, 1)
+
 [sub_resource type="CylinderShape3D" id="CylinderShape3D_chmfs"]
 height = 3.0
 radius = 3.5
@@ -51,7 +57,7 @@ mesh = SubResource("SphereMesh_g5di6")
 skeleton = NodePath("../Cursor/Area3D")
 
 [node name="Info" parent="." instance=ExtResource("2_5emkj")]
-health = 20.0
+health = 4.0
 TakeDamageFromRigidBodies = false
 DamagePlayerOnPlayerCollision = false
 
@@ -110,38 +116,25 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="HealthBar" type="ColorRect" parent="HUD"]
+[node name="Health" type="ProgressBar" parent="HUD"]
 layout_mode = 1
 anchors_preset = 7
 anchor_left = 0.5
 anchor_top = 1.0
 anchor_right = 0.5
 anchor_bottom = 1.0
-offset_left = -190.0
-offset_top = -180.0
-offset_right = 570.0
-offset_bottom = -104.001
+offset_left = -180.0
+offset_top = -189.0
+offset_right = 180.0
+offset_bottom = -139.0
 grow_horizontal = 2
 grow_vertical = 0
-scale = Vector2(0.5, 0.5)
-color = Color(1, 0, 0, 1)
-
-[node name="HealthWhite" type="ColorRect" parent="HUD/HealthBar"]
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-
-[node name="HealthGreen" type="ColorRect" parent="HUD/HealthBar"]
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-color = Color(0, 1, 0, 1)
+pivot_offset = Vector2(180, 25)
+theme_override_styles/background = SubResource("StyleBoxFlat_nqrcn")
+theme_override_styles/fill = SubResource("StyleBoxFlat_btmbw")
+max_value = 20.0
+value = 10.0
+show_percentage = false
 
 [node name="Hints" type="RichTextLabel" parent="HUD"]
 layout_mode = 1
