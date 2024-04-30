@@ -1,12 +1,10 @@
-[gd_scene load_steps=10 format=3 uid="uid://cx1a4ujrxixpp"]
+[gd_scene load_steps=8 format=3 uid="uid://cx1a4ujrxixpp"]
 
 [ext_resource type="PackedScene" uid="uid://cjljpsd573byh" path="res://blend/devlevel.blend" id="1_y6xwe"]
 [ext_resource type="Material" uid="uid://cmakta7ngaunj" path="res://assets/materials/temp_level.tres" id="2_2nm6t"]
 [ext_resource type="PackedScene" uid="uid://c7ycb57houxl1" path="res://scenes/elements/player.tscn" id="2_6pd3h"]
-[ext_resource type="PackedScene" uid="uid://ch7t6b0c3tjwr" path="res://scenes/elements/enemies/enemy.tscn" id="4_3n1uh"]
-[ext_resource type="PackedScene" uid="uid://7w5j5rmjk11o" path="res://scenes/elements/enemies/copycats.tscn" id="5_yxa3u"]
+[ext_resource type="PackedScene" uid="uid://dwe6hqxcxga2x" path="res://scenes/elements/enemies/bomber.tscn" id="5_fkrnk"]
 [ext_resource type="PackedScene" uid="uid://b5c4qe603h5o" path="res://scenes/elements/assets/explosive_barrel.tscn" id="6_v03ub"]
-[ext_resource type="PackedScene" uid="uid://ch3t1bgj51uvs" path="res://scenes/elements/enemies/sentry.tscn" id="7_xvs3o"]
 
 [sub_resource type="NavigationMesh" id="NavigationMesh_tqygt"]
 vertices = PackedVector3Array(-9.25, -11.5, -29.25, -9.25, -11.5, -10.5, 9.5, -11.5, -10.5, 9.5, -11.5, -29.25, -9.5, -9.5, -9.5, -9.5, -9.5, 9.75, 9.5, -9.5, 9.75, 9.5, -9.5, -9.5, -29.25, -11.5, -9.25, -29.25, -11.5, 9.5, -10.5, -11.5, 9.5, -10.5, -11.5, -9.25, 10.75, -11.5, -9.25, 10.75, -11.5, 9.5, 29.5, -11.5, 9.5, 29.5, -11.5, -9.25, -9.25, -11.5, 10.75, -9.25, -11.5, 29.25, 9.5, -11.5, 29.25, 9.5, -11.5, 10.75)
@@ -48,27 +46,37 @@ sky_mode = 1
 [node name="Player" parent="." instance=ExtResource("2_6pd3h")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 3, 0)
 
-[node name="Enemy" parent="." instance=ExtResource("4_3n1uh")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 17, 0, 6)
-
-[node name="Info" parent="Enemy" index="0"]
-health = 30.0
-
-[node name="Enemy2" parent="." instance=ExtResource("4_3n1uh")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 25, 0, 2)
-
-[node name="Enemy3" parent="." instance=ExtResource("4_3n1uh")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 20, 0, -1)
-
-[node name="Copycat" parent="." instance=ExtResource("5_yxa3u")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4.30493, 0, 18.0679)
-
 [node name="ExplosiveBarrel" parent="." instance=ExtResource("6_v03ub")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -18.8666, 1.85223, 3.01014)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -6.07211, -3.8147e-06, 19.013)
 
-[node name="Sentry" parent="." instance=ExtResource("7_xvs3o")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0746593, 1, -21.614)
+[node name="ExplosiveBarrel2" parent="." instance=ExtResource("6_v03ub")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.824446, 0, 18.7085)
+
+[node name="ExplosiveBarrel3" parent="." instance=ExtResource("6_v03ub")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.824446, 0, 22.7085)
+
+[node name="ExplosiveBarrel4" parent="." instance=ExtResource("6_v03ub")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.17555, 0, 22.7085)
+
+[node name="ExplosiveBarrel5" parent="." instance=ExtResource("6_v03ub")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.17555, 0, 25.7085)
+
+[node name="ExplosiveBarrel6" parent="." instance=ExtResource("6_v03ub")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4.82445, 0, 25.7085)
+
+[node name="ExplosiveBarrel7" parent="." instance=ExtResource("6_v03ub")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.824446, 0, 28.7085)
+
+[node name="Bomber" parent="." instance=ExtResource("5_fkrnk")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -24.7786, 1, 1.98344)
+
+[node name="Bomber2" parent="." instance=ExtResource("5_fkrnk")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -20.7786, 1, 1.98344)
+
+[node name="Bomber3" parent="." instance=ExtResource("5_fkrnk")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -20.7786, 1, -2.01656)
+
+[node name="Bomber4" parent="." instance=ExtResource("5_fkrnk")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -24.7786, 1, -2.01656)
 
 [editable path="NavigationRegion3D/devlevel"]
-[editable path="Enemy"]
-[editable path="Enemy/Info"]

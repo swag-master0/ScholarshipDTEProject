@@ -21,8 +21,6 @@ script/source = "extends Node3D
 
 
 func _ready():
-	print_rich(\"[font_size=120][color=CORNFLOWER_BLUE][wave]heck you\")
-	
 	$Player.sendHintToPlayer(\"[wave][center][color=SILVER]Use MOUSE 1 to pick up and throw objects\")
 	
 	for i in range(level.get_children().size()):

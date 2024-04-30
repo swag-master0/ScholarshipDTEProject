@@ -1,0 +1,50 @@
+[gd_scene load_steps=8 format=3 uid="uid://dwe6hqxcxga2x"]
+
+[ext_resource type="Script" path="res://scripts/bomber.gd" id="1_iqn42"]
+[ext_resource type="PackedScene" uid="uid://d03b14il32qs5" path="res://scenes/elements/assets/explosion.tscn" id="2_s131x"]
+[ext_resource type="PackedScene" uid="uid://cft1b4l0aljye" path="res://scenes/elements/assets/info.tscn" id="2_w0jxb"]
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_4tw2s"]
+radius = 1.1
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_jp7cb"]
+albedo_color = Color(1, 0, 0, 1)
+
+[sub_resource type="SphereMesh" id="SphereMesh_o28ak"]
+material = SubResource("StandardMaterial3D_jp7cb")
+radius = 1.0
+height = 2.0
+rings = 8
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_4mudu"]
+radius = 1.0
+
+[node name="Bomber" type="CharacterBody3D" groups=["enemy"]]
+script = ExtResource("1_iqn42")
+explosion = ExtResource("2_s131x")
+
+[node name="Info" parent="." instance=ExtResource("2_w0jxb")]
+
+[node name="CollisionShape3D" parent="Info/Hitbox" index="0"]
+shape = SubResource("SphereShape3D_4tw2s")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+mesh = SubResource("SphereMesh_o28ak")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+shape = SubResource("SphereShape3D_4mudu")
+
+[node name="NavigationAgent3D" type="NavigationAgent3D" parent="."]
+
+[node name="RayCast3D" type="RayCast3D" parent="."]
+target_position = Vector3(5, 0, 0)
+
+[node name="Delay" type="Timer" parent="."]
+wait_time = 0.25
+one_shot = true
+
+[connection signal="death" from="Info" to="." method="_on_info_death"]
+[connection signal="takeDamage" from="Info" to="." method="_on_info_take_damage"]
+[connection signal="timeout" from="Delay" to="." method="_on_delay_timeout"]
+
+[editable path="Info"]

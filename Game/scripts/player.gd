@@ -47,6 +47,9 @@ var isHolding = false
 
 func _ready():
 	pausemenu.visible = false
+	
+	# the funny
+	print_rich("[font_size=120][color=CORNFLOWER_BLUE][wave]heck you")
 
 
 # _physics_process() and _process() could be combined into a single function, but at the moment i dont give a shit
@@ -192,9 +195,6 @@ func _process(_delta):
 		# tween the size of an extra hidden health bar for some visual flare
 		var tween = get_tree().create_tween()
 		tween.tween_property($HUD/HealthBar/HealthWhite, "size", $HUD/HealthBar/HealthGreen.size, 1)
-		
-		# health bar text
-		$HUD/HealthBar/HealthGreen/Percentage.text = str("[center]", 100 - (change * 100), "%")
 	
 	
 	# quit to menu
@@ -266,7 +266,8 @@ func NearestObject():
 
 # triggers when player takes damage
 func _on_info_take_damage():
-	print(info.health) # Replace with function body.
+	#print(info.health)
+	pass
 
 # triggers when player dies
 func _on_info_death():
