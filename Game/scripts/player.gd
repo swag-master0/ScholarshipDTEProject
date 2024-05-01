@@ -98,14 +98,7 @@ func _physics_process(delta):
 	
 
 
-
-
 func _process(_delta):
-	#[ ------------------------------------ ]
-	#[ Pick up and throw objects are below  ]
-	#[ ------------------------------------ ]
-
-	
 	# Handle picking up RIGID BODIES
 	if (NearestObject() and NearestObject() is RigidBody3D and global_position.distance_to(NearestObject().global_position) <= PICKUP_RANGE) and isHolding == false:
 		
@@ -216,14 +209,18 @@ func MousePosition():
 			cursor.global_position = rayArray["position"]
 			
 			setCursorPosition(Vector3(), false)
+			viewEnemyHealth(null, false)
 		
 		
 		# lock onto enemy
 		if rayArray.has("collider"):
-			if rayArray["collider"].is_in_group("enemy") and Input.is_action_pressed("click"):
-				cursor.global_position = rayArray["collider"].global_position
+			if rayArray["collider"].is_in_group("enemy"):
+				viewEnemyHealth(rayArray["collider"], true)
 				
-				setCursorPosition(rayArray["collider"].global_position, true)
+				if Input.is_action_pressed("click"):
+					cursor.global_position = rayArray["collider"].global_position
+					setCursorPosition(rayArray["collider"].global_position, true)
+				
 		
 		
 		# if raycast hit nothing, it draws a plane and sees where a raycast hits on that
@@ -233,6 +230,7 @@ func MousePosition():
 			cursor.global_position = position3D
 			
 			setCursorPosition(Vector3(), false)
+			viewEnemyHealth(null, false)
 		
 		
 		# display actual facing location if obstructed
@@ -326,7 +324,21 @@ func setCursorPosition(pos : Vector3, visibility : bool):
 	elif !visibility:
 		indicator.visible = false
 
-
+func viewEnemyHealth(enemy : Object, visibility : bool):
+	var healthbar = $HUD/EnemyHealth
+	
+	if visibility:
+		
+		healthbar.visible = true
+		healthbar.position = (camera.unproject_position(enemy.global_position) - healthbar.size / 2) + Vector2(0, -50)
+		
+		for i in enemy.get_children():
+			if i.is_in_group("info"):
+				healthbar.value = i.health
+				healthbar.max_value = i.max_health
+	
+	elif !visibility:
+		healthbar.visible = false
 
 
 

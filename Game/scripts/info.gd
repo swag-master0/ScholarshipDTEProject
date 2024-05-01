@@ -8,6 +8,7 @@ var projectileDamage = 3
 
 @export_group("Variables")
 @export var health : float = 5
+@export var max_health : float = 5
 @export var damage_from_collision : float = 3
 @export var invincibility_frames : float = 0.5
 

@@ -58,6 +58,7 @@ skeleton = NodePath("../Cursor/Area3D")
 
 [node name="Info" parent="." instance=ExtResource("2_5emkj")]
 health = 4.0
+max_health = 4.0
 TakeDamageFromRigidBodies = false
 DamagePlayerOnPlayerCollision = false
 
@@ -130,6 +131,26 @@ offset_bottom = -139.0
 grow_horizontal = 2
 grow_vertical = 0
 pivot_offset = Vector2(180, 25)
+theme_override_styles/background = SubResource("StyleBoxFlat_nqrcn")
+theme_override_styles/fill = SubResource("StyleBoxFlat_btmbw")
+max_value = 20.0
+value = 10.0
+show_percentage = false
+
+[node name="EnemyHealth" type="ProgressBar" parent="HUD"]
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -960.0
+offset_top = -1180.0
+offset_right = -870.0
+offset_bottom = -1165.0
+grow_horizontal = 2
+grow_vertical = 0
+pivot_offset = Vector2(45, 7)
 theme_override_styles/background = SubResource("StyleBoxFlat_nqrcn")
 theme_override_styles/fill = SubResource("StyleBoxFlat_btmbw")
 max_value = 20.0

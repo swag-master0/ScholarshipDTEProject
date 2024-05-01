@@ -15,20 +15,4 @@ one_shot = true
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Hitbox"]
 shape = SubResource("BoxShape3D_ju8a1")
 
-[node name="SubViewportContainer" type="SubViewportContainer" parent="."]
-offset_right = 40.0
-offset_bottom = 40.0
-
-[node name="SubViewport" type="SubViewport" parent="SubViewportContainer"]
-
-[node name="Control" type="Control" parent="SubViewportContainer/SubViewport"]
-layout_mode = 3
-anchors_preset = 0
-offset_right = 40.0
-offset_bottom = 40.0
-
-[node name="ProgressBar" type="ProgressBar" parent="SubViewportContainer/SubViewport/Control"]
-offset_right = 4.0
-offset_bottom = 27.0
-
 [connection signal="body_entered" from="Hitbox" to="." method="_on_hitbox_body_entered"]

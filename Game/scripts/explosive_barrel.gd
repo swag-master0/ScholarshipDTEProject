@@ -22,8 +22,6 @@ func _on_area_3d_body_entered(body):
 		explode()
 	
 
-
-
 func explode():
 	var created_explosion = explosion.instantiate()
 	self.get_parent().add_child(created_explosion)
