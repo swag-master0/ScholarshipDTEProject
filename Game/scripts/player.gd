@@ -89,13 +89,13 @@ func _physics_process(delta):
 	move_and_slide()
 	
 	
-	
+	"""
 	#TODO: find a way to stop the collisions from bitching
 	for i in get_slide_collision_count():
 		var collisions = get_slide_collision(i)
 		if collisions.get_collider() is RigidBody3D:
 			collisions.get_collider().apply_central_impulse(-collisions.get_normal() * PUSH_FORCE)
-	
+	"""
 
 
 func _process(_delta):

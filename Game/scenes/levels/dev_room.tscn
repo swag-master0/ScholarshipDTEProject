@@ -1,4 +1,4 @@
-[gd_scene load_steps=8 format=3 uid="uid://cx1a4ujrxixpp"]
+[gd_scene load_steps=10 format=3 uid="uid://cx1a4ujrxixpp"]
 
 [ext_resource type="PackedScene" uid="uid://cjljpsd573byh" path="res://blend/devlevel.blend" id="1_y6xwe"]
 [ext_resource type="Material" uid="uid://cmakta7ngaunj" path="res://assets/materials/temp_level.tres" id="2_2nm6t"]
@@ -21,6 +21,10 @@ fog_density = 0.07
 volumetric_fog_density = 0.1228
 volumetric_fog_albedo = Color(0, 0, 0, 1)
 volumetric_fog_emission_energy = 0.0
+
+[sub_resource type="BoxMesh" id="BoxMesh_y6ppd"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_jr4pp"]
 
 [node name="DevRoom" type="Node3D"]
 
@@ -78,5 +82,15 @@ sky_mode = 1
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
 environment = SubResource("Environment_rpky6")
+
+[node name="RigidBody3D" type="RigidBody3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 8, 0)
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="RigidBody3D"]
+mesh = SubResource("BoxMesh_y6ppd")
+skeleton = NodePath("../CollisionShape3D")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="RigidBody3D"]
+shape = SubResource("BoxShape3D_jr4pp")
 
 [editable path="NavigationRegion3D/devlevel"]

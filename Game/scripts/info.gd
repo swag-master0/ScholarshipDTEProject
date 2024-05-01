@@ -6,6 +6,8 @@ signal death
 var projectileDamage = 3
 @onready var timer = $Timeout
 
+
+
 @export_group("Variables")
 @export var health : float = 5
 @export var max_health : float = 5
@@ -16,6 +18,9 @@ var projectileDamage = 3
 @export var TakeDamageFromRigidBodies : bool = true
 @export var TakeDamageFromProjectiles : bool = true
 @export var DamagePlayerOnPlayerCollision : bool = true
+
+
+
 
 func calculateDamageBasedOnVelocity(body):
 	if body is RigidBody3D:
@@ -57,8 +62,14 @@ func Damage(damage: float):
 func _on_hitbox_body_entered(body):
 	# The colliding object is a Rigid Body
 	if body is RigidBody3D and TakeDamageFromRigidBodies:
-		# Damage function emits the signal of taking damage and emits death
-		Damage(calculateDamageBasedOnVelocity(body))
+		print(body)
+		
+		if self.get_parent() and self.get_parent().is_in_group("player"):
+			# Barely Damage if its the player getting hit
+			Damage(calculateDamageBasedOnVelocity(body) / 5)
+		else:
+			# Damage function emits the signal of taking damage and emits death
+			Damage(calculateDamageBasedOnVelocity(body))
 	
 	
 	# The colliding object is a Projectile
