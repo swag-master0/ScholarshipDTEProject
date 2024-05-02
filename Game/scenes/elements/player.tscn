@@ -35,15 +35,15 @@ material = SubResource("StandardMaterial3D_c5oqm")
 radius = 0.125
 height = 0.25
 
+[sub_resource type="CylinderShape3D" id="CylinderShape3D_chmfs"]
+height = 3.0
+radius = 3.5
+
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_nqrcn"]
 bg_color = Color(0.686275, 0, 0, 1)
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_btmbw"]
 bg_color = Color(0, 0.72549, 0, 1)
-
-[sub_resource type="CylinderShape3D" id="CylinderShape3D_chmfs"]
-height = 3.0
-radius = 3.5
 
 [node name="Player" type="CharacterBody3D" groups=["player"]]
 transform = Transform3D(0.707107, 0, 0.707107, 0, 1, 0, -0.707107, 0, 0.707107, 0, 0, 0)
@@ -109,6 +109,12 @@ shape = SubResource("BoxShape3D_2e1ws")
 [node name="MeshInstance3D" type="MeshInstance3D" parent="Cursor/Area3D"]
 mesh = SubResource("SphereMesh_tvgqu")
 
+[node name="ProjectilePickupRange" type="Area3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.68487, 0)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="ProjectilePickupRange"]
+shape = SubResource("CylinderShape3D_chmfs")
+
 [node name="HUD" type="Control" parent="."]
 layout_mode = 3
 anchors_preset = 15
@@ -116,6 +122,17 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+
+[node name="HurtVFX" type="ColorRect" parent="HUD"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(1, 1, 1, 0)
+
+[node name="Timer" type="Timer" parent="HUD/HurtVFX"]
 
 [node name="Health" type="ProgressBar" parent="HUD"]
 layout_mode = 1
@@ -179,9 +196,14 @@ one_shot = true
 
 [node name="PauseMenu" type="ColorRect" parent="HUD"]
 process_mode = 2
-layout_mode = 0
+layout_mode = 1
+anchors_preset = 4
+anchor_top = 0.5
+anchor_bottom = 0.5
+offset_top = -540.0
 offset_right = 613.0
-offset_bottom = 1080.0
+offset_bottom = 540.0
+grow_vertical = 2
 color = Color(0.533333, 0.533333, 0.533333, 0.490196)
 
 [node name="ResumeButton" type="Button" parent="HUD/PauseMenu"]
@@ -226,7 +248,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-color = Color(1, 0.117647, 0.141176, 0.462745)
+color = Color(1, 0.117647, 0.141176, 0)
 
 [node name="RichTextLabel" type="RichTextLabel" parent="HUD/DeathScreen"]
 layout_mode = 1
@@ -263,18 +285,19 @@ pivot_offset = Vector2(110, 41)
 text = "restart level"
 
 [node name="DeathQuitButton" type="Button" parent="HUD/DeathScreen"]
-layout_mode = 0
-offset_left = 850.0
-offset_top = 600.0
-offset_right = 1070.0
-offset_bottom = 682.0
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -110.0
+offset_top = 82.0
+offset_right = 110.0
+offset_bottom = 164.0
+grow_horizontal = 2
+grow_vertical = 2
 text = "quit to menu"
-
-[node name="ProjectilePickupRange" type="Area3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.68487, 0)
-
-[node name="CollisionShape3D" type="CollisionShape3D" parent="ProjectilePickupRange"]
-shape = SubResource("CylinderShape3D_chmfs")
 
 [connection signal="death" from="Info" to="." method="_on_info_death"]
 [connection signal="takeDamage" from="Info" to="." method="_on_info_take_damage"]

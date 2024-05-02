@@ -32,7 +32,7 @@ extends CharacterBody3D
 @onready var hinttimer = $HUD/Hints/Timer
 @onready var pausemenu = $HUD/PauseMenu
 @onready var deathscreen = $HUD/DeathScreen
-
+@onready var hurtvfx = $HUD/HurtVFX
 
 @onready var max_health = info.health
 
@@ -284,6 +284,8 @@ func NearestObject():
 
 # triggers when player takes damage
 func _on_info_take_damage():
+	DamageVFX()
+	hurtvfx.color = Color(1, 0, 0, 0.4)
 	pass
 
 # triggers when player dies
@@ -381,7 +383,12 @@ func DeathScreen():
 	#Engine.time_scale = lerp(1, 0, 0.1)
 
 
-
+func DamageVFX():
+	# TODO : tween the visual effects appearing
+	#var tween = create_tween()
+	#tween.tween_property(hurtvfx.color, "a", 0.4, 1)
+	
+	hurtvfx.color = Color(1, 0, 0, 0.4)
 
 
 
