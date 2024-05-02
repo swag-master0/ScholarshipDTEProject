@@ -2,6 +2,8 @@ extends RigidBody3D
 
 @export var explosion: PackedScene
 
+@export var affect_player_only : bool = false
+
 var magnitude = 0
 var minimum = 2.5
 
@@ -18,8 +20,13 @@ func _on_area_3d_body_entered(body):
 	
 	var magnitude = sqrt(vel.x + vel.y + vel.z) # calculate magnitude of the force
 	
-	if ((body is StaticBody3D) or (body is RigidBody3D and body != self) or (body is CharacterBody3D)) and (magnitude > minimum):
-		explode()
+	if ((body is StaticBody3D or body is RigidBody3D and body != self) or (body is CharacterBody3D)) and (magnitude > minimum) and !affect_player_only:
+		$Timer.start(randf_range(0, 1))
+	
+	if body.is_in_group("player") and affect_player_only:
+		$Timer.start(0.01)
+	
+	
 	
 
 func explode():
@@ -30,3 +37,5 @@ func explode():
 	self.queue_free()
 
 
+func _on_timer_timeout():
+	explode()

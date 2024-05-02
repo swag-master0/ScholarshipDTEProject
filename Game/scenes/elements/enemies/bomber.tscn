@@ -24,6 +24,7 @@ script = ExtResource("1_iqn42")
 explosion = ExtResource("2_s131x")
 
 [node name="Info" parent="." instance=ExtResource("2_w0jxb")]
+DamagePlayerOnPlayerCollision = false
 
 [node name="CollisionShape3D" parent="Info/Hitbox" index="0"]
 shape = SubResource("SphereShape3D_4tw2s")
@@ -45,6 +46,7 @@ one_shot = true
 
 [connection signal="death" from="Info" to="." method="_on_info_death"]
 [connection signal="takeDamage" from="Info" to="." method="_on_info_take_damage"]
+[connection signal="body_entered" from="Info/Hitbox" to="." method="_on_body_entered"]
 [connection signal="timeout" from="Delay" to="." method="_on_delay_timeout"]
 
 [editable path="Info"]

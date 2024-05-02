@@ -1,6 +1,6 @@
 extends CharacterBody3D
 
-@export var speed = 5
+@export var speed = 2
 @export var accel = 10
 @export var damage = 5
 
@@ -53,11 +53,13 @@ func _physics_process(delta):
 
 
 func _on_info_take_damage():
-	pass # Replace with function body.
+	speed = 0
+	$Delay.start()
 
 func _on_info_death():
 	speed = 0
 	$Delay.start()
+
 
 
 func _on_delay_timeout():
@@ -68,5 +70,7 @@ func _on_delay_timeout():
 	self.queue_free()
 
 
-
-
+func _on_body_entered(body):
+	if body is CharacterBody3D and body.is_in_group("player"):
+		speed = 0
+		$Delay.start()

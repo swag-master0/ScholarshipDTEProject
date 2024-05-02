@@ -241,10 +241,12 @@ func MousePosition():
 			$"3D-CursorModel".global_position = lerp($"3D-CursorModel".global_position, collision.get_collision_point(), 0.25)
 			$"3D-CursorModel".visible = true
 			$Cursor/Area3D/MeshInstance3D.visible = true
+			Input.set_mouse_mode(Input.MOUSE_MODE_HIDDEN)
 		else:
 			$"3D-CursorModel".global_position = cursor.global_position
 			$"3D-CursorModel".visible = false
 			$Cursor/Area3D/MeshInstance3D.visible = false
+			Input.set_mouse_mode(Input.MOUSE_MODE_VISIBLE)
 
 
 func NearestObject():

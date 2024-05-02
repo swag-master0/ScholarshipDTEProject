@@ -4,8 +4,8 @@ extends Node3D
 @onready var area = $Area3D
 @onready var center = $Center
 
-@export var force : float = 500
-@export var damage : float = 15
+@export var force : float = 250
+@export var damage : float = 7
 
 var triggered = false
 

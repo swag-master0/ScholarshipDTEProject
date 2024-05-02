@@ -59,7 +59,7 @@ skeleton = NodePath("../Cursor/Area3D")
 [node name="Info" parent="." instance=ExtResource("2_5emkj")]
 health = 20.0
 max_health = 20.0
-TakeDamageFromRigidBodies = false
+invincibility_frames = 0.05
 DamagePlayerOnPlayerCollision = false
 
 [node name="CollisionShape3D" parent="Info/Hitbox" index="0"]
