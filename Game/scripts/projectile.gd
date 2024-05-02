@@ -10,7 +10,7 @@ var speed = Vector3()
 func Shoot(direction):
 	speed = direction.normalized()
 
-func _process(delta):
+func _process(_delta):
 	global_position += lerp(Vector3(), speed, 0.2)
 
 

@@ -62,7 +62,6 @@ func Damage(damage: float):
 func _on_hitbox_body_entered(body):
 	# The colliding object is a Rigid Body
 	if body is RigidBody3D and TakeDamageFromRigidBodies:
-		print(body)
 		
 		if self.get_parent() and self.get_parent().is_in_group("player"):
 			# Barely Damage if its the player getting hit

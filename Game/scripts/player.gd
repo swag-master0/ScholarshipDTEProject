@@ -31,6 +31,7 @@ extends CharacterBody3D
 @onready var hinttext = $HUD/Hints
 @onready var hinttimer = $HUD/Hints/Timer
 @onready var pausemenu = $HUD/PauseMenu
+@onready var deathscreen = $HUD/DeathScreen
 
 
 @onready var max_health = info.health
@@ -44,10 +45,16 @@ var faceDirection = Vector3.FORWARD
 var object = null
 var oldparent = null
 var isHolding = false
+var canPause = true
 
 # general stuff
 func _ready():
+	Engine.time_scale = 1
+	canPause = true
 	pausemenu.visible = false
+	deathscreen.visible = false
+	
+	
 	self.rotate_y(deg_to_rad(45))
 	
 	# the funny
@@ -58,10 +65,11 @@ func _ready():
 func _physics_process(delta):
 	if not is_on_floor():
 		velocity.y -= gravity * delta * JUMP_FALLMULTIPLIER
-	if Input.is_action_just_pressed("jump") and is_on_floor():
+	if Input.is_action_pressed("jump") and is_on_floor():
 		velocity.y = JUMP_VELOCITY
 	
 	MousePosition()
+	
 	
 	if (Input.is_action_pressed("forward") or Input.is_action_pressed("left") or Input.is_action_pressed("right") or Input.is_action_pressed("backward")):
 		faceDirection = Vector3(Input.get_action_strength("right") - Input.get_action_strength("left"), 0 ,Input.get_action_strength("backward") - Input.get_action_strength("forward")).normalized()
@@ -185,7 +193,6 @@ func _process(_delta):
 		$HUD/Health.max_value = max_health
 		
 	
-	
 	# quit to menu
 	if Input.is_action_just_pressed("escape"):
 		PauseMenu(true)
@@ -277,13 +284,11 @@ func NearestObject():
 
 # triggers when player takes damage
 func _on_info_take_damage():
-	#print(info.health)
 	pass
 
 # triggers when player dies
 func _on_info_death():
-	#replace later with death scene and gameover screen
-	scene_tree.change_scene_to_file("res://scenes/levels/main_menu.tscn")
+	DeathScreen()
 
 
 
@@ -296,25 +301,6 @@ func _hinttext_timeout():
 	hinttext.text = ""
 
 
-func PauseMenu(toggle : bool):
-	get_tree().paused = toggle
-	pausemenu.visible = toggle
-
-
-func _on_resume_button_pressed():
-	PauseMenu(false)
-
-
-func _on_restart_button_pressed():
-	get_tree().paused = false
-	get_tree().reload_current_scene()
-
-
-func _on_quit_button_pressed():
-	get_tree().paused = false
-	scene_tree.change_scene_to_file("res://scenes/levels/main_menu.tscn")
-
-
 func setCursorPosition(pos : Vector3, visibility : bool):
 	var indicator = $HUD/Indicator
 	
@@ -325,6 +311,7 @@ func setCursorPosition(pos : Vector3, visibility : bool):
 	
 	elif !visibility:
 		indicator.visible = false
+
 
 func viewEnemyHealth(enemy : Object, visibility : bool):
 	var healthbar = $HUD/EnemyHealth
@@ -341,6 +328,61 @@ func viewEnemyHealth(enemy : Object, visibility : bool):
 	
 	elif !visibility:
 		healthbar.visible = false
+
+
+func RestartLevel():
+	get_tree().paused = false
+	get_tree().reload_current_scene()
+
+
+func QuitToMenu():
+	get_tree().paused = false
+	Engine.time_scale = 1
+	scene_tree.change_scene_to_file("res://scenes/levels/main_menu.tscn")
+
+
+# INFO: PAUSE MENU 
+func PauseMenu(toggle : bool):
+	if canPause == true:
+		get_tree().paused = toggle
+		pausemenu.visible = toggle
+
+# Opens Pause Menu
+func _on_resume_button_pressed():
+	PauseMenu(false)
+
+# Restart Button pressed in pause menu
+func _on_restart_button_pressed():
+	RestartLevel()
+
+# Quit Button pressed in pause menu
+func _on_quit_button_pressed():
+	QuitToMenu()
+
+# Restart Button pressed in death screen
+func _on_death_restart_button_pressed():
+	RestartLevel()
+
+# Quit Button pressed in death screen
+func _on_death_quit_button_pressed():
+	QuitToMenu()
+
+
+
+# INFO: DEATH SCREEN
+func DeathScreen():
+	
+	canPause = false
+	var tween = create_tween()
+	tween.tween_property(Engine, "time_scale", 0, 0.2)
+	
+	deathscreen.visible = true
+	
+	#Engine.time_scale = lerp(1, 0, 0.1)
+
+
+
+
 
 
 
