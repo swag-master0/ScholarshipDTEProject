@@ -5,7 +5,7 @@ extends RigidBody3D
 @export var affect_player_only : bool = false
 
 var magnitude = 0
-var minimum = 2.5
+var minimum = 3.5
 
 func _on_area_3d_body_entered(body):
 	var vel = self.get_linear_velocity()

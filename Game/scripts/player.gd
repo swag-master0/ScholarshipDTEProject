@@ -201,7 +201,7 @@ func _process(_delta):
 
 # INFO: Fetches mouse position in 3D space
 func MousePosition():
-	if  ready: # This statement looks very dumb but without it it'll sometimes crash. The crashing isn't even consistant either!
+	if  ready and canPause: # This statement looks very dumb but without it it'll sometimes crash. The crashing isn't even consistant either!
 		var mousePos = get_viewport().get_mouse_position()
 		var spaceState = get_world_3d().direct_space_state
 		
@@ -285,7 +285,7 @@ func NearestObject():
 # triggers when player takes damage
 func _on_info_take_damage():
 	DamageVFX()
-	hurtvfx.color = Color(1, 0, 0, 0.4)
+	#hurtvfx.color = Color(1, 0, 0, 0.4)
 	pass
 
 # triggers when player dies
@@ -374,21 +374,37 @@ func _on_death_quit_button_pressed():
 # INFO: DEATH SCREEN
 func DeathScreen():
 	
+	
 	canPause = false
 	var tween = create_tween()
 	tween.tween_property(Engine, "time_scale", 0, 0.2)
 	
 	deathscreen.visible = true
-	
+	#get_tree().paused = true
 	#Engine.time_scale = lerp(1, 0, 0.1)
 
 
 func DamageVFX():
+	pass
 	# TODO : tween the visual effects appearing
-	#var tween = create_tween()
-	#tween.tween_property(hurtvfx.color, "a", 0.4, 1)
+	"""
 	
-	hurtvfx.color = Color(1, 0, 0, 0.4)
+	var colour = hurtvfx.color
+	colour.lerp(Color(0, 0, 0, 0), 1)
+	
+	
+	hurtvfx.color = colour
+	
+	
+	var tween = create_tween()
+	tween.tween_property(Color(hurtvfx.color), "a", 0.4, 1)
+	
+	
+	hurtvfx.color.lerp(Color(0, 0, 0, 0), 0.1)
+	
+	print(Color(hurtvfx.color))
+	
+	"""
 
 
 

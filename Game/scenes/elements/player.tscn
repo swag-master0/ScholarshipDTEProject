@@ -242,13 +242,14 @@ pivot_offset = Vector2(31, 31)
 texture = ExtResource("3_ov0oq")
 
 [node name="DeathScreen" type="ColorRect" parent="HUD"]
+process_mode = 3
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-color = Color(1, 0.117647, 0.141176, 0)
+color = Color(1, 0.117647, 0.141176, 0.356863)
 
 [node name="RichTextLabel" type="RichTextLabel" parent="HUD/DeathScreen"]
 layout_mode = 1
