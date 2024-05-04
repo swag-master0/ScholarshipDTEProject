@@ -81,6 +81,6 @@ sky_mode = 1
 environment = SubResource("Environment_rpky6")
 
 [node name="Enemy" parent="." instance=ExtResource("6_24m8x")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1, 0, 25)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 25)
 
 [editable path="NavigationRegion3D/devlevel"]

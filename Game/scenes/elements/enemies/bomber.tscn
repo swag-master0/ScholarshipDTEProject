@@ -1,8 +1,9 @@
-[gd_scene load_steps=8 format=3 uid="uid://dwe6hqxcxga2x"]
+[gd_scene load_steps=9 format=3 uid="uid://dwe6hqxcxga2x"]
 
 [ext_resource type="Script" path="res://scripts/bomber.gd" id="1_iqn42"]
 [ext_resource type="PackedScene" uid="uid://d03b14il32qs5" path="res://scenes/elements/assets/explosion.tscn" id="2_s131x"]
 [ext_resource type="PackedScene" uid="uid://cft1b4l0aljye" path="res://scenes/elements/assets/info.tscn" id="2_w0jxb"]
+[ext_resource type="AudioStream" uid="uid://b3roo26suawn4" path="res://assets/audio/bomber_buildup.wav" id="4_bujc0"]
 
 [sub_resource type="SphereShape3D" id="SphereShape3D_4tw2s"]
 radius = 1.1
@@ -23,8 +24,14 @@ radius = 1.0
 script = ExtResource("1_iqn42")
 explosion = ExtResource("2_s131x")
 
+[node name="Buildup" type="AudioStreamPlayer3D" parent="."]
+stream = ExtResource("4_bujc0")
+volume_db = -10.0
+
 [node name="Info" parent="." instance=ExtResource("2_w0jxb")]
 DamagePlayerOnPlayerCollision = false
+PlayKillSound = true
+PlayHurtSound = true
 
 [node name="CollisionShape3D" parent="Info/Hitbox" index="0"]
 shape = SubResource("SphereShape3D_4tw2s")
@@ -41,7 +48,6 @@ shape = SubResource("SphereShape3D_4mudu")
 target_position = Vector3(5, 0, 0)
 
 [node name="Delay" type="Timer" parent="."]
-wait_time = 0.25
 one_shot = true
 
 [connection signal="death" from="Info" to="." method="_on_info_death"]

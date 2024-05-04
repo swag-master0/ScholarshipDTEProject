@@ -1,6 +1,7 @@
-[gd_scene load_steps=5 format=3 uid="uid://d03b14il32qs5"]
+[gd_scene load_steps=6 format=3 uid="uid://d03b14il32qs5"]
 
 [ext_resource type="Script" path="res://scripts/explosion.gd" id="1_l0qbb"]
+[ext_resource type="AudioStream" uid="uid://cm410bdt0as57" path="res://assets/audio/explosion.wav" id="2_weawm"]
 
 [sub_resource type="SphereShape3D" id="SphereShape3D_b7g5u"]
 radius = 5.0
@@ -32,5 +33,9 @@ skeleton = NodePath("../..")
 [node name="Timer" type="Timer" parent="."]
 wait_time = 0.5
 one_shot = true
+
+[node name="ExplosionSFX" type="AudioStreamPlayer3D" parent="."]
+stream = ExtResource("2_weawm")
+volume_db = -10.0
 
 [connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]

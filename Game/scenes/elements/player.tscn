@@ -3,7 +3,7 @@
 [ext_resource type="Script" path="res://scripts/player.gd" id="1_m12p3"]
 [ext_resource type="PackedScene" uid="uid://cft1b4l0aljye" path="res://scenes/elements/assets/info.tscn" id="2_5emkj"]
 [ext_resource type="Texture2D" uid="uid://djwowo0gdnhek" path="res://assets/mouse_base.png" id="3_ov0oq"]
-[ext_resource type="AudioStream" uid="uid://c10s7nmd6cwx1" path="res://assets/audio/player_walk.wav" id="4_gh2jt"]
+[ext_resource type="AudioStream" uid="uid://w2v2x3att67l" path="res://assets/audio/click.wav" id="4_51ac5"]
 [ext_resource type="AudioStream" uid="uid://eiiqal51bdu" path="res://assets/audio/player_select.wav" id="5_0ai0w"]
 [ext_resource type="AudioStream" uid="uid://bdxfhhvgttnt5" path="res://assets/audio/player_death.wav" id="6_xid3v"]
 [ext_resource type="AudioStream" uid="uid://bwu6q554kl8jd" path="res://assets/audio/player_hurt.wav" id="7_gkslx"]
@@ -312,8 +312,8 @@ one_shot = true
 [node name="Audio" type="Node" parent="."]
 
 [node name="PlayerWalk" type="AudioStreamPlayer" parent="Audio"]
-stream = ExtResource("4_gh2jt")
-volume_db = -20.0
+stream = ExtResource("4_51ac5")
+volume_db = -10.0
 
 [node name="PlayerSelect" type="AudioStreamPlayer" parent="Audio"]
 stream = ExtResource("5_0ai0w")

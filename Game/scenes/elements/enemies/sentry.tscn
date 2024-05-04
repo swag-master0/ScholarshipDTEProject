@@ -24,6 +24,8 @@ projectile = ExtResource("2_ougdt")
 
 [node name="Info" parent="." instance=ExtResource("3_45p8x")]
 health = 3.0
+PlayKillSound = true
+PlayHurtSound = true
 
 [node name="CollisionShape3D" parent="Info/Hitbox" index="0"]
 shape = SubResource("CapsuleShape3D_p0fgb")

@@ -18,6 +18,8 @@ radius = 1.0
 script = ExtResource("1_nn6r1")
 
 [node name="Info" parent="." instance=ExtResource("2_repm0")]
+PlayKillSound = true
+PlayHurtSound = true
 
 [node name="CollisionShape3D" parent="Info/Hitbox" index="0"]
 shape = SubResource("SphereShape3D_4tw2s")
