@@ -10,7 +10,7 @@ extends Node3D
 var triggered = false
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta):
+func _process(_delta):
 	if !triggered:
 		triggered = true
 		timer.start() # not doing this results in timer constantly restarting, which means it never deletes itself.

@@ -46,6 +46,8 @@ var object = null
 var oldparent = null
 var isHolding = false
 var canPause = true
+var selectionsound = false
+
 
 # general stuff
 func _ready():
@@ -88,6 +90,13 @@ func _physics_process(delta):
 	if direction:
 		velocity.x = direction.x * SPEED
 		velocity.z = direction.z * SPEED
+		
+		# Footstep
+		if $FootstepDelay.is_stopped() and is_on_floor():
+			$FootstepDelay.start()
+			$Audio/PlayerWalk.pitch_scale = randf_range(75, 125) / 100 # random value between 0.75 and 1.25
+			$Audio/PlayerWalk.play()
+			
 	else:
 		velocity.x = move_toward(velocity.x, 0, SPEED)
 		velocity.z = move_toward(velocity.z, 0, SPEED)
@@ -113,6 +122,7 @@ func _process(_delta):
 		setCursorPosition(NearestObject().global_position, true)
 		
 		if Input.is_action_just_pressed("click"): # handle picking up objects
+			$Audio/PlayerSelect.play()
 			isHolding = true
 			object = NearestObject()
 			oldparent = object.get_parent()
@@ -129,10 +139,10 @@ func _process(_delta):
 	# Handle picking up PROJECTILES
 	elif NearestObject() and NearestObject().is_in_group("projectile") and isHolding == false:
 		
-
 		setCursorPosition(NearestObject().global_position, true)
 		
-		if Input.is_action_just_pressed("click"): # handle picking up objects
+		if Input.is_action_just_pressed("click"): # handle picking up projectiles
+			$Audio/PlayerSelect.play()
 			isHolding = true
 			object = NearestObject()
 			oldparent = object.get_parent()
@@ -155,6 +165,9 @@ func _process(_delta):
 		if object and isHolding == true and object is RigidBody3D:
 			isHolding = false
 			
+			# TODO: must change
+			$Audio/PlayerSelect.play()
+			
 			object.set_freeze_enabled(false)
 			object.reparent(oldparent)
 			
@@ -175,6 +188,9 @@ func _process(_delta):
 		# Throw PROJECTILES
 		elif object and object.is_in_group("projectile") and isHolding == true:
 			isHolding = false
+			
+			# TODO: must change
+			$Audio/PlayerSelect.play()
 			
 			object.reparent(oldparent)
 			object.set_collision_layer_value(1, true)
@@ -227,6 +243,7 @@ func MousePosition():
 				if Input.is_action_pressed("click"):
 					cursor.global_position = rayArray["collider"].global_position
 					setCursorPosition(rayArray["collider"].global_position, true)
+					
 				
 		
 		
@@ -285,11 +302,15 @@ func NearestObject():
 # triggers when player takes damage
 func _on_info_take_damage():
 	DamageVFX()
+	$Audio/PlayerHurt.pitch_scale = randf_range(75, 125) / 100 # random value between 0.75 and 1.25
+	$Audio/PlayerHurt.play()
 	#hurtvfx.color = Color(1, 0, 0, 0.4)
 	pass
 
 # triggers when player dies
 func _on_info_death():
+	$Audio/PlayerDeath.pitch_scale = randf_range(75, 125) / 100 # random value between 0.75 and 1.25
+	$Audio/PlayerDeath.play()
 	DeathScreen()
 
 
@@ -306,13 +327,19 @@ func _hinttext_timeout():
 func setCursorPosition(pos : Vector3, visibility : bool):
 	var indicator = $HUD/Indicator
 	
+	
 	if visibility:
 		
 		indicator.visible = true
 		indicator.position = camera.unproject_position(pos) - indicator.size / 2
+		
 	
 	elif !visibility:
 		indicator.visible = false
+		selectionsound = false
+	#else:
+	#	pass
+		#selectionsound = false
 
 
 func viewEnemyHealth(enemy : Object, visibility : bool):
@@ -408,5 +435,4 @@ func DamageVFX():
 
 
 
-
-
+# <-- This number is the amount of times I have lost the will to live

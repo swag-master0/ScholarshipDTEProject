@@ -1,8 +1,12 @@
-[gd_scene load_steps=16 format=3 uid="uid://c7ycb57houxl1"]
+[gd_scene load_steps=20 format=3 uid="uid://c7ycb57houxl1"]
 
 [ext_resource type="Script" path="res://scripts/player.gd" id="1_m12p3"]
 [ext_resource type="PackedScene" uid="uid://cft1b4l0aljye" path="res://scenes/elements/assets/info.tscn" id="2_5emkj"]
 [ext_resource type="Texture2D" uid="uid://djwowo0gdnhek" path="res://assets/mouse_base.png" id="3_ov0oq"]
+[ext_resource type="AudioStream" uid="uid://c10s7nmd6cwx1" path="res://assets/audio/player_walk.wav" id="4_gh2jt"]
+[ext_resource type="AudioStream" uid="uid://eiiqal51bdu" path="res://assets/audio/player_select.wav" id="5_0ai0w"]
+[ext_resource type="AudioStream" uid="uid://bdxfhhvgttnt5" path="res://assets/audio/player_death.wav" id="6_xid3v"]
+[ext_resource type="AudioStream" uid="uid://bwu6q554kl8jd" path="res://assets/audio/player_hurt.wav" id="7_gkslx"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_4qe3w"]
 albedo_color = Color(1, 0, 0, 1)
@@ -60,6 +64,7 @@ skeleton = NodePath("../Cursor/Area3D")
 health = 20.0
 max_health = 20.0
 invincibility_frames = 0.05
+TakeDamageFromRigidBodies = false
 DamagePlayerOnPlayerCollision = false
 
 [node name="CollisionShape3D" parent="Info/Hitbox" index="0"]
@@ -299,6 +304,28 @@ offset_bottom = 164.0
 grow_horizontal = 2
 grow_vertical = 2
 text = "quit to menu"
+
+[node name="FootstepDelay" type="Timer" parent="."]
+wait_time = 0.15
+one_shot = true
+
+[node name="Audio" type="Node" parent="."]
+
+[node name="PlayerWalk" type="AudioStreamPlayer" parent="Audio"]
+stream = ExtResource("4_gh2jt")
+volume_db = -20.0
+
+[node name="PlayerSelect" type="AudioStreamPlayer" parent="Audio"]
+stream = ExtResource("5_0ai0w")
+volume_db = -20.0
+
+[node name="PlayerDeath" type="AudioStreamPlayer" parent="Audio"]
+stream = ExtResource("6_xid3v")
+volume_db = -20.0
+
+[node name="PlayerHurt" type="AudioStreamPlayer" parent="Audio"]
+stream = ExtResource("7_gkslx")
+volume_db = -20.0
 
 [connection signal="death" from="Info" to="." method="_on_info_death"]
 [connection signal="takeDamage" from="Info" to="." method="_on_info_take_damage"]
