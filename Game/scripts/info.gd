@@ -23,7 +23,6 @@ var projectileDamage = 3
 
 
 
-
 func calculateDamageBasedOnVelocity(body):
 	if body is RigidBody3D:
 		var vel = body.get_linear_velocity()
@@ -48,12 +47,16 @@ func calculateDamageBasedOnVelocity(body):
 func Damage(damage: float):
 	
 	if timer.is_stopped():
-		health -= damage
-		emit_signal("takeDamage") # TakeDamage is to be used to indicate to objects whether they're taking damage, use to activate vfx and sfx
 		
-		if PlayHurtSound:
-			$Hurt.pitch_scale = randf_range(75, 125) / 100
-			$Hurt.play()
+		# doesn't play the hurt sfx if it takes a miniscule amount of damage
+		if health - (health - damage) > 1:
+			if PlayHurtSound:
+				$Hurt.pitch_scale = randf_range(75, 125) / 100
+				$Hurt.play()
+				
+				emit_signal("takeDamage") # TakeDamage is to be used to indicate to objects whether they're taking damage, use to activate vfx and sfx
+		
+		health -= damage
 		
 		timer.start() # The timer acts as a sort of 'invincibility frames'
 	
