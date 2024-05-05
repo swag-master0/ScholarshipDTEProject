@@ -6,4 +6,12 @@ extends Node3D
 
 func _on_level_start_body_entered(body):
 	if body == objective:
-		get_tree().change_scene_to_packed(nextscene)
+		ChangeScene()
+	
+	if body.is_in_group("player"):
+		if body.object == objective:
+			ChangeScene()
+
+
+func ChangeScene():
+	get_tree().change_scene_to_packed(nextscene)

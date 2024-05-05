@@ -22,7 +22,7 @@ func _ready():
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta):
+func _process(_delta):
 	for i in platforms.get_children():
 		if i is PathFollow3D:
 			i.progress_ratio += platform_speed

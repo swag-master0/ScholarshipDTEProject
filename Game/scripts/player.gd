@@ -42,7 +42,8 @@ extends CharacterBody3D
 var gravity = ProjectSettings.get_setting("physics/3d/default_gravity")
 var faceDirection = Vector3.FORWARD
 
-var object = null
+@export var object : RigidBody3D
+
 var oldparent = null
 var isHolding = false
 var canPause = true
@@ -66,6 +67,8 @@ func _ready():
 
 
 # _physics_process() and _process() could be combined into a single function, but at the moment i dont give a shit
+
+# physics_process is the player movement and 3D cursor stuff
 func _physics_process(delta):
 	if not is_on_floor():
 		velocity.y -= gravity * delta * JUMP_FALLMULTIPLIER
@@ -117,6 +120,7 @@ func _physics_process(delta):
 	"""
 
 
+# process is the player throwing mechanic and healthbar code
 func _process(_delta):
 	# Handle picking up RIGID BODIES
 	if (NearestObject() and NearestObject() is RigidBody3D and global_position.distance_to(NearestObject().global_position) <= PICKUP_RANGE) and isHolding == false:
