@@ -54,13 +54,23 @@ func _physics_process(delta):
 
 func _on_info_take_damage():
 	speed = 0
+	$AnimationPlayer.play("buildup")
 	$Buildup.play(1)
 	$Delay.start()
 
 func _on_info_death():
 	speed = 0
+	$AnimationPlayer.play("buildup")
 	$Buildup.play(1)
 	$Delay.start()
+
+func _on_body_entered(body):
+	if body is CharacterBody3D and body.is_in_group("player"):
+		speed = 0
+		$AnimationPlayer.play("buildup")
+		$Buildup.play(1)
+		$Delay.start()
+
 
 
 
@@ -72,8 +82,4 @@ func _on_delay_timeout():
 	self.queue_free()
 
 
-func _on_body_entered(body):
-	if body is CharacterBody3D and body.is_in_group("player"):
-		speed = 0
-		$Buildup.play(1)
-		$Delay.start()
+

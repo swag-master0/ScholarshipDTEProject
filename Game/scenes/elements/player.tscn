@@ -1,4 +1,4 @@
-[gd_scene load_steps=22 format=3 uid="uid://c7ycb57houxl1"]
+[gd_scene load_steps=24 format=3 uid="uid://c7ycb57houxl1"]
 
 [ext_resource type="Script" path="res://scripts/player.gd" id="1_m12p3"]
 [ext_resource type="PackedScene" uid="uid://cft1b4l0aljye" path="res://scenes/elements/assets/info.tscn" id="2_5emkj"]
@@ -21,7 +21,11 @@ material = SubResource("StandardMaterial3D_4qe3w")
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_uiem3"]
 
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_jofc1"]
+albedo_color = Color(0.431373, 0.647059, 0.407843, 1)
+
 [sub_resource type="CapsuleMesh" id="CapsuleMesh_7nubc"]
+material = SubResource("StandardMaterial3D_jofc1")
 
 [sub_resource type="PrismMesh" id="PrismMesh_u4gd0"]
 
@@ -51,9 +55,38 @@ bg_color = Color(0, 0.72549, 0, 1)
 
 [sub_resource type="Animation" id="Animation_rew3f"]
 resource_name = "hurt"
+step = 0.05
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("PlayerModel:mesh:material:albedo_color")
+tracks/0/interp = 0
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.05, 0.1, 0.15, 0.2, 0.25, 0.3, 0.35, 0.4, 0.45, 0.5, 0.55),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1),
+"update": 0,
+"values": [Color(0.431373, 0.647059, 0.407843, 1), Color(1, 0, 0, 1), Color(1, 1, 1, 1), Color(1, 0, 0, 1), Color(1, 1, 1, 1), Color(1, 0, 0, 1), Color(1, 1, 1, 1), Color(1, 0, 0, 1), Color(1, 1, 1, 1), Color(1, 0, 0, 1), Color(1, 1, 1, 1), Color(0.431373, 0.647059, 0.407843, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_bnsgp"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("PlayerModel:mesh:material:albedo_color")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(0.431373, 0.647059, 0.407843, 1)]
+}
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_nf3c7"]
 _data = {
+"RESET": SubResource("Animation_bnsgp"),
 "hurt": SubResource("Animation_rew3f")
 }
 

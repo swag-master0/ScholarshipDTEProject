@@ -304,6 +304,9 @@ func NearestObject():
 # triggers when player takes damage
 func _on_info_take_damage():
 	DamageVFX()
+	
+	$AnimationPlayer.play("hurt")
+	
 	$Audio/PlayerHurt.pitch_scale = randf_range(75, 125) / 100 # random value between 0.75 and 1.25
 	$Audio/PlayerHurt.play()
 	#hurtvfx.color = Color(1, 0, 0, 0.4)

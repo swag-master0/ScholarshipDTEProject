@@ -14,6 +14,8 @@ func _process(_delta):
 	if !triggered:
 		triggered = true
 		
+		$AnimationPlayer.play("explosion")
+		
 		$ExplosionSFX.pitch_scale = randf_range(75, 125) / 100
 		$ExplosionSFX.play()
 		$ExplosionSFX.reparent(self.get_parent())
