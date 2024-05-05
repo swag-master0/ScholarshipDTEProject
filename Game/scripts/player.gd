@@ -56,6 +56,8 @@ func _ready():
 	pausemenu.visible = false
 	deathscreen.visible = false
 	
+	print_rich("[rainbow]", 4 % 2)
+	
 	
 	self.rotate_y(deg_to_rad(45))
 	
