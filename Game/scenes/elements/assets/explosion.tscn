@@ -16,33 +16,6 @@ material = SubResource("StandardMaterial3D_6ba03")
 radius = 5.0
 height = 0.001
 
-[sub_resource type="Animation" id="Animation_lo8cw"]
-resource_name = "explosion"
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("Area3D/MeshInstance3D:mesh:radius")
-tracks/0/interp = 2
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.3),
-"transitions": PackedFloat32Array(1, 1),
-"update": 0,
-"values": [5.0, 0.001]
-}
-tracks/1/type = "value"
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/path = NodePath("Area3D/MeshInstance3D:mesh:height")
-tracks/1/interp = 2
-tracks/1/loop_wrap = true
-tracks/1/keys = {
-"times": PackedFloat32Array(0, 0.3),
-"transitions": PackedFloat32Array(1, 1),
-"update": 0,
-"values": [10.0, 0.001]
-}
-
 [sub_resource type="Animation" id="Animation_mq2dy"]
 length = 0.001
 tracks/0/type = "value"
@@ -68,6 +41,33 @@ tracks/1/keys = {
 "transitions": PackedFloat32Array(1),
 "update": 0,
 "values": [0.001]
+}
+
+[sub_resource type="Animation" id="Animation_lo8cw"]
+resource_name = "explosion"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Area3D/MeshInstance3D:mesh:radius")
+tracks/0/interp = 2
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.3),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [5.0, 0.001]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Area3D/MeshInstance3D:mesh:height")
+tracks/1/interp = 2
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.3),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [10.0, 0.001]
 }
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_13so0"]
