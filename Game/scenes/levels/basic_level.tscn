@@ -1,0 +1,84 @@
+[gd_scene load_steps=6 format=3 uid="uid://rq3g3n4qshr3"]
+
+[ext_resource type="PackedScene" uid="uid://c61dj4vsac881" path="res://blend/basic.blend" id="1_mmtac"]
+[ext_resource type="PackedScene" uid="uid://c7ycb57houxl1" path="res://scenes/elements/player.tscn" id="2_drm6k"]
+[ext_resource type="PackedScene" uid="uid://d4nob737a2chy" path="res://scenes/elements/assets/objective.tscn" id="3_hmicr"]
+[ext_resource type="PackedScene" uid="uid://bbb07r3hee2bp" path="res://scenes/elements/assets/prop.tscn" id="4_xhech"]
+
+[sub_resource type="Environment" id="Environment_abqj6"]
+background_mode = 1
+ambient_light_source = 2
+ambient_light_color = Color(0.385493, 0.385492, 0.385492, 1)
+glow_bloom = 1.0
+fog_light_color = Color(0, 0, 0, 1)
+fog_density = 0.07
+volumetric_fog_density = 0.1228
+volumetric_fog_albedo = Color(0, 0, 0, 1)
+volumetric_fog_emission_energy = 0.0
+
+[node name="BasicLevel" type="Node3D"]
+
+[node name="basic" parent="." instance=ExtResource("1_mmtac")]
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
+transform = Transform3D(0.866025, 0.482963, 0.12941, 0, -0.258819, 0.965926, 0.5, -0.836516, -0.224144, -19, 7.73072, 32)
+light_color = Color(0.533333, 0.533333, 0.533333, 1)
+shadow_enabled = true
+sky_mode = 1
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource("Environment_abqj6")
+
+[node name="Player" parent="." instance=ExtResource("2_drm6k")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
+tutorial_mode = true
+
+[node name="Objective" parent="." instance=ExtResource("3_hmicr")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 5, 0)
+
+[node name="ObjectiveItem" parent="Objective" index="1"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 44.5375, -2, -43)
+
+[node name="Prop" parent="." instance=ExtResource("4_xhech")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 34, 1, 1)
+
+[node name="Prop2" parent="." instance=ExtResource("4_xhech")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 33, 1, -7)
+
+[node name="Prop3" parent="." instance=ExtResource("4_xhech")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 34, 1, -40)
+
+[node name="Prop4" parent="." instance=ExtResource("4_xhech")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 46, 1, -33)
+
+[node name="Prop5" parent="." instance=ExtResource("4_xhech")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 36, 1, -46)
+
+[node name="Prop6" parent="." instance=ExtResource("4_xhech")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 33, 1, -44)
+
+[node name="Prop7" parent="." instance=ExtResource("4_xhech")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 48, 1, -36)
+
+[node name="Prop8" parent="." instance=ExtResource("4_xhech")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 49, 1, -32)
+
+[node name="Prop9" parent="." instance=ExtResource("4_xhech")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 32, 1, -21)
+
+[node name="Prop10" parent="." instance=ExtResource("4_xhech")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 32, 1, -10)
+
+[node name="Prop11" parent="." instance=ExtResource("4_xhech")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 38, 1, -26)
+
+[node name="Prop12" parent="." instance=ExtResource("4_xhech")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 20, 1, 3)
+
+[node name="Prop13" parent="." instance=ExtResource("4_xhech")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 25, 1, -4)
+
+[node name="Prop14" parent="." instance=ExtResource("4_xhech")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 21, 1, -4)
+
+[editable path="Objective"]

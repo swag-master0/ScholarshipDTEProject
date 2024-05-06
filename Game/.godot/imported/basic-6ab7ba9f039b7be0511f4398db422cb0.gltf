@@ -16,11 +16,11 @@
 	"nodes":[
 		{
 			"mesh":0,
-			"name":"Collision -colonly"
+			"name":"Level"
 		},
 		{
 			"mesh":1,
-			"name":"Level"
+			"name":"Collisions -colonly"
 		}
 	],
 	"materials":[
@@ -48,23 +48,25 @@
 					"attributes":{
 						"POSITION":0,
 						"NORMAL":1,
-						"TEXCOORD_0":2
+						"TEXCOORD_0":2,
+						"TANGENT":3
 					},
-					"indices":3,
-					"material":0
+					"indices":4
 				}
 			]
 		},
 		{
-			"name":"Cube.112",
+			"name":"Cube.001",
 			"primitives":[
 				{
 					"attributes":{
-						"POSITION":4,
-						"NORMAL":5,
-						"TEXCOORD_0":6
+						"POSITION":5,
+						"NORMAL":6,
+						"TEXCOORD_0":7,
+						"TANGENT":8
 					},
-					"indices":7
+					"indices":9,
+					"material":0
 				}
 			]
 		}
@@ -73,126 +75,150 @@
 		{
 			"bufferView":0,
 			"componentType":5126,
-			"count":993,
+			"count":72,
 			"max":[
-				85.75104522705078,
-				16.49941635131836,
-				10.499998092651367
+				50,
+				20,
+				5
 			],
 			"min":[
-				-10.501017570495605,
-				-0.8999817371368408,
-				-51.49737548828125
-			],
-			"type":"VEC3"
-		},
-		{
-			"bufferView":1,
-			"componentType":5126,
-			"count":993,
-			"type":"VEC3"
-		},
-		{
-			"bufferView":2,
-			"componentType":5126,
-			"count":993,
-			"type":"VEC2"
-		},
-		{
-			"bufferView":3,
-			"componentType":5123,
-			"count":1704,
-			"type":"SCALAR"
-		},
-		{
-			"bufferView":4,
-			"componentType":5126,
-			"count":181,
-			"max":[
-				85,
-				15,
-				10
-			],
-			"min":[
-				-10,
+				-5,
 				0,
 				-50
 			],
 			"type":"VEC3"
 		},
 		{
+			"bufferView":1,
+			"componentType":5126,
+			"count":72,
+			"type":"VEC3"
+		},
+		{
+			"bufferView":2,
+			"componentType":5126,
+			"count":72,
+			"type":"VEC2"
+		},
+		{
+			"bufferView":3,
+			"componentType":5126,
+			"count":72,
+			"type":"VEC4"
+		},
+		{
+			"bufferView":4,
+			"componentType":5123,
+			"count":156,
+			"type":"SCALAR"
+		},
+		{
 			"bufferView":5,
 			"componentType":5126,
-			"count":181,
+			"count":384,
+			"max":[
+				50.50938034057617,
+				20.89997673034668,
+				5.753252029418945
+			],
+			"min":[
+				-5.508111953735352,
+				-0.8999781608581543,
+				-50.75165557861328
+			],
 			"type":"VEC3"
 		},
 		{
 			"bufferView":6,
 			"componentType":5126,
-			"count":181,
-			"type":"VEC2"
+			"count":384,
+			"type":"VEC3"
 		},
 		{
 			"bufferView":7,
+			"componentType":5126,
+			"count":384,
+			"type":"VEC2"
+		},
+		{
+			"bufferView":8,
+			"componentType":5126,
+			"count":384,
+			"type":"VEC4"
+		},
+		{
+			"bufferView":9,
 			"componentType":5123,
-			"count":426,
+			"count":624,
 			"type":"SCALAR"
 		}
 	],
 	"bufferViews":[
 		{
 			"buffer":0,
-			"byteLength":11916,
+			"byteLength":864,
 			"byteOffset":0,
 			"target":34962
 		},
 		{
 			"buffer":0,
-			"byteLength":11916,
-			"byteOffset":11916,
+			"byteLength":864,
+			"byteOffset":864,
 			"target":34962
 		},
 		{
 			"buffer":0,
-			"byteLength":7944,
-			"byteOffset":23832,
+			"byteLength":576,
+			"byteOffset":1728,
 			"target":34962
 		},
 		{
 			"buffer":0,
-			"byteLength":3408,
-			"byteOffset":31776,
+			"byteLength":1152,
+			"byteOffset":2304,
+			"target":34962
+		},
+		{
+			"buffer":0,
+			"byteLength":312,
+			"byteOffset":3456,
 			"target":34963
 		},
 		{
 			"buffer":0,
-			"byteLength":2172,
-			"byteOffset":35184,
+			"byteLength":4608,
+			"byteOffset":3768,
 			"target":34962
 		},
 		{
 			"buffer":0,
-			"byteLength":2172,
-			"byteOffset":37356,
+			"byteLength":4608,
+			"byteOffset":8376,
 			"target":34962
 		},
 		{
 			"buffer":0,
-			"byteLength":1448,
-			"byteOffset":39528,
+			"byteLength":3072,
+			"byteOffset":12984,
 			"target":34962
 		},
 		{
 			"buffer":0,
-			"byteLength":852,
-			"byteOffset":40976,
+			"byteLength":6144,
+			"byteOffset":16056,
+			"target":34962
+		},
+		{
+			"buffer":0,
+			"byteLength":1248,
+			"byteOffset":22200,
 			"target":34963
 		}
 	],
 	"buffers":[
 		{
-			"byteLength":41828,
-			"uri":"level-7df178affdee7560e637d26ce717c210.bin"
+			"byteLength":23448,
+			"uri":"basic-6ab7ba9f039b7be0511f4398db422cb0.bin"
 		}
 	]
 }

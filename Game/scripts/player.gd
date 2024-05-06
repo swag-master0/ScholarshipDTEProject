@@ -4,6 +4,8 @@ extends CharacterBody3D
 
 
 # INFO: PLAYER VARIABLES
+@export var tutorial_mode : bool = false
+
 @export var SPEED = 10
 @export var JUMP_VELOCITY = 25
 @export var JUMP_FALLMULTIPLIER = 5
@@ -342,6 +344,11 @@ func setCursorPosition(pos : Vector3, visibility : bool):
 		indicator.visible = true
 		indicator.position = camera.unproject_position(pos) - indicator.size / 2
 		
+		if tutorial_mode:
+			$HUD/Indicator/AnimatedSprite2D.visible = true
+		else:
+			$HUD/Indicator/AnimatedSprite2D.visible = false
+		
 	
 	elif !visibility:
 		indicator.visible = false
@@ -404,7 +411,6 @@ func _on_death_restart_button_pressed():
 # Quit Button pressed in death screen
 func _on_death_quit_button_pressed():
 	QuitToMenu()
-
 
 
 # INFO: DEATH SCREEN
