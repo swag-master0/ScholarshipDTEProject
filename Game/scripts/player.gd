@@ -334,14 +334,36 @@ func sendHintToPlayer(hint):
 	hinttext.text = hint
 	hinttimer.start()
 
-
-# TODO
-func Dialogue(dialogue : String):
-	pass
-
-
 func _hinttext_timeout():
 	hinttext.text = ""
+
+
+# TODO
+# INFO: DIALOGUE SYSTEM
+func Dialogue(dialogue : String, delay : float = 0.1):
+	$HUD/Dialogue.visible = true
+	
+	$HUD/Dialogue.text = "[center]" + dialogue
+	$HUD/Dialogue/DelayBetweenCharacters.wait_time = delay
+	
+	
+	for i in dialogue.length():
+		print(i)
+		$HUD/Dialogue.visible_characters += 1
+		
+		$Audio/Dialogue.pitch_scale = randf_range(50, 150) / 100
+		$Audio/Dialogue.play()
+		
+		$HUD/Dialogue/DelayBetweenCharacters.start()
+		await $HUD/Dialogue/DelayBetweenCharacters.timeout
+		
+		# restarts this timer after every character
+		$HUD/Dialogue/RemoveCharacters.start()
+
+
+func _on_remove_characters_timeout():
+	$HUD/Dialogue.visible = false
+	$HUD/Dialogue.text = ""
 
 
 func setCursorPosition(pos : Vector3, visibility : bool):
@@ -458,6 +480,7 @@ func DamageVFX():
 	"""
 
 
+# INFO: LEVEL CHANGE
 func Nextlevel():
 	if levelchangetriggered == false:
 		levelchangetriggered = true

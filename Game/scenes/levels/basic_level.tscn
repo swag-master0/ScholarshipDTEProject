@@ -1,10 +1,27 @@
-[gd_scene load_steps=7 format=3 uid="uid://rq3g3n4qshr3"]
+[gd_scene load_steps=8 format=3 uid="uid://rq3g3n4qshr3"]
 
 [ext_resource type="PackedScene" uid="uid://c61dj4vsac881" path="res://blend/basic.blend" id="1_mmtac"]
 [ext_resource type="PackedScene" uid="uid://c7ycb57houxl1" path="res://scenes/elements/player.tscn" id="2_drm6k"]
 [ext_resource type="PackedScene" uid="uid://d4nob737a2chy" path="res://scenes/elements/assets/objective.tscn" id="3_hmicr"]
 [ext_resource type="PackedScene" uid="uid://cov8v6858hevf" path="res://scenes/levels/level1.tscn" id="4_b64cb"]
 [ext_resource type="PackedScene" uid="uid://bbb07r3hee2bp" path="res://scenes/elements/assets/prop.tscn" id="4_xhech"]
+
+[sub_resource type="GDScript" id="GDScript_x6txf"]
+resource_name = "basiclevel_functionality"
+script/source = "extends Node3D
+
+
+# Called when the node enters the scene tree for the first time.
+func _ready():
+	for i in get_children():
+		if i.is_in_group(\"player\"):
+			i.Dialogue(\"wordefasdfw9efawyfgiu gauiyvcg weiuyvcgwoiduyagfvcwuy\")
+
+
+# Called every frame. 'delta' is the elapsed time since the previous frame.
+func _process(delta):
+	pass
+"
 
 [sub_resource type="Environment" id="Environment_abqj6"]
 background_mode = 1
@@ -18,6 +35,7 @@ volumetric_fog_albedo = Color(0, 0, 0, 1)
 volumetric_fog_emission_energy = 0.0
 
 [node name="BasicLevel" type="Node3D"]
+script = SubResource("GDScript_x6txf")
 
 [node name="basic" parent="." instance=ExtResource("1_mmtac")]
 
