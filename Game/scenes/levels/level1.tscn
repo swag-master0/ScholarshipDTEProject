@@ -145,6 +145,15 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 24.3177, 10, 0.875299)
 [node name="Marker3D4" type="Marker3D" parent="PropSpawnLocations"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 25.5284, 10, 3.05913)
 
+[node name="Prop7" parent="." instance=ExtResource("7_tk5jc")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 31.6706, 1, -6.1127)
+
+[node name="Prop8" parent="." instance=ExtResource("7_tk5jc")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 35.6706, 1, 2.8873)
+
+[node name="Prop9" parent="." instance=ExtResource("7_tk5jc")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 38.6706, 1, 1.8873)
+
 [connection signal="body_entered" from="Trigger" to="." method="_on_trigger_body_entered"]
 [connection signal="body_entered" from="EnemyExampleTrigger" to="." method="_on_enemy_example_trigger_body_entered"]
 

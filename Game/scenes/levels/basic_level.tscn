@@ -1,8 +1,9 @@
-[gd_scene load_steps=6 format=3 uid="uid://rq3g3n4qshr3"]
+[gd_scene load_steps=7 format=3 uid="uid://rq3g3n4qshr3"]
 
 [ext_resource type="PackedScene" uid="uid://c61dj4vsac881" path="res://blend/basic.blend" id="1_mmtac"]
 [ext_resource type="PackedScene" uid="uid://c7ycb57houxl1" path="res://scenes/elements/player.tscn" id="2_drm6k"]
 [ext_resource type="PackedScene" uid="uid://d4nob737a2chy" path="res://scenes/elements/assets/objective.tscn" id="3_hmicr"]
+[ext_resource type="PackedScene" uid="uid://cov8v6858hevf" path="res://scenes/levels/level1.tscn" id="4_b64cb"]
 [ext_resource type="PackedScene" uid="uid://bbb07r3hee2bp" path="res://scenes/elements/assets/prop.tscn" id="4_xhech"]
 
 [sub_resource type="Environment" id="Environment_abqj6"]
@@ -35,6 +36,7 @@ tutorial_mode = true
 
 [node name="Objective" parent="." instance=ExtResource("3_hmicr")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 5, 0)
+nextscene = ExtResource("4_b64cb")
 
 [node name="ObjectiveItem" parent="Objective" index="1"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 44.5375, -2, -43)

@@ -1,6 +1,7 @@
-[gd_scene load_steps=4 format=3 uid="uid://c4ousj15h5a10"]
+[gd_scene load_steps=5 format=3 uid="uid://c4ousj15h5a10"]
 
 [ext_resource type="Script" path="res://scripts/main_menu.gd" id="1_woppv"]
+[ext_resource type="PackedScene" uid="uid://rq3g3n4qshr3" path="res://scenes/levels/basic_level.tscn" id="2_u80jf"]
 
 [sub_resource type="Environment" id="Environment_86q37"]
 background_mode = 1
@@ -10,6 +11,7 @@ background_color = Color(0.521569, 0.211765, 0.145098, 1)
 
 [node name="MainMenu" type="Node3D"]
 script = ExtResource("1_woppv")
+initial_level = ExtResource("2_u80jf")
 
 [node name="Camera3D" type="Camera3D" parent="."]
 

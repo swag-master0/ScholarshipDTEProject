@@ -12,7 +12,7 @@ font_size = 97
 [sub_resource type="BoxShape3D" id="BoxShape3D_tlk0q"]
 size = Vector3(4.208, 0.757, 0.275)
 
-[node name="Objective" type="Node3D"]
+[node name="Objective" type="Node3D" groups=["objective"]]
 script = ExtResource("1_i55ny")
 
 [node name="LevelStart" type="Area3D" parent="."]

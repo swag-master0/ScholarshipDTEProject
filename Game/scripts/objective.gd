@@ -1,15 +1,10 @@
 extends Node3D
 
+
 @onready var objective = $ObjectiveItem
 @export var nextscene : PackedScene
 var player = null
 
-"""
-func _ready():
-	for i in self.get_parent().get_children():
-		if i.is_in_group("player"):
-			player = i
-"""
 
 func _on_level_start_body_entered(body):
 	
@@ -27,4 +22,13 @@ func _on_level_start_body_entered(body):
 
 
 func ChangeScene():
-	get_tree().change_scene_to_packed(nextscene)
+	
+	# fetches the player in the scene, and triggers the level end sequence within the player
+	for i in self.get_parent().get_children():
+		if i.is_in_group("player"):
+			i.level_completed = true
+			#get_tree().change_scene_to_packed(nextscene)
+
+
+
+

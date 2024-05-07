@@ -39,18 +39,18 @@ extends CharacterBody3D
 @onready var max_health = info.health
 
 
-
-
 var gravity = ProjectSettings.get_setting("physics/3d/default_gravity")
 var faceDirection = Vector3.FORWARD
-
-@export var object : RigidBody3D
 
 var oldparent = null
 var isHolding = false
 var canPause = true
 var selectionsound = false
+var levelchangetriggered = false
 
+
+@export var object : RigidBody3D
+@export var level_completed : bool = false
 
 # general stuff
 func _ready():
@@ -217,6 +217,9 @@ func _process(_delta):
 		$HUD/Health.max_value = max_health
 		
 	
+	if level_completed:
+		Nextlevel()
+	
 	# quit to menu
 	if Input.is_action_just_pressed("escape"):
 		PauseMenu(true)
@@ -330,6 +333,12 @@ func _on_info_death():
 func sendHintToPlayer(hint):
 	hinttext.text = hint
 	hinttimer.start()
+
+
+# TODO
+func Dialogue(dialogue : String):
+	pass
+
 
 func _hinttext_timeout():
 	hinttext.text = ""
@@ -447,6 +456,24 @@ func DamageVFX():
 	print(Color(hurtvfx.color))
 	
 	"""
+
+
+func Nextlevel():
+	if levelchangetriggered == false:
+		levelchangetriggered = true
+		
+		get_tree().paused = true
+		
+		$HUD/LevelCompleted.visible = true
+		$HUD/LevelCompleted/Delay.start()
+
+
+func _on_delay_timeout():
+	get_tree().paused = false
+	
+	for i in self.get_parent().get_children():
+		if i.is_in_group("objective"):
+			get_tree().change_scene_to_packed(i.nextscene)
 
 
 
