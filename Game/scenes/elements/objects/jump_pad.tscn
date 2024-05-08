@@ -1,0 +1,31 @@
+[gd_scene load_steps=5 format=3 uid="uid://ces1s7p5atsbn"]
+
+[ext_resource type="Script" path="res://scripts/objects/jump_pad.gd" id="1_kfssd"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_sbr58"]
+size = Vector3(3, 1, 3)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_kfh52"]
+albedo_color = Color(0, 0, 1, 1)
+
+[sub_resource type="BoxMesh" id="BoxMesh_22po1"]
+material = SubResource("StandardMaterial3D_kfh52")
+size = Vector3(3, 1, 3)
+
+[node name="JumpPad" type="Node3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, 0)
+script = ExtResource("1_kfssd")
+
+[node name="Trigger" type="Area3D" parent="."]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Trigger"]
+shape = SubResource("BoxShape3D_sbr58")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+mesh = SubResource("BoxMesh_22po1")
+skeleton = NodePath("../Trigger")
+
+[node name="Direction" type="Marker3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
+
+[connection signal="body_entered" from="Trigger" to="." method="_on_trigger_body_entered"]

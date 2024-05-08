@@ -1,6 +1,6 @@
 [gd_scene load_steps=5 format=3 uid="uid://cft1b4l0aljye"]
 
-[ext_resource type="Script" path="res://scripts/info.gd" id="1_5y1s2"]
+[ext_resource type="Script" path="res://scripts/assets/info.gd" id="1_5y1s2"]
 [ext_resource type="AudioStream" uid="uid://b8ixk86ahq8u4" path="res://assets/audio/hurt.wav" id="2_oip5h"]
 [ext_resource type="AudioStream" uid="uid://drsyj7vacqut4" path="res://assets/audio/enemy_death.wav" id="3_bc2sx"]
 

@@ -1,0 +1,161 @@
+[gd_scene load_steps=13 format=3 uid="uid://cov8v6858hevf"]
+
+[ext_resource type="PackedScene" uid="uid://c7ycb57houxl1" path="res://scenes/elements/assets/player.tscn" id="1_cneap"]
+[ext_resource type="PackedScene" uid="uid://ch7t6b0c3tjwr" path="res://scenes/elements/enemies/enemy.tscn" id="4_8i10n"]
+[ext_resource type="PackedScene" uid="uid://m8urk0gkn6ut" path="res://blend/levels_chapter1/c1_m2.blend" id="4_y0qnk"]
+[ext_resource type="Material" uid="uid://cmakta7ngaunj" path="res://assets/materials/temp_level.tres" id="5_1eke5"]
+[ext_resource type="PackedScene" uid="uid://d4nob737a2chy" path="res://scenes/elements/assets/objective.tscn" id="5_cdvph"]
+[ext_resource type="PackedScene" uid="uid://4yye08ka71t1" path="res://scenes/levels/chapter2/c2_m1.tscn" id="7_adljv"]
+[ext_resource type="PackedScene" uid="uid://bbb07r3hee2bp" path="res://scenes/elements/objects/prop.tscn" id="7_tk5jc"]
+
+[sub_resource type="GDScript" id="GDScript_jf0va"]
+resource_name = "level1_functionality"
+script/source = "extends Node3D
+
+@onready var player = $Player
+@onready var enemy1 = $EnemySpawnPoint1
+@onready var level = $\"NavigationRegion3D/level\"
+@onready var propspawnlocations = $PropSpawnLocations
+
+@export var enemy_type: PackedScene
+@export var prop : PackedScene
+
+var triggered = false
+var example_triggered = false
+
+
+func _on_trigger_body_entered(body):
+	if body == player and !triggered:
+		triggered = true
+		
+		var newenemy1 = enemy_type.instantiate()
+		self.add_child(newenemy1)
+		newenemy1.global_position = enemy1.global_position
+		
+		
+		$Player.sendHintToPlayer(\"[wave][center][color=SILVER]Navigate back to the start with the objective item\")
+		
+
+
+func _on_enemy_example_trigger_body_entered(body):
+	if body.is_in_group(\"enemy\") and !example_triggered:
+		example_triggered = true
+		for i in propspawnlocations.get_children():
+			var created_prop = prop.instantiate()
+			add_child(created_prop)
+			created_prop.position = i.global_position
+			created_prop.apply_force(Vector3(0, -1000, 0))
+"
+
+[sub_resource type="Environment" id="Environment_6u04u"]
+background_mode = 1
+ambient_light_source = 2
+ambient_light_color = Color(0.47451, 0.47451, 0.47451, 1)
+
+[sub_resource type="NavigationMesh" id="NavigationMesh_a2gje"]
+vertices = PackedVector3Array(63.249, 7.85002, -49.4974, 63.249, 7.85002, -40.4974, 76.999, 7.85002, -40.4974, 76.999, 7.85002, -49.4974, 55.749, 0.350018, -24.7474, 53.999, 0.350018, -24.4974, 54.249, 0.350018, -20.7474, 84.499, 0.350018, -20.7474, 84.499, 0.350018, -39.4974, 55.749, 0.350018, -39.4974, 55.749, 0.350018, -24.7474, 84.499, 0.350018, -20.7474, 39.499, 0.350018, -20.4974, 41.249, 0.350018, -20.7474, 40.999, 0.350018, -24.4974, 30.749, 0.350018, -24.4974, 30.749, 0.350018, -6.24738, 39.499, 0.350018, -5.99738, 39.499, 0.350018, -20.4974, 30.749, 0.350018, -24.4974, 41.249, 0.350018, -20.7474, 54.249, 0.350018, -20.7474, 53.999, 0.350018, -24.4974, 40.999, 0.350018, -24.4974, 11.499, 0.350018, 4.25262, 11.499, 0.350018, -4.49738, 9.49898, 0.350018, -4.74738, 9.49898, 0.350018, 4.50262, 9.49898, 0.350018, -4.74738, -9.25102, 0.350018, -9.49738, -9.25102, 0.350018, 9.25262, 9.49898, 0.350018, 4.50262, 9.49898, 0.350018, -4.74738, 9.49898, 0.350018, -9.49738, -9.25102, 0.350018, -9.49738, -9.25102, 0.350018, 9.25262, 9.49898, 0.350018, 9.25262, 9.49898, 0.350018, 4.50262, 30.499, 0.350018, -4.49738, 28.999, 0.350018, -4.49738, 29.249, 0.350018, 4.25262, 39.499, 0.350018, -5.99738, 30.749, 0.350018, -6.24738, 30.499, 0.350018, -4.49738, 39.499, 0.350018, 4.25262, 39.499, 0.350018, -5.99738, 30.499, 0.350018, -4.49738, 29.249, 0.350018, 4.25262, 11.499, 0.350018, 4.25262, 29.249, 0.350018, 4.25262, 28.999, 0.350018, -4.49738, 11.499, 0.350018, -4.49738)
+polygons = [PackedInt32Array(3, 2, 0), PackedInt32Array(0, 2, 1), PackedInt32Array(5, 4, 6), PackedInt32Array(6, 4, 7), PackedInt32Array(9, 8, 10), PackedInt32Array(10, 8, 11), PackedInt32Array(13, 12, 14), PackedInt32Array(14, 12, 15), PackedInt32Array(17, 16, 18), PackedInt32Array(18, 16, 19), PackedInt32Array(23, 22, 20), PackedInt32Array(20, 22, 21), PackedInt32Array(24, 27, 25), PackedInt32Array(25, 27, 26), PackedInt32Array(31, 30, 28), PackedInt32Array(28, 30, 29), PackedInt32Array(34, 33, 32), PackedInt32Array(37, 36, 35), PackedInt32Array(40, 39, 38), PackedInt32Array(43, 42, 41), PackedInt32Array(47, 46, 44), PackedInt32Array(44, 46, 45), PackedInt32Array(51, 50, 48), PackedInt32Array(48, 50, 49)]
+geometry_parsed_geometry_type = 1
+agent_max_slope = 70.0
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_fw0uv"]
+size = Vector3(29.615, 18.725, 33.845)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_jt1we"]
+size = Vector3(3.915, 10.635, 12.815)
+
+[node name="Level" type="Node3D"]
+script = SubResource("GDScript_jf0va")
+enemy_type = ExtResource("4_8i10n")
+prop = ExtResource("7_tk5jc")
+
+[node name="Player" parent="." instance=ExtResource("1_cneap")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 3, 0)
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource("Environment_6u04u")
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 0, 7.73072, 0)
+light_color = Color(0.533333, 0.533333, 0.533333, 1)
+shadow_enabled = true
+sky_mode = 1
+
+[node name="NavigationRegion3D" type="NavigationRegion3D" parent="."]
+navigation_mesh = SubResource("NavigationMesh_a2gje")
+
+[node name="level" parent="NavigationRegion3D" instance=ExtResource("4_y0qnk")]
+
+[node name="Level" parent="NavigationRegion3D/level" index="1"]
+material_override = ExtResource("5_1eke5")
+
+[node name="Objective" parent="." instance=ExtResource("5_cdvph")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 10.4964, 4, -0.0545578)
+nextscene = ExtResource("7_adljv")
+
+[node name="ObjectiveItem" parent="Objective" index="1"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 59, 6, -48)
+
+[node name="Trigger" type="Area3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 73, 8, -51)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Trigger"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -8, 8, -7)
+shape = SubResource("BoxShape3D_fw0uv")
+
+[node name="EnemySpawnPoint1" type="Marker3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 17.6107, 13, -0.124701)
+
+[node name="Prop" parent="." instance=ExtResource("7_tk5jc")]
+transform = Transform3D(0.707107, 0, 0.707107, 0, 1, 0, -0.707107, 0, 0.707107, 58, 2, -30)
+
+[node name="Prop2" parent="." instance=ExtResource("7_tk5jc")]
+transform = Transform3D(-0.258819, 0, 0.965926, 0, 1, 0, -0.965926, 0, -0.258819, 58, 2, -33)
+
+[node name="Prop3" parent="." instance=ExtResource("7_tk5jc")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 58, 5, -31)
+
+[node name="Prop4" parent="." instance=ExtResource("7_tk5jc")]
+transform = Transform3D(0.707107, 0, 0.707107, 0, 1, 0, -0.707107, 0, 0.707107, 70, 2, -38)
+
+[node name="Prop5" parent="." instance=ExtResource("7_tk5jc")]
+transform = Transform3D(0.707107, 0, -0.707107, 0, 1, 0, 0.707107, 0, 0.707107, 77, 2, -36)
+
+[node name="Prop6" parent="." instance=ExtResource("7_tk5jc")]
+transform = Transform3D(0.707107, 0, 0.707107, 0, 1, 0, -0.707107, 0, 0.707107, 83, 2, -35)
+
+[node name="EnemyExampleTrigger" type="Area3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 25, 1, 0)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="EnemyExampleTrigger"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 4, 0)
+shape = SubResource("BoxShape3D_jt1we")
+
+[node name="PropSpawnLocations" type="Node" parent="."]
+
+[node name="Marker3D" type="Marker3D" parent="PropSpawnLocations"]
+transform = Transform3D(0.866025, 0, -0.5, 0, 1, 0, 0.5, 0, 0.866025, 24.6107, 10, -3.1247)
+
+[node name="Marker3D2" type="Marker3D" parent="PropSpawnLocations"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 25.6107, 10, -1.1247)
+
+[node name="Marker3D3" type="Marker3D" parent="PropSpawnLocations"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 24.3177, 10, 0.875299)
+
+[node name="Marker3D4" type="Marker3D" parent="PropSpawnLocations"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 25.5284, 10, 3.05913)
+
+[node name="Prop7" parent="." instance=ExtResource("7_tk5jc")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 31.6706, 1, -6.1127)
+
+[node name="Prop8" parent="." instance=ExtResource("7_tk5jc")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 35.6706, 1, 2.8873)
+
+[node name="Prop9" parent="." instance=ExtResource("7_tk5jc")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 38.6706, 1, 1.8873)
+
+[connection signal="body_entered" from="Trigger" to="." method="_on_trigger_body_entered"]
+[connection signal="body_entered" from="EnemyExampleTrigger" to="." method="_on_enemy_example_trigger_body_entered"]
+
+[editable path="NavigationRegion3D/level"]
+[editable path="Objective"]

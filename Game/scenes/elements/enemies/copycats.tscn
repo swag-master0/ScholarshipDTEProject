@@ -1,6 +1,6 @@
 [gd_scene load_steps=7 format=3 uid="uid://7w5j5rmjk11o"]
 
-[ext_resource type="Script" path="res://scripts/copycats.gd" id="1_v3iqq"]
+[ext_resource type="Script" path="res://scripts/enemies/copycats.gd" id="1_v3iqq"]
 [ext_resource type="PackedScene" uid="uid://cft1b4l0aljye" path="res://scenes/elements/assets/info.tscn" id="2_nyqpp"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_oyknd"]
