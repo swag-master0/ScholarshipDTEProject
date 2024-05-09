@@ -52,6 +52,9 @@ var levelchangetriggered = false
 @export var object : RigidBody3D
 @export var level_completed : bool = false
 
+
+
+
 # general stuff
 func _ready():
 	Engine.time_scale = 1
@@ -62,13 +65,10 @@ func _ready():
 	print_rich("[rainbow]", 4 % 2)
 	
 	
-	self.rotate_y(deg_to_rad(45))
+	#self.rotate_y(deg_to_rad(45))
 	
 	# the funny
 	print_rich("[font_size=120][color=CORNFLOWER_BLUE][wave]heck you")
-
-
-# _physics_process() and _process() could be combined into a single function, but at the moment i dont give a shit
 
 # physics_process is the player movement and 3D cursor stuff
 func _physics_process(delta):
@@ -120,7 +120,6 @@ func _physics_process(delta):
 		if collisions.get_collider() is RigidBody3D:
 			collisions.get_collider().apply_central_impulse(-collisions.get_normal() * PUSH_FORCE)
 	"""
-
 
 # process is the player throwing mechanic and healthbar code
 func _process(_delta):
@@ -226,6 +225,8 @@ func _process(_delta):
 
 
 
+
+
 # INFO: Fetches mouse position in 3D space
 func MousePosition():
 	if  ready and canPause: # This statement looks very dumb but without it it'll sometimes crash. The crashing isn't even consistant either!
@@ -268,7 +269,7 @@ func MousePosition():
 			viewEnemyHealth(null, false)
 		
 		
-		# display actual facing location if obstructed
+		# display actual aiming location if obstructed
 		collision.global_position = global_position
 		collision.target_position = cursor.global_position - global_position
 		
@@ -283,7 +284,7 @@ func MousePosition():
 			$Cursor/Area3D/MeshInstance3D.visible = false
 			Input.set_mouse_mode(Input.MOUSE_MODE_VISIBLE)
 
-
+# fetch closest object to the mouse position
 func NearestObject():
 	var objects = detection.get_overlapping_bodies()
 	
@@ -309,7 +310,6 @@ func NearestObject():
 	if closest_node:
 		return closest_node
 
-
 # triggers when player takes damage
 func _on_info_take_damage():
 	DamageVFX()
@@ -329,6 +329,10 @@ func _on_info_death():
 
 
 
+
+
+
+
 # NOTICE: BELOW FUNCTIONS ARE TO DO WITH HUD OF PLAYER
 func sendHintToPlayer(hint):
 	hinttext.text = hint
@@ -338,7 +342,6 @@ func _hinttext_timeout():
 	hinttext.text = ""
 
 
-# TODO
 # INFO: DIALOGUE SYSTEM
 func Dialogue(dialogue : String, delay : float = 0.1):
 	$HUD/Dialogue.visible = true
@@ -366,14 +369,17 @@ func _on_remove_characters_timeout():
 	$HUD/Dialogue.text = ""
 
 
+
+
+# INFO: LOCK-ON CURSOR AND ENEMY HEALTH BARS
 func setCursorPosition(pos : Vector3, visibility : bool):
 	var indicator = $HUD/Indicator
-	
 	
 	if visibility:
 		
 		indicator.visible = true
 		indicator.position = camera.unproject_position(pos) - indicator.size / 2
+		
 		
 		if tutorial_mode:
 			$HUD/Indicator/AnimatedSprite2D.visible = true
@@ -384,9 +390,6 @@ func setCursorPosition(pos : Vector3, visibility : bool):
 	elif !visibility:
 		indicator.visible = false
 		selectionsound = false
-	#else:
-	#	pass
-		#selectionsound = false
 
 
 func viewEnemyHealth(enemy : Object, visibility : bool):
@@ -406,6 +409,10 @@ func viewEnemyHealth(enemy : Object, visibility : bool):
 		healthbar.visible = false
 
 
+
+
+
+# INFO: these functions are called when menu buttons in pause menu and death screen are pressed
 func RestartLevel():
 	get_tree().paused = false
 	get_tree().reload_current_scene()
@@ -415,6 +422,9 @@ func QuitToMenu():
 	get_tree().paused = false
 	Engine.time_scale = 1
 	scene_tree.change_scene_to_file("res://scenes/levels/main_menu.tscn")
+
+
+
 
 
 # INFO: PAUSE MENU 
@@ -435,16 +445,12 @@ func _on_restart_button_pressed():
 func _on_quit_button_pressed():
 	QuitToMenu()
 
-# Restart Button pressed in death screen
-func _on_death_restart_button_pressed():
-	RestartLevel()
-
-# Quit Button pressed in death screen
-func _on_death_quit_button_pressed():
-	QuitToMenu()
 
 
-# INFO: DEATH SCREEN
+
+
+
+# INFO: DEATH
 func DeathScreen():
 	
 	
@@ -455,6 +461,15 @@ func DeathScreen():
 	deathscreen.visible = true
 	#get_tree().paused = true
 	#Engine.time_scale = lerp(1, 0, 0.1)
+
+
+# Restart Button pressed in death screen
+func _on_death_restart_button_pressed():
+	RestartLevel()
+
+# Quit Button pressed in death screen
+func _on_death_quit_button_pressed():
+	QuitToMenu()
 
 
 func DamageVFX():
@@ -480,7 +495,9 @@ func DamageVFX():
 	"""
 
 
-# INFO: LEVEL CHANGE
+
+
+# INFO: LEVEL COMPLETE AND CHANGE
 func Nextlevel():
 	if levelchangetriggered == false:
 		levelchangetriggered = true
@@ -490,7 +507,7 @@ func Nextlevel():
 		$HUD/LevelCompleted.visible = true
 		$HUD/LevelCompleted/Delay.start()
 
-
+# change level after desired time elapsed
 func _on_delay_timeout():
 	get_tree().paused = false
 	

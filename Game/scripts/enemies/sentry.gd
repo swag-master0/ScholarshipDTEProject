@@ -1,5 +1,8 @@
 extends CharacterBody3D
 
+# TODO: rework this to make the projectile explode on impact. Or make it so the sentry throws grenades instead
+
+
 @export var projectile: PackedScene
 @export var minimum_distance = 15
 

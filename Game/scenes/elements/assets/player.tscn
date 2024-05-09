@@ -11,9 +11,16 @@
 [ext_resource type="AudioStream" uid="uid://bwu6q554kl8jd" path="res://assets/audio/player_hurt.wav" id="9_222lu"]
 [ext_resource type="AudioStream" uid="uid://bk7fdh3m3au1n" path="res://assets/audio/dialogue.wav" id="10_8cnec"]
 
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_jofc1"]
+albedo_color = Color(0.431373, 0.647059, 0.407843, 1)
+
+[sub_resource type="CapsuleMesh" id="CapsuleMesh_7nubc"]
+material = SubResource("StandardMaterial3D_jofc1")
+
+[sub_resource type="PrismMesh" id="PrismMesh_u4gd0"]
+
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_4qe3w"]
 albedo_color = Color(1, 0, 0, 1)
-emission_enabled = true
 emission = Color(1, 0, 0, 1)
 emission_energy_multiplier = 5.0
 
@@ -24,20 +31,11 @@ material = SubResource("StandardMaterial3D_4qe3w")
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_uiem3"]
 
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_jofc1"]
-albedo_color = Color(0.431373, 0.647059, 0.407843, 1)
-
-[sub_resource type="CapsuleMesh" id="CapsuleMesh_7nubc"]
-material = SubResource("StandardMaterial3D_jofc1")
-
-[sub_resource type="PrismMesh" id="PrismMesh_u4gd0"]
-
 [sub_resource type="BoxShape3D" id="BoxShape3D_2e1ws"]
-size = Vector3(2, 5, 2)
+size = Vector3(2, 3, 2)
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_c5oqm"]
 albedo_color = Color(1, 0, 0, 1)
-emission_enabled = true
 emission = Color(1, 0, 0, 1)
 emission_energy_multiplier = 3.0
 
@@ -113,6 +111,22 @@ floor_constant_speed = true
 floor_max_angle = 1.22173
 script = ExtResource("1_f2by1")
 
+[node name="PlayerModel" type="MeshInstance3D" parent="."]
+mesh = SubResource("CapsuleMesh_7nubc")
+
+[node name="Arrow" type="MeshInstance3D" parent="PlayerModel"]
+transform = Transform3D(0.2, 0, 0, 0, -8.74228e-09, -0.2, 0, 0.2, -8.74228e-09, 0, 0, 1)
+mesh = SubResource("PrismMesh_u4gd0")
+skeleton = NodePath("../..")
+
+[node name="HoldPoint" type="Marker3D" parent="PlayerModel"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 2)
+
+[node name="CollisionDetection" type="RayCast3D" parent="PlayerModel"]
+top_level = true
+target_position = Vector3(0, 0, 3.545)
+debug_shape_custom_color = Color(1, 1, 1, 1)
+
 [node name="3D-CursorModel" type="MeshInstance3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 5)
 mesh = SubResource("SphereMesh_g5di6")
@@ -130,22 +144,6 @@ shape = SubResource("CapsuleShape3D_j7m3i")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
 shape = SubResource("CapsuleShape3D_uiem3")
-
-[node name="PlayerModel" type="MeshInstance3D" parent="."]
-mesh = SubResource("CapsuleMesh_7nubc")
-
-[node name="Arrow" type="MeshInstance3D" parent="PlayerModel"]
-transform = Transform3D(0.2, 0, 0, 0, -8.74228e-09, -0.2, 0, 0.2, -8.74228e-09, 0, 0, 1)
-mesh = SubResource("PrismMesh_u4gd0")
-skeleton = NodePath("../..")
-
-[node name="HoldPoint" type="Marker3D" parent="PlayerModel"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 2)
-
-[node name="CollisionDetection" type="RayCast3D" parent="PlayerModel"]
-top_level = true
-target_position = Vector3(0, 0, 3.545)
-debug_shape_custom_color = Color(1, 1, 1, 1)
 
 [node name="CentralCameraPoint" type="Marker3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 0.965926, -0.258819, 0, 0.258819, 0.965926, 0, 0.4, 0)
@@ -167,6 +165,7 @@ gizmo_extents = 3.0
 [node name="Area3D" type="Area3D" parent="Cursor"]
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Cursor/Area3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
 shape = SubResource("BoxShape3D_2e1ws")
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="Cursor/Area3D"]

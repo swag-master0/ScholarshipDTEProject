@@ -1,0 +1,56 @@
+[gd_scene load_steps=6 format=3 uid="uid://4u0jd43l42nx"]
+
+[ext_resource type="PackedScene" uid="uid://c7ycb57houxl1" path="res://scenes/elements/assets/player.tscn" id="1_2qwo1"]
+[ext_resource type="PackedScene" uid="uid://d4nob737a2chy" path="res://scenes/elements/assets/objective.tscn" id="1_xdvoa"]
+[ext_resource type="PackedScene" uid="uid://dcwnaqxeugfkv" path="res://blend/levels_chapter2/c2_m5.blend" id="2_7uqlp"]
+
+[sub_resource type="GDScript" id="GDScript_onql4"]
+resource_name = "m2_m5-functionality"
+script/source = "extends Node3D
+
+
+# Called when the node enters the scene tree for the first time.
+func _ready():
+	pass # Replace with function body.
+
+
+# Called every frame. 'delta' is the elapsed time since the previous frame.
+func _process(delta):
+	pass
+"
+
+[sub_resource type="Environment" id="Environment_noulr"]
+background_mode = 1
+ambient_light_source = 2
+ambient_light_color = Color(0.385493, 0.385492, 0.385492, 1)
+glow_bloom = 1.0
+fog_light_color = Color(0, 0, 0, 1)
+fog_density = 0.07
+volumetric_fog_density = 0.1228
+volumetric_fog_albedo = Color(0, 0, 0, 1)
+volumetric_fog_emission_energy = 0.0
+
+[node name="c2_m5" type="Node3D"]
+script = SubResource("GDScript_onql4")
+
+[node name="Objective" parent="." instance=ExtResource("1_xdvoa")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 5, 0)
+
+[node name="ObjectiveItem" parent="Objective" index="1"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 49, 52, -42)
+
+[node name="Player" parent="." instance=ExtResource("1_2qwo1")]
+transform = Transform3D(0.707107, 0, 0.707107, 0, 1, 0, -0.707107, 0, 0.707107, 0, 1, 0)
+
+[node name="c2_m5" parent="." instance=ExtResource("2_7uqlp")]
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="c2_m5"]
+transform = Transform3D(0.866025, 0.482963, 0.12941, 0, -0.258819, 0.965926, 0.5, -0.836516, -0.224144, -19, 7.73072, 32)
+light_color = Color(0.533333, 0.533333, 0.533333, 1)
+shadow_enabled = true
+sky_mode = 1
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="c2_m5"]
+environment = SubResource("Environment_noulr")
+
+[editable path="Objective"]
