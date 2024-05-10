@@ -24,6 +24,7 @@ projectile = ExtResource("2_ougdt")
 
 [node name="Info" parent="." instance=ExtResource("3_45p8x")]
 health = 3.0
+max_health = 3.0
 PlayKillSound = true
 PlayHurtSound = true
 
@@ -37,7 +38,7 @@ shape = SubResource("CapsuleShape3D_ob3yc")
 mesh = SubResource("CapsuleMesh_t30l2")
 
 [node name="MeshInstance3D2" type="MeshInstance3D" parent="MeshInstance3D"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -1)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -2)
 mesh = SubResource("SphereMesh_0o5yl")
 skeleton = NodePath("../../RayCast3D")
 
@@ -45,7 +46,7 @@ skeleton = NodePath("../../RayCast3D")
 target_position = Vector3(5, 0, 0)
 
 [node name="ShootDelay" type="Timer" parent="."]
-wait_time = 2.0
+wait_time = 6.0
 one_shot = true
 
 [connection signal="death" from="Info" to="." method="_on_info_death"]

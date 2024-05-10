@@ -470,9 +470,6 @@ libraries = {
 "": SubResource("AnimationLibrary_nf3c7")
 }
 
-[node name="AudioListener3D" type="AudioListener3D" parent="."]
-current = true
-
 [connection signal="death" from="Info" to="." method="_on_info_death"]
 [connection signal="takeDamage" from="Info" to="." method="_on_info_take_damage"]
 [connection signal="timeout" from="HUD/Dialogue/RemoveCharacters" to="." method="_on_remove_characters_timeout"]

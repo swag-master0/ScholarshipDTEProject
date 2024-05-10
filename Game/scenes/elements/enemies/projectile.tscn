@@ -1,6 +1,7 @@
-[gd_scene load_steps=7 format=3 uid="uid://bw2f0n3c7md1a"]
+[gd_scene load_steps=8 format=3 uid="uid://bw2f0n3c7md1a"]
 
 [ext_resource type="Script" path="res://scripts/enemies/projectile.gd" id="1_n2k70"]
+[ext_resource type="PackedScene" uid="uid://d03b14il32qs5" path="res://scenes/elements/enemies/explosion.tscn" id="2_2uoi8"]
 [ext_resource type="PackedScene" uid="uid://cft1b4l0aljye" path="res://scenes/elements/assets/info.tscn" id="2_ucsd6"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_uy4l7"]
@@ -13,8 +14,9 @@ material = SubResource("StandardMaterial3D_uy4l7")
 
 [sub_resource type="SphereShape3D" id="SphereShape3D_0y6g5"]
 
-[node name="Projectile" type="CharacterBody3D" groups=["projectile"]]
+[node name="Projectile" type="RigidBody3D"]
 script = ExtResource("1_n2k70")
+explosion = ExtResource("2_2uoi8")
 
 [node name="Info" parent="." instance=ExtResource("2_ucsd6")]
 TakeDamageFromRigidBodies = false
@@ -32,4 +34,9 @@ shape = SubResource("SphereShape3D_s1mee")
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
 shape = SubResource("SphereShape3D_0y6g5")
 
+[node name="Timer" type="Timer" parent="."]
+wait_time = 5.0
+one_shot = true
+
 [connection signal="body_entered" from="Hitbox" to="." method="_on_hitbox_body_entered"]
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]

@@ -167,8 +167,14 @@ func _process(_delta):
 	
 	# Handle throwing RIGID BODIES and PROJECTILES
 	if Input.is_action_just_released("click"): 
+		if !is_instance_valid(object):
+			object = null
+			isHolding = false
+			return
+		
 		# Throw RIGID BODIES
 		
+		# TODO: this raises error if the player is holding a projectile and it explodes in their hands.
 		if object and isHolding == true and object is RigidBody3D:
 			isHolding = false
 			
@@ -193,6 +199,7 @@ func _process(_delta):
 			object = null
 		
 		# Throw PROJECTILES
+		# TODO: remove this, as projectiles no longer exist
 		elif object and object.is_in_group("projectile") and isHolding == true:
 			isHolding = false
 			

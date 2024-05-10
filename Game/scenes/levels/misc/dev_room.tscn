@@ -1,4 +1,4 @@
-[gd_scene load_steps=9 format=3 uid="uid://cx1a4ujrxixpp"]
+[gd_scene load_steps=11 format=3 uid="uid://cx1a4ujrxixpp"]
 
 [ext_resource type="PackedScene" uid="uid://cjljpsd573byh" path="res://blend/misc/devlevel.blend" id="1_y6xwe"]
 [ext_resource type="Material" uid="uid://cmakta7ngaunj" path="res://assets/materials/temp_level.tres" id="2_2nm6t"]
@@ -6,6 +6,8 @@
 [ext_resource type="PackedScene" uid="uid://dwe6hqxcxga2x" path="res://scenes/elements/enemies/bomber.tscn" id="5_fkrnk"]
 [ext_resource type="PackedScene" uid="uid://ch7t6b0c3tjwr" path="res://scenes/elements/enemies/enemy.tscn" id="6_24m8x"]
 [ext_resource type="PackedScene" uid="uid://b5c4qe603h5o" path="res://scenes/elements/objects/explosive_barrel.tscn" id="6_v03ub"]
+[ext_resource type="PackedScene" uid="uid://ch3t1bgj51uvs" path="res://scenes/elements/enemies/sentry.tscn" id="7_ht8gp"]
+[ext_resource type="PackedScene" uid="uid://bbb07r3hee2bp" path="res://scenes/elements/objects/prop.tscn" id="8_6723j"]
 
 [sub_resource type="NavigationMesh" id="NavigationMesh_tqygt"]
 vertices = PackedVector3Array(-9.25, -11.5, -29.25, -9.25, -11.5, -10.5, 9.5, -11.5, -10.5, 9.5, -11.5, -29.25, -9.5, -9.5, -9.5, -9.5, -9.5, 9.75, 9.5, -9.5, 9.75, 9.5, -9.5, -9.5, -29.25, -11.5, -9.25, -29.25, -11.5, 9.5, -10.5, -11.5, 9.5, -10.5, -11.5, -9.25, 10.75, -11.5, -9.25, 10.75, -11.5, 9.5, 29.5, -11.5, 9.5, 29.5, -11.5, -9.25, -9.25, -11.5, 10.75, -9.25, -11.5, 29.25, 9.5, -11.5, 29.25, 9.5, -11.5, 10.75)
@@ -43,6 +45,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -6.07211, -3.8147e-06, 19.013
 
 [node name="ExplosiveBarrel2" parent="." instance=ExtResource("6_v03ub")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.824446, 0, 18.7085)
+affect_player_only = true
 
 [node name="ExplosiveBarrel3" parent="." instance=ExtResource("6_v03ub")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.824446, 0, 22.7085)
@@ -82,5 +85,20 @@ environment = SubResource("Environment_rpky6")
 
 [node name="Enemy" parent="." instance=ExtResource("6_24m8x")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 25)
+
+[node name="Sentry" parent="." instance=ExtResource("7_ht8gp")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1, -20)
+
+[node name="Prop" parent="." instance=ExtResource("8_6723j")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -5.51896, -1, -17.6572)
+
+[node name="Prop2" parent="." instance=ExtResource("8_6723j")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -5.47141, -1, -20.7808)
+
+[node name="Prop3" parent="." instance=ExtResource("8_6723j")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 6.39901, -1, -23.8221)
+
+[node name="Prop4" parent="." instance=ExtResource("8_6723j")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5.96219, -1, -19.963)
 
 [editable path="NavigationRegion3D/devlevel"]

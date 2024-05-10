@@ -24,7 +24,9 @@ func _process(_delta):
 		
 		
 		
-		for i in area.get_overlapping_bodies():
+		for i in $Area3D.get_overlapping_bodies():
+			print_rich("[rainbow]", i)
+			
 			if i is RigidBody3D:
 				i.apply_force((i.global_position - center.global_position).normalized() * force)
 			

@@ -1,28 +1,39 @@
-extends CharacterBody3D
+extends RigidBody3D
 
 #@export var speed = 200
+
+@export var explosion : PackedScene
 @export var damage = 5
 @export var iscarried = false
 @onready var info = $Info
 
 var speed = Vector3()
 
-func Shoot(direction):
-	speed = direction.normalized()
+
 
 func _process(_delta):
-	global_position += lerp(Vector3(), speed, 0.2)
+	if $Timer.is_stopped():
+		$Timer.start()
+
+func Shoot(direction):
+	self.apply_force(direction.normalized() * 1000)
 
 
-
-func _on_hitbox_body_entered(body):
-	# checks if the object colliding is itself
-	if body == self or iscarried == true:
-		return
+func explode():
+	var created_explosion = explosion.instantiate()
 	
-	if (body is RigidBody3D) or (body is StaticBody3D):
-		self.queue_free()
+	if self.get_parent().is_in_group("player"):
+		self.get_parent().get_parent().add_child(created_explosion)
+		
 	else:
-		pass
+		self.get_parent().add_child(created_explosion)
+		
+	created_explosion.position = position
+	#created_explosion.set_collision_layer_value(1, true)
+	#created_explosion.set_collision_mask_value(1, true)
+	
+	self.queue_free()
 
 
+func _on_timer_timeout():
+	explode()
