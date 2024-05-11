@@ -62,10 +62,8 @@ func _ready():
 	pausemenu.visible = false
 	deathscreen.visible = false
 	
-	print_rich("[rainbow]", 4 % 2)
 	
-	
-	#self.rotate_y(deg_to_rad(45))
+	self.rotate_y(deg_to_rad(45))
 	
 	# the funny
 	print_rich("[font_size=120][color=CORNFLOWER_BLUE][wave]heck you")
@@ -143,38 +141,17 @@ func _process(_delta):
 		else:
 			pass
 	
-	# Handle picking up PROJECTILES
-	elif NearestObject() and NearestObject().is_in_group("projectile") and isHolding == false:
-		
-		setCursorPosition(NearestObject().global_position, true)
-		
-		if Input.is_action_just_pressed("click"): # handle picking up projectiles
-			$Audio/PlayerSelect.play()
-			isHolding = true
-			object = NearestObject()
-			oldparent = object.get_parent()
-			
-			object.global_transform = $PlayerModel/HoldPoint.global_transform
-			object.reparent(character)
-			object.Shoot(Vector3())
-			object.iscarried = true
-			object.set_collision_layer_value(1, false)
-			object.set_collision_mask_value(1, false)
-			
-		else:
-			pass
 	
-	
-	# Handle throwing RIGID BODIES and PROJECTILES
+	# Handle throwing RIGID BODIES
 	if Input.is_action_just_released("click"): 
+		
+		# check if the object exists still
 		if !is_instance_valid(object):
 			object = null
 			isHolding = false
-			return
+		
 		
 		# Throw RIGID BODIES
-		
-		# TODO: this raises error if the player is holding a projectile and it explodes in their hands.
 		if object and isHolding == true and object is RigidBody3D:
 			isHolding = false
 			
@@ -190,6 +167,7 @@ func _process(_delta):
 			var force = (cursor.global_position - position).normalized()
 			
 			# drop object gently
+			# TODO: make a visual indicator for when this is true
 			if character.position.distance_to(cursor.position) < 4 and character.position.distance_to(cursor.position) > -4:
 				force = Vector3(0, 0, 0)
 			
@@ -198,22 +176,6 @@ func _process(_delta):
 			
 			object = null
 		
-		# Throw PROJECTILES
-		# TODO: remove this, as projectiles no longer exist
-		elif object and object.is_in_group("projectile") and isHolding == true:
-			isHolding = false
-			
-			# TODO: must change
-			$Audio/PlayerSelect.play()
-			
-			object.reparent(oldparent)
-			object.set_collision_layer_value(1, true)
-			object.set_collision_mask_value(1, true)
-			
-			object.iscarried = false
-			object.Shoot(cursor.global_position - object.global_position)
-			
-			object = null
 	
 	# handle health bar
 	if ready: 
@@ -291,6 +253,7 @@ func MousePosition():
 			$Cursor/Area3D/MeshInstance3D.visible = false
 			Input.set_mouse_mode(Input.MOUSE_MODE_VISIBLE)
 
+
 # fetch closest object to the mouse position
 func NearestObject():
 	var objects = detection.get_overlapping_bodies()
@@ -306,12 +269,6 @@ func NearestObject():
 		if closest_node == null or current_node_distance < closest_node_distance:
 			closest_node = i
 			closest_node_distance = current_node_distance 
-	
-	# checks if any projectiles are near the player that take priority
-	for i in radius:
-		if i.is_in_group("projectile"):
-			closest_node = i
-			closest_node_distance = 0
 	
 	
 	if closest_node:

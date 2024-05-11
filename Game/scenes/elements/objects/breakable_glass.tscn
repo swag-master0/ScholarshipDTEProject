@@ -1,6 +1,6 @@
 [gd_scene load_steps=6 format=3 uid="uid://qgme1k42iyr6"]
 
-[ext_resource type="PackedScene" uid="uid://daymadsgic1jy" path="res://blend/assets/glass.blend" id="1_c8plg"]
+[ext_resource type="PackedScene" uid="uid://daymadsgic1jy" path="res://assets/blend/assets/glass.blend" id="1_c8plg"]
 [ext_resource type="Script" path="res://scripts/objects/breakable_glass.gd" id="1_dfbi3"]
 [ext_resource type="PackedScene" uid="uid://cft1b4l0aljye" path="res://scenes/elements/assets/info.tscn" id="4_vrqgh"]
 

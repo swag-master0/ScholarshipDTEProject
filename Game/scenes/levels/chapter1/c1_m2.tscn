@@ -2,10 +2,10 @@
 
 [ext_resource type="PackedScene" uid="uid://c7ycb57houxl1" path="res://scenes/elements/assets/player.tscn" id="1_cneap"]
 [ext_resource type="PackedScene" uid="uid://ch7t6b0c3tjwr" path="res://scenes/elements/enemies/enemy.tscn" id="4_8i10n"]
-[ext_resource type="PackedScene" uid="uid://m8urk0gkn6ut" path="res://blend/levels_chapter1/c1_m2.blend" id="4_y0qnk"]
+[ext_resource type="PackedScene" uid="uid://m8urk0gkn6ut" path="res://assets/blend/levels_chapter1/c1_m2.blend" id="4_y0qnk"]
 [ext_resource type="Material" uid="uid://cmakta7ngaunj" path="res://assets/materials/temp_level.tres" id="5_1eke5"]
 [ext_resource type="PackedScene" uid="uid://d4nob737a2chy" path="res://scenes/elements/assets/objective.tscn" id="5_cdvph"]
-[ext_resource type="PackedScene" uid="uid://4yye08ka71t1" path="res://scenes/levels/chapter2/c2_m1.tscn" id="7_adljv"]
+[ext_resource type="PackedScene" uid="uid://w2l3dpbjub7c" path="res://scenes/levels/chapter1/c2_m3.tscn" id="7_3aj01"]
 [ext_resource type="PackedScene" uid="uid://bbb07r3hee2bp" path="res://scenes/elements/objects/prop.tscn" id="7_tk5jc"]
 
 [sub_resource type="GDScript" id="GDScript_jf0va"]
@@ -91,7 +91,7 @@ material_override = ExtResource("5_1eke5")
 
 [node name="Objective" parent="." instance=ExtResource("5_cdvph")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 10.4964, 4, -0.0545578)
-nextscene = ExtResource("7_adljv")
+nextscene = ExtResource("7_3aj01")
 
 [node name="ObjectiveItem" parent="Objective" index="1"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 59, 6, -48)

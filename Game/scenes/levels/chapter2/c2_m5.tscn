@@ -2,7 +2,7 @@
 
 [ext_resource type="PackedScene" uid="uid://c7ycb57houxl1" path="res://scenes/elements/assets/player.tscn" id="1_2qwo1"]
 [ext_resource type="PackedScene" uid="uid://d4nob737a2chy" path="res://scenes/elements/assets/objective.tscn" id="1_xdvoa"]
-[ext_resource type="PackedScene" uid="uid://dcwnaqxeugfkv" path="res://blend/levels_chapter2/c2_m5.blend" id="2_7uqlp"]
+[ext_resource type="PackedScene" uid="uid://dcwnaqxeugfkv" path="res://assets/blend/levels_chapter2/c2_m5.blend" id="2_7uqlp"]
 
 [sub_resource type="GDScript" id="GDScript_onql4"]
 resource_name = "m2_m5-functionality"

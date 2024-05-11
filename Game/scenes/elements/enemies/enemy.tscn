@@ -1,10 +1,13 @@
-[gd_scene load_steps=14 format=3 uid="uid://ch7t6b0c3tjwr"]
+[gd_scene load_steps=15 format=3 uid="uid://ch7t6b0c3tjwr"]
 
 [ext_resource type="Script" path="res://scripts/enemies/enemy.gd" id="1_nn6r1"]
 [ext_resource type="PackedScene" uid="uid://cft1b4l0aljye" path="res://scenes/elements/assets/info.tscn" id="2_repm0"]
 
 [sub_resource type="SphereShape3D" id="SphereShape3D_4tw2s"]
 radius = 1.1
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_jtg0j"]
+radius = 2.0
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_ysnhb"]
 albedo_color = Color(0.450648, 0.450648, 0.450648, 1)
@@ -102,6 +105,11 @@ PlayHurtSound = true
 [node name="CollisionShape3D" parent="Info/Hitbox" index="0"]
 shape = SubResource("SphereShape3D_4tw2s")
 
+[node name="SoftPush" type="Area3D" parent="."]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="SoftPush"]
+shape = SubResource("SphereShape3D_jtg0j")
+
 [node name="Mesh" type="MeshInstance3D" parent="."]
 mesh = SubResource("SphereMesh_o28ak")
 
@@ -124,6 +132,7 @@ shape = SubResource("BoxShape3D_7ia3a")
 shape = SubResource("SphereShape3D_4mudu")
 
 [node name="NavigationAgent3D" type="NavigationAgent3D" parent="."]
+avoidance_enabled = true
 
 [node name="RayCast3D" type="RayCast3D" parent="."]
 top_level = true

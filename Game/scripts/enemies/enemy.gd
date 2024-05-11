@@ -6,7 +6,6 @@ extends CharacterBody3D
 
 @onready var nav : NavigationAgent3D = $NavigationAgent3D
 @onready var raycast = $RayCast3D
-@onready var mesh = $MeshInstance3D
 @onready var coll = $CollisionShape3D
 
 @onready var info = $Info
@@ -17,9 +16,6 @@ var gravity = ProjectSettings.get_setting("physics/3d/default_gravity")
 
 # navigating
 func _physics_process(delta):
-	if not is_on_floor():
-		velocity.y -= gravity * delta
-	
 	
 	var direction = Vector3()
 	
@@ -35,14 +31,25 @@ func _physics_process(delta):
 			
 			else:
 				pass
-			
+	
 	
 	raycast.global_position = global_position
 	
 	direction = nav.get_next_path_position() - global_position
 	direction = direction.normalized()
 	
+	
 	velocity = velocity.lerp(direction * speed, accel * delta)
+	
+	# gravity
+	if not is_on_floor():
+		velocity.y -= gravity * delta * 10
+	
+	for i in $SoftPush.get_overlapping_bodies():
+		if i.is_in_group("enemy") and i != self:
+			var difference = i.global_position - self.global_position
+			velocity -= difference
+	
 	
 	move_and_slide()
 	
@@ -64,8 +71,7 @@ func _physics_process(delta):
 
 
 func _on_hit_detector_body_entered(body):
-	if body.is_in_group("player") or (body.is_in_group("enemy") and !body == self):
-		print("hit the things")
+	if body.is_in_group("player"):
 		
 		for i in body.get_children():
 			if i.is_in_group("info"):

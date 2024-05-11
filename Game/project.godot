@@ -27,7 +27,7 @@ mouse_cursor/custom_image_hotspot=Vector2(30, 30)
 
 folder_colors={
 "res://assets/": "red",
-"res://blend/": "orange",
+"res://assets/blend/": "orange",
 "res://scenes/": "blue",
 "res://scenes/elements/": "green",
 "res://scripts/": "green"
