@@ -5,7 +5,6 @@ extends RigidBody3D
 @export var explosion : PackedScene
 @export var damage = 5
 @export var iscarried = false
-@onready var info = $Info
 
 var speed = Vector3()
 

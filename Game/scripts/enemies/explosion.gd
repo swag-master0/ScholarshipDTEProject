@@ -21,19 +21,17 @@ func _process(_delta):
 		$ExplosionSFX.reparent(self.get_parent())
 		
 		timer.start() # not doing this results in timer constantly restarting, which means it never deletes itself.
+	
+	
+	for i in $Area3D.get_overlapping_bodies():
 		
+		if i is RigidBody3D:
+			i.apply_force((i.global_position - center.global_position).normalized() * force)
 		
-		
-		for i in $Area3D.get_overlapping_bodies():
-			print_rich("[rainbow]", i)
-			
-			if i is RigidBody3D:
-				i.apply_force((i.global_position - center.global_position).normalized() * force)
-			
-			if i.is_in_group("player") or i.is_in_group("enemy"):
-				for x in i.get_children():
-					if x.is_in_group("info"):
-						x.Damage(damage)
+		if i.is_in_group("player") or i.is_in_group("enemy"):
+			for x in i.get_children():
+				if x.is_in_group("info"):
+					x.Damage(damage)
 			
 
 func _on_timer_timeout():

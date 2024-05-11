@@ -3,7 +3,7 @@
 [ext_resource type="Script" path="res://scripts/enemies/explosion.gd" id="1_l0qbb"]
 [ext_resource type="AudioStream" uid="uid://cm410bdt0as57" path="res://assets/audio/explosion.wav" id="2_weawm"]
 
-[sub_resource type="SphereShape3D" id="SphereShape3D_b7g5u"]
+[sub_resource type="SphereShape3D" id="SphereShape3D_2q2av"]
 radius = 5.0
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_6ba03"]
@@ -84,7 +84,7 @@ script = ExtResource("1_l0qbb")
 [node name="Area3D" type="Area3D" parent="."]
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Area3D"]
-shape = SubResource("SphereShape3D_b7g5u")
+shape = SubResource("SphereShape3D_2q2av")
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="Area3D"]
 mesh = SubResource("SphereMesh_olb84")
