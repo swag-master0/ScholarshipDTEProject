@@ -23,7 +23,7 @@ func _on_area_3d_body_entered(body):
 	magnitude = sqrt(vel.x + vel.y + vel.z) # calculate magnitude of the force
 	
 	if ((body is StaticBody3D or body is RigidBody3D and body != self) or (body is CharacterBody3D)) and (magnitude > minimum) and !affect_player_only:
-		$Timer.start(randf_range(0, 1))
+		$Timer.start(0.01)
 	
 	elif body.is_in_group("player") and affect_player_only:
 		$Timer.start(0.01)

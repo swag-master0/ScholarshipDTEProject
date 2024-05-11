@@ -43,7 +43,14 @@ func _process(_delta):
 		for i in range(amount_to_spawn):
 			spawns = i + 1
 			
-			var new_enemy = enemy.instantiate()
+			var desired_enemy = enemy
+			
+			var rand = randf_range(0, 100)
+			if rand > 90:
+				desired_enemy = sentry
+			
+			
+			var new_enemy = desired_enemy.instantiate()
 			self.add_child(new_enemy)
 			
 			
@@ -51,7 +58,12 @@ func _process(_delta):
 			
 			await get_tree().create_timer(time_between_spawns).timeout
 		
-		
+		if spawns == amount_to_spawn:
+			for i in doors.get_children():
+				i.global_position += Vector3(0, 50, 0)
+				i.visible = false
+	
+	
 
 
 func _on_trigger_body_entered(body):

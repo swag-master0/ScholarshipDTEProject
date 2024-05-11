@@ -15,6 +15,7 @@ extends CharacterBody3D
 var group_name = "projectile"
 var player = null
 
+var gravity = ProjectSettings.get_setting("physics/3d/default_gravity")
 
 
 func _process(_delta):
@@ -28,7 +29,9 @@ func _process(_delta):
 	# Checks if the player is in line of sight, delay isn't going, and player is close enough to the sentry
 	if raycast.get_collider() == player and player: 
 		
-		$MeshInstance3D.look_at(player.global_position)
+		#$MeshInstance3D.look_at(player.global_position)
+		$MeshInstance3D.rotation.y = atan2(player.global_position.x, player.global_position.z)
+		
 		
 		if global_position.distance_to(player.global_position) <= minimum_distance and delay.is_stopped():
 			
@@ -42,6 +45,11 @@ func _process(_delta):
 			delay.start()
 
 
+func _physics_process(delta):
+	if not is_on_floor():
+		velocity.y -= gravity * delta 
+	
+	move_and_slide()
 
 
 func _on_info_take_damage():
