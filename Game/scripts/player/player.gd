@@ -49,6 +49,7 @@ var selectionsound = false
 var levelchangetriggered = false
 
 
+# please leave object blank, but keep as export
 @export var object : RigidBody3D
 @export var level_completed : bool = false
 

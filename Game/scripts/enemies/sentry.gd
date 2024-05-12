@@ -1,7 +1,5 @@
 extends CharacterBody3D
 
-# TODO: rework this to make the projectile explode on impact. Or make it so the sentry throws grenades instead
-
 
 @export var projectile: PackedScene
 @export var minimum_distance = 15
@@ -29,9 +27,7 @@ func _process(_delta):
 	# Checks if the player is in line of sight, delay isn't going, and player is close enough to the sentry
 	if raycast.get_collider() == player and player: 
 		
-		#$MeshInstance3D.look_at(player.global_position)
-		$MeshInstance3D.rotation.y = atan2(player.global_position.x, player.global_position.z)
-		
+		$MeshInstance3D.rotation.y = atan2(-(player.global_position.x - self.global_position.x), -(player.global_position.z - self.global_position.z))
 		
 		if global_position.distance_to(player.global_position) <= minimum_distance and delay.is_stopped():
 			

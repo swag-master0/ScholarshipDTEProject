@@ -13,6 +13,12 @@ var speed = Vector3()
 func _process(_delta):
 	if $Timer.is_stopped():
 		$Timer.start()
+	
+	if !$AnimationPlayer.is_playing():
+		$AnimationPlayer.play("projectile")
+	
+	$AnimationPlayer.speed_scale = 10 - ($Timer.time_left * 2)
+
 
 func Shoot(direction):
 	self.apply_force(direction.normalized() * 1000)

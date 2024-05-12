@@ -9,6 +9,8 @@ TODO:
 	
 	try get playtesting on c1 and get feedback
 	
+	finish healthwhite (visual flair to health bar)
+	
 	begin progress on c2
 
 

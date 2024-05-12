@@ -49,10 +49,10 @@ height = 3.0
 radius = 3.5
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_nqrcn"]
-bg_color = Color(0.686275, 0, 0, 1)
+bg_color = Color(0.752941, 0, 0, 1)
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_btmbw"]
-bg_color = Color(0, 0.72549, 0, 1)
+bg_color = Color(0.188235, 1, 0.113725, 1)
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_gdws8"]
 animations = [{
@@ -247,6 +247,25 @@ theme_override_styles/background = SubResource("StyleBoxFlat_nqrcn")
 theme_override_styles/fill = SubResource("StyleBoxFlat_btmbw")
 max_value = 20.0
 value = 10.0
+show_percentage = false
+
+[node name="HealthWhite" type="ProgressBar" parent="HUD/Health"]
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -180.0
+offset_top = -50.0
+offset_right = 180.0
+grow_horizontal = 2
+grow_vertical = 0
+pivot_offset = Vector2(180, 25)
+theme_override_styles/background = SubResource("StyleBoxFlat_nqrcn")
+theme_override_styles/fill = SubResource("StyleBoxFlat_btmbw")
+max_value = 20.0
+value = 15.0
 show_percentage = false
 
 [node name="EnemyHealth" type="ProgressBar" parent="HUD"]
