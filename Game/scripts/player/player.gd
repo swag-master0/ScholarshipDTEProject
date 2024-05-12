@@ -307,7 +307,7 @@ func _hinttext_timeout():
 
 
 # INFO: DIALOGUE SYSTEM
-func Dialogue(dialogue : String, delay : float = 0.1):
+func Dialogue(dialogue : String, delay : float = 0.05):
 	$HUD/Dialogue.visible = true
 	
 	$HUD/Dialogue.text = "[center]" + dialogue
@@ -316,7 +316,7 @@ func Dialogue(dialogue : String, delay : float = 0.1):
 	
 	for i in dialogue.length():
 		print(i)
-		$HUD/Dialogue.visible_characters += 1
+		$HUD/Dialogue.visible_characters = i + 1
 		
 		$Audio/Dialogue.pitch_scale = randf_range(50, 150) / 100
 		$Audio/Dialogue.play()
@@ -347,6 +347,7 @@ func setCursorPosition(pos : Vector3, visibility : bool):
 		
 		if tutorial_mode:
 			$HUD/Indicator/AnimatedSprite2D.visible = true
+			sendHintToPlayer("Use MOUSE 1 to pick up and throw objects")
 		else:
 			$HUD/Indicator/AnimatedSprite2D.visible = false
 		

@@ -7,7 +7,7 @@
 radius = 1.1
 
 [sub_resource type="SphereShape3D" id="SphereShape3D_jtg0j"]
-radius = 3.0
+radius = 2.0
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_ysnhb"]
 albedo_color = Color(0.450648, 0.450648, 0.450648, 1)
@@ -96,8 +96,8 @@ _data = {
 script = ExtResource("1_nn6r1")
 
 [node name="Info" parent="." instance=ExtResource("2_repm0")]
-health = 10.0
-max_health = 10.0
+health = 6.0
+max_health = 6.0
 DamagePlayerOnPlayerCollision = false
 PlayKillSound = true
 PlayHurtSound = true

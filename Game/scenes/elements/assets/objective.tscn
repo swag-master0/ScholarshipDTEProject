@@ -20,7 +20,7 @@ script = ExtResource("1_i55ny")
 [node name="CollisionShape3D" type="CollisionShape3D" parent="LevelStart"]
 shape = SubResource("BoxShape3D_denne")
 
-[node name="ObjectiveItem" type="RigidBody3D" parent="."]
+[node name="ObjectiveItem" type="RigidBody3D" parent="." groups=["objective"]]
 
 [node name="ObjectiveItem" type="MeshInstance3D" parent="ObjectiveItem"]
 mesh = SubResource("TextMesh_lmtt0")

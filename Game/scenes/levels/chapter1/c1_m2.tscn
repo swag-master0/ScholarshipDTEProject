@@ -3,7 +3,6 @@
 [ext_resource type="PackedScene" uid="uid://c7ycb57houxl1" path="res://scenes/elements/assets/player.tscn" id="1_cneap"]
 [ext_resource type="PackedScene" uid="uid://ch7t6b0c3tjwr" path="res://scenes/elements/enemies/enemy.tscn" id="4_8i10n"]
 [ext_resource type="PackedScene" uid="uid://m8urk0gkn6ut" path="res://assets/blend/levels_chapter1/c1_m2.blend" id="4_y0qnk"]
-[ext_resource type="Material" uid="uid://cmakta7ngaunj" path="res://assets/materials/temp_level.tres" id="5_1eke5"]
 [ext_resource type="PackedScene" uid="uid://d4nob737a2chy" path="res://scenes/elements/assets/objective.tscn" id="5_cdvph"]
 [ext_resource type="PackedScene" uid="uid://w2l3dpbjub7c" path="res://scenes/levels/chapter1/c2_m3.tscn" id="7_3aj01"]
 [ext_resource type="PackedScene" uid="uid://bbb07r3hee2bp" path="res://scenes/elements/objects/prop.tscn" id="7_tk5jc"]
@@ -22,6 +21,8 @@ script/source = "extends Node3D
 
 var triggered = false
 var example_triggered = false
+var dialogue_triggered = false
+
 
 
 func _on_trigger_body_entered(body):
@@ -45,6 +46,12 @@ func _on_enemy_example_trigger_body_entered(body):
 			add_child(created_prop)
 			created_prop.position = i.global_position
 			created_prop.apply_force(Vector3(0, -1000, 0))
+
+
+
+func _on_dialogue_trigger_body_entered(body):
+	if body.is_in_group(\"player\") and !dialogue_triggered:
+		body.Dialogue(\"Huh. Try stacking something to get up there.\")
 "
 
 [sub_resource type="Environment" id="Environment_6u04u"]
@@ -60,6 +67,9 @@ agent_max_slope = 70.0
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_fw0uv"]
 size = Vector3(29.615, 18.725, 33.845)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_mbwko"]
+size = Vector3(20, 10, 15)
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_jt1we"]
 size = Vector3(3.915, 10.635, 12.815)
@@ -86,9 +96,6 @@ navigation_mesh = SubResource("NavigationMesh_a2gje")
 
 [node name="level" parent="NavigationRegion3D" instance=ExtResource("4_y0qnk")]
 
-[node name="Level" parent="NavigationRegion3D/level" index="1"]
-material_override = ExtResource("5_1eke5")
-
 [node name="Objective" parent="." instance=ExtResource("5_cdvph")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 10.4964, 4, -0.0545578)
 nextscene = ExtResource("7_3aj01")
@@ -103,26 +110,14 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 73, 8, -51)
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -8, 8, -7)
 shape = SubResource("BoxShape3D_fw0uv")
 
+[node name="DialogueTrigger" type="Area3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 68, 4, -33)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="DialogueTrigger"]
+shape = SubResource("BoxShape3D_mbwko")
+
 [node name="EnemySpawnPoint1" type="Marker3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 17.6107, 13, -0.124701)
-
-[node name="Prop" parent="." instance=ExtResource("7_tk5jc")]
-transform = Transform3D(0.707107, 0, 0.707107, 0, 1, 0, -0.707107, 0, 0.707107, 58, 2, -30)
-
-[node name="Prop2" parent="." instance=ExtResource("7_tk5jc")]
-transform = Transform3D(-0.258819, 0, 0.965926, 0, 1, 0, -0.965926, 0, -0.258819, 58, 2, -33)
-
-[node name="Prop3" parent="." instance=ExtResource("7_tk5jc")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 58, 5, -31)
-
-[node name="Prop4" parent="." instance=ExtResource("7_tk5jc")]
-transform = Transform3D(0.707107, 0, 0.707107, 0, 1, 0, -0.707107, 0, 0.707107, 70, 2, -38)
-
-[node name="Prop5" parent="." instance=ExtResource("7_tk5jc")]
-transform = Transform3D(0.707107, 0, -0.707107, 0, 1, 0, 0.707107, 0, 0.707107, 77, 2, -36)
-
-[node name="Prop6" parent="." instance=ExtResource("7_tk5jc")]
-transform = Transform3D(0.707107, 0, 0.707107, 0, 1, 0, -0.707107, 0, 0.707107, 83, 2, -35)
 
 [node name="EnemyExampleTrigger" type="Area3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 25, 1, 0)
@@ -145,16 +140,37 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 24.3177, 10, 0.875299)
 [node name="Marker3D4" type="Marker3D" parent="PropSpawnLocations"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 25.5284, 10, 3.05913)
 
-[node name="Prop7" parent="." instance=ExtResource("7_tk5jc")]
+[node name="Props" type="Node" parent="."]
+
+[node name="Prop" parent="Props" instance=ExtResource("7_tk5jc")]
+transform = Transform3D(0.707107, 0, 0.707107, 0, 1, 0, -0.707107, 0, 0.707107, 58, 2, -30)
+
+[node name="Prop2" parent="Props" instance=ExtResource("7_tk5jc")]
+transform = Transform3D(-0.258819, 0, 0.965926, 0, 1, 0, -0.965926, 0, -0.258819, 58, 2, -33)
+
+[node name="Prop3" parent="Props" instance=ExtResource("7_tk5jc")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 58, 5, -31)
+
+[node name="Prop4" parent="Props" instance=ExtResource("7_tk5jc")]
+transform = Transform3D(0.707107, 0, 0.707107, 0, 1, 0, -0.707107, 0, 0.707107, 70, 2, -38)
+
+[node name="Prop5" parent="Props" instance=ExtResource("7_tk5jc")]
+transform = Transform3D(0.707107, 0, -0.707107, 0, 1, 0, 0.707107, 0, 0.707107, 77, 2, -36)
+
+[node name="Prop6" parent="Props" instance=ExtResource("7_tk5jc")]
+transform = Transform3D(0.707107, 0, 0.707107, 0, 1, 0, -0.707107, 0, 0.707107, 83, 2, -35)
+
+[node name="Prop7" parent="Props" instance=ExtResource("7_tk5jc")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 31.6706, 1, -6.1127)
 
-[node name="Prop8" parent="." instance=ExtResource("7_tk5jc")]
+[node name="Prop8" parent="Props" instance=ExtResource("7_tk5jc")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 35.6706, 1, 2.8873)
 
-[node name="Prop9" parent="." instance=ExtResource("7_tk5jc")]
+[node name="Prop9" parent="Props" instance=ExtResource("7_tk5jc")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 38.6706, 1, 1.8873)
 
 [connection signal="body_entered" from="Trigger" to="." method="_on_trigger_body_entered"]
+[connection signal="body_entered" from="DialogueTrigger" to="." method="_on_dialogue_trigger_body_entered"]
 [connection signal="body_entered" from="EnemyExampleTrigger" to="." method="_on_enemy_example_trigger_body_entered"]
 
 [editable path="NavigationRegion3D/level"]

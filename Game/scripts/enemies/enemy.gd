@@ -1,6 +1,6 @@
 extends CharacterBody3D
 
-@export var speed = 5
+@export var speed = 6
 @export var accel = 10
 @export var damage = 3
 
@@ -21,7 +21,7 @@ func _physics_process(delta):
 	
 	for i in range(self.get_parent_node_3d().get_children().size()):
 		
-		if self.get_parent_node_3d().get_children()[i] is CharacterBody3D and self.get_parent_node_3d().get_children()[i].is_in_group("player"):
+		if self.get_parent_node_3d().get_children()[i] is CharacterBody3D and self.get_parent_node_3d().get_children()[i].is_in_group("player") and !$AnimationPlayer.is_playing():
 			var player = self.get_parent_node_3d().get_children()[i]
 			
 			raycast.target_position = player.global_position - global_position
@@ -38,8 +38,10 @@ func _physics_process(delta):
 	direction = nav.get_next_path_position() - global_position
 	direction = direction.normalized()
 	
-	
-	velocity = velocity.lerp(direction * speed, accel * delta)
+	if $AttackDelay.is_stopped():
+		velocity = velocity.lerp(direction * speed, accel * delta)
+	else:
+		velocity = Vector3(0, 0, 0)
 	
 	# gravity
 	if not is_on_floor():
@@ -53,7 +55,8 @@ func _physics_process(delta):
 	
 	move_and_slide()
 	
-	$Mesh.rotation.y = lerp_angle($Mesh.rotation.y, atan2(direction.x, direction.z), delta * 25)
+	if $AttackDelay.is_stopped():
+		$Mesh.rotation.y = lerp_angle($Mesh.rotation.y, atan2(direction.x, direction.z), delta * 25)
 	
 	for i in $Mesh/Detection.get_overlapping_bodies():
 		if i.is_in_group("player") and $AttackDelay.is_stopped():
@@ -86,6 +89,9 @@ func _on_info_take_damage():
 
 func _on_info_death():
 	self.queue_free()
+
+
+
 
 
 

@@ -1,4 +1,4 @@
-[gd_scene load_steps=15 format=3 uid="uid://bkvmwrsm7nbyt"]
+[gd_scene load_steps=17 format=3 uid="uid://bkvmwrsm7nbyt"]
 
 [ext_resource type="PackedScene" uid="uid://d4nob737a2chy" path="res://scenes/elements/assets/objective.tscn" id="1_ghn5u"]
 [ext_resource type="PackedScene" uid="uid://ch7t6b0c3tjwr" path="res://scenes/elements/enemies/enemy.tscn" id="1_mvf3l"]
@@ -96,10 +96,15 @@ volumetric_fog_emission_energy = 0.0
 [sub_resource type="BoxShape3D" id="BoxShape3D_hccy0"]
 size = Vector3(10, 15, 30)
 
+[sub_resource type="PhysicsMaterial" id="PhysicsMaterial_87q5h"]
+
 [sub_resource type="BoxShape3D" id="BoxShape3D_ap2gm"]
+size = Vector3(5, 15, 10)
 
 [sub_resource type="BoxMesh" id="BoxMesh_ph6pe"]
 size = Vector3(5, 15, 10)
+
+[sub_resource type="PhysicsMaterial" id="PhysicsMaterial_11bpv"]
 
 [node name="Level" type="Node3D"]
 script = SubResource("GDScript_w4vx7")
@@ -141,8 +146,10 @@ shape = SubResource("BoxShape3D_hccy0")
 
 [node name="Door" type="StaticBody3D" parent="Doors"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 47, 0, -24)
+physics_material_override = SubResource("PhysicsMaterial_87q5h")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Doors/Door"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 7.5, 0)
 shape = SubResource("BoxShape3D_ap2gm")
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="Doors/Door"]
@@ -152,8 +159,10 @@ skeleton = NodePath("../../..")
 
 [node name="Door2" type="StaticBody3D" parent="Doors"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 93, 0, -44)
+physics_material_override = SubResource("PhysicsMaterial_11bpv")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Doors/Door2"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 7.5, -1)
 shape = SubResource("BoxShape3D_ap2gm")
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="Doors/Door2"]
@@ -209,55 +218,55 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 86, 15, -34)
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 86, 15, -42)
 
 [node name="Prop" parent="." instance=ExtResource("7_ee68b")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 59, 1, -23)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 55, 1, -20)
 
 [node name="Prop2" parent="." instance=ExtResource("7_ee68b")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 68, 1, -34)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 65, 1, -20)
 
 [node name="Prop3" parent="." instance=ExtResource("7_ee68b")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 75, 1, -23)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 52, 1, -46)
 
 [node name="Prop4" parent="." instance=ExtResource("7_ee68b")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 74, 1, -45)
+transform = Transform3D(0.976699, 0, 0.214616, 0, 1, 0, -0.214616, 0, 0.976699, 51.8712, 1, -48.3219)
 
 [node name="Prop5" parent="." instance=ExtResource("7_ee68b")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 85, 1, -24)
+transform = Transform3D(0.871411, 0, -0.490554, 0, 1, 0, 0.490554, 0, 0.871411, 58.542, 1, -48.3337)
 
 [node name="Prop6" parent="." instance=ExtResource("7_ee68b")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 78, 1, -36)
+transform = Transform3D(0.975604, 0, -0.21954, 0, 1, 0, 0.21954, 0, 0.975604, 78.9656, 1, -48.2956)
 
 [node name="Prop7" parent="." instance=ExtResource("7_ee68b")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 58, 1, -39)
+transform = Transform3D(0.92214, 0, 0.386856, 0, 1, 0, -0.386856, 0, 0.92214, 76.0893, 1, -48.5275)
 
 [node name="Prop8" parent="." instance=ExtResource("7_ee68b")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 75, 1, -36)
+transform = Transform3D(0.991554, 0, -0.129696, 0, 1, 0, 0.129696, 0, 0.991554, 77.3175, 1, -46.0425)
 
 [node name="Prop9" parent="." instance=ExtResource("7_ee68b")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 67, 1, -25)
+transform = Transform3D(0.965926, 0, 0.258819, 0, 1, 0, -0.258819, 0, 0.965926, 87.9862, 1, -19.7856)
 
 [node name="Prop10" parent="." instance=ExtResource("7_ee68b")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 79, 1, -26)
+transform = Transform3D(0.970654, 0, -0.240482, 0, 1, 0, 0.240482, 0, 0.970654, 85.1156, 1, -20.4638)
 
 [node name="Prop11" parent="." instance=ExtResource("7_ee68b")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 87, 1, -30)
+transform = Transform3D(0.965926, 0, 0.258819, 0, 1, 0, -0.258819, 0, 0.965926, 87.9013, 1, -29.2919)
 
 [node name="Prop12" parent="." instance=ExtResource("7_ee68b")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 83, 1, -39)
+transform = Transform3D(0.965926, 0, -0.258819, 0, 1, 0, 0.258819, 0, 0.965926, 88.0856, 1, -37.455)
 
 [node name="Prop13" parent="." instance=ExtResource("7_ee68b")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 61, 1, -45)
+transform = Transform3D(0.965926, 0, 0.258819, 0, 1, 0, -0.258819, 0, 0.965926, 61.4506, 1, -48.6694)
 
 [node name="Prop14" parent="." instance=ExtResource("7_ee68b")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 32, 1, -7)
+transform = Transform3D(0.965926, 0, -0.258819, 0, 1, 0, 0.258819, 0, 0.965926, 32, 1, -7)
 
 [node name="Prop15" parent="." instance=ExtResource("7_ee68b")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 57, 1, -29)
+transform = Transform3D(0.965926, 0, 0.258819, 0, 1, 0, -0.258819, 0, 0.965926, 57.8758, 1, -19.7164)
 
 [node name="Prop16" parent="." instance=ExtResource("7_ee68b")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 64, 1, -40)
+transform = Transform3D(0.965926, 0, 0.258819, 0, 1, 0, -0.258819, 0, 0.965926, 70.0431, 1, -33.4314)
 
 [node name="ExplosiveBarrel" parent="." instance=ExtResource("8_i8g7n")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 69, 1.05, -46)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 69, 1.05, -49)
 
 [node name="ExplosiveBarrel2" parent="." instance=ExtResource("8_i8g7n")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 71, 1.05, -21)
