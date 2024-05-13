@@ -51,7 +51,8 @@ func _on_enemy_example_trigger_body_entered(body):
 
 func _on_dialogue_trigger_body_entered(body):
 	if body.is_in_group(\"player\") and !dialogue_triggered:
-		body.Dialogue(\"Huh. Try stacking something to get up there.\")
+		dialogue_triggered = true
+		body.Dialogue(\"Huh. Maybe try stacking something to get up there.\")
 "
 
 [sub_resource type="Environment" id="Environment_6u04u"]

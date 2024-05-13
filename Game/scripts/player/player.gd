@@ -184,6 +184,13 @@ func _process(_delta):
 		
 		$HUD/Health.value = health
 		$HUD/Health.max_value = max_health
+		$HUD/Health/HealthWhite.max_value = max_health
+		
+		if $HUD/Health/HealthWhite.value != $HUD/Health.value:
+			var tween = get_tree().create_tween()
+			
+			tween.tween_property($HUD/Health/HealthWhite, "value", health, 1)
+			#$HUD/Health/HealthWhite.value = health
 		
 	
 	if level_completed:

@@ -1,4 +1,4 @@
-[gd_scene load_steps=28 format=3 uid="uid://c7ycb57houxl1"]
+[gd_scene load_steps=30 format=3 uid="uid://c7ycb57houxl1"]
 
 [ext_resource type="Script" path="res://scripts/player/player.gd" id="1_f2by1"]
 [ext_resource type="PackedScene" uid="uid://cft1b4l0aljye" path="res://scenes/elements/assets/info.tscn" id="2_r67s4"]
@@ -48,11 +48,17 @@ height = 0.25
 height = 3.0
 radius = 3.5
 
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_nqrcn"]
-bg_color = Color(0.752941, 0, 0, 1)
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_1odvh"]
+bg_color = Color(0.6, 0.6, 0.6, 0)
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_btmbw"]
 bg_color = Color(0.188235, 1, 0.113725, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_nqrcn"]
+bg_color = Color(0.752941, 0, 0, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_lr4wr"]
+bg_color = Color(1, 1, 1, 1)
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_gdws8"]
 animations = [{
@@ -230,6 +236,7 @@ color = Color(1, 1, 1, 0)
 [node name="Timer" type="Timer" parent="HUD/HurtVFX"]
 
 [node name="Health" type="ProgressBar" parent="HUD"]
+z_index = 1
 layout_mode = 1
 anchors_preset = 7
 anchor_left = 0.5
@@ -243,13 +250,16 @@ offset_bottom = -139.0
 grow_horizontal = 2
 grow_vertical = 0
 pivot_offset = Vector2(180, 25)
-theme_override_styles/background = SubResource("StyleBoxFlat_nqrcn")
+theme_override_styles/background = SubResource("StyleBoxFlat_1odvh")
 theme_override_styles/fill = SubResource("StyleBoxFlat_btmbw")
 max_value = 20.0
 value = 10.0
+allow_greater = true
+allow_lesser = true
 show_percentage = false
 
 [node name="HealthWhite" type="ProgressBar" parent="HUD/Health"]
+z_index = -1
 layout_mode = 1
 anchors_preset = 7
 anchor_left = 0.5
@@ -263,9 +273,9 @@ grow_horizontal = 2
 grow_vertical = 0
 pivot_offset = Vector2(180, 25)
 theme_override_styles/background = SubResource("StyleBoxFlat_nqrcn")
-theme_override_styles/fill = SubResource("StyleBoxFlat_btmbw")
+theme_override_styles/fill = SubResource("StyleBoxFlat_lr4wr")
 max_value = 20.0
-value = 15.0
+value = 12.0
 show_percentage = false
 
 [node name="EnemyHealth" type="ProgressBar" parent="HUD"]
