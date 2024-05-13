@@ -7,7 +7,7 @@
 [ext_resource type="PackedScene" uid="uid://bbb07r3hee2bp" path="res://scenes/elements/objects/prop.tscn" id="5_p2srq"]
 
 [sub_resource type="GDScript" id="GDScript_x6txf"]
-resource_name = "basiclevel_functionality"
+resource_name = "c1_m1-functionality"
 script/source = "extends Node3D
 
 var dialogue_triggered = false

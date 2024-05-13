@@ -10,7 +10,7 @@
 [ext_resource type="PackedScene" uid="uid://bbb07r3hee2bp" path="res://scenes/elements/objects/prop.tscn" id="8_s1vfk"]
 
 [sub_resource type="GDScript" id="GDScript_ur7ug"]
-resource_name = "bomberlevel_functionality"
+resource_name = "c2_m3-functionality"
 script/source = "extends Node3D
 
 @onready var spawnarea = $SpawnLocations

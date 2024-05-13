@@ -8,7 +8,7 @@
 [ext_resource type="PackedScene" uid="uid://bbb07r3hee2bp" path="res://scenes/elements/objects/prop.tscn" id="7_tk5jc"]
 
 [sub_resource type="GDScript" id="GDScript_jf0va"]
-resource_name = "level1_functionality"
+resource_name = "c1_m2-functionality"
 script/source = "extends Node3D
 
 @onready var player = $Player

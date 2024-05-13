@@ -58,6 +58,7 @@ func _physics_process(delta):
 	if $AttackDelay.is_stopped():
 		$Mesh.rotation.y = lerp_angle($Mesh.rotation.y, atan2(direction.x, direction.z), delta * 25)
 	
+	
 	for i in $Mesh/Detection.get_overlapping_bodies():
 		if i.is_in_group("player") and $AttackDelay.is_stopped():
 			$AnimationPlayer.play("attack")
@@ -85,18 +86,10 @@ func _on_hit_detector_body_entered(body):
 
 func _on_info_take_damage():
 	$AnimationPlayer.play("hurt")
-	pass # Replace with function body.
+
 
 func _on_info_death():
 	self.queue_free()
-
-
-
-
-
-
-
-
 
 
 
