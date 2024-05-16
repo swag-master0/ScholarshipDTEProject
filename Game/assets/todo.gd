@@ -12,6 +12,9 @@ TODO:
 	finish healthwhite (visual flair to health bar):
 		DONE
 	
+	fix collisions on levels (TODO):
+		must do in blender
+	
 	begin progress on c2 (TODO)
 
 	
