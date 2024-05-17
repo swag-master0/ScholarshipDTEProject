@@ -2,6 +2,8 @@ extends Node3D
 
 
 @onready var objective = $ObjectiveItem
+@onready var initial_pos = $ObjectiveItem.global_position
+
 @export var nextscene : PackedScene
 var player = null
 
@@ -29,6 +31,16 @@ func ChangeScene():
 			i.level_completed = true
 			#get_tree().change_scene_to_packed(nextscene)
 
+
+
+# anti softlock, in case the objective item falls out of the world
+func _process(_delta):
+	if objective.global_position.y < -500:
+		objective.global_position = initial_pos
+		objective.set_freeze_enabled(true)
+		objective.set_freeze_enabled(false)
+		
+		push_error("Reset the location of the objective item, due to potential softlock")
 
 
 

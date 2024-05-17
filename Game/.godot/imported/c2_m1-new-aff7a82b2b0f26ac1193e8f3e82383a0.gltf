@@ -10,14 +10,15 @@
 			"nodes":[
 				0,
 				1,
-				2
+				2,
+				3
 			]
 		}
 	],
 	"nodes":[
 		{
 			"mesh":0,
-			"name":"Level-col",
+			"name":"Level",
 			"translation":[
 				0,
 				1,
@@ -26,7 +27,7 @@
 		},
 		{
 			"mesh":1,
-			"name":"Plane-col",
+			"name":"Wall-col",
 			"rotation":[
 				0,
 				0,
@@ -41,12 +42,16 @@
 		},
 		{
 			"mesh":2,
-			"name":"Cube-rigid",
+			"name":"Obstacle-rigid",
 			"translation":[
 				30,
 				1,
 				-22
 			]
+		},
+		{
+			"mesh":3,
+			"name":"Collisions-colonly"
 		}
 	],
 	"meshes":[
@@ -89,6 +94,20 @@
 						"TANGENT":13
 					},
 					"indices":14
+				}
+			]
+		},
+		{
+			"name":"Cube",
+			"primitives":[
+				{
+					"attributes":{
+						"POSITION":15,
+						"NORMAL":16,
+						"TEXCOORD_0":17,
+						"TANGENT":18
+					},
+					"indices":19
 				}
 			]
 		}
@@ -213,6 +232,46 @@
 			"componentType":5123,
 			"count":36,
 			"type":"SCALAR"
+		},
+		{
+			"bufferView":15,
+			"componentType":5126,
+			"count":679,
+			"max":[
+				50.5,
+				13,
+				3
+			],
+			"min":[
+				-1.5,
+				-2.8000001907348633,
+				-56.5
+			],
+			"type":"VEC3"
+		},
+		{
+			"bufferView":16,
+			"componentType":5126,
+			"count":679,
+			"type":"VEC3"
+		},
+		{
+			"bufferView":17,
+			"componentType":5126,
+			"count":679,
+			"type":"VEC2"
+		},
+		{
+			"bufferView":18,
+			"componentType":5126,
+			"count":679,
+			"type":"VEC4"
+		},
+		{
+			"bufferView":19,
+			"componentType":5123,
+			"count":1296,
+			"type":"SCALAR"
 		}
 	],
 	"bufferViews":[
@@ -305,11 +364,41 @@
 			"byteLength":72,
 			"byteOffset":18936,
 			"target":34963
+		},
+		{
+			"buffer":0,
+			"byteLength":8148,
+			"byteOffset":19008,
+			"target":34962
+		},
+		{
+			"buffer":0,
+			"byteLength":8148,
+			"byteOffset":27156,
+			"target":34962
+		},
+		{
+			"buffer":0,
+			"byteLength":5432,
+			"byteOffset":35304,
+			"target":34962
+		},
+		{
+			"buffer":0,
+			"byteLength":10864,
+			"byteOffset":40736,
+			"target":34962
+		},
+		{
+			"buffer":0,
+			"byteLength":2592,
+			"byteOffset":51600,
+			"target":34963
 		}
 	],
 	"buffers":[
 		{
-			"byteLength":19008,
+			"byteLength":54192,
 			"uri":"c2_m1-new-aff7a82b2b0f26ac1193e8f3e82383a0.bin"
 		}
 	]

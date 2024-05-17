@@ -82,9 +82,11 @@ func _physics_process(delta):
 	if (Input.is_action_pressed("forward") or Input.is_action_pressed("left") or Input.is_action_pressed("right") or Input.is_action_pressed("backward")):
 		faceDirection = Vector3(Input.get_action_strength("right") - Input.get_action_strength("left"), 0 ,Input.get_action_strength("backward") - Input.get_action_strength("forward")).normalized()
 	
-	if Input.is_action_pressed("click"):
+	#if Input.is_action_pressed("click"):
+	if isHolding:
 		character.rotation.y = atan2(cursor.position.x, cursor.position.z)
-	elif not Input.is_action_pressed("click"): # This is shitty code, but I fail to care
+	#elif not Input.is_action_pressed("click"): # This is shitty code, but I fail to care
+	elif !isHolding:
 		character.rotation.y = lerp_angle(character.rotation.y, atan2(faceDirection.x, faceDirection.z), delta * TURN_VELOCITY)
 		
 		
@@ -159,6 +161,17 @@ func _process(_delta):
 		
 		# Throw RIGID BODIES
 		if object and isHolding == true and object is RigidBody3D:
+			
+			
+			#if object.get_colliding_bodies() is StaticBody3D:
+			#	return
+			
+			# TODO
+			for i in $PlayerModel/Area3D.get_overlapping_bodies():
+				if i is StaticBody3D:
+					print_rich("[rainbow]", $PlayerModel/Area3D.get_overlapping_bodies())
+			
+			
 			isHolding = false
 			
 			# TODO: must change
@@ -171,6 +184,7 @@ func _process(_delta):
 			object.set_collision_mask_value(1, true)
 			
 			var force = (cursor.global_position - position).normalized()
+			
 			
 			# drop object gently
 			# TODO: make a visual indicator for when this is true

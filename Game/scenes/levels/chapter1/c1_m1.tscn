@@ -128,5 +128,6 @@ transform = Transform3D(0.832148, 0, 0.554554, 0, 1, 0, -0.554554, 0, 0.832148, 
 
 [node name="Prop18" parent="Props" instance=ExtResource("5_p2srq")]
 transform = Transform3D(0.114556, 0, 0.993417, 0, 1, 0, -0.993417, 0, 0.114556, 19.7586, 3, -1.55113)
+grabbable = true
 
 [editable path="Objective"]
