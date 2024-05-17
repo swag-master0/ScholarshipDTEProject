@@ -1,0 +1,11 @@
+[gd_scene load_steps=3 format=3 uid="uid://c3jh1kk8goxry"]
+
+[ext_resource type="PackedScene" uid="uid://dkteohkuoghg0" path="res://assets/blend/levels_chapter2/c2_m1-new.blend" id="1_usv7o"]
+[ext_resource type="PackedScene" uid="uid://c7ycb57houxl1" path="res://scenes/elements/assets/player.tscn" id="2_gi5go"]
+
+[node name="c2_m1-new" type="Node3D"]
+
+[node name="c2_m1-new" parent="." instance=ExtResource("1_usv7o")]
+
+[node name="Player" parent="." instance=ExtResource("2_gi5go")]
+transform = Transform3D(0.707107, 0, 0.707107, 0, 1, 0, -0.707107, 0, 0.707107, 5, 3, -5)

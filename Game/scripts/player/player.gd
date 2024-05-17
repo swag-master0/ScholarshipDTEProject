@@ -125,7 +125,12 @@ func _process(_delta):
 	# Handle picking up RIGID BODIES
 	if (NearestObject() and NearestObject() is RigidBody3D and global_position.distance_to(NearestObject().global_position) <= PICKUP_RANGE) and isHolding == false:
 		
+		if NearestObject().is_in_group("ungrabbable"):
+			return # return function if the object is ungrabbable
+		
 		setCursorPosition(NearestObject().global_position, true)
+		
+		
 		
 		if Input.is_action_just_pressed("click"): # handle picking up objects
 			$Audio/PlayerSelect.play()

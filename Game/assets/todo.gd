@@ -9,8 +9,10 @@ TODO:
 	
 	try get playtesting on c1 and get feedback
 	
-	finish healthwhite (visual flair to health bar):
-		DONE
+	
+	
+	test ungrabbable prop (TODO):
+		todo
 	
 	fix collisions on levels (TODO):
 		must do in blender
