@@ -10,10 +10,6 @@ TODO:
 	try get playtesting on c1 and get feedback
 	
 	
-	
-	test ungrabbable prop (TODO):
-		todo
-	
 	fix collisions on levels (TODO):
 		must do in blender
 	

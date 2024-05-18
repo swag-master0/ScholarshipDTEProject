@@ -140,6 +140,7 @@ func _process(_delta):
 			object = NearestObject()
 			oldparent = object.get_parent()
 			
+			$PlayerModel/HoldPoint.position = Vector3(0, 1, 2)
 			object.global_transform = $PlayerModel/HoldPoint.global_transform
 			object.reparent(character)
 			object.set_freeze_enabled(true)
@@ -151,8 +152,8 @@ func _process(_delta):
 	
 	
 	# Handle throwing RIGID BODIES
-	if Input.is_action_just_released("click"): 
-		
+	#if Input.is_action_just_released("click"): 
+	if !Input.is_action_pressed("click"): 
 		# check if the object exists still
 		if !is_instance_valid(object):
 			object = null
@@ -162,19 +163,9 @@ func _process(_delta):
 		# Throw RIGID BODIES
 		if object and isHolding == true and object is RigidBody3D:
 			
-			
-			#if object.get_colliding_bodies() is StaticBody3D:
-			#	return
-			
-			# TODO
-			for i in $PlayerModel/Area3D.get_overlapping_bodies():
-				if i is StaticBody3D:
-					print_rich("[rainbow]", $PlayerModel/Area3D.get_overlapping_bodies())
-			
-			
+			# the actual throw code
 			isHolding = false
 			
-			# TODO: must change
 			$Audio/PlayerSelect.play()
 			
 			object.set_freeze_enabled(false)
@@ -190,6 +181,12 @@ func _process(_delta):
 			# TODO: make a visual indicator for when this is true
 			if character.position.distance_to(cursor.position) < 4 and character.position.distance_to(cursor.position) > -4:
 				force = Vector3(0, 0, 0)
+			
+			
+			# prevents the player from throwing objects out of the map
+			for i in $PlayerModel/Area3D.get_overlapping_bodies():
+				if i is StaticBody3D:
+					force = force * -1
 			
 			
 			object.apply_force(force * THROW_FORCE)

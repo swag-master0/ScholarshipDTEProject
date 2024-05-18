@@ -1,11 +1,35 @@
-[gd_scene load_steps=3 format=3 uid="uid://c3jh1kk8goxry"]
+[gd_scene load_steps=4 format=3 uid="uid://c3jh1kk8goxry"]
 
 [ext_resource type="PackedScene" uid="uid://dkteohkuoghg0" path="res://assets/blend/levels_chapter2/c2_m1-new.blend" id="1_usv7o"]
 [ext_resource type="PackedScene" uid="uid://c7ycb57houxl1" path="res://scenes/elements/assets/player.tscn" id="2_gi5go"]
+
+[sub_resource type="Environment" id="Environment_qndx8"]
+background_mode = 1
+ambient_light_source = 2
+ambient_light_color = Color(0.385493, 0.385492, 0.385492, 1)
+glow_bloom = 1.0
+fog_light_color = Color(0, 0, 0, 1)
+fog_density = 0.07
+volumetric_fog_density = 0.1228
+volumetric_fog_albedo = Color(0, 0, 0, 1)
+volumetric_fog_emission_energy = 0.0
 
 [node name="c2_m1-new" type="Node3D"]
 
 [node name="c2_m1-new" parent="." instance=ExtResource("1_usv7o")]
 
+[node name="Obstacle-rigid" parent="c2_m1-new" index="2" groups=["ungrabbable"]]
+
 [node name="Player" parent="." instance=ExtResource("2_gi5go")]
-transform = Transform3D(0.707107, 0, 0.707107, 0, 1, 0, -0.707107, 0, 0.707107, 5, 3, -5)
+transform = Transform3D(0.707107, 0, 0.707107, 0, 1, 0, -0.707107, 0, 0.707107, 3, 3, -2)
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
+transform = Transform3D(0.866025, 0.482963, 0.12941, 0, -0.258819, 0.965926, 0.5, -0.836516, -0.224144, -19, 7.73072, 32)
+light_color = Color(0.533333, 0.533333, 0.533333, 1)
+shadow_enabled = true
+sky_mode = 1
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource("Environment_qndx8")
+
+[editable path="c2_m1-new"]
