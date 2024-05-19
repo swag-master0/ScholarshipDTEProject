@@ -47,7 +47,7 @@ _data = {
 "projectile": SubResource("Animation_jwlln")
 }
 
-[node name="Projectile" type="RigidBody3D"]
+[node name="Projectile" type="RigidBody3D" groups=["projectile"]]
 script = ExtResource("1_n2k70")
 explosion = ExtResource("2_2uoi8")
 

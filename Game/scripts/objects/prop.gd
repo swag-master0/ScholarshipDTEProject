@@ -1,6 +1,6 @@
 extends RigidBody3D
 
-@export var grabbable : bool = false
+@export var ungrabbable : bool = false
 @onready var sound = $Sound
 
 var ungrabbable_group = "ungrabbable"
@@ -10,5 +10,5 @@ func _on_body_entered(_body):
 		sound.play()
 
 func _ready():
-	if grabbable:
+	if ungrabbable:
 		self.add_to_group(ungrabbable_group)

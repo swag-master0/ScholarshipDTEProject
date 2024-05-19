@@ -3,13 +3,14 @@
 [ext_resource type="Script" path="res://scripts/objects/button.gd" id="1_78ih0"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_rh17c"]
+size = Vector3(2, 2, 1)
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_ug182"]
 albedo_color = Color(0, 1, 0.521569, 1)
 
 [sub_resource type="BoxMesh" id="BoxMesh_c65ic"]
 material = SubResource("StandardMaterial3D_ug182")
-size = Vector3(1, 1, 0.5)
+size = Vector3(2, 2, 0.5)
 
 [sub_resource type="PrismMesh" id="PrismMesh_qnuij"]
 size = Vector3(0.2, 0.2, 0.2)
