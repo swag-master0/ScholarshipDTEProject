@@ -3,7 +3,7 @@
 [ext_resource type="PackedScene" uid="uid://d4nob737a2chy" path="res://scenes/elements/assets/objective.tscn" id="1_ghn5u"]
 [ext_resource type="PackedScene" uid="uid://ch7t6b0c3tjwr" path="res://scenes/elements/enemies/enemy.tscn" id="1_mvf3l"]
 [ext_resource type="PackedScene" uid="uid://c7ycb57houxl1" path="res://scenes/elements/assets/player.tscn" id="2_217fp"]
-[ext_resource type="PackedScene" uid="uid://4yye08ka71t1" path="res://scenes/levels/chapter2/c2_m1.tscn" id="2_brmf2"]
+[ext_resource type="PackedScene" uid="uid://4yye08ka71t1" path="res://scenes/levels/misc/scrappedlevels/c2_m1-old.tscn" id="2_brmf2"]
 [ext_resource type="PackedScene" uid="uid://ch3t1bgj51uvs" path="res://scenes/elements/enemies/sentry.tscn" id="2_gg53i"]
 [ext_resource type="PackedScene" uid="uid://cna5dpcxkdqae" path="res://assets/blend/levels_chapter1/c2_m4.blend" id="3_hl1ee"]
 [ext_resource type="PackedScene" uid="uid://bbb07r3hee2bp" path="res://scenes/elements/objects/prop.tscn" id="7_ee68b"]

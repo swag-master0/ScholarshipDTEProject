@@ -14,7 +14,8 @@ TODO:
 		must do in blender
 	
 	begin progress on c2 (TODO)
-
+	
+	create fragile props (TODO)
 	
 
 	reference and planning document:

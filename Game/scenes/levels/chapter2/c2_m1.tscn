@@ -1,35 +1,32 @@
-[gd_scene load_steps=14 format=3 uid="uid://4yye08ka71t1"]
+[gd_scene load_steps=11 format=3 uid="uid://c3jh1kk8goxry"]
 
-[ext_resource type="PackedScene" uid="uid://bk46lynwxp6mg" path="res://assets/blend/levels_chapter2/c2_m1.blend" id="1_ygmag"]
-[ext_resource type="Material" uid="uid://cmakta7ngaunj" path="res://assets/materials/temp_level.tres" id="2_yb7jv"]
-[ext_resource type="PackedScene" uid="uid://c7ycb57houxl1" path="res://scenes/elements/assets/player.tscn" id="3_34u3k"]
-[ext_resource type="PackedScene" uid="uid://ces1s7p5atsbn" path="res://scenes/elements/objects/jump_pad.tscn" id="4_nlvgf"]
-[ext_resource type="PackedScene" uid="uid://qgme1k42iyr6" path="res://scenes/elements/objects/breakable_glass.tscn" id="5_86dem"]
-[ext_resource type="PackedScene" uid="uid://ch3t1bgj51uvs" path="res://scenes/elements/enemies/sentry.tscn" id="6_a5acf"]
-[ext_resource type="PackedScene" uid="uid://d4nob737a2chy" path="res://scenes/elements/assets/objective.tscn" id="7_3got7"]
-[ext_resource type="PackedScene" uid="uid://cx1a4ujrxixpp" path="res://scenes/levels/misc/dev_room.tscn" id="8_ml3yd"]
+[ext_resource type="PackedScene" uid="uid://dkteohkuoghg0" path="res://assets/blend/levels_chapter2/c2_m1.blend" id="1_usv7o"]
+[ext_resource type="PackedScene" uid="uid://ch3t1bgj51uvs" path="res://scenes/elements/enemies/sentry.tscn" id="1_w338e"]
+[ext_resource type="PackedScene" uid="uid://d4nob737a2chy" path="res://scenes/elements/assets/objective.tscn" id="2_a3vyx"]
+[ext_resource type="PackedScene" uid="uid://c7ycb57houxl1" path="res://scenes/elements/assets/player.tscn" id="2_gi5go"]
+[ext_resource type="PackedScene" uid="uid://bbb07r3hee2bp" path="res://scenes/elements/objects/prop.tscn" id="3_r0mmd"]
 
-[sub_resource type="GDScript" id="GDScript_cwja6"]
-resource_name = "level2_functionality"
+[sub_resource type="GDScript" id="GDScript_ut0lq"]
+resource_name = "c2_m1-functionality"
 script/source = "extends Node3D
 
-@onready var platforms = $Path3D
-@export var platform_speed : float = 0.0001
-
-# Called when the node enters the scene tree for the first time.
-func _ready():
-	pass # Replace with function body.
+@onready var sentry = $Sentry
+@onready var info = $Sentry/Info
+@onready var spawnpoint = $SentrySpawn.global_position
+@export var sentry_instance : PackedScene
 
 
-# Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(_delta):
-	for i in platforms.get_children():
-		if i is PathFollow3D:
-			i.progress_ratio += platform_speed
+
+
+func _on_trigger_body_entered(body):
+	if body.is_in_group(\"projectile\"):
+		$Objective/ObjectiveItem.remove_from_group(\"ungrabbable\")
+
+
 
 "
 
-[sub_resource type="Environment" id="Environment_wye4r"]
+[sub_resource type="Environment" id="Environment_qndx8"]
 background_mode = 1
 ambient_light_source = 2
 ambient_light_color = Color(0.385493, 0.385492, 0.385492, 1)
@@ -40,32 +37,29 @@ volumetric_fog_density = 0.1228
 volumetric_fog_albedo = Color(0, 0, 0, 1)
 volumetric_fog_emission_energy = 0.0
 
-[sub_resource type="Curve3D" id="Curve3D_vja3j"]
-_data = {
-"points": PackedVector3Array(0, 0, 0, 0, 0, 0, 0, 0, -14, 0, 0, 0, 0, 0, 0, -45, 0, -14, 0, 0, 0, 0, 0, 0, -45, 0, -75, 0, 0, 0, 0, 0, 0, 45, 0, -75, 0, 0, 0, 0, 0, 0, 45, 0, -14, 0, 0, 0, 0, 0, 0, 0, 0, -14),
-"tilts": PackedFloat32Array(0, 0, 0, 0, 0, 0)
-}
-point_count = 6
+[sub_resource type="BoxShape3D" id="BoxShape3D_y7c7v"]
+size = Vector3(6, 6, 1)
 
-[sub_resource type="BoxMesh" id="BoxMesh_000et"]
-size = Vector3(8, 1, 8)
+[sub_resource type="BoxMesh" id="BoxMesh_0h1yy"]
+size = Vector3(6, 6, 1)
 
-[sub_resource type="BoxShape3D" id="BoxShape3D_bbsml"]
-size = Vector3(8, 1, 8)
+[sub_resource type="BoxShape3D" id="BoxShape3D_0315x"]
+size = Vector3(6, 8, 5.27594)
 
-[node name="Level2" type="Node3D"]
-script = SubResource("GDScript_cwja6")
+[node name="c2_m1-new" type="Node3D"]
+script = SubResource("GDScript_ut0lq")
+sentry_instance = ExtResource("1_w338e")
 
-[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
-environment = SubResource("Environment_wye4r")
+[node name="c2_m1" parent="." instance=ExtResource("1_usv7o")]
 
-[node name="level2" parent="." instance=ExtResource("1_ygmag")]
+[node name="Objective" parent="." instance=ExtResource("2_a3vyx")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5, 5, -2)
 
-[node name="Level" parent="level2" index="0"]
-material_override = ExtResource("2_yb7jv")
+[node name="ObjectiveItem" parent="Objective" index="1" groups=["ungrabbable"]]
+transform = Transform3D(0, 0, 1, 0, 1, 0, -1, 0, 0, 32, 3, -55.8205)
 
-[node name="Player" parent="." instance=ExtResource("3_34u3k")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -16.4767, 3.49581, 49.7648)
+[node name="Player" parent="." instance=ExtResource("2_gi5go")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3, 3, -2)
 
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
 transform = Transform3D(0.866025, 0.482963, 0.12941, 0, -0.258819, 0.965926, 0.5, -0.836516, -0.224144, -19, 7.73072, 32)
@@ -73,188 +67,38 @@ light_color = Color(0.533333, 0.533333, 0.533333, 1)
 shadow_enabled = true
 sky_mode = 1
 
-[node name="Path3D" type="Path3D" parent="."]
-curve = SubResource("Curve3D_vja3j")
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource("Environment_qndx8")
 
-[node name="Platform1" type="PathFollow3D" parent="Path3D"]
-transform = Transform3D(0.999987, 0, 0, 0, 1, 0, 0, 0, 0.999987, 0, 0, -14)
-rotation_mode = 0
-tilt_enabled = false
+[node name="Prop" parent="." instance=ExtResource("3_r0mmd")]
+transform = Transform3D(1, 0, 0, 0, 0.977327, 0.211734, 0, -0.211734, 0.977327, 37.6822, 3, -23.8435)
+mass = 100.0
+ungrabbable = true
 
-[node name="Platform" type="CharacterBody3D" parent="Path3D/Platform1"]
+[node name="CollisionShape3D" parent="Prop" index="0"]
+shape = SubResource("BoxShape3D_y7c7v")
 
-[node name="MeshInstance3D" type="MeshInstance3D" parent="Path3D/Platform1/Platform"]
-mesh = SubResource("BoxMesh_000et")
-skeleton = NodePath("../..")
+[node name="MeshInstance3D" parent="Prop" index="1"]
+mesh = SubResource("BoxMesh_0h1yy")
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="Path3D/Platform1/Platform"]
-shape = SubResource("BoxShape3D_bbsml")
+[node name="SentrySpawn" type="Marker3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 13.8593, 9, -20)
 
-[node name="Platform2" type="PathFollow3D" parent="Path3D"]
-transform = Transform3D(0.999987, 0, 0, 0, 1, 0, 0, 0, 0.999987, -30.2, 0, -14)
-progress = 30.2
-rotation_mode = 0
-tilt_enabled = false
+[node name="Trigger" type="Area3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 38, 1, -59)
 
-[node name="Platform" type="CharacterBody3D" parent="Path3D/Platform2"]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Trigger"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.5, 0.5, 0.13797)
+shape = SubResource("BoxShape3D_0315x")
 
-[node name="MeshInstance3D" type="MeshInstance3D" parent="Path3D/Platform2/Platform"]
-mesh = SubResource("BoxMesh_000et")
-skeleton = NodePath("../..")
+[node name="Sentry" parent="." instance=ExtResource("1_w338e")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 14, 7, -20)
+minimum_distance = 100
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="Path3D/Platform2/Platform"]
-shape = SubResource("BoxShape3D_bbsml")
+[connection signal="body_entered" from="Trigger" to="." method="_on_trigger_body_entered"]
+[connection signal="death" from="Sentry/Info" to="." method="_on_info_death"]
 
-[node name="Platform3" type="PathFollow3D" parent="Path3D"]
-transform = Transform3D(0.999987, 0, 0, 0, 1, 0, 0, 0, 0.999987, -45, 0, -29.4)
-progress = 60.4
-rotation_mode = 0
-tilt_enabled = false
-
-[node name="Platform" type="CharacterBody3D" parent="Path3D/Platform3"]
-
-[node name="MeshInstance3D" type="MeshInstance3D" parent="Path3D/Platform3/Platform"]
-mesh = SubResource("BoxMesh_000et")
-skeleton = NodePath("../..")
-
-[node name="CollisionShape3D" type="CollisionShape3D" parent="Path3D/Platform3/Platform"]
-shape = SubResource("BoxShape3D_bbsml")
-
-[node name="Platform4" type="PathFollow3D" parent="Path3D"]
-transform = Transform3D(0.999987, 0, 0, 0, 1, 0, 0, 0, 0.999987, -45, 0, -59.6)
-progress = 90.6
-rotation_mode = 0
-tilt_enabled = false
-
-[node name="Platform" type="CharacterBody3D" parent="Path3D/Platform4"]
-
-[node name="MeshInstance3D" type="MeshInstance3D" parent="Path3D/Platform4/Platform"]
-mesh = SubResource("BoxMesh_000et")
-skeleton = NodePath("../..")
-
-[node name="CollisionShape3D" type="CollisionShape3D" parent="Path3D/Platform4/Platform"]
-shape = SubResource("BoxShape3D_bbsml")
-
-[node name="Platform5" type="PathFollow3D" parent="Path3D"]
-transform = Transform3D(0.999987, 0, 0, 0, 1, 0, 0, 0, 0.999987, -30.2, 0, -75)
-progress = 120.8
-rotation_mode = 0
-tilt_enabled = false
-
-[node name="Platform" type="CharacterBody3D" parent="Path3D/Platform5"]
-
-[node name="MeshInstance3D" type="MeshInstance3D" parent="Path3D/Platform5/Platform"]
-mesh = SubResource("BoxMesh_000et")
-skeleton = NodePath("../..")
-
-[node name="CollisionShape3D" type="CollisionShape3D" parent="Path3D/Platform5/Platform"]
-shape = SubResource("BoxShape3D_bbsml")
-
-[node name="Platform6" type="PathFollow3D" parent="Path3D"]
-transform = Transform3D(0.999987, 0, 0, 0, 1, 0, 0, 0, 0.999987, -6.10359e-05, 0, -75)
-progress = 151.0
-rotation_mode = 0
-tilt_enabled = false
-
-[node name="Platform" type="CharacterBody3D" parent="Path3D/Platform6"]
-
-[node name="MeshInstance3D" type="MeshInstance3D" parent="Path3D/Platform6/Platform"]
-mesh = SubResource("BoxMesh_000et")
-skeleton = NodePath("../..")
-
-[node name="CollisionShape3D" type="CollisionShape3D" parent="Path3D/Platform6/Platform"]
-shape = SubResource("BoxShape3D_bbsml")
-
-[node name="Platform7" type="PathFollow3D" parent="Path3D"]
-transform = Transform3D(0.999987, 0, 0, 0, 1, 0, 0, 0, 0.999987, 30.2, 0, -75)
-progress = 181.2
-rotation_mode = 0
-tilt_enabled = false
-
-[node name="Platform" type="CharacterBody3D" parent="Path3D/Platform7"]
-
-[node name="MeshInstance3D" type="MeshInstance3D" parent="Path3D/Platform7/Platform"]
-mesh = SubResource("BoxMesh_000et")
-skeleton = NodePath("../..")
-
-[node name="CollisionShape3D" type="CollisionShape3D" parent="Path3D/Platform7/Platform"]
-shape = SubResource("BoxShape3D_bbsml")
-
-[node name="Platform8" type="PathFollow3D" parent="Path3D"]
-transform = Transform3D(0.999987, 0, 0, 0, 1, 0, 0, 0, 0.999987, 45, 0, -59.6)
-progress = 211.4
-rotation_mode = 0
-tilt_enabled = false
-
-[node name="Platform" type="CharacterBody3D" parent="Path3D/Platform8"]
-
-[node name="MeshInstance3D" type="MeshInstance3D" parent="Path3D/Platform8/Platform"]
-mesh = SubResource("BoxMesh_000et")
-skeleton = NodePath("../..")
-
-[node name="CollisionShape3D" type="CollisionShape3D" parent="Path3D/Platform8/Platform"]
-shape = SubResource("BoxShape3D_bbsml")
-
-[node name="Platform9" type="PathFollow3D" parent="Path3D"]
-transform = Transform3D(0.999987, 0, 0, 0, 1, 0, 0, 0, 0.999987, 45, 0, -29.4)
-progress = 241.6
-rotation_mode = 0
-tilt_enabled = false
-
-[node name="Platform" type="CharacterBody3D" parent="Path3D/Platform9"]
-
-[node name="MeshInstance3D" type="MeshInstance3D" parent="Path3D/Platform9/Platform"]
-mesh = SubResource("BoxMesh_000et")
-skeleton = NodePath("../..")
-
-[node name="CollisionShape3D" type="CollisionShape3D" parent="Path3D/Platform9/Platform"]
-shape = SubResource("BoxShape3D_bbsml")
-
-[node name="Platform10" type="PathFollow3D" parent="Path3D"]
-transform = Transform3D(0.999987, 0, 0, 0, 1, 0, 0, 0, 0.999987, 30.2, 0, -14)
-progress = 271.8
-rotation_mode = 0
-tilt_enabled = false
-
-[node name="Platform" type="CharacterBody3D" parent="Path3D/Platform10"]
-
-[node name="MeshInstance3D" type="MeshInstance3D" parent="Path3D/Platform10/Platform"]
-mesh = SubResource("BoxMesh_000et")
-skeleton = NodePath("../..")
-
-[node name="CollisionShape3D" type="CollisionShape3D" parent="Path3D/Platform10/Platform"]
-shape = SubResource("BoxShape3D_bbsml")
-
-[node name="JumpPad" parent="." instance=ExtResource("4_nlvgf")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.8, -10.5, -13.9)
-
-[node name="JumpPad2" parent="." instance=ExtResource("4_nlvgf")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.8, -15.5, -75.2113)
-
-[node name="Glass" parent="." instance=ExtResource("5_86dem")]
-transform = Transform3D(-4.37114e-08, 0, -2, 0, 1, 0, 1, 0, -8.74228e-08, -45.2233, 1.38107, -22.7831)
-
-[node name="Glass2" parent="." instance=ExtResource("5_86dem")]
-transform = Transform3D(-4.37114e-08, 0, -2, 0, 1, 0, 1, 0, -8.74228e-08, -45.2233, 1.38107, -42.7831)
-
-[node name="Glass3" parent="." instance=ExtResource("5_86dem")]
-transform = Transform3D(-4.37114e-08, 0, -2, 0, 1, 0, 1, 0, -8.74228e-08, -45.2233, 1.38107, -62.7831)
-
-[node name="Sentry" parent="." instance=ExtResource("6_a5acf")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 54, 2, -82)
-
-[node name="Sentry2" parent="." instance=ExtResource("6_a5acf")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 54, 2, -51)
-
-[node name="Sentry3" parent="." instance=ExtResource("6_a5acf")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 54, 2, -18)
-
-[node name="Objective" parent="." instance=ExtResource("7_3got7")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -11.2524, 3.00001, 51.8959)
-nextscene = ExtResource("8_ml3yd")
-
-[node name="ObjectiveItem" parent="Objective" index="1"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 34, 3, -179)
-
-[editable path="level2"]
 [editable path="Objective"]
+[editable path="Prop"]
+[editable path="Sentry"]
+[editable path="Sentry/Info"]
