@@ -1,0 +1,37 @@
+[gd_scene load_steps=6 format=3 uid="uid://qgme1k42iyr6"]
+
+[ext_resource type="PackedScene" uid="uid://daymadsgic1jy" path="res://Art/blend/assets/glass.blend" id="1_c8plg"]
+[ext_resource type="Script" path="res://Elements/assets/passive/breakable_glass/breakable_glass.gd" id="1_dfbi3"]
+[ext_resource type="PackedScene" uid="uid://cft1b4l0aljye" path="res://Elements/function/info/info.tscn" id="4_vrqgh"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_nxum4"]
+size = Vector3(1.5, 6, 6)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_2meg8"]
+size = Vector3(1.105, 6.255, 6)
+
+[node name="Glass" type="Node3D"]
+script = ExtResource("1_dfbi3")
+
+[node name="glass" parent="." instance=ExtResource("1_c8plg")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.132558, 0, -0.0899639)
+
+[node name="Hitbox" type="Area3D" parent="."]
+visible = false
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Hitbox"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.125, 3, 0)
+shape = SubResource("BoxShape3D_nxum4")
+
+[node name="Info" parent="." instance=ExtResource("4_vrqgh")]
+health = 3.0
+DamagePlayerOnPlayerCollision = false
+
+[node name="CollisionShape3D" parent="Info/Hitbox" index="0"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.116691, 2.99256, 0)
+shape = SubResource("BoxShape3D_2meg8")
+
+[connection signal="body_entered" from="Hitbox" to="." method="_on_hitbox_body_entered"]
+[connection signal="death" from="Info" to="." method="_on_info_death"]
+
+[editable path="Info"]

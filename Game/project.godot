@@ -11,9 +11,9 @@ config_version=5
 [application]
 
 config/name="Collection Agent"
-run/main_scene="res://scenes/levels/misc/main_menu.tscn"
+run/main_scene="res://Elements/environments/misc/main_menu/main_menu.tscn"
 config/features=PackedStringArray("4.2", "Forward Plus")
-config/icon="res://assets/textures/icon.svg"
+config/icon="res://Art/textures/icon.svg"
 
 [display]
 
@@ -26,11 +26,36 @@ mouse_cursor/custom_image_hotspot=Vector2(30, 30)
 [file_customization]
 
 folder_colors={
-"res://assets/": "red",
-"res://assets/blend/": "orange",
-"res://scenes/": "blue",
-"res://scenes/elements/": "green",
-"res://scripts/": "green"
+"res://Art/": "red",
+"res://Art/audio/": "orange",
+"res://Art/blend/": "orange",
+"res://Art/materials/": "orange",
+"res://Art/textures/": "orange",
+"res://Elements/": "red",
+"res://Elements/assets/": "orange",
+"res://Elements/assets/hostile/": "yellow",
+"res://Elements/assets/hostile/explosion/": "green",
+"res://Elements/assets/hostile/explosive_barrel/": "green",
+"res://Elements/assets/hostile/grenade/": "green",
+"res://Elements/assets/hostile/hazard/": "green",
+"res://Elements/assets/passive/": "yellow",
+"res://Elements/assets/passive/breakable_glass/": "green",
+"res://Elements/assets/passive/button/": "green",
+"res://Elements/assets/passive/jump_pad/": "green",
+"res://Elements/assets/passive/props/": "green",
+"res://Elements/enemies/": "orange",
+"res://Elements/enemies/bomber/": "green",
+"res://Elements/enemies/copycat/": "green",
+"res://Elements/enemies/enemy/": "green",
+"res://Elements/enemies/sentry/": "green",
+"res://Elements/environments/": "orange",
+"res://Elements/environments/chapter1/": "green",
+"res://Elements/environments/chapter2/": "green",
+"res://Elements/environments/misc/": "green",
+"res://Elements/function/": "orange",
+"res://Elements/function/info/": "green",
+"res://Elements/function/objective/": "green",
+"res://Elements/function/player/": "green"
 }
 
 [input]
