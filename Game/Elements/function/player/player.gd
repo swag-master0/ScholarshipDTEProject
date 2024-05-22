@@ -285,8 +285,6 @@ func NearestObject():
 	var closest_node = null
 	var closest_node_distance = 0.0
 	
-	var radius = $ProjectilePickupRange.get_overlapping_bodies()
-	
 	# fetches closest node to the cursor
 	for i in objects:
 		var current_node_distance = detection.global_position.distance_to(i.global_position)
