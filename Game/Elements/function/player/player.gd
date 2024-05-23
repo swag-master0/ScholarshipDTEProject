@@ -85,9 +85,13 @@ func _physics_process(delta):
 	#if Input.is_action_pressed("click"):
 	if isHolding:
 		character.rotation.y = atan2(cursor.position.x, cursor.position.z)
+		$Cursor/Area3D/crosshair.visible = true
+		Input.set_mouse_mode(Input.MOUSE_MODE_HIDDEN)
 	#elif not Input.is_action_pressed("click"): # This is shitty code, but I fail to care
 	elif !isHolding:
 		character.rotation.y = lerp_angle(character.rotation.y, atan2(faceDirection.x, faceDirection.z), delta * TURN_VELOCITY)
+		$Cursor/Area3D/crosshair.visible = false
+		Input.set_mouse_mode(Input.MOUSE_MODE_VISIBLE)
 		
 		
 	
@@ -202,6 +206,11 @@ func _process(_delta):
 		$HUD/Health.max_value = max_health
 		$HUD/Health/HealthWhite.max_value = max_health
 		
+		if health == max_health:
+			$HUD/Health.visible = false
+		else:
+			$HUD/Health.visible = true
+		
 		if $HUD/Health/HealthWhite.value != $HUD/Health.value:
 			var tween = get_tree().create_tween()
 			
@@ -266,15 +275,15 @@ func MousePosition():
 		collision.global_position = global_position
 		collision.target_position = cursor.global_position - global_position
 		
-		if (collision.get_collision_point().distance_to(cursor.global_position) > 8) and Input.is_action_pressed("click"):
+		if (collision.get_collision_point().distance_to(cursor.global_position) > 4) and Input.is_action_pressed("click") and isHolding:
 			$"3D-CursorModel".global_position = lerp($"3D-CursorModel".global_position, collision.get_collision_point(), 0.25)
 			$"3D-CursorModel".visible = true
-			$Cursor/Area3D/MeshInstance3D.visible = true
+			$Cursor/Area3D/crosshair.visible = true
 			Input.set_mouse_mode(Input.MOUSE_MODE_HIDDEN)
 		else:
 			$"3D-CursorModel".global_position = cursor.global_position
 			$"3D-CursorModel".visible = false
-			$Cursor/Area3D/MeshInstance3D.visible = false
+			$Cursor/Area3D/crosshair.visible = false
 			Input.set_mouse_mode(Input.MOUSE_MODE_VISIBLE)
 
 

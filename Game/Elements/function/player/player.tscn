@@ -1,8 +1,9 @@
-[gd_scene load_steps=31 format=3 uid="uid://c7ycb57houxl1"]
+[gd_scene load_steps=30 format=3 uid="uid://c7ycb57houxl1"]
 
 [ext_resource type="Script" path="res://Elements/function/player/player.gd" id="1_f2by1"]
 [ext_resource type="PackedScene" uid="uid://cft1b4l0aljye" path="res://Elements/function/info/info.tscn" id="2_r67s4"]
 [ext_resource type="Texture2D" uid="uid://djwowo0gdnhek" path="res://Art/textures/mouse_base.png" id="3_1eetr"]
+[ext_resource type="PackedScene" uid="uid://co66d8wf4n3fv" path="res://Art/blend/assets/crosshair.blend" id="3_fx0ja"]
 [ext_resource type="Texture2D" uid="uid://dmnjpb8ox2bsu" path="res://Art/textures/mouse1-1.png" id="4_mgded"]
 [ext_resource type="Texture2D" uid="uid://cvguvo850eb22" path="res://Art/textures/mouse1-2.png" id="5_tu8r8"]
 [ext_resource type="AudioStream" uid="uid://w2v2x3att67l" path="res://Art/audio/click.wav" id="6_8os6d"]
@@ -36,16 +37,6 @@ material = SubResource("StandardMaterial3D_4qe3w")
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_2e1ws"]
 size = Vector3(2, 3, 2)
-
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_c5oqm"]
-albedo_color = Color(1, 0, 0, 1)
-emission = Color(1, 0, 0, 1)
-emission_energy_multiplier = 3.0
-
-[sub_resource type="SphereMesh" id="SphereMesh_tvgqu"]
-material = SubResource("StandardMaterial3D_c5oqm")
-radius = 0.125
-height = 0.25
 
 [sub_resource type="CylinderShape3D" id="CylinderShape3D_chmfs"]
 height = 3.0
@@ -184,8 +175,8 @@ gizmo_extents = 3.0
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
 shape = SubResource("BoxShape3D_2e1ws")
 
-[node name="MeshInstance3D" type="MeshInstance3D" parent="Cursor/Area3D"]
-mesh = SubResource("SphereMesh_tvgqu")
+[node name="crosshair" parent="Cursor/Area3D" instance=ExtResource("3_fx0ja")]
+transform = Transform3D(1.5, 0, 0, 0, 1.5, 0, 0, 0, 1.5, 0, 0, 0)
 
 [node name="ProjectilePickupRange" type="Area3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.68487, 0)
