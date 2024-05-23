@@ -1,16 +1,42 @@
-[gd_scene load_steps=18 format=3 uid="uid://e1ifpcaik1si"]
+[gd_scene load_steps=20 format=3 uid="uid://e1ifpcaik1si"]
 
 [ext_resource type="PackedScene" uid="uid://c7ycb57houxl1" path="res://Elements/function/player/player.tscn" id="1_5okxu"]
 [ext_resource type="PackedScene" uid="uid://fng1tq0dr424" path="res://Art/blend/levels_chapter2/c2_m2.blend" id="1_phkl0"]
+[ext_resource type="PackedScene" uid="uid://d4nob737a2chy" path="res://Elements/function/objective/objective.tscn" id="2_ph2j3"]
+[ext_resource type="PackedScene" uid="uid://bbb07r3hee2bp" path="res://Elements/assets/passive/props/prop.tscn" id="3_uaf3v"]
 
 [sub_resource type="GDScript" id="GDScript_eiqq0"]
 resource_name = "c2_m2-functionality"
 script/source = "extends Node3D
 
+@onready var area = $Pain
 
-#player touch flor
+@export var player_floor_damage = 10
+@export var player_fling_velocity = 50
+@export var enemy_floor_damage = 9999
+@export var prop_fling_velocity = 50
+
+#flor
+
 func _on_pain_body_entered(body):
-	pass # Replace with function body.
+	print(body)
+	#if body is RigidBody3D:
+	#	body.apply_force(Vector3(0, prop_fling_velocity, 0))
+	
+	
+	if body.is_in_group(\"player\"):
+		body.velocity.y = player_fling_velocity
+		
+		for i in body.get_children():
+			if i.is_in_group(\"info\"):
+				i.Damage(player_floor_damage)
+	
+	
+	if body.is_in_group(\"enemy\"):
+		for i in body.get_children():
+			if i.is_in_group(\"info\"):
+				i.Damage(enemy_floor_damage) #kill enemies instantly if they touchie
+	
 
 "
 
@@ -44,22 +70,22 @@ material = SubResource("StandardMaterial3D_5joel")
 size = Vector3(30, 1, 10)
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_kijnf"]
-size = Vector3(30, 1, 20)
+size = Vector3(30, 20, 20)
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_b7c7o"]
-size = Vector3(10, 1, 15)
+size = Vector3(10, 20, 15)
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_owgr7"]
-size = Vector3(10, 1, 35)
+size = Vector3(10, 20, 35)
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_t1p6k"]
-size = Vector3(20, 1, 10)
+size = Vector3(20, 20, 10)
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_0abe8"]
-size = Vector3(40, 1, 10)
+size = Vector3(40, 20, 10)
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_vudvp"]
-size = Vector3(30, 1, 10)
+size = Vector3(30, 20, 10)
 
 [sub_resource type="Environment" id="Environment_vphk2"]
 background_mode = 1
@@ -76,6 +102,12 @@ volumetric_fog_emission_energy = 0.0
 script = SubResource("GDScript_eiqq0")
 
 [node name="c2_m2" parent="." instance=ExtResource("1_phkl0")]
+
+[node name="Objective" parent="." instance=ExtResource("2_ph2j3")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 5, 0)
+
+[node name="ObjectiveItem" parent="Objective" index="1"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 125, 0, -45)
 
 [node name="Pain" type="Area3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 20.5, -1, 0)
@@ -105,27 +137,27 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 94.5, 0, -45)
 mesh = SubResource("BoxMesh_i0hay")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Pain"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 14.5, 0, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 14.5, -10, 0)
 shape = SubResource("BoxShape3D_kijnf")
 
 [node name="CollisionShape3D2" type="CollisionShape3D" parent="Pain"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 34.5, 0, 2.5)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 34.5, -10, 2.5)
 shape = SubResource("BoxShape3D_b7c7o")
 
 [node name="CollisionShape3D3" type="CollisionShape3D" parent="Pain"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 44.5, 0, -12.5)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 44.5, -10, -12.5)
 shape = SubResource("BoxShape3D_owgr7")
 
 [node name="CollisionShape3D4" type="CollisionShape3D" parent="Pain"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 59.5, 0, -25)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 59.5, -10, -25)
 shape = SubResource("BoxShape3D_t1p6k")
 
 [node name="CollisionShape3D5" type="CollisionShape3D" parent="Pain"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 79.5, 0, -35)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 79.5, -10, -35)
 shape = SubResource("BoxShape3D_0abe8")
 
 [node name="CollisionShape3D6" type="CollisionShape3D" parent="Pain"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 94.5, 0, -45)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 94.5, -10, -45)
 shape = SubResource("BoxShape3D_vudvp")
 
 [node name="Player" parent="." instance=ExtResource("1_5okxu")]
@@ -140,6 +172,25 @@ light_color = Color(0.533333, 0.533333, 0.533333, 1)
 shadow_enabled = true
 sky_mode = 1
 
+[node name="Prop" parent="." instance=ExtResource("3_uaf3v")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 12.314, 1, 2.49577)
+
+[node name="Prop2" parent="." instance=ExtResource("3_uaf3v")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 43.8869, -1.5, 5.48438)
+
+[node name="Prop3" parent="." instance=ExtResource("3_uaf3v")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 39.7193, -1.5, -2.06753)
+
+[node name="Prop4" parent="." instance=ExtResource("3_uaf3v")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 33.1153, -1.5, 1.57709)
+
+[node name="Prop5" parent="." instance=ExtResource("3_uaf3v")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 50.2066, -1.5, 4.88472)
+
+[node name="Prop6" parent="." instance=ExtResource("3_uaf3v")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 50.797, -1.5, -0.358882)
+
 [connection signal="body_entered" from="Pain" to="." method="_on_pain_body_entered"]
 
 [editable path="c2_m2"]
+[editable path="Objective"]
