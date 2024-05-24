@@ -1,9 +1,10 @@
-[gd_scene load_steps=20 format=3 uid="uid://e1ifpcaik1si"]
+[gd_scene load_steps=21 format=3 uid="uid://e1ifpcaik1si"]
 
 [ext_resource type="PackedScene" uid="uid://c7ycb57houxl1" path="res://Elements/function/player/player.tscn" id="1_5okxu"]
 [ext_resource type="PackedScene" uid="uid://fng1tq0dr424" path="res://Art/blend/levels_chapter2/c2_m2.blend" id="1_phkl0"]
 [ext_resource type="PackedScene" uid="uid://d4nob737a2chy" path="res://Elements/function/objective/objective.tscn" id="2_ph2j3"]
 [ext_resource type="PackedScene" uid="uid://bbb07r3hee2bp" path="res://Elements/assets/passive/props/prop.tscn" id="3_uaf3v"]
+[ext_resource type="PackedScene" uid="uid://ch3t1bgj51uvs" path="res://Elements/enemies/sentry/sentry.tscn" id="5_0rjpi"]
 
 [sub_resource type="GDScript" id="GDScript_eiqq0"]
 resource_name = "c2_m2-functionality"
@@ -11,13 +12,19 @@ script/source = "extends Node3D
 
 @onready var area = $Pain
 
-@export var player_floor_damage = 10
-@export var player_fling_velocity = 50
+@export var player_floor_damage = 1
+@export var player_fling_velocity = 35
 @export var enemy_floor_damage = 9999
 @export var prop_fling_velocity = 50
 
-#flor
 
+func _process(delta):
+	for i in area.get_overlapping_bodies():
+		if i.is_in_group(\"projectile\"):
+			i.apply_force(Vector3(0, prop_fling_velocity, 0))
+
+
+#flor
 func _on_pain_body_entered(body):
 	print(body)
 	#if body is RigidBody3D:
@@ -37,11 +44,12 @@ func _on_pain_body_entered(body):
 			if i.is_in_group(\"info\"):
 				i.Damage(enemy_floor_damage) #kill enemies instantly if they touchie
 	
+	
 
 "
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_5joel"]
-albedo_color = Color(0.494245, 1.40181e-06, 2.40654e-07, 1)
+albedo_color = Color(0.494118, 0, 0, 1)
 emission_enabled = true
 emission = Color(1, 0, 0, 1)
 
@@ -172,23 +180,151 @@ light_color = Color(0.533333, 0.533333, 0.533333, 1)
 shadow_enabled = true
 sky_mode = 1
 
-[node name="Prop" parent="." instance=ExtResource("3_uaf3v")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 12.314, 1, 2.49577)
+[node name="Props" type="Node" parent="."]
 
-[node name="Prop2" parent="." instance=ExtResource("3_uaf3v")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 43.8869, -1.5, 5.48438)
+[node name="Prop" parent="Props" instance=ExtResource("3_uaf3v")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 17.314, 1, 2.49577)
 
-[node name="Prop3" parent="." instance=ExtResource("3_uaf3v")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 39.7193, -1.5, -2.06753)
+[node name="Prop2" parent="Props" instance=ExtResource("3_uaf3v")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 43.8869, -0.5, 5.48438)
 
-[node name="Prop4" parent="." instance=ExtResource("3_uaf3v")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 33.1153, -1.5, 1.57709)
+[node name="Prop3" parent="Props" instance=ExtResource("3_uaf3v")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 39.7193, -0.5, -2.06753)
 
-[node name="Prop5" parent="." instance=ExtResource("3_uaf3v")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 50.2066, -1.5, 4.88472)
+[node name="Prop4" parent="Props" instance=ExtResource("3_uaf3v")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 33.1153, -0.5, 1.57709)
 
-[node name="Prop6" parent="." instance=ExtResource("3_uaf3v")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 50.797, -1.5, -0.358882)
+[node name="Prop5" parent="Props" instance=ExtResource("3_uaf3v")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 50.2066, -0.5, 4.88472)
+
+[node name="Prop6" parent="Props" instance=ExtResource("3_uaf3v")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 50.797, -0.5, -0.358882)
+
+[node name="Prop7" parent="Props" instance=ExtResource("3_uaf3v")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 46.0437, -0.5, -2.90135)
+
+[node name="Prop8" parent="Props" instance=ExtResource("3_uaf3v")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 42.2853, -0.5, 1.70457)
+
+[node name="Prop9" parent="Props" instance=ExtResource("3_uaf3v")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 41.9905, -0.5, -7.50726)
+
+[node name="Prop10" parent="Props" instance=ExtResource("3_uaf3v")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 33.9905, -0.5, -4.50726)
+
+[node name="Prop11" parent="Props" instance=ExtResource("3_uaf3v")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 27.2229, -0.5, -3.15374)
+
+[node name="Prop12" parent="Props" instance=ExtResource("3_uaf3v")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 29.7294, -0.5, 2.46086)
+
+[node name="Prop13" parent="Props" instance=ExtResource("3_uaf3v")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 35.7294, -0.5, 6.46086)
+
+[node name="Prop14" parent="Props" instance=ExtResource("3_uaf3v")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 55.9319, -0.5, 2.75121)
+
+[node name="Prop15" parent="Props" instance=ExtResource("3_uaf3v")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 62.1982, -0.5, 1.19717)
+
+[node name="Prop16" parent="Props" instance=ExtResource("3_uaf3v")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 67.1611, -0.5, -1.86078)
+
+[node name="Prop17" parent="Props" instance=ExtResource("3_uaf3v")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 64.0531, -0.5, -6.82368)
+
+[node name="Prop18" parent="Props" instance=ExtResource("3_uaf3v")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 66.9105, -0.5, -11.5359)
+
+[node name="Prop19" parent="Props" instance=ExtResource("3_uaf3v")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 61.7972, -0.5, -13.1401)
+
+[node name="Prop20" parent="Props" instance=ExtResource("3_uaf3v")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 62.5491, -0.5, -18.3537)
+
+[node name="Prop21" parent="Props" instance=ExtResource("3_uaf3v")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 67.0609, -0.5, -21.3114)
+
+[node name="Prop22" parent="Props" instance=ExtResource("3_uaf3v")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 71.2217, -0.5, -25.6226)
+
+[node name="Prop23" parent="Props" instance=ExtResource("3_uaf3v")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 76.1345, -0.5, -24.5197)
+
+[node name="Prop24" parent="Props" instance=ExtResource("3_uaf3v")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 80.0948, -0.5, -27.6278)
+
+[node name="Prop25" parent="Props" instance=ExtResource("3_uaf3v")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 64.0948, -0.5, -24.6278)
+
+[node name="Prop26" parent="Props" instance=ExtResource("3_uaf3v")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 62.0394, -0.5, -28.187)
+
+[node name="Prop27" parent="Props" instance=ExtResource("3_uaf3v")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 81.1892, -0.5, -22.5223)
+
+[node name="Prop28" parent="Props" instance=ExtResource("3_uaf3v")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 87.3051, -0.5, -22.8231)
+
+[node name="Prop29" parent="Props" instance=ExtResource("3_uaf3v")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 83.3051, -0.5, -27.8231)
+
+[node name="Prop30" parent="Props" instance=ExtResource("3_uaf3v")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 83.656, -0.5, -32.034)
+
+[node name="Prop31" parent="Props" instance=ExtResource("3_uaf3v")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 88.656, -0.5, -33.034)
+
+[node name="Prop32" parent="Props" instance=ExtResource("3_uaf3v")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 84.656, -0.5, -37.034)
+
+[node name="Prop33" parent="Props" instance=ExtResource("3_uaf3v")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 94.656, -0.5, -37.034)
+
+[node name="Prop34" parent="Props" instance=ExtResource("3_uaf3v")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 95.3077, -0.5, -33.2319)
+
+[node name="Prop35" parent="Props" instance=ExtResource("3_uaf3v")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 102.308, -0.5, -33.2319)
+
+[node name="Prop36" parent="Props" instance=ExtResource("3_uaf3v")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 107.308, -0.5, -32.2319)
+
+[node name="Prop39" parent="Props" instance=ExtResource("3_uaf3v")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 117.421, -0.5, -36.0366)
+
+[node name="Prop40" parent="Props" instance=ExtResource("3_uaf3v")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 113.421, -0.5, -45.0366)
+
+[node name="Prop41" parent="Props" instance=ExtResource("3_uaf3v")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 104.421, -0.5, -44.0366)
+
+[node name="Prop42" parent="Props" instance=ExtResource("3_uaf3v")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 122.421, -0.5, -43.0366)
+
+[node name="Prop43" parent="Props" instance=ExtResource("3_uaf3v")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 123.373, -0.5, -45.5212)
+
+[node name="Prop44" parent="Props" instance=ExtResource("3_uaf3v")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 126.373, -0.5, -44.5212)
+
+[node name="Prop45" parent="Props" instance=ExtResource("3_uaf3v")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 124.794, -0.5, -42.3617)
+
+[node name="Prop46" parent="Props" instance=ExtResource("3_uaf3v")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 128.416, -0.5, -41.9205)
+
+[node name="Prop47" parent="Props" instance=ExtResource("3_uaf3v")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 128.161, -0.5, -47.1218)
+
+[node name="Prop48" parent="Props" instance=ExtResource("3_uaf3v")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 125.161, -0.5, -48.1218)
+
+[node name="Sentry" parent="." instance=ExtResource("5_0rjpi")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 113.396, 1.5, -45.0908)
+
+[node name="Sentry2" parent="." instance=ExtResource("5_0rjpi")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 61.997, 1.5, -28.297)
 
 [connection signal="body_entered" from="Pain" to="." method="_on_pain_body_entered"]
 

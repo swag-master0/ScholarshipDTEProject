@@ -1,0 +1,13 @@
+[gd_resource type="StandardMaterial3D" load_steps=2 format=3 uid="uid://b6kkipn5s7ecp"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_1utg7"]
+transparency = 1
+no_depth_test = true
+shading_mode = 0
+albedo_color = Color(0.807843, 0.25098, 0.282353, 1)
+
+[resource]
+render_priority = 1
+next_pass = SubResource("StandardMaterial3D_1utg7")
+no_depth_test = true
+albedo_color = Color(0.80812, 0.252739, 0.28112, 1)

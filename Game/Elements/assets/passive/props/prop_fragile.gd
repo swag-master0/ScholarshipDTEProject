@@ -6,7 +6,7 @@ extends RigidBody3D
 var ungrabbable_group = "ungrabbable"
 
 func _on_body_entered(body):
-	var vel = body.get_linear_velocity()
+	var vel = self.get_linear_velocity()
 	
 	# convert negative numbers to positive, or else square root returns 'not a number'
 	if vel.x < 0:
@@ -18,7 +18,7 @@ func _on_body_entered(body):
 	
 	var magnitude = sqrt(vel.x + vel.y + vel.z) # find the magnitude of itself
 	
-	if magnitude < 5:
+	if magnitude > 2:
 		self.queue_free() # break if magnitude is large enough
 	
 	if !sound.is_playing():

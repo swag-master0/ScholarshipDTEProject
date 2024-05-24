@@ -1,9 +1,10 @@
-[gd_scene load_steps=30 format=3 uid="uid://c7ycb57houxl1"]
+[gd_scene load_steps=33 format=3 uid="uid://c7ycb57houxl1"]
 
 [ext_resource type="Script" path="res://Elements/function/player/player.gd" id="1_f2by1"]
 [ext_resource type="PackedScene" uid="uid://cft1b4l0aljye" path="res://Elements/function/info/info.tscn" id="2_r67s4"]
 [ext_resource type="Texture2D" uid="uid://djwowo0gdnhek" path="res://Art/textures/mouse_base.png" id="3_1eetr"]
 [ext_resource type="PackedScene" uid="uid://co66d8wf4n3fv" path="res://Art/blend/assets/crosshair.blend" id="3_fx0ja"]
+[ext_resource type="Material" uid="uid://b6kkipn5s7ecp" path="res://Art/materials/cursor.tres" id="4_5haak"]
 [ext_resource type="Texture2D" uid="uid://dmnjpb8ox2bsu" path="res://Art/textures/mouse1-1.png" id="4_mgded"]
 [ext_resource type="Texture2D" uid="uid://cvguvo850eb22" path="res://Art/textures/mouse1-2.png" id="5_tu8r8"]
 [ext_resource type="AudioStream" uid="uid://w2v2x3att67l" path="res://Art/audio/click.wav" id="6_8os6d"]
@@ -22,6 +23,15 @@ material = SubResource("StandardMaterial3D_jofc1")
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_virh7"]
 size = Vector3(2, 2, 3)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_ppsuc"]
+emission_enabled = true
+emission = Color(1, 1, 1, 1)
+
+[sub_resource type="TorusMesh" id="TorusMesh_e6sua"]
+material = SubResource("StandardMaterial3D_ppsuc")
+inner_radius = 3.955
+outer_radius = 4.0
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_4qe3w"]
 albedo_color = Color(1, 0, 0, 1)
@@ -134,6 +144,10 @@ top_level = true
 target_position = Vector3(0, 0, 3.545)
 debug_shape_custom_color = Color(1, 1, 1, 1)
 
+[node name="DropIndicator" type="MeshInstance3D" parent="PlayerModel"]
+mesh = SubResource("TorusMesh_e6sua")
+skeleton = NodePath("../..")
+
 [node name="3D-CursorModel" type="MeshInstance3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 5)
 mesh = SubResource("SphereMesh_g5di6")
@@ -166,7 +180,7 @@ visible = false
 target_position = Vector3(0, 0, -5)
 
 [node name="Cursor" type="Marker3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -4)
+transform = Transform3D(0.707107, 0, -0.707107, 0, 1, 0, 0.707107, 0, 0.707107, 0, 0, -4)
 gizmo_extents = 3.0
 
 [node name="Area3D" type="Area3D" parent="Cursor"]
@@ -177,6 +191,24 @@ shape = SubResource("BoxShape3D_2e1ws")
 
 [node name="crosshair" parent="Cursor/Area3D" instance=ExtResource("3_fx0ja")]
 transform = Transform3D(1.5, 0, 0, 0, 1.5, 0, 0, 0, 1.5, 0, 0, 0)
+
+[node name="Cube" parent="Cursor/Area3D/crosshair" index="0"]
+material_override = ExtResource("4_5haak")
+
+[node name="Cube_001" parent="Cursor/Area3D/crosshair" index="1"]
+material_override = ExtResource("4_5haak")
+
+[node name="Cube_002" parent="Cursor/Area3D/crosshair" index="2"]
+material_override = ExtResource("4_5haak")
+
+[node name="Cube_003" parent="Cursor/Area3D/crosshair" index="3"]
+material_override = ExtResource("4_5haak")
+
+[node name="Cube_004" parent="Cursor/Area3D/crosshair" index="4"]
+material_override = ExtResource("4_5haak")
+
+[node name="Cube_005" parent="Cursor/Area3D/crosshair" index="5"]
+material_override = ExtResource("4_5haak")
 
 [node name="ProjectilePickupRange" type="Area3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.68487, 0)
@@ -512,3 +544,4 @@ libraries = {
 [connection signal="timeout" from="HUD/LevelCompleted/Delay" to="." method="_on_delay_timeout"]
 
 [editable path="Info"]
+[editable path="Cursor/Area3D/crosshair"]

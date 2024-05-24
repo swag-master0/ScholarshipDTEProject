@@ -62,6 +62,7 @@ func _ready():
 	canPause = true
 	pausemenu.visible = false
 	deathscreen.visible = false
+	$PlayerModel/DropIndicator.visible = false
 	
 	
 	self.rotate_y(deg_to_rad(45))
@@ -113,18 +114,8 @@ func _physics_process(delta):
 		velocity.x = move_toward(velocity.x, 0, SPEED)
 		velocity.z = move_toward(velocity.z, 0, SPEED)
 	
-	#TODO: find the reason why move_and_slide() keeps causing non-fatal errors. this shits getting annoying
-	# it might not even be my fault. i don't know though.
 	move_and_slide()
 	
-	
-	"""
-	#TODO: find a way to stop the collisions from bitching
-	for i in get_slide_collision_count():
-		var collisions = get_slide_collision(i)
-		if collisions.get_collider() is RigidBody3D:
-			collisions.get_collider().apply_central_impulse(-collisions.get_normal() * PUSH_FORCE)
-	"""
 
 # process is the player throwing mechanic and healthbar code
 func _process(_delta):
@@ -185,6 +176,7 @@ func _process(_delta):
 			# TODO: make a visual indicator for when this is true
 			if character.position.distance_to(cursor.position) < 4 and character.position.distance_to(cursor.position) > -4:
 				force = Vector3(0, 0, 0)
+				$PlayerModel/DropIndicator.visible = true
 			
 			
 			# prevents the player from throwing objects out of the map
@@ -259,6 +251,12 @@ func MousePosition():
 					setCursorPosition(rayArray["collider"].global_position, true)
 					
 				
+		
+		# display visual indicator when dropping an item
+		if character.position.distance_to(cursor.position) < 4 and character.position.distance_to(cursor.position) > -4 and isHolding:
+			$PlayerModel/DropIndicator.visible = true
+		elif ready: 
+			$PlayerModel/DropIndicator.visible = false
 		
 		
 		# if raycast hit nothing, it draws a plane and sees where a raycast hits on that
