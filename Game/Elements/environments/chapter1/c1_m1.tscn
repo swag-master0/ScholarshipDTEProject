@@ -18,17 +18,21 @@ func _ready():
 		if i.is_in_group(\"player\"):
 			await get_tree().create_timer(2).timeout
 			
-			i.Dialogue(\"Go get me the objective item already. It's here somewhere.\")
+			i.sendHintToPlayer(\"[wave][center][color=SILVER]Find the objective item\")
+			
+			#i.Dialogue(\"Go get me the objective item already. It's here somewhere.\")
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta):
+func _process(_delta):
 	for i in self.get_children():
 		if i.is_in_group(\"player\"):
 			if i.object != null and i.object.is_in_group(\"objective\") and !dialogue_triggered:
 				dialogue_triggered = true
 				
-				i.Dialogue(\"Good. Now get that thing back here.\")
+				i.sendHintToPlayer(\"[wave][center][color=SILVER]Bring it back to the start\")
+				
+				#i.Dialogue(\"Good. Now get that thing back here.\")
 "
 
 [sub_resource type="Environment" id="Environment_abqj6"]

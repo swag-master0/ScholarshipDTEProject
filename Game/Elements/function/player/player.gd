@@ -244,7 +244,13 @@ func MousePosition():
 		# lock onto enemy
 		if rayArray.has("collider"):
 			if rayArray["collider"].is_in_group("enemy"):
-				viewEnemyHealth(rayArray["collider"], true)
+				
+				for i in rayArray["collider"].get_children():
+					if i.is_in_group("info"):
+						if i.DisplayHealthBar == true:
+							viewEnemyHealth(rayArray["collider"], true)
+				
+				#viewEnemyHealth(rayArray["collider"], true)
 				
 				if Input.is_action_pressed("click"):
 					cursor.global_position = rayArray["collider"].global_position

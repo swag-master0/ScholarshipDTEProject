@@ -1,0 +1,318 @@
+[gd_scene load_steps=14 format=3 uid="uid://boa48qb8hnllg"]
+
+[ext_resource type="PackedScene" uid="uid://chfjnfoqk48dy" path="res://Art/blend/levels_chapter2/c2_m4.blend" id="1_qcqmy"]
+[ext_resource type="PackedScene" uid="uid://c7ycb57houxl1" path="res://Elements/function/player/player.tscn" id="2_hdhnc"]
+[ext_resource type="PackedScene" uid="uid://d4nob737a2chy" path="res://Elements/function/objective/objective.tscn" id="3_8wlll"]
+[ext_resource type="PackedScene" uid="uid://ckdmt4lj1dp6j" path="res://Elements/assets/passive/props/prop_fragile.tscn" id="4_10evl"]
+[ext_resource type="PackedScene" uid="uid://c4ousj15h5a10" path="res://Elements/environments/misc/main_menu/main_menu.tscn" id="4_lc0cv"]
+[ext_resource type="PackedScene" uid="uid://ch7t6b0c3tjwr" path="res://Elements/enemies/enemy/enemy.tscn" id="5_biphg"]
+
+[sub_resource type="NavigationMesh" id="NavigationMesh_0dhvs"]
+vertices = PackedVector3Array(79.75, 0.5, -20.5, 81.25, 0.5, -20.5, 81, 0.5, -29.25, 70.75, 0.5, -20.25, 79.5, 0.5, -19.75, 79.75, 0.5, -20.5, 81, 0.5, -29.25, 70.75, 0.5, -29.25, 81.25, 0.5, -20.5, 99, 0.5, -20.5, 99.25, 0.5, -29.25, 81, 0.5, -29.25, 99.25, 0.5, -29.25, 99, 0.5, -20.5, 100.5, 0.5, -20.5, 100.5, 0.5, -20.5, 100.75, 0.5, -18.75, 109.5, 0.5, -19, 100.5, 0.5, -20.5, 109.5, 0.5, -19, 109.5, 0.5, -29.25, 99.25, 0.5, -29.25, 70.25, 0.5, -19.25, 69.75, 0.5, -19.25, 70, 0.5, -10.5, 79.5, 0.5, -19.75, 70.75, 0.5, -20.25, 70.25, 0.5, -19.25, 70, 0.5, -10.5, 79.5, 0.5, -10.5, 49.75, 0.5, -10.5, 51.25, 0.5, -10.5, 51, 0.5, -19.25, 40.75, 0.5, -10.25, 49.5, 0.5, -9.75, 49.75, 0.5, -10.5, 51, 0.5, -19.25, 40.75, 0.5, -19.25, 51.25, 0.5, -10.5, 59, 0.5, -10.5, 59.25, 0.5, -19.25, 51, 0.5, -19.25, 60.75, 0.5, -10.25, 60.75, 0.5, -8.5, 69.5, 0.5, -8.5, 69.5, 0.5, -10.25, 69.5, 0.5, -10.25, 70, 0.5, -10.5, 69.75, 0.5, -19.25, 59.25, 0.5, -19.25, 59, 0.5, -10.5, 60.75, 0.5, -10.25, 100.75, 0.5, -18.75, 100.75, 0.5, -10.75, 109.5, 0.5, -11, 109.5, 0.5, -19, 109.5, 0.5, -9.5, 109.5, 0.5, -11, 100.75, 0.5, -10.75, 111, 0.5, -0.5, 111.25, 0.5, -9.25, 109.5, 0.5, -9.5, 100.75, 0.5, -0.5, 111, 0.5, -0.5, 109.5, 0.5, -9.5, 100.75, 0.5, -10.75, 40.25, 0.5, -9.25, 38.75, 0.5, -9.25, 39, 0.5, -0.5, 49.5, 0.5, -9.75, 40.75, 0.5, -10.25, 40.25, 0.5, -9.25, 39, 0.5, -0.5, 49.5, 0.5, -0.5, -9.75, 0.5, 0.75, -11.25, 0.5, 0.75, -11, 0.5, 9.5, 9.5, 0.5, -0.25, 11.25, 0.5, -0.5, 11, 0.5, -9.25, -9.25, 0.5, -9.25, -9.25, 0.5, 0.25, -9.25, 0.5, 0.25, -9.75, 0.5, 0.75, -11, 0.5, 9.5, 9.5, 0.5, 9.5, 9.5, 0.5, -0.25, 11.25, 0.5, -0.5, 39, 0.5, -0.5, 38.75, 0.5, -9.25, 11, 0.5, -9.25, 129, 0.5, -0.5, 129.25, 0.5, -9.25, 111.25, 0.5, -9.25, 111, 0.5, -0.5, 129.25, 0.5, -9.25, 129, 0.5, -0.5, 130.5, 0.5, -0.5, 130.5, 0.5, -0.5, 130.75, 0.5, 1.25, 139.5, 0.5, 1, 130.5, 0.5, -0.5, 139.5, 0.5, 1, 139.5, 0.5, -9.25, 129.25, 0.5, -9.25, 69.5, 0.5, 9, 69.5, 0.5, -8.5, 60.75, 0.5, -8.5, 60.75, 0.5, 9.25, -11.25, 0.5, 0.75, -19.25, 0.5, 0.75, -19.25, 0.5, 9.5, -11, 0.5, 9.5, 130.75, 0.5, 1.25, 130.75, 0.5, 9.25, 139.5, 0.5, 9, 139.5, 0.5, 1, 69.5, 0.5, 10.5, 69.5, 0.5, 9, 60.75, 0.5, 9.25, 71, 0.5, 19.5, 71.25, 0.5, 10.75, 69.5, 0.5, 10.5, 60.75, 0.5, 19.5, 71, 0.5, 19.5, 69.5, 0.5, 10.5, 60.75, 0.5, 9.25, 130.25, 0.5, 20.75, 128.5, 0.5, 20.75, 128.75, 0.5, 29.5, 130.25, 0.5, 20.75, 128.75, 0.5, 29.5, 130.75, 0.5, 29.75, 130.75, 0.5, 20.25, 139.75, 0.5, 10.75, 139.5, 0.5, 9, 130.75, 0.5, 9.25, 130.75, 0.5, 20.25, 130.75, 0.5, 29.75, 130.75, 0.5, 39.25, 149.5, 0.5, 39.25, 149.5, 0.5, 10.75, 139.75, 0.5, 10.75, 130.75, 0.5, 20.25, 130.75, 0.5, 29.75, 149.5, 0.5, 39.25, 89, 0.5, 19.5, 89.25, 0.5, 10.75, 71.25, 0.5, 10.75, 71, 0.5, 19.5, 89.25, 0.5, 10.75, 89, 0.5, 19.5, 90.5, 0.5, 19.5, 90.5, 0.5, 19.5, 90.75, 0.5, 20.25, 99.5, 0.5, 20, 99.5, 0.5, 10.75, 89.25, 0.5, 10.75, 101, 0.5, 29.5, 101.25, 0.5, 20.75, 99.75, 0.5, 20.75, 99.75, 0.5, 20.75, 99.5, 0.5, 20, 90.75, 0.5, 20.25, 90.75, 0.5, 29.5, 101, 0.5, 29.5, 101, 0.5, 29.5, 128.75, 0.5, 29.5, 128.5, 0.5, 20.75, 101.25, 0.5, 20.75)
+polygons = [PackedInt32Array(2, 1, 0), PackedInt32Array(4, 3, 5), PackedInt32Array(5, 3, 7), PackedInt32Array(5, 7, 6), PackedInt32Array(8, 11, 9), PackedInt32Array(9, 11, 10), PackedInt32Array(14, 13, 12), PackedInt32Array(17, 16, 15), PackedInt32Array(21, 20, 18), PackedInt32Array(18, 20, 19), PackedInt32Array(24, 23, 22), PackedInt32Array(26, 25, 27), PackedInt32Array(27, 25, 29), PackedInt32Array(27, 29, 28), PackedInt32Array(32, 31, 30), PackedInt32Array(34, 33, 35), PackedInt32Array(35, 33, 37), PackedInt32Array(35, 37, 36), PackedInt32Array(38, 41, 39), PackedInt32Array(39, 41, 40), PackedInt32Array(45, 44, 42), PackedInt32Array(42, 44, 43), PackedInt32Array(47, 46, 48), PackedInt32Array(48, 46, 51), PackedInt32Array(48, 51, 50), PackedInt32Array(48, 50, 49), PackedInt32Array(55, 54, 52), PackedInt32Array(52, 54, 53), PackedInt32Array(58, 57, 56), PackedInt32Array(61, 60, 59), PackedInt32Array(65, 64, 62), PackedInt32Array(62, 64, 63), PackedInt32Array(68, 67, 66), PackedInt32Array(70, 69, 71), PackedInt32Array(71, 69, 73), PackedInt32Array(71, 73, 72), PackedInt32Array(76, 75, 74), PackedInt32Array(78, 77, 79), PackedInt32Array(79, 77, 80), PackedInt32Array(80, 77, 81), PackedInt32Array(83, 82, 84), PackedInt32Array(84, 82, 85), PackedInt32Array(85, 82, 86), PackedInt32Array(90, 89, 87), PackedInt32Array(87, 89, 88), PackedInt32Array(94, 93, 91), PackedInt32Array(91, 93, 92), PackedInt32Array(97, 96, 95), PackedInt32Array(100, 99, 98), PackedInt32Array(104, 103, 101), PackedInt32Array(101, 103, 102), PackedInt32Array(106, 105, 107), PackedInt32Array(107, 105, 108), PackedInt32Array(110, 109, 111), PackedInt32Array(111, 109, 112), PackedInt32Array(116, 115, 113), PackedInt32Array(113, 115, 114), PackedInt32Array(119, 118, 117), PackedInt32Array(122, 121, 120), PackedInt32Array(126, 125, 123), PackedInt32Array(123, 125, 124), PackedInt32Array(129, 128, 127), PackedInt32Array(130, 133, 131), PackedInt32Array(131, 133, 132), PackedInt32Array(135, 134, 136), PackedInt32Array(136, 134, 137), PackedInt32Array(140, 139, 138), PackedInt32Array(143, 142, 144), PackedInt32Array(144, 142, 141), PackedInt32Array(144, 141, 145), PackedInt32Array(149, 148, 146), PackedInt32Array(146, 148, 147), PackedInt32Array(152, 151, 150), PackedInt32Array(154, 153, 155), PackedInt32Array(155, 153, 156), PackedInt32Array(156, 153, 157), PackedInt32Array(160, 159, 158), PackedInt32Array(162, 161, 163), PackedInt32Array(163, 161, 164), PackedInt32Array(164, 161, 165), PackedInt32Array(169, 168, 166), PackedInt32Array(166, 168, 167)]
+
+[sub_resource type="Environment" id="Environment_xc002"]
+background_mode = 1
+ambient_light_color = Color(0.0646966, 0.0646965, 0.0646965, 1)
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_eak70"]
+radius = 4.5
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_ys105"]
+emission_enabled = true
+emission = Color(1, 1, 1, 1)
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_ys8nc"]
+radius = 6.0
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_qvrct"]
+albedo_color = Color(0, 0, 0, 1)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_7hnh8"]
+size = Vector3(50, 10, 20)
+
+[node name="c2_m4" type="Node3D"]
+
+[node name="NavigationRegion3D" type="NavigationRegion3D" parent="."]
+navigation_mesh = SubResource("NavigationMesh_0dhvs")
+
+[node name="c2_m4" parent="NavigationRegion3D" instance=ExtResource("1_qcqmy")]
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource("Environment_xc002")
+
+[node name="SpotLight3D" type="SpotLight3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 0, 30, 6)
+spot_range = 55.0
+spot_attenuation = 0.0281641
+
+[node name="Player" parent="." instance=ExtResource("2_hdhnc")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -15, 1, 5)
+
+[node name="Objective" parent="." instance=ExtResource("3_8wlll")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -15, 5, 5)
+nextscene = ExtResource("4_lc0cv")
+
+[node name="ObjectiveItem" parent="Objective" index="1"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 156, -3, 27)
+
+[node name="Area3D" type="Area3D" parent="Objective/ObjectiveItem" index="3" groups=["light"]]
+
+[node name="CollisionShape3D2" type="CollisionShape3D" parent="Objective/ObjectiveItem/Area3D"]
+shape = SubResource("SphereShape3D_eak70")
+
+[node name="Props" type="Node" parent="."]
+
+[node name="PropFragile" parent="Props" instance=ExtResource("4_10evl")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 29, 1, -5)
+force_to_break = 4.0
+
+[node name="MeshInstance3D" parent="Props/PropFragile" index="1"]
+material_override = SubResource("StandardMaterial3D_ys105")
+
+[node name="OmniLight3D" type="OmniLight3D" parent="Props/PropFragile"]
+omni_range = 7.0
+
+[node name="Area3D" type="Area3D" parent="Props/PropFragile" groups=["light"]]
+
+[node name="CollisionShape3D2" type="CollisionShape3D" parent="Props/PropFragile/Area3D"]
+shape = SubResource("SphereShape3D_ys8nc")
+
+[node name="PropFragile2" parent="Props" instance=ExtResource("4_10evl")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 62, 1, -6.56609)
+force_to_break = 4.0
+
+[node name="MeshInstance3D" parent="Props/PropFragile2" index="1"]
+material_override = SubResource("StandardMaterial3D_ys105")
+
+[node name="OmniLight3D" type="OmniLight3D" parent="Props/PropFragile2"]
+omni_range = 7.0
+
+[node name="Area3D" type="Area3D" parent="Props/PropFragile2" groups=["light"]]
+
+[node name="CollisionShape3D2" type="CollisionShape3D" parent="Props/PropFragile2/Area3D"]
+shape = SubResource("SphereShape3D_ys8nc")
+
+[node name="PropFragile3" parent="Props" instance=ExtResource("4_10evl")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 78, 1, -12.5661)
+force_to_break = 4.0
+
+[node name="MeshInstance3D" parent="Props/PropFragile3" index="1"]
+material_override = SubResource("StandardMaterial3D_ys105")
+
+[node name="OmniLight3D" type="OmniLight3D" parent="Props/PropFragile3"]
+omni_range = 7.0
+
+[node name="Area3D" type="Area3D" parent="Props/PropFragile3" groups=["light"]]
+
+[node name="CollisionShape3D2" type="CollisionShape3D" parent="Props/PropFragile3/Area3D"]
+shape = SubResource("SphereShape3D_ys8nc")
+
+[node name="PropFragile4" parent="Props" instance=ExtResource("4_10evl")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 135, 1, 33.4339)
+force_to_break = 4.0
+
+[node name="MeshInstance3D" parent="Props/PropFragile4" index="1"]
+material_override = SubResource("StandardMaterial3D_ys105")
+
+[node name="OmniLight3D" type="OmniLight3D" parent="Props/PropFragile4"]
+omni_range = 7.0
+
+[node name="Area3D" type="Area3D" parent="Props/PropFragile4" groups=["light"]]
+
+[node name="CollisionShape3D2" type="CollisionShape3D" parent="Props/PropFragile4/Area3D"]
+shape = SubResource("SphereShape3D_ys8nc")
+
+[node name="Enemy" parent="." instance=ExtResource("5_biphg")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 46.466, 2, -4.81382)
+speed = 12
+damage = 5
+light_based = true
+
+[node name="Info" parent="Enemy" index="0"]
+DisplayHealthBar = false
+
+[node name="Mesh" parent="Enemy" index="2"]
+material_override = SubResource("StandardMaterial3D_qvrct")
+
+[node name="Enemy2" parent="." instance=ExtResource("5_biphg")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 56.466, 2, -12.8138)
+speed = 12
+damage = 5
+light_based = true
+
+[node name="Info" parent="Enemy2" index="0"]
+DisplayHealthBar = false
+
+[node name="Mesh" parent="Enemy2" index="2"]
+material_override = SubResource("StandardMaterial3D_qvrct")
+
+[node name="Enemy3" parent="." instance=ExtResource("5_biphg")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 72.466, 2, -14.8138)
+speed = 12
+damage = 5
+light_based = true
+
+[node name="Info" parent="Enemy3" index="0"]
+DisplayHealthBar = false
+
+[node name="Mesh" parent="Enemy3" index="2"]
+material_override = SubResource("StandardMaterial3D_qvrct")
+
+[node name="Enemy4" parent="." instance=ExtResource("5_biphg")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 66.466, 2, 2.18618)
+speed = 12
+damage = 5
+light_based = true
+
+[node name="Info" parent="Enemy4" index="0"]
+DisplayHealthBar = false
+
+[node name="Mesh" parent="Enemy4" index="2"]
+material_override = SubResource("StandardMaterial3D_qvrct")
+
+[node name="Enemy5" parent="." instance=ExtResource("5_biphg")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 63.466, 2, 12.1862)
+speed = 12
+damage = 5
+light_based = true
+
+[node name="Info" parent="Enemy5" index="0"]
+DisplayHealthBar = false
+
+[node name="Mesh" parent="Enemy5" index="2"]
+material_override = SubResource("StandardMaterial3D_qvrct")
+
+[node name="Enemy6" parent="." instance=ExtResource("5_biphg")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 86.466, 2, 16.1862)
+speed = 12
+damage = 5
+light_based = true
+
+[node name="Info" parent="Enemy6" index="0"]
+DisplayHealthBar = false
+
+[node name="Mesh" parent="Enemy6" index="2"]
+material_override = SubResource("StandardMaterial3D_qvrct")
+
+[node name="Enemy7" parent="." instance=ExtResource("5_biphg")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 109.466, 2, 25.1862)
+speed = 12
+damage = 5
+light_based = true
+
+[node name="Info" parent="Enemy7" index="0"]
+DisplayHealthBar = false
+
+[node name="Mesh" parent="Enemy7" index="2"]
+material_override = SubResource("StandardMaterial3D_qvrct")
+
+[node name="Enemy8" parent="." instance=ExtResource("5_biphg")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 141.466, 2, 21.1862)
+speed = 12
+damage = 5
+light_based = true
+
+[node name="Info" parent="Enemy8" index="0"]
+DisplayHealthBar = false
+
+[node name="Mesh" parent="Enemy8" index="2"]
+material_override = SubResource("StandardMaterial3D_qvrct")
+
+[node name="Enemy9" parent="." instance=ExtResource("5_biphg")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 134.466, 2, 2.18618)
+speed = 12
+damage = 5
+light_based = true
+
+[node name="Info" parent="Enemy9" index="0"]
+DisplayHealthBar = false
+
+[node name="Mesh" parent="Enemy9" index="2"]
+material_override = SubResource("StandardMaterial3D_qvrct")
+
+[node name="Enemy10" parent="." instance=ExtResource("5_biphg")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 119.466, 2, -4.81382)
+speed = 12
+damage = 5
+light_based = true
+
+[node name="Info" parent="Enemy10" index="0"]
+DisplayHealthBar = false
+
+[node name="Mesh" parent="Enemy10" index="2"]
+material_override = SubResource("StandardMaterial3D_qvrct")
+
+[node name="Enemy11" parent="." instance=ExtResource("5_biphg")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 104.466, 2, -8.81382)
+speed = 12
+damage = 5
+light_based = true
+
+[node name="Info" parent="Enemy11" index="0"]
+DisplayHealthBar = false
+
+[node name="Mesh" parent="Enemy11" index="2"]
+material_override = SubResource("StandardMaterial3D_qvrct")
+
+[node name="Enemy12" parent="." instance=ExtResource("5_biphg")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 105.466, 2, -23.8138)
+speed = 12
+damage = 5
+light_based = true
+
+[node name="Info" parent="Enemy12" index="0"]
+DisplayHealthBar = false
+
+[node name="Mesh" parent="Enemy12" index="2"]
+material_override = SubResource("StandardMaterial3D_qvrct")
+
+[node name="Enemy13" parent="." instance=ExtResource("5_biphg")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 81.466, 2, -25.8138)
+speed = 12
+damage = 5
+light_based = true
+
+[node name="Info" parent="Enemy13" index="0"]
+DisplayHealthBar = false
+
+[node name="Mesh" parent="Enemy13" index="2"]
+material_override = SubResource("StandardMaterial3D_qvrct")
+
+[node name="SpawnArea" type="Area3D" parent="." groups=["light"]]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5, 5, 0)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="SpawnArea"]
+shape = SubResource("BoxShape3D_7hnh8")
+
+[editable path="Objective"]
+[editable path="Props/PropFragile"]
+[editable path="Props/PropFragile2"]
+[editable path="Props/PropFragile3"]
+[editable path="Props/PropFragile4"]
+[editable path="Enemy"]
+[editable path="Enemy/Info"]
+[editable path="Enemy2"]
+[editable path="Enemy2/Info"]
+[editable path="Enemy3"]
+[editable path="Enemy3/Info"]
+[editable path="Enemy4"]
+[editable path="Enemy4/Info"]
+[editable path="Enemy5"]
+[editable path="Enemy5/Info"]
+[editable path="Enemy6"]
+[editable path="Enemy6/Info"]
+[editable path="Enemy7"]
+[editable path="Enemy7/Info"]
+[editable path="Enemy8"]
+[editable path="Enemy8/Info"]
+[editable path="Enemy9"]
+[editable path="Enemy9/Info"]
+[editable path="Enemy10"]
+[editable path="Enemy10/Info"]
+[editable path="Enemy11"]
+[editable path="Enemy11/Info"]
+[editable path="Enemy12"]
+[editable path="Enemy12/Info"]
+[editable path="Enemy13"]
+[editable path="Enemy13/Info"]

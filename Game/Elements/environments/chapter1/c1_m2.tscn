@@ -34,7 +34,7 @@ func _on_trigger_body_entered(body):
 		newenemy1.global_position = enemy1.global_position
 		
 		
-		$Player.sendHintToPlayer(\"[wave][center][color=SILVER]Navigate back to the start with the objective item\")
+	#	$Player.sendHintToPlayer(\"[wave][center][color=SILVER]Navigate back to the start with the objective item\")
 		
 
 
@@ -52,7 +52,7 @@ func _on_enemy_example_trigger_body_entered(body):
 func _on_dialogue_trigger_body_entered(body):
 	if body.is_in_group(\"player\") and !dialogue_triggered:
 		dialogue_triggered = true
-		body.Dialogue(\"Huh. Maybe try stacking something to get up there.\")
+	#	body.Dialogue(\"Huh. Maybe try stacking something to get up there.\")
 "
 
 [sub_resource type="Environment" id="Environment_6u04u"]

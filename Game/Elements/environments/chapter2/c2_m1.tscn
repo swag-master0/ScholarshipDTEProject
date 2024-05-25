@@ -1,10 +1,11 @@
-[gd_scene load_steps=11 format=3 uid="uid://c3jh1kk8goxry"]
+[gd_scene load_steps=12 format=3 uid="uid://c3jh1kk8goxry"]
 
 [ext_resource type="PackedScene" uid="uid://dkteohkuoghg0" path="res://Art/blend/levels_chapter2/c2_m1.blend" id="1_usv7o"]
 [ext_resource type="PackedScene" uid="uid://ch3t1bgj51uvs" path="res://Elements/enemies/sentry/sentry.tscn" id="1_w338e"]
 [ext_resource type="PackedScene" uid="uid://d4nob737a2chy" path="res://Elements/function/objective/objective.tscn" id="2_a3vyx"]
 [ext_resource type="PackedScene" uid="uid://c7ycb57houxl1" path="res://Elements/function/player/player.tscn" id="2_gi5go"]
 [ext_resource type="PackedScene" uid="uid://bbb07r3hee2bp" path="res://Elements/assets/passive/props/prop.tscn" id="3_r0mmd"]
+[ext_resource type="PackedScene" uid="uid://e1ifpcaik1si" path="res://Elements/environments/chapter2/c2_m2.tscn" id="4_ejm2i"]
 
 [sub_resource type="GDScript" id="GDScript_ut0lq"]
 resource_name = "c2_m1-functionality"
@@ -54,6 +55,7 @@ sentry_instance = ExtResource("1_w338e")
 
 [node name="Objective" parent="." instance=ExtResource("2_a3vyx")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5, 5, -2)
+nextscene = ExtResource("4_ejm2i")
 
 [node name="ObjectiveItem" parent="Objective" index="1" groups=["ungrabbable"]]
 transform = Transform3D(0, 0, 1, 0, 1, 0, -1, 0, 0, 32, 3, -55.8205)

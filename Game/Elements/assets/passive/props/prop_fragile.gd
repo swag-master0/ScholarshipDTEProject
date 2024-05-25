@@ -1,6 +1,7 @@
 extends RigidBody3D
 
 @export var ungrabbable : bool = false
+@export var force_to_break : float = 2
 @onready var sound = $Sound
 
 var ungrabbable_group = "ungrabbable"
@@ -18,7 +19,7 @@ func _on_body_entered(body):
 	
 	var magnitude = sqrt(vel.x + vel.y + vel.z) # find the magnitude of itself
 	
-	if magnitude > 2:
+	if magnitude > force_to_break:
 		self.queue_free() # break if magnitude is large enough
 	
 	if !sound.is_playing():

@@ -3,6 +3,7 @@ extends CharacterBody3D
 @export var speed = 6
 @export var accel = 10
 @export var damage = 3
+@export var light_based : bool = false
 
 @onready var nav : NavigationAgent3D = $NavigationAgent3D
 @onready var raycast = $RayCast3D
@@ -24,10 +25,14 @@ func _physics_process(delta):
 		if self.get_parent_node_3d().get_children()[i] is CharacterBody3D and self.get_parent_node_3d().get_children()[i].is_in_group("player") and !$AnimationPlayer.is_playing():
 			var player = self.get_parent_node_3d().get_children()[i]
 			
-			raycast.target_position = player.global_position - global_position
-			
-			if raycast.get_collider() == player:
+			if light_based and ready:
 				nav.target_position = player.position
+			
+			elif !light_based:
+				raycast.target_position = player.global_position - global_position
+			
+				if raycast.get_collider() == player:
+					nav.target_position = player.position
 			
 			else:
 				pass
@@ -48,9 +53,16 @@ func _physics_process(delta):
 		velocity.y -= gravity * delta * 10
 	
 	for i in $SoftPush.get_overlapping_bodies():
-		if i.is_in_group("enemy") and i != self:
+		if (i.is_in_group("enemy") and i != self):
 			var difference = i.global_position - self.global_position
 			velocity -= difference
+	
+	# literally only for c2_m4, since i'm too lazy to create a whole new enemy for a gimick
+	if light_based:
+		for i in $SoftPush.get_overlapping_areas():
+			if i.is_in_group("light"):
+				var difference = i.global_position - self.global_position
+				velocity -= difference
 	
 	
 	move_and_slide()

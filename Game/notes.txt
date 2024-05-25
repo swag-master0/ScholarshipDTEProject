@@ -1,10 +1,6 @@
 things to do:
 
 
-create fragile props (TODO)
-
-make c2_m2 playable and finishable 
-
 improve dialogue system
 
 concept further levels:

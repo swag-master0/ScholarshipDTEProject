@@ -20,6 +20,7 @@ var projectileDamage = 3
 @export var DamagePlayerOnPlayerCollision : bool = true
 @export var PlayKillSound : bool = false
 @export var PlayHurtSound : bool = false
+@export var DisplayHealthBar : bool = true
 
 
 
