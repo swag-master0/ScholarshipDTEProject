@@ -1,0 +1,45 @@
+[gd_scene load_steps=7 format=3 uid="uid://codvp41rfhoag"]
+
+[ext_resource type="Script" path="res://Elements/enemies/copycat_v2/copycat_v2.gd" id="1_y5ayu"]
+[ext_resource type="PackedScene" uid="uid://cft1b4l0aljye" path="res://Elements/function/info/info.tscn" id="1_ysy3y"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_lon38"]
+size = Vector3(2.1, 2.1, 2.1)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_0o6es"]
+size = Vector3(2, 2, 2)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_oi6rn"]
+
+[sub_resource type="BoxMesh" id="BoxMesh_q7rsf"]
+material = SubResource("StandardMaterial3D_oi6rn")
+size = Vector3(2, 2, 2)
+
+[node name="Copycat_v2" type="RigidBody3D" groups=["enemy", "ungrabbable"]]
+script = ExtResource("1_y5ayu")
+
+[node name="Info" parent="." instance=ExtResource("1_ysy3y")]
+health = 50.0
+max_health = 50.0
+
+[node name="CollisionShape3D" parent="Info/Hitbox" index="0"]
+shape = SubResource("BoxShape3D_lon38")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+shape = SubResource("BoxShape3D_0o6es")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+mesh = SubResource("BoxMesh_q7rsf")
+
+[node name="RayCast3D" type="RayCast3D" parent="."]
+top_level = true
+target_position = Vector3(5, 0, 0)
+
+[node name="Timer" type="Timer" parent="."]
+wait_time = 5.0
+one_shot = true
+
+[connection signal="death" from="Info" to="." method="_on_info_death"]
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]
+
+[editable path="Info"]

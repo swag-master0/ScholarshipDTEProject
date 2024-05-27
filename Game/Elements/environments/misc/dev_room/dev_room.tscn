@@ -1,12 +1,10 @@
-[gd_scene load_steps=11 format=3 uid="uid://cx1a4ujrxixpp"]
+[gd_scene load_steps=9 format=3 uid="uid://cx1a4ujrxixpp"]
 
 [ext_resource type="PackedScene" uid="uid://cjljpsd573byh" path="res://Art/blend/misc/devlevel.blend" id="1_7fy27"]
 [ext_resource type="Material" uid="uid://cmakta7ngaunj" path="res://Art/materials/temp_level.tres" id="2_2nm6t"]
 [ext_resource type="PackedScene" uid="uid://c7ycb57houxl1" path="res://Elements/function/player/player.tscn" id="2_6pd3h"]
-[ext_resource type="PackedScene" uid="uid://dwe6hqxcxga2x" path="res://Elements/enemies/bomber/bomber.tscn" id="5_fkrnk"]
-[ext_resource type="PackedScene" uid="uid://ch7t6b0c3tjwr" path="res://Elements/enemies/enemy/enemy.tscn" id="6_24m8x"]
+[ext_resource type="PackedScene" uid="uid://codvp41rfhoag" path="res://Elements/enemies/copycat_v2/copycat_v2.tscn" id="6_317qg"]
 [ext_resource type="PackedScene" uid="uid://b5c4qe603h5o" path="res://Elements/assets/hostile/explosive_barrel/explosive_barrel.tscn" id="6_v03ub"]
-[ext_resource type="PackedScene" uid="uid://ch3t1bgj51uvs" path="res://Elements/enemies/sentry/sentry.tscn" id="7_ht8gp"]
 [ext_resource type="PackedScene" uid="uid://bbb07r3hee2bp" path="res://Elements/assets/passive/props/prop.tscn" id="8_6723j"]
 
 [sub_resource type="NavigationMesh" id="NavigationMesh_tqygt"]
@@ -62,18 +60,6 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4.82445, 0, 25.7085)
 [node name="ExplosiveBarrel7" parent="." instance=ExtResource("6_v03ub")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.824446, 0, 28.7085)
 
-[node name="Bomber" parent="." instance=ExtResource("5_fkrnk")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -24.7786, 1, 1.98344)
-
-[node name="Bomber2" parent="." instance=ExtResource("5_fkrnk")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -20.7786, 1, 1.98344)
-
-[node name="Bomber3" parent="." instance=ExtResource("5_fkrnk")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -20.7786, 1, -2.01656)
-
-[node name="Bomber4" parent="." instance=ExtResource("5_fkrnk")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -24.7786, 1, -2.01656)
-
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
 transform = Transform3D(0.866025, 0.482963, 0.12941, 0, -0.258819, 0.965926, 0.5, -0.836516, -0.224144, -19, 7.73072, 32)
 light_color = Color(0.533333, 0.533333, 0.533333, 1)
@@ -82,12 +68,6 @@ sky_mode = 1
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
 environment = SubResource("Environment_rpky6")
-
-[node name="Enemy" parent="." instance=ExtResource("6_24m8x")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 16, 2)
-
-[node name="Sentry" parent="." instance=ExtResource("7_ht8gp")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1, -20)
 
 [node name="Prop" parent="." instance=ExtResource("8_6723j")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -5.51896, -1, -17.6572)
@@ -100,5 +80,8 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 6.39901, -1, -23.8221)
 
 [node name="Prop4" parent="." instance=ExtResource("8_6723j")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5.96219, -1, -19.963)
+
+[node name="Copycat_v2" parent="." instance=ExtResource("6_317qg")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 20.6491, 1, 0.0906487)
 
 [editable path="NavigationRegion3D/devlevel"]

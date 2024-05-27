@@ -258,11 +258,7 @@ func MousePosition():
 					
 				
 		
-		# display visual indicator when dropping an item
-		if character.position.distance_to(cursor.position) < 4 and character.position.distance_to(cursor.position) > -4 and isHolding:
-			$PlayerModel/DropIndicator.visible = true
-		elif ready: 
-			$PlayerModel/DropIndicator.visible = false
+		
 		
 		
 		# if raycast hit nothing, it draws a plane and sees where a raycast hits on that
@@ -273,6 +269,12 @@ func MousePosition():
 			
 			setCursorPosition(Vector3(), false)
 			viewEnemyHealth(null, false)
+		
+		# display visual indicator when dropping an item
+		if character.position.distance_to(cursor.position) < 4 and character.position.distance_to(cursor.position) > -4 and isHolding:
+			$PlayerModel/DropIndicator.visible = true
+		elif ready: 
+			$PlayerModel/DropIndicator.visible = false
 		
 		
 		# display actual aiming location if obstructed
@@ -342,6 +344,7 @@ func _hinttext_timeout():
 
 
 # INFO: DIALOGUE SYSTEM
+# NOTE: This is probably gonna get removed
 func Dialogue(dialogue : String, delay : float = 0.05):
 	$HUD/Dialogue.visible = true
 	

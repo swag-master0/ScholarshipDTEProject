@@ -1,6 +1,6 @@
 [gd_scene load_steps=10 format=3 uid="uid://bnw1iqj5sw2f"]
 
-[ext_resource type="PackedScene" uid="uid://7w5j5rmjk11o" path="res://Elements/enemies/copycat/copycats.tscn" id="1_6rfdw"]
+[ext_resource type="PackedScene" uid="uid://codvp41rfhoag" path="res://Elements/enemies/copycat_v2/copycat_v2.tscn" id="1_37ay1"]
 [ext_resource type="PackedScene" uid="uid://d31fcy57aohf6" path="res://Art/blend/levels_chapter2/c2_m3.blend" id="2_rhdrf"]
 [ext_resource type="PackedScene" uid="uid://boa48qb8hnllg" path="res://Elements/environments/chapter2/c2_m4.tscn" id="4_1yimv"]
 [ext_resource type="PackedScene" uid="uid://d4nob737a2chy" path="res://Elements/function/objective/objective.tscn" id="4_mugjj"]
@@ -69,7 +69,7 @@ volumetric_fog_emission_energy = 0.0
 
 [node name="copycat_level" type="Node3D"]
 script = SubResource("GDScript_s7lc2")
-enemy = ExtResource("1_6rfdw")
+enemy = ExtResource("1_37ay1")
 
 [node name="NavigationRegion3D" type="NavigationRegion3D" parent="."]
 navigation_mesh = SubResource("NavigationMesh_vltec")

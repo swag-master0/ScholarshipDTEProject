@@ -46,6 +46,7 @@ folder_colors={
 "res://Elements/enemies/": "orange",
 "res://Elements/enemies/bomber/": "green",
 "res://Elements/enemies/copycat/": "green",
+"res://Elements/enemies/copycat_v2/": "green",
 "res://Elements/enemies/enemy/": "green",
 "res://Elements/enemies/sentry/": "green",
 "res://Elements/environments/": "orange",

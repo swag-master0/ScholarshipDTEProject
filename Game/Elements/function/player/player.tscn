@@ -1,4 +1,4 @@
-[gd_scene load_steps=33 format=3 uid="uid://c7ycb57houxl1"]
+[gd_scene load_steps=32 format=3 uid="uid://c7ycb57houxl1"]
 
 [ext_resource type="Script" path="res://Elements/function/player/player.gd" id="1_f2by1"]
 [ext_resource type="PackedScene" uid="uid://cft1b4l0aljye" path="res://Elements/function/info/info.tscn" id="2_r67s4"]
@@ -47,10 +47,6 @@ material = SubResource("StandardMaterial3D_4qe3w")
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_2e1ws"]
 size = Vector3(2, 3, 2)
-
-[sub_resource type="CylinderShape3D" id="CylinderShape3D_chmfs"]
-height = 3.0
-radius = 3.5
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_1odvh"]
 bg_color = Color(0.6, 0.6, 0.6, 0)
@@ -209,12 +205,6 @@ material_override = ExtResource("4_5haak")
 
 [node name="Cube_005" parent="Cursor/Area3D/crosshair" index="5"]
 material_override = ExtResource("4_5haak")
-
-[node name="ProjectilePickupRange" type="Area3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.68487, 0)
-
-[node name="CollisionShape3D" type="CollisionShape3D" parent="ProjectilePickupRange"]
-shape = SubResource("CylinderShape3D_chmfs")
 
 [node name="HUD" type="Control" parent="."]
 layout_mode = 3
