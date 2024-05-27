@@ -313,14 +313,11 @@ func NearestObject():
 
 # triggers when player takes damage
 func _on_info_take_damage():
-	$AnimationPlayer.play("hurt")
+	$PlayerModel/AnimationPlayer.play("hurt")
 	
 	$Audio/PlayerHurt.pitch_scale = randf_range(75, 125) / 100 # random value between 0.75 and 1.25
-	$Audio/PlayerHurt.play()
-	#hurtvfx.color = Color(1, 0, 0, 0.4)
-	
-	DamageVFX()
-	pass
+	$Audio/PlayerHurt.play(0)
+
 
 # triggers when player dies
 func _on_info_death():
@@ -473,31 +470,6 @@ func _on_death_restart_button_pressed():
 # Quit Button pressed in death screen
 func _on_death_quit_button_pressed():
 	QuitToMenu()
-
-
-func DamageVFX():
-	pass
-	# TODO : tween the visual effects appearing
-	"""
-	
-	var colour = hurtvfx.color
-	colour.lerp(Color(0, 0, 0, 0), 1)
-	
-	
-	hurtvfx.color = colour
-	
-	
-	var tween = create_tween()
-	tween.tween_property(Color(hurtvfx.color), "a", 0.4, 1)
-	
-	
-	hurtvfx.color.lerp(Color(0, 0, 0, 0), 0.1)
-	
-	print(Color(hurtvfx.color))
-	
-	"""
-
-
 
 
 # INFO: LEVEL COMPLETE AND CHANGE

@@ -1,4 +1,4 @@
-[gd_scene load_steps=32 format=3 uid="uid://c7ycb57houxl1"]
+[gd_scene load_steps=38 format=3 uid="uid://c7ycb57houxl1"]
 
 [ext_resource type="Script" path="res://Elements/function/player/player.gd" id="1_f2by1"]
 [ext_resource type="PackedScene" uid="uid://cft1b4l0aljye" path="res://Elements/function/info/info.tscn" id="2_r67s4"]
@@ -15,6 +15,7 @@
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_jofc1"]
 albedo_color = Color(0.431373, 0.647059, 0.407843, 1)
+emission = Color(1, 0, 0, 1)
 
 [sub_resource type="CapsuleMesh" id="CapsuleMesh_7nubc"]
 material = SubResource("StandardMaterial3D_jofc1")
@@ -33,6 +34,90 @@ material = SubResource("StandardMaterial3D_ppsuc")
 inner_radius = 3.955
 outer_radius = 4.0
 
+[sub_resource type="Animation" id="Animation_f457w"]
+resource_name = "hurt"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:mesh:material:albedo_color")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.101021, 0.2, 0.3, 0.4, 0.5, 0.6),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1),
+"update": 0,
+"values": [Color(1, 0, 0, 1), Color(1, 1, 1, 1), Color(1, 0, 0, 1), Color(1, 1, 1, 1), Color(1, 0, 0, 1), Color(1, 1, 1, 1), Color(1, 1, 1, 1)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".:mesh:material:emission_enabled")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.6),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [true, false]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath(".:mesh:material:emission")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 0.101021, 0.2, 0.3, 0.4, 0.5),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1),
+"update": 0,
+"values": [Color(1, 0, 0, 1), Color(1, 1, 1, 1), Color(1, 0, 0, 1), Color(1, 1, 1, 1), Color(1, 0, 0, 1), Color(1, 1, 1, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_667v5"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:mesh:material:albedo_color")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 0, 0, 1)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".:mesh:material:emission_enabled")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath(".:mesh:material:emission")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 0, 0, 1)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_dk6b6"]
+_data = {
+"RESET": SubResource("Animation_667v5"),
+"hurt": SubResource("Animation_f457w")
+}
+
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_4qe3w"]
 albedo_color = Color(1, 0, 0, 1)
 emission = Color(1, 0, 0, 1)
@@ -47,6 +132,43 @@ material = SubResource("StandardMaterial3D_4qe3w")
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_2e1ws"]
 size = Vector3(2, 3, 2)
+
+[sub_resource type="Animation" id="Animation_5p8ga"]
+resource_name = "loop"
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:scale")
+tracks/0/interp = 2
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.5, 1),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Vector3(1.5, 1.5, 1.5), Vector3(2, 2, 2), Vector3(1.5, 1.5, 1.5)]
+}
+
+[sub_resource type="Animation" id="Animation_0n6cb"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(1.5, 1.5, 1.5)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_cj8be"]
+_data = {
+"RESET": SubResource("Animation_0n6cb"),
+"loop": SubResource("Animation_5p8ga")
+}
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_1odvh"]
 bg_color = Color(0.6, 0.6, 0.6, 0)
@@ -144,6 +266,11 @@ debug_shape_custom_color = Color(1, 1, 1, 1)
 mesh = SubResource("TorusMesh_e6sua")
 skeleton = NodePath("../..")
 
+[node name="AnimationPlayer" type="AnimationPlayer" parent="PlayerModel"]
+libraries = {
+"": SubResource("AnimationLibrary_dk6b6")
+}
+
 [node name="3D-CursorModel" type="MeshInstance3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 5)
 mesh = SubResource("SphereMesh_g5di6")
@@ -205,6 +332,12 @@ material_override = ExtResource("4_5haak")
 
 [node name="Cube_005" parent="Cursor/Area3D/crosshair" index="5"]
 material_override = ExtResource("4_5haak")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="Cursor/Area3D/crosshair"]
+libraries = {
+"": SubResource("AnimationLibrary_cj8be")
+}
+autoplay = "loop"
 
 [node name="HUD" type="Control" parent="."]
 layout_mode = 3

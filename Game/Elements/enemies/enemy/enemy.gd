@@ -27,6 +27,7 @@ func _physics_process(delta):
 			
 			if light_based and ready:
 				nav.target_position = player.position
+				
 			
 			elif !light_based:
 				raycast.target_position = player.global_position - global_position
@@ -84,8 +85,7 @@ func _physics_process(delta):
 			collisions.get_collider().apply_central_impulse(-collisions.get_normal() * 0.5)
 
 
-
-
+# hurt player
 func _on_hit_detector_body_entered(body):
 	if body.is_in_group("player"):
 		

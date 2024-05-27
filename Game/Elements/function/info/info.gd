@@ -55,7 +55,8 @@ func Damage(damage: float):
 				$Hurt.pitch_scale = randf_range(75, 125) / 100
 				$Hurt.play()
 				
-				emit_signal("takeDamage") # TakeDamage is to be used to indicate to objects whether they're taking damage, use to activate vfx and sfx
+		
+		emit_signal("takeDamage") # TakeDamage is to be used to indicate to objects whether they're taking damage, use to activate vfx and sfx
 		
 		health -= damage
 		
