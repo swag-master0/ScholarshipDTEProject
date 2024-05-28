@@ -177,6 +177,9 @@ func _process(_delta):
 			if character.position.distance_to(cursor.position) < 4 and character.position.distance_to(cursor.position) > -4:
 				force = Vector3(0, 0, 0)
 				$PlayerModel/DropIndicator.visible = true
+				
+				if tutorial_mode:
+					sendHintToPlayer("You can drop items gently when the cursor is over yourself")
 			
 			
 			# prevents the player from throwing objects out of the map
@@ -273,6 +276,9 @@ func MousePosition():
 		# display visual indicator when dropping an item
 		if character.position.distance_to(cursor.position) < 4 and character.position.distance_to(cursor.position) > -4 and isHolding:
 			$PlayerModel/DropIndicator.visible = true
+			
+			if tutorial_mode:
+				sendHintToPlayer("You can drop items gently when the cursor is over yourself")
 		elif ready: 
 			$PlayerModel/DropIndicator.visible = false
 		
