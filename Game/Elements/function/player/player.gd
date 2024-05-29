@@ -1,8 +1,5 @@
 extends CharacterBody3D
 
-#TODO: This script desperately needs organising and annotating, because this piece of shit is a pain in the ass to read, let alone work on.
-
-
 # INFO: PLAYER VARIABLES
 @export var tutorial_mode : bool = false
 
@@ -10,33 +7,62 @@ extends CharacterBody3D
 @export var JUMP_VELOCITY = 25
 @export var JUMP_FALLMULTIPLIER = 5
 @export var TURN_VELOCITY = 10
-
 @export var PICKUP_RANGE = 6
 @export var THROW_FORCE = 2000
-@export var MAX_FORCE = 2000
-@export var PUSH_FORCE = 0.5
-@export var CAM_FOLLOW_SPEED = 0.25
 
 
-# INFO: NODE REFERENCES
+
+@onready var scene_tree = get_tree()
+
+# Player Model
 @onready var character = $PlayerModel
+@onready var collision = $PlayerModel/CollisionDetection
+@onready var holdpoint = $PlayerModel/HoldPoint
+@onready var drop_indicator = $PlayerModel/DropIndicator
+@onready var obstruction_detection = $PlayerModel/ObstructionDetector
+
+# Camera
 @onready var camera = $CentralCameraPoint/Camera3D
+
+# Cursor
 @onready var cursor = $Cursor
 @onready var detection = $Cursor/Area3D
-@onready var scene_tree = get_tree()
+@onready var crosshair = $Cursor/Area3D/crosshair
+
+# 3D cursor model
+@onready var cursor_model = $"3D-CursorModel"
+
+# Info
 @onready var info = $Info
-@onready var collision = $PlayerModel/CollisionDetection
+@onready var max_health = info.health
 
-
-# INFO: HUD ELEMENTS
+# HUD
 @onready var HUD = $HUD
+@onready var hud_health = $HUD/Health
+@onready var hud_healthwhite = $HUD/Health/HealthWhite
+@onready var hud_enemyhealth = $HUD/EnemyHealth
 @onready var hinttext = $HUD/Hints
 @onready var hinttimer = $HUD/Hints/Timer
+@onready var hud_dialogue = $HUD/Dialogue
+@onready var hud_dialoguedelay = $HUD/Dialogue/DelayBetweenCharacters
+@onready var hud_dialogueremove = $HUD/Dialogue/RemoveCharacters
 @onready var pausemenu = $HUD/PauseMenu
 @onready var deathscreen = $HUD/DeathScreen
 @onready var hurtvfx = $HUD/HurtVFX
+@onready var indicator = $HUD/Indicator
+@onready var indicator_tutorial = $HUD/Indicator/AnimatedSprite2D
+@onready var hud_levelcomplete = $HUD/LevelCompleted
+@onready var hud_levelcomplete_delay = $HUD/LevelCompleted/Delay
 
-@onready var max_health = info.health
+# Audio
+@onready var footstep_delay = $Audio/FootstepDelay
+@onready var sound_footstep = $Audio/PlayerWalk
+@onready var sound_select = $Audio/PlayerSelect
+@onready var sound_hurt = $Audio/PlayerHurt
+@onready var sound_dialogue = $Audio/Dialogue
+
+# Animations
+@onready var animations = $AnimationPlayer
 
 
 var gravity = ProjectSettings.get_setting("physics/3d/default_gravity")
@@ -62,7 +88,7 @@ func _ready():
 	canPause = true
 	pausemenu.visible = false
 	deathscreen.visible = false
-	$PlayerModel/DropIndicator.visible = false
+	drop_indicator.visible = false
 	
 	
 	self.rotate_y(deg_to_rad(45))
@@ -86,12 +112,12 @@ func _physics_process(delta):
 	#if Input.is_action_pressed("click"):
 	if isHolding:
 		character.rotation.y = atan2(cursor.position.x, cursor.position.z)
-		$Cursor/Area3D/crosshair.visible = true
+		crosshair.visible = true
 		Input.set_mouse_mode(Input.MOUSE_MODE_HIDDEN)
 	#elif not Input.is_action_pressed("click"): # This is shitty code, but I fail to care
 	elif !isHolding:
 		character.rotation.y = lerp_angle(character.rotation.y, atan2(faceDirection.x, faceDirection.z), delta * TURN_VELOCITY)
-		$Cursor/Area3D/crosshair.visible = false
+		crosshair.visible = false
 		Input.set_mouse_mode(Input.MOUSE_MODE_VISIBLE)
 		
 		
@@ -105,10 +131,10 @@ func _physics_process(delta):
 		velocity.z = direction.z * SPEED
 		
 		# Footstep
-		if $FootstepDelay.is_stopped() and is_on_floor():
-			$FootstepDelay.start()
-			$Audio/PlayerWalk.pitch_scale = randf_range(75, 125) / 100 # random value between 0.75 and 1.25
-			$Audio/PlayerWalk.play()
+		if footstep_delay.is_stopped() and is_on_floor():
+			footstep_delay.start()
+			sound_footstep.pitch_scale = randf_range(75, 125) / 100 # random value between 0.75 and 1.25
+			sound_footstep.play()
 			
 	else:
 		velocity.x = move_toward(velocity.x, 0, SPEED)
@@ -130,13 +156,13 @@ func _process(_delta):
 		
 		
 		if Input.is_action_just_pressed("click"): # handle picking up objects
-			$Audio/PlayerSelect.play()
+			sound_select.play()
 			isHolding = true
 			object = NearestObject()
 			oldparent = object.get_parent()
 			
-			$PlayerModel/HoldPoint.position = Vector3(0, 1, 2)
-			object.global_transform = $PlayerModel/HoldPoint.global_transform
+			holdpoint.position = Vector3(0, 1, 2)
+			object.global_transform = holdpoint.global_transform
 			object.reparent(character)
 			object.set_freeze_enabled(true)
 			object.set_collision_layer_value(1, false)
@@ -161,7 +187,7 @@ func _process(_delta):
 			# the actual throw code
 			isHolding = false
 			
-			$Audio/PlayerSelect.play()
+			sound_select.play()
 			
 			object.set_freeze_enabled(false)
 			object.reparent(oldparent)
@@ -176,14 +202,14 @@ func _process(_delta):
 			# TODO: make a visual indicator for when this is true
 			if character.position.distance_to(cursor.position) < 4 and character.position.distance_to(cursor.position) > -4:
 				force = Vector3(0, 0, 0)
-				$PlayerModel/DropIndicator.visible = true
+				drop_indicator.visible = true
 				
 				if tutorial_mode:
 					sendHintToPlayer("You can drop items gently when the cursor is over yourself")
 			
 			
 			# prevents the player from throwing objects out of the map
-			for i in $PlayerModel/Area3D.get_overlapping_bodies():
+			for i in obstruction_detection.get_overlapping_bodies():
 				if i is StaticBody3D:
 					force = force * -1
 			
@@ -197,21 +223,20 @@ func _process(_delta):
 	if ready: 
 		var health = info.health
 		
-		$HUD/Health.value = health
-		$HUD/Health.max_value = max_health
-		$HUD/Health/HealthWhite.max_value = max_health
+		hud_health.value = health
+		hud_health.max_value = max_health
+		hud_healthwhite.max_value = max_health
 		
 		if health == max_health:
-			$HUD/Health.visible = false
+			hud_health.visible = false
 		else:
-			$HUD/Health.visible = true
+			hud_health.visible = true
 		
-		if $HUD/Health/HealthWhite.value != $HUD/Health.value:
+		if hud_healthwhite.value != hud_health.value:
 			var tween = get_tree().create_tween()
 			
-			tween.tween_property($HUD/Health/HealthWhite, "value", health, 1)
-			#$HUD/Health/HealthWhite.value = health
-		
+			tween.tween_property(hud_health, "value", health, 1)
+	
 	
 	if level_completed:
 		Nextlevel()
@@ -275,12 +300,12 @@ func MousePosition():
 		
 		# display visual indicator when dropping an item
 		if character.position.distance_to(cursor.position) < 4 and character.position.distance_to(cursor.position) > -4 and isHolding:
-			$PlayerModel/DropIndicator.visible = true
+			drop_indicator.visible = true
 			
 			if tutorial_mode:
 				sendHintToPlayer("You can drop items gently when the cursor is over yourself")
 		elif ready: 
-			$PlayerModel/DropIndicator.visible = false
+			drop_indicator.visible = false
 		
 		
 		# display actual aiming location if obstructed
@@ -288,14 +313,14 @@ func MousePosition():
 		collision.target_position = cursor.global_position - global_position
 		
 		if (collision.get_collision_point().distance_to(cursor.global_position) > 4) and Input.is_action_pressed("click") and isHolding:
-			$"3D-CursorModel".global_position = lerp($"3D-CursorModel".global_position, collision.get_collision_point(), 0.25)
-			$"3D-CursorModel".visible = true
-			$Cursor/Area3D/crosshair.visible = true
+			cursor_model.global_position = lerp(cursor_model.global_position, collision.get_collision_point(), 0.25)
+			cursor_model.visible = true
+			crosshair.visible = true
 			Input.set_mouse_mode(Input.MOUSE_MODE_HIDDEN)
 		else:
-			$"3D-CursorModel".global_position = cursor.global_position
-			$"3D-CursorModel".visible = false
-			$Cursor/Area3D/crosshair.visible = false
+			cursor_model.global_position = cursor.global_position
+			cursor_model.visible = false
+			crosshair.visible = false
 			Input.set_mouse_mode(Input.MOUSE_MODE_VISIBLE)
 
 
@@ -319,10 +344,10 @@ func NearestObject():
 
 # triggers when player takes damage
 func _on_info_take_damage():
-	$PlayerModel/AnimationPlayer.play("hurt")
+	animations.play("hurt")
 	
-	$Audio/PlayerHurt.pitch_scale = randf_range(75, 125) / 100 # random value between 0.75 and 1.25
-	$Audio/PlayerHurt.play(0)
+	sound_hurt.pitch_scale = randf_range(75, 125) / 100 # random value between 0.75 and 1.25
+	sound_hurt.play(0)
 
 
 # triggers when player dies
@@ -330,9 +355,6 @@ func _on_info_death():
 	$Audio/PlayerDeath.pitch_scale = randf_range(75, 125) / 100 # random value between 0.75 and 1.25
 	$Audio/PlayerDeath.play()
 	DeathScreen()
-
-
-
 
 
 
@@ -349,36 +371,36 @@ func _hinttext_timeout():
 # INFO: DIALOGUE SYSTEM
 # NOTE: This is probably gonna get removed
 func Dialogue(dialogue : String, delay : float = 0.05):
-	$HUD/Dialogue.visible = true
+	hud_dialogue.visible = true
 	
-	$HUD/Dialogue.text = "[center]" + dialogue
-	$HUD/Dialogue/DelayBetweenCharacters.wait_time = delay
+	hud_dialogue.text = "[center]" + dialogue
+	hud_dialoguedelay.wait_time = delay
 	
 	
 	for i in dialogue.length():
 		print(i)
-		$HUD/Dialogue.visible_characters = i + 1
+		hud_dialogue.visible_characters = i + 1
 		
-		$Audio/Dialogue.pitch_scale = randf_range(50, 150) / 100
-		$Audio/Dialogue.play()
+		sound_dialogue.pitch_scale = randf_range(50, 150) / 100
+		sound_dialogue.play()
 		
-		$HUD/Dialogue/DelayBetweenCharacters.start()
-		await $HUD/Dialogue/DelayBetweenCharacters.timeout
+		hud_dialoguedelay.start()
+		await hud_dialoguedelay.timeout
 		
 		# restarts this timer after every character
-		$HUD/Dialogue/RemoveCharacters.start()
+		hud_dialogueremove.start()
 
 
 func _on_remove_characters_timeout():
-	$HUD/Dialogue.visible = false
-	$HUD/Dialogue.text = ""
+	hud_dialogue.visible = false
+	hud_dialogue.text = ""
 
 
 
 
 # INFO: LOCK-ON CURSOR AND ENEMY HEALTH BARS
 func setCursorPosition(pos : Vector3, visibility : bool):
-	var indicator = $HUD/Indicator
+	var indicator = indicator
 	
 	if visibility:
 		
@@ -387,10 +409,10 @@ func setCursorPosition(pos : Vector3, visibility : bool):
 		
 		
 		if tutorial_mode:
-			$HUD/Indicator/AnimatedSprite2D.visible = true
+			indicator_tutorial.visible = true
 			sendHintToPlayer("Use MOUSE 1 to pick up and throw objects")
 		else:
-			$HUD/Indicator/AnimatedSprite2D.visible = false
+			indicator_tutorial.visible = false
 		
 	
 	elif !visibility:
@@ -399,7 +421,7 @@ func setCursorPosition(pos : Vector3, visibility : bool):
 
 
 func viewEnemyHealth(enemy : Object, visibility : bool):
-	var healthbar = $HUD/EnemyHealth
+	var healthbar = hud_enemyhealth
 	
 	if visibility:
 		
@@ -485,8 +507,8 @@ func Nextlevel():
 		
 		get_tree().paused = true
 		
-		$HUD/LevelCompleted.visible = true
-		$HUD/LevelCompleted/Delay.start()
+		hud_levelcomplete.visible = true
+		hud_levelcomplete_delay.start()
 
 # change level after desired time elapsed
 func _on_delay_timeout():
