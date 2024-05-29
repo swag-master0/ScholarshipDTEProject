@@ -23,12 +23,22 @@ func _process(delta):
 			Attack(player.global_position, self.global_position)
 	
 
+
+func _on_enemy_detection_body_entered(body):
+	if body.is_in_group("enemy"):
+		Attack(body.global_position, self.global_position)
+
+
+
+
 func Attack(final, initial):
 	if can_attack:
 		can_attack = false
 		
-		# attacking player
-		self.apply_impulse((final - initial).normalized() * force_speed)
+		$AnimationPlayer.play("attack")
+		# insert sfx here
+		
+		self.apply_impulse(((final - initial).normalized() * force_speed) + Vector3(0, 5, 0))
 		timer.start()
 		
 	
@@ -40,6 +50,8 @@ func _on_timer_timeout():
 func _on_info_death():
 	print("died")
 	self.queue_free()
+
+
 
 
 

@@ -1,10 +1,11 @@
-[gd_scene load_steps=10 format=3 uid="uid://bnw1iqj5sw2f"]
+[gd_scene load_steps=11 format=3 uid="uid://bnw1iqj5sw2f"]
 
 [ext_resource type="PackedScene" uid="uid://codvp41rfhoag" path="res://Elements/enemies/copycat_v2/copycat_v2.tscn" id="1_37ay1"]
 [ext_resource type="PackedScene" uid="uid://d31fcy57aohf6" path="res://Art/blend/levels_chapter2/c2_m3.blend" id="2_rhdrf"]
 [ext_resource type="PackedScene" uid="uid://boa48qb8hnllg" path="res://Elements/environments/chapter2/c2_m4.tscn" id="4_1yimv"]
 [ext_resource type="PackedScene" uid="uid://d4nob737a2chy" path="res://Elements/function/objective/objective.tscn" id="4_mugjj"]
 [ext_resource type="PackedScene" uid="uid://c7ycb57houxl1" path="res://Elements/function/player/player.tscn" id="5_kcxgm"]
+[ext_resource type="PackedScene" uid="uid://ch7t6b0c3tjwr" path="res://Elements/enemies/enemy/enemy.tscn" id="6_e2whm"]
 
 [sub_resource type="GDScript" id="GDScript_s7lc2"]
 resource_name = "copycatlevel_functionality"
@@ -124,6 +125,19 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 17.7078, 0, 2.20143)
 [node name="Marker3D7" type="Marker3D" parent="Spawnpoints"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 52.2146, 0, -1.78012)
 
+[node name="Enemy" parent="." instance=ExtResource("6_e2whm")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 32.601, 2, -23.6094)
+
+[node name="Info" parent="Enemy" index="0"]
+health = 0.1
+max_health = 0.1
+invincibility_frames = 0.0
+
+[node name="Copycat_v2" parent="." instance=ExtResource("1_37ay1")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 42.0145, 2, -22.1348)
+
 [connection signal="body_entered" from="Trigger" to="." method="_on_trigger_body_entered"]
 
 [editable path="Objective"]
+[editable path="Enemy"]
+[editable path="Enemy/Info"]
