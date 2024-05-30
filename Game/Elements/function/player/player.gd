@@ -1,18 +1,16 @@
 extends CharacterBody3D
 
 # INFO: PLAYER VARIABLES
+@export_group("Player Variables")
 @export var tutorial_mode : bool = false
 
-@export var SPEED = 10
-@export var JUMP_VELOCITY = 25
-@export var JUMP_FALLMULTIPLIER = 5
-@export var TURN_VELOCITY = 10
-@export var PICKUP_RANGE = 6
-@export var THROW_FORCE = 2000
+@export var SPEED : float = 10
+@export var JUMP_VELOCITY : float = 25
+@export var JUMP_FALLMULTIPLIER : float = 5
+@export var TURN_VELOCITY : float = 10
+@export var PICKUP_RANGE : float = 6
+@export var THROW_FORCE : float = 2000
 
-
-
-@onready var scene_tree = get_tree()
 
 # Player Model
 @onready var character = $PlayerModel
@@ -51,6 +49,7 @@ extends CharacterBody3D
 @onready var hurtvfx = $HUD/HurtVFX
 @onready var indicator = $HUD/Indicator
 @onready var indicator_tutorial = $HUD/Indicator/AnimatedSprite2D
+@onready var options_menu = $HUD/OptionsMenu
 @onready var hud_levelcomplete = $HUD/LevelCompleted
 @onready var hud_levelcomplete_delay = $HUD/LevelCompleted/Delay
 
@@ -74,8 +73,10 @@ var canPause = true
 var selectionsound = false
 var levelchangetriggered = false
 
+var main_menu = "res://Elements/environments/misc/main_menu/main_menu.tscn"
 
 # please leave object blank, but keep as export
+@export_group("Programming Stuff")
 @export var object : RigidBody3D
 @export var level_completed : bool = false
 
@@ -400,7 +401,6 @@ func _on_remove_characters_timeout():
 
 # INFO: LOCK-ON CURSOR AND ENEMY HEALTH BARS
 func setCursorPosition(pos : Vector3, visibility : bool):
-	var indicator = indicator
 	
 	if visibility:
 		
@@ -449,7 +449,7 @@ func RestartLevel():
 func QuitToMenu():
 	get_tree().paused = false
 	Engine.time_scale = 1
-	scene_tree.change_scene_to_file("res://scenes/levels/main_menu.tscn")
+	get_tree().change_scene_to_file(main_menu)
 
 
 
@@ -474,6 +474,10 @@ func _on_quit_button_pressed():
 	QuitToMenu()
 
 
+func _on_options_button_pressed():
+	options_menu.visible = true
+
+
 
 
 
@@ -487,8 +491,6 @@ func DeathScreen():
 	tween.tween_property(Engine, "time_scale", 0, 0.2)
 	
 	deathscreen.visible = true
-	#get_tree().paused = true
-	#Engine.time_scale = lerp(1, 0, 0.1)
 
 
 # Restart Button pressed in death screen

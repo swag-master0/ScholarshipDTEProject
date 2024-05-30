@@ -1,13 +1,13 @@
 [gd_scene load_steps=17 format=3 uid="uid://bkvmwrsm7nbyt"]
 
-[ext_resource type="PackedScene" uid="uid://d4nob737a2chy" path="res://Elements/function/objective/objective.tscn" id="1_ghn5u"]
-[ext_resource type="PackedScene" uid="uid://ch7t6b0c3tjwr" path="res://Elements/enemies/enemy/enemy.tscn" id="1_mvf3l"]
-[ext_resource type="PackedScene" uid="uid://c7ycb57houxl1" path="res://Elements/function/player/player.tscn" id="2_217fp"]
-[ext_resource type="PackedScene" uid="uid://4yye08ka71t1" path="res://Elements/environments/misc/_scrappedlevels/c2_m1-old.tscn" id="2_brmf2"]
-[ext_resource type="PackedScene" uid="uid://ch3t1bgj51uvs" path="res://Elements/enemies/sentry/sentry.tscn" id="2_gg53i"]
-[ext_resource type="PackedScene" uid="uid://cna5dpcxkdqae" path="res://Art/blend/levels_chapter1/c2_m4.blend" id="3_hl1ee"]
-[ext_resource type="PackedScene" uid="uid://bbb07r3hee2bp" path="res://Elements/assets/passive/props/prop.tscn" id="7_ee68b"]
-[ext_resource type="PackedScene" uid="uid://b5c4qe603h5o" path="res://Elements/assets/hostile/explosive_barrel/explosive_barrel.tscn" id="8_i8g7n"]
+[ext_resource type="PackedScene" uid="uid://ch7t6b0c3tjwr" path="res://Elements/enemies/enemy/enemy.tscn" id="1_m5lsm"]
+[ext_resource type="PackedScene" uid="uid://ch3t1bgj51uvs" path="res://Elements/enemies/sentry/sentry.tscn" id="2_bkqhe"]
+[ext_resource type="PackedScene" uid="uid://cna5dpcxkdqae" path="res://Art/blend/levels_chapter1/c1_m4.blend" id="3_2iwqi"]
+[ext_resource type="PackedScene" uid="uid://d4nob737a2chy" path="res://Elements/function/objective/objective.tscn" id="4_ohlwi"]
+[ext_resource type="PackedScene" uid="uid://c3jh1kk8goxry" path="res://Elements/environments/chapter2/c2_m1.tscn" id="5_l8ie4"]
+[ext_resource type="PackedScene" uid="uid://c7ycb57houxl1" path="res://Elements/function/player/player.tscn" id="6_yfuio"]
+[ext_resource type="PackedScene" uid="uid://bbb07r3hee2bp" path="res://Elements/assets/passive/props/prop.tscn" id="7_ub7yc"]
+[ext_resource type="PackedScene" uid="uid://b5c4qe603h5o" path="res://Elements/assets/hostile/explosive_barrel/explosive_barrel.tscn" id="8_f71b5"]
 
 [sub_resource type="GDScript" id="GDScript_w4vx7"]
 resource_name = "c2_m4-functionality"
@@ -108,13 +108,13 @@ size = Vector3(5, 15, 10)
 
 [node name="Level" type="Node3D"]
 script = SubResource("GDScript_w4vx7")
-enemy = ExtResource("1_mvf3l")
-sentry = ExtResource("2_gg53i")
+enemy = ExtResource("1_m5lsm")
+sentry = ExtResource("2_bkqhe")
 
 [node name="NavigationRegion3D" type="NavigationRegion3D" parent="."]
 navigation_mesh = SubResource("NavigationMesh_u278t")
 
-[node name="c2_m4" parent="NavigationRegion3D" instance=ExtResource("3_hl1ee")]
+[node name="c2_m4" parent="NavigationRegion3D" instance=ExtResource("3_2iwqi")]
 
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="NavigationRegion3D/c2_m4"]
 transform = Transform3D(0.866025, 0.482963, 0.12941, 0, -0.258819, 0.965926, 0.5, -0.836516, -0.224144, -19, 7.73072, 32)
@@ -125,14 +125,14 @@ sky_mode = 1
 [node name="WorldEnvironment" type="WorldEnvironment" parent="NavigationRegion3D/c2_m4"]
 environment = SubResource("Environment_la8t5")
 
-[node name="Objective" parent="." instance=ExtResource("1_ghn5u")]
+[node name="Objective" parent="." instance=ExtResource("4_ohlwi")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 5, 0)
-nextscene = ExtResource("2_brmf2")
+nextscene = ExtResource("5_l8ie4")
 
 [node name="ObjectiveItem" parent="Objective" index="1"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 143, 0, -70)
 
-[node name="Player" parent="." instance=ExtResource("2_217fp")]
+[node name="Player" parent="." instance=ExtResource("6_yfuio")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
 
 [node name="Trigger" type="Area3D" parent="."]
@@ -217,70 +217,70 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 86, 15, -34)
 [node name="Marker3D15" type="Marker3D" parent="Spawnpoints"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 86, 15, -42)
 
-[node name="Prop" parent="." instance=ExtResource("7_ee68b")]
+[node name="Prop" parent="." instance=ExtResource("7_ub7yc")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 55, 1, -20)
 
-[node name="Prop2" parent="." instance=ExtResource("7_ee68b")]
+[node name="Prop2" parent="." instance=ExtResource("7_ub7yc")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 65, 1, -20)
 
-[node name="Prop3" parent="." instance=ExtResource("7_ee68b")]
+[node name="Prop3" parent="." instance=ExtResource("7_ub7yc")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 52, 1, -46)
 
-[node name="Prop4" parent="." instance=ExtResource("7_ee68b")]
+[node name="Prop4" parent="." instance=ExtResource("7_ub7yc")]
 transform = Transform3D(0.976699, 0, 0.214616, 0, 1, 0, -0.214616, 0, 0.976699, 51.8712, 1, -48.3219)
 
-[node name="Prop5" parent="." instance=ExtResource("7_ee68b")]
+[node name="Prop5" parent="." instance=ExtResource("7_ub7yc")]
 transform = Transform3D(0.871411, 0, -0.490554, 0, 1, 0, 0.490554, 0, 0.871411, 58.542, 1, -48.3337)
 
-[node name="Prop6" parent="." instance=ExtResource("7_ee68b")]
+[node name="Prop6" parent="." instance=ExtResource("7_ub7yc")]
 transform = Transform3D(0.975604, 0, -0.21954, 0, 1, 0, 0.21954, 0, 0.975604, 78.9656, 1, -48.2956)
 
-[node name="Prop7" parent="." instance=ExtResource("7_ee68b")]
+[node name="Prop7" parent="." instance=ExtResource("7_ub7yc")]
 transform = Transform3D(0.92214, 0, 0.386856, 0, 1, 0, -0.386856, 0, 0.92214, 76.0893, 1, -48.5275)
 
-[node name="Prop8" parent="." instance=ExtResource("7_ee68b")]
+[node name="Prop8" parent="." instance=ExtResource("7_ub7yc")]
 transform = Transform3D(0.991554, 0, -0.129696, 0, 1, 0, 0.129696, 0, 0.991554, 77.3175, 1, -46.0425)
 
-[node name="Prop9" parent="." instance=ExtResource("7_ee68b")]
+[node name="Prop9" parent="." instance=ExtResource("7_ub7yc")]
 transform = Transform3D(0.965926, 0, 0.258819, 0, 1, 0, -0.258819, 0, 0.965926, 87.9862, 1, -19.7856)
 
-[node name="Prop10" parent="." instance=ExtResource("7_ee68b")]
+[node name="Prop10" parent="." instance=ExtResource("7_ub7yc")]
 transform = Transform3D(0.970654, 0, -0.240482, 0, 1, 0, 0.240482, 0, 0.970654, 85.1156, 1, -20.4638)
 
-[node name="Prop11" parent="." instance=ExtResource("7_ee68b")]
+[node name="Prop11" parent="." instance=ExtResource("7_ub7yc")]
 transform = Transform3D(0.965926, 0, 0.258819, 0, 1, 0, -0.258819, 0, 0.965926, 87.9013, 1, -29.2919)
 
-[node name="Prop12" parent="." instance=ExtResource("7_ee68b")]
+[node name="Prop12" parent="." instance=ExtResource("7_ub7yc")]
 transform = Transform3D(0.965926, 0, -0.258819, 0, 1, 0, 0.258819, 0, 0.965926, 88.0856, 1, -37.455)
 
-[node name="Prop13" parent="." instance=ExtResource("7_ee68b")]
+[node name="Prop13" parent="." instance=ExtResource("7_ub7yc")]
 transform = Transform3D(0.965926, 0, 0.258819, 0, 1, 0, -0.258819, 0, 0.965926, 61.4506, 1, -48.6694)
 
-[node name="Prop14" parent="." instance=ExtResource("7_ee68b")]
+[node name="Prop14" parent="." instance=ExtResource("7_ub7yc")]
 transform = Transform3D(0.965926, 0, -0.258819, 0, 1, 0, 0.258819, 0, 0.965926, 32, 1, -7)
 
-[node name="Prop15" parent="." instance=ExtResource("7_ee68b")]
+[node name="Prop15" parent="." instance=ExtResource("7_ub7yc")]
 transform = Transform3D(0.965926, 0, 0.258819, 0, 1, 0, -0.258819, 0, 0.965926, 57.8758, 1, -19.7164)
 
-[node name="Prop16" parent="." instance=ExtResource("7_ee68b")]
+[node name="Prop16" parent="." instance=ExtResource("7_ub7yc")]
 transform = Transform3D(0.965926, 0, 0.258819, 0, 1, 0, -0.258819, 0, 0.965926, 70.0431, 1, -33.4314)
 
-[node name="ExplosiveBarrel" parent="." instance=ExtResource("8_i8g7n")]
+[node name="ExplosiveBarrel" parent="." instance=ExtResource("8_f71b5")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 69, 1.05, -49)
 
-[node name="ExplosiveBarrel2" parent="." instance=ExtResource("8_i8g7n")]
+[node name="ExplosiveBarrel2" parent="." instance=ExtResource("8_f71b5")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 71, 1.05, -21)
 
-[node name="ExplosiveBarrel3" parent="." instance=ExtResource("8_i8g7n")]
+[node name="ExplosiveBarrel3" parent="." instance=ExtResource("8_f71b5")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 84, 1.05, -28)
 
-[node name="ExplosiveBarrel4" parent="." instance=ExtResource("8_i8g7n")]
+[node name="ExplosiveBarrel4" parent="." instance=ExtResource("8_f71b5")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 53, 1.05, -37)
 
-[node name="ExplosiveBarrel5" parent="." instance=ExtResource("8_i8g7n")]
+[node name="ExplosiveBarrel5" parent="." instance=ExtResource("8_f71b5")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 56, 1.05, -46)
 
-[node name="ExplosiveBarrel6" parent="." instance=ExtResource("8_i8g7n")]
+[node name="ExplosiveBarrel6" parent="." instance=ExtResource("8_f71b5")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 87, 1.05, -35)
 
 [connection signal="body_entered" from="Trigger" to="." method="_on_trigger_body_entered"]

@@ -7,7 +7,7 @@ extends RigidBody3D
 
 var can_attack = true
 
-func _process(delta):
+func _process(_delta):
 	ray.global_position = global_position
 	
 	for i in self.get_parent().get_children():

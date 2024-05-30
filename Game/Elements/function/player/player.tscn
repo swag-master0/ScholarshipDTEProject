@@ -1,4 +1,4 @@
-[gd_scene load_steps=38 format=3 uid="uid://c7ycb57houxl1"]
+[gd_scene load_steps=39 format=3 uid="uid://c7ycb57houxl1"]
 
 [ext_resource type="Script" path="res://Elements/function/player/player.gd" id="1_f2by1"]
 [ext_resource type="PackedScene" uid="uid://cft1b4l0aljye" path="res://Elements/function/info/info.tscn" id="2_r67s4"]
@@ -7,6 +7,7 @@
 [ext_resource type="Material" uid="uid://b6kkipn5s7ecp" path="res://Art/materials/cursor.tres" id="4_5haak"]
 [ext_resource type="Texture2D" uid="uid://dmnjpb8ox2bsu" path="res://Art/textures/mouse1-1.png" id="4_mgded"]
 [ext_resource type="Texture2D" uid="uid://cvguvo850eb22" path="res://Art/textures/mouse1-2.png" id="5_tu8r8"]
+[ext_resource type="PackedScene" uid="uid://233quw6ftjqa" path="res://Elements/function/options_menu/options_menu.tscn" id="5_xd0jc"]
 [ext_resource type="AudioStream" uid="uid://w2v2x3att67l" path="res://Art/audio/click.wav" id="6_8os6d"]
 [ext_resource type="AudioStream" uid="uid://eiiqal51bdu" path="res://Art/audio/player_select.wav" id="7_ymuqw"]
 [ext_resource type="AudioStream" uid="uid://bdxfhhvgttnt5" path="res://Art/audio/player_death.wav" id="8_i6jga"]
@@ -475,7 +476,6 @@ one_shot = true
 
 [node name="PauseMenu" type="ColorRect" parent="HUD"]
 process_mode = 2
-visible = false
 layout_mode = 1
 anchors_preset = 4
 anchor_top = 0.5
@@ -489,18 +489,27 @@ color = Color(0.533333, 0.533333, 0.533333, 0.490196)
 [node name="ResumeButton" type="Button" parent="HUD/PauseMenu"]
 layout_mode = 0
 offset_left = 188.0
-offset_top = 404.0
+offset_top = 310.0
 offset_right = 408.0
-offset_bottom = 486.0
+offset_bottom = 392.0
 text = "resume"
 
 [node name="RestartButton" type="Button" parent="HUD/PauseMenu"]
 layout_mode = 0
 offset_left = 188.0
+offset_top = 404.0
+offset_right = 408.0
+offset_bottom = 486.0
+text = "restart level"
+
+[node name="OptionsButton" type="Button" parent="HUD/PauseMenu"]
+layout_mode = 0
+offset_left = 188.0
 offset_top = 499.0
 offset_right = 408.0
 offset_bottom = 581.0
-text = "restart level"
+text = "options
+"
 
 [node name="QuitButton" type="Button" parent="HUD/PauseMenu"]
 layout_mode = 0
@@ -589,6 +598,10 @@ grow_horizontal = 2
 grow_vertical = 2
 text = "quit to menu"
 
+[node name="OptionsMenu" parent="HUD" instance=ExtResource("5_xd0jc")]
+visible = false
+layout_mode = 1
+
 [node name="LevelCompleted" type="ColorRect" parent="HUD"]
 process_mode = 2
 visible = false
@@ -659,6 +672,7 @@ libraries = {
 [connection signal="timeout" from="HUD/Hints/Timer" to="." method="_hinttext_timeout"]
 [connection signal="pressed" from="HUD/PauseMenu/ResumeButton" to="." method="_on_resume_button_pressed"]
 [connection signal="pressed" from="HUD/PauseMenu/RestartButton" to="." method="_on_restart_button_pressed"]
+[connection signal="pressed" from="HUD/PauseMenu/OptionsButton" to="." method="_on_options_button_pressed"]
 [connection signal="pressed" from="HUD/PauseMenu/QuitButton" to="." method="_on_quit_button_pressed"]
 [connection signal="pressed" from="HUD/DeathScreen/DeathRestartButton" to="." method="_on_death_restart_button_pressed"]
 [connection signal="pressed" from="HUD/DeathScreen/DeathQuitButton" to="." method="_on_death_quit_button_pressed"]

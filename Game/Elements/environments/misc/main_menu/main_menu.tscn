@@ -112,6 +112,7 @@ text = "QUIT
 "
 
 [node name="OptionsMenu" parent="GUI" instance=ExtResource("3_2bw2t")]
+visible = false
 layout_mode = 1
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="."]

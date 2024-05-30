@@ -1,13 +1,13 @@
 [gd_scene load_steps=13 format=3 uid="uid://w2l3dpbjub7c"]
 
-[ext_resource type="PackedScene" uid="uid://b5c4qe603h5o" path="res://Elements/assets/hostile/explosive_barrel/explosive_barrel.tscn" id="1_f36wm"]
-[ext_resource type="PackedScene" uid="uid://d4nob737a2chy" path="res://Elements/function/objective/objective.tscn" id="2_meswy"]
-[ext_resource type="PackedScene" uid="uid://c7ycb57houxl1" path="res://Elements/function/player/player.tscn" id="3_5ax4n"]
-[ext_resource type="PackedScene" uid="uid://bkvmwrsm7nbyt" path="res://Elements/environments/chapter1/c2_m4.tscn" id="3_5ly8p"]
-[ext_resource type="PackedScene" uid="uid://bs5hdiefi57co" path="res://Art/blend/levels_chapter1/c2_m3.blend" id="5_3286j"]
-[ext_resource type="PackedScene" uid="uid://ch7t6b0c3tjwr" path="res://Elements/enemies/enemy/enemy.tscn" id="7_2qqe4"]
-[ext_resource type="PackedScene" uid="uid://bv51trmf3yaw0" path="res://Elements/assets/hostile/hazard/hazard.tscn" id="7_ho6sn"]
-[ext_resource type="PackedScene" uid="uid://bbb07r3hee2bp" path="res://Elements/assets/passive/props/prop.tscn" id="8_s1vfk"]
+[ext_resource type="PackedScene" uid="uid://b5c4qe603h5o" path="res://Elements/assets/hostile/explosive_barrel/explosive_barrel.tscn" id="1_ve3uk"]
+[ext_resource type="PackedScene" uid="uid://d4nob737a2chy" path="res://Elements/function/objective/objective.tscn" id="2_ofg6n"]
+[ext_resource type="PackedScene" uid="uid://bkvmwrsm7nbyt" path="res://Elements/environments/chapter1/c1_m4.tscn" id="3_bf0fb"]
+[ext_resource type="PackedScene" uid="uid://c7ycb57houxl1" path="res://Elements/function/player/player.tscn" id="4_2cq5k"]
+[ext_resource type="PackedScene" uid="uid://bs5hdiefi57co" path="res://Art/blend/levels_chapter1/c1_m3.blend" id="5_lwdk2"]
+[ext_resource type="PackedScene" uid="uid://bv51trmf3yaw0" path="res://Elements/assets/hostile/hazard/hazard.tscn" id="6_nadlc"]
+[ext_resource type="PackedScene" uid="uid://ch7t6b0c3tjwr" path="res://Elements/enemies/enemy/enemy.tscn" id="7_63dbe"]
+[ext_resource type="PackedScene" uid="uid://bbb07r3hee2bp" path="res://Elements/assets/passive/props/prop.tscn" id="8_6noad"]
 
 [sub_resource type="GDScript" id="GDScript_ur7ug"]
 resource_name = "c2_m3-functionality"
@@ -24,7 +24,7 @@ func _ready():
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta):
+func _process(_delta):
 	pass
 
 func _on_timer_timeout():
@@ -79,15 +79,15 @@ size = Vector3(29.125, 1, 54.69)
 
 [node name="Level4" type="Node3D"]
 script = SubResource("GDScript_ur7ug")
-barrel = ExtResource("1_f36wm")
+barrel = ExtResource("1_ve3uk")
 
 [node name="Timer" type="Timer" parent="."]
 wait_time = 5.0
 autostart = true
 
-[node name="Objective" parent="." instance=ExtResource("2_meswy")]
+[node name="Objective" parent="." instance=ExtResource("2_ofg6n")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -45, 5, 27)
-nextscene = ExtResource("3_5ly8p")
+nextscene = ExtResource("3_bf0fb")
 
 [node name="LevelStart" parent="Objective" index="0"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 31, -1, -39)
@@ -95,13 +95,13 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 31, -1, -39)
 [node name="ObjectiveItem" parent="Objective" index="1"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 213, -38, -60)
 
-[node name="Player" parent="." instance=ExtResource("3_5ax4n")]
+[node name="Player" parent="." instance=ExtResource("4_2cq5k")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -14.2906, 3, -12.0926)
 
 [node name="NavigationRegion3D" type="NavigationRegion3D" parent="."]
 navigation_mesh = SubResource("NavigationMesh_pq4er")
 
-[node name="level4" parent="NavigationRegion3D" instance=ExtResource("5_3286j")]
+[node name="level4" parent="NavigationRegion3D" instance=ExtResource("5_lwdk2")]
 
 [node name="SpawnLocations" type="Node" parent="."]
 
@@ -186,40 +186,40 @@ sky_mode = 1
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
 environment = SubResource("Environment_nfxsl")
 
-[node name="Hazard" parent="." instance=ExtResource("7_ho6sn")]
+[node name="Hazard" parent="." instance=ExtResource("6_nadlc")]
 transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 7.36239, 1, -22.8921)
 
-[node name="Hazard2" parent="." instance=ExtResource("7_ho6sn")]
+[node name="Hazard2" parent="." instance=ExtResource("6_nadlc")]
 transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 9.36239, 1, -22.8921)
 
-[node name="Hazard3" parent="." instance=ExtResource("7_ho6sn")]
+[node name="Hazard3" parent="." instance=ExtResource("6_nadlc")]
 transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 5.36239, 1, -22.8921)
 
-[node name="ExplosiveBarrel" parent="." instance=ExtResource("1_f36wm")]
+[node name="ExplosiveBarrel" parent="." instance=ExtResource("1_ve3uk")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 42, 1.05, -53)
 
-[node name="ExplosiveBarrel4" parent="." instance=ExtResource("1_f36wm")]
+[node name="ExplosiveBarrel4" parent="." instance=ExtResource("1_ve3uk")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 45, 1.05, -48)
 
-[node name="ExplosiveBarrel5" parent="." instance=ExtResource("1_f36wm")]
+[node name="ExplosiveBarrel5" parent="." instance=ExtResource("1_ve3uk")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 44, 1.05, -88)
 
-[node name="ExplosiveBarrel6" parent="." instance=ExtResource("1_f36wm")]
+[node name="ExplosiveBarrel6" parent="." instance=ExtResource("1_ve3uk")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 51, 1.05, -82)
 
-[node name="ExplosiveBarrel7" parent="." instance=ExtResource("1_f36wm")]
+[node name="ExplosiveBarrel7" parent="." instance=ExtResource("1_ve3uk")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 42, 1.05, -73)
 
-[node name="ExplosiveBarrel8" parent="." instance=ExtResource("1_f36wm")]
+[node name="ExplosiveBarrel8" parent="." instance=ExtResource("1_ve3uk")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 42, 1.05, -75)
 
-[node name="ExplosiveBarrel9" parent="." instance=ExtResource("1_f36wm")]
+[node name="ExplosiveBarrel9" parent="." instance=ExtResource("1_ve3uk")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 42, 3.05, -74)
 
-[node name="ExplosiveBarrel2" parent="." instance=ExtResource("1_f36wm")]
+[node name="ExplosiveBarrel2" parent="." instance=ExtResource("1_ve3uk")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 43.8181, 1.05, -53.9424)
 
-[node name="ExplosiveBarrel3" parent="." instance=ExtResource("1_f36wm")]
+[node name="ExplosiveBarrel3" parent="." instance=ExtResource("1_ve3uk")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 42.8916, 3.05, -53.6975)
 
 [node name="DeleteZone" type="Area3D" parent="."]
@@ -281,38 +281,38 @@ shape = SubResource("BoxShape3D_dvnq2")
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 6, -97, 6)
 shape = SubResource("BoxShape3D_dvnq2")
 
-[node name="Enemy" parent="." instance=ExtResource("7_2qqe4")]
+[node name="Enemy" parent="." instance=ExtResource("7_63dbe")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 7.93963, 2, -28.4437)
 
 [node name="Info" parent="Enemy" index="0"]
 health = 1.0
 max_health = 1.0
 
-[node name="Enemy2" parent="." instance=ExtResource("7_2qqe4")]
+[node name="Enemy2" parent="." instance=ExtResource("7_63dbe")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 62, 1, -53)
 
-[node name="Enemy3" parent="." instance=ExtResource("7_2qqe4")]
+[node name="Enemy3" parent="." instance=ExtResource("7_63dbe")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 61, 1, -49)
 
-[node name="Enemy4" parent="." instance=ExtResource("7_2qqe4")]
+[node name="Enemy4" parent="." instance=ExtResource("7_63dbe")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 61, 1, -90)
 
-[node name="Enemy5" parent="." instance=ExtResource("7_2qqe4")]
+[node name="Enemy5" parent="." instance=ExtResource("7_63dbe")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 61, 1, -86)
 
-[node name="Enemy6" parent="." instance=ExtResource("7_2qqe4")]
+[node name="Enemy6" parent="." instance=ExtResource("7_63dbe")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 62, 1, -83)
 
-[node name="Prop" parent="." instance=ExtResource("8_s1vfk")]
+[node name="Prop" parent="." instance=ExtResource("8_6noad")]
 transform = Transform3D(0.792215, 0, 0.610242, 0, 1, 0, -0.610242, 0, 0.792215, 68.092, 1, -91.6842)
 
-[node name="Prop2" parent="." instance=ExtResource("8_s1vfk")]
+[node name="Prop2" parent="." instance=ExtResource("8_6noad")]
 transform = Transform3D(0.895751, 0, 0.444557, 0, 1, 0, -0.444557, 0, 0.895751, 68.0369, 1, -81.8268)
 
-[node name="Prop3" parent="." instance=ExtResource("8_s1vfk")]
+[node name="Prop3" parent="." instance=ExtResource("8_6noad")]
 transform = Transform3D(0.970662, 0, 0.240448, 0, 1, 0, -0.240448, 0, 0.970662, 62.9816, 1, -94.2731)
 
-[node name="Prop4" parent="." instance=ExtResource("8_s1vfk")]
+[node name="Prop4" parent="." instance=ExtResource("8_6noad")]
 transform = Transform3D(0.914091, 0, 0.405509, 0, 1, 0, -0.405509, 0, 0.914091, 47, 1, -54)
 
 [connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]
