@@ -1,8 +1,6 @@
 things to do:
 
 
-improve dialogue system
-
 concept further levels:
 	just do anything that comes to mind. if bad, playtest and see results to confirm
 

@@ -4,8 +4,10 @@ signal takeDamage
 signal death
 
 var projectileDamage = 3
-@onready var timer = $Timeout
 
+@onready var timer = $Timeout
+@onready var sound_hurt = $Hurt
+@onready var sound_kill = $Kill
 
 
 @export_group("Variables")
@@ -16,7 +18,6 @@ var projectileDamage = 3
 
 @export_group("Options")
 @export var TakeDamageFromRigidBodies : bool = true
-@export var TakeDamageFromProjectiles : bool = true
 @export var DamagePlayerOnPlayerCollision : bool = true
 @export var PlayKillSound : bool = false
 @export var PlayHurtSound : bool = false
@@ -52,8 +53,8 @@ func Damage(damage: float):
 		# doesn't play the hurt sfx if it takes a miniscule amount of damage
 		if health - (health - damage) > 1:
 			if PlayHurtSound:
-				$Hurt.pitch_scale = randf_range(75, 125) / 100
-				$Hurt.play()
+				sound_hurt.pitch_scale = randf_range(75, 125) / 100
+				sound_hurt.play()
 				
 		
 		emit_signal("takeDamage") # TakeDamage is to be used to indicate to objects whether they're taking damage, use to activate vfx and sfx
@@ -65,9 +66,9 @@ func Damage(damage: float):
 	
 	if health <= 0:
 		if PlayKillSound and $Kill != null:
-			$Kill.pitch_scale = randf_range(75, 125) / 100
-			$Kill.play()
-			$Kill.reparent(self.get_parent().get_parent())
+			sound_kill.pitch_scale = randf_range(75, 125) / 100
+			sound_kill.play()
+			sound_kill.reparent(self.get_parent().get_parent())
 			
 		
 		emit_signal("death") # Death is used to indicate if a object dies
@@ -89,11 +90,6 @@ func _on_hitbox_body_entered(body):
 			# Damage function emits the signal of taking damage and emits death
 			Damage(calculateDamageBasedOnVelocity(body))
 	
-	
-	# The colliding object is a Projectile
-	if body is CharacterBody3D and body.is_in_group("projectile") and TakeDamageFromProjectiles:
-		Damage(projectileDamage)
-		body.queue_free() # delete projectile
 	
 	# The colliding object is the player
 	if body is CharacterBody3D and body.is_in_group("player") and DamagePlayerOnPlayerCollision:
