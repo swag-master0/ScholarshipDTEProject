@@ -1,10 +1,8 @@
-[gd_scene load_steps=14 format=3 uid="uid://boa48qb8hnllg"]
+[gd_scene load_steps=11 format=3 uid="uid://boa48qb8hnllg"]
 
 [ext_resource type="PackedScene" uid="uid://chfjnfoqk48dy" path="res://Art/blend/levels_chapter2/c2_m4.blend" id="1_qcqmy"]
 [ext_resource type="PackedScene" uid="uid://c7ycb57houxl1" path="res://Elements/function/player/player.tscn" id="2_hdhnc"]
-[ext_resource type="PackedScene" uid="uid://d4nob737a2chy" path="res://Elements/function/objective/objective.tscn" id="3_8wlll"]
 [ext_resource type="PackedScene" uid="uid://ckdmt4lj1dp6j" path="res://Elements/assets/passive/props/prop_fragile.tscn" id="4_10evl"]
-[ext_resource type="PackedScene" uid="uid://c4ousj15h5a10" path="res://Elements/environments/misc/main_menu/main_menu.tscn" id="4_lc0cv"]
 [ext_resource type="PackedScene" uid="uid://ch7t6b0c3tjwr" path="res://Elements/enemies/enemy/enemy.tscn" id="5_biphg"]
 
 [sub_resource type="NavigationMesh" id="NavigationMesh_0dhvs"]
@@ -14,9 +12,6 @@ polygons = [PackedInt32Array(2, 1, 0), PackedInt32Array(4, 3, 5), PackedInt32Arr
 [sub_resource type="Environment" id="Environment_xc002"]
 background_mode = 1
 ambient_light_color = Color(0.0646966, 0.0646965, 0.0646965, 1)
-
-[sub_resource type="SphereShape3D" id="SphereShape3D_eak70"]
-radius = 4.5
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_ys105"]
 emission_enabled = true
@@ -48,18 +43,6 @@ spot_attenuation = 0.0281641
 
 [node name="Player" parent="." instance=ExtResource("2_hdhnc")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -15, 1, 5)
-
-[node name="Objective" parent="." instance=ExtResource("3_8wlll")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -15, 5, 5)
-nextscene = ExtResource("4_lc0cv")
-
-[node name="ObjectiveItem" parent="Objective" index="1"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 156, -3, 27)
-
-[node name="Area3D" type="Area3D" parent="Objective/ObjectiveItem" index="3" groups=["light"]]
-
-[node name="CollisionShape3D2" type="CollisionShape3D" parent="Objective/ObjectiveItem/Area3D"]
-shape = SubResource("SphereShape3D_eak70")
 
 [node name="Props" type="Node" parent="."]
 
@@ -285,7 +268,6 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5, 5, 0)
 [node name="CollisionShape3D" type="CollisionShape3D" parent="SpawnArea"]
 shape = SubResource("BoxShape3D_7hnh8")
 
-[editable path="Objective"]
 [editable path="Props/PropFragile"]
 [editable path="Props/PropFragile2"]
 [editable path="Props/PropFragile3"]
