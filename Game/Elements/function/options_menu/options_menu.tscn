@@ -16,17 +16,107 @@ script = ExtResource("1_aepko")
 layout_mode = 1
 offset_left = 50.0
 offset_top = 50.0
-offset_right = 150.0
+offset_right = 100.0
 offset_bottom = 100.0
-text = "BACK"
+theme_override_colors/font_color = Color(1, 0, 0, 1)
+theme_override_font_sizes/font_size = 30
+text = "X"
 
-[node name="WindowedButton" type="Button" parent="."]
-layout_mode = 0
+[node name="WindowMode" type="Panel" parent="."]
+layout_mode = 1
+anchors_preset = 4
+anchor_top = 0.5
+anchor_bottom = 0.5
 offset_left = 50.0
-offset_top = 134.0
-offset_right = 200.0
-offset_bottom = 184.0
+offset_top = -50.0
+offset_right = 300.0
+offset_bottom = 50.0
+grow_vertical = 2
+
+[node name="WindowedButton" type="Button" parent="WindowMode"]
+layout_mode = 1
+anchors_preset = 6
+anchor_left = 1.0
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+offset_left = -150.0
+offset_top = -25.0
+offset_bottom = 25.0
+grow_horizontal = 0
+grow_vertical = 2
 text = "Windowed"
 
+[node name="Label" type="Label" parent="WindowMode"]
+layout_mode = 1
+anchors_preset = 4
+anchor_top = 0.5
+anchor_bottom = 0.5
+offset_top = -11.5
+offset_right = 40.0
+offset_bottom = 11.5
+grow_vertical = 2
+text = "Window
+Mode:"
+horizontal_alignment = 1
+
+[node name="VolumeSetting" type="Panel" parent="."]
+layout_mode = 1
+anchors_preset = 4
+anchor_top = 0.5
+anchor_bottom = 0.5
+offset_left = 50.0
+offset_top = -154.0
+offset_right = 300.0
+offset_bottom = -54.0
+grow_vertical = 2
+
+[node name="IncreaseVolume" type="Button" parent="VolumeSetting"]
+layout_mode = 1
+anchors_preset = 6
+anchor_left = 1.0
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+offset_left = -50.0
+offset_top = -25.0
+offset_bottom = 25.0
+grow_horizontal = 0
+grow_vertical = 2
+theme_override_font_sizes/font_size = 25
+text = "^"
+
+[node name="DecreaseVolume" type="Button" parent="VolumeSetting"]
+layout_mode = 1
+anchors_preset = 6
+anchor_left = 1.0
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+offset_left = -108.0
+offset_top = -25.0
+offset_right = -58.0
+offset_bottom = 25.0
+grow_horizontal = 0
+grow_vertical = 2
+rotation = 3.14159
+pivot_offset = Vector2(25, 25)
+theme_override_font_sizes/font_size = 25
+text = "^"
+
+[node name="CurrentVolume" type="Label" parent="VolumeSetting"]
+layout_mode = 1
+anchors_preset = 4
+anchor_top = 0.5
+anchor_bottom = 0.5
+offset_top = -11.5
+offset_right = 59.0
+offset_bottom = 11.5
+grow_vertical = 2
+text = "Volume"
+horizontal_alignment = 1
+
 [connection signal="pressed" from="BackButton" to="." method="_on_back_button_pressed"]
-[connection signal="pressed" from="WindowedButton" to="." method="_on_windowed_button_pressed"]
+[connection signal="pressed" from="WindowMode/WindowedButton" to="." method="_on_windowed_button_pressed"]
+[connection signal="pressed" from="VolumeSetting/IncreaseVolume" to="." method="_on_increase_volume_pressed"]
+[connection signal="pressed" from="VolumeSetting/DecreaseVolume" to="." method="_on_decrease_volume_pressed"]
