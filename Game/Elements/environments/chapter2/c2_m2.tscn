@@ -27,10 +27,6 @@ func _process(delta):
 
 #flor
 func _on_pain_body_entered(body):
-	print(body)
-	#if body is RigidBody3D:
-	#	body.apply_force(Vector3(0, prop_fling_velocity, 0))
-	
 	
 	if body.is_in_group(\"player\"):
 		body.velocity.y = player_fling_velocity
@@ -109,6 +105,7 @@ volumetric_fog_emission_energy = 0.0
 
 [node name="c2_m2" type="Node3D"]
 script = SubResource("GDScript_eiqq0")
+player_floor_damage = 3
 
 [node name="c2_m2" parent="." instance=ExtResource("1_phkl0")]
 

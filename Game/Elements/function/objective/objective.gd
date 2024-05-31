@@ -4,6 +4,8 @@ extends Node3D
 @onready var objective = $ObjectiveItem
 @onready var initial_pos = $ObjectiveItem.global_position
 
+@onready var pointer = $LevelStart/Pointer
+
 @export var nextscene : PackedScene
 var player = null
 
@@ -24,12 +26,11 @@ func _on_level_start_body_entered(body):
 
 
 func ChangeScene():
-	
 	# fetches the player in the scene, and triggers the level end sequence within the player
+	# this is to also trigger the GUI screen for the player completing the level
 	for i in self.get_parent().get_children():
 		if i.is_in_group("player"):
 			i.level_completed = true
-			#get_tree().change_scene_to_packed(nextscene)
 
 
 
@@ -41,6 +42,11 @@ func _process(_delta):
 		objective.set_freeze_enabled(false)
 		
 		push_error("Reset the location of the objective item, due to potential softlock")
+	
+	if objective.get_parent().get_parent().is_in_group("player"):
+		pointer.visible = true
+	else:
+		pointer.visible = false
 
 
 

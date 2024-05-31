@@ -72,8 +72,14 @@ var isHolding = false
 var canPause = true
 var selectionsound = false
 var levelchangetriggered = false
+var healthvisualindicator = false
+
+var tutorial_pickup = false
+var tutorial_proximitydrop = false
+var tutorial_objective = false
 
 var main_menu = "res://Elements/environments/misc/main_menu/main_menu.tscn"
+
 
 # please leave object blank, but keep as export
 @export_group("Programming Stuff")
@@ -199,13 +205,12 @@ func _process(_delta):
 			var force = (cursor.global_position - position).normalized()
 			
 			
-			# drop object gently
-			# TODO: make a visual indicator for when this is true
 			if character.position.distance_to(cursor.position) < 4 and character.position.distance_to(cursor.position) > -4:
 				force = Vector3(0, 0, 0)
 				drop_indicator.visible = true
 				
-				if tutorial_mode:
+				if tutorial_mode and !tutorial_proximitydrop:
+					tutorial_proximitydrop = true
 					sendHintToPlayer("You can drop items gently when the cursor is over yourself")
 			
 			
@@ -233,10 +238,18 @@ func _process(_delta):
 		else:
 			hud_health.visible = true
 		
-		if hud_healthwhite.value != hud_health.value:
-			var tween = get_tree().create_tween()
+		# this is creating too many tweens
+		if hud_healthwhite.value != hud_health.value and !healthvisualindicator:
+			healthvisualindicator = true
 			
-			tween.tween_property(hud_health, "value", health, 1)
+			var tween = get_tree().create_tween()
+			tween.set_ease(Tween.EASE_IN)
+			tween.tween_property(hud_healthwhite, "value", health, 1)
+			
+			await tween.finished
+			hud_healthwhite.value = hud_health.value
+			
+			healthvisualindicator = false
 	
 	
 	if level_completed:
@@ -303,7 +316,8 @@ func MousePosition():
 		if character.position.distance_to(cursor.position) < 4 and character.position.distance_to(cursor.position) > -4 and isHolding:
 			drop_indicator.visible = true
 			
-			if tutorial_mode:
+			if tutorial_mode and !tutorial_proximitydrop:
+				tutorial_proximitydrop = true
 				sendHintToPlayer("You can drop items gently when the cursor is over yourself")
 		elif ready: 
 			drop_indicator.visible = false
@@ -367,6 +381,9 @@ func sendHintToPlayer(hint):
 
 func _hinttext_timeout():
 	hinttext.text = ""
+	
+	if tutorial_pickup:
+		tutorial_pickup = false
 
 
 # INFO: DIALOGUE SYSTEM
@@ -410,7 +427,11 @@ func setCursorPosition(pos : Vector3, visibility : bool):
 		
 		if tutorial_mode:
 			indicator_tutorial.visible = true
-			sendHintToPlayer("Use MOUSE 1 to pick up and throw objects")
+			
+			if !tutorial_pickup:
+				tutorial_pickup = true
+				sendHintToPlayer("Use MOUSE 1 to pick up and throw objects")
+		
 		else:
 			indicator_tutorial.visible = false
 		

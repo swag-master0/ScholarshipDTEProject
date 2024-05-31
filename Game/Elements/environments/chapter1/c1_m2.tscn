@@ -82,6 +82,7 @@ prop = ExtResource("7_tk5jc")
 
 [node name="Player" parent="." instance=ExtResource("1_cneap")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 3, 0)
+tutorial_mode = true
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
 environment = SubResource("Environment_6u04u")

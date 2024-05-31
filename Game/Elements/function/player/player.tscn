@@ -431,7 +431,9 @@ pivot_offset = Vector2(180, 25)
 theme_override_styles/background = SubResource("StyleBoxFlat_nqrcn")
 theme_override_styles/fill = SubResource("StyleBoxFlat_lr4wr")
 max_value = 20.0
-value = 12.0
+value = 10.0
+allow_greater = true
+allow_lesser = true
 show_percentage = false
 
 [node name="EnemyHealth" type="ProgressBar" parent="HUD"]
