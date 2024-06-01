@@ -10,7 +10,7 @@ config_version=5
 
 [application]
 
-config/name="Collection Agent"
+config/name="WorkingTitle"
 run/main_scene="res://Elements/environments/misc/main_menu/main_menu.tscn"
 config/features=PackedStringArray("4.2", "Forward Plus")
 config/icon="res://Art/textures/icon.svg"
