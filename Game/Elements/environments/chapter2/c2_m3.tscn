@@ -1,7 +1,9 @@
-[gd_scene load_steps=9 format=3 uid="uid://bnw1iqj5sw2f"]
+[gd_scene load_steps=11 format=3 uid="uid://bnw1iqj5sw2f"]
 
 [ext_resource type="PackedScene" uid="uid://codvp41rfhoag" path="res://Elements/enemies/copycat_v2/copycat_v2.tscn" id="1_37ay1"]
+[ext_resource type="PackedScene" uid="uid://d4nob737a2chy" path="res://Elements/function/objective/objective.tscn" id="2_kdj8m"]
 [ext_resource type="PackedScene" uid="uid://d31fcy57aohf6" path="res://Art/blend/levels_chapter2/c2_m3.blend" id="2_rhdrf"]
+[ext_resource type="PackedScene" uid="uid://boa48qb8hnllg" path="res://Elements/environments/chapter2/c2_m4.tscn" id="3_gqmgj"]
 [ext_resource type="PackedScene" uid="uid://c7ycb57houxl1" path="res://Elements/function/player/player.tscn" id="5_kcxgm"]
 [ext_resource type="PackedScene" uid="uid://ch7t6b0c3tjwr" path="res://Elements/enemies/enemy/enemy.tscn" id="6_e2whm"]
 
@@ -70,6 +72,13 @@ volumetric_fog_emission_energy = 0.0
 script = SubResource("GDScript_s7lc2")
 enemy = ExtResource("1_37ay1")
 
+[node name="Objective" parent="." instance=ExtResource("2_kdj8m")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 55, 5, 17)
+nextscene = ExtResource("3_gqmgj")
+
+[node name="ObjectiveItem" parent="Objective" index="1"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -148, -2, 13)
+
 [node name="NavigationRegion3D" type="NavigationRegion3D" parent="."]
 navigation_mesh = SubResource("NavigationMesh_vltec")
 
@@ -129,5 +138,6 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 42.0145, 2, -22.1348)
 
 [connection signal="body_entered" from="Trigger" to="." method="_on_trigger_body_entered"]
 
+[editable path="Objective"]
 [editable path="Enemy"]
 [editable path="Enemy/Info"]
