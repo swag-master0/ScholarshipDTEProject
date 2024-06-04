@@ -1,7 +1,6 @@
-[gd_scene load_steps=6 format=3 uid="uid://4u0jd43l42nx"]
+[gd_scene load_steps=5 format=3 uid="uid://4u0jd43l42nx"]
 
 [ext_resource type="PackedScene" uid="uid://c7ycb57houxl1" path="res://Elements/function/player/player.tscn" id="1_2qwo1"]
-[ext_resource type="PackedScene" uid="uid://d4nob737a2chy" path="res://Elements/function/objective/objective.tscn" id="1_xdvoa"]
 [ext_resource type="PackedScene" uid="uid://dcwnaqxeugfkv" path="res://Art/blend/levels_chapter2/c2_m5.blend" id="2_7uqlp"]
 
 [sub_resource type="GDScript" id="GDScript_onql4"]
@@ -33,12 +32,6 @@ volumetric_fog_emission_energy = 0.0
 [node name="c2_m5" type="Node3D"]
 script = SubResource("GDScript_onql4")
 
-[node name="Objective" parent="." instance=ExtResource("1_xdvoa")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 5, 0)
-
-[node name="ObjectiveItem" parent="Objective" index="1"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 49, 52, -42)
-
 [node name="Player" parent="." instance=ExtResource("1_2qwo1")]
 transform = Transform3D(0.707107, 0, 0.707107, 0, 1, 0, -0.707107, 0, 0.707107, 0, 1, 0)
 
@@ -52,5 +45,3 @@ sky_mode = 1
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="c2_m5"]
 environment = SubResource("Environment_noulr")
-
-[editable path="Objective"]

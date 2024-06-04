@@ -1,7 +1,6 @@
-[gd_scene load_steps=10 format=3 uid="uid://c4ousj15h5a10"]
+[gd_scene load_steps=9 format=3 uid="uid://c4ousj15h5a10"]
 
 [ext_resource type="Script" path="res://Elements/environments/misc/main_menu/main_menu.gd" id="1_woppv"]
-[ext_resource type="PackedScene" uid="uid://bnw1iqj5sw2f" path="res://Elements/environments/chapter2/c2_m3.tscn" id="2_m6v0c"]
 [ext_resource type="PackedScene" uid="uid://233quw6ftjqa" path="res://Elements/function/options_menu/options_menu.tscn" id="3_2bw2t"]
 [ext_resource type="Shader" uid="uid://d08hg4q0p02dx" path="res://Elements/environments/misc/main_menu/main_menu.tres" id="3_ryxe8"]
 
@@ -25,7 +24,7 @@ radius = 10.0
 
 [node name="MainMenu" type="Node3D"]
 script = ExtResource("1_woppv")
-initial_level = ExtResource("2_m6v0c")
+initial_level = "res://Elements/environments/chapter2/c2_m3.tscn"
 
 [node name="Camera3D" type="Camera3D" parent="."]
 

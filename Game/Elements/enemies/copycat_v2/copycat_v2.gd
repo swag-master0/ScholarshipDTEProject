@@ -15,12 +15,13 @@ func _process(_delta):
 			ray.target_position = i.global_position - global_position
 	
 	
-	if ray.is_colliding() and ray.get_collider().is_in_group("player"):
-		var player = ray.get_collider()
-		
-		
-		if self.global_position.distance_to(player.global_position) < distance:
-			Attack(player.global_position, self.global_position)
+	if ray.is_colliding() and is_instance_valid(ray.get_collider()): 
+		if ray.get_collider().is_in_group("player"):
+			var player = ray.get_collider()
+			
+			
+			if self.global_position.distance_to(player.global_position) < distance:
+				Attack(player.global_position, self.global_position)
 	
 
 

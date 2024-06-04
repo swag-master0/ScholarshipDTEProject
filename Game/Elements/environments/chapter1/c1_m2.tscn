@@ -1,9 +1,10 @@
-[gd_scene load_steps=13 format=3 uid="uid://cov8v6858hevf"]
+[gd_scene load_steps=14 format=3 uid="uid://cov8v6858hevf"]
 
 [ext_resource type="PackedScene" uid="uid://c7ycb57houxl1" path="res://Elements/function/player/player.tscn" id="1_cneap"]
 [ext_resource type="PackedScene" uid="uid://ch7t6b0c3tjwr" path="res://Elements/enemies/enemy/enemy.tscn" id="4_8i10n"]
 [ext_resource type="PackedScene" uid="uid://m8urk0gkn6ut" path="res://Art/blend/levels_chapter1/c1_m2.blend" id="4_y0qnk"]
-[ext_resource type="PackedScene" uid="uid://d4nob737a2chy" path="res://Elements/function/objective/objective.tscn" id="5_cdvph"]
+[ext_resource type="PackedScene" uid="uid://cihisq18677xu" path="res://Elements/function/objective/objective_item.tscn" id="5_0wf4d"]
+[ext_resource type="PackedScene" uid="uid://msdo88p274sw" path="res://Elements/function/objective/objective_level_start.tscn" id="6_ey64y"]
 [ext_resource type="PackedScene" uid="uid://w2l3dpbjub7c" path="res://Elements/environments/chapter1/c1_m3.tscn" id="7_3aj01"]
 [ext_resource type="PackedScene" uid="uid://bbb07r3hee2bp" path="res://Elements/assets/passive/props/prop.tscn" id="7_tk5jc"]
 
@@ -80,6 +81,14 @@ script = SubResource("GDScript_jf0va")
 enemy_type = ExtResource("4_8i10n")
 prop = ExtResource("7_tk5jc")
 
+[node name="ObjectiveItem" parent="." instance=ExtResource("5_0wf4d")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 70.3351, 8.5, -45.3473)
+
+[node name="ObjectiveLevelStart" parent="." instance=ExtResource("6_ey64y")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5, 5, 0)
+nextscene = ExtResource("7_3aj01")
+nextscene_string = "res://Elements/environments/chapter1/c1_m3.tscn"
+
 [node name="Player" parent="." instance=ExtResource("1_cneap")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 3, 0)
 tutorial_mode = true
@@ -97,13 +106,6 @@ sky_mode = 1
 navigation_mesh = SubResource("NavigationMesh_a2gje")
 
 [node name="level" parent="NavigationRegion3D" instance=ExtResource("4_y0qnk")]
-
-[node name="Objective" parent="." instance=ExtResource("5_cdvph")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 10.4964, 4, -0.0545578)
-nextscene = ExtResource("7_3aj01")
-
-[node name="ObjectiveItem" parent="Objective" index="1"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 59, 6, -48)
 
 [node name="Trigger" type="Area3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 73, 8, -51)
@@ -176,4 +178,3 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 38.6706, 1, 1.8873)
 [connection signal="body_entered" from="EnemyExampleTrigger" to="." method="_on_enemy_example_trigger_body_entered"]
 
 [editable path="NavigationRegion3D/level"]
-[editable path="Objective"]

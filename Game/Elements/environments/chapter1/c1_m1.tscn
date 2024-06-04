@@ -1,10 +1,11 @@
-[gd_scene load_steps=8 format=3 uid="uid://rq3g3n4qshr3"]
+[gd_scene load_steps=9 format=3 uid="uid://rq3g3n4qshr3"]
 
 [ext_resource type="PackedScene" uid="uid://c61dj4vsac881" path="res://Art/blend/levels_chapter1/c1_m1.blend" id="1_wejc2"]
 [ext_resource type="PackedScene" uid="uid://c7ycb57houxl1" path="res://Elements/function/player/player.tscn" id="2_cvnjw"]
-[ext_resource type="PackedScene" uid="uid://d4nob737a2chy" path="res://Elements/function/objective/objective.tscn" id="3_2mgkk"]
+[ext_resource type="PackedScene" uid="uid://msdo88p274sw" path="res://Elements/function/objective/objective_level_start.tscn" id="4_5dpaq"]
 [ext_resource type="PackedScene" uid="uid://cov8v6858hevf" path="res://Elements/environments/chapter1/c1_m2.tscn" id="4_ymukl"]
 [ext_resource type="PackedScene" uid="uid://bbb07r3hee2bp" path="res://Elements/assets/passive/props/prop.tscn" id="5_p2srq"]
+[ext_resource type="PackedScene" uid="uid://cihisq18677xu" path="res://Elements/function/objective/objective_item.tscn" id="6_x147h"]
 
 [sub_resource type="GDScript" id="GDScript_x6txf"]
 resource_name = "c1_m1-functionality"
@@ -49,6 +50,14 @@ volumetric_fog_emission_energy = 0.0
 [node name="BasicLevel" type="Node3D"]
 script = SubResource("GDScript_x6txf")
 
+[node name="ObjectiveLevelStart" parent="." instance=ExtResource("4_5dpaq")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.428513, 5, 0.786789)
+nextscene = ExtResource("4_ymukl")
+nextscene_string = "res://Elements/environments/chapter1/c1_m2.tscn"
+
+[node name="ObjectiveItem" parent="." instance=ExtResource("6_x147h")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 43.6728, 2.00001, -42.8468)
+
 [node name="basic" parent="." instance=ExtResource("1_wejc2")]
 
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
@@ -63,13 +72,6 @@ environment = SubResource("Environment_abqj6")
 [node name="Player" parent="." instance=ExtResource("2_cvnjw")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
 tutorial_mode = true
-
-[node name="Objective" parent="." instance=ExtResource("3_2mgkk")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 5, 0)
-nextscene = ExtResource("4_ymukl")
-
-[node name="ObjectiveItem" parent="Objective" index="1"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 44.5375, 0, -44)
 
 [node name="Props" type="Node" parent="."]
 
@@ -132,5 +134,3 @@ transform = Transform3D(0.832148, 0, 0.554554, 0, 1, 0, -0.554554, 0, 0.832148, 
 
 [node name="Prop18" parent="Props" instance=ExtResource("5_p2srq")]
 transform = Transform3D(0.114556, 0, 0.993417, 0, 1, 0, -0.993417, 0, 0.114556, 19.7586, 3, -1.55113)
-
-[editable path="Objective"]

@@ -1,6 +1,6 @@
-[gd_scene load_steps=10 format=3 uid="uid://d4nob737a2chy"]
+[gd_scene load_steps=8 format=3 uid="uid://msdo88p274sw"]
 
-[ext_resource type="Script" path="res://Elements/function/objective/objective.gd" id="1_i55ny"]
+[ext_resource type="Script" path="res://Elements/function/objective/objective.gd" id="1_7sjpc"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_denne"]
 size = Vector3(10, 10, 10)
@@ -96,42 +96,20 @@ _data = {
 "idle": SubResource("Animation_7v5ra")
 }
 
-[sub_resource type="TextMesh" id="TextMesh_lmtt0"]
-text = "objective"
-font_size = 97
+[node name="ObjectiveLevelStart" type="Area3D" groups=["objective_start"]]
+script = ExtResource("1_7sjpc")
 
-[sub_resource type="BoxShape3D" id="BoxShape3D_tlk0q"]
-size = Vector3(4, 1.15, 0.75)
-
-[node name="Objective" type="Node3D" groups=["objective"]]
-script = ExtResource("1_i55ny")
-
-[node name="LevelStart" type="Area3D" parent="."]
-
-[node name="CollisionShape3D" type="CollisionShape3D" parent="LevelStart"]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
 shape = SubResource("BoxShape3D_denne")
 
-[node name="Pointer" type="MeshInstance3D" parent="LevelStart"]
+[node name="Pointer" type="MeshInstance3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2, 0)
 mesh = SubResource("CylinderMesh_o5c4b")
 
-[node name="AnimationPlayer" type="AnimationPlayer" parent="LevelStart"]
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 libraries = {
 "": SubResource("AnimationLibrary_aawhx")
 }
 autoplay = "idle"
 
-[node name="ObjectiveItem" type="RigidBody3D" parent="." groups=["objective"]]
-
-[node name="ObjectiveItem" type="MeshInstance3D" parent="ObjectiveItem"]
-mesh = SubResource("TextMesh_lmtt0")
-skeleton = NodePath("../..")
-
-[node name="CollisionShape3D" type="CollisionShape3D" parent="ObjectiveItem"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0149684, -0.010271, 0)
-shape = SubResource("BoxShape3D_tlk0q")
-
-[node name="OmniLight3D" type="OmniLight3D" parent="ObjectiveItem"]
-light_color = Color(1, 1, 0, 1)
-
-[connection signal="body_entered" from="LevelStart" to="." method="_on_level_start_body_entered"]
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]

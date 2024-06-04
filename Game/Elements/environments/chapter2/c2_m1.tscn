@@ -1,9 +1,10 @@
-[gd_scene load_steps=12 format=3 uid="uid://c3jh1kk8goxry"]
+[gd_scene load_steps=13 format=3 uid="uid://c3jh1kk8goxry"]
 
 [ext_resource type="PackedScene" uid="uid://dkteohkuoghg0" path="res://Art/blend/levels_chapter2/c2_m1.blend" id="1_usv7o"]
 [ext_resource type="PackedScene" uid="uid://ch3t1bgj51uvs" path="res://Elements/enemies/sentry/sentry.tscn" id="1_w338e"]
-[ext_resource type="PackedScene" uid="uid://d4nob737a2chy" path="res://Elements/function/objective/objective.tscn" id="2_a3vyx"]
+[ext_resource type="PackedScene" uid="uid://msdo88p274sw" path="res://Elements/function/objective/objective_level_start.tscn" id="2_agbxr"]
 [ext_resource type="PackedScene" uid="uid://c7ycb57houxl1" path="res://Elements/function/player/player.tscn" id="2_gi5go"]
+[ext_resource type="PackedScene" uid="uid://cihisq18677xu" path="res://Elements/function/objective/objective_item.tscn" id="3_esa6i"]
 [ext_resource type="PackedScene" uid="uid://bbb07r3hee2bp" path="res://Elements/assets/passive/props/prop.tscn" id="3_r0mmd"]
 [ext_resource type="PackedScene" uid="uid://e1ifpcaik1si" path="res://Elements/environments/chapter2/c2_m2.tscn" id="4_ejm2i"]
 
@@ -51,14 +52,15 @@ size = Vector3(6, 8, 5.27594)
 script = SubResource("GDScript_ut0lq")
 sentry_instance = ExtResource("1_w338e")
 
-[node name="c2_m1" parent="." instance=ExtResource("1_usv7o")]
-
-[node name="Objective" parent="." instance=ExtResource("2_a3vyx")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5, 5, -2)
+[node name="ObjectiveLevelStart" parent="." instance=ExtResource("2_agbxr")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4, 5, -3)
 nextscene = ExtResource("4_ejm2i")
+nextscene_string = "res://Elements/environments/chapter2/c2_m2.tscn"
 
-[node name="ObjectiveItem" parent="Objective" index="1" groups=["ungrabbable"]]
-transform = Transform3D(0, 0, 1, 0, 1, 0, -1, 0, 0, 32, 3, -55.8205)
+[node name="ObjectiveItem" parent="." groups=["ungrabbable"] instance=ExtResource("3_esa6i")]
+transform = Transform3D(0.258819, 0, 0.965926, 0, 1, 0, -0.965926, 0, 0.258819, 37.4137, 2, -57.6506)
+
+[node name="c2_m1" parent="." instance=ExtResource("1_usv7o")]
 
 [node name="Player" parent="." instance=ExtResource("2_gi5go")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3, 3, -2)
@@ -100,7 +102,6 @@ minimum_distance = 100
 [connection signal="body_entered" from="Trigger" to="." method="_on_trigger_body_entered"]
 [connection signal="death" from="Sentry/Info" to="." method="_on_info_death"]
 
-[editable path="Objective"]
 [editable path="Prop"]
 [editable path="Sentry"]
 [editable path="Sentry/Info"]

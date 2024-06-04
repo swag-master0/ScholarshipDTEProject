@@ -1,13 +1,14 @@
-[gd_scene load_steps=13 format=3 uid="uid://w2l3dpbjub7c"]
+[gd_scene load_steps=14 format=3 uid="uid://w2l3dpbjub7c"]
 
 [ext_resource type="PackedScene" uid="uid://b5c4qe603h5o" path="res://Elements/assets/hostile/explosive_barrel/explosive_barrel.tscn" id="1_ve3uk"]
-[ext_resource type="PackedScene" uid="uid://d4nob737a2chy" path="res://Elements/function/objective/objective.tscn" id="2_ofg6n"]
 [ext_resource type="PackedScene" uid="uid://bkvmwrsm7nbyt" path="res://Elements/environments/chapter1/c1_m4.tscn" id="3_bf0fb"]
 [ext_resource type="PackedScene" uid="uid://c7ycb57houxl1" path="res://Elements/function/player/player.tscn" id="4_2cq5k"]
 [ext_resource type="PackedScene" uid="uid://bs5hdiefi57co" path="res://Art/blend/levels_chapter1/c1_m3.blend" id="5_lwdk2"]
 [ext_resource type="PackedScene" uid="uid://bv51trmf3yaw0" path="res://Elements/assets/hostile/hazard/hazard.tscn" id="6_nadlc"]
+[ext_resource type="PackedScene" uid="uid://msdo88p274sw" path="res://Elements/function/objective/objective_level_start.tscn" id="7_8sx0s"]
 [ext_resource type="PackedScene" uid="uid://ch7t6b0c3tjwr" path="res://Elements/enemies/enemy/enemy.tscn" id="7_63dbe"]
 [ext_resource type="PackedScene" uid="uid://bbb07r3hee2bp" path="res://Elements/assets/passive/props/prop.tscn" id="8_6noad"]
+[ext_resource type="PackedScene" uid="uid://cihisq18677xu" path="res://Elements/function/objective/objective_item.tscn" id="8_jt0ca"]
 
 [sub_resource type="GDScript" id="GDScript_ur7ug"]
 resource_name = "c2_m3-functionality"
@@ -84,16 +85,6 @@ barrel = ExtResource("1_ve3uk")
 [node name="Timer" type="Timer" parent="."]
 wait_time = 3.0
 autostart = true
-
-[node name="Objective" parent="." instance=ExtResource("2_ofg6n")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -45, 5, 27)
-nextscene = ExtResource("3_bf0fb")
-
-[node name="LevelStart" parent="Objective" index="0"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 31, -1, -39)
-
-[node name="ObjectiveItem" parent="Objective" index="1"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 213, -38, -60)
 
 [node name="Player" parent="." instance=ExtResource("4_2cq5k")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -14.2906, 3, -12.0926)
@@ -315,10 +306,17 @@ transform = Transform3D(0.970662, 0, 0.240448, 0, 1, 0, -0.240448, 0, 0.970662, 
 [node name="Prop4" parent="." instance=ExtResource("8_6noad")]
 transform = Transform3D(0.914091, 0, 0.405509, 0, 1, 0, -0.405509, 0, 0.914091, 47, 1, -54)
 
+[node name="ObjectiveLevelStart" parent="." instance=ExtResource("7_8sx0s")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -15, 5, -12)
+nextscene = ExtResource("3_bf0fb")
+nextscene_string = "res://Elements/environments/chapter1/c1_m4.tscn"
+
+[node name="ObjectiveItem" parent="." instance=ExtResource("8_jt0ca")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 167, -37, -33)
+
 [connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]
 [connection signal="body_entered" from="DeleteZone" to="." method="_on_delete_zone_body_entered"]
 
-[editable path="Objective"]
 [editable path="NavigationRegion3D/level4"]
 [editable path="Enemy"]
 [editable path="Enemy/Info"]

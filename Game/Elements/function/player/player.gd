@@ -89,7 +89,6 @@ var main_menu = "res://Elements/environments/misc/main_menu/main_menu.tscn"
 
 
 
-# general stuff
 func _ready():
 	Engine.time_scale = 1
 	canPause = true
@@ -103,7 +102,7 @@ func _ready():
 	# the funny
 	print_rich("[font_size=120][color=CORNFLOWER_BLUE][wave]heck you")
 
-# physics_process is the player movement and 3D cursor stuff
+
 func _physics_process(delta):
 	if not is_on_floor():
 		velocity.y -= gravity * delta * JUMP_FALLMULTIPLIER
@@ -137,10 +136,9 @@ func _physics_process(delta):
 		velocity.x = direction.x * SPEED
 		velocity.z = direction.z * SPEED
 		
-		# Footstep
 		if footstep_delay.is_stopped() and is_on_floor():
 			footstep_delay.start()
-			sound_footstep.pitch_scale = randf_range(75, 125) / 100 # random value between 0.75 and 1.25
+			sound_footstep.pitch_scale = randf_range(75, 125) / 100
 			sound_footstep.play()
 			
 	else:
@@ -156,13 +154,13 @@ func _process(_delta):
 	if (NearestObject() and NearestObject() is RigidBody3D and global_position.distance_to(NearestObject().global_position) <= PICKUP_RANGE) and isHolding == false:
 		
 		if NearestObject().is_in_group("ungrabbable"):
-			return # return function if the object is ungrabbable
+			return
 		
 		setCursorPosition(NearestObject().global_position, true)
 		
 		
 		
-		if Input.is_action_just_pressed("click"): # handle picking up objects
+		if Input.is_action_just_pressed("click"):
 			sound_select.play()
 			isHolding = true
 			object = NearestObject()
@@ -179,19 +177,15 @@ func _process(_delta):
 			pass
 	
 	
-	# Handle throwing RIGID BODIES
-	#if Input.is_action_just_released("click"): 
 	if !Input.is_action_pressed("click"): 
-		# check if the object exists still
+		# check if the object exists still, or else crash
 		if !is_instance_valid(object):
 			object = null
 			isHolding = false
 		
 		
-		# Throw RIGID BODIES
 		if object and isHolding == true and object is RigidBody3D:
 			
-			# the actual throw code
 			isHolding = false
 			
 			sound_select.play()
@@ -225,7 +219,6 @@ func _process(_delta):
 			object = null
 		
 	
-	# handle health bar
 	if ready: 
 		var health = info.health
 		
@@ -238,7 +231,6 @@ func _process(_delta):
 		else:
 			hud_health.visible = true
 		
-		# this is creating too many tweens
 		if hud_healthwhite.value != hud_health.value and !healthvisualindicator:
 			healthvisualindicator = true
 			
@@ -255,7 +247,6 @@ func _process(_delta):
 	if level_completed:
 		Nextlevel()
 	
-	# quit to menu
 	if Input.is_action_just_pressed("escape"):
 		PauseMenu(true)
 
@@ -263,7 +254,6 @@ func _process(_delta):
 
 
 
-# INFO: Fetches mouse position in 3D space
 func MousePosition():
 	if  ready and canPause: # This statement looks very dumb but without it it'll sometimes crash. The crashing isn't even consistant either!
 		var mousePos = get_viewport().get_mouse_position()
@@ -283,7 +273,6 @@ func MousePosition():
 			viewEnemyHealth(null, false)
 		
 		
-		# lock onto enemy
 		if rayArray.has("collider"):
 			if rayArray["collider"].is_in_group("enemy"):
 				
@@ -303,7 +292,6 @@ func MousePosition():
 		
 		
 		
-		# if raycast hit nothing, it draws a plane and sees where a raycast hits on that
 		else:
 			var dropPlane = Plane(Vector3(0, 1, 0), character.global_position.y)
 			var position3D = dropPlane.intersects_ray(camera.project_ray_origin(mousePos), camera.project_ray_normal(mousePos))
@@ -312,7 +300,6 @@ func MousePosition():
 			setCursorPosition(Vector3(), false)
 			viewEnemyHealth(null, false)
 		
-		# display visual indicator when dropping an item
 		if character.position.distance_to(cursor.position) < 4 and character.position.distance_to(cursor.position) > -4 and isHolding:
 			drop_indicator.visible = true
 			
@@ -323,7 +310,6 @@ func MousePosition():
 			drop_indicator.visible = false
 		
 		
-		# display actual aiming location if obstructed
 		collision.global_position = global_position
 		collision.target_position = cursor.global_position - global_position
 		
@@ -339,7 +325,7 @@ func MousePosition():
 			Input.set_mouse_mode(Input.MOUSE_MODE_VISIBLE)
 
 
-# fetch closest object to the mouse position
+
 func NearestObject():
 	var objects = detection.get_overlapping_bodies()
 	
@@ -357,7 +343,7 @@ func NearestObject():
 	if closest_node:
 		return closest_node
 
-# triggers when player takes damage
+
 func _on_info_take_damage():
 	animations.play("hurt")
 	
@@ -365,7 +351,7 @@ func _on_info_take_damage():
 	sound_hurt.play(0)
 
 
-# triggers when player dies
+
 func _on_info_death():
 	$Audio/PlayerDeath.pitch_scale = randf_range(75, 125) / 100 # random value between 0.75 and 1.25
 	$Audio/PlayerDeath.play()
@@ -374,7 +360,6 @@ func _on_info_death():
 
 
 
-# NOTICE: BELOW FUNCTIONS ARE TO DO WITH HUD OF PLAYER
 func sendHintToPlayer(hint):
 	hinttext.text = hint
 	hinttimer.start()
@@ -461,7 +446,7 @@ func viewEnemyHealth(enemy : Object, visibility : bool):
 
 
 
-# INFO: these functions are called when menu buttons in pause menu and death screen are pressed
+
 func RestartLevel():
 	get_tree().paused = false
 	get_tree().reload_current_scene()
@@ -476,21 +461,20 @@ func QuitToMenu():
 
 
 
-# INFO: PAUSE MENU 
 func PauseMenu(toggle : bool):
 	if canPause == true:
 		get_tree().paused = toggle
 		pausemenu.visible = toggle
 
-# Opens Pause Menu
+
 func _on_resume_button_pressed():
 	PauseMenu(false)
 
-# Restart Button pressed in pause menu
+
 func _on_restart_button_pressed():
 	RestartLevel()
 
-# Quit Button pressed in pause menu
+
 func _on_quit_button_pressed():
 	QuitToMenu()
 
@@ -503,10 +487,7 @@ func _on_options_button_pressed():
 
 
 
-# INFO: DEATH
 func DeathScreen():
-	
-	
 	canPause = false
 	var tween = create_tween()
 	tween.tween_property(Engine, "time_scale", 0, 0.2)
@@ -514,16 +495,16 @@ func DeathScreen():
 	deathscreen.visible = true
 
 
-# Restart Button pressed in death screen
+
 func _on_death_restart_button_pressed():
 	RestartLevel()
 
-# Quit Button pressed in death screen
+
 func _on_death_quit_button_pressed():
 	QuitToMenu()
 
 
-# INFO: LEVEL COMPLETE AND CHANGE
+
 func Nextlevel():
 	if levelchangetriggered == false:
 		levelchangetriggered = true
@@ -537,9 +518,11 @@ func Nextlevel():
 func _on_delay_timeout():
 	get_tree().paused = false
 	
+	print(self.get_parent())
 	for i in self.get_parent().get_children():
-		if i.is_in_group("objective"):
-			get_tree().change_scene_to_packed(i.nextscene)
+		if i.is_in_group("objective_start"):
+			#get_tree().change_scene_to_packed(i.nextscene)
+			get_tree().change_scene_to_file(i.nextscene_string)
 
 
 

@@ -6,7 +6,7 @@ extends RigidBody3D
 
 var ungrabbable_group = "ungrabbable"
 
-func _on_body_entered(body):
+func _on_body_entered(_body):
 	var vel = self.get_linear_velocity()
 	
 	# convert negative numbers to positive, or else square root returns 'not a number'

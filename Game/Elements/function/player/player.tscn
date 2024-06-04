@@ -1,4 +1,4 @@
-[gd_scene load_steps=40 format=3 uid="uid://c7ycb57houxl1"]
+[gd_scene load_steps=39 format=3 uid="uid://c7ycb57houxl1"]
 
 [ext_resource type="Script" path="res://Elements/function/player/player.gd" id="1_f2by1"]
 [ext_resource type="PackedScene" uid="uid://cft1b4l0aljye" path="res://Elements/function/info/info.tscn" id="2_r67s4"]
@@ -159,10 +159,7 @@ _data = {
 "loop": SubResource("Animation_5p8ga")
 }
 
-[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_uiem3"]
-
-[sub_resource type="CylinderShape3D" id="CylinderShape3D_sw4f4"]
-height = 1.0
+[sub_resource type="CylinderShape3D" id="CylinderShape3D_r7e24"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_4qe3w"]
 albedo_color = Color(1, 0, 0, 1)
@@ -326,11 +323,7 @@ libraries = {
 autoplay = "loop"
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
-shape = SubResource("CapsuleShape3D_uiem3")
-
-[node name="CollisionShape3D2" type="CollisionShape3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.5, 0)
-shape = SubResource("CylinderShape3D_sw4f4")
+shape = SubResource("CylinderShape3D_r7e24")
 
 [node name="3D-CursorModel" type="MeshInstance3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 5)

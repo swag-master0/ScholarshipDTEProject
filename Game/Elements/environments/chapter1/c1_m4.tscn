@@ -1,9 +1,10 @@
-[gd_scene load_steps=17 format=3 uid="uid://bkvmwrsm7nbyt"]
+[gd_scene load_steps=18 format=3 uid="uid://bkvmwrsm7nbyt"]
 
 [ext_resource type="PackedScene" uid="uid://ch7t6b0c3tjwr" path="res://Elements/enemies/enemy/enemy.tscn" id="1_m5lsm"]
 [ext_resource type="PackedScene" uid="uid://ch3t1bgj51uvs" path="res://Elements/enemies/sentry/sentry.tscn" id="2_bkqhe"]
 [ext_resource type="PackedScene" uid="uid://cna5dpcxkdqae" path="res://Art/blend/levels_chapter1/c1_m4.blend" id="3_2iwqi"]
-[ext_resource type="PackedScene" uid="uid://d4nob737a2chy" path="res://Elements/function/objective/objective.tscn" id="4_ohlwi"]
+[ext_resource type="PackedScene" uid="uid://msdo88p274sw" path="res://Elements/function/objective/objective_level_start.tscn" id="3_xeeln"]
+[ext_resource type="PackedScene" uid="uid://cihisq18677xu" path="res://Elements/function/objective/objective_item.tscn" id="4_voayk"]
 [ext_resource type="PackedScene" uid="uid://c3jh1kk8goxry" path="res://Elements/environments/chapter2/c2_m1.tscn" id="5_l8ie4"]
 [ext_resource type="PackedScene" uid="uid://c7ycb57houxl1" path="res://Elements/function/player/player.tscn" id="6_yfuio"]
 [ext_resource type="PackedScene" uid="uid://bbb07r3hee2bp" path="res://Elements/assets/passive/props/prop.tscn" id="7_ub7yc"]
@@ -111,6 +112,14 @@ script = SubResource("GDScript_w4vx7")
 enemy = ExtResource("1_m5lsm")
 sentry = ExtResource("2_bkqhe")
 
+[node name="ObjectiveLevelStart" parent="." instance=ExtResource("3_xeeln")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 5, 0)
+nextscene = ExtResource("5_l8ie4")
+nextscene_string = "res://Elements/environments/chapter2/c2_m1.tscn"
+
+[node name="ObjectiveItem" parent="." instance=ExtResource("4_voayk")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 143, 2, -70)
+
 [node name="NavigationRegion3D" type="NavigationRegion3D" parent="."]
 navigation_mesh = SubResource("NavigationMesh_u278t")
 
@@ -124,13 +133,6 @@ sky_mode = 1
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="NavigationRegion3D/c2_m4"]
 environment = SubResource("Environment_la8t5")
-
-[node name="Objective" parent="." instance=ExtResource("4_ohlwi")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 5, 0)
-nextscene = ExtResource("5_l8ie4")
-
-[node name="ObjectiveItem" parent="Objective" index="1"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 143, 0, -70)
 
 [node name="Player" parent="." instance=ExtResource("6_yfuio")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
@@ -284,5 +286,3 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 56, 1.05, -46)
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 87, 1.05, -35)
 
 [connection signal="body_entered" from="Trigger" to="." method="_on_trigger_body_entered"]
-
-[editable path="Objective"]
