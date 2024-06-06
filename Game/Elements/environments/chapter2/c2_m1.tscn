@@ -15,14 +15,13 @@ script/source = "extends Node3D
 @onready var sentry = $Sentry
 @onready var info = $Sentry/Info
 @onready var spawnpoint = $SentrySpawn.global_position
+@onready var objective_item = $ObjectiveItem
 @export var sentry_instance : PackedScene
-
-
 
 
 func _on_trigger_body_entered(body):
 	if body.is_in_group(\"projectile\"):
-		$Objective/ObjectiveItem.remove_from_group(\"ungrabbable\")
+		objective_item.remove_from_group(\"ungrabbable\")
 
 
 
