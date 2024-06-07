@@ -70,7 +70,7 @@ script = SubResource("GDScript_s7lc2")
 enemy = ExtResource("1_37ay1")
 
 [node name="ObjectiveItem" parent="." instance=ExtResource("5_xwtyj")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -83, 1, 28)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -91.7188, 1, 28.7381)
 
 [node name="ObjectiveLevelStart" parent="." instance=ExtResource("6_0r2xq")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 54.128, 5, 18.1987)
