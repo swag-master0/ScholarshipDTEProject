@@ -14,19 +14,24 @@ script/source = "extends Node3D
 
 @onready var area = $Pain
 
-@export var player_floor_damage = 1
-@export var player_fling_velocity = 35
-@export var enemy_floor_damage = 9999
-@export var prop_fling_velocity = 50
+@export var player_floor_damage : float = 1
+@export var player_fling_velocity : float = 35
+@export var enemy_floor_damage : float = 9999
+@export var prop_fling_velocity : float = 50
 
 
-func _process(delta):
+func _process(_delta):
 	for i in area.get_overlapping_bodies():
 		if i.is_in_group(\"projectile\"):
 			i.apply_force(Vector3(0, prop_fling_velocity, 0))
+		
+		# TODO: test this
+		if i.is_in_group(\"enemy\"):
+			for o in i.get_children():
+				if o.is_in_group(\"info\"):
+					o.Damage(enemy_floor_damage)
 
 
-#flor
 func _on_pain_body_entered(body):
 	
 	if body.is_in_group(\"player\"):
@@ -36,12 +41,12 @@ func _on_pain_body_entered(body):
 			if i.is_in_group(\"info\"):
 				i.Damage(player_floor_damage)
 	
-	
+	\"\"\"
 	if body.is_in_group(\"enemy\"):
 		for i in body.get_children():
 			if i.is_in_group(\"info\"):
-				i.Damage(enemy_floor_damage) #kill enemies instantly if they touchie
-	
+				i.Damage(enemy_floor_damage)
+	\"\"\"
 	
 
 "
@@ -106,7 +111,7 @@ volumetric_fog_emission_energy = 0.0
 
 [node name="c2_m2" type="Node3D"]
 script = SubResource("GDScript_eiqq0")
-player_floor_damage = 3
+player_floor_damage = 2.0
 
 [node name="ObjectiveLevelStart" parent="." instance=ExtResource("1_fn0xy")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 5, 0)
@@ -171,6 +176,12 @@ shape = SubResource("BoxShape3D_vudvp")
 
 [node name="Player" parent="." instance=ExtResource("1_5okxu")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
+
+[node name="Sentry" parent="." instance=ExtResource("5_0rjpi")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 113.396, 1.5, -45.0908)
+
+[node name="Info" parent="Sentry" index="0"]
+health = 6.0
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
 environment = SubResource("Environment_vphk2")
@@ -300,9 +311,8 @@ transform = Transform3D(0.95518, 0, -0.296025, 0, 1, 0, 0.296025, 0, 0.95518, 11
 [node name="Prop41" parent="Props" instance=ExtResource("3_uaf3v")]
 transform = Transform3D(0.888545, 0, -0.458789, 0, 1, 0, 0.458789, 0, 0.888545, 104.421, -0.5, -44.0366)
 
-[node name="Sentry" parent="." instance=ExtResource("5_0rjpi")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 113.396, 1.5, -45.0908)
-
 [connection signal="body_entered" from="Pain" to="." method="_on_pain_body_entered"]
 
 [editable path="c2_m2"]
+[editable path="Sentry"]
+[editable path="Sentry/Info"]

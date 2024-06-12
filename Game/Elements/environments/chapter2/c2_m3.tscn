@@ -9,11 +9,13 @@
 [ext_resource type="PackedScene" uid="uid://boa48qb8hnllg" path="res://Elements/environments/chapter2/c2_m4.tscn" id="7_lemv7"]
 
 [sub_resource type="GDScript" id="GDScript_s7lc2"]
-resource_name = "copycatlevel_functionality"
+resource_name = "c2_m3-functionality"
 script/source = "extends Node3D
 
 @onready var level = $NavigationRegion3D/c2_m3
 @export var enemy : PackedScene
+@export var spawnchance : float = 90
+
 
 var triggered = false
 
@@ -35,7 +37,7 @@ func _on_trigger_body_entered(body):
 		
 		# randomly select some rigid bodies in the level to turn into copycats
 		for i in level.get_children():
-			if i is RigidBody3D and (randi_range(0, 100) >= 75):
+			if i is RigidBody3D and (randi_range(0, 100) >= spawnchance):
 				var new_enemy = enemy.instantiate()
 				add_child(new_enemy)
 				i.queue_free()

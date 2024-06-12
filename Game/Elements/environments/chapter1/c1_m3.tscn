@@ -11,22 +11,13 @@
 [ext_resource type="PackedScene" uid="uid://cihisq18677xu" path="res://Elements/function/objective/objective_item.tscn" id="8_jt0ca"]
 
 [sub_resource type="GDScript" id="GDScript_ur7ug"]
-resource_name = "c2_m3-functionality"
+resource_name = "c1_m3-functionality"
 script/source = "extends Node3D
 
 @onready var spawnarea = $SpawnLocations
 @export var barrel : PackedScene
-@export var chance_for_spawn : float = 50
+@export var chance_for_spawn : float = 75
 
-
-# Called when the node enters the scene tree for the first time.
-func _ready():
-	pass # Replace with function body.
-
-
-# Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(_delta):
-	pass
 
 func _on_timer_timeout():
 	if ready:
@@ -83,7 +74,7 @@ script = SubResource("GDScript_ur7ug")
 barrel = ExtResource("1_ve3uk")
 
 [node name="Timer" type="Timer" parent="."]
-wait_time = 3.0
+wait_time = 5.0
 autostart = true
 
 [node name="Player" parent="." instance=ExtResource("4_2cq5k")]

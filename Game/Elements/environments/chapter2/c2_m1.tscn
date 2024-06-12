@@ -75,7 +75,7 @@ environment = SubResource("Environment_qndx8")
 
 [node name="Prop" parent="." instance=ExtResource("3_r0mmd")]
 transform = Transform3D(1, 0, 0, 0, 0.977327, 0.211734, 0, -0.211734, 0.977327, 37.6822, 3, -23.8435)
-mass = 100.0
+mass = 40.0
 ungrabbable = true
 
 [node name="CollisionShape3D" parent="Prop" index="0"]
