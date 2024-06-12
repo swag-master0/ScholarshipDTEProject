@@ -49,7 +49,7 @@ func _physics_process(delta):
 	else:
 		velocity = Vector3(0, 0, 0)
 	
-	# gravity
+	
 	if not is_on_floor():
 		velocity.y -= gravity * delta * 10
 	

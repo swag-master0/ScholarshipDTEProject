@@ -4,6 +4,7 @@ signal takeDamage
 signal death
 
 var projectileDamage = 3
+var hasDied = false
 
 @onready var timer = $Timeout
 @onready var sound_hurt = $Hurt
@@ -65,13 +66,16 @@ func Damage(damage: float):
 	
 	
 	if health <= 0:
-		if PlayKillSound and $Kill != null:
-			sound_kill.pitch_scale = randf_range(75, 125) / 100
-			sound_kill.play()
-			sound_kill.reparent(self.get_parent().get_parent())
+		if !hasDied:
+			hasDied = true
 			
-		
-		emit_signal("death") # Death is used to indicate if a object dies
+			if PlayKillSound and sound_kill != null:
+				sound_kill.pitch_scale = randf_range(75, 125) / 100
+				sound_kill.play()
+				sound_kill.reparent(self.get_parent().get_parent())
+			
+			
+			emit_signal("death") # Death is used to indicate if a object dies
 		
 	
 	# These signals can be found in the 'Signals' menu on the info node, and can call functions when they get called
