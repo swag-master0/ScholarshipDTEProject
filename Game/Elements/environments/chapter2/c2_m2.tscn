@@ -1,4 +1,4 @@
-[gd_scene load_steps=23 format=3 uid="uid://e1ifpcaik1si"]
+[gd_scene load_steps=25 format=3 uid="uid://e1ifpcaik1si"]
 
 [ext_resource type="PackedScene" uid="uid://c7ycb57houxl1" path="res://Elements/function/player/player.tscn" id="1_5okxu"]
 [ext_resource type="PackedScene" uid="uid://msdo88p274sw" path="res://Elements/function/objective/objective_level_start.tscn" id="1_fn0xy"]
@@ -98,6 +98,14 @@ size = Vector3(40, 20, 10)
 [sub_resource type="BoxShape3D" id="BoxShape3D_vudvp"]
 size = Vector3(30, 20, 10)
 
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_vf0lw"]
+resource_local_to_scene = true
+albedo_color = Color(1, 0, 0, 1)
+
+[sub_resource type="CapsuleMesh" id="CapsuleMesh_6d4tv"]
+resource_local_to_scene = true
+material = SubResource("StandardMaterial3D_vf0lw")
+
 [sub_resource type="Environment" id="Environment_vphk2"]
 background_mode = 1
 ambient_light_source = 2
@@ -182,6 +190,9 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 113.396, 1.5, -45.0908)
 
 [node name="Info" parent="Sentry" index="0"]
 health = 6.0
+
+[node name="MeshInstance3D" parent="Sentry" index="2"]
+mesh = SubResource("CapsuleMesh_6d4tv")
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
 environment = SubResource("Environment_vphk2")

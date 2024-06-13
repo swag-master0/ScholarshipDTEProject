@@ -89,7 +89,7 @@ wait_time = 5.0
 autostart = true
 
 [node name="Player" parent="." instance=ExtResource("4_2cq5k")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -14.2906, 3, -12.0926)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -14.2906, 6, -12.0926)
 
 [node name="NavigationRegion3D" type="NavigationRegion3D" parent="."]
 navigation_mesh = SubResource("NavigationMesh_pq4er")

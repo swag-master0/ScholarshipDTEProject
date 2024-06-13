@@ -285,8 +285,8 @@ fov = 60.0
 size = 39.544
 
 [node name="RayCast3D" type="RayCast3D" parent="CentralCameraPoint/Camera3D"]
-visible = false
 target_position = Vector3(0, 0, -5)
+collision_mask = 2
 
 [node name="Cursor" type="Marker3D" parent="."]
 transform = Transform3D(0.707107, 0, -0.707107, 0, 1, 0, 0.707107, 0, 0.707107, 0, 0, -4)
