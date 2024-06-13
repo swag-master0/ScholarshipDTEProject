@@ -1,4 +1,4 @@
-[gd_scene load_steps=14 format=3 uid="uid://w2l3dpbjub7c"]
+[gd_scene load_steps=16 format=3 uid="uid://w2l3dpbjub7c"]
 
 [ext_resource type="PackedScene" uid="uid://b5c4qe603h5o" path="res://Elements/assets/hostile/explosive_barrel/explosive_barrel.tscn" id="1_ve3uk"]
 [ext_resource type="PackedScene" uid="uid://bkvmwrsm7nbyt" path="res://Elements/environments/chapter1/c1_m4.tscn" id="3_bf0fb"]
@@ -68,6 +68,17 @@ volumetric_fog_emission_energy = 0.0
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_dvnq2"]
 size = Vector3(29.125, 1, 54.69)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_g7kjb"]
+resource_local_to_scene = true
+albedo_color = Color(0.450648, 0.450648, 0.450648, 1)
+
+[sub_resource type="SphereMesh" id="SphereMesh_usv3u"]
+resource_local_to_scene = true
+material = SubResource("StandardMaterial3D_g7kjb")
+radius = 1.0
+height = 2.0
+rings = 8
 
 [node name="Level4" type="Node3D"]
 script = SubResource("GDScript_ur7ug")
@@ -178,10 +189,10 @@ transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 9.3623
 transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 5.36239, 1, -22.8921)
 
 [node name="ExplosiveBarrel" parent="." instance=ExtResource("1_ve3uk")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 42, 1.05, -53)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 39, 1.05, -49)
 
 [node name="ExplosiveBarrel4" parent="." instance=ExtResource("1_ve3uk")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 45, 1.05, -48)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 40, 1.05, -47)
 
 [node name="ExplosiveBarrel5" parent="." instance=ExtResource("1_ve3uk")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 44, 1.05, -88)
@@ -199,10 +210,10 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 42, 1.05, -75)
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 42, 3.05, -74)
 
 [node name="ExplosiveBarrel2" parent="." instance=ExtResource("1_ve3uk")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 43.8181, 1.05, -53.9424)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 41.0577, 1.05, -48.1252)
 
 [node name="ExplosiveBarrel3" parent="." instance=ExtResource("1_ve3uk")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 42.8916, 3.05, -53.6975)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 39.9843, 3.05, -48.0685)
 
 [node name="DeleteZone" type="Area3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 180, -48, -58)
@@ -269,6 +280,9 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 7.93963, 2, -28.4437)
 [node name="Info" parent="Enemy" index="0"]
 health = 1.0
 max_health = 1.0
+
+[node name="Mesh" parent="Enemy" index="2"]
+mesh = SubResource("SphereMesh_usv3u")
 
 [node name="Enemy2" parent="." instance=ExtResource("7_63dbe")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 62, 1, -53)

@@ -78,6 +78,7 @@ var healthvisualindicator = false
 var tutorial_pickup = false
 var tutorial_proximitydrop = false
 var tutorial_objective = false
+var tutorial_queuedhints = []
 
 var main_menu = "res://Elements/environments/misc/main_menu/main_menu.tscn"
 
@@ -368,8 +369,11 @@ func _on_info_death():
 
 
 func sendHintToPlayer(hint):
-	hinttext.text = hint
+	tutorial_queuedhints.append(hint)
+	#hinttext.text = hint
 	hinttimer.start()
+	
+	# TODO
 
 func _hinttext_timeout():
 	hinttext.text = ""
