@@ -118,3 +118,5 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 48, 1, -48)
 transform = Transform3D(0.819812, 0, 0.572633, 0, 1, 0, -0.572633, 0, 0.819812, 31.4343, 1, -16.9251)
 
 [connection signal="body_entered" from="TutorialTrigger" to="." method="_on_tutorial_trigger_body_entered"]
+
+[editable path="basic"]

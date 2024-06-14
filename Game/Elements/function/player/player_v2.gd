@@ -17,7 +17,6 @@ extends CharacterBody3D
 @onready var character = $PlayerModel
 @onready var holdpoint = $PlayerModel/HoldPoint
 @onready var holdpoint_backup = $PlayerModel/HoldPoint/Backup
-@onready var drop_indicator = $PlayerModel/DropIndicator
 @onready var obstruction_detection = $PlayerModel/ObstructionDetector
 
 # Camera
@@ -28,7 +27,6 @@ extends CharacterBody3D
 # Cursor
 @onready var cursor = $Cursor
 @onready var detection = $Cursor/Area3D
-@onready var crosshair = $Cursor/Area3D/crosshair
 
 
 # Info
@@ -62,7 +60,7 @@ extends CharacterBody3D
 @onready var sound_dialogue = $Audio/Dialogue
 
 # Animations
-@onready var animations = $AnimationPlayer
+@onready var animations = $PlayerModel/AnimationPlayer
 
 
 var gravity = ProjectSettings.get_setting("physics/3d/default_gravity")
@@ -95,7 +93,6 @@ func _ready():
 	canPause = true
 	pausemenu.visible = false
 	deathscreen.visible = false
-	drop_indicator.visible = false
 	
 	Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
 	
@@ -109,6 +106,10 @@ func _input(event):
 	if event is InputEventMouseMotion and canPause == true:
 		
 		rotate_y(deg_to_rad(-event.relative.x * SENSITIVITY))
+		
+		if !velocity and !isHolding:
+			character.rotate_y(deg_to_rad(event.relative.x * SENSITIVITY))
+		
 		pivot.rotate_x(deg_to_rad(-event.relative.y * SENSITIVITY))
 		pivot.rotation.x = clamp(pivot.rotation.x, deg_to_rad(-90), deg_to_rad(45))
 		
@@ -122,6 +123,7 @@ func _physics_process(delta):
 	MousePosition()
 	
 	
+	
 	if (Input.is_action_pressed("forward") or Input.is_action_pressed("left") or Input.is_action_pressed("right") or Input.is_action_pressed("backward")):
 		faceDirection = Vector3(Input.get_action_strength("right") - Input.get_action_strength("left"), 0 ,Input.get_action_strength("backward") - Input.get_action_strength("forward")).normalized()
 	
@@ -129,13 +131,10 @@ func _physics_process(delta):
 	
 	if isHolding:
 		character.rotation.y = atan2(cursor.position.x, cursor.position.z)
-		
-	elif !isHolding:
+	elif !isHolding and velocity:
 		character.rotation.y = lerp_angle(character.rotation.y, atan2(faceDirection.x, faceDirection.z), delta * TURN_VELOCITY)
-	
-	
-	
-	
+	elif !velocity:
+		print("no movement")
 	
 	#character.rotation.y = atan2(cursor.position.x, cursor.position.z)
 	
