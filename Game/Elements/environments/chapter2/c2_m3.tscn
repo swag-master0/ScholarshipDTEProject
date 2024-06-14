@@ -1,8 +1,8 @@
 [gd_scene load_steps=14 format=3 uid="uid://bnw1iqj5sw2f"]
 
 [ext_resource type="PackedScene" uid="uid://codvp41rfhoag" path="res://Elements/enemies/copycat_v2/copycat_v2.tscn" id="1_37ay1"]
+[ext_resource type="PackedScene" uid="uid://bcou7suhphdrp" path="res://Elements/function/player/player_v2.tscn" id="2_gqt3i"]
 [ext_resource type="PackedScene" uid="uid://d31fcy57aohf6" path="res://Art/blend/levels_chapter2/c2_m3.blend" id="2_rhdrf"]
-[ext_resource type="PackedScene" uid="uid://c7ycb57houxl1" path="res://Elements/function/player/player.tscn" id="5_kcxgm"]
 [ext_resource type="PackedScene" uid="uid://cihisq18677xu" path="res://Elements/function/objective/objective_item.tscn" id="5_xwtyj"]
 [ext_resource type="PackedScene" uid="uid://msdo88p274sw" path="res://Elements/function/objective/objective_level_start.tscn" id="6_0r2xq"]
 [ext_resource type="PackedScene" uid="uid://ch7t6b0c3tjwr" path="res://Elements/enemies/enemy/enemy.tscn" id="6_e2whm"]
@@ -82,6 +82,9 @@ rings = 8
 script = SubResource("GDScript_s7lc2")
 enemy = ExtResource("1_37ay1")
 
+[node name="Player_v2" parent="." instance=ExtResource("2_gqt3i")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 54, 1, 18)
+
 [node name="ObjectiveItem" parent="." instance=ExtResource("5_xwtyj")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -91.7188, 1, 28.7381)
 
@@ -109,9 +112,6 @@ transform = Transform3D(0.866025, 0.482963, 0.12941, 0, -0.258819, 0.965926, 0.5
 light_color = Color(0.533333, 0.533333, 0.533333, 1)
 shadow_enabled = true
 sky_mode = 1
-
-[node name="Player" parent="." instance=ExtResource("5_kcxgm")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 54.7592, 1, 16.1591)
 
 [node name="Spawnpoints" type="Node" parent="."]
 

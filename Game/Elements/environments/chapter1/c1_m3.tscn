@@ -1,8 +1,8 @@
 [gd_scene load_steps=16 format=3 uid="uid://w2l3dpbjub7c"]
 
 [ext_resource type="PackedScene" uid="uid://b5c4qe603h5o" path="res://Elements/assets/hostile/explosive_barrel/explosive_barrel.tscn" id="1_ve3uk"]
+[ext_resource type="PackedScene" uid="uid://bcou7suhphdrp" path="res://Elements/function/player/player_v2.tscn" id="2_adrog"]
 [ext_resource type="PackedScene" uid="uid://bkvmwrsm7nbyt" path="res://Elements/environments/chapter1/c1_m4.tscn" id="3_bf0fb"]
-[ext_resource type="PackedScene" uid="uid://c7ycb57houxl1" path="res://Elements/function/player/player.tscn" id="4_2cq5k"]
 [ext_resource type="PackedScene" uid="uid://bs5hdiefi57co" path="res://Art/blend/levels_chapter1/c1_m3.blend" id="5_lwdk2"]
 [ext_resource type="PackedScene" uid="uid://bv51trmf3yaw0" path="res://Elements/assets/hostile/hazard/hazard.tscn" id="6_nadlc"]
 [ext_resource type="PackedScene" uid="uid://msdo88p274sw" path="res://Elements/function/objective/objective_level_start.tscn" id="7_8sx0s"]
@@ -84,12 +84,12 @@ rings = 8
 script = SubResource("GDScript_ur7ug")
 barrel = ExtResource("1_ve3uk")
 
+[node name="Player_v2" parent="." instance=ExtResource("2_adrog")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -15, 1, -12)
+
 [node name="Timer" type="Timer" parent="."]
 wait_time = 5.0
 autostart = true
-
-[node name="Player" parent="." instance=ExtResource("4_2cq5k")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -14.2906, 6, -12.0926)
 
 [node name="NavigationRegion3D" type="NavigationRegion3D" parent="."]
 navigation_mesh = SubResource("NavigationMesh_pq4er")

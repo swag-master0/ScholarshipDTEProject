@@ -4,6 +4,7 @@ extends CharacterBody3D
 @export_group("Player Variables")
 @export var tutorial_mode : bool = false
 
+@export var SENSITIVITY : float = 0.25
 @export var SPEED : float = 10
 @export var JUMP_VELOCITY : float = 25
 @export var JUMP_FALLMULTIPLIER : float = 5
@@ -14,13 +15,13 @@ extends CharacterBody3D
 
 # Player Model
 @onready var character = $PlayerModel
-@onready var collision = $PlayerModel/CollisionDetection
 @onready var holdpoint = $PlayerModel/HoldPoint
 @onready var holdpoint_backup = $PlayerModel/HoldPoint/Backup
 @onready var drop_indicator = $PlayerModel/DropIndicator
 @onready var obstruction_detection = $PlayerModel/ObstructionDetector
 
 # Camera
+@onready var pivot = $CentralCameraPoint
 @onready var camera = $CentralCameraPoint/Camera3D
 @onready var ray = $CentralCameraPoint/Camera3D/RayCast3D
 
@@ -29,8 +30,6 @@ extends CharacterBody3D
 @onready var detection = $Cursor/Area3D
 @onready var crosshair = $Cursor/Area3D/crosshair
 
-# 3D cursor model
-#@onready var cursor_model
 
 # Info
 @onready var info = $Info
@@ -97,8 +96,8 @@ func _ready():
 	pausemenu.visible = false
 	deathscreen.visible = false
 	drop_indicator.visible = false
-	Input.set_mouse_mode(Input.MOUSE_MODE_CONFINED_HIDDEN)
 	
+	Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
 	
 	animations.play("RESET")
 	
@@ -106,8 +105,13 @@ func _ready():
 	print_rich("[font_size=120][color=CORNFLOWER_BLUE][wave]heck you")
 
 
-func _unhandled_input(event):
-	pass
+func _input(event):
+	if event is InputEventMouseMotion and canPause == true:
+		
+		rotate_y(deg_to_rad(-event.relative.x * SENSITIVITY))
+		pivot.rotate_x(deg_to_rad(-event.relative.y * SENSITIVITY))
+		pivot.rotation.x = clamp(pivot.rotation.x, deg_to_rad(-90), deg_to_rad(45))
+		
 
 func _physics_process(delta):
 	if not is_on_floor():
@@ -121,18 +125,20 @@ func _physics_process(delta):
 	if (Input.is_action_pressed("forward") or Input.is_action_pressed("left") or Input.is_action_pressed("right") or Input.is_action_pressed("backward")):
 		faceDirection = Vector3(Input.get_action_strength("right") - Input.get_action_strength("left"), 0 ,Input.get_action_strength("backward") - Input.get_action_strength("forward")).normalized()
 	
-	#if Input.is_action_pressed("click"):
+	
+	
 	if isHolding:
 		character.rotation.y = atan2(cursor.position.x, cursor.position.z)
-		crosshair.visible = true
-		Input.set_mouse_mode(Input.MOUSE_MODE_HIDDEN)
-	#elif not Input.is_action_pressed("click"): # This is shitty code, but I fail to care
+		
 	elif !isHolding:
 		character.rotation.y = lerp_angle(character.rotation.y, atan2(faceDirection.x, faceDirection.z), delta * TURN_VELOCITY)
-		crosshair.visible = false
-		Input.set_mouse_mode(Input.MOUSE_MODE_VISIBLE)
-		
-		
+	
+	
+	
+	
+	
+	#character.rotation.y = atan2(cursor.position.x, cursor.position.z)
+	
 	
 	# player movement from template (im too lazy to change it, nor do I need to)
 	var input_dir = Input.get_vector("left", "right", "forward", "backward")
@@ -202,12 +208,13 @@ func _process(_delta):
 			object.set_collision_layer_value(1, true)
 			object.set_collision_mask_value(1, true)
 			
+			print(ray.target_position + global_position)
 			var force = (cursor.global_position - position).normalized()
 			
 			
 			if character.position.distance_to(cursor.position) < 4 and character.position.distance_to(cursor.position) > -4:
 				force = Vector3(0, 0, 0)
-				drop_indicator.visible = true
+				#drop_indicator.visible = true
 				
 				if tutorial_mode and !tutorial_proximitydrop:
 					tutorial_proximitydrop = true
@@ -281,58 +288,33 @@ func MousePosition():
 		if rayArray.has("position"): 
 			cursor.global_position = rayArray["position"]
 			
+			
+		"""
+		
+		
+		if ray.is_colliding() and is_instance_valid(ray.get_collider()):
+			var rayHit = ray.get_collider()
+			cursor.global_position = ray.get_collision_point()
+			
 			setCursorPosition(Vector3(), false)
 			viewEnemyHealth(null, false)
-		"""
-		var rayHit = ray.get_collider()
-		
-		if ray.has("collider"):
-			if ray["collider"].is_in_group("enemy"):
-				
-				for i in ray["collider"].get_children():
+			
+			if rayHit.is_in_group("enemy"):
+				for i in rayHit.get_children():
 					if i.is_in_group("info"):
 						if i.DisplayHealthBar == true:
-							viewEnemyHealth(ray["collider"], true)
+							viewEnemyHealth(rayHit, true)
 				
-				#viewEnemyHealth(rayArray["collider"], true)
+				
 				
 				if Input.is_action_pressed("click"):
-					cursor.global_position = ray["collider"].global_position
-					setCursorPosition(ray["collider"].global_position, true)
+					cursor.global_position = rayHit.global_position
+					setCursorPosition(rayHit.global_position, true)
 					
-				
 		
-		
-		
-		
+
 		else:
 			cursor.global_position = ray.target_position + self.global_position
-			pass
-			"""
-			var dropPlane = Plane(Vector3(0, 1, 0), character.global_position.y)
-			var position3D = dropPlane.intersects_ray(camera.project_ray_origin(mousePos), camera.project_ray_normal(mousePos))
-			cursor.global_position = position3D
-			
-			setCursorPosition(Vector3(), false)
-			viewEnemyHealth(null, false)
-			"""
-		
-		# this is the drop indicator, which is being removed due to third person
-		# the code is staying incase it is still useful
-		"""
-		if character.position.distance_to(cursor.position) < 4 and character.position.distance_to(cursor.position) > -4 and isHolding:
-			drop_indicator.visible = true
-			
-			if tutorial_mode and !tutorial_proximitydrop:
-				tutorial_proximitydrop = true
-				sendHintToPlayer("You can drop items gently when the cursor is over yourself")
-		elif ready: 
-			drop_indicator.visible = false
-		
-		
-		collision.global_position = global_position
-		collision.target_position = cursor.global_position - global_position
-		"""
 
 
 
@@ -477,6 +459,11 @@ func PauseMenu(toggle : bool):
 		Input.set_mouse_mode(Input.MOUSE_MODE_VISIBLE)
 		get_tree().paused = toggle
 		pausemenu.visible = toggle
+		
+		if toggle == true:
+			Input.set_mouse_mode(Input.MOUSE_MODE_VISIBLE)
+		else:
+			Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
 
 
 func _on_resume_button_pressed():

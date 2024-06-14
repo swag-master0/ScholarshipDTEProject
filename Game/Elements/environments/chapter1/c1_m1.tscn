@@ -1,7 +1,7 @@
 [gd_scene load_steps=10 format=3 uid="uid://rq3g3n4qshr3"]
 
+[ext_resource type="PackedScene" uid="uid://bcou7suhphdrp" path="res://Elements/function/player/player_v2.tscn" id="1_01d17"]
 [ext_resource type="PackedScene" uid="uid://c61dj4vsac881" path="res://Art/blend/levels_chapter1/c1_m1.blend" id="1_wejc2"]
-[ext_resource type="PackedScene" uid="uid://c7ycb57houxl1" path="res://Elements/function/player/player.tscn" id="2_cvnjw"]
 [ext_resource type="PackedScene" uid="uid://msdo88p274sw" path="res://Elements/function/objective/objective_level_start.tscn" id="4_5dpaq"]
 [ext_resource type="PackedScene" uid="uid://cov8v6858hevf" path="res://Elements/environments/chapter1/c1_m2.tscn" id="4_ymukl"]
 [ext_resource type="PackedScene" uid="uid://bbb07r3hee2bp" path="res://Elements/assets/passive/props/prop.tscn" id="5_p2srq"]
@@ -60,6 +60,9 @@ size = Vector3(20, 10, 20)
 [node name="BasicLevel" type="Node3D"]
 script = SubResource("GDScript_x6txf")
 
+[node name="Player_v2" parent="." instance=ExtResource("1_01d17")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2, 0)
+
 [node name="ObjectiveLevelStart" parent="." instance=ExtResource("4_5dpaq")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.428513, 5, 0.786789)
 nextscene = ExtResource("4_ymukl")
@@ -78,10 +81,6 @@ sky_mode = 1
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
 environment = SubResource("Environment_abqj6")
-
-[node name="Player" parent="." instance=ExtResource("2_cvnjw")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
-tutorial_mode = true
 
 [node name="TutorialTrigger" type="Area3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 40, 5, -40)

@@ -226,7 +226,7 @@ _data = {
 "hurt": SubResource("Animation_rew3f")
 }
 
-[node name="Player" type="CharacterBody3D" groups=["player"]]
+[node name="Player_v2" type="CharacterBody3D" groups=["player"]]
 floor_max_angle = 1.22173
 script = ExtResource("1_2nm4r")
 
@@ -238,11 +238,6 @@ transform = Transform3D(0.2, 0, 0, 0, -8.74228e-09, -0.2, 0, 0.2, -8.74228e-09, 
 mesh = SubResource("PrismMesh_u4gd0")
 skeleton = NodePath("../..")
 
-[node name="CollisionDetection" type="RayCast3D" parent="PlayerModel"]
-top_level = true
-target_position = Vector3(0, 0, 3.545)
-debug_shape_custom_color = Color(1, 1, 1, 1)
-
 [node name="ObstructionDetector" type="Area3D" parent="PlayerModel"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 2)
 
@@ -251,10 +246,10 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.5, -0.5)
 shape = SubResource("BoxShape3D_virh7")
 
 [node name="HoldPoint" type="Marker3D" parent="PlayerModel"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 2)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 1.5)
 
 [node name="Backup" type="Marker3D" parent="PlayerModel/HoldPoint"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, -2)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, -1.5)
 
 [node name="DropIndicator" type="MeshInstance3D" parent="PlayerModel"]
 mesh = SubResource("TorusMesh_e6sua")
@@ -269,14 +264,14 @@ libraries = {
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.4, 0)
 
 [node name="Camera3D" type="Camera3D" parent="CentralCameraPoint"]
-transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 0, 1, -3)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1, 1, 5)
 doppler_tracking = 2
-fov = 60.0
+fov = 90.0
 size = 39.544
 
 [node name="RayCast3D" type="RayCast3D" parent="CentralCameraPoint/Camera3D"]
+visible = false
 target_position = Vector3(0, 0, -2000)
-collision_mask = 2
 debug_shape_custom_color = Color(1, 0, 0, 1)
 
 [node name="Cursor" type="Marker3D" parent="."]
@@ -291,6 +286,7 @@ shape = SubResource("BoxShape3D_2e1ws")
 
 [node name="crosshair" parent="Cursor/Area3D" instance=ExtResource("2_ehglh")]
 transform = Transform3D(1.5, 0, 0, 0, 1.5, 0, 0, 0, 1.5, 0, 0, 0)
+visible = false
 
 [node name="Cube" parent="Cursor/Area3D/crosshair" index="0"]
 material_override = ExtResource("3_pb2e1")
@@ -626,6 +622,18 @@ text = "[center]level complete"
 [node name="Delay" type="Timer" parent="HUD/LevelCompleted"]
 wait_time = 3.0
 one_shot = true
+
+[node name="ColorRect" type="ColorRect" parent="HUD"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_right = 3.0
+offset_bottom = 3.0
+grow_horizontal = 2
+grow_vertical = 2
 
 [node name="Audio" type="Node" parent="."]
 

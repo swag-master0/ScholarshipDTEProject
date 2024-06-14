@@ -23,6 +23,6 @@ volume_db = -10.0
 
 [node name="Kill" type="AudioStreamPlayer3D" parent="."]
 stream = ExtResource("3_bc2sx")
-volume_db = -10.0
+volume_db = -25.0
 
 [connection signal="body_entered" from="Hitbox" to="." method="_on_hitbox_body_entered"]
