@@ -119,7 +119,7 @@ volumetric_fog_emission_energy = 0.0
 
 [node name="c2_m2" type="Node3D"]
 script = SubResource("GDScript_eiqq0")
-player_floor_damage = 2.0
+player_floor_damage = 3.0
 
 [node name="Player_v2" parent="." instance=ExtResource("1_iwowe")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)

@@ -180,7 +180,6 @@ fov = 90.0
 size = 39.544
 
 [node name="RayCast3D" type="RayCast3D" parent="CentralCameraPoint/Camera3D"]
-visible = false
 target_position = Vector3(0, 0, -2000)
 debug_shape_custom_color = Color(1, 0, 0, 1)
 

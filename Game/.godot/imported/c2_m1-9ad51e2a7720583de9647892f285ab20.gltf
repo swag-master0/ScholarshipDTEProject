@@ -9,7 +9,8 @@
 			"name":"Scene",
 			"nodes":[
 				0,
-				1
+				1,
+				2
 			]
 		}
 	],
@@ -21,6 +22,10 @@
 		{
 			"mesh":1,
 			"name":"Collisions-colonly"
+		},
+		{
+			"mesh":2,
+			"name":"Level (fixed)-noimp"
 		}
 	],
 	"meshes":[
@@ -47,6 +52,19 @@
 						"TEXCOORD_0":6
 					},
 					"indices":7
+				}
+			]
+		},
+		{
+			"name":"Cube.002",
+			"primitives":[
+				{
+					"attributes":{
+						"POSITION":8,
+						"NORMAL":9,
+						"TEXCOORD_0":10
+					},
+					"indices":11
 				}
 			]
 		}
@@ -89,7 +107,7 @@
 		{
 			"bufferView":4,
 			"componentType":5126,
-			"count":1133,
+			"count":1130,
 			"max":[
 				46,
 				14,
@@ -105,19 +123,53 @@
 		{
 			"bufferView":5,
 			"componentType":5126,
-			"count":1133,
+			"count":1130,
 			"type":"VEC3"
 		},
 		{
 			"bufferView":6,
 			"componentType":5126,
-			"count":1133,
+			"count":1130,
 			"type":"VEC2"
 		},
 		{
 			"bufferView":7,
 			"componentType":5123,
 			"count":2160,
+			"type":"SCALAR"
+		},
+		{
+			"bufferView":8,
+			"componentType":5126,
+			"count":422,
+			"max":[
+				43,
+				11,
+				0
+			],
+			"min":[
+				0,
+				-11,
+				-60
+			],
+			"type":"VEC3"
+		},
+		{
+			"bufferView":9,
+			"componentType":5126,
+			"count":422,
+			"type":"VEC3"
+		},
+		{
+			"bufferView":10,
+			"componentType":5126,
+			"count":422,
+			"type":"VEC2"
+		},
+		{
+			"bufferView":11,
+			"componentType":5123,
+			"count":1080,
 			"type":"SCALAR"
 		}
 	],
@@ -148,32 +200,56 @@
 		},
 		{
 			"buffer":0,
-			"byteLength":13596,
+			"byteLength":13560,
 			"byteOffset":15760,
 			"target":34962
 		},
 		{
 			"buffer":0,
-			"byteLength":13596,
-			"byteOffset":29356,
+			"byteLength":13560,
+			"byteOffset":29320,
 			"target":34962
 		},
 		{
 			"buffer":0,
-			"byteLength":9064,
-			"byteOffset":42952,
+			"byteLength":9040,
+			"byteOffset":42880,
 			"target":34962
 		},
 		{
 			"buffer":0,
 			"byteLength":4320,
-			"byteOffset":52016,
+			"byteOffset":51920,
+			"target":34963
+		},
+		{
+			"buffer":0,
+			"byteLength":5064,
+			"byteOffset":56240,
+			"target":34962
+		},
+		{
+			"buffer":0,
+			"byteLength":5064,
+			"byteOffset":61304,
+			"target":34962
+		},
+		{
+			"buffer":0,
+			"byteLength":3376,
+			"byteOffset":66368,
+			"target":34962
+		},
+		{
+			"buffer":0,
+			"byteLength":2160,
+			"byteOffset":69744,
 			"target":34963
 		}
 	],
 	"buffers":[
 		{
-			"byteLength":56336,
+			"byteLength":71904,
 			"uri":"c2_m1-9ad51e2a7720583de9647892f285ab20.bin"
 		}
 	]

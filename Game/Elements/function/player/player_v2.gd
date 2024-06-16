@@ -2,9 +2,15 @@ extends CharacterBody3D
 
 # INFO: PLAYER VARIABLES
 @export_group("Player Variables")
+@export_category("Tutorial")
 @export var tutorial_mode : bool = false
 
+@export_category("Preferences")
 @export var SENSITIVITY : float = 0.25
+@export var MAX_LOOK : float = 60
+@export var MIN_LOOK : float = -75
+
+@export_category("Gameplay")
 @export var SPEED : float = 10
 @export var JUMP_VELOCITY : float = 25
 @export var JUMP_FALLMULTIPLIER : float = 5
@@ -111,7 +117,7 @@ func _input(event):
 			character.rotate_y(deg_to_rad(event.relative.x * SENSITIVITY))
 		
 		pivot.rotate_x(deg_to_rad(-event.relative.y * SENSITIVITY))
-		pivot.rotation.x = clamp(pivot.rotation.x, deg_to_rad(-90), deg_to_rad(45))
+		pivot.rotation.x = clamp(pivot.rotation.x, deg_to_rad(MIN_LOOK), deg_to_rad(MAX_LOOK))
 		
 
 func _physics_process(delta):
@@ -134,7 +140,8 @@ func _physics_process(delta):
 	elif !isHolding and velocity:
 		character.rotation.y = lerp_angle(character.rotation.y, atan2(faceDirection.x, faceDirection.z), delta * TURN_VELOCITY)
 	elif !velocity:
-		print("no movement")
+		pass
+		#print("no movement")
 	
 	#character.rotation.y = atan2(cursor.position.x, cursor.position.z)
 	
@@ -207,7 +214,6 @@ func _process(_delta):
 			object.set_collision_layer_value(1, true)
 			object.set_collision_mask_value(1, true)
 			
-			print(ray.target_position + global_position)
 			var force = (cursor.global_position - position).normalized()
 			
 			
@@ -373,7 +379,6 @@ func Dialogue(dialogue : String, delay : float = 0.05):
 	
 	
 	for i in dialogue.length():
-		print(i)
 		hud_dialogue.visible_characters = i + 1
 		
 		sound_dialogue.pitch_scale = randf_range(50, 150) / 100
@@ -519,7 +524,7 @@ func Nextlevel():
 func _on_delay_timeout():
 	get_tree().paused = false
 	
-	print(self.get_parent())
+	
 	for i in self.get_parent().get_children():
 		if i.is_in_group("objective_start"):
 			#get_tree().change_scene_to_packed(i.nextscene)
