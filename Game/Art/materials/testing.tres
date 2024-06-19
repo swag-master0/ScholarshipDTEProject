@@ -1,0 +1,42 @@
+[gd_resource type="VisualShader" load_steps=5 format=3 uid="uid://cj2wlxhmf61sv"]
+
+[sub_resource type="VisualShaderNodeInput" id="VisualShaderNodeInput_oswsg"]
+
+[sub_resource type="VisualShaderNodeVec4Parameter" id="VisualShaderNodeVec4Parameter_528nr"]
+parameter_name = "Vector4Parameter"
+default_value_enabled = true
+
+[sub_resource type="VisualShaderNodeColorConstant" id="VisualShaderNodeColorConstant_5xq4q"]
+
+[sub_resource type="VisualShaderNodeInput" id="VisualShaderNodeInput_clly7"]
+
+[resource]
+code = "shader_type spatial;
+render_mode blend_mix, depth_draw_opaque, cull_back, diffuse_lambert, specular_schlick_ggx, wireframe;
+
+
+
+
+void fragment() {
+// ColorConstant:4
+	vec4 n_out4p0 = vec4(1.000000, 1.000000, 1.000000, 1.000000);
+
+
+// Output:0
+	ALBEDO = vec3(n_out4p0.xyz);
+	EMISSION = vec3(n_out4p0.xyz);
+
+
+}
+"
+graph_offset = Vector2(-328.891, -47.6915)
+flags/wireframe = true
+nodes/fragment/2/node = SubResource("VisualShaderNodeInput_oswsg")
+nodes/fragment/2/position = Vector2(-100, 400)
+nodes/fragment/3/node = SubResource("VisualShaderNodeVec4Parameter_528nr")
+nodes/fragment/3/position = Vector2(-100, 160)
+nodes/fragment/4/node = SubResource("VisualShaderNodeColorConstant_5xq4q")
+nodes/fragment/4/position = Vector2(160, 160)
+nodes/fragment/5/node = SubResource("VisualShaderNodeInput_clly7")
+nodes/fragment/5/position = Vector2(140, 300)
+nodes/fragment/connections = PackedInt32Array(4, 0, 0, 0, 4, 0, 0, 5)
