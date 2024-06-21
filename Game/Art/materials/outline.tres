@@ -63,7 +63,6 @@ void fragment() {
 
 }
 "
-graph_offset = Vector2(-390.699, -0.666489)
 modes/depth_draw = 2
 modes/cull = 1
 nodes/vertex/2/node = SubResource("VisualShaderNodeInput_chh45")
