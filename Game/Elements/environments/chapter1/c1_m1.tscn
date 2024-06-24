@@ -62,9 +62,10 @@ ambient_light_color = Color(0.385493, 0.385492, 0.385492, 1)
 glow_bloom = 1.0
 fog_light_color = Color(0, 0, 0, 1)
 fog_density = 0.07
-volumetric_fog_density = 0.1228
+volumetric_fog_density = 0.0532
 volumetric_fog_albedo = Color(0, 0, 0, 1)
 volumetric_fog_emission_energy = 0.0
+volumetric_fog_detail_spread = 6.0
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_m2epx"]
 size = Vector3(20, 10, 20)
