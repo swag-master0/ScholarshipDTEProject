@@ -47,12 +47,11 @@ func _process(_delta):
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_ittop"]
 render_priority = 0
 shader = ExtResource("6_42l47")
+shader_parameter/FogIntensity = 5.0
+shader_parameter/FogDistance = 30.0
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_gh40x"]
 next_pass = SubResource("ShaderMaterial_ittop")
-transparency = 3
-alpha_hash_scale = 1.0
-alpha_antialiasing_mode = 0
 albedo_color = Color(0, 0, 0, 0)
 
 [sub_resource type="Environment" id="Environment_abqj6"]
