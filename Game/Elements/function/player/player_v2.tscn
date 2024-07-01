@@ -1,6 +1,7 @@
-[gd_scene load_steps=27 format=3 uid="uid://bcou7suhphdrp"]
+[gd_scene load_steps=29 format=3 uid="uid://bcou7suhphdrp"]
 
 [ext_resource type="Script" path="res://Elements/function/player/player_v2.gd" id="1_2nm4r"]
+[ext_resource type="Shader" uid="uid://brxy1akmulll1" path="res://Art/materials/player.tres" id="2_w1nsb"]
 [ext_resource type="PackedScene" uid="uid://cft1b4l0aljye" path="res://Elements/function/info/info.tscn" id="4_ua0e3"]
 [ext_resource type="Texture2D" uid="uid://djwowo0gdnhek" path="res://Art/textures/mouse_base.png" id="5_u7k2l"]
 [ext_resource type="Texture2D" uid="uid://dmnjpb8ox2bsu" path="res://Art/textures/mouse1-1.png" id="6_ne0wx"]
@@ -11,6 +12,11 @@
 [ext_resource type="AudioStream" uid="uid://bdxfhhvgttnt5" path="res://Art/audio/player_death.wav" id="11_s70kr"]
 [ext_resource type="AudioStream" uid="uid://bwu6q554kl8jd" path="res://Art/audio/player_hurt.wav" id="12_rjj5m"]
 [ext_resource type="AudioStream" uid="uid://bk7fdh3m3au1n" path="res://Art/audio/dialogue.wav" id="13_4dygs"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_ysax4"]
+render_priority = 0
+shader = ExtResource("2_w1nsb")
+shader_parameter/Health = 1.0
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_jofc1"]
 emission = Color(1, 1, 1, 1)
@@ -145,6 +151,7 @@ floor_max_angle = 1.22173
 script = ExtResource("1_2nm4r")
 
 [node name="PlayerModel" type="MeshInstance3D" parent="."]
+material_override = SubResource("ShaderMaterial_ysax4")
 mesh = SubResource("CapsuleMesh_7nubc")
 
 [node name="Arrow" type="MeshInstance3D" parent="PlayerModel"]

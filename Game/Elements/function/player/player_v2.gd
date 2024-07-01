@@ -248,6 +248,12 @@ func _process(_delta):
 		else:
 			hud_health.visible = true
 		
+		
+		var health_ratio = health / max_health
+		print_rich("[rainbow]", health_ratio)
+		# $PlayerModel.shader_parameter.health = health_ratio # figure out how to change the shader parameter
+		$PlayerModel.material_override.shader_parameter.Health = health_ratio
+		
 		if hud_healthwhite.value != hud_health.value and !healthvisualindicator:
 			healthvisualindicator = true
 			
