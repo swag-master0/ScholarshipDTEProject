@@ -3,8 +3,9 @@
 [sub_resource type="VisualShaderNodeVectorCompose" id="VisualShaderNodeVectorCompose_uicwl"]
 
 [sub_resource type="VisualShaderNodeFloatParameter" id="VisualShaderNodeFloatParameter_r6l26"]
-parameter_name = "Health"
+parameter_name = "health"
 default_value_enabled = true
+default_value = 1.0
 
 [sub_resource type="VisualShaderNodeFloatOp" id="VisualShaderNodeFloatOp_p5xey"]
 default_input_values = [0, 1.0, 1, 0.0]
@@ -17,7 +18,7 @@ constant = 1.0
 code = "shader_type spatial;
 render_mode blend_mix, depth_draw_opaque, cull_back, diffuse_lambert, specular_schlick_ggx;
 
-uniform float Health = 0;
+uniform float health = 1;
 
 
 
@@ -27,7 +28,7 @@ void fragment() {
 
 
 // FloatParameter:3
-	float n_out3p0 = Health;
+	float n_out3p0 = health;
 
 
 // FloatOp:4
@@ -45,7 +46,7 @@ void fragment() {
 
 }
 "
-graph_offset = Vector2(-293.288, 128.209)
+graph_offset = Vector2(-378.118, 36.6422)
 nodes/fragment/2/node = SubResource("VisualShaderNodeVectorCompose_uicwl")
 nodes/fragment/2/position = Vector2(200, 140)
 nodes/fragment/3/node = SubResource("VisualShaderNodeFloatParameter_r6l26")
