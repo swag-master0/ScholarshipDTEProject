@@ -1,4 +1,4 @@
-[gd_resource type="VisualShader" load_steps=30 format=3 uid="uid://cj2wlxhmf61sv"]
+[gd_resource type="VisualShader" load_steps=36 format=3 uid="uid://cj2wlxhmf61sv"]
 
 [sub_resource type="VisualShaderNodeFloatFunc" id="VisualShaderNodeFloatFunc_ondai"]
 output_port_for_preview = 0
@@ -92,6 +92,20 @@ input_name = "time"
 output_port_for_preview = 0
 function = 0
 
+[sub_resource type="VisualShaderNodeInput" id="VisualShaderNodeInput_10bwm"]
+input_name = "camera_position_world"
+
+[sub_resource type="VisualShaderNodeSwitch" id="VisualShaderNodeSwitch_l5pw0"]
+output_port_for_preview = 0
+
+[sub_resource type="VisualShaderNodeCompare" id="VisualShaderNodeCompare_mh8jh"]
+output_port_for_preview = 0
+default_input_values = [0, 0, 1, 10, 2, 1e-05]
+type = 1
+function = 2
+
+[sub_resource type="VisualShaderNodeVectorCompose" id="VisualShaderNodeVectorCompose_tsft5"]
+
 [sub_resource type="VisualShaderNodeInput" id="VisualShaderNodeInput_pqbtt"]
 output_port_for_preview = 0
 input_name = "normal"
@@ -100,6 +114,12 @@ input_name = "normal"
 
 [sub_resource type="VisualShaderNodeInput" id="VisualShaderNodeInput_0qry2"]
 output_port_for_preview = 0
+input_name = "vertex"
+
+[sub_resource type="VisualShaderNodeVectorDistance" id="VisualShaderNodeVectorDistance_4bcoy"]
+output_port_for_preview = 0
+
+[sub_resource type="VisualShaderNodeInput" id="VisualShaderNodeInput_edgs7"]
 input_name = "vertex"
 
 [resource]
@@ -176,14 +196,27 @@ void fragment() {
 
 }
 "
+graph_offset = Vector2(414.687, -22.4296)
 nodes/vertex/0/position = Vector2(400, 140)
 nodes/vertex/2/node = SubResource("VisualShaderNodeInput_pqbtt")
-nodes/vertex/2/position = Vector2(-380, 60)
+nodes/vertex/2/position = Vector2(-520, -300)
 nodes/vertex/6/node = SubResource("VisualShaderNodeVectorOp_7hbe0")
-nodes/vertex/6/position = Vector2(-80, 180)
+nodes/vertex/6/position = Vector2(-220, -180)
 nodes/vertex/7/node = SubResource("VisualShaderNodeInput_0qry2")
-nodes/vertex/7/position = Vector2(-380, 320)
-nodes/vertex/connections = PackedInt32Array(2, 0, 6, 0, 7, 0, 6, 1)
+nodes/vertex/7/position = Vector2(-520, -40)
+nodes/vertex/8/node = SubResource("VisualShaderNodeVectorDistance_4bcoy")
+nodes/vertex/8/position = Vector2(-500, 240)
+nodes/vertex/9/node = SubResource("VisualShaderNodeInput_edgs7")
+nodes/vertex/9/position = Vector2(-860, 260)
+nodes/vertex/10/node = SubResource("VisualShaderNodeInput_10bwm")
+nodes/vertex/10/position = Vector2(-860, 360)
+nodes/vertex/11/node = SubResource("VisualShaderNodeSwitch_l5pw0")
+nodes/vertex/11/position = Vector2(-120, 240)
+nodes/vertex/12/node = SubResource("VisualShaderNodeCompare_mh8jh")
+nodes/vertex/12/position = Vector2(-320, 240)
+nodes/vertex/13/node = SubResource("VisualShaderNodeVectorCompose_tsft5")
+nodes/vertex/13/position = Vector2(60, 240)
+nodes/vertex/connections = PackedInt32Array(2, 0, 6, 0, 7, 0, 6, 1, 10, 0, 8, 1, 9, 0, 8, 0, 8, 0, 12, 0, 12, 0, 11, 0, 11, 0, 13, 0)
 nodes/fragment/0/position = Vector2(1680, 160)
 nodes/fragment/6/node = SubResource("VisualShaderNodeVectorCompose_hctgb")
 nodes/fragment/6/position = Vector2(1300, 1400)
@@ -233,4 +266,4 @@ nodes/fragment/36/node = SubResource("VisualShaderNodeFloatParameter_oq75k")
 nodes/fragment/36/position = Vector2(240, 900)
 nodes/fragment/37/node = SubResource("VisualShaderNodeFloatParameter_as0wr")
 nodes/fragment/37/position = Vector2(480, 320)
-nodes/fragment/connections = PackedInt32Array(9, 0, 10, 0, 10, 0, 11, 0, 11, 0, 12, 0, 13, 0, 12, 1, 12, 0, 6, 1, 12, 0, 15, 0, 15, 0, 6, 0, 7, 0, 16, 0, 16, 0, 9, 0, 17, 0, 16, 1, 23, 0, 0, 0, 25, 0, 24, 1, 29, 0, 30, 0, 30, 0, 34, 0, 34, 0, 31, 0, 31, 0, 27, 1, 31, 0, 35, 0, 35, 0, 27, 0, 27, 0, 28, 0, 28, 0, 0, 1, 33, 0, 34, 1, 36, 0, 31, 1, 37, 0, 35, 1, 24, 0, 23, 0, 19, 0, 24, 0)
+nodes/fragment/connections = PackedInt32Array(9, 0, 10, 0, 10, 0, 11, 0, 11, 0, 12, 0, 13, 0, 12, 1, 12, 0, 6, 1, 12, 0, 15, 0, 15, 0, 6, 0, 7, 0, 16, 0, 16, 0, 9, 0, 17, 0, 16, 1, 25, 0, 24, 1, 29, 0, 30, 0, 30, 0, 34, 0, 34, 0, 31, 0, 31, 0, 27, 1, 31, 0, 35, 0, 35, 0, 27, 0, 27, 0, 28, 0, 33, 0, 34, 1, 36, 0, 31, 1, 37, 0, 35, 1, 24, 0, 23, 0, 19, 0, 24, 0, 23, 0, 0, 0, 28, 0, 0, 1)
