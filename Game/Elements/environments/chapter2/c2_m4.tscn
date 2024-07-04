@@ -1,10 +1,10 @@
-[gd_scene load_steps=14 format=3 uid="uid://boa48qb8hnllg"]
+[gd_scene load_steps=40 format=3 uid="uid://boa48qb8hnllg"]
 
 [ext_resource type="PackedScene" uid="uid://msdo88p274sw" path="res://Elements/function/objective/objective_level_start.tscn" id="1_0bq1j"]
+[ext_resource type="PackedScene" uid="uid://bcou7suhphdrp" path="res://Elements/function/player/player_v2.tscn" id="1_ll6ok"]
 [ext_resource type="PackedScene" uid="uid://chfjnfoqk48dy" path="res://Art/blend/levels_chapter2/c2_m4.blend" id="1_qcqmy"]
 [ext_resource type="PackedScene" uid="uid://cihisq18677xu" path="res://Elements/function/objective/objective_item.tscn" id="2_6rj4f"]
 [ext_resource type="PackedScene" uid="uid://c4ousj15h5a10" path="res://Elements/environments/misc/main_menu/main_menu.tscn" id="2_auu7j"]
-[ext_resource type="PackedScene" uid="uid://c7ycb57houxl1" path="res://Elements/function/player/player.tscn" id="2_hdhnc"]
 [ext_resource type="PackedScene" uid="uid://ckdmt4lj1dp6j" path="res://Elements/assets/passive/props/prop_fragile.tscn" id="4_10evl"]
 [ext_resource type="PackedScene" uid="uid://ch7t6b0c3tjwr" path="res://Elements/enemies/enemy/enemy.tscn" id="5_biphg"]
 
@@ -26,10 +26,156 @@ emission = Color(1, 1, 1, 1)
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_qvrct"]
 albedo_color = Color(0, 0, 0, 1)
 
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_6uufv"]
+resource_local_to_scene = true
+albedo_color = Color(0.450648, 0.450648, 0.450648, 1)
+
+[sub_resource type="SphereMesh" id="SphereMesh_qukd8"]
+resource_local_to_scene = true
+material = SubResource("StandardMaterial3D_6uufv")
+radius = 1.0
+height = 2.0
+rings = 8
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_m1ccl"]
+resource_local_to_scene = true
+albedo_color = Color(0.450648, 0.450648, 0.450648, 1)
+
+[sub_resource type="SphereMesh" id="SphereMesh_h3i4c"]
+resource_local_to_scene = true
+material = SubResource("StandardMaterial3D_m1ccl")
+radius = 1.0
+height = 2.0
+rings = 8
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_ccy8u"]
+resource_local_to_scene = true
+albedo_color = Color(0.450648, 0.450648, 0.450648, 1)
+
+[sub_resource type="SphereMesh" id="SphereMesh_0gg6c"]
+resource_local_to_scene = true
+material = SubResource("StandardMaterial3D_ccy8u")
+radius = 1.0
+height = 2.0
+rings = 8
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_ijmdx"]
+resource_local_to_scene = true
+albedo_color = Color(0.450648, 0.450648, 0.450648, 1)
+
+[sub_resource type="SphereMesh" id="SphereMesh_btg1t"]
+resource_local_to_scene = true
+material = SubResource("StandardMaterial3D_ijmdx")
+radius = 1.0
+height = 2.0
+rings = 8
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_4abpn"]
+resource_local_to_scene = true
+albedo_color = Color(0.450648, 0.450648, 0.450648, 1)
+
+[sub_resource type="SphereMesh" id="SphereMesh_odod1"]
+resource_local_to_scene = true
+material = SubResource("StandardMaterial3D_4abpn")
+radius = 1.0
+height = 2.0
+rings = 8
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_8aa0f"]
+resource_local_to_scene = true
+albedo_color = Color(0.450648, 0.450648, 0.450648, 1)
+
+[sub_resource type="SphereMesh" id="SphereMesh_3j8ni"]
+resource_local_to_scene = true
+material = SubResource("StandardMaterial3D_8aa0f")
+radius = 1.0
+height = 2.0
+rings = 8
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_rrms3"]
+resource_local_to_scene = true
+albedo_color = Color(0.450648, 0.450648, 0.450648, 1)
+
+[sub_resource type="SphereMesh" id="SphereMesh_m03o8"]
+resource_local_to_scene = true
+material = SubResource("StandardMaterial3D_rrms3")
+radius = 1.0
+height = 2.0
+rings = 8
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_opyd8"]
+resource_local_to_scene = true
+albedo_color = Color(0.450648, 0.450648, 0.450648, 1)
+
+[sub_resource type="SphereMesh" id="SphereMesh_0nx3b"]
+resource_local_to_scene = true
+material = SubResource("StandardMaterial3D_opyd8")
+radius = 1.0
+height = 2.0
+rings = 8
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_vxi5b"]
+resource_local_to_scene = true
+albedo_color = Color(0.450648, 0.450648, 0.450648, 1)
+
+[sub_resource type="SphereMesh" id="SphereMesh_coxiq"]
+resource_local_to_scene = true
+material = SubResource("StandardMaterial3D_vxi5b")
+radius = 1.0
+height = 2.0
+rings = 8
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_80s7k"]
+resource_local_to_scene = true
+albedo_color = Color(0.450648, 0.450648, 0.450648, 1)
+
+[sub_resource type="SphereMesh" id="SphereMesh_bq6tv"]
+resource_local_to_scene = true
+material = SubResource("StandardMaterial3D_80s7k")
+radius = 1.0
+height = 2.0
+rings = 8
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_ackg1"]
+resource_local_to_scene = true
+albedo_color = Color(0.450648, 0.450648, 0.450648, 1)
+
+[sub_resource type="SphereMesh" id="SphereMesh_yobnd"]
+resource_local_to_scene = true
+material = SubResource("StandardMaterial3D_ackg1")
+radius = 1.0
+height = 2.0
+rings = 8
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_330r8"]
+resource_local_to_scene = true
+albedo_color = Color(0.450648, 0.450648, 0.450648, 1)
+
+[sub_resource type="SphereMesh" id="SphereMesh_cjhsc"]
+resource_local_to_scene = true
+material = SubResource("StandardMaterial3D_330r8")
+radius = 1.0
+height = 2.0
+rings = 8
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_lawpc"]
+resource_local_to_scene = true
+albedo_color = Color(0.450648, 0.450648, 0.450648, 1)
+
+[sub_resource type="SphereMesh" id="SphereMesh_63tjf"]
+resource_local_to_scene = true
+material = SubResource("StandardMaterial3D_lawpc")
+radius = 1.0
+height = 2.0
+rings = 8
+
 [sub_resource type="BoxShape3D" id="BoxShape3D_7hnh8"]
 size = Vector3(50, 10, 20)
 
 [node name="c2_m4" type="Node3D"]
+
+[node name="Player_v2" parent="." instance=ExtResource("1_ll6ok")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -16, 1, 5)
 
 [node name="ObjectiveLevelStart" parent="." instance=ExtResource("1_0bq1j")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -15, 5, 5)
@@ -55,9 +201,6 @@ environment = SubResource("Environment_xc002")
 transform = Transform3D(1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 0, 30, 6)
 spot_range = 55.0
 spot_attenuation = 0.0281641
-
-[node name="Player" parent="." instance=ExtResource("2_hdhnc")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -15, 1, 5)
 
 [node name="Props" type="Node" parent="."]
 
@@ -132,6 +275,7 @@ DisplayHealthBar = false
 
 [node name="Mesh" parent="Enemy" index="2"]
 material_override = SubResource("StandardMaterial3D_qvrct")
+mesh = SubResource("SphereMesh_qukd8")
 
 [node name="Enemy2" parent="." instance=ExtResource("5_biphg")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 56.466, 2, -12.8138)
@@ -144,6 +288,7 @@ DisplayHealthBar = false
 
 [node name="Mesh" parent="Enemy2" index="2"]
 material_override = SubResource("StandardMaterial3D_qvrct")
+mesh = SubResource("SphereMesh_h3i4c")
 
 [node name="Enemy3" parent="." instance=ExtResource("5_biphg")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 72.466, 2, -14.8138)
@@ -156,6 +301,7 @@ DisplayHealthBar = false
 
 [node name="Mesh" parent="Enemy3" index="2"]
 material_override = SubResource("StandardMaterial3D_qvrct")
+mesh = SubResource("SphereMesh_0gg6c")
 
 [node name="Enemy4" parent="." instance=ExtResource("5_biphg")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 66.466, 2, 2.18618)
@@ -168,6 +314,7 @@ DisplayHealthBar = false
 
 [node name="Mesh" parent="Enemy4" index="2"]
 material_override = SubResource("StandardMaterial3D_qvrct")
+mesh = SubResource("SphereMesh_btg1t")
 
 [node name="Enemy5" parent="." instance=ExtResource("5_biphg")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 63.466, 2, 12.1862)
@@ -180,6 +327,7 @@ DisplayHealthBar = false
 
 [node name="Mesh" parent="Enemy5" index="2"]
 material_override = SubResource("StandardMaterial3D_qvrct")
+mesh = SubResource("SphereMesh_odod1")
 
 [node name="Enemy6" parent="." instance=ExtResource("5_biphg")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 86.466, 2, 16.1862)
@@ -192,6 +340,7 @@ DisplayHealthBar = false
 
 [node name="Mesh" parent="Enemy6" index="2"]
 material_override = SubResource("StandardMaterial3D_qvrct")
+mesh = SubResource("SphereMesh_3j8ni")
 
 [node name="Enemy7" parent="." instance=ExtResource("5_biphg")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 109.466, 2, 25.1862)
@@ -204,6 +353,7 @@ DisplayHealthBar = false
 
 [node name="Mesh" parent="Enemy7" index="2"]
 material_override = SubResource("StandardMaterial3D_qvrct")
+mesh = SubResource("SphereMesh_m03o8")
 
 [node name="Enemy8" parent="." instance=ExtResource("5_biphg")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 141.466, 2, 21.1862)
@@ -216,6 +366,7 @@ DisplayHealthBar = false
 
 [node name="Mesh" parent="Enemy8" index="2"]
 material_override = SubResource("StandardMaterial3D_qvrct")
+mesh = SubResource("SphereMesh_0nx3b")
 
 [node name="Enemy9" parent="." instance=ExtResource("5_biphg")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 134.466, 2, 2.18618)
@@ -228,6 +379,7 @@ DisplayHealthBar = false
 
 [node name="Mesh" parent="Enemy9" index="2"]
 material_override = SubResource("StandardMaterial3D_qvrct")
+mesh = SubResource("SphereMesh_coxiq")
 
 [node name="Enemy10" parent="." instance=ExtResource("5_biphg")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 119.466, 2, -4.81382)
@@ -240,6 +392,7 @@ DisplayHealthBar = false
 
 [node name="Mesh" parent="Enemy10" index="2"]
 material_override = SubResource("StandardMaterial3D_qvrct")
+mesh = SubResource("SphereMesh_bq6tv")
 
 [node name="Enemy11" parent="." instance=ExtResource("5_biphg")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 104.466, 2, -8.81382)
@@ -252,6 +405,7 @@ DisplayHealthBar = false
 
 [node name="Mesh" parent="Enemy11" index="2"]
 material_override = SubResource("StandardMaterial3D_qvrct")
+mesh = SubResource("SphereMesh_yobnd")
 
 [node name="Enemy12" parent="." instance=ExtResource("5_biphg")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 105.466, 2, -23.8138)
@@ -264,6 +418,7 @@ DisplayHealthBar = false
 
 [node name="Mesh" parent="Enemy12" index="2"]
 material_override = SubResource("StandardMaterial3D_qvrct")
+mesh = SubResource("SphereMesh_cjhsc")
 
 [node name="Enemy13" parent="." instance=ExtResource("5_biphg")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 81.466, 2, -25.8138)
@@ -276,6 +431,7 @@ DisplayHealthBar = false
 
 [node name="Mesh" parent="Enemy13" index="2"]
 material_override = SubResource("StandardMaterial3D_qvrct")
+mesh = SubResource("SphereMesh_63tjf")
 
 [node name="SpawnArea" type="Area3D" parent="." groups=["light"]]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5, 5, 0)

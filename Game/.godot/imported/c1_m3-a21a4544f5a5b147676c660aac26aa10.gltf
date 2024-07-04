@@ -9,18 +9,28 @@
 			"name":"Scene",
 			"nodes":[
 				0,
-				1
+				1,
+				2,
+				3
 			]
 		}
 	],
 	"nodes":[
 		{
 			"mesh":0,
-			"name":"Level"
+			"name":"LevelVisuals"
 		},
 		{
 			"mesh":1,
-			"name":"Collisions -colonly"
+			"name":"Level (noflip) -noimp"
+		},
+		{
+			"mesh":2,
+			"name":"CursorCollisions -noimp"
+		},
+		{
+			"mesh":3,
+			"name":"PlayerCollisions -colonly"
 		}
 	],
 	"meshes":[
@@ -38,7 +48,7 @@
 			]
 		},
 		{
-			"name":"Cube",
+			"name":"Cube.003",
 			"primitives":[
 				{
 					"attributes":{
@@ -47,6 +57,32 @@
 						"TEXCOORD_0":6
 					},
 					"indices":7
+				}
+			]
+		},
+		{
+			"name":"Cube.004",
+			"primitives":[
+				{
+					"attributes":{
+						"POSITION":8,
+						"NORMAL":9,
+						"TEXCOORD_0":10
+					},
+					"indices":11
+				}
+			]
+		},
+		{
+			"name":"Cube",
+			"primitives":[
+				{
+					"attributes":{
+						"POSITION":12,
+						"NORMAL":13,
+						"TEXCOORD_0":14
+					},
+					"indices":15
 				}
 			]
 		}
@@ -89,6 +125,40 @@
 		{
 			"bufferView":4,
 			"componentType":5126,
+			"count":559,
+			"max":[
+				194,
+				26.123638153076172,
+				-6.75
+			],
+			"min":[
+				-20,
+				-146,
+				-96
+			],
+			"type":"VEC3"
+		},
+		{
+			"bufferView":5,
+			"componentType":5126,
+			"count":559,
+			"type":"VEC3"
+		},
+		{
+			"bufferView":6,
+			"componentType":5126,
+			"count":559,
+			"type":"VEC2"
+		},
+		{
+			"bufferView":7,
+			"componentType":5123,
+			"count":1500,
+			"type":"SCALAR"
+		},
+		{
+			"bufferView":8,
+			"componentType":5126,
 			"count":1494,
 			"max":[
 				195,
@@ -103,19 +173,53 @@
 			"type":"VEC3"
 		},
 		{
-			"bufferView":5,
+			"bufferView":9,
 			"componentType":5126,
 			"count":1494,
 			"type":"VEC3"
 		},
 		{
-			"bufferView":6,
+			"bufferView":10,
 			"componentType":5126,
 			"count":1494,
 			"type":"VEC2"
 		},
 		{
-			"bufferView":7,
+			"bufferView":11,
+			"componentType":5123,
+			"count":3000,
+			"type":"SCALAR"
+		},
+		{
+			"bufferView":12,
+			"componentType":5126,
+			"count":1463,
+			"max":[
+				195,
+				26.802778244018555,
+				-6.083333492279053
+			],
+			"min":[
+				-20.66666603088379,
+				-146.6666717529297,
+				-96.66666412353516
+			],
+			"type":"VEC3"
+		},
+		{
+			"bufferView":13,
+			"componentType":5126,
+			"count":1463,
+			"type":"VEC3"
+		},
+		{
+			"bufferView":14,
+			"componentType":5126,
+			"count":1463,
+			"type":"VEC2"
+		},
+		{
+			"bufferView":15,
 			"componentType":5123,
 			"count":3000,
 			"type":"SCALAR"
@@ -148,32 +252,80 @@
 		},
 		{
 			"buffer":0,
-			"byteLength":17928,
+			"byteLength":6708,
 			"byteOffset":21816,
 			"target":34962
 		},
 		{
 			"buffer":0,
+			"byteLength":6708,
+			"byteOffset":28524,
+			"target":34962
+		},
+		{
+			"buffer":0,
+			"byteLength":4472,
+			"byteOffset":35232,
+			"target":34962
+		},
+		{
+			"buffer":0,
+			"byteLength":3000,
+			"byteOffset":39704,
+			"target":34963
+		},
+		{
+			"buffer":0,
 			"byteLength":17928,
-			"byteOffset":39744,
+			"byteOffset":42704,
+			"target":34962
+		},
+		{
+			"buffer":0,
+			"byteLength":17928,
+			"byteOffset":60632,
 			"target":34962
 		},
 		{
 			"buffer":0,
 			"byteLength":11952,
-			"byteOffset":57672,
+			"byteOffset":78560,
 			"target":34962
 		},
 		{
 			"buffer":0,
 			"byteLength":6000,
-			"byteOffset":69624,
+			"byteOffset":90512,
+			"target":34963
+		},
+		{
+			"buffer":0,
+			"byteLength":17556,
+			"byteOffset":96512,
+			"target":34962
+		},
+		{
+			"buffer":0,
+			"byteLength":17556,
+			"byteOffset":114068,
+			"target":34962
+		},
+		{
+			"buffer":0,
+			"byteLength":11704,
+			"byteOffset":131624,
+			"target":34962
+		},
+		{
+			"buffer":0,
+			"byteLength":6000,
+			"byteOffset":143328,
 			"target":34963
 		}
 	],
 	"buffers":[
 		{
-			"byteLength":75624,
+			"byteLength":149328,
 			"uri":"c1_m3-a21a4544f5a5b147676c660aac26aa10.bin"
 		}
 	]

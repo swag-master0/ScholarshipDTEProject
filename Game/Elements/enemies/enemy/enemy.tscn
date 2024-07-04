@@ -10,9 +10,11 @@ radius = 1.1
 radius = 2.0
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_ysnhb"]
+resource_local_to_scene = true
 albedo_color = Color(0.450648, 0.450648, 0.450648, 1)
 
 [sub_resource type="SphereMesh" id="SphereMesh_o28ak"]
+resource_local_to_scene = true
 material = SubResource("StandardMaterial3D_ysnhb")
 radius = 1.0
 height = 2.0

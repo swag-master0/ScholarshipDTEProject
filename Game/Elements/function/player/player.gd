@@ -16,6 +16,7 @@ extends CharacterBody3D
 @onready var character = $PlayerModel
 @onready var collision = $PlayerModel/CollisionDetection
 @onready var holdpoint = $PlayerModel/HoldPoint
+@onready var holdpoint_backup = $PlayerModel/HoldPoint/Backup
 @onready var drop_indicator = $PlayerModel/DropIndicator
 @onready var obstruction_detection = $PlayerModel/ObstructionDetector
 
@@ -96,6 +97,7 @@ func _ready():
 	deathscreen.visible = false
 	drop_indicator.visible = false
 	
+	animations.play("RESET")
 	
 	self.rotate_y(deg_to_rad(45))
 	
@@ -208,10 +210,9 @@ func _process(_delta):
 					sendHintToPlayer("You can drop items gently when the cursor is over yourself")
 			
 			
-			# prevents the player from throwing objects out of the map
 			for i in obstruction_detection.get_overlapping_bodies():
 				if i is StaticBody3D:
-					force = force * -1
+					object.global_position = holdpoint_backup.global_position
 			
 			
 			object.apply_force(force * THROW_FORCE)
@@ -246,6 +247,12 @@ func _process(_delta):
 	
 	if level_completed:
 		Nextlevel()
+	
+	if !animations.is_playing():
+		animations.play("RESET")
+	
+	if self.global_position.y <= -1000:
+		DeathScreen()
 	
 	if Input.is_action_just_pressed("escape"):
 		PauseMenu(true)
@@ -363,6 +370,7 @@ func _on_info_death():
 func sendHintToPlayer(hint):
 	hinttext.text = hint
 	hinttimer.start()
+
 
 func _hinttext_timeout():
 	hinttext.text = ""

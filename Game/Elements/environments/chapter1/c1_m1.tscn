@@ -1,10 +1,11 @@
-[gd_scene load_steps=9 format=3 uid="uid://rq3g3n4qshr3"]
+[gd_scene load_steps=13 format=3 uid="uid://rq3g3n4qshr3"]
 
+[ext_resource type="PackedScene" uid="uid://bcou7suhphdrp" path="res://Elements/function/player/player_v2.tscn" id="1_01d17"]
 [ext_resource type="PackedScene" uid="uid://c61dj4vsac881" path="res://Art/blend/levels_chapter1/c1_m1.blend" id="1_wejc2"]
-[ext_resource type="PackedScene" uid="uid://c7ycb57houxl1" path="res://Elements/function/player/player.tscn" id="2_cvnjw"]
 [ext_resource type="PackedScene" uid="uid://msdo88p274sw" path="res://Elements/function/objective/objective_level_start.tscn" id="4_5dpaq"]
 [ext_resource type="PackedScene" uid="uid://cov8v6858hevf" path="res://Elements/environments/chapter1/c1_m2.tscn" id="4_ymukl"]
 [ext_resource type="PackedScene" uid="uid://bbb07r3hee2bp" path="res://Elements/assets/passive/props/prop.tscn" id="5_p2srq"]
+[ext_resource type="Shader" uid="uid://cj2wlxhmf61sv" path="res://Art/materials/testing.tres" id="6_42l47"]
 [ext_resource type="PackedScene" uid="uid://cihisq18677xu" path="res://Elements/function/objective/objective_item.tscn" id="6_x147h"]
 
 [sub_resource type="GDScript" id="GDScript_x6txf"]
@@ -24,6 +25,11 @@ func _ready():
 			#i.Dialogue(\"Go get me the objective item already. It's here somewhere.\")
 
 
+func _on_tutorial_trigger_body_entered(body):
+	if body.is_in_group(\"player\"):
+		body.sendHintToPlayer(\"[wave][center][color=SILVER]Use MOUSE 1 to pick up objects\")
+
+
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(_delta):
 	for i in self.get_children():
@@ -34,7 +40,19 @@ func _process(_delta):
 				i.sendHintToPlayer(\"[wave][center][color=SILVER]Bring it back to the start\")
 				
 				#i.Dialogue(\"Good. Now get that thing back here.\")
+
+
 "
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_ittop"]
+render_priority = 0
+shader = ExtResource("6_42l47")
+shader_parameter/FogIntensity = 5.0
+shader_parameter/FogDistance = 30.0
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_gh40x"]
+next_pass = SubResource("ShaderMaterial_ittop")
+albedo_color = Color(0, 0, 0, 0)
 
 [sub_resource type="Environment" id="Environment_abqj6"]
 background_mode = 1
@@ -43,12 +61,19 @@ ambient_light_color = Color(0.385493, 0.385492, 0.385492, 1)
 glow_bloom = 1.0
 fog_light_color = Color(0, 0, 0, 1)
 fog_density = 0.07
-volumetric_fog_density = 0.1228
+volumetric_fog_density = 0.0532
 volumetric_fog_albedo = Color(0, 0, 0, 1)
 volumetric_fog_emission_energy = 0.0
+volumetric_fog_detail_spread = 6.0
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_m2epx"]
+size = Vector3(20, 10, 20)
 
 [node name="BasicLevel" type="Node3D"]
 script = SubResource("GDScript_x6txf")
+
+[node name="Player_v2" parent="." instance=ExtResource("1_01d17")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2, 0)
 
 [node name="ObjectiveLevelStart" parent="." instance=ExtResource("4_5dpaq")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.428513, 5, 0.786789)
@@ -60,6 +85,9 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 43.6728, 2.00001, -42.8468)
 
 [node name="basic" parent="." instance=ExtResource("1_wejc2")]
 
+[node name="Level" parent="basic" index="0"]
+material_override = SubResource("StandardMaterial3D_gh40x")
+
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
 transform = Transform3D(0.866025, 0.482963, 0.12941, 0, -0.258819, 0.965926, 0.5, -0.836516, -0.224144, -19, 7.73072, 32)
 light_color = Color(0.533333, 0.533333, 0.533333, 1)
@@ -69,23 +97,16 @@ sky_mode = 1
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
 environment = SubResource("Environment_abqj6")
 
-[node name="Player" parent="." instance=ExtResource("2_cvnjw")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
-tutorial_mode = true
+[node name="TutorialTrigger" type="Area3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 40, 5, -40)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="TutorialTrigger"]
+shape = SubResource("BoxShape3D_m2epx")
 
 [node name="Props" type="Node" parent="."]
 
-[node name="Prop" parent="Props" instance=ExtResource("5_p2srq")]
-transform = Transform3D(0.965926, 0, 0.258819, 0, 1, 0, -0.258819, 0, 0.965926, 34.6284, 1, -26.2045)
-
 [node name="Prop2" parent="Props" instance=ExtResource("5_p2srq")]
-transform = Transform3D(0.982245, 0, -0.187604, 0, 1, 0, 0.187604, 0, 0.982245, 31.6534, 1, -35.9102)
-
-[node name="Prop3" parent="Props" instance=ExtResource("5_p2srq")]
-transform = Transform3D(0.971076, 0, 0.238771, 0, 1, 0, -0.238771, 0, 0.971076, 31.5761, 1, -38.8329)
-
-[node name="Prop4" parent="Props" instance=ExtResource("5_p2srq")]
-transform = Transform3D(0.929023, 0, 0.370022, 0, 1, 0, -0.370022, 0, 0.929023, 46.4489, 1, -31.6534)
+transform = Transform3D(0.982245, 0, -0.187604, 0, 1, 0, 0.187604, 0, 0.982245, 31.6534, 1, -30.1284)
 
 [node name="Prop5" parent="Props" instance=ExtResource("5_p2srq")]
 transform = Transform3D(0.994213, 0, -0.107427, 0, 1, 0, 0.107427, 0, 0.994213, 31.5113, 1, -48.3341)
@@ -108,29 +129,9 @@ transform = Transform3D(0.792407, 0, 0.609993, 0, 1, 0, -0.609993, 0, 0.792407, 
 [node name="Prop9" parent="Props" instance=ExtResource("5_p2srq")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 48, 1, -48)
 
-[node name="Prop10" parent="Props" instance=ExtResource("5_p2srq")]
-transform = Transform3D(0.851873, 0, -0.523748, 0, 1, 0, 0.523748, 0, 0.851873, 40, 1, -38)
-
-[node name="Prop11" parent="Props" instance=ExtResource("5_p2srq")]
-transform = Transform3D(0.61956, 0, -0.784949, 0, 1, 0, 0.784949, 0, 0.61956, 38.4526, 1, 3.07489)
-
-[node name="Prop12" parent="Props" instance=ExtResource("5_p2srq")]
-transform = Transform3D(0.986629, 0, 0.162982, 0, 1, 0, -0.162982, 0, 0.986629, 31.3211, 1, -6.26455)
-
 [node name="Prop13" parent="Props" instance=ExtResource("5_p2srq")]
-transform = Transform3D(0.984607, 0, -0.174782, 0, 1, 0, 0.174782, 0, 0.984607, 31.4343, 1, -8.92511)
+transform = Transform3D(0.819812, 0, 0.572633, 0, 1, 0, -0.572633, 0, 0.819812, 31.4343, 1, -16.9251)
 
-[node name="Prop14" parent="Props" instance=ExtResource("5_p2srq")]
-transform = Transform3D(0.979017, 0, 0.203778, 0, 1, 0, -0.203778, 0, 0.979017, 18.5092, 1, 3.33944)
+[connection signal="body_entered" from="TutorialTrigger" to="." method="_on_tutorial_trigger_body_entered"]
 
-[node name="Prop15" parent="Props" instance=ExtResource("5_p2srq")]
-transform = Transform3D(0.990517, 0, -0.137393, 0, 1, 0, 0.137393, 0, 0.990517, 20, 1, 0)
-
-[node name="Prop16" parent="Props" instance=ExtResource("5_p2srq")]
-transform = Transform3D(0.754458, 0, 0.656349, 0, 1, 0, -0.656349, 0, 0.754458, 18, 1, -3)
-
-[node name="Prop17" parent="Props" instance=ExtResource("5_p2srq")]
-transform = Transform3D(0.832148, 0, 0.554554, 0, 1, 0, -0.554554, 0, 0.832148, 21.6808, 1, -2.55113)
-
-[node name="Prop18" parent="Props" instance=ExtResource("5_p2srq")]
-transform = Transform3D(0.114556, 0, 0.993417, 0, 1, 0, -0.993417, 0, 0.114556, 19.7586, 3, -1.55113)
+[editable path="basic"]

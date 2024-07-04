@@ -9,6 +9,8 @@ extends CharacterBody3D
 @onready var delay = $ShootDelay
 @onready var info = $Info
 @onready var spawnpoint = $MeshInstance3D/MeshInstance3D2
+@onready var push = $SoftPush
+
 
 var group_name = "projectile"
 var player = null
@@ -44,6 +46,11 @@ func _process(_delta):
 func _physics_process(delta):
 	if not is_on_floor():
 		velocity.y -= gravity * delta 
+	
+	for i in push.get_overlapping_bodies():
+		if (i.is_in_group("enemy") and i != self):
+			var difference = i.global_position - self.global_position
+			velocity -= difference
 	
 	move_and_slide()
 

@@ -1,4 +1,4 @@
-[gd_scene load_steps=12 format=3 uid="uid://dwe6hqxcxga2x"]
+[gd_scene load_steps=13 format=3 uid="uid://dwe6hqxcxga2x"]
 
 [ext_resource type="Script" path="res://Elements/enemies/bomber/bomber.gd" id="1_iqn42"]
 [ext_resource type="PackedScene" uid="uid://d03b14il32qs5" path="res://Elements/assets/hostile/explosion/explosion.tscn" id="2_s131x"]
@@ -9,9 +9,11 @@
 radius = 1.1
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_jp7cb"]
+resource_local_to_scene = true
 albedo_color = Color(1, 0, 0, 1)
 
 [sub_resource type="SphereMesh" id="SphereMesh_o28ak"]
+resource_local_to_scene = true
 material = SubResource("StandardMaterial3D_jp7cb")
 radius = 1.0
 height = 2.0
@@ -19,6 +21,9 @@ rings = 8
 
 [sub_resource type="SphereShape3D" id="SphereShape3D_4mudu"]
 radius = 1.0
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_xxxtd"]
+radius = 1.5
 
 [sub_resource type="Animation" id="Animation_50ko8"]
 length = 0.001
@@ -78,6 +83,11 @@ mesh = SubResource("SphereMesh_o28ak")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
 shape = SubResource("SphereShape3D_4mudu")
+
+[node name="SoftPush" type="Area3D" parent="."]
+
+[node name="CollisionShape3D2" type="CollisionShape3D" parent="SoftPush"]
+shape = SubResource("SphereShape3D_xxxtd")
 
 [node name="NavigationAgent3D" type="NavigationAgent3D" parent="."]
 

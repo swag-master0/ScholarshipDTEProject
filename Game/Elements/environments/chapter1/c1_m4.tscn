@@ -3,10 +3,10 @@
 [ext_resource type="PackedScene" uid="uid://ch7t6b0c3tjwr" path="res://Elements/enemies/enemy/enemy.tscn" id="1_m5lsm"]
 [ext_resource type="PackedScene" uid="uid://ch3t1bgj51uvs" path="res://Elements/enemies/sentry/sentry.tscn" id="2_bkqhe"]
 [ext_resource type="PackedScene" uid="uid://cna5dpcxkdqae" path="res://Art/blend/levels_chapter1/c1_m4.blend" id="3_2iwqi"]
+[ext_resource type="PackedScene" uid="uid://bcou7suhphdrp" path="res://Elements/function/player/player_v2.tscn" id="3_ds6da"]
 [ext_resource type="PackedScene" uid="uid://msdo88p274sw" path="res://Elements/function/objective/objective_level_start.tscn" id="3_xeeln"]
 [ext_resource type="PackedScene" uid="uid://cihisq18677xu" path="res://Elements/function/objective/objective_item.tscn" id="4_voayk"]
 [ext_resource type="PackedScene" uid="uid://c3jh1kk8goxry" path="res://Elements/environments/chapter2/c2_m1.tscn" id="5_l8ie4"]
-[ext_resource type="PackedScene" uid="uid://c7ycb57houxl1" path="res://Elements/function/player/player.tscn" id="6_yfuio"]
 [ext_resource type="PackedScene" uid="uid://bbb07r3hee2bp" path="res://Elements/assets/passive/props/prop.tscn" id="7_ub7yc"]
 [ext_resource type="PackedScene" uid="uid://b5c4qe603h5o" path="res://Elements/assets/hostile/explosive_barrel/explosive_barrel.tscn" id="8_f71b5"]
 
@@ -112,6 +112,9 @@ script = SubResource("GDScript_w4vx7")
 enemy = ExtResource("1_m5lsm")
 sentry = ExtResource("2_bkqhe")
 
+[node name="Player_v2" parent="." instance=ExtResource("3_ds6da")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
+
 [node name="ObjectiveLevelStart" parent="." instance=ExtResource("3_xeeln")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 5, 0)
 nextscene = ExtResource("5_l8ie4")
@@ -133,9 +136,6 @@ sky_mode = 1
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="NavigationRegion3D/c2_m4"]
 environment = SubResource("Environment_la8t5")
-
-[node name="Player" parent="." instance=ExtResource("6_yfuio")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
 
 [node name="Trigger" type="Area3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 56, 1, -37)

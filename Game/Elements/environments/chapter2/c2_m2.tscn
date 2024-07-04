@@ -1,7 +1,7 @@
-[gd_scene load_steps=23 format=3 uid="uid://e1ifpcaik1si"]
+[gd_scene load_steps=25 format=3 uid="uid://e1ifpcaik1si"]
 
-[ext_resource type="PackedScene" uid="uid://c7ycb57houxl1" path="res://Elements/function/player/player.tscn" id="1_5okxu"]
 [ext_resource type="PackedScene" uid="uid://msdo88p274sw" path="res://Elements/function/objective/objective_level_start.tscn" id="1_fn0xy"]
+[ext_resource type="PackedScene" uid="uid://bcou7suhphdrp" path="res://Elements/function/player/player_v2.tscn" id="1_iwowe"]
 [ext_resource type="PackedScene" uid="uid://fng1tq0dr424" path="res://Art/blend/levels_chapter2/c2_m2.blend" id="1_phkl0"]
 [ext_resource type="PackedScene" uid="uid://cihisq18677xu" path="res://Elements/function/objective/objective_item.tscn" id="2_2d0b3"]
 [ext_resource type="PackedScene" uid="uid://bnw1iqj5sw2f" path="res://Elements/environments/chapter2/c2_m3.tscn" id="3_nn8cb"]
@@ -98,6 +98,14 @@ size = Vector3(40, 20, 10)
 [sub_resource type="BoxShape3D" id="BoxShape3D_vudvp"]
 size = Vector3(30, 20, 10)
 
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_vf0lw"]
+resource_local_to_scene = true
+albedo_color = Color(1, 0, 0, 1)
+
+[sub_resource type="CapsuleMesh" id="CapsuleMesh_6d4tv"]
+resource_local_to_scene = true
+material = SubResource("StandardMaterial3D_vf0lw")
+
 [sub_resource type="Environment" id="Environment_vphk2"]
 background_mode = 1
 ambient_light_source = 2
@@ -111,7 +119,10 @@ volumetric_fog_emission_energy = 0.0
 
 [node name="c2_m2" type="Node3D"]
 script = SubResource("GDScript_eiqq0")
-player_floor_damage = 2.0
+player_floor_damage = 3.0
+
+[node name="Player_v2" parent="." instance=ExtResource("1_iwowe")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
 
 [node name="ObjectiveLevelStart" parent="." instance=ExtResource("1_fn0xy")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 5, 0)
@@ -174,14 +185,14 @@ shape = SubResource("BoxShape3D_0abe8")
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 94.5, -10, -45)
 shape = SubResource("BoxShape3D_vudvp")
 
-[node name="Player" parent="." instance=ExtResource("1_5okxu")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
-
 [node name="Sentry" parent="." instance=ExtResource("5_0rjpi")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 113.396, 1.5, -45.0908)
 
 [node name="Info" parent="Sentry" index="0"]
 health = 6.0
+
+[node name="MeshInstance3D" parent="Sentry" index="2"]
+mesh = SubResource("CapsuleMesh_6d4tv")
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
 environment = SubResource("Environment_vphk2")
