@@ -4,9 +4,11 @@ render_mode unshaded;
 uniform sampler2D SCREEN_TEXTURE: hint_screen_texture, repeat_disable, filter_nearest;
 
 
+// For Sobel filtering
 vec3 convolution(sampler2D tex, vec2 uv, vec2 pixel_size) {
 	vec3 conv = vec3(0.0);
 	
+	// For Gaussian Blurring (see wikipedia page for full mathematics)
 	float gauss[25] = {
 		0.00390625, 0.015625, 0.0234375, 0.015625, 0.00390625,
 		0.015625, 0.0625, 0.09375, 0.0625, 0.015625, 0.0234375,
@@ -23,14 +25,8 @@ vec3 convolution(sampler2D tex, vec2 uv, vec2 pixel_size) {
 	return conv;
 }
 
+
 void fragment() {
-	
-	
-	
-	// BROKE CODE BELOW
-	
-	
-	// Called for every pixel the material is visible on.
 	
 	// SOBEL OPERATOR, for edge detection: https://en.wikipedia.org/wiki/Sobel_operator
 	vec3 pixels[9]; 
@@ -51,14 +47,28 @@ void fragment() {
 		pixels[0] * -1.0 + pixels[3] * -2.0 + pixels[6] * -1.0
 		+ pixels[2] * 1.0 + pixels[5] * 2.0 + pixels[8] * 1.0
 	);
-		vec3 gy = (
+	vec3 gy = (
 		pixels[0] * -1.0 + pixels[1] * -2.0 + pixels[2] * -1.0
 		+ pixels[6] * 1.0 + pixels[7] * 2.0 + pixels[8] * 1.0
 	);
 	
 	vec3 sobel = sqrt(gx * gx + gy * gy);
 	
-	COLOR = vec4(sobel, 1.0);
+	vec4 sobel_color = (vec4(sobel, 1.0) * vec4(1.0, 0.0, 0.0, 0.5));
 	
+	sobel_color.y = sobel_color.x;
+	sobel_color.z = sobel_color.x;
+	
+	if (sobel_color.x == 0.0) {
+		sobel_color.a = 0.0;
+	}
+	
+	vec4 rounded_color = round(sobel_color);
+	vec4 oldImage = texture(SCREEN_TEXTURE, UV);
+	
+	vec4 final_color = mix(rounded_color, oldImage, 0.5);
+	COLOR = vec4(final_color);
+	
+	//COLOR = vec4(sobel, 1.0);
 }
 

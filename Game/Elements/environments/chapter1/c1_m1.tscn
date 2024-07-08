@@ -1,4 +1,4 @@
-[gd_scene load_steps=10 format=3 uid="uid://rq3g3n4qshr3"]
+[gd_scene load_steps=11 format=3 uid="uid://rq3g3n4qshr3"]
 
 [ext_resource type="PackedScene" uid="uid://bcou7suhphdrp" path="res://Elements/function/player/player_v2.tscn" id="1_01d17"]
 [ext_resource type="PackedScene" uid="uid://c61dj4vsac881" path="res://Art/blend/levels_chapter1/c1_m1.blend" id="1_wejc2"]
@@ -43,6 +43,9 @@ func _process(_delta):
 
 "
 
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_kcvnv"]
+albedo_color = Color(0, 0.756863, 0, 1)
+
 [sub_resource type="Environment" id="Environment_abqj6"]
 background_mode = 1
 ambient_light_source = 2
@@ -73,6 +76,9 @@ nextscene_string = "res://Elements/environments/chapter1/c1_m2.tscn"
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 43.6728, 2.00001, -42.8468)
 
 [node name="basic" parent="." instance=ExtResource("1_wejc2")]
+
+[node name="Level" parent="basic" index="0"]
+material_override = SubResource("StandardMaterial3D_kcvnv")
 
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
 transform = Transform3D(0.866025, 0.482963, 0.12941, 0, -0.258819, 0.965926, 0.5, -0.836516, -0.224144, -19, 7.73072, 32)

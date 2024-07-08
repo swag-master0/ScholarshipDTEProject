@@ -1,21 +1,28 @@
-[gd_scene load_steps=31 format=3 uid="uid://bcou7suhphdrp"]
+[gd_scene load_steps=35 format=3 uid="uid://bcou7suhphdrp"]
 
 [ext_resource type="Script" path="res://Elements/function/player/player_v2.gd" id="1_2nm4r"]
+[ext_resource type="Shader" uid="uid://b21lt57h4phu5" path="res://Art/materials/outline.tres" id="2_fyvfm"]
 [ext_resource type="Shader" uid="uid://brxy1akmulll1" path="res://Art/materials/player.tres" id="2_w1nsb"]
-[ext_resource type="Shader" path="res://Art/materials/stylisation.gdshader" id="4_i8x8u"]
 [ext_resource type="PackedScene" uid="uid://cft1b4l0aljye" path="res://Elements/function/info/info.tscn" id="4_ua0e3"]
 [ext_resource type="Texture2D" uid="uid://djwowo0gdnhek" path="res://Art/textures/mouse_base.png" id="5_u7k2l"]
 [ext_resource type="Texture2D" uid="uid://dmnjpb8ox2bsu" path="res://Art/textures/mouse1-1.png" id="6_ne0wx"]
 [ext_resource type="Texture2D" uid="uid://cvguvo850eb22" path="res://Art/textures/mouse1-2.png" id="7_o57vu"]
+[ext_resource type="Shader" path="res://Art/materials/pixellation.gdshader" id="8_16dx1"]
 [ext_resource type="PackedScene" uid="uid://233quw6ftjqa" path="res://Elements/function/options_menu/options_menu.tscn" id="8_i7hif"]
+[ext_resource type="Shader" path="res://Art/materials/sobel_outlines.gdshader" id="9_5eaxg"]
 [ext_resource type="AudioStream" uid="uid://w2v2x3att67l" path="res://Art/audio/click.wav" id="9_nr3vu"]
 [ext_resource type="AudioStream" uid="uid://eiiqal51bdu" path="res://Art/audio/player_select.wav" id="10_mybwr"]
 [ext_resource type="AudioStream" uid="uid://bdxfhhvgttnt5" path="res://Art/audio/player_death.wav" id="11_s70kr"]
 [ext_resource type="AudioStream" uid="uid://bwu6q554kl8jd" path="res://Art/audio/player_hurt.wav" id="12_rjj5m"]
 [ext_resource type="AudioStream" uid="uid://bk7fdh3m3au1n" path="res://Art/audio/dialogue.wav" id="13_4dygs"]
 
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_qbt4p"]
+render_priority = 0
+shader = ExtResource("2_fyvfm")
+
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_ysax4"]
 render_priority = 0
+next_pass = SubResource("ShaderMaterial_qbt4p")
 shader = ExtResource("2_w1nsb")
 shader_parameter/health = 1.08
 
@@ -147,8 +154,11 @@ animations = [{
 "speed": 2.0
 }]
 
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_al30p"]
+shader = ExtResource("9_5eaxg")
+
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_4rgcg"]
-shader = ExtResource("4_i8x8u")
+shader = ExtResource("8_16dx1")
 
 [node name="Player_v2" type="CharacterBody3D" groups=["player"]]
 floor_max_angle = 1.22173
@@ -526,19 +536,6 @@ offset_bottom = 3.0
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="CanvasLayer" type="CanvasLayer" parent="."]
-process_mode = 3
-layer = -1
-
-[node name="Sylisation" type="ColorRect" parent="CanvasLayer"]
-material = SubResource("ShaderMaterial_4rgcg")
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-color = Color(1, 1, 1, 0)
-
 [node name="Audio" type="Node" parent="."]
 
 [node name="PlayerWalk" type="AudioStreamPlayer" parent="Audio"]
@@ -564,6 +561,35 @@ volume_db = -20.0
 [node name="FootstepDelay" type="Timer" parent="Audio"]
 wait_time = 0.15
 one_shot = true
+
+[node name="Filters" type="Node" parent="."]
+
+[node name="Outlines" type="CanvasLayer" parent="Filters"]
+process_mode = 3
+layer = -1
+
+[node name="SobelOutlines" type="ColorRect" parent="Filters/Outlines"]
+material = SubResource("ShaderMaterial_al30p")
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+color = Color(1, 1, 1, 0)
+
+[node name="Pixellation" type="CanvasLayer" parent="Filters"]
+layer = -1
+
+[node name="Pixellation" type="ColorRect" parent="Filters/Pixellation"]
+material = SubResource("ShaderMaterial_4rgcg")
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+color = Color(1, 1, 1, 0)
 
 [connection signal="death" from="Info" to="." method="_on_info_death"]
 [connection signal="takeDamage" from="Info" to="." method="_on_info_take_damage"]

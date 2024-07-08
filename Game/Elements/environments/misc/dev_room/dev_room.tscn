@@ -2,7 +2,7 @@
 
 [ext_resource type="PackedScene" uid="uid://cjljpsd573byh" path="res://Art/blend/misc/devlevel.blend" id="1_7fy27"]
 [ext_resource type="PackedScene" uid="uid://bcou7suhphdrp" path="res://Elements/function/player/player_v2.tscn" id="1_qx8qc"]
-[ext_resource type="Shader" path="res://Art/materials/stylisation.gdshader" id="6_84m1x"]
+[ext_resource type="Shader" path="res://Art/materials/sobel_outlines.gdshader" id="6_84m1x"]
 [ext_resource type="PackedScene" uid="uid://codvp41rfhoag" path="res://Elements/enemies/copycat_v2/copycat_v2.tscn" id="6_317qg"]
 [ext_resource type="PackedScene" uid="uid://b5c4qe603h5o" path="res://Elements/assets/hostile/explosive_barrel/explosive_barrel.tscn" id="6_v03ub"]
 [ext_resource type="PackedScene" uid="uid://bbb07r3hee2bp" path="res://Elements/assets/passive/props/prop.tscn" id="8_6723j"]
