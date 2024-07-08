@@ -249,11 +249,11 @@ func _process(_delta):
 			hud_health.visible = true
 		
 		
-		var health_ratio : float = max_health / health
-		print_rich("[rainbow]", health_ratio)
+		# visibly display damage on the player (this is stupid)
+		var health_ratio : float = health / max_health
+		var mat = character.get_active_material(0)
+		mat.set_shader_parameter("health", health_ratio)
 		
-		# TODO: test this properly
-		$PlayerModel.set_instance_shader_parameter("health", health_ratio - 1)
 		
 		
 		if hud_healthwhite.value != hud_health.value and !healthvisualindicator:

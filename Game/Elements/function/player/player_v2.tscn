@@ -1,7 +1,8 @@
-[gd_scene load_steps=29 format=3 uid="uid://bcou7suhphdrp"]
+[gd_scene load_steps=31 format=3 uid="uid://bcou7suhphdrp"]
 
 [ext_resource type="Script" path="res://Elements/function/player/player_v2.gd" id="1_2nm4r"]
 [ext_resource type="Shader" uid="uid://brxy1akmulll1" path="res://Art/materials/player.tres" id="2_w1nsb"]
+[ext_resource type="Shader" path="res://Art/materials/stylisation.gdshader" id="4_i8x8u"]
 [ext_resource type="PackedScene" uid="uid://cft1b4l0aljye" path="res://Elements/function/info/info.tscn" id="4_ua0e3"]
 [ext_resource type="Texture2D" uid="uid://djwowo0gdnhek" path="res://Art/textures/mouse_base.png" id="5_u7k2l"]
 [ext_resource type="Texture2D" uid="uid://dmnjpb8ox2bsu" path="res://Art/textures/mouse1-1.png" id="6_ne0wx"]
@@ -16,7 +17,7 @@
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_ysax4"]
 render_priority = 0
 shader = ExtResource("2_w1nsb")
-shader_parameter/health = 0.0
+shader_parameter/health = 1.08
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_jofc1"]
 emission = Color(1, 1, 1, 1)
@@ -146,6 +147,9 @@ animations = [{
 "speed": 2.0
 }]
 
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_4rgcg"]
+shader = ExtResource("4_i8x8u")
+
 [node name="Player_v2" type="CharacterBody3D" groups=["player"]]
 floor_max_angle = 1.22173
 script = ExtResource("1_2nm4r")
@@ -266,7 +270,6 @@ color = Color(1, 1, 1, 0)
 [node name="Timer" type="Timer" parent="HUD/HurtVFX"]
 
 [node name="Health" type="ProgressBar" parent="HUD"]
-z_index = 1
 layout_mode = 1
 anchors_preset = 7
 anchor_left = 0.5
@@ -522,6 +525,19 @@ offset_right = 3.0
 offset_bottom = 3.0
 grow_horizontal = 2
 grow_vertical = 2
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+process_mode = 3
+layer = -1
+
+[node name="Sylisation" type="ColorRect" parent="CanvasLayer"]
+material = SubResource("ShaderMaterial_4rgcg")
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(1, 1, 1, 0)
 
 [node name="Audio" type="Node" parent="."]
 
