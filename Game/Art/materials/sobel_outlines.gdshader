@@ -3,6 +3,8 @@ render_mode unshaded;
 
 uniform sampler2D SCREEN_TEXTURE: hint_screen_texture, repeat_disable, filter_nearest;
 
+uniform float outline_alpha = 0.75;
+
 
 // For Sobel filtering
 vec3 convolution(sampler2D tex, vec2 uv, vec2 pixel_size) {
@@ -52,23 +54,28 @@ void fragment() {
 		+ pixels[6] * 1.0 + pixels[7] * 2.0 + pixels[8] * 1.0
 	);
 	
+	// Raw sobel colour
 	vec3 sobel = sqrt(gx * gx + gy * gy);
 	
-	vec4 sobel_color = (vec4(sobel, 1.0) * vec4(1.0, 0.0, 0.0, 0.5));
+	// Turning the outlines into a single colour
+	float grey = round(sobel.r);
+	vec4 sobel_color = vec4(grey, grey, grey, 1.0);
 	
-	sobel_color.y = sobel_color.x;
-	sobel_color.z = sobel_color.x;
-	
-	if (sobel_color.x == 0.0) {
-		sobel_color.a = 0.0;
+	// Turning black values into transparent values
+	vec4 outlines = vec4(round(sobel_color));
+	if (outlines.x == 0.0) {
+		outlines.a = 0.0;
 	}
 	
-	vec4 rounded_color = round(sobel_color);
-	vec4 oldImage = texture(SCREEN_TEXTURE, UV);
+	// Turn white values into dark outlines
+	if (outlines.a > 0.0) {
+		outlines.r = 0.0;
+		outlines.g = 0.0;
+		outlines.b = 0.0;
+		outlines.a = outline_alpha;
+	}
 	
-	vec4 final_color = mix(rounded_color, oldImage, 0.5);
-	COLOR = vec4(final_color);
+	COLOR = outlines;
 	
-	//COLOR = vec4(sobel, 1.0);
 }
 

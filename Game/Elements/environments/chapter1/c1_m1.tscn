@@ -45,6 +45,7 @@ func _process(_delta):
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_kcvnv"]
 albedo_color = Color(0, 0.756863, 0, 1)
+roughness = 0.0
 
 [sub_resource type="Environment" id="Environment_abqj6"]
 background_mode = 1
