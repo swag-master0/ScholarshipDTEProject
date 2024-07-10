@@ -4,6 +4,7 @@ render_mode unshaded;
 uniform sampler2D SCREEN_TEXTURE: hint_screen_texture, repeat_disable, filter_nearest;
 
 uniform float outline_alpha = 0.75;
+uniform float outline_threshold = 0.25;
 
 
 // For Sobel filtering
@@ -58,12 +59,12 @@ void fragment() {
 	vec3 sobel = sqrt(gx * gx + gy * gy);
 	
 	// Turning the outlines into a single colour
-	float grey = round(sobel.r);
+	float grey = (sobel.r + sobel.g + sobel.b) / 3.0;
 	vec4 sobel_color = vec4(grey, grey, grey, 1.0);
 	
 	// Turning black values into transparent values
-	vec4 outlines = vec4(round(sobel_color));
-	if (outlines.x == 0.0) {
+	vec4 outlines = sobel_color;
+	if (outlines.x <= outline_threshold) {
 		outlines.a = 0.0;
 	}
 	

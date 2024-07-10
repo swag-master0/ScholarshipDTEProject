@@ -1,4 +1,4 @@
-[gd_scene load_steps=35 format=3 uid="uid://bcou7suhphdrp"]
+[gd_scene load_steps=38 format=3 uid="uid://bcou7suhphdrp"]
 
 [ext_resource type="Script" path="res://Elements/function/player/player_v2.gd" id="1_2nm4r"]
 [ext_resource type="Shader" uid="uid://brxy1akmulll1" path="res://Art/materials/player.tres" id="2_w1nsb"]
@@ -15,11 +15,13 @@
 [ext_resource type="AudioStream" uid="uid://bwu6q554kl8jd" path="res://Art/audio/player_hurt.wav" id="12_rjj5m"]
 [ext_resource type="AudioStream" uid="uid://bk7fdh3m3au1n" path="res://Art/audio/dialogue.wav" id="13_4dygs"]
 [ext_resource type="Shader" path="res://Art/materials/quantisation.gdshader" id="16_5y87x"]
+[ext_resource type="Shader" path="res://Art/materials/colour_palette.gdshader" id="16_v6um3"]
+[ext_resource type="Texture2D" uid="uid://bee0e7ioqinny" path="res://Art/textures/palette.png" id="17_8dfk5"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_ysax4"]
 render_priority = 0
 shader = ExtResource("2_w1nsb")
-shader_parameter/health = 1.08
+shader_parameter/health = 1.0
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_jofc1"]
 emission = Color(1, 1, 1, 1)
@@ -149,16 +151,22 @@ animations = [{
 "speed": 2.0
 }]
 
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_al30p"]
-shader = ExtResource("9_5eaxg")
-shader_parameter/outline_alpha = 0.75
-
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_4rgcg"]
-shader = ExtResource("8_16dx1")
-
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_rrs7x"]
 shader = ExtResource("16_5y87x")
 shader_parameter/scale_factor = 10.0
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_al30p"]
+shader = ExtResource("9_5eaxg")
+shader_parameter/outline_alpha = 0.75
+shader_parameter/outline_threshold = 0.25
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_1evt4"]
+shader = ExtResource("16_v6um3")
+shader_parameter/num_colours = 16
+shader_parameter/palette = ExtResource("17_8dfk5")
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_4rgcg"]
+shader = ExtResource("8_16dx1")
 
 [node name="Player_v2" type="CharacterBody3D" groups=["player"]]
 floor_max_angle = 1.22173
@@ -197,7 +205,6 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.4, 0)
 [node name="Camera3D" type="Camera3D" parent="CentralCameraPoint"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1, 1, 5)
 doppler_tracking = 2
-fov = 90.0
 size = 39.544
 
 [node name="RayCast3D" type="RayCast3D" parent="CentralCameraPoint/Camera3D"]
@@ -564,6 +571,18 @@ one_shot = true
 
 [node name="Filters" type="Node" parent="."]
 
+[node name="Quantisation" type="CanvasLayer" parent="Filters"]
+layer = -1
+visible = false
+
+[node name="Quantisation" type="ColorRect" parent="Filters/Quantisation"]
+material = SubResource("ShaderMaterial_rrs7x")
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
 [node name="Outlines" type="CanvasLayer" parent="Filters"]
 process_mode = 3
 layer = -1
@@ -577,6 +596,17 @@ grow_horizontal = 2
 grow_vertical = 2
 mouse_filter = 2
 
+[node name="ColourPallete" type="CanvasLayer" parent="Filters"]
+layer = -1
+
+[node name="ColourPalette" type="ColorRect" parent="Filters/ColourPallete"]
+material = SubResource("ShaderMaterial_1evt4")
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
 [node name="Pixellation" type="CanvasLayer" parent="Filters"]
 layer = -1
 
@@ -589,17 +619,6 @@ grow_horizontal = 2
 grow_vertical = 2
 mouse_filter = 2
 color = Color(1, 1, 1, 0)
-
-[node name="Quantisation" type="CanvasLayer" parent="Filters"]
-layer = -1
-
-[node name="Quantisation" type="ColorRect" parent="Filters/Quantisation"]
-material = SubResource("ShaderMaterial_rrs7x")
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
 
 [connection signal="death" from="Info" to="." method="_on_info_death"]
 [connection signal="takeDamage" from="Info" to="." method="_on_info_take_damage"]
