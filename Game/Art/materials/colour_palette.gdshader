@@ -4,7 +4,7 @@ shader_type canvas_item;
 uniform sampler2D SCREEN_TEXTURE: hint_screen_texture, repeat_disable, filter_nearest;
 
 uniform sampler2D palette: hint_default_black;
-uniform int num_colours : hint_range(2, 16) = 8; 
+uniform int num_colours : hint_range(2, 64) = 8; 
 // hint_range limits the max and min values you can assign this in the inspector
 
 

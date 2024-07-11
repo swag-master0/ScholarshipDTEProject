@@ -15,8 +15,8 @@
 [ext_resource type="AudioStream" uid="uid://bwu6q554kl8jd" path="res://Art/audio/player_hurt.wav" id="12_rjj5m"]
 [ext_resource type="AudioStream" uid="uid://bk7fdh3m3au1n" path="res://Art/audio/dialogue.wav" id="13_4dygs"]
 [ext_resource type="Shader" path="res://Art/materials/quantisation.gdshader" id="16_5y87x"]
+[ext_resource type="Texture2D" uid="uid://b8cy370quwqw3" path="res://Art/textures/palettes/improved_palette.png" id="16_7i2hf"]
 [ext_resource type="Shader" path="res://Art/materials/colour_palette.gdshader" id="16_v6um3"]
-[ext_resource type="Texture2D" uid="uid://bee0e7ioqinny" path="res://Art/textures/palette.png" id="17_8dfk5"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_ysax4"]
 render_priority = 0
@@ -162,8 +162,8 @@ shader_parameter/outline_threshold = 0.25
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_1evt4"]
 shader = ExtResource("16_v6um3")
-shader_parameter/num_colours = 16
-shader_parameter/palette = ExtResource("17_8dfk5")
+shader_parameter/num_colours = 14
+shader_parameter/palette = ExtResource("16_7i2hf")
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_4rgcg"]
 shader = ExtResource("8_16dx1")

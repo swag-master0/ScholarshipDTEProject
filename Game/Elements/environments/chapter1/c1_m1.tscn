@@ -1,4 +1,4 @@
-[gd_scene load_steps=11 format=3 uid="uid://rq3g3n4qshr3"]
+[gd_scene load_steps=15 format=3 uid="uid://rq3g3n4qshr3"]
 
 [ext_resource type="PackedScene" uid="uid://bcou7suhphdrp" path="res://Elements/function/player/player_v2.tscn" id="1_01d17"]
 [ext_resource type="PackedScene" uid="uid://c61dj4vsac881" path="res://Art/blend/levels_chapter1/c1_m1.blend" id="1_wejc2"]
@@ -6,6 +6,7 @@
 [ext_resource type="PackedScene" uid="uid://cov8v6858hevf" path="res://Elements/environments/chapter1/c1_m2.tscn" id="4_ymukl"]
 [ext_resource type="PackedScene" uid="uid://bbb07r3hee2bp" path="res://Elements/assets/passive/props/prop.tscn" id="5_p2srq"]
 [ext_resource type="PackedScene" uid="uid://cihisq18677xu" path="res://Elements/function/objective/objective_item.tscn" id="6_x147h"]
+[ext_resource type="PackedScene" uid="uid://4lv8cegk7f53" path="res://Art/blend/assets/player.blend" id="7_ie62m"]
 
 [sub_resource type="GDScript" id="GDScript_x6txf"]
 resource_name = "c1_m1-functionality"
@@ -43,13 +44,30 @@ func _process(_delta):
 
 "
 
+[sub_resource type="Gradient" id="Gradient_313rr"]
+interpolation_mode = 1
+offsets = PackedFloat32Array(0, 0.492462)
+
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_a7yl8"]
+frequency = 0.0297
+
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_l4rqg"]
+width = 1024
+height = 1024
+as_normal_map = true
+bump_strength = 3.0
+color_ramp = SubResource("Gradient_313rr")
+noise = SubResource("FastNoiseLite_a7yl8")
+
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_kcvnv"]
-albedo_color = Color(0, 0.756863, 0, 1)
-roughness = 0.0
+vertex_color_use_as_albedo = true
+albedo_color = Color(0.702671, 0.87964, 0.346159, 1)
+normal_enabled = true
+normal_scale = 0.5
+normal_texture = SubResource("NoiseTexture2D_l4rqg")
 
 [sub_resource type="Environment" id="Environment_abqj6"]
 background_mode = 1
-ambient_light_source = 2
 ambient_light_color = Color(0.385493, 0.385492, 0.385492, 1)
 glow_bloom = 1.0
 fog_light_color = Color(0, 0, 0, 1)
@@ -83,6 +101,7 @@ material_override = SubResource("StandardMaterial3D_kcvnv")
 
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
 transform = Transform3D(0.866025, 0.482963, 0.12941, 0, -0.258819, 0.965926, 0.5, -0.836516, -0.224144, -19, 7.73072, 32)
+visible = false
 light_color = Color(0.533333, 0.533333, 0.533333, 1)
 shadow_enabled = true
 sky_mode = 1
@@ -124,6 +143,17 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 48, 1, -48)
 
 [node name="Prop13" parent="Props" instance=ExtResource("5_p2srq")]
 transform = Transform3D(0.819812, 0, 0.572633, 0, 1, 0, -0.572633, 0, 0.819812, 31.4343, 1, -16.9251)
+
+[node name="player" parent="." instance=ExtResource("7_ie62m")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 19.7736, 0, -1.81066)
+
+[node name="OmniLight3D" type="OmniLight3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 36, 8, 0)
+omni_range = 15.0
+
+[node name="OmniLight3D2" type="OmniLight3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 42, 8, -39)
+omni_range = 15.0
 
 [connection signal="body_entered" from="TutorialTrigger" to="." method="_on_tutorial_trigger_body_entered"]
 
