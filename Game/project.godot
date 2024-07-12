@@ -21,6 +21,7 @@ folder_colors={
 "res://Art/": "red",
 "res://Art/audio/": "orange",
 "res://Art/blend/": "orange",
+"res://Art/filters/": "orange",
 "res://Art/materials/": "orange",
 "res://Art/textures/": "orange",
 "res://Art/textures/palettes/": "green",

@@ -1,4 +1,4 @@
-[gd_scene load_steps=39 format=3 uid="uid://bcou7suhphdrp"]
+[gd_scene load_steps=37 format=3 uid="uid://bcou7suhphdrp"]
 
 [ext_resource type="Script" path="res://Elements/function/player/player_v2.gd" id="1_2nm4r"]
 [ext_resource type="Shader" uid="uid://brxy1akmulll1" path="res://Art/materials/player.tres" id="2_w1nsb"]
@@ -6,17 +6,16 @@
 [ext_resource type="Texture2D" uid="uid://djwowo0gdnhek" path="res://Art/textures/mouse_base.png" id="5_u7k2l"]
 [ext_resource type="Texture2D" uid="uid://dmnjpb8ox2bsu" path="res://Art/textures/mouse1-1.png" id="6_ne0wx"]
 [ext_resource type="Texture2D" uid="uid://cvguvo850eb22" path="res://Art/textures/mouse1-2.png" id="7_o57vu"]
-[ext_resource type="Shader" path="res://Art/materials/pixellation.gdshader" id="8_16dx1"]
 [ext_resource type="PackedScene" uid="uid://233quw6ftjqa" path="res://Elements/function/options_menu/options_menu.tscn" id="8_i7hif"]
-[ext_resource type="Shader" path="res://Art/materials/sobel_outlines.gdshader" id="9_5eaxg"]
 [ext_resource type="AudioStream" uid="uid://w2v2x3att67l" path="res://Art/audio/click.wav" id="9_nr3vu"]
 [ext_resource type="AudioStream" uid="uid://eiiqal51bdu" path="res://Art/audio/player_select.wav" id="10_mybwr"]
 [ext_resource type="AudioStream" uid="uid://bdxfhhvgttnt5" path="res://Art/audio/player_death.wav" id="11_s70kr"]
 [ext_resource type="AudioStream" uid="uid://bwu6q554kl8jd" path="res://Art/audio/player_hurt.wav" id="12_rjj5m"]
 [ext_resource type="AudioStream" uid="uid://bk7fdh3m3au1n" path="res://Art/audio/dialogue.wav" id="13_4dygs"]
-[ext_resource type="Shader" path="res://Art/materials/quantisation.gdshader" id="16_5y87x"]
+[ext_resource type="Shader" path="res://Art/filters/sobel_outlines.gdshader" id="13_5qnse"]
+[ext_resource type="Shader" path="res://Art/filters/colour_palette.gdshader" id="15_eej3d"]
 [ext_resource type="Texture2D" uid="uid://b8cy370quwqw3" path="res://Art/textures/palettes/improved_palette.png" id="16_7i2hf"]
-[ext_resource type="Shader" path="res://Art/materials/colour_palette.gdshader" id="16_v6um3"]
+[ext_resource type="Shader" path="res://Art/filters/pixellation.gdshader" id="17_ip8lm"]
 [ext_resource type="PackedScene" uid="uid://4lv8cegk7f53" path="res://Art/blend/assets/player.blend" id="18_sv41t"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_ysax4"]
@@ -152,22 +151,18 @@ animations = [{
 "speed": 2.0
 }]
 
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_rrs7x"]
-shader = ExtResource("16_5y87x")
-shader_parameter/scale_factor = 10.0
-
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_al30p"]
-shader = ExtResource("9_5eaxg")
+shader = ExtResource("13_5qnse")
 shader_parameter/outline_alpha = 0.75
 shader_parameter/outline_threshold = 0.25
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_1evt4"]
-shader = ExtResource("16_v6um3")
+shader = ExtResource("15_eej3d")
 shader_parameter/num_colours = 14
 shader_parameter/palette = ExtResource("16_7i2hf")
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_4rgcg"]
-shader = ExtResource("8_16dx1")
+shader = ExtResource("17_ip8lm")
 
 [node name="Player_v2" type="CharacterBody3D" groups=["player"]]
 floor_max_angle = 1.22173
@@ -572,18 +567,6 @@ one_shot = true
 
 [node name="Filters" type="Node" parent="."]
 
-[node name="Quantisation" type="CanvasLayer" parent="Filters"]
-layer = -1
-visible = false
-
-[node name="Quantisation" type="ColorRect" parent="Filters/Quantisation"]
-material = SubResource("ShaderMaterial_rrs7x")
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-
 [node name="Outlines" type="CanvasLayer" parent="Filters"]
 process_mode = 3
 layer = -1
@@ -623,23 +606,12 @@ color = Color(1, 1, 1, 0)
 
 [node name="player" parent="." instance=ExtResource("18_sv41t")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.99298, 0, 0.534363)
-visible = false
 
 [node name="Skeleton3D" parent="player/Armature" index="0"]
-bones/3/rotation = Quaternion(1.54543e-08, -1.84042e-07, 0.707107, 0.707107)
-bones/5/rotation = Quaternion(2.26189e-07, 5.76012e-08, -0.707107, 0.707107)
-bones/7/rotation = Quaternion(0.730173, -0.44387, -0.44387, -0.269827)
-bones/7/scale = Vector3(1, 1, 1)
-bones/8/rotation = Quaternion(0.744708, 0.436025, 0.436025, -0.255292)
-bones/8/scale = Vector3(1, 1, 1)
-bones/9/rotation = Quaternion(0.846002, -0.360947, -0.360947, -0.153998)
-bones/9/scale = Vector3(1, 1, 1)
-bones/10/rotation = Quaternion(0.858144, 0.348902, 0.348902, -0.141856)
-bones/10/scale = Vector3(1, 1, 1)
-bones/11/rotation = Quaternion(-0.707107, 0, 0.707107, 0)
-bones/11/scale = Vector3(1, 1, 1)
-bones/13/rotation = Quaternion(-0.707107, 0, 0.707107, 0)
-bones/13/scale = Vector3(1, 1, 1)
+bones/1/rotation = Quaternion(1.84042e-07, -1.84042e-07, 0.707107, 0.707107)
+bones/3/rotation = Quaternion(-2.66925e-08, -2.66925e-08, -0.707107, 0.707107)
+bones/6/rotation = Quaternion(0.707107, 0, -0.707107, 0)
+bones/8/rotation = Quaternion(0.707107, 0, 0.707107, 0)
 
 [connection signal="death" from="Info" to="." method="_on_info_death"]
 [connection signal="takeDamage" from="Info" to="." method="_on_info_take_damage"]
