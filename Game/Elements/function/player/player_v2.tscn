@@ -1,4 +1,4 @@
-[gd_scene load_steps=38 format=3 uid="uid://bcou7suhphdrp"]
+[gd_scene load_steps=39 format=3 uid="uid://bcou7suhphdrp"]
 
 [ext_resource type="Script" path="res://Elements/function/player/player_v2.gd" id="1_2nm4r"]
 [ext_resource type="Shader" uid="uid://brxy1akmulll1" path="res://Art/materials/player.tres" id="2_w1nsb"]
@@ -17,6 +17,7 @@
 [ext_resource type="Shader" path="res://Art/materials/quantisation.gdshader" id="16_5y87x"]
 [ext_resource type="Texture2D" uid="uid://b8cy370quwqw3" path="res://Art/textures/palettes/improved_palette.png" id="16_7i2hf"]
 [ext_resource type="Shader" path="res://Art/materials/colour_palette.gdshader" id="16_v6um3"]
+[ext_resource type="PackedScene" uid="uid://4lv8cegk7f53" path="res://Art/blend/assets/player.blend" id="18_sv41t"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_ysax4"]
 render_priority = 0
@@ -620,6 +621,26 @@ grow_vertical = 2
 mouse_filter = 2
 color = Color(1, 1, 1, 0)
 
+[node name="player" parent="." instance=ExtResource("18_sv41t")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.99298, 0, 0.534363)
+visible = false
+
+[node name="Skeleton3D" parent="player/Armature" index="0"]
+bones/3/rotation = Quaternion(1.54543e-08, -1.84042e-07, 0.707107, 0.707107)
+bones/5/rotation = Quaternion(2.26189e-07, 5.76012e-08, -0.707107, 0.707107)
+bones/7/rotation = Quaternion(0.730173, -0.44387, -0.44387, -0.269827)
+bones/7/scale = Vector3(1, 1, 1)
+bones/8/rotation = Quaternion(0.744708, 0.436025, 0.436025, -0.255292)
+bones/8/scale = Vector3(1, 1, 1)
+bones/9/rotation = Quaternion(0.846002, -0.360947, -0.360947, -0.153998)
+bones/9/scale = Vector3(1, 1, 1)
+bones/10/rotation = Quaternion(0.858144, 0.348902, 0.348902, -0.141856)
+bones/10/scale = Vector3(1, 1, 1)
+bones/11/rotation = Quaternion(-0.707107, 0, 0.707107, 0)
+bones/11/scale = Vector3(1, 1, 1)
+bones/13/rotation = Quaternion(-0.707107, 0, 0.707107, 0)
+bones/13/scale = Vector3(1, 1, 1)
+
 [connection signal="death" from="Info" to="." method="_on_info_death"]
 [connection signal="takeDamage" from="Info" to="." method="_on_info_take_damage"]
 [connection signal="timeout" from="HUD/Dialogue/RemoveCharacters" to="." method="_on_remove_characters_timeout"]
@@ -633,3 +654,4 @@ color = Color(1, 1, 1, 0)
 [connection signal="timeout" from="HUD/LevelCompleted/Delay" to="." method="_on_delay_timeout"]
 
 [editable path="Info"]
+[editable path="player"]
