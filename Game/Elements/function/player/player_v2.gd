@@ -65,6 +65,8 @@ extends CharacterBody3D
 @onready var sound_hurt = $Audio/PlayerHurt
 @onready var sound_dialogue = $Audio/Dialogue
 
+@onready var animation_tree = $AnimationTree
+@onready var state_machine = animation_tree.get("parameters/playback")
 
 
 var gravity = ProjectSettings.get_setting("physics/3d/default_gravity")
@@ -101,6 +103,7 @@ func _ready():
 	Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
 	
 	
+	
 	# the funny
 	print_rich("[font_size=120][color=CORNFLOWER_BLUE][wave]heck you")
 
@@ -120,6 +123,7 @@ func _input(event):
 func _physics_process(delta):
 	if not is_on_floor():
 		velocity.y -= gravity * delta * JUMP_FALLMULTIPLIER
+		
 	if Input.is_action_pressed("jump") and is_on_floor():
 		velocity.y = JUMP_VELOCITY
 	
@@ -130,17 +134,40 @@ func _physics_process(delta):
 	if (Input.is_action_pressed("forward") or Input.is_action_pressed("left") or Input.is_action_pressed("right") or Input.is_action_pressed("backward")):
 		faceDirection = Vector3(Input.get_action_strength("right") - Input.get_action_strength("left"), 0 ,Input.get_action_strength("backward") - Input.get_action_strength("forward")).normalized()
 	
+	character.rotation.y = atan2(cursor.position.x, cursor.position.z)
 	
 	
+	"""
 	if isHolding:
 		character.rotation.y = atan2(cursor.position.x, cursor.position.z)
-	elif !isHolding and velocity:
+	elif !isHolding:
 		character.rotation.y = lerp_angle(character.rotation.y, atan2(faceDirection.x, faceDirection.z), delta * TURN_VELOCITY)
-	elif !velocity:
+	elif !velocity and is_on_floor():
 		pass
-		#print("no movement")
+	"""
 	
-	#character.rotation.y = atan2(cursor.position.x, cursor.position.z)
+	
+	if !isHolding:
+		if not is_on_floor():
+			state_machine.travel("fall")
+			
+		elif velocity and is_on_floor():
+			state_machine.travel("run")
+			
+		else:
+			state_machine.travel("idle")
+	
+	elif isHolding:
+		if not is_on_floor():
+			state_machine.travel("Grab-Fall")
+			
+		elif velocity and is_on_floor():
+			state_machine.travel("Grab-Run")
+			
+		else:
+			state_machine.travel("Grab-Idle")
+			
+	
 	
 	
 	# player movement from template (im too lazy to change it, nor do I need to)
