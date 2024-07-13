@@ -1,4 +1,4 @@
-[gd_scene load_steps=71 format=3 uid="uid://bcou7suhphdrp"]
+[gd_scene load_steps=70 format=3 uid="uid://bcou7suhphdrp"]
 
 [ext_resource type="Script" path="res://Elements/function/player/player_v2.gd" id="1_2nm4r"]
 [ext_resource type="PackedScene" uid="uid://cft1b4l0aljye" path="res://Elements/function/info/info.tscn" id="4_ua0e3"]
@@ -13,7 +13,6 @@
 [ext_resource type="AudioStream" uid="uid://bk7fdh3m3au1n" path="res://Art/audio/dialogue.wav" id="13_4dygs"]
 [ext_resource type="Shader" path="res://Art/filters/sobel_outlines.gdshader" id="13_5qnse"]
 [ext_resource type="Shader" path="res://Art/filters/colour_palette.gdshader" id="15_eej3d"]
-[ext_resource type="Texture2D" uid="uid://b8cy370quwqw3" path="res://Art/textures/palettes/improved_palette.png" id="16_7i2hf"]
 [ext_resource type="Shader" path="res://Art/filters/pixellation.gdshader" id="17_ip8lm"]
 [ext_resource type="PackedScene" uid="uid://4lv8cegk7f53" path="res://Art/blend/assets/player.blend" id="18_sv41t"]
 
@@ -226,8 +225,6 @@ shader_parameter/outline_threshold = 0.25
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_1evt4"]
 shader = ExtResource("15_eej3d")
-shader_parameter/num_colours = 14
-shader_parameter/palette = ExtResource("16_7i2hf")
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_4rgcg"]
 shader = ExtResource("17_ip8lm")
@@ -255,21 +252,21 @@ shape = SubResource("CylinderShape3D_r7e24")
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1, 0)
 
 [node name="Skeleton3D" parent="PlayerModel/player/Armature" index="0"]
-bones/0/position = Vector3(-0.00183521, -0.211311, 0)
-bones/1/rotation = Quaternion(0.215207, 0.620731, 0.696527, 0.288493)
-bones/2/rotation = Quaternion(0.0168001, 0.233927, 0.0191794, 0.97192)
-bones/3/rotation = Quaternion(-0.00146986, 0.102246, -0.00366241, 0.994751)
-bones/4/rotation = Quaternion(0.000135404, 0.00383066, 0.00042819, 0.999993)
-bones/5/rotation = Quaternion(0.191991, -0.62364, -0.709764, 0.265419)
-bones/6/rotation = Quaternion(0.0250198, -0.216597, -0.0262844, 0.975586)
-bones/7/rotation = Quaternion(-0.00154139, -0.0843752, 0.00312838, 0.996428)
-bones/8/rotation = Quaternion(0.000109656, -0.00304608, -0.000282555, 0.999995)
-bones/10/rotation = Quaternion(0.679432, -0.195889, -0.679432, 0.19589)
-bones/11/rotation = Quaternion(3.01144e-08, 1.37156e-08, -0.505236, 0.862981)
-bones/12/rotation = Quaternion(9.02549e-09, -1.67736e-15, -0.119546, 0.992829)
-bones/13/rotation = Quaternion(0.679347, 0.196184, 0.679347, 0.196184)
-bones/14/rotation = Quaternion(3.01283e-08, -1.37134e-08, 0.50547, 0.862844)
-bones/15/rotation = Quaternion(9.03689e-09, 4.97627e-15, 0.119697, 0.99281)
+bones/0/position = Vector3(-0.00183521, -0.0675415, 0)
+bones/1/rotation = Quaternion(3.1103e-07, -2.17413e-07, 0.819613, 0.572918)
+bones/2/rotation = Quaternion(2.22463e-07, -4.45911e-14, 0.293113, 0.956078)
+bones/3/rotation = Quaternion(2.37397e-07, 1.63158e-07, 0.409197, 0.912446)
+bones/4/rotation = Quaternion(3.5948e-08, 3.11002e-14, 0.0895701, 0.995981)
+bones/5/rotation = Quaternion(-3.20263e-08, -1.99825e-08, -0.848403, 0.529352)
+bones/6/rotation = Quaternion(-2.13987e-08, 9.26159e-16, -0.283435, 0.958992)
+bones/7/rotation = Quaternion(-2.62951e-08, 1.89501e-15, -0.348289, 0.937387)
+bones/8/rotation = Quaternion(-5.63272e-09, 2.00399e-15, -0.0746077, 0.997213)
+bones/10/rotation = Quaternion(0.706153, -0.0367218, -0.706153, 0.0367218)
+bones/11/rotation = Quaternion(7.63183e-09, 1.57624e-08, -0.128041, 0.991769)
+bones/12/rotation = Quaternion(2.11264e-09, -5.44222e-15, -0.0279828, 0.999608)
+bones/13/rotation = Quaternion(0.70615, 0.0367786, 0.70615, 0.0367786)
+bones/14/rotation = Quaternion(7.63528e-09, -1.57623e-08, 0.128099, 0.991761)
+bones/15/rotation = Quaternion(2.11486e-09, 5.60536e-15, 0.0280122, 0.999608)
 
 [node name="ObstructionDetector" type="Area3D" parent="PlayerModel"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 2)
