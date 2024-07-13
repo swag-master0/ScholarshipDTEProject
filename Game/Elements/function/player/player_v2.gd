@@ -65,8 +65,6 @@ extends CharacterBody3D
 @onready var sound_hurt = $Audio/PlayerHurt
 @onready var sound_dialogue = $Audio/Dialogue
 
-# Animations
-@onready var animations = $PlayerModel/AnimationPlayer
 
 
 var gravity = ProjectSettings.get_setting("physics/3d/default_gravity")
@@ -102,7 +100,6 @@ func _ready():
 	
 	Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
 	
-	animations.play("RESET")
 	
 	# the funny
 	print_rich("[font_size=120][color=CORNFLOWER_BLUE][wave]heck you")
@@ -248,12 +245,12 @@ func _process(_delta):
 		else:
 			hud_health.visible = true
 		
-		
+		"""
 		# visibly display damage on the player (this is stupid)
 		var health_ratio : float = health / max_health
 		var mat = character.get_active_material(0)
 		mat.set_shader_parameter("health", health_ratio)
-		
+		"""
 		
 		
 		if hud_healthwhite.value != hud_health.value and !healthvisualindicator:
@@ -272,8 +269,6 @@ func _process(_delta):
 	if level_completed:
 		Nextlevel()
 	
-	if !animations.is_playing():
-		animations.play("RESET")
 	
 	if self.global_position.y <= -1000:
 		DeathScreen()
@@ -350,8 +345,6 @@ func NearestObject():
 
 
 func _on_info_take_damage():
-	animations.play("hurt")
-	
 	sound_hurt.pitch_scale = randf_range(75, 125) / 100 # random value between 0.75 and 1.25
 	sound_hurt.play(0)
 
