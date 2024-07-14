@@ -1,11 +1,13 @@
-[gd_scene load_steps=70 format=3 uid="uid://bcou7suhphdrp"]
+[gd_scene load_steps=73 format=3 uid="uid://bcou7suhphdrp"]
 
 [ext_resource type="Script" path="res://Elements/function/player/player_v2.gd" id="1_2nm4r"]
+[ext_resource type="Texture2D" uid="uid://b7b8lqiwyngpq" path="res://Art/textures/hud/player_eyes-1.png" id="3_rjy4u"]
+[ext_resource type="Texture2D" uid="uid://djwowo0gdnhek" path="res://Art/textures/hud/mouse_base.png" id="4_klq0a"]
+[ext_resource type="Texture2D" uid="uid://ctnbrrls3ra0x" path="res://Art/textures/hud/player_eyes-2.png" id="4_rxnrc"]
 [ext_resource type="PackedScene" uid="uid://cft1b4l0aljye" path="res://Elements/function/info/info.tscn" id="4_ua0e3"]
-[ext_resource type="Texture2D" uid="uid://djwowo0gdnhek" path="res://Art/textures/mouse_base.png" id="5_u7k2l"]
-[ext_resource type="Texture2D" uid="uid://dmnjpb8ox2bsu" path="res://Art/textures/mouse1-1.png" id="6_ne0wx"]
+[ext_resource type="Texture2D" uid="uid://dmnjpb8ox2bsu" path="res://Art/textures/hud/mouse1-1.png" id="5_c7npb"]
+[ext_resource type="Texture2D" uid="uid://cvguvo850eb22" path="res://Art/textures/hud/mouse1-2.png" id="6_0yth3"]
 [ext_resource type="PackedScene" uid="uid://233quw6ftjqa" path="res://Elements/function/menus/options_menu.tscn" id="7_no73n"]
-[ext_resource type="Texture2D" uid="uid://cvguvo850eb22" path="res://Art/textures/mouse1-2.png" id="7_o57vu"]
 [ext_resource type="AudioStream" uid="uid://w2v2x3att67l" path="res://Art/audio/click.wav" id="9_nr3vu"]
 [ext_resource type="AudioStream" uid="uid://eiiqal51bdu" path="res://Art/audio/player_select.wav" id="10_mybwr"]
 [ext_resource type="AudioStream" uid="uid://bdxfhhvgttnt5" path="res://Art/audio/player_death.wav" id="11_s70kr"]
@@ -184,6 +186,107 @@ graph_offset = Vector2(292, -122)
 [sub_resource type="CylinderShape3D" id="CylinderShape3D_r7e24"]
 height = 2.5035
 
+[sub_resource type="SpriteFrames" id="SpriteFrames_n15er"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("3_rjy4u")
+}, {
+"duration": 1.0,
+"texture": ExtResource("3_rjy4u")
+}, {
+"duration": 1.0,
+"texture": ExtResource("3_rjy4u")
+}, {
+"duration": 1.0,
+"texture": ExtResource("3_rjy4u")
+}, {
+"duration": 1.0,
+"texture": ExtResource("3_rjy4u")
+}, {
+"duration": 1.0,
+"texture": ExtResource("4_rxnrc")
+}, {
+"duration": 1.0,
+"texture": ExtResource("3_rjy4u")
+}, {
+"duration": 1.0,
+"texture": ExtResource("3_rjy4u")
+}, {
+"duration": 1.0,
+"texture": ExtResource("3_rjy4u")
+}, {
+"duration": 1.0,
+"texture": ExtResource("3_rjy4u")
+}, {
+"duration": 1.0,
+"texture": ExtResource("3_rjy4u")
+}, {
+"duration": 1.0,
+"texture": ExtResource("3_rjy4u")
+}, {
+"duration": 1.0,
+"texture": ExtResource("3_rjy4u")
+}, {
+"duration": 1.0,
+"texture": ExtResource("3_rjy4u")
+}, {
+"duration": 1.0,
+"texture": ExtResource("3_rjy4u")
+}, {
+"duration": 1.0,
+"texture": ExtResource("3_rjy4u")
+}, {
+"duration": 1.0,
+"texture": ExtResource("3_rjy4u")
+}, {
+"duration": 1.0,
+"texture": ExtResource("4_rxnrc")
+}, {
+"duration": 1.0,
+"texture": ExtResource("3_rjy4u")
+}, {
+"duration": 1.0,
+"texture": ExtResource("3_rjy4u")
+}, {
+"duration": 1.0,
+"texture": ExtResource("3_rjy4u")
+}, {
+"duration": 1.0,
+"texture": ExtResource("3_rjy4u")
+}, {
+"duration": 1.0,
+"texture": ExtResource("3_rjy4u")
+}, {
+"duration": 1.0,
+"texture": ExtResource("3_rjy4u")
+}, {
+"duration": 1.0,
+"texture": ExtResource("3_rjy4u")
+}, {
+"duration": 1.0,
+"texture": ExtResource("3_rjy4u")
+}, {
+"duration": 1.0,
+"texture": ExtResource("3_rjy4u")
+}, {
+"duration": 1.0,
+"texture": ExtResource("3_rjy4u")
+}, {
+"duration": 1.0,
+"texture": ExtResource("4_rxnrc")
+}, {
+"duration": 1.0,
+"texture": ExtResource("3_rjy4u")
+}, {
+"duration": 1.0,
+"texture": ExtResource("3_rjy4u")
+}],
+"loop": true,
+"name": &"default",
+"speed": 4.0
+}]
+
 [sub_resource type="BoxShape3D" id="BoxShape3D_virh7"]
 size = Vector3(0.75, 1, 3)
 
@@ -208,10 +311,10 @@ bg_color = Color(1, 1, 1, 1)
 animations = [{
 "frames": [{
 "duration": 1.0,
-"texture": ExtResource("6_ne0wx")
+"texture": ExtResource("5_c7npb")
 }, {
 "duration": 1.0,
-"texture": ExtResource("7_o57vu")
+"texture": ExtResource("6_0yth3")
 }],
 "loop": true,
 "name": &"default",
@@ -267,6 +370,19 @@ bones/12/rotation = Quaternion(2.11264e-09, -5.44222e-15, -0.0279828, 0.999608)
 bones/13/rotation = Quaternion(0.70615, 0.0367786, 0.70615, 0.0367786)
 bones/14/rotation = Quaternion(7.63528e-09, -1.57623e-08, 0.128099, 0.991761)
 bones/15/rotation = Quaternion(2.11486e-09, 5.60536e-15, 0.0280122, 0.999608)
+
+[node name="FaceAttachment" type="BoneAttachment3D" parent="PlayerModel/player/Armature/Skeleton3D" index="1"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.00183521, 0.517002, 0)
+bone_name = "Head"
+bone_idx = 9
+
+[node name="AnimatedSprite3D" type="AnimatedSprite3D" parent="PlayerModel/player/Armature/Skeleton3D/FaceAttachment"]
+transform = Transform3D(0.55, 0, 0, 0, 0.55, 0, 0, 0, 0.55, 0.00183521, 0.276311, 0.416092)
+pixel_size = 0.005
+texture_filter = 0
+sprite_frames = SubResource("SpriteFrames_n15er")
+autoplay = "default"
+frame_progress = 0.739195
 
 [node name="ObstructionDetector" type="Area3D" parent="PlayerModel"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 2)
@@ -503,7 +619,7 @@ offset_top = -31.0
 offset_right = 31.0
 offset_bottom = 31.0
 pivot_offset = Vector2(31, 31)
-texture = ExtResource("5_u7k2l")
+texture = ExtResource("4_klq0a")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="HUD/Indicator"]
 visible = false

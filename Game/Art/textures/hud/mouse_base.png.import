@@ -3,7 +3,7 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://djwowo0gdnhek"
-path.s3tc="res://.godot/imported/mouse_base.png-c801ddb0766430b602fd15dd763cd3dd.s3tc.ctex"
+path.s3tc="res://.godot/imported/mouse_base.png-72bffaba71b303738cc82f07b59a48f5.s3tc.ctex"
 metadata={
 "imported_formats": ["s3tc_bptc"],
 "vram_texture": true
@@ -11,8 +11,8 @@ metadata={
 
 [deps]
 
-source_file="res://Art/textures/mouse_base.png"
-dest_files=["res://.godot/imported/mouse_base.png-c801ddb0766430b602fd15dd763cd3dd.s3tc.ctex"]
+source_file="res://Art/textures/hud/mouse_base.png"
+dest_files=["res://.godot/imported/mouse_base.png-72bffaba71b303738cc82f07b59a48f5.s3tc.ctex"]
 
 [params]
 

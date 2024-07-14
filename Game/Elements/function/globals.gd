@@ -14,6 +14,9 @@ var old_scene
 func _enter_tree():
 	transition(true)
 	old_scene = get_tree().current_scene
+	
+	get_tree().paused = false
+	Engine.time_scale = 1
 
 
 
@@ -42,34 +45,31 @@ func _process(_delta):
 		old_scene = get_tree().current_scene
 	
 
-func transition(fade_in : bool):
-	if fade_in == true:
-		# There's a frame where the 
+func transition(fade_out : bool):
+	if fade_out == true:
 		var screen = loading_screen.instantiate()
 		get_tree().current_scene.add_child(screen)
 		
-		var image = screen.get_children()[0]
-		image.color = loading_screen_colour
-		image.visible = true
+		for i in screen.get_child(0).get_children():
+			if i is AnimationPlayer:
+				i.play("fade_out")
+				await i.animation_finished
+				screen.queue_free()
 		
-		var tween = get_tree().create_tween()
-		tween.tween_property(image, "color", transparent_colour, transition_time)
-		await tween.finished
-		
-		screen.queue_free()
 	
-	if fade_in == false:
+	if fade_out == false:
 		var screen = loading_screen.instantiate()
 		get_tree().current_scene.add_child(screen)
-	
-		# transition effects
-		var image = screen.get_children()[0]
-		image.color = transparent_colour
-		image.visible = true
 		
-		var tween = get_tree().create_tween()
-		tween.tween_property(image, "color", loading_screen_colour, transition_time)
-		await tween.finished
+		for i in screen.get_child(0).get_children():
+			if i is AnimationPlayer:
+				i.play("fade_in")
+				Input.set_mouse_mode(Input.MOUSE_MODE_VISIBLE)
+				await i.animation_finished
+				
+				get_tree().paused = false
+				Engine.time_scale = 1
+		
 	
 
 

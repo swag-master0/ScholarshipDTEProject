@@ -471,19 +471,13 @@ func viewEnemyHealth(enemy : Object, visibility : bool):
 
 
 
-
-
 func RestartLevel():
-	get_tree().paused = false
-	
 	Globals.next_scene = get_tree().current_scene.scene_file_path
 	Globals.scene_transition()
 
 
+
 func QuitToMenu():
-	get_tree().paused = false
-	Engine.time_scale = 1
-	
 	Globals.next_scene = main_menu
 	Globals.scene_transition()
 
