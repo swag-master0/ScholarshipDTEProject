@@ -4,8 +4,8 @@
 [ext_resource type="PackedScene" uid="uid://cft1b4l0aljye" path="res://Elements/function/info/info.tscn" id="4_ua0e3"]
 [ext_resource type="Texture2D" uid="uid://djwowo0gdnhek" path="res://Art/textures/mouse_base.png" id="5_u7k2l"]
 [ext_resource type="Texture2D" uid="uid://dmnjpb8ox2bsu" path="res://Art/textures/mouse1-1.png" id="6_ne0wx"]
+[ext_resource type="PackedScene" uid="uid://233quw6ftjqa" path="res://Elements/function/menus/options_menu.tscn" id="7_no73n"]
 [ext_resource type="Texture2D" uid="uid://cvguvo850eb22" path="res://Art/textures/mouse1-2.png" id="7_o57vu"]
-[ext_resource type="PackedScene" uid="uid://233quw6ftjqa" path="res://Elements/function/options_menu/options_menu.tscn" id="8_i7hif"]
 [ext_resource type="AudioStream" uid="uid://w2v2x3att67l" path="res://Art/audio/click.wav" id="9_nr3vu"]
 [ext_resource type="AudioStream" uid="uid://eiiqal51bdu" path="res://Art/audio/player_select.wav" id="10_mybwr"]
 [ext_resource type="AudioStream" uid="uid://bdxfhhvgttnt5" path="res://Art/audio/player_death.wav" id="11_s70kr"]
@@ -573,7 +573,7 @@ grow_horizontal = 2
 grow_vertical = 2
 text = "quit to menu"
 
-[node name="OptionsMenu" parent="HUD" instance=ExtResource("8_i7hif")]
+[node name="OptionsMenu" parent="HUD" instance=ExtResource("7_no73n")]
 visible = false
 layout_mode = 1
 
@@ -610,7 +610,7 @@ text = "[center]level complete"
 wait_time = 3.0
 one_shot = true
 
-[node name="ColorRect" type="ColorRect" parent="HUD"]
+[node name="Crosshair" type="ColorRect" parent="HUD"]
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5

@@ -15,7 +15,7 @@ func _process(_delta):
 
 
 func _on_body_entered(body):
-	if body.is_in_group("player"):
+	if body.is_in_group("player") and ready:
 		player_colliding = true
 		
 		if is_instance_valid(body.object) and body.object.is_in_group("objective"):

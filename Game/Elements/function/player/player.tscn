@@ -7,7 +7,7 @@
 [ext_resource type="Material" uid="uid://b6kkipn5s7ecp" path="res://Art/materials/cursor.tres" id="4_5haak"]
 [ext_resource type="Texture2D" uid="uid://dmnjpb8ox2bsu" path="res://Art/textures/mouse1-1.png" id="4_mgded"]
 [ext_resource type="Texture2D" uid="uid://cvguvo850eb22" path="res://Art/textures/mouse1-2.png" id="5_tu8r8"]
-[ext_resource type="PackedScene" uid="uid://233quw6ftjqa" path="res://Elements/function/options_menu/options_menu.tscn" id="5_xd0jc"]
+[ext_resource type="PackedScene" uid="uid://233quw6ftjqa" path="res://Elements/function/menus/options_menu.tscn" id="5_xd0jc"]
 [ext_resource type="AudioStream" uid="uid://w2v2x3att67l" path="res://Art/audio/click.wav" id="6_8os6d"]
 [ext_resource type="AudioStream" uid="uid://eiiqal51bdu" path="res://Art/audio/player_select.wav" id="7_ymuqw"]
 [ext_resource type="AudioStream" uid="uid://bdxfhhvgttnt5" path="res://Art/audio/player_death.wav" id="8_i6jga"]

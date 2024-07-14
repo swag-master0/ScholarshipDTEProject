@@ -58,6 +58,7 @@ extends CharacterBody3D
 @onready var hud_levelcomplete = $HUD/LevelCompleted
 @onready var hud_levelcomplete_delay = $HUD/LevelCompleted/Delay
 
+
 # Audio
 @onready var footstep_delay = $Audio/FootstepDelay
 @onready var sound_footstep = $Audio/PlayerWalk
@@ -474,13 +475,17 @@ func viewEnemyHealth(enemy : Object, visibility : bool):
 
 func RestartLevel():
 	get_tree().paused = false
-	get_tree().reload_current_scene()
+	
+	Globals.next_scene = get_tree().current_scene.scene_file_path
+	Globals.scene_transition()
 
 
 func QuitToMenu():
 	get_tree().paused = false
 	Engine.time_scale = 1
-	get_tree().change_scene_to_file(main_menu)
+	
+	Globals.next_scene = main_menu
+	Globals.scene_transition()
 
 
 
@@ -548,15 +553,16 @@ func Nextlevel():
 		hud_levelcomplete.visible = true
 		hud_levelcomplete_delay.start()
 
-# change level after desired time elapsed
+
 func _on_delay_timeout():
 	get_tree().paused = false
 	
-	
+	# brainrotten solution
 	for i in self.get_parent().get_children():
 		if i.is_in_group("objective_start"):
-			#get_tree().change_scene_to_packed(i.nextscene)
-			get_tree().change_scene_to_file(i.nextscene_string)
+			Globals.next_scene = i.nextscene_string
+			Globals.scene_transition()
+			
 
 
 

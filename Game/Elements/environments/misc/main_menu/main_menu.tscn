@@ -1,7 +1,7 @@
 [gd_scene load_steps=9 format=3 uid="uid://c4ousj15h5a10"]
 
 [ext_resource type="Script" path="res://Elements/environments/misc/main_menu/main_menu.gd" id="1_woppv"]
-[ext_resource type="PackedScene" uid="uid://233quw6ftjqa" path="res://Elements/function/options_menu/options_menu.tscn" id="3_2bw2t"]
+[ext_resource type="PackedScene" uid="uid://233quw6ftjqa" path="res://Elements/function/menus/options_menu.tscn" id="3_ckq2n"]
 [ext_resource type="Shader" uid="uid://d08hg4q0p02dx" path="res://Elements/environments/misc/main_menu/main_menu.tres" id="3_ryxe8"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_fskjc"]
@@ -110,7 +110,7 @@ grow_vertical = 2
 text = "QUIT
 "
 
-[node name="OptionsMenu" parent="GUI" instance=ExtResource("3_2bw2t")]
+[node name="OptionsMenu" parent="GUI" instance=ExtResource("3_ckq2n")]
 visible = false
 layout_mode = 1
 

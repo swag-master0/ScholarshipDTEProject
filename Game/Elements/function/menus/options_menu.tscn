@@ -1,6 +1,6 @@
 [gd_scene load_steps=2 format=3 uid="uid://233quw6ftjqa"]
 
-[ext_resource type="Script" path="res://Elements/function/options_menu/options_menu.gd" id="1_aepko"]
+[ext_resource type="Script" path="res://Elements/function/menus/options_menu.gd" id="1_aepko"]
 
 [node name="OptionsMenu" type="ColorRect"]
 process_mode = 3
