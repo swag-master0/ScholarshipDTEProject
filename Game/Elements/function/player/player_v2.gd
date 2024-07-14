@@ -13,7 +13,7 @@ extends CharacterBody3D
 @export_category("Gameplay")
 @export var SPEED : float = 10
 @export var JUMP_VELOCITY : float = 25
-@export var JUMP_FALLMULTIPLIER : float = 5
+@export var JUMP_FALLMULTIPLIER : float = 3.5
 @export var TURN_VELOCITY : float = 10
 @export var PICKUP_RANGE : float = 6
 @export var THROW_FORCE : float = 2000
@@ -123,9 +123,16 @@ func _input(event):
 
 func _physics_process(delta):
 	if not is_on_floor():
-		velocity.y -= gravity * delta * JUMP_FALLMULTIPLIER
+		var FALL_GRAVITY = gravity * 1.5
+		if velocity.y < 0:
+			FALL_GRAVITY = gravity
 		
-	if Input.is_action_pressed("jump") and is_on_floor():
+		velocity.y -= FALL_GRAVITY * delta * JUMP_FALLMULTIPLIER
+		
+	
+	if Input.is_action_just_released("jump") and velocity.y > 0:
+		velocity.y = JUMP_VELOCITY / 8
+	if Input.is_action_just_pressed("jump") and is_on_floor():
 		velocity.y = JUMP_VELOCITY
 	
 	MousePosition()
@@ -137,7 +144,7 @@ func _physics_process(delta):
 	
 	character.rotation.y = atan2(cursor.position.x, cursor.position.z)
 	
-	
+	# player rotation code
 	"""
 	if isHolding:
 		character.rotation.y = atan2(cursor.position.x, cursor.position.z)
