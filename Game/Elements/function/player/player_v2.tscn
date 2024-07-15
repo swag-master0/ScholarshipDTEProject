@@ -1,4 +1,4 @@
-[gd_scene load_steps=73 format=3 uid="uid://bcou7suhphdrp"]
+[gd_scene load_steps=75 format=3 uid="uid://bcou7suhphdrp"]
 
 [ext_resource type="Script" path="res://Elements/function/player/player_v2.gd" id="1_2nm4r"]
 [ext_resource type="Texture2D" uid="uid://b7b8lqiwyngpq" path="res://Art/textures/hud/player_eyes-1.png" id="3_rjy4u"]
@@ -69,7 +69,7 @@ filter_enabled = true
 filters = ["Armature/Skeleton3D:ArmLower.L", "Armature/Skeleton3D:ArmLower.R", "Armature/Skeleton3D:ArmUpper.L", "Armature/Skeleton3D:ArmUpper.R", "Armature/Skeleton3D:Hand.L", "Armature/Skeleton3D:Hand.R", "Armature/Skeleton3D:Shoulder.L", "Armature/Skeleton3D:Shoulder.R"]
 
 [sub_resource type="AnimationNodeBlendTree" id="AnimationNodeBlendTree_0baqh"]
-graph_offset = Vector2(-378, -1)
+graph_offset = Vector2(-309, 16)
 nodes/Animation/node = SubResource("AnimationNodeAnimation_ydcme")
 nodes/Animation/position = Vector2(-120, 120)
 "nodes/Animation 2/node" = SubResource("AnimationNodeAnimation_hb3mw")
@@ -108,15 +108,21 @@ animation = &"idle"
 [sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_rj80q"]
 animation = &"jump"
 
-[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_1atn4"]
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_s1se5"]
 animation = &"run"
+
+[sub_resource type="AnimationNodeTimeScale" id="AnimationNodeTimeScale_t7h08"]
+
+[sub_resource type="AnimationNodeBlendTree" id="AnimationNodeBlendTree_xyjea"]
+graph_offset = Vector2(-108.019, 166.269)
+nodes/Animation/node = SubResource("AnimationNodeAnimation_s1se5")
+nodes/Animation/position = Vector2(20, 160)
+nodes/Speed/node = SubResource("AnimationNodeTimeScale_t7h08")
+nodes/Speed/position = Vector2(160, 160)
+node_connections = [&"Speed", 0, &"Animation", &"output", 0, &"Speed"]
 
 [sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_7i6pb"]
 advance_mode = 2
-
-[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_ftvc3"]
-
-[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_jiqfc"]
 
 [sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_jgd8b"]
 xfade_time = 0.1
@@ -129,11 +135,6 @@ xfade_time = 0.05
 
 [sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_rrud2"]
 xfade_time = 0.05
-
-[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_xn0ri"]
-priority = 2
-
-[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_r07ka"]
 
 [sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_0tnqv"]
 priority = 2
@@ -161,30 +162,39 @@ priority = 2
 
 [sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_p6kwk"]
 
-[sub_resource type="AnimationNodeStateMachine" id="AnimationNodeStateMachine_1wy8i"]
-states/End/position = Vector2(1124, 19)
-states/Grab-Fall/node = SubResource("AnimationNodeBlendTree_hh5sj")
-states/Grab-Fall/position = Vector2(812, -59)
-states/Grab-Idle/node = SubResource("AnimationNodeBlendTree_2f60j")
-states/Grab-Idle/position = Vector2(812, 95)
-states/Grab-Jump/node = SubResource("AnimationNodeBlendTree_0baqh")
-states/Grab-Jump/position = Vector2(812, 13)
-states/Grab-Run/node = SubResource("AnimationNodeBlendTree_r8vxk")
-states/Grab-Run/position = Vector2(812, 185)
-states/Start/position = Vector2(486, 95)
-states/fall/node = SubResource("AnimationNodeAnimation_b0sy7")
-states/fall/position = Vector2(588, -59)
-states/idle/node = SubResource("AnimationNodeAnimation_dscn8")
-states/idle/position = Vector2(588, 95)
-states/jump/node = SubResource("AnimationNodeAnimation_rj80q")
-states/jump/position = Vector2(588, 13)
-states/run/node = SubResource("AnimationNodeAnimation_1atn4")
-states/run/position = Vector2(588, 185)
-transitions = ["Start", "idle", SubResource("AnimationNodeStateMachineTransition_7i6pb"), "idle", "run", SubResource("AnimationNodeStateMachineTransition_ftvc3"), "run", "idle", SubResource("AnimationNodeStateMachineTransition_jiqfc"), "idle", "jump", SubResource("AnimationNodeStateMachineTransition_jgd8b"), "jump", "idle", SubResource("AnimationNodeStateMachineTransition_5uba5"), "jump", "fall", SubResource("AnimationNodeStateMachineTransition_cyi02"), "fall", "jump", SubResource("AnimationNodeStateMachineTransition_rrud2"), "run", "Grab-Run", SubResource("AnimationNodeStateMachineTransition_xn0ri"), "Grab-Run", "run", SubResource("AnimationNodeStateMachineTransition_r07ka"), "idle", "Grab-Idle", SubResource("AnimationNodeStateMachineTransition_0tnqv"), "Grab-Idle", "idle", SubResource("AnimationNodeStateMachineTransition_gsjui"), "fall", "Grab-Fall", SubResource("AnimationNodeStateMachineTransition_p0278"), "Grab-Fall", "fall", SubResource("AnimationNodeStateMachineTransition_n6axq"), "jump", "Grab-Jump", SubResource("AnimationNodeStateMachineTransition_af0cs"), "Grab-Jump", "jump", SubResource("AnimationNodeStateMachineTransition_h23ls"), "Grab-Fall", "Grab-Jump", SubResource("AnimationNodeStateMachineTransition_iww2x"), "Grab-Jump", "Grab-Fall", SubResource("AnimationNodeStateMachineTransition_qafhq"), "Grab-Jump", "Grab-Idle", SubResource("AnimationNodeStateMachineTransition_ewjhy"), "Grab-Idle", "Grab-Jump", SubResource("AnimationNodeStateMachineTransition_egp6e"), "Grab-Idle", "Grab-Run", SubResource("AnimationNodeStateMachineTransition_h1bte"), "Grab-Run", "Grab-Idle", SubResource("AnimationNodeStateMachineTransition_p6kwk")]
-graph_offset = Vector2(292, -122)
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_1rsfr"]
 
-[sub_resource type="CylinderShape3D" id="CylinderShape3D_r7e24"]
-height = 2.5035
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_seyu0"]
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_bdmy8"]
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_rrbmd"]
+
+[sub_resource type="AnimationNodeStateMachine" id="AnimationNodeStateMachine_1wy8i"]
+states/End/position = Vector2(1598, 40)
+states/Grab-Fall/node = SubResource("AnimationNodeBlendTree_hh5sj")
+states/Grab-Fall/position = Vector2(1358, -205)
+states/Grab-Idle/node = SubResource("AnimationNodeBlendTree_2f60j")
+states/Grab-Idle/position = Vector2(1358, 95)
+states/Grab-Jump/node = SubResource("AnimationNodeBlendTree_0baqh")
+states/Grab-Jump/position = Vector2(1358, -60)
+states/Grab-Run/node = SubResource("AnimationNodeBlendTree_r8vxk")
+states/Grab-Run/position = Vector2(1358, 245)
+states/Start/position = Vector2(747, 95)
+states/fall/node = SubResource("AnimationNodeAnimation_b0sy7")
+states/fall/position = Vector2(916, -205)
+states/idle/node = SubResource("AnimationNodeAnimation_dscn8")
+states/idle/position = Vector2(916, 95)
+states/jump/node = SubResource("AnimationNodeAnimation_rj80q")
+states/jump/position = Vector2(916, -60)
+states/run/node = SubResource("AnimationNodeBlendTree_xyjea")
+states/run/position = Vector2(916, 245)
+transitions = ["Start", "idle", SubResource("AnimationNodeStateMachineTransition_7i6pb"), "idle", "jump", SubResource("AnimationNodeStateMachineTransition_jgd8b"), "jump", "idle", SubResource("AnimationNodeStateMachineTransition_5uba5"), "jump", "fall", SubResource("AnimationNodeStateMachineTransition_cyi02"), "fall", "jump", SubResource("AnimationNodeStateMachineTransition_rrud2"), "idle", "Grab-Idle", SubResource("AnimationNodeStateMachineTransition_0tnqv"), "Grab-Idle", "idle", SubResource("AnimationNodeStateMachineTransition_gsjui"), "fall", "Grab-Fall", SubResource("AnimationNodeStateMachineTransition_p0278"), "Grab-Fall", "fall", SubResource("AnimationNodeStateMachineTransition_n6axq"), "jump", "Grab-Jump", SubResource("AnimationNodeStateMachineTransition_af0cs"), "Grab-Jump", "jump", SubResource("AnimationNodeStateMachineTransition_h23ls"), "Grab-Fall", "Grab-Jump", SubResource("AnimationNodeStateMachineTransition_iww2x"), "Grab-Jump", "Grab-Fall", SubResource("AnimationNodeStateMachineTransition_qafhq"), "Grab-Jump", "Grab-Idle", SubResource("AnimationNodeStateMachineTransition_ewjhy"), "Grab-Idle", "Grab-Jump", SubResource("AnimationNodeStateMachineTransition_egp6e"), "Grab-Idle", "Grab-Run", SubResource("AnimationNodeStateMachineTransition_h1bte"), "Grab-Run", "Grab-Idle", SubResource("AnimationNodeStateMachineTransition_p6kwk"), "run", "idle", SubResource("AnimationNodeStateMachineTransition_1rsfr"), "idle", "run", SubResource("AnimationNodeStateMachineTransition_seyu0"), "run", "Grab-Run", SubResource("AnimationNodeStateMachineTransition_bdmy8"), "Grab-Run", "run", SubResource("AnimationNodeStateMachineTransition_rrbmd")]
+graph_offset = Vector2(687, 41)
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_nrsfh"]
+radius = 0.474599
+height = 2.30568
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_n15er"]
 animations = [{
@@ -344,10 +354,11 @@ parameters/Grab-Fall/Blend2/blend_amount = 1.0
 parameters/Grab-Idle/Blend2/blend_amount = 1.0
 parameters/Grab-Jump/Blend2/blend_amount = 1.0
 parameters/Grab-Run/Blend2/blend_amount = 1.0
+parameters/run/Speed/scale = 1.0
 
 [node name="Collision" type="CollisionShape3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.312539, 0)
-shape = SubResource("CylinderShape3D_r7e24")
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.148464, 0)
+shape = SubResource("CapsuleShape3D_nrsfh")
 
 [node name="PlayerModel" type="Node3D" parent="."]
 
@@ -355,24 +366,25 @@ shape = SubResource("CylinderShape3D_r7e24")
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1, 0)
 
 [node name="Skeleton3D" parent="PlayerModel/player/Armature" index="0"]
-bones/0/position = Vector3(-0.00183521, -0.0675415, 0)
-bones/1/rotation = Quaternion(3.1103e-07, -2.17413e-07, 0.819613, 0.572918)
-bones/2/rotation = Quaternion(2.22463e-07, -4.45911e-14, 0.293113, 0.956078)
-bones/3/rotation = Quaternion(2.37397e-07, 1.63158e-07, 0.409197, 0.912446)
-bones/4/rotation = Quaternion(3.5948e-08, 3.11002e-14, 0.0895701, 0.995981)
-bones/5/rotation = Quaternion(-3.20263e-08, -1.99825e-08, -0.848403, 0.529352)
-bones/6/rotation = Quaternion(-2.13987e-08, 9.26159e-16, -0.283435, 0.958992)
-bones/7/rotation = Quaternion(-2.62951e-08, 1.89501e-15, -0.348289, 0.937387)
-bones/8/rotation = Quaternion(-5.63272e-09, 2.00399e-15, -0.0746077, 0.997213)
-bones/10/rotation = Quaternion(0.706153, -0.0367218, -0.706153, 0.0367218)
-bones/11/rotation = Quaternion(7.63183e-09, 1.57624e-08, -0.128041, 0.991769)
-bones/12/rotation = Quaternion(2.11264e-09, -5.44222e-15, -0.0279828, 0.999608)
-bones/13/rotation = Quaternion(0.70615, 0.0367786, 0.70615, 0.0367786)
-bones/14/rotation = Quaternion(7.63528e-09, -1.57623e-08, 0.128099, 0.991761)
-bones/15/rotation = Quaternion(2.11486e-09, 5.60536e-15, 0.0280122, 0.999608)
+bones/0/position = Vector3(-0.00183521, -0.0781358, 0)
+bones/1/rotation = Quaternion(0.000664943, -0.000984402, 0.817166, 0.576402)
+bones/2/rotation = Quaternion(-0.00104302, -0.000696097, 0.286522, 0.958073)
+bones/3/rotation = Quaternion(-0.00107682, -0.000182452, 0.394383, 0.918946)
+bones/4/rotation = Quaternion(-1.76656e-06, -7.13439e-08, 0.0895694, 0.995981)
+bones/5/rotation = Quaternion(0.000749084, 0.000936222, -0.840539, 0.54175)
+bones/6/rotation = Quaternion(-0.00101744, 0.000730894, -0.274788, 0.961504)
+bones/7/rotation = Quaternion(-0.00121936, 0.000191632, -0.35365, 0.935377)
+bones/8/rotation = Quaternion(-0.000247456, 9.05672e-06, -0.0798581, 0.996806)
+bones/9/rotation = Quaternion(0.00684445, 0, 0, 0.999977)
+bones/10/rotation = Quaternion(0.705768, -0.0434985, -0.705768, 0.0434985)
+bones/11/rotation = Quaternion(1.18158e-08, 1.57353e-08, -0.140647, 0.99006)
+bones/12/rotation = Quaternion(2.11264e-09, -5.16456e-15, -0.0279828, 0.999608)
+bones/13/rotation = Quaternion(0.705766, 0.0435252, 0.705766, 0.0435252)
+bones/14/rotation = Quaternion(1.18151e-08, -1.57352e-08, 0.140692, 0.990053)
+bones/15/rotation = Quaternion(2.11486e-09, 1.65905e-15, 0.0280122, 0.999608)
 
 [node name="FaceAttachment" type="BoneAttachment3D" parent="PlayerModel/player/Armature/Skeleton3D" index="1"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.00183521, 0.517002, 0)
+transform = Transform3D(1, 0, 0, 0, 0.999906, -0.0136886, 0, 0.0136886, 0.999906, -0.00183521, 0.506408, 0)
 bone_name = "Head"
 bone_idx = 9
 
@@ -383,6 +395,13 @@ texture_filter = 0
 sprite_frames = SubResource("SpriteFrames_n15er")
 autoplay = "default"
 frame_progress = 0.739195
+
+[node name="SpotLight3D" type="SpotLight3D" parent="PlayerModel/player/Armature/Skeleton3D/FaceAttachment"]
+transform = Transform3D(1, 0, 0, 0, -0.997138, 0.0756029, 0, -0.0756029, -0.997138, 0, 0.239204, 0.549586)
+light_energy = 0.106
+spot_range = 1.0
+spot_attenuation = 1.49648
+spot_angle = 78.68
 
 [node name="ObstructionDetector" type="Area3D" parent="PlayerModel"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 2)
@@ -402,12 +421,13 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.4, 0)
 
 [node name="SpringArm3D" type="SpringArm3D" parent="CentralCameraPoint"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.85, 0)
-spring_length = 5.0
+spring_length = 3.5
 margin = 1.0
 
 [node name="Camera3D" type="Camera3D" parent="CentralCameraPoint/SpringArm3D"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 6)
 doppler_tracking = 2
+fov = 90.0
 size = 39.544
 
 [node name="EndPos" type="Node3D" parent="CentralCameraPoint/SpringArm3D/Camera3D"]
