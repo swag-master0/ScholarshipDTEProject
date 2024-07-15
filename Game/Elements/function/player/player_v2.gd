@@ -12,8 +12,8 @@ extends CharacterBody3D
 
 @export_category("Gameplay")
 @export var SPEED : float = 10
-@export var JUMP_VELOCITY : float = 25
-@export var JUMP_FALLMULTIPLIER : float = 3.5
+@export var JUMP_VELOCITY : float = 20
+@export var JUMP_FALLMULTIPLIER : float = 5
 @export var TURN_VELOCITY : float = 10
 @export var PICKUP_RANGE : float = 6
 @export var THROW_FORCE : float = 2000
@@ -27,8 +27,10 @@ extends CharacterBody3D
 
 # Camera
 @onready var pivot = $CentralCameraPoint
-@onready var camera = $CentralCameraPoint/Camera3D
-@onready var ray = $CentralCameraPoint/Camera3D/RayCast3D
+@onready var camera = $CentralCameraPoint/SpringArm3D/Camera3D
+@onready var ray = $CentralCameraPoint/SpringArm3D/Camera3D/RayCast3D
+@onready var ray_endpos = $CentralCameraPoint/SpringArm3D/Camera3D/EndPos
+
 
 # Cursor
 @onready var cursor = $Cursor
@@ -122,17 +124,11 @@ func _input(event):
 		
 
 func _physics_process(delta):
-	if not is_on_floor():
-		var FALL_GRAVITY = gravity * 1.5
-		if velocity.y < 0:
-			FALL_GRAVITY = gravity
-		
-		velocity.y -= FALL_GRAVITY * delta * JUMP_FALLMULTIPLIER
-		
+	if !is_on_floor():
+		velocity.y -= gravity * delta * JUMP_FALLMULTIPLIER
 	
-	if Input.is_action_just_released("jump") and velocity.y > 0:
-		velocity.y = JUMP_VELOCITY / 8
-	if Input.is_action_just_pressed("jump") and is_on_floor():
+	
+	if Input.is_action_pressed("jump") and is_on_floor():
 		velocity.y = JUMP_VELOCITY
 	
 	MousePosition()
@@ -142,17 +138,16 @@ func _physics_process(delta):
 	if (Input.is_action_pressed("forward") or Input.is_action_pressed("left") or Input.is_action_pressed("right") or Input.is_action_pressed("backward")):
 		faceDirection = Vector3(Input.get_action_strength("right") - Input.get_action_strength("left"), 0 ,Input.get_action_strength("backward") - Input.get_action_strength("forward")).normalized()
 	
-	character.rotation.y = atan2(cursor.position.x, cursor.position.z)
+	#character.rotation.y = atan2(cursor.position.x, cursor.position.z)
 	
 	# player rotation code
-	"""
 	if isHolding:
 		character.rotation.y = atan2(cursor.position.x, cursor.position.z)
-	elif !isHolding:
+	elif !isHolding and velocity:
 		character.rotation.y = lerp_angle(character.rotation.y, atan2(faceDirection.x, faceDirection.z), delta * TURN_VELOCITY)
 	elif !velocity and is_on_floor():
 		pass
-	"""
+	
 	
 	
 	if !isHolding:
@@ -247,6 +242,7 @@ func _process(_delta):
 			object.set_collision_mask_value(1, true)
 			
 			var force = (cursor.global_position - position).normalized()
+			#var force = (ray.get_collision_point() - position).normalized()
 			
 			
 			if character.position.distance_to(cursor.position) < 4 and character.position.distance_to(cursor.position) > -4:
@@ -317,23 +313,6 @@ func _process(_delta):
 
 func MousePosition():
 	if  ready and canPause: # This statement looks very dumb but without it it'll sometimes crash. The crashing isn't even consistant either!
-		"""
-		var mousePos = get_viewport().get_mouse_position()
-		var spaceState = get_world_3d().direct_space_state
-		
-		var rayOrigin = camera.project_ray_origin(mousePos)
-		var rayEnd = rayOrigin + camera.project_ray_normal(mousePos) * 2000
-		var query = PhysicsRayQueryParameters3D.create(rayOrigin, rayEnd)
-		
-		var rayArray = spaceState.intersect_ray(query)
-		
-		# if raycast hit something
-		if rayArray.has("position"): 
-			cursor.global_position = rayArray["position"]
-			
-			
-		"""
-		
 		
 		if ray.is_colliding() and is_instance_valid(ray.get_collider()):
 			var rayHit = ray.get_collider()
@@ -355,9 +334,10 @@ func MousePosition():
 					setCursorPosition(rayHit.global_position, true)
 					
 		
+		
+		elif !ray.is_colliding():
+			cursor.global_position = ray_endpos.global_position
 
-		else:
-			cursor.global_position = ray.target_position + self.global_position
 
 
 

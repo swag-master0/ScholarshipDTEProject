@@ -377,7 +377,7 @@ bone_name = "Head"
 bone_idx = 9
 
 [node name="AnimatedSprite3D" type="AnimatedSprite3D" parent="PlayerModel/player/Armature/Skeleton3D/FaceAttachment"]
-transform = Transform3D(0.55, 0, 0, 0, 0.55, 0, 0, 0, 0.55, 0.00183521, 0.276311, 0.416092)
+transform = Transform3D(0.845, 0, 0, 0, 0.845, 0, 0, 0, 0.845, 0.00183521, 0.276311, 0.416092)
 pixel_size = 0.005
 texture_filter = 0
 sprite_frames = SubResource("SpriteFrames_n15er")
@@ -400,13 +400,22 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, -1.5)
 [node name="CentralCameraPoint" type="Marker3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.4, 0)
 
-[node name="Camera3D" type="Camera3D" parent="CentralCameraPoint"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1, 1, 5)
+[node name="SpringArm3D" type="SpringArm3D" parent="CentralCameraPoint"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.85, 0)
+spring_length = 5.0
+margin = 1.0
+
+[node name="Camera3D" type="Camera3D" parent="CentralCameraPoint/SpringArm3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 6)
 doppler_tracking = 2
 size = 39.544
 
-[node name="RayCast3D" type="RayCast3D" parent="CentralCameraPoint/Camera3D"]
-target_position = Vector3(0, 0, -2000)
+[node name="EndPos" type="Node3D" parent="CentralCameraPoint/SpringArm3D/Camera3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -20)
+
+[node name="RayCast3D" type="RayCast3D" parent="CentralCameraPoint/SpringArm3D/Camera3D"]
+target_position = Vector3(0, 0, -1000)
+collision_mask = 513
 debug_shape_custom_color = Color(1, 0, 0, 1)
 
 [node name="Cursor" type="Marker3D" parent="."]
