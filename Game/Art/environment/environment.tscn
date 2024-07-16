@@ -1,0 +1,26 @@
+[gd_scene load_steps=6 format=3 uid="uid://g2jwt8atruu7"]
+
+[ext_resource type="Shader" path="res://Art/environment/environment.gdshader" id="1_cm3yc"]
+[ext_resource type="Texture2D" uid="uid://d2l05gk7w0ofx" path="res://Art/environment/sunset_jhbcentral.jpg" id="2_v8ij2"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_y7ns5"]
+shader = ExtResource("1_cm3yc")
+shader_parameter/quality = 4.0
+shader_parameter/skyTexture = ExtResource("2_v8ij2")
+
+[sub_resource type="Sky" id="Sky_qpxpt"]
+sky_material = SubResource("ShaderMaterial_y7ns5")
+
+[sub_resource type="Environment" id="Environment_760ow"]
+background_mode = 2
+sky = SubResource("Sky_qpxpt")
+ambient_light_source = 1
+ambient_light_color = Color(0.187176, 0.187176, 0.187176, 1)
+ambient_light_sky_contribution = 0.0
+reflected_light_source = 1
+fog_light_color = Color(0, 0, 0, 1)
+fog_sky_affect = 0.0
+adjustment_contrast = 3.07
+
+[node name="WorldEnvironment" type="WorldEnvironment"]
+environment = SubResource("Environment_760ow")
