@@ -16,16 +16,23 @@ background_mode = 2
 background_color = Color(0.359069, 0.359069, 0.359069, 1)
 sky = SubResource("Sky_qpxpt")
 ambient_light_source = 2
-ambient_light_color = Color(0.133196, 0.133196, 0.133196, 1)
+ambient_light_color = Color(0.0768358, 0.0768358, 0.0768358, 1)
 fog_light_color = Color(0, 0, 0, 1)
-fog_sky_affect = 0.0
+fog_light_energy = 0.5
+fog_density = 0.005
+fog_aerial_perspective = 1.0
+volumetric_fog_density = 0.0212
+volumetric_fog_detail_spread = 3.4461
+volumetric_fog_sky_affect = 0.0
 
 [node name="WorldEnvironment" type="WorldEnvironment"]
 environment = SubResource("Environment_760ow")
 
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
-transform = Transform3D(0.893216, -0.30938, 0.326266, -0.113465, 0.547053, 0.829372, -0.435076, -0.777828, 0.453533, 0, 0, 0)
-light_color = Color(0.321728, 0.321728, 0.321728, 1)
+transform = Transform3D(0.695187, 0.437958, 0.570007, -0.662411, 0.0823664, 0.744599, 0.279154, -0.895214, 0.347368, 0, 0, 0)
+light_color = Color(0.165656, 0.165656, 0.165656, 1)
 shadow_enabled = true
+directional_shadow_mode = 0
+directional_shadow_fade_start = 0.0
 directional_shadow_pancake_size = 0.0
 sky_mode = 1

@@ -1,4 +1,4 @@
-[gd_scene load_steps=75 format=3 uid="uid://bcou7suhphdrp"]
+[gd_scene load_steps=76 format=3 uid="uid://bcou7suhphdrp"]
 
 [ext_resource type="Script" path="res://Elements/function/player/player_v2.gd" id="1_2nm4r"]
 [ext_resource type="Texture2D" uid="uid://b7b8lqiwyngpq" path="res://Art/textures/hud/player_eyes-1.png" id="3_rjy4u"]
@@ -15,6 +15,7 @@
 [ext_resource type="AudioStream" uid="uid://bk7fdh3m3au1n" path="res://Art/audio/dialogue.wav" id="13_4dygs"]
 [ext_resource type="Shader" path="res://Art/filters/sobel_outlines.gdshader" id="13_5qnse"]
 [ext_resource type="Shader" path="res://Art/filters/colour_palette.gdshader" id="15_eej3d"]
+[ext_resource type="Texture2D" uid="uid://coovc1tanag1y" path="res://Art/textures/full_colours.png" id="16_c704f"]
 [ext_resource type="Shader" path="res://Art/filters/pixellation.gdshader" id="17_ip8lm"]
 [ext_resource type="PackedScene" uid="uid://4lv8cegk7f53" path="res://Art/blend/assets/player.blend" id="18_sv41t"]
 
@@ -366,25 +367,25 @@ shape = SubResource("CapsuleShape3D_nrsfh")
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1, 0)
 
 [node name="Skeleton3D" parent="PlayerModel/player/Armature" index="0"]
-bones/0/position = Vector3(-0.00183521, -0.0688716, 0)
-bones/1/rotation = Quaternion(0.000108432, -0.000160323, 0.819216, 0.573486)
-bones/2/rotation = Quaternion(-0.000131428, -8.78436e-05, 0.292282, 0.956332)
-bones/3/rotation = Quaternion(-0.00013924, -2.34853e-05, 0.407285, 0.913301)
+bones/0/position = Vector3(-0.00183521, -0.0676413, 0)
+bones/1/rotation = Quaternion(3.93256e-06, -5.58015e-06, 0.819599, 0.572937)
+bones/2/rotation = Quaternion(-2.13599e-05, -1.44009e-05, 0.292977, 0.95612)
+bones/3/rotation = Quaternion(-5.64526e-06, -8.34252e-07, 0.409117, 0.912482)
 bones/4/rotation = Quaternion(-1.76656e-06, -7.13439e-08, 0.0895694, 0.995981)
-bones/5/rotation = Quaternion(9.36246e-05, 0.000117032, -0.84743, 0.530908)
-bones/6/rotation = Quaternion(-0.000137202, 9.8548e-05, -0.28227, 0.959335)
-bones/7/rotation = Quaternion(-0.000176654, 2.7759e-05, -0.349067, 0.937098)
-bones/8/rotation = Quaternion(-3.3946e-05, 1.24224e-06, -0.0753279, 0.997159)
-bones/9/rotation = Quaternion(0.000863736, 0, 0, 1)
-bones/10/rotation = Quaternion(0.706108, -0.0375704, -0.706108, 0.0375704)
-bones/11/rotation = Quaternion(1.19876e-08, 1.57592e-08, -0.129618, 0.991564)
+bones/5/rotation = Quaternion(9.9201e-06, 1.24182e-05, -0.848299, 0.529517)
+bones/6/rotation = Quaternion(-1.3541e-05, 9.71233e-06, -0.28332, 0.959026)
+bones/7/rotation = Quaternion(-6.67009e-06, 1.04419e-06, -0.348319, 0.937376)
+bones/8/rotation = Quaternion(-4.22782e-06, 1.54535e-07, -0.0746973, 0.997206)
+bones/9/rotation = Quaternion(0.000141599, 0, 0, 1)
+bones/10/rotation = Quaternion(0.706149, -0.0367855, -0.706149, 0.0367855)
+bones/11/rotation = Quaternion(8.80062e-09, 1.57621e-08, -0.128208, 0.991747)
 bones/12/rotation = Quaternion(2.11264e-09, -5.16456e-15, -0.0279828, 0.999608)
-bones/13/rotation = Quaternion(0.706105, 0.0376256, 0.706105, 0.0376256)
-bones/14/rotation = Quaternion(1.19867e-08, -1.57591e-08, 0.129674, 0.991557)
+bones/13/rotation = Quaternion(0.706146, 0.0368422, 0.706146, 0.0368422)
+bones/14/rotation = Quaternion(8.80291e-09, -1.5762e-08, 0.128266, 0.99174)
 bones/15/rotation = Quaternion(2.11486e-09, 1.65905e-15, 0.0280122, 0.999608)
 
 [node name="FaceAttachment" type="BoneAttachment3D" parent="PlayerModel/player/Armature/Skeleton3D" index="1"]
-transform = Transform3D(1, 0, 0, 0, 0.999999, -0.00172747, 0, 0.00172747, 0.999999, -0.00183521, 0.515672, 0)
+transform = Transform3D(1, 0, 0, 0, 1, -0.000283198, 0, 0.000283198, 1, -0.00183521, 0.516902, 0)
 bone_name = "Head"
 bone_idx = 9
 
@@ -807,6 +808,14 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 mouse_filter = 2
+
+[node name="ColourTesting" type="TextureRect" parent="Filters/Outlines"]
+visible = false
+z_index = -3
+offset_right = 500.0
+offset_bottom = 500.0
+texture = ExtResource("16_c704f")
+expand_mode = 4
 
 [node name="ColourPallete" type="CanvasLayer" parent="Filters"]
 layer = -1

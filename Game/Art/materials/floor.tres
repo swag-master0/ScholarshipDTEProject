@@ -3,13 +3,13 @@
 [resource]
 code = "shader_type spatial;
 
-const vec3 colour = vec3(0.7, 0.7, 0.9); 
+const vec3 colour = vec3(2.0, 2.0, 2.0); 
 //uniform sampler2D noise;
 uniform sampler2D normal;
 
 
 void fragment() {
-	NORMAL_MAP = textureLod(normal, UV, 1.0).rgb;
+	NORMAL_MAP = textureLod(normal, UV, 0.25).rgb;
 	
 	ALBEDO = colour;
 	ROUGHNESS = 1.0;

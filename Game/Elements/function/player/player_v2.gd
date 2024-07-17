@@ -14,7 +14,7 @@ extends CharacterBody3D
 @export var SPEED : float = 10
 @export var JUMP_VELOCITY : float = 25
 @export var JUMP_FALLMULTIPLIER : float = 5
-@export var TURN_VELOCITY : float = 10
+@export var TURN_VELOCITY : float = 50
 @export var PICKUP_RANGE : float = 6
 @export var THROW_FORCE : float = 2000
 

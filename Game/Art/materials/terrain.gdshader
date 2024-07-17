@@ -1,6 +1,6 @@
 shader_type spatial;
 
-const vec3 colour = vec3(0.7, 0.7, 0.9);
+const vec3 colour = vec3(2.5, 2.5, 2.5);
 
 
 void fragment() {
