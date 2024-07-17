@@ -1,4 +1,4 @@
-[gd_scene load_steps=14 format=3 uid="uid://rq3g3n4qshr3"]
+[gd_scene load_steps=25 format=3 uid="uid://rq3g3n4qshr3"]
 
 [ext_resource type="PackedScene" uid="uid://bcou7suhphdrp" path="res://Elements/function/player/player_v2.tscn" id="1_01d17"]
 [ext_resource type="PackedScene" uid="uid://c61dj4vsac881" path="res://Art/blend/levels_chapter1/c1_m1.blend" id="1_wejc2"]
@@ -6,7 +6,10 @@
 [ext_resource type="PackedScene" uid="uid://cov8v6858hevf" path="res://Elements/environments/chapter1/c1_m2.tscn" id="4_ymukl"]
 [ext_resource type="PackedScene" uid="uid://bbb07r3hee2bp" path="res://Elements/assets/passive/props/prop.tscn" id="5_p2srq"]
 [ext_resource type="PackedScene" uid="uid://g2jwt8atruu7" path="res://Art/environment/environment.tscn" id="6_gi71d"]
+[ext_resource type="Shader" path="res://Art/materials/walls.gdshader" id="6_kr6lf"]
+[ext_resource type="Shader" uid="uid://dtjh0fi6sbiji" path="res://Art/materials/floor.tres" id="6_rvsjl"]
 [ext_resource type="PackedScene" uid="uid://cihisq18677xu" path="res://Elements/function/objective/objective_item.tscn" id="6_x147h"]
+[ext_resource type="Shader" path="res://Art/materials/terrain.gdshader" id="7_jmbv3"]
 
 [sub_resource type="GDScript" id="GDScript_x6txf"]
 resource_name = "c1_m1-functionality"
@@ -16,6 +19,9 @@ var dialogue_triggered = false
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
+	pass
+	# I'm now skipping this, since it's causing fatal errors now
+	\"\"\"
 	for i in get_children():
 		if i.is_in_group(\"player\"):
 			await get_tree().create_timer(2).timeout
@@ -23,6 +29,7 @@ func _ready():
 			i.sendHintToPlayer(\"[wave][center][color=SILVER]Find the objective item\")
 			
 			#i.Dialogue(\"Go get me the objective item already. It's here somewhere.\")
+	\"\"\"
 
 
 func _on_tutorial_trigger_body_entered(body):
@@ -44,27 +51,69 @@ func _process(_delta):
 
 "
 
-[sub_resource type="Gradient" id="Gradient_313rr"]
+[sub_resource type="Gradient" id="Gradient_j77nv"]
 interpolation_mode = 1
-offsets = PackedFloat32Array(0, 0.492462)
+offsets = PackedFloat32Array(0, 0.742857)
 
-[sub_resource type="FastNoiseLite" id="FastNoiseLite_a7yl8"]
-frequency = 0.0297
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_vl8xp"]
+frequency = 0.1225
 
-[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_l4rqg"]
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_ewmas"]
 width = 1024
 height = 1024
 as_normal_map = true
-bump_strength = 3.0
-color_ramp = SubResource("Gradient_313rr")
-noise = SubResource("FastNoiseLite_a7yl8")
+color_ramp = SubResource("Gradient_j77nv")
+noise = SubResource("FastNoiseLite_vl8xp")
 
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_kcvnv"]
-vertex_color_use_as_albedo = true
-albedo_color = Color(0.752447, 0.973099, 0.994183, 1)
-normal_enabled = true
-normal_scale = 0.5
-normal_texture = SubResource("NoiseTexture2D_l4rqg")
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_8isy6"]
+render_priority = 0
+shader = ExtResource("6_rvsjl")
+shader_parameter/normal = SubResource("NoiseTexture2D_ewmas")
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_0vtjb"]
+render_priority = 0
+shader = ExtResource("7_jmbv3")
+
+[sub_resource type="Gradient" id="Gradient_m66ey"]
+interpolation_mode = 1
+offsets = PackedFloat32Array(0, 0.542857)
+colors = PackedColorArray(0.0235294, 0.0235294, 0.0235294, 0.427451, 0.151276, 0.151276, 0.151276, 0.447059)
+
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_gi0vs"]
+noise_type = 2
+frequency = 0.1736
+fractal_type = 0
+
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_dsxny"]
+width = 1024
+height = 1024
+color_ramp = SubResource("Gradient_m66ey")
+noise = SubResource("FastNoiseLite_gi0vs")
+
+[sub_resource type="Gradient" id="Gradient_xhjsm"]
+interpolation_mode = 1
+offsets = PackedFloat32Array(0, 0.180952)
+
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_si0ld"]
+noise_type = 2
+frequency = 0.0621
+fractal_type = 0
+cellular_distance_function = 2
+cellular_return_type = 4
+
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_php08"]
+width = 1023
+height = 1024
+as_normal_map = true
+bump_strength = 10.8
+color_ramp = SubResource("Gradient_xhjsm")
+noise = SubResource("FastNoiseLite_si0ld")
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_tgmxr"]
+render_priority = 0
+shader = ExtResource("6_kr6lf")
+shader_parameter/noise = SubResource("NoiseTexture2D_dsxny")
+shader_parameter/normal_tex = SubResource("NoiseTexture2D_php08")
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_m2epx"]
 size = Vector3(20, 10, 20)
@@ -85,15 +134,14 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 43.6728, 2.00001, -42.8468)
 
 [node name="basic" parent="." instance=ExtResource("1_wejc2")]
 
-[node name="Level" parent="basic" index="0"]
-material_override = SubResource("StandardMaterial3D_kcvnv")
+[node name="Floor " parent="basic" index="1"]
+material_override = SubResource("ShaderMaterial_8isy6")
 
-[node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
-transform = Transform3D(0.866025, 0.482963, 0.12941, 0, -0.258819, 0.965926, 0.5, -0.836516, -0.224144, -19, 7.73072, 32)
-visible = false
-light_color = Color(0.533333, 0.533333, 0.533333, 1)
-shadow_enabled = true
-sky_mode = 1
+[node name="Terrain " parent="basic" index="2"]
+material_override = SubResource("ShaderMaterial_0vtjb")
+
+[node name="Walls " parent="basic" index="3"]
+material_override = SubResource("ShaderMaterial_tgmxr")
 
 [node name="WorldEnvironment" parent="." instance=ExtResource("6_gi71d")]
 
@@ -134,18 +182,21 @@ transform = Transform3D(0.819812, 0, 0.572633, 0, 1, 0, -0.572633, 0, 0.819812, 
 
 [node name="OmniLight3D" type="OmniLight3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 36, 8, 0)
+visible = false
 light_bake_mode = 0
 shadow_enabled = true
 omni_range = 15.0
 
 [node name="OmniLight3D2" type="OmniLight3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 42, 8, -39)
+visible = false
 shadow_enabled = true
 omni_range = 144.971
 omni_attenuation = 0.297302
 
 [node name="OmniLight3D3" type="OmniLight3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3.93433, 2.94255, 0)
+visible = false
 shadow_enabled = true
 omni_range = 15.0
 

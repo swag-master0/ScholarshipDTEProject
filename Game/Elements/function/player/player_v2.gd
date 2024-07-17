@@ -12,7 +12,7 @@ extends CharacterBody3D
 
 @export_category("Gameplay")
 @export var SPEED : float = 10
-@export var JUMP_VELOCITY : float = 30
+@export var JUMP_VELOCITY : float = 25
 @export var JUMP_FALLMULTIPLIER : float = 5
 @export var TURN_VELOCITY : float = 10
 @export var PICKUP_RANGE : float = 6

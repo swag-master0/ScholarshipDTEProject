@@ -1,0 +1,18 @@
+[gd_resource type="Shader" format=3 uid="uid://dtjh0fi6sbiji"]
+
+[resource]
+code = "shader_type spatial;
+
+const vec3 colour = vec3(0.7, 0.7, 0.9); 
+//uniform sampler2D noise;
+uniform sampler2D normal;
+
+
+void fragment() {
+	NORMAL_MAP = textureLod(normal, UV, 1.0).rgb;
+	
+	ALBEDO = colour;
+	ROUGHNESS = 1.0;
+}
+
+"

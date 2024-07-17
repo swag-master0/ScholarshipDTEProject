@@ -1,4 +1,4 @@
-[gd_scene load_steps=19 format=3 uid="uid://c4ousj15h5a10"]
+[gd_scene load_steps=18 format=3 uid="uid://c4ousj15h5a10"]
 
 [ext_resource type="Script" path="res://Elements/environments/misc/main_menu/main_menu.gd" id="1_woppv"]
 [ext_resource type="PackedScene" uid="uid://6sskseopmmhc" path="res://Art/blend/misc/planning.blend" id="2_1yaqr"]
@@ -23,13 +23,6 @@ as_normal_map = true
 bump_strength = 3.0
 color_ramp = SubResource("Gradient_313rr")
 noise = SubResource("FastNoiseLite_a7yl8")
-
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_qt4w4"]
-vertex_color_use_as_albedo = true
-albedo_color = Color(0.752447, 0.973099, 0.994183, 1)
-normal_enabled = true
-normal_scale = 0.5
-normal_texture = SubResource("NoiseTexture2D_l4rqg")
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_hy032"]
 vertex_color_use_as_albedo = true
@@ -63,9 +56,6 @@ script = ExtResource("1_woppv")
 initial_level = "res://Elements/environments/chapter1/c1_m1.tscn"
 
 [node name="planning" parent="." instance=ExtResource("2_1yaqr")]
-
-[node name="Terrain" parent="planning" index="2"]
-material_override = SubResource("StandardMaterial3D_qt4w4")
 
 [node name="Wall" parent="planning" index="3"]
 material_override = SubResource("StandardMaterial3D_hy032")
