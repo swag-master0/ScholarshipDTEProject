@@ -13,6 +13,7 @@ extends CharacterBody3D
 @export var MIN_LOOK : float = -75
 
 @export_category("Gameplay")
+@export var SAVE_GAME : bool = true
 @export var SPEED : float = 10
 @export var JUMP_VELOCITY : float = 25
 @export var JUMP_FALLMULTIPLIER : float = 5
@@ -111,10 +112,11 @@ func _ready():
 	# the funny
 	print_rich("[font_size=120][color=CORNFLOWER_BLUE][wave]heck you")
 	
-	await get_tree().create_timer(4).timeout
-	
-	var save_system = SaveGame.new()
-	save_system.save_game_level(get_tree().current_scene.scene_file_path)
+	if SAVE_GAME:
+		var save_system = SaveGame.new()
+		save_system.save_game_level(get_tree().current_scene.scene_file_path)
+	else:
+		print("Saving is turned off for this level")
 
 
 func _input(event):
@@ -201,6 +203,10 @@ func _physics_process(delta):
 
 # process is the player throwing mechanic and healthbar code
 func _process(_delta):
+	
+	# For debugging the save system
+	#var save = SaveGame.new()
+	#print(save.load_game().level)
 	
 	# Handle picking up RIGID BODIES
 	if (NearestObject() and NearestObject() is RigidBody3D and global_position.distance_to(NearestObject().global_position) <= PICKUP_RANGE) and isHolding == false:
@@ -550,9 +556,19 @@ func _on_delay_timeout():
 	# brainrotten solution
 	for i in self.get_parent().get_children():
 		if i.is_in_group("objective_start"):
-			LoadingScreen.next_scene = i.nextscene_string
-			LoadingScreen.scene_transition()
+			var save = SaveGame.new()
+			save.save_game_level(i.nextscene_string)
 			
+			LoadingScreen.next_scene = "res://Elements/environments/misc/player_hub/player_hub.tscn"
+			LoadingScreen.scene_transition()
+	
+	if !SAVE_GAME:
+		var save = SaveGame.new()
+		
+		LoadingScreen.next_scene = save.load_game().level
+		LoadingScreen.scene_transition()
+	
+	
 
 
 
