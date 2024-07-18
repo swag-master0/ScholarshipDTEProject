@@ -1,5 +1,7 @@
 extends CharacterBody3D
 
+
+
 # INFO: PLAYER VARIABLES
 @export_group("Player Variables")
 @export_category("Tutorial")
@@ -106,9 +108,13 @@ func _ready():
 	Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
 	
 	
-	
 	# the funny
 	print_rich("[font_size=120][color=CORNFLOWER_BLUE][wave]heck you")
+	
+	await get_tree().create_timer(4).timeout
+	
+	var save_system = SaveGame.new()
+	save_system.save_game_level(get_tree().current_scene.scene_file_path)
 
 
 func _input(event):
@@ -195,6 +201,7 @@ func _physics_process(delta):
 
 # process is the player throwing mechanic and healthbar code
 func _process(_delta):
+	
 	# Handle picking up RIGID BODIES
 	if (NearestObject() and NearestObject() is RigidBody3D and global_position.distance_to(NearestObject().global_position) <= PICKUP_RANGE) and isHolding == false:
 		
@@ -461,14 +468,14 @@ func viewEnemyHealth(enemy : Object, visibility : bool):
 
 
 func RestartLevel():
-	Globals.next_scene = get_tree().current_scene.scene_file_path
-	Globals.scene_transition()
+	LoadingScreen.next_scene = get_tree().current_scene.scene_file_path
+	LoadingScreen.scene_transition()
 
 
 
 func QuitToMenu():
-	Globals.next_scene = main_menu
-	Globals.scene_transition()
+	LoadingScreen.next_scene = main_menu
+	LoadingScreen.scene_transition()
 
 
 
@@ -543,8 +550,8 @@ func _on_delay_timeout():
 	# brainrotten solution
 	for i in self.get_parent().get_children():
 		if i.is_in_group("objective_start"):
-			Globals.next_scene = i.nextscene_string
-			Globals.scene_transition()
+			LoadingScreen.next_scene = i.nextscene_string
+			LoadingScreen.scene_transition()
 			
 
 

@@ -2,6 +2,8 @@ extends ColorRect
 
 @onready var windowed_button = $WindowedButton
 
+
+
 func _input(event):
 	if event.is_action("escape"):
 		CloseMenu()

@@ -1,4 +1,4 @@
-[gd_scene load_steps=26 format=3 uid="uid://rq3g3n4qshr3"]
+[gd_scene load_steps=20 format=3 uid="uid://rq3g3n4qshr3"]
 
 [ext_resource type="PackedScene" uid="uid://bcou7suhphdrp" path="res://Elements/function/player/player_v2.tscn" id="1_01d17"]
 [ext_resource type="PackedScene" uid="uid://c61dj4vsac881" path="res://Art/blend/levels_chapter1/c1_m1.blend" id="1_wejc2"]
@@ -6,10 +6,13 @@
 [ext_resource type="PackedScene" uid="uid://cov8v6858hevf" path="res://Elements/environments/chapter1/c1_m2.tscn" id="4_ymukl"]
 [ext_resource type="PackedScene" uid="uid://bbb07r3hee2bp" path="res://Elements/assets/passive/props/prop.tscn" id="5_p2srq"]
 [ext_resource type="PackedScene" uid="uid://g2jwt8atruu7" path="res://Art/environment/environment.tscn" id="6_gi71d"]
-[ext_resource type="Shader" path="res://Art/materials/walls.gdshader" id="6_kr6lf"]
-[ext_resource type="Shader" uid="uid://dtjh0fi6sbiji" path="res://Art/materials/floor.tres" id="6_rvsjl"]
+[ext_resource type="Shader" path="res://Art/materials/walls/walls.gdshader" id="6_kr6lf"]
+[ext_resource type="Shader" uid="uid://dtjh0fi6sbiji" path="res://Art/materials/floor/floor.tres" id="6_rvsjl"]
 [ext_resource type="PackedScene" uid="uid://cihisq18677xu" path="res://Elements/function/objective/objective_item.tscn" id="6_x147h"]
 [ext_resource type="Shader" path="res://Art/materials/terrain.gdshader" id="7_jmbv3"]
+[ext_resource type="Texture2D" uid="uid://bfujcpxg1vljk" path="res://Art/materials/floor/floor_normal.tres" id="7_r2asb"]
+[ext_resource type="Texture2D" uid="uid://bebs4m6uaixb7" path="res://Art/materials/walls/walls_noise.tres" id="9_b8x7o"]
+[ext_resource type="Texture2D" uid="uid://ydrsdeeq0ayc" path="res://Art/materials/walls/walls_normal.tres" id="10_fevyh"]
 [ext_resource type="PackedScene" uid="uid://bxgj4gik1a0ua" path="res://Art/blend/assets/wall.blend" id="11_6ruqa"]
 
 [sub_resource type="GDScript" id="GDScript_x6txf"]
@@ -52,69 +55,20 @@ func _process(_delta):
 
 "
 
-[sub_resource type="Gradient" id="Gradient_j77nv"]
-interpolation_mode = 1
-offsets = PackedFloat32Array(0, 0.742857)
-
-[sub_resource type="FastNoiseLite" id="FastNoiseLite_vl8xp"]
-frequency = 0.1225
-
-[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_ewmas"]
-width = 1024
-height = 1024
-as_normal_map = true
-color_ramp = SubResource("Gradient_j77nv")
-noise = SubResource("FastNoiseLite_vl8xp")
-
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_8isy6"]
 render_priority = 0
 shader = ExtResource("6_rvsjl")
-shader_parameter/normal = SubResource("NoiseTexture2D_ewmas")
+shader_parameter/normal = ExtResource("7_r2asb")
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_0vtjb"]
 render_priority = 0
 shader = ExtResource("7_jmbv3")
 
-[sub_resource type="Gradient" id="Gradient_m66ey"]
-interpolation_mode = 1
-offsets = PackedFloat32Array(0, 0.557143)
-colors = PackedColorArray(1, 1, 1, 1, 0, 0, 0, 1)
-
-[sub_resource type="FastNoiseLite" id="FastNoiseLite_gi0vs"]
-noise_type = 2
-frequency = 0.1736
-fractal_type = 0
-
-[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_dsxny"]
-width = 1024
-height = 1024
-color_ramp = SubResource("Gradient_m66ey")
-noise = SubResource("FastNoiseLite_gi0vs")
-
-[sub_resource type="Gradient" id="Gradient_xhjsm"]
-interpolation_mode = 1
-offsets = PackedFloat32Array(0, 0.180952)
-
-[sub_resource type="FastNoiseLite" id="FastNoiseLite_si0ld"]
-noise_type = 2
-frequency = 0.0621
-fractal_type = 0
-cellular_distance_function = 2
-cellular_return_type = 4
-
-[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_php08"]
-width = 1023
-height = 1024
-as_normal_map = true
-bump_strength = 10.8
-color_ramp = SubResource("Gradient_xhjsm")
-noise = SubResource("FastNoiseLite_si0ld")
-
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_tgmxr"]
 render_priority = 0
 shader = ExtResource("6_kr6lf")
-shader_parameter/noise = SubResource("NoiseTexture2D_dsxny")
-shader_parameter/normal_tex = SubResource("NoiseTexture2D_php08")
+shader_parameter/noise = ExtResource("9_b8x7o")
+shader_parameter/normal_tex = ExtResource("10_fevyh")
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_m2epx"]
 size = Vector3(20, 10, 20)
@@ -180,26 +134,6 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 48, 1, -48)
 
 [node name="Prop13" parent="Props" instance=ExtResource("5_p2srq")]
 transform = Transform3D(0.819812, 0, 0.572633, 0, 1, 0, -0.572633, 0, 0.819812, 31.4343, 1, -16.9251)
-
-[node name="OmniLight3D" type="OmniLight3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 36, 8, 0)
-visible = false
-light_bake_mode = 0
-shadow_enabled = true
-omni_range = 15.0
-
-[node name="OmniLight3D2" type="OmniLight3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 42, 8, -39)
-visible = false
-shadow_enabled = true
-omni_range = 144.971
-omni_attenuation = 0.297302
-
-[node name="OmniLight3D3" type="OmniLight3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3.93433, 2.94255, 0)
-visible = false
-shadow_enabled = true
-omni_range = 15.0
 
 [node name="wall" parent="." instance=ExtResource("11_6ruqa")]
 transform = Transform3D(0.5, 0, -0.866025, 0, 1, 0, 0.866025, 0, 0.5, 166.039, 14.7257, -170.665)
