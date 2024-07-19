@@ -32,10 +32,6 @@ shape = SubResource("SphereShape3D_26p6y")
 mesh = SubResource("SphereMesh_ogvqb")
 skeleton = NodePath("../..")
 
-[node name="TimeBetweenSaves" type="Timer" parent="."]
-wait_time = 5.0
-autostart = true
-
 [node name="Player_v2" parent="." instance=ExtResource("1_gdvd0")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2, 0)
 SAVE_GAME = false
@@ -70,6 +66,6 @@ environment = SubResource("Environment_ppwta")
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5.12918, 1, 4.18834)
 
 [connection signal="body_entered" from="Portal" to="." method="_on_portal_body_entered"]
-[connection signal="timeout" from="TimeBetweenSaves" to="." method="_on_time_between_saves_timeout"]
 
 [editable path="player_hub"]
+[editable path="Prop"]

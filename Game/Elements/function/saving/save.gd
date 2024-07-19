@@ -14,14 +14,19 @@ const save_path = "user://save.tres"
 # For saving the game level
 func save_game_level(data : String):
 	# Saves the script itself, with the variables in it
+	push_warning("Save System: Saving game save data")
+	
 	level = data
 	
 	ResourceSaver.save(self, save_path)
-	print_rich("[rainbow]Game Saved!")
+	
+	push_warning("Save System: Game save successful!")
 	
 
 
 func load_game():
+	push_warning("Save System: Retrieving Game Save Data")
+	
 	if ResourceLoader.exists(save_path):
 		var retrieved_save = ResourceLoader.load(save_path, "")
 		level = retrieved_save.level
@@ -35,32 +40,31 @@ func load_game():
 
 
 
-
-# -- This is correctly saving the objects, I mean the RigidBody3D part. 
-# -- However, the children do not get saved. So only an inactive RigidBody3D with no mesh or collision shape gets saved.
-# -- This is an issue.
-
 func save_player_hub(objects_to_save):
+	push_warning("Save System: Saving Player Hub Objects")
+	
 	player_hub_objects = [] # attempt to clear the old saved objects, to avoid accidentally generating another 2.2 MB file
 	player_hub_objects = objects_to_save
 	
 	ResourceSaver.save(self, save_path)
-	print_rich("[rainbow]Player Hub Objects have been saved")
+	
+	push_warning("Save System: Player Hub save sucessful!")
 
 
 func load_player_hub(root_node):
+	push_warning("Save System: Loading Player Hub Objects")
 	if ResourceLoader.exists(save_path):
 		var retrieved_save = ResourceLoader.load(save_path, "")
 		player_hub_objects = retrieved_save.player_hub_objects
 		
 		for i in player_hub_objects:
-			print(i)
-			var new_object = i.instantiate()
-			root_node.add_child(i)
-			new_object.global_position = Vector3(0, 5, 0)
+			if i is PackedScene:
+				var new_object = i.instantiate()
+				root_node.add_child(new_object)
+	
 	
 	else:
-		print("failed to load player hub")
+		push_error("Save System: Player Hub Load Failed")
 
 
 

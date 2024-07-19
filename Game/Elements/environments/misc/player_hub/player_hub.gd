@@ -2,8 +2,14 @@ extends Node3D
 
 
 
+func _ready():
+	var save = SaveGame.new()
+	
+	save.load_player_hub(self)
+
+
 func _process(_delta):
-	if Input.is_action_just_pressed("ui_accept"):
+	if Input.is_action_just_pressed("escape"):
 		var save = SaveGame.new()
 		save.load_player_hub(self)
 
@@ -14,12 +20,28 @@ func save_hub_objects():
 	
 	for i in get_children():
 		if i is RigidBody3D:
-			for c in i.get_children():
-				c.set_owner(i)
-			objects_to_save.append(i)
+			
+			# Save each object as it's own PackedScene, to save mesh data and all children of each object
+			# Otherwise, children of the RigidBody do not save so the RigidBody has no CollisionShape or MeshInstance
+			
+			var ObjectToSave = i.duplicate()
+			var packed = PackedScene.new()
+			
+			for c in ObjectToSave.get_children():
+				c.owner = ObjectToSave
+			
+			packed.pack(ObjectToSave)
+			objects_to_save.append(packed)
+			
 			
 		if i.is_in_group("player"):
 			if i.object:
+				var packed = PackedScene.new()
+				
+				for c in i.get_children():
+					c.owner = i
+				
+				packed.pack(i)
 				objects_to_save.append(i)
 	
 	

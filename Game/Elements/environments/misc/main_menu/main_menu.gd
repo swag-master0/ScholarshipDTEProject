@@ -13,18 +13,23 @@ func _on_play_button_pressed():
 	var save = SaveGame.new()
 	
 	if save.load_game() == null:
-		push_error("No save file detected: Restarting")
-		LoadingScreen.next_scene = initial_level
-		LoadingScreen.scene_transition()
-		
-		
+		NewGame()
+	
+	
 	else:
-		LoadingScreen.next_scene = save.load_game().level
-		LoadingScreen.scene_transition()
+		# Save file found
+		if save.load_game().level:
+			LoadingScreen.next_scene = save.load_game().level
+			LoadingScreen.scene_transition()
+		else:
+			NewGame()
 	
-	
-	
-	
+
+func NewGame():
+	push_error("Creating New Game")
+	LoadingScreen.next_scene = initial_level
+	LoadingScreen.scene_transition()
+
 
 func _on_quit_button_pressed():
 	get_tree().quit()
