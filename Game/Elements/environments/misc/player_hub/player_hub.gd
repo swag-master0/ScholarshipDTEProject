@@ -10,8 +10,7 @@ func _ready():
 
 func _process(_delta):
 	if Input.is_action_just_pressed("escape"):
-		var save = SaveGame.new()
-		save.load_player_hub(self)
+		save_hub_objects()
 
 
 

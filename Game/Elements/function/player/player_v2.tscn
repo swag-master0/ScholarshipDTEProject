@@ -1,4 +1,4 @@
-[gd_scene load_steps=76 format=3 uid="uid://bcou7suhphdrp"]
+[gd_scene load_steps=78 format=3 uid="uid://bcou7suhphdrp"]
 
 [ext_resource type="Script" path="res://Elements/function/player/player_v2.gd" id="1_2nm4r"]
 [ext_resource type="Texture2D" uid="uid://b7b8lqiwyngpq" path="res://Art/textures/hud/player_eyes-1.png" id="3_rjy4u"]
@@ -18,6 +18,7 @@
 [ext_resource type="Texture2D" uid="uid://coovc1tanag1y" path="res://Art/textures/full_colours.png" id="16_c704f"]
 [ext_resource type="Shader" path="res://Art/filters/pixellation.gdshader" id="17_ip8lm"]
 [ext_resource type="PackedScene" uid="uid://4lv8cegk7f53" path="res://Art/blend/assets/player.blend" id="18_sv41t"]
+[ext_resource type="Shader" path="res://Art/filters/quantisation.gdshader" id="19_rtfa6"]
 
 [sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_ijhnm"]
 animation = &"grab"
@@ -332,13 +333,16 @@ animations = [{
 "speed": 2.0
 }]
 
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_1evt4"]
+shader = ExtResource("15_eej3d")
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_m2pfy"]
+shader = ExtResource("19_rtfa6")
+
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_al30p"]
 shader = ExtResource("13_5qnse")
 shader_parameter/outline_alpha = 0.75
 shader_parameter/outline_threshold = 0.25
-
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_1evt4"]
-shader = ExtResource("15_eej3d")
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_4rgcg"]
 shader = ExtResource("17_ip8lm")
@@ -367,25 +371,25 @@ shape = SubResource("CapsuleShape3D_nrsfh")
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1, 0)
 
 [node name="Skeleton3D" parent="PlayerModel/player/Armature" index="0"]
-bones/0/position = Vector3(-0.00183521, -0.0678928, 0)
-bones/1/rotation = Quaternion(2.90617e-05, -4.27913e-05, 0.819507, 0.573069)
-bones/2/rotation = Quaternion(-3.97869e-05, -2.66961e-05, 0.292861, 0.956155)
-bones/3/rotation = Quaternion(-2.99561e-05, -4.95613e-06, 0.408783, 0.912632)
+bones/0/position = Vector3(-0.00183521, -0.0845082, 0)
+bones/1/rotation = Quaternion(0.00106132, -0.00157136, 0.815699, 0.578474)
+bones/2/rotation = Quaternion(-0.00166862, -0.00111353, 0.282563, 0.959247)
+bones/3/rotation = Quaternion(-0.00172494, -0.00029234, 0.385417, 0.922741)
 bones/4/rotation = Quaternion(-1.76656e-06, -7.13439e-08, 0.0895694, 0.995981)
-bones/5/rotation = Quaternion(2.09697e-05, 2.62279e-05, -0.848185, 0.529701)
-bones/6/rotation = Quaternion(-3.37567e-05, 2.42348e-05, -0.283148, 0.959076)
-bones/7/rotation = Quaternion(-4.67901e-05, 7.34945e-06, -0.348495, 0.937311)
-bones/8/rotation = Quaternion(-1.07383e-05, 3.92823e-07, -0.0748354, 0.997196)
-bones/9/rotation = Quaternion(0.000262493, 0, 0, 1)
-bones/10/rotation = Quaternion(0.706141, -0.036946, -0.706141, 0.036946)
-bones/11/rotation = Quaternion(7.6253e-09, 1.57616e-08, -0.128459, 0.991715)
+bones/5/rotation = Quaternion(0.0011984, 0.00149777, -0.835734, 0.549131)
+bones/6/rotation = Quaternion(-0.00162755, 0.00116918, -0.269592, 0.962973)
+bones/7/rotation = Quaternion(-0.0019485, 0.000306225, -0.356851, 0.934159)
+bones/8/rotation = Quaternion(-0.000396089, 1.44969e-05, -0.0830109, 0.996549)
+bones/9/rotation = Quaternion(0.0109207, 0, 0, 0.99994)
+bones/10/rotation = Quaternion(0.705507, -0.047535, -0.705507, 0.047535)
+bones/11/rotation = Quaternion(7.31438e-09, 1.57176e-08, -0.148252, 0.98895)
 bones/12/rotation = Quaternion(2.11264e-09, -5.16456e-15, -0.0279828, 0.999608)
-bones/13/rotation = Quaternion(0.706138, 0.0370023, 0.706138, 0.0370023)
-bones/14/rotation = Quaternion(7.62876e-09, -1.57615e-08, 0.128517, 0.991707)
+bones/13/rotation = Quaternion(0.705505, 0.0475685, 0.705505, 0.0475685)
+bones/14/rotation = Quaternion(7.31903e-09, -1.57177e-08, 0.148235, 0.988952)
 bones/15/rotation = Quaternion(2.11486e-09, 1.65905e-15, 0.0280122, 0.999608)
 
 [node name="FaceAttachment" type="BoneAttachment3D" parent="PlayerModel/player/Armature/Skeleton3D" index="1"]
-transform = Transform3D(1, 0, 0, 0, 1, -0.000524987, 0, 0.000524987, 1, -0.00183521, 0.516651, 0)
+transform = Transform3D(1, 0, 0, 0, 0.999761, -0.0218401, 0, 0.0218401, 0.999761, -0.00183521, 0.500035, 0)
 bone_name = "Head"
 bone_idx = 9
 
@@ -796,6 +800,30 @@ one_shot = true
 
 [node name="Filters" type="Node" parent="."]
 
+[node name="ColourPallete" type="CanvasLayer" parent="Filters"]
+layer = -1
+visible = false
+
+[node name="ColourPalette" type="ColorRect" parent="Filters/ColourPallete"]
+material = SubResource("ShaderMaterial_1evt4")
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Quantisation" type="CanvasLayer" parent="Filters"]
+layer = -1
+
+[node name="ColorRect" type="ColorRect" parent="Filters/Quantisation"]
+material = SubResource("ShaderMaterial_m2pfy")
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+
 [node name="Outlines" type="CanvasLayer" parent="Filters"]
 process_mode = 3
 layer = -1
@@ -817,22 +845,24 @@ offset_bottom = 500.0
 texture = ExtResource("16_c704f")
 expand_mode = 4
 
-[node name="ColourPallete" type="CanvasLayer" parent="Filters"]
+[node name="Pixellation" type="CanvasLayer" parent="Filters"]
 layer = -1
-visible = false
 
-[node name="ColourPalette" type="ColorRect" parent="Filters/ColourPallete"]
-material = SubResource("ShaderMaterial_1evt4")
+[node name="Pixellation" type="ColorRect" parent="Filters/Pixellation"]
+material = SubResource("ShaderMaterial_4rgcg")
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+mouse_filter = 2
+color = Color(1, 1, 1, 0)
 
-[node name="Pixellation" type="CanvasLayer" parent="Filters"]
+[node name="Pixellation2" type="CanvasLayer" parent="Filters"]
 layer = -1
+visible = false
 
-[node name="Pixellation" type="ColorRect" parent="Filters/Pixellation"]
+[node name="Pixellation" type="ColorRect" parent="Filters/Pixellation2"]
 material = SubResource("ShaderMaterial_4rgcg")
 anchors_preset = 15
 anchor_right = 1.0

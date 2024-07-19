@@ -96,6 +96,7 @@ var main_menu = "res://Elements/environments/misc/main_menu/main_menu.tscn"
 @export_group("Programming Stuff")
 @export var object : RigidBody3D
 @export var level_completed : bool = false
+@export var player_hub : String = "res://Elements/environments/misc/player_hub/player_hub.tscn"
 
 
 
@@ -115,6 +116,7 @@ func _ready():
 	if SAVE_GAME:
 		var save_system = SaveGame.new()
 		save_system.save_game_level(get_tree().current_scene.scene_file_path)
+		print_rich("[rainbow]Saved Level:", save_system.load_game().level)
 	else:
 		print("Saving is turned off for this level")
 
@@ -474,7 +476,11 @@ func viewEnemyHealth(enemy : Object, visibility : bool):
 
 
 func RestartLevel():
-	LoadingScreen.next_scene = get_tree().current_scene.scene_file_path
+	var save = SaveGame.new()
+	save.save_game_level(get_tree().current_scene.scene_file_path)
+	print_rich("[rainbow]Saved Level:", save.load_game().level)
+	
+	LoadingScreen.next_scene = player_hub
 	LoadingScreen.scene_transition()
 
 
@@ -553,20 +559,23 @@ func Nextlevel():
 func _on_delay_timeout():
 	get_tree().paused = false
 	
-	# brainrotten solution
 	for i in self.get_parent().get_children():
 		if i.is_in_group("objective_start"):
 			var save = SaveGame.new()
 			save.save_game_level(i.nextscene_string)
+			print_rich("[rainbow]Saved Level:", save.load_game().level)
 			
-			LoadingScreen.next_scene = "res://Elements/environments/misc/player_hub/player_hub.tscn"
+			LoadingScreen.next_scene = player_hub
 			LoadingScreen.scene_transition()
 	
 	if !SAVE_GAME:
 		var save = SaveGame.new()
 		
-		LoadingScreen.next_scene = save.load_game().level
-		LoadingScreen.scene_transition()
+		if save.load_game().level:
+			LoadingScreen.next_scene = save.load_game().level
+			LoadingScreen.scene_transition()
+		else:
+			push_error("Failed to find next level.")
 	
 	
 
