@@ -1,0 +1,157 @@
+[gd_scene load_steps=15 format=3 uid="uid://ch7t6b0c3tjwr"]
+
+[ext_resource type="Script" path="res://Elements/enemies/enemy.gd" id="1_nn6r1"]
+[ext_resource type="PackedScene" uid="uid://cft1b4l0aljye" path="res://Elements/function/info.tscn" id="2_repm0"]
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_4tw2s"]
+radius = 1.1
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_jtg0j"]
+radius = 2.0
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_ysnhb"]
+resource_local_to_scene = true
+albedo_color = Color(0.450648, 0.450648, 0.450648, 1)
+
+[sub_resource type="SphereMesh" id="SphereMesh_o28ak"]
+resource_local_to_scene = true
+material = SubResource("StandardMaterial3D_ysnhb")
+radius = 1.0
+height = 2.0
+rings = 8
+
+[sub_resource type="PrismMesh" id="PrismMesh_s31ka"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_kl4ud"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_7ia3a"]
+size = Vector3(2, 2, 3)
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_4mudu"]
+radius = 1.0
+
+[sub_resource type="Animation" id="Animation_8o45j"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Mesh/Weapon:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(0, 0, 0)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Mesh:mesh:material:albedo_color")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(0.450648, 0.450648, 0.450648, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_yjkdv"]
+resource_name = "attack"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Mesh/Weapon:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.4, 0.5, 0.8, 1),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1),
+"update": 0,
+"values": [Vector3(0, 0, 0), Vector3(0, 0, -1), Vector3(0, 0, -1), Vector3(0, 0, 2), Vector3(0, 0, 2), Vector3(0, 0, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_yp0v3"]
+resource_name = "hurt"
+step = 0.05
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Mesh:mesh:material:albedo_color")
+tracks/0/interp = 0
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.05, 0.1, 0.15, 0.2, 0.25, 0.3, 0.35, 0.4, 0.45, 0.5),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1),
+"update": 0,
+"values": [Color(0.450648, 0.450648, 0.450648, 1), Color(1, 0, 0, 1), Color(1, 1, 1, 1), Color(1, 0, 0, 1), Color(1, 1, 1, 1), Color(1, 0, 0, 1), Color(1, 1, 1, 1), Color(1, 0, 0, 1), Color(1, 1, 1, 1), Color(1, 0, 0, 1), Color(0.450648, 0.450648, 0.450648, 1)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_qk3dd"]
+_data = {
+"RESET": SubResource("Animation_8o45j"),
+"attack": SubResource("Animation_yjkdv"),
+"hurt": SubResource("Animation_yp0v3")
+}
+
+[node name="Enemy" type="CharacterBody3D" groups=["enemy"]]
+script = ExtResource("1_nn6r1")
+
+[node name="Info" parent="." instance=ExtResource("2_repm0")]
+health = 6.0
+max_health = 6.0
+DamagePlayerOnPlayerCollision = false
+PlayKillSound = true
+PlayHurtSound = true
+
+[node name="CollisionShape3D" parent="Info/Hitbox" index="0"]
+shape = SubResource("SphereShape3D_4tw2s")
+
+[node name="SoftPush" type="Area3D" parent="."]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="SoftPush"]
+shape = SubResource("SphereShape3D_jtg0j")
+
+[node name="Mesh" type="MeshInstance3D" parent="."]
+mesh = SubResource("SphereMesh_o28ak")
+
+[node name="Weapon" type="MeshInstance3D" parent="Mesh"]
+transform = Transform3D(1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 0, 0)
+mesh = SubResource("PrismMesh_s31ka")
+
+[node name="HitDetector" type="Area3D" parent="Mesh/Weapon"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Mesh/Weapon/HitDetector"]
+shape = SubResource("BoxShape3D_kl4ud")
+
+[node name="Detection" type="Area3D" parent="Mesh"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 1.5)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Mesh/Detection"]
+shape = SubResource("BoxShape3D_7ia3a")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+shape = SubResource("SphereShape3D_4mudu")
+
+[node name="NavigationAgent3D" type="NavigationAgent3D" parent="."]
+avoidance_enabled = true
+
+[node name="RayCast3D" type="RayCast3D" parent="."]
+top_level = true
+target_position = Vector3(5, 0, 0)
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_qk3dd")
+}
+
+[node name="AttackDelay" type="Timer" parent="."]
+wait_time = 3.0
+one_shot = true
+
+[connection signal="death" from="Info" to="." method="_on_info_death"]
+[connection signal="takeDamage" from="Info" to="." method="_on_info_take_damage"]
+[connection signal="body_entered" from="Mesh/Weapon/HitDetector" to="." method="_on_hit_detector_body_entered"]
+
+[editable path="Info"]

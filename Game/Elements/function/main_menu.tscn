@@ -1,0 +1,205 @@
+[gd_scene load_steps=18 format=3 uid="uid://c4ousj15h5a10"]
+
+[ext_resource type="Script" path="res://Elements/function/main_menu.gd" id="1_cvoh4"]
+[ext_resource type="PackedScene" uid="uid://6sskseopmmhc" path="res://Art/blend/misc/planning.blend" id="2_crmce"]
+[ext_resource type="PackedScene" uid="uid://233quw6ftjqa" path="res://Elements/function/options_menu.tscn" id="3_lfre7"]
+[ext_resource type="Shader" uid="uid://d08hg4q0p02dx" path="res://Art/materials/main_menu.tres" id="4_mqevi"]
+[ext_resource type="Shader" path="res://Art/filters/sobel_outlines.gdshader" id="5_cw15b"]
+[ext_resource type="Shader" path="res://Art/filters/colour_palette.gdshader" id="6_8v4ln"]
+[ext_resource type="Shader" path="res://Art/filters/pixellation.gdshader" id="7_cuoft"]
+[ext_resource type="PackedScene" uid="uid://g2jwt8atruu7" path="res://Art/environment/environment.tscn" id="8_728ao"]
+
+[sub_resource type="Gradient" id="Gradient_313rr"]
+interpolation_mode = 1
+offsets = PackedFloat32Array(0, 0.492462)
+
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_a7yl8"]
+frequency = 0.0297
+
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_l4rqg"]
+width = 1024
+height = 1024
+as_normal_map = true
+bump_strength = 3.0
+color_ramp = SubResource("Gradient_313rr")
+noise = SubResource("FastNoiseLite_a7yl8")
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_hy032"]
+vertex_color_use_as_albedo = true
+albedo_color = Color(0.752447, 0.973099, 0.994183, 1)
+normal_enabled = true
+normal_scale = 0.5
+normal_texture = SubResource("NoiseTexture2D_l4rqg")
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_r53xp"]
+render_priority = 0
+shader = ExtResource("4_mqevi")
+shader_parameter/TimeScale = 20.0
+
+[sub_resource type="SphereMesh" id="SphereMesh_tlbkv"]
+material = SubResource("ShaderMaterial_r53xp")
+radius = 10.0
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_7o03w"]
+shader = ExtResource("5_cw15b")
+shader_parameter/outline_alpha = 0.75
+shader_parameter/outline_threshold = 0.25
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_1pnxa"]
+shader = ExtResource("6_8v4ln")
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_rw3gl"]
+shader = ExtResource("7_cuoft")
+
+[node name="MainMenu" type="Node3D"]
+script = ExtResource("1_cvoh4")
+initial_level = "res://Elements/environments/chapter1/c1_m1.tscn"
+
+[node name="planning" parent="." instance=ExtResource("2_crmce")]
+
+[node name="Wall" parent="planning" index="3"]
+material_override = SubResource("StandardMaterial3D_hy032")
+
+[node name="Spot_006" parent="planning" index="11"]
+visible = false
+
+[node name="Spot_007" parent="planning" index="12"]
+visible = false
+
+[node name="Camera3D" type="Camera3D" parent="."]
+visible = false
+
+[node name="GUI" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="MainMenu" type="ColorRect" parent="GUI"]
+layout_mode = 1
+anchors_preset = 13
+anchor_left = 0.5
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -300.0
+offset_right = 300.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.345098, 0.345098, 0.345098, 0.392157)
+
+[node name="Label" type="Label" parent="GUI/MainMenu"]
+layout_mode = 0
+offset_top = 35.0
+offset_right = 600.0
+offset_bottom = 286.0
+theme_override_font_sizes/font_size = 90
+text = "Working
+Title"
+horizontal_alignment = 1
+vertical_alignment = 1
+clip_text = true
+
+[node name="PlayButton" type="Button" parent="GUI/MainMenu"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -75.0
+offset_top = -31.0
+offset_right = 75.0
+offset_bottom = 44.0
+grow_horizontal = 2
+grow_vertical = 2
+text = "PLAY"
+
+[node name="OptionsButton" type="Button" parent="GUI/MainMenu"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -55.5
+offset_top = 60.9995
+offset_right = 55.5
+offset_bottom = 123.0
+grow_horizontal = 2
+grow_vertical = 2
+text = "OPTIONS
+"
+
+[node name="QuitButton" type="Button" parent="GUI/MainMenu"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -55.5
+offset_top = 141.0
+offset_right = 55.5
+offset_bottom = 203.001
+grow_horizontal = 2
+grow_vertical = 2
+text = "QUIT
+"
+
+[node name="OptionsMenu" parent="GUI" instance=ExtResource("3_lfre7")]
+visible = false
+layout_mode = 1
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 0, -5)
+visible = false
+mesh = SubResource("SphereMesh_tlbkv")
+
+[node name="Filters" type="Node" parent="."]
+
+[node name="Outlines" type="CanvasLayer" parent="Filters"]
+process_mode = 3
+layer = -1
+
+[node name="SobelOutlines" type="ColorRect" parent="Filters/Outlines"]
+material = SubResource("ShaderMaterial_7o03w")
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+
+[node name="ColourPallete" type="CanvasLayer" parent="Filters"]
+layer = -1
+
+[node name="ColourPalette" type="ColorRect" parent="Filters/ColourPallete"]
+material = SubResource("ShaderMaterial_1pnxa")
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Pixellation" type="CanvasLayer" parent="Filters"]
+layer = -1
+
+[node name="Pixellation" type="ColorRect" parent="Filters/Pixellation"]
+material = SubResource("ShaderMaterial_rw3gl")
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+color = Color(1, 1, 1, 0)
+
+[node name="WorldEnvironment" parent="." instance=ExtResource("8_728ao")]
+
+[connection signal="pressed" from="GUI/MainMenu/PlayButton" to="." method="_on_play_button_pressed"]
+[connection signal="pressed" from="GUI/MainMenu/OptionsButton" to="." method="_on_options_button_pressed"]
+[connection signal="pressed" from="GUI/MainMenu/QuitButton" to="." method="_on_quit_button_pressed"]
+
+[editable path="planning"]

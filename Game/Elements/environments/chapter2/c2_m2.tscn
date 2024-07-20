@@ -1,12 +1,12 @@
 [gd_scene load_steps=25 format=3 uid="uid://e1ifpcaik1si"]
 
-[ext_resource type="PackedScene" uid="uid://msdo88p274sw" path="res://Elements/function/objective/objective_level_start.tscn" id="1_fn0xy"]
-[ext_resource type="PackedScene" uid="uid://bcou7suhphdrp" path="res://Elements/function/player/player_v2.tscn" id="1_iwowe"]
 [ext_resource type="PackedScene" uid="uid://fng1tq0dr424" path="res://Art/blend/levels_chapter2/c2_m2.blend" id="1_phkl0"]
-[ext_resource type="PackedScene" uid="uid://cihisq18677xu" path="res://Elements/function/objective/objective_item.tscn" id="2_2d0b3"]
+[ext_resource type="PackedScene" uid="uid://bcou7suhphdrp" path="res://Elements/function/player.tscn" id="1_puvkk"]
+[ext_resource type="PackedScene" uid="uid://msdo88p274sw" path="res://Elements/function/objective.tscn" id="2_i5unj"]
 [ext_resource type="PackedScene" uid="uid://bnw1iqj5sw2f" path="res://Elements/environments/chapter2/c2_m3.tscn" id="3_nn8cb"]
 [ext_resource type="PackedScene" uid="uid://bbb07r3hee2bp" path="res://Elements/assets/passive/props/prop.tscn" id="3_uaf3v"]
-[ext_resource type="PackedScene" uid="uid://ch3t1bgj51uvs" path="res://Elements/enemies/sentry/sentry.tscn" id="5_0rjpi"]
+[ext_resource type="PackedScene" uid="uid://cihisq18677xu" path="res://Elements/function/objective_item.tscn" id="4_5hgrj"]
+[ext_resource type="PackedScene" uid="uid://ch3t1bgj51uvs" path="res://Elements/enemies/sentry.tscn" id="6_8u4q3"]
 
 [sub_resource type="GDScript" id="GDScript_eiqq0"]
 resource_name = "c2_m2-functionality"
@@ -121,15 +121,15 @@ volumetric_fog_emission_energy = 0.0
 script = SubResource("GDScript_eiqq0")
 player_floor_damage = 3.0
 
-[node name="Player_v2" parent="." instance=ExtResource("1_iwowe")]
+[node name="Player_v2" parent="." instance=ExtResource("1_puvkk")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
 
-[node name="ObjectiveLevelStart" parent="." instance=ExtResource("1_fn0xy")]
+[node name="ObjectiveLevelStart" parent="." instance=ExtResource("2_i5unj")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 5, 0)
 nextscene = ExtResource("3_nn8cb")
 nextscene_string = "res://Elements/environments/chapter2/c2_m3.tscn"
 
-[node name="ObjectiveItem" parent="." instance=ExtResource("2_2d0b3")]
+[node name="ObjectiveItem" parent="." instance=ExtResource("4_5hgrj")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 125, 1, -45)
 
 [node name="c2_m2" parent="." instance=ExtResource("1_phkl0")]
@@ -185,7 +185,7 @@ shape = SubResource("BoxShape3D_0abe8")
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 94.5, -10, -45)
 shape = SubResource("BoxShape3D_vudvp")
 
-[node name="Sentry" parent="." instance=ExtResource("5_0rjpi")]
+[node name="Sentry" parent="." instance=ExtResource("6_8u4q3")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 113.396, 1.5, -45.0908)
 
 [node name="Info" parent="Sentry" index="0"]

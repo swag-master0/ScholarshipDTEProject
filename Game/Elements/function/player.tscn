@@ -1,0 +1,888 @@
+[gd_scene load_steps=78 format=3 uid="uid://bcou7suhphdrp"]
+
+[ext_resource type="Script" path="res://Elements/function/player.gd" id="1_0ncw4"]
+[ext_resource type="PackedScene" uid="uid://4lv8cegk7f53" path="res://Art/blend/assets/player.blend" id="2_ww4ji"]
+[ext_resource type="Texture2D" uid="uid://b7b8lqiwyngpq" path="res://Art/textures/hud/player_eyes-1.png" id="3_hb2m1"]
+[ext_resource type="Texture2D" uid="uid://ctnbrrls3ra0x" path="res://Art/textures/hud/player_eyes-2.png" id="4_6cfb1"]
+[ext_resource type="PackedScene" uid="uid://cft1b4l0aljye" path="res://Elements/function/info.tscn" id="5_7n0o5"]
+[ext_resource type="Texture2D" uid="uid://djwowo0gdnhek" path="res://Art/textures/hud/mouse_base.png" id="6_hpt3l"]
+[ext_resource type="Texture2D" uid="uid://dmnjpb8ox2bsu" path="res://Art/textures/hud/mouse1-1.png" id="7_wsnhi"]
+[ext_resource type="Texture2D" uid="uid://cvguvo850eb22" path="res://Art/textures/hud/mouse1-2.png" id="8_hj47o"]
+[ext_resource type="PackedScene" uid="uid://233quw6ftjqa" path="res://Elements/function/options_menu.tscn" id="9_vjmmq"]
+[ext_resource type="AudioStream" uid="uid://w2v2x3att67l" path="res://Art/audio/click.wav" id="10_iq0rl"]
+[ext_resource type="AudioStream" uid="uid://eiiqal51bdu" path="res://Art/audio/player_select.wav" id="11_bg06q"]
+[ext_resource type="AudioStream" uid="uid://bdxfhhvgttnt5" path="res://Art/audio/player_death.wav" id="12_3vcwe"]
+[ext_resource type="AudioStream" uid="uid://bwu6q554kl8jd" path="res://Art/audio/player_hurt.wav" id="13_03cy8"]
+[ext_resource type="AudioStream" uid="uid://bk7fdh3m3au1n" path="res://Art/audio/dialogue.wav" id="14_inpwu"]
+[ext_resource type="Shader" path="res://Art/filters/colour_palette.gdshader" id="15_bbpvp"]
+[ext_resource type="Shader" path="res://Art/filters/quantisation.gdshader" id="16_dvf37"]
+[ext_resource type="Shader" path="res://Art/filters/sobel_outlines.gdshader" id="17_5fr21"]
+[ext_resource type="Texture2D" uid="uid://coovc1tanag1y" path="res://Art/textures/full_colours.png" id="18_18tbb"]
+[ext_resource type="Shader" path="res://Art/filters/pixellation.gdshader" id="19_uaq3q"]
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_ijhnm"]
+animation = &"grab"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_1p7wm"]
+animation = &"fall"
+
+[sub_resource type="AnimationNodeBlend2" id="AnimationNodeBlend2_1r0s2"]
+filter_enabled = true
+filters = ["Armature/Skeleton3D:ArmLower.L", "Armature/Skeleton3D:ArmLower.R", "Armature/Skeleton3D:ArmUpper.L", "Armature/Skeleton3D:ArmUpper.R", "Armature/Skeleton3D:Hand.L", "Armature/Skeleton3D:Hand.R", "Armature/Skeleton3D:Shoulder.L", "Armature/Skeleton3D:Shoulder.R"]
+
+[sub_resource type="AnimationNodeBlendTree" id="AnimationNodeBlendTree_hh5sj"]
+graph_offset = Vector2(-329, 60)
+nodes/Animation/node = SubResource("AnimationNodeAnimation_1p7wm")
+nodes/Animation/position = Vector2(-40, 140)
+"nodes/Animation 2/node" = SubResource("AnimationNodeAnimation_ijhnm")
+"nodes/Animation 2/position" = Vector2(-40, 260)
+nodes/Blend2/node = SubResource("AnimationNodeBlend2_1r0s2")
+nodes/Blend2/position = Vector2(140, 140)
+node_connections = [&"Blend2", 0, &"Animation", &"Blend2", 1, &"Animation 2", &"output", 0, &"Blend2"]
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_4gp2c"]
+animation = &"grab"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_6jv6s"]
+animation = &"idle"
+
+[sub_resource type="AnimationNodeBlend2" id="AnimationNodeBlend2_e2yh6"]
+filter_enabled = true
+filters = ["Armature/Skeleton3D:ArmLower.L", "Armature/Skeleton3D:ArmLower.R", "Armature/Skeleton3D:ArmUpper.L", "Armature/Skeleton3D:ArmUpper.R", "Armature/Skeleton3D:Hand.L", "Armature/Skeleton3D:Hand.R", "Armature/Skeleton3D:Shoulder.L", "Armature/Skeleton3D:Shoulder.R"]
+
+[sub_resource type="AnimationNodeBlendTree" id="AnimationNodeBlendTree_2f60j"]
+graph_offset = Vector2(-387, -1)
+nodes/Animation/node = SubResource("AnimationNodeAnimation_6jv6s")
+nodes/Animation/position = Vector2(-120, 120)
+"nodes/Animation 2/node" = SubResource("AnimationNodeAnimation_4gp2c")
+"nodes/Animation 2/position" = Vector2(-120, 240)
+nodes/Blend2/node = SubResource("AnimationNodeBlend2_e2yh6")
+nodes/Blend2/position = Vector2(120, 140)
+node_connections = [&"Blend2", 0, &"Animation", &"Blend2", 1, &"Animation 2", &"output", 0, &"Blend2"]
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_hb3mw"]
+animation = &"grab"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_ydcme"]
+animation = &"jump"
+
+[sub_resource type="AnimationNodeBlend2" id="AnimationNodeBlend2_vnde5"]
+filter_enabled = true
+filters = ["Armature/Skeleton3D:ArmLower.L", "Armature/Skeleton3D:ArmLower.R", "Armature/Skeleton3D:ArmUpper.L", "Armature/Skeleton3D:ArmUpper.R", "Armature/Skeleton3D:Hand.L", "Armature/Skeleton3D:Hand.R", "Armature/Skeleton3D:Shoulder.L", "Armature/Skeleton3D:Shoulder.R"]
+
+[sub_resource type="AnimationNodeBlendTree" id="AnimationNodeBlendTree_0baqh"]
+graph_offset = Vector2(-309, 16)
+nodes/Animation/node = SubResource("AnimationNodeAnimation_ydcme")
+nodes/Animation/position = Vector2(-120, 120)
+"nodes/Animation 2/node" = SubResource("AnimationNodeAnimation_hb3mw")
+"nodes/Animation 2/position" = Vector2(-120, 240)
+nodes/Blend2/node = SubResource("AnimationNodeBlend2_vnde5")
+nodes/Blend2/position = Vector2(120, 140)
+node_connections = [&"Blend2", 0, &"Animation", &"Blend2", 1, &"Animation 2", &"output", 0, &"Blend2"]
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_sbl3m"]
+animation = &"run"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_ngvyp"]
+animation = &"grab"
+
+[sub_resource type="AnimationNodeBlend2" id="AnimationNodeBlend2_s1hax"]
+filter_enabled = true
+filters = ["Armature/Skeleton3D:ArmLower.L", "Armature/Skeleton3D:ArmLower.R", "Armature/Skeleton3D:ArmUpper.L", "Armature/Skeleton3D:ArmUpper.R", "Armature/Skeleton3D:Hand.L", "Armature/Skeleton3D:Hand.R", "Armature/Skeleton3D:Shoulder.L", "Armature/Skeleton3D:Shoulder.R"]
+
+[sub_resource type="AnimationNodeBlendTree" id="AnimationNodeBlendTree_r8vxk"]
+graph_offset = Vector2(-373.336, 5.52728)
+nodes/Animation/node = SubResource("AnimationNodeAnimation_ngvyp")
+nodes/Animation/position = Vector2(-220, 200)
+"nodes/Animation 2/node" = SubResource("AnimationNodeAnimation_sbl3m")
+"nodes/Animation 2/position" = Vector2(-220, 60)
+nodes/Blend2/node = SubResource("AnimationNodeBlend2_s1hax")
+nodes/Blend2/position = Vector2(20, 100)
+nodes/output/position = Vector2(420, 160)
+node_connections = [&"Blend2", 0, &"Animation 2", &"Blend2", 1, &"Animation", &"output", 0, &"Blend2"]
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_b0sy7"]
+animation = &"fall"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_dscn8"]
+animation = &"idle"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_rj80q"]
+animation = &"jump"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_s1se5"]
+animation = &"run"
+
+[sub_resource type="AnimationNodeTimeScale" id="AnimationNodeTimeScale_t7h08"]
+
+[sub_resource type="AnimationNodeBlendTree" id="AnimationNodeBlendTree_xyjea"]
+graph_offset = Vector2(-108.019, 166.269)
+nodes/Animation/node = SubResource("AnimationNodeAnimation_s1se5")
+nodes/Animation/position = Vector2(20, 160)
+nodes/Speed/node = SubResource("AnimationNodeTimeScale_t7h08")
+nodes/Speed/position = Vector2(160, 160)
+node_connections = [&"Speed", 0, &"Animation", &"output", 0, &"Speed"]
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_7i6pb"]
+advance_mode = 2
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_jgd8b"]
+xfade_time = 0.1
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_5uba5"]
+xfade_time = 0.05
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_cyi02"]
+xfade_time = 0.05
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_rrud2"]
+xfade_time = 0.05
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_0tnqv"]
+priority = 2
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_gsjui"]
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_p0278"]
+priority = 2
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_n6axq"]
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_af0cs"]
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_h23ls"]
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_iww2x"]
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_qafhq"]
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_ewjhy"]
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_egp6e"]
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_h1bte"]
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_p6kwk"]
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_1rsfr"]
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_seyu0"]
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_bdmy8"]
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_rrbmd"]
+
+[sub_resource type="AnimationNodeStateMachine" id="AnimationNodeStateMachine_1wy8i"]
+states/End/position = Vector2(1598, 40)
+states/Grab-Fall/node = SubResource("AnimationNodeBlendTree_hh5sj")
+states/Grab-Fall/position = Vector2(1358, -205)
+states/Grab-Idle/node = SubResource("AnimationNodeBlendTree_2f60j")
+states/Grab-Idle/position = Vector2(1358, 95)
+states/Grab-Jump/node = SubResource("AnimationNodeBlendTree_0baqh")
+states/Grab-Jump/position = Vector2(1358, -60)
+states/Grab-Run/node = SubResource("AnimationNodeBlendTree_r8vxk")
+states/Grab-Run/position = Vector2(1358, 245)
+states/Start/position = Vector2(747, 95)
+states/fall/node = SubResource("AnimationNodeAnimation_b0sy7")
+states/fall/position = Vector2(916, -205)
+states/idle/node = SubResource("AnimationNodeAnimation_dscn8")
+states/idle/position = Vector2(916, 95)
+states/jump/node = SubResource("AnimationNodeAnimation_rj80q")
+states/jump/position = Vector2(916, -60)
+states/run/node = SubResource("AnimationNodeBlendTree_xyjea")
+states/run/position = Vector2(916, 245)
+transitions = ["Start", "idle", SubResource("AnimationNodeStateMachineTransition_7i6pb"), "idle", "jump", SubResource("AnimationNodeStateMachineTransition_jgd8b"), "jump", "idle", SubResource("AnimationNodeStateMachineTransition_5uba5"), "jump", "fall", SubResource("AnimationNodeStateMachineTransition_cyi02"), "fall", "jump", SubResource("AnimationNodeStateMachineTransition_rrud2"), "idle", "Grab-Idle", SubResource("AnimationNodeStateMachineTransition_0tnqv"), "Grab-Idle", "idle", SubResource("AnimationNodeStateMachineTransition_gsjui"), "fall", "Grab-Fall", SubResource("AnimationNodeStateMachineTransition_p0278"), "Grab-Fall", "fall", SubResource("AnimationNodeStateMachineTransition_n6axq"), "jump", "Grab-Jump", SubResource("AnimationNodeStateMachineTransition_af0cs"), "Grab-Jump", "jump", SubResource("AnimationNodeStateMachineTransition_h23ls"), "Grab-Fall", "Grab-Jump", SubResource("AnimationNodeStateMachineTransition_iww2x"), "Grab-Jump", "Grab-Fall", SubResource("AnimationNodeStateMachineTransition_qafhq"), "Grab-Jump", "Grab-Idle", SubResource("AnimationNodeStateMachineTransition_ewjhy"), "Grab-Idle", "Grab-Jump", SubResource("AnimationNodeStateMachineTransition_egp6e"), "Grab-Idle", "Grab-Run", SubResource("AnimationNodeStateMachineTransition_h1bte"), "Grab-Run", "Grab-Idle", SubResource("AnimationNodeStateMachineTransition_p6kwk"), "run", "idle", SubResource("AnimationNodeStateMachineTransition_1rsfr"), "idle", "run", SubResource("AnimationNodeStateMachineTransition_seyu0"), "run", "Grab-Run", SubResource("AnimationNodeStateMachineTransition_bdmy8"), "Grab-Run", "run", SubResource("AnimationNodeStateMachineTransition_rrbmd")]
+graph_offset = Vector2(687, 41)
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_nrsfh"]
+radius = 0.474599
+height = 2.30568
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_n15er"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("3_hb2m1")
+}, {
+"duration": 1.0,
+"texture": ExtResource("3_hb2m1")
+}, {
+"duration": 1.0,
+"texture": ExtResource("3_hb2m1")
+}, {
+"duration": 1.0,
+"texture": ExtResource("3_hb2m1")
+}, {
+"duration": 1.0,
+"texture": ExtResource("3_hb2m1")
+}, {
+"duration": 1.0,
+"texture": ExtResource("4_6cfb1")
+}, {
+"duration": 1.0,
+"texture": ExtResource("3_hb2m1")
+}, {
+"duration": 1.0,
+"texture": ExtResource("3_hb2m1")
+}, {
+"duration": 1.0,
+"texture": ExtResource("3_hb2m1")
+}, {
+"duration": 1.0,
+"texture": ExtResource("3_hb2m1")
+}, {
+"duration": 1.0,
+"texture": ExtResource("3_hb2m1")
+}, {
+"duration": 1.0,
+"texture": ExtResource("3_hb2m1")
+}, {
+"duration": 1.0,
+"texture": ExtResource("3_hb2m1")
+}, {
+"duration": 1.0,
+"texture": ExtResource("3_hb2m1")
+}, {
+"duration": 1.0,
+"texture": ExtResource("3_hb2m1")
+}, {
+"duration": 1.0,
+"texture": ExtResource("3_hb2m1")
+}, {
+"duration": 1.0,
+"texture": ExtResource("3_hb2m1")
+}, {
+"duration": 1.0,
+"texture": ExtResource("4_6cfb1")
+}, {
+"duration": 1.0,
+"texture": ExtResource("3_hb2m1")
+}, {
+"duration": 1.0,
+"texture": ExtResource("3_hb2m1")
+}, {
+"duration": 1.0,
+"texture": ExtResource("3_hb2m1")
+}, {
+"duration": 1.0,
+"texture": ExtResource("3_hb2m1")
+}, {
+"duration": 1.0,
+"texture": ExtResource("3_hb2m1")
+}, {
+"duration": 1.0,
+"texture": ExtResource("3_hb2m1")
+}, {
+"duration": 1.0,
+"texture": ExtResource("3_hb2m1")
+}, {
+"duration": 1.0,
+"texture": ExtResource("3_hb2m1")
+}, {
+"duration": 1.0,
+"texture": ExtResource("3_hb2m1")
+}, {
+"duration": 1.0,
+"texture": ExtResource("3_hb2m1")
+}, {
+"duration": 1.0,
+"texture": ExtResource("4_6cfb1")
+}, {
+"duration": 1.0,
+"texture": ExtResource("3_hb2m1")
+}, {
+"duration": 1.0,
+"texture": ExtResource("3_hb2m1")
+}],
+"loop": true,
+"name": &"default",
+"speed": 4.0
+}]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_virh7"]
+size = Vector3(0.75, 1, 3)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_2e1ws"]
+size = Vector3(2, 3, 2)
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_j7m3i"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_1odvh"]
+bg_color = Color(0.6, 0.6, 0.6, 0)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_btmbw"]
+bg_color = Color(0.188235, 1, 0.113725, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_nqrcn"]
+bg_color = Color(0.752941, 0, 0, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_lr4wr"]
+bg_color = Color(1, 1, 1, 1)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_gdws8"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("7_wsnhi")
+}, {
+"duration": 1.0,
+"texture": ExtResource("8_hj47o")
+}],
+"loop": true,
+"name": &"default",
+"speed": 2.0
+}]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_1evt4"]
+shader = ExtResource("15_bbpvp")
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_m2pfy"]
+shader = ExtResource("16_dvf37")
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_al30p"]
+shader = ExtResource("17_5fr21")
+shader_parameter/outline_alpha = 0.75
+shader_parameter/outline_threshold = 0.25
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_4rgcg"]
+shader = ExtResource("19_uaq3q")
+
+[node name="Player_v2" type="CharacterBody3D" groups=["player"]]
+floor_max_angle = 1.22173
+script = ExtResource("1_0ncw4")
+
+[node name="AnimationTree" type="AnimationTree" parent="."]
+root_node = NodePath("../PlayerModel/player")
+tree_root = SubResource("AnimationNodeStateMachine_1wy8i")
+anim_player = NodePath("../PlayerModel/player/AnimationPlayer")
+parameters/Grab-Fall/Blend2/blend_amount = 1.0
+parameters/Grab-Idle/Blend2/blend_amount = 1.0
+parameters/Grab-Jump/Blend2/blend_amount = 1.0
+parameters/Grab-Run/Blend2/blend_amount = 1.0
+parameters/run/Speed/scale = 1.0
+
+[node name="Collision" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.148464, 0)
+shape = SubResource("CapsuleShape3D_nrsfh")
+
+[node name="PlayerModel" type="Node3D" parent="."]
+
+[node name="player" parent="PlayerModel" instance=ExtResource("2_ww4ji")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1, 0)
+
+[node name="Skeleton3D" parent="PlayerModel/player/Armature" index="0"]
+bones/0/position = Vector3(-0.00183521, -0.0690548, 0)
+bones/1/rotation = Quaternion(0.000124368, -0.000183921, 0.819157, 0.573569)
+bones/2/rotation = Quaternion(-0.000168273, -0.000112428, 0.29205, 0.956403)
+bones/3/rotation = Quaternion(-0.000157196, -2.65297e-05, 0.407039, 0.913411)
+bones/4/rotation = Quaternion(-1.76656e-06, -7.13439e-08, 0.0895694, 0.995981)
+bones/5/rotation = Quaternion(0.000109473, 0.00013684, -0.847265, 0.531171)
+bones/6/rotation = Quaternion(-0.000146218, 0.000105025, -0.282194, 0.959358)
+bones/7/rotation = Quaternion(-0.000196967, 3.09515e-05, -0.349156, 0.937065)
+bones/8/rotation = Quaternion(-4.63165e-05, 1.695e-06, -0.0755904, 0.997139)
+bones/9/rotation = Quaternion(0.00110547, 0, 0, 0.999999)
+bones/10/rotation = Quaternion(0.706102, -0.0376873, -0.706102, 0.0376873)
+bones/11/rotation = Quaternion(7.60369e-09, 1.57587e-08, -0.129842, 0.991535)
+bones/12/rotation = Quaternion(2.11264e-09, -5.16456e-15, -0.0279828, 0.999608)
+bones/13/rotation = Quaternion(0.706099, 0.0377423, 0.706099, 0.0377423)
+bones/14/rotation = Quaternion(7.60718e-09, -1.57586e-08, 0.129898, 0.991527)
+bones/15/rotation = Quaternion(2.11486e-09, 1.65905e-15, 0.0280122, 0.999608)
+
+[node name="FaceAttachment" type="BoneAttachment3D" parent="PlayerModel/player/Armature/Skeleton3D" index="1"]
+transform = Transform3D(1, 0, 0, 0, 0.999998, -0.00221093, 0, 0.00221093, 0.999998, -0.00183521, 0.515489, 0)
+bone_name = "Head"
+bone_idx = 9
+
+[node name="AnimatedSprite3D" type="AnimatedSprite3D" parent="PlayerModel/player/Armature/Skeleton3D/FaceAttachment"]
+transform = Transform3D(0.845, 0, 0, 0, 0.845, 0, 0, 0, 0.845, 0.00183521, 0.276311, 0.416092)
+pixel_size = 0.005
+texture_filter = 0
+sprite_frames = SubResource("SpriteFrames_n15er")
+autoplay = "default"
+frame_progress = 0.739195
+
+[node name="SpotLight3D" type="SpotLight3D" parent="PlayerModel/player/Armature/Skeleton3D/FaceAttachment"]
+transform = Transform3D(1, 0, 0, 0, -0.997138, 0.0756029, 0, -0.0756029, -0.997138, 0, 0.239204, 0.549586)
+light_energy = 0.106
+spot_range = 1.0
+spot_attenuation = 1.49648
+spot_angle = 78.68
+
+[node name="ObstructionDetector" type="Area3D" parent="PlayerModel"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 2)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="PlayerModel/ObstructionDetector"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.5, -0.5)
+shape = SubResource("BoxShape3D_virh7")
+
+[node name="HoldPoint" type="Marker3D" parent="PlayerModel"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 1.5)
+
+[node name="Backup" type="Marker3D" parent="PlayerModel/HoldPoint"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, -1.5)
+
+[node name="CentralCameraPoint" type="Marker3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.4, 0.417642)
+
+[node name="SpringArm3D" type="SpringArm3D" parent="CentralCameraPoint"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.85, 0)
+spring_length = 3.5
+margin = 1.0
+
+[node name="Camera3D" type="Camera3D" parent="CentralCameraPoint/SpringArm3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 6)
+doppler_tracking = 2
+fov = 90.0
+size = 39.544
+
+[node name="EndPos" type="Node3D" parent="CentralCameraPoint/SpringArm3D/Camera3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -20)
+
+[node name="RayCast3D" type="RayCast3D" parent="CentralCameraPoint/SpringArm3D/Camera3D"]
+target_position = Vector3(0, 0, -1000)
+collision_mask = 513
+debug_shape_custom_color = Color(1, 0, 0, 1)
+
+[node name="Cursor" type="Marker3D" parent="."]
+transform = Transform3D(0.707107, 0, -0.707107, 0, 1, 0, 0.707107, 0, 0.707107, 0, 0, -4)
+gizmo_extents = 3.0
+
+[node name="Area3D" type="Area3D" parent="Cursor"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Cursor/Area3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
+shape = SubResource("BoxShape3D_2e1ws")
+
+[node name="Info" parent="." instance=ExtResource("5_7n0o5")]
+health = 20.0
+max_health = 20.0
+invincibility_frames = 0.05
+TakeDamageFromRigidBodies = false
+DamagePlayerOnPlayerCollision = false
+
+[node name="CollisionShape3D" parent="Info/Hitbox" index="0"]
+shape = SubResource("CapsuleShape3D_j7m3i")
+
+[node name="HUD" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Dialogue" type="RichTextLabel" parent="HUD"]
+visible = false
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -250.0
+offset_top = 40.0
+offset_right = 250.0
+offset_bottom = 190.0
+grow_horizontal = 2
+pivot_offset = Vector2(250, 75)
+theme_override_colors/default_color = Color(1, 1, 1, 1)
+theme_override_font_sizes/normal_font_size = 22
+bbcode_enabled = true
+
+[node name="ColorRect" type="ColorRect" parent="HUD/Dialogue"]
+z_index = -1
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0, 0, 0, 0.352941)
+
+[node name="DelayBetweenCharacters" type="Timer" parent="HUD/Dialogue"]
+one_shot = true
+
+[node name="RemoveCharacters" type="Timer" parent="HUD/Dialogue"]
+wait_time = 5.0
+one_shot = true
+
+[node name="HurtVFX" type="ColorRect" parent="HUD"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(1, 1, 1, 0)
+
+[node name="Timer" type="Timer" parent="HUD/HurtVFX"]
+
+[node name="Health" type="ProgressBar" parent="HUD"]
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -180.0
+offset_top = -189.0
+offset_right = 180.0
+offset_bottom = -139.0
+grow_horizontal = 2
+grow_vertical = 0
+pivot_offset = Vector2(180, 25)
+theme_override_styles/background = SubResource("StyleBoxFlat_1odvh")
+theme_override_styles/fill = SubResource("StyleBoxFlat_btmbw")
+max_value = 20.0
+value = 10.0
+allow_greater = true
+allow_lesser = true
+show_percentage = false
+
+[node name="HealthWhite" type="ProgressBar" parent="HUD/Health"]
+z_index = -1
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -180.0
+offset_top = -50.0
+offset_right = 180.0
+grow_horizontal = 2
+grow_vertical = 0
+pivot_offset = Vector2(180, 25)
+theme_override_styles/background = SubResource("StyleBoxFlat_nqrcn")
+theme_override_styles/fill = SubResource("StyleBoxFlat_lr4wr")
+max_value = 20.0
+value = 10.0
+allow_greater = true
+allow_lesser = true
+show_percentage = false
+
+[node name="EnemyHealth" type="ProgressBar" parent="HUD"]
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -960.0
+offset_top = -1180.0
+offset_right = -870.0
+offset_bottom = -1165.0
+grow_horizontal = 2
+grow_vertical = 0
+pivot_offset = Vector2(45, 7)
+theme_override_styles/background = SubResource("StyleBoxFlat_nqrcn")
+theme_override_styles/fill = SubResource("StyleBoxFlat_btmbw")
+max_value = 20.0
+value = 10.0
+show_percentage = false
+
+[node name="Hints" type="RichTextLabel" parent="HUD"]
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -150.0
+offset_top = -258.0
+offset_right = 150.0
+offset_bottom = -183.0
+grow_horizontal = 2
+grow_vertical = 0
+bbcode_enabled = true
+scroll_active = false
+
+[node name="Timer" type="Timer" parent="HUD/Hints"]
+wait_time = 6.0
+one_shot = true
+
+[node name="PauseMenu" type="ColorRect" parent="HUD"]
+process_mode = 2
+layout_mode = 1
+anchors_preset = 4
+anchor_top = 0.5
+anchor_bottom = 0.5
+offset_top = -540.0
+offset_right = 613.0
+offset_bottom = 540.0
+grow_vertical = 2
+color = Color(0.533333, 0.533333, 0.533333, 0.490196)
+
+[node name="ResumeButton" type="Button" parent="HUD/PauseMenu"]
+layout_mode = 0
+offset_left = 188.0
+offset_top = 310.0
+offset_right = 408.0
+offset_bottom = 392.0
+text = "resume"
+
+[node name="RestartButton" type="Button" parent="HUD/PauseMenu"]
+layout_mode = 0
+offset_left = 188.0
+offset_top = 404.0
+offset_right = 408.0
+offset_bottom = 486.0
+text = "restart level"
+
+[node name="OptionsButton" type="Button" parent="HUD/PauseMenu"]
+layout_mode = 0
+offset_left = 188.0
+offset_top = 499.0
+offset_right = 408.0
+offset_bottom = 581.0
+text = "options
+"
+
+[node name="QuitButton" type="Button" parent="HUD/PauseMenu"]
+layout_mode = 0
+offset_left = 188.0
+offset_top = 593.0
+offset_right = 408.0
+offset_bottom = 675.0
+text = "quit to menu"
+
+[node name="Indicator" type="TextureRect" parent="HUD"]
+texture_filter = 2
+texture_repeat = 1
+layout_mode = 0
+offset_left = -31.0
+offset_top = -31.0
+offset_right = 31.0
+offset_bottom = 31.0
+pivot_offset = Vector2(31, 31)
+texture = ExtResource("6_hpt3l")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="HUD/Indicator"]
+visible = false
+position = Vector2(60, 60)
+scale = Vector2(0.5, 0.5)
+sprite_frames = SubResource("SpriteFrames_gdws8")
+autoplay = "default"
+frame_progress = 0.798396
+
+[node name="DeathScreen" type="ColorRect" parent="HUD"]
+process_mode = 3
+visible = false
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(1, 0.117647, 0.141176, 0.352941)
+
+[node name="RichTextLabel" type="RichTextLabel" parent="HUD/DeathScreen"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -140.0
+offset_top = -210.0
+offset_right = 140.0
+offset_bottom = -85.0
+grow_horizontal = 2
+grow_vertical = 2
+pivot_offset = Vector2(140, 62)
+theme_override_font_sizes/normal_font_size = 90
+bbcode_enabled = true
+text = "[center]DEAD"
+
+[node name="DeathRestartButton" type="Button" parent="HUD/DeathScreen"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -110.0
+offset_top = -41.0
+offset_right = 110.0
+offset_bottom = 41.0
+grow_horizontal = 2
+grow_vertical = 2
+pivot_offset = Vector2(110, 41)
+text = "restart level"
+
+[node name="DeathQuitButton" type="Button" parent="HUD/DeathScreen"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -110.0
+offset_top = 82.0
+offset_right = 110.0
+offset_bottom = 164.0
+grow_horizontal = 2
+grow_vertical = 2
+text = "quit to menu"
+
+[node name="OptionsMenu" parent="HUD" instance=ExtResource("9_vjmmq")]
+visible = false
+layout_mode = 1
+
+[node name="LevelCompleted" type="ColorRect" parent="HUD"]
+process_mode = 2
+visible = false
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0, 1, 0, 0.352941)
+
+[node name="RichTextLabel" type="RichTextLabel" parent="HUD/LevelCompleted"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -200.0
+offset_top = -50.0
+offset_right = 200.0
+offset_bottom = 50.0
+grow_horizontal = 2
+grow_vertical = 2
+pivot_offset = Vector2(200, 50)
+theme_override_font_sizes/normal_font_size = 50
+bbcode_enabled = true
+text = "[center]level complete"
+
+[node name="Delay" type="Timer" parent="HUD/LevelCompleted"]
+wait_time = 3.0
+one_shot = true
+
+[node name="Crosshair" type="ColorRect" parent="HUD"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_right = 3.0
+offset_bottom = 3.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Audio" type="Node" parent="."]
+
+[node name="PlayerWalk" type="AudioStreamPlayer" parent="Audio"]
+stream = ExtResource("10_iq0rl")
+volume_db = -10.0
+
+[node name="PlayerSelect" type="AudioStreamPlayer" parent="Audio"]
+stream = ExtResource("11_bg06q")
+volume_db = -20.0
+
+[node name="PlayerDeath" type="AudioStreamPlayer" parent="Audio"]
+stream = ExtResource("12_3vcwe")
+volume_db = -20.0
+
+[node name="PlayerHurt" type="AudioStreamPlayer" parent="Audio"]
+stream = ExtResource("13_03cy8")
+volume_db = -20.0
+
+[node name="Dialogue" type="AudioStreamPlayer" parent="Audio"]
+stream = ExtResource("14_inpwu")
+volume_db = -20.0
+
+[node name="FootstepDelay" type="Timer" parent="Audio"]
+wait_time = 0.15
+one_shot = true
+
+[node name="Filters" type="Node" parent="."]
+
+[node name="ColourPallete" type="CanvasLayer" parent="Filters"]
+layer = -1
+visible = false
+
+[node name="ColourPalette" type="ColorRect" parent="Filters/ColourPallete"]
+material = SubResource("ShaderMaterial_1evt4")
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Quantisation" type="CanvasLayer" parent="Filters"]
+layer = -1
+
+[node name="ColorRect" type="ColorRect" parent="Filters/Quantisation"]
+material = SubResource("ShaderMaterial_m2pfy")
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+
+[node name="Outlines" type="CanvasLayer" parent="Filters"]
+process_mode = 3
+layer = -1
+
+[node name="SobelOutlines" type="ColorRect" parent="Filters/Outlines"]
+material = SubResource("ShaderMaterial_al30p")
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+
+[node name="ColourTesting" type="TextureRect" parent="Filters/Outlines"]
+visible = false
+z_index = -3
+offset_right = 500.0
+offset_bottom = 500.0
+texture = ExtResource("18_18tbb")
+expand_mode = 4
+
+[node name="Pixellation" type="CanvasLayer" parent="Filters"]
+layer = -1
+
+[node name="Pixellation" type="ColorRect" parent="Filters/Pixellation"]
+material = SubResource("ShaderMaterial_4rgcg")
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+color = Color(1, 1, 1, 0)
+
+[node name="Pixellation2" type="CanvasLayer" parent="Filters"]
+layer = -1
+visible = false
+
+[node name="Pixellation" type="ColorRect" parent="Filters/Pixellation2"]
+material = SubResource("ShaderMaterial_4rgcg")
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+color = Color(1, 1, 1, 0)
+
+[connection signal="death" from="Info" to="." method="_on_info_death"]
+[connection signal="takeDamage" from="Info" to="." method="_on_info_take_damage"]
+[connection signal="timeout" from="HUD/Dialogue/RemoveCharacters" to="." method="_on_remove_characters_timeout"]
+[connection signal="timeout" from="HUD/Hints/Timer" to="." method="_hinttext_timeout"]
+[connection signal="pressed" from="HUD/PauseMenu/ResumeButton" to="." method="_on_resume_button_pressed"]
+[connection signal="pressed" from="HUD/PauseMenu/RestartButton" to="." method="_on_restart_button_pressed"]
+[connection signal="pressed" from="HUD/PauseMenu/OptionsButton" to="." method="_on_options_button_pressed"]
+[connection signal="pressed" from="HUD/PauseMenu/QuitButton" to="." method="_on_quit_button_pressed"]
+[connection signal="pressed" from="HUD/DeathScreen/DeathRestartButton" to="." method="_on_death_restart_button_pressed"]
+[connection signal="pressed" from="HUD/DeathScreen/DeathQuitButton" to="." method="_on_death_quit_button_pressed"]
+[connection signal="timeout" from="HUD/LevelCompleted/Delay" to="." method="_on_delay_timeout"]
+
+[editable path="PlayerModel/player"]
+[editable path="Info"]

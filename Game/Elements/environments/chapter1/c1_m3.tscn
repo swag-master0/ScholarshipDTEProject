@@ -1,14 +1,14 @@
 [gd_scene load_steps=16 format=3 uid="uid://w2l3dpbjub7c"]
 
-[ext_resource type="PackedScene" uid="uid://b5c4qe603h5o" path="res://Elements/assets/hostile/explosive_barrel/explosive_barrel.tscn" id="1_ve3uk"]
-[ext_resource type="PackedScene" uid="uid://bcou7suhphdrp" path="res://Elements/function/player/player_v2.tscn" id="2_adrog"]
+[ext_resource type="PackedScene" uid="uid://b5c4qe603h5o" path="res://Elements/assets/hostile/explosive_barrel.tscn" id="1_5e1qi"]
+[ext_resource type="PackedScene" uid="uid://bcou7suhphdrp" path="res://Elements/function/player.tscn" id="2_adrog"]
 [ext_resource type="PackedScene" uid="uid://bkvmwrsm7nbyt" path="res://Elements/environments/chapter1/c1_m4.tscn" id="3_bf0fb"]
+[ext_resource type="PackedScene" uid="uid://bv51trmf3yaw0" path="res://Elements/assets/hostile/hazard.tscn" id="4_526u1"]
+[ext_resource type="PackedScene" uid="uid://ch7t6b0c3tjwr" path="res://Elements/enemies/enemy.tscn" id="5_7ns25"]
 [ext_resource type="PackedScene" uid="uid://bs5hdiefi57co" path="res://Art/blend/levels_chapter1/c1_m3.blend" id="5_lwdk2"]
-[ext_resource type="PackedScene" uid="uid://bv51trmf3yaw0" path="res://Elements/assets/hostile/hazard/hazard.tscn" id="6_nadlc"]
-[ext_resource type="PackedScene" uid="uid://msdo88p274sw" path="res://Elements/function/objective/objective_level_start.tscn" id="7_8sx0s"]
-[ext_resource type="PackedScene" uid="uid://ch7t6b0c3tjwr" path="res://Elements/enemies/enemy/enemy.tscn" id="7_63dbe"]
+[ext_resource type="PackedScene" uid="uid://msdo88p274sw" path="res://Elements/function/objective.tscn" id="7_8sx0s"]
 [ext_resource type="PackedScene" uid="uid://bbb07r3hee2bp" path="res://Elements/assets/passive/props/prop.tscn" id="8_6noad"]
-[ext_resource type="PackedScene" uid="uid://cihisq18677xu" path="res://Elements/function/objective/objective_item.tscn" id="8_jt0ca"]
+[ext_resource type="PackedScene" uid="uid://cihisq18677xu" path="res://Elements/function/objective_item.tscn" id="8_jt0ca"]
 
 [sub_resource type="GDScript" id="GDScript_ur7ug"]
 resource_name = "c1_m3-functionality"
@@ -82,7 +82,7 @@ rings = 8
 
 [node name="Level4" type="Node3D"]
 script = SubResource("GDScript_ur7ug")
-barrel = ExtResource("1_ve3uk")
+barrel = ExtResource("1_5e1qi")
 
 [node name="Player_v2" parent="." instance=ExtResource("2_adrog")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -15, 1, -12)
@@ -179,40 +179,40 @@ sky_mode = 1
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
 environment = SubResource("Environment_nfxsl")
 
-[node name="Hazard" parent="." instance=ExtResource("6_nadlc")]
+[node name="Hazard" parent="." instance=ExtResource("4_526u1")]
 transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 7.36239, 1, -22.8921)
 
-[node name="Hazard2" parent="." instance=ExtResource("6_nadlc")]
+[node name="Hazard2" parent="." instance=ExtResource("4_526u1")]
 transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 9.36239, 1, -22.8921)
 
-[node name="Hazard3" parent="." instance=ExtResource("6_nadlc")]
+[node name="Hazard3" parent="." instance=ExtResource("4_526u1")]
 transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 5.36239, 1, -22.8921)
 
-[node name="ExplosiveBarrel" parent="." instance=ExtResource("1_ve3uk")]
+[node name="ExplosiveBarrel" parent="." instance=ExtResource("1_5e1qi")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 39, 1.05, -49)
 
-[node name="ExplosiveBarrel4" parent="." instance=ExtResource("1_ve3uk")]
+[node name="ExplosiveBarrel4" parent="." instance=ExtResource("1_5e1qi")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 40, 1.05, -47)
 
-[node name="ExplosiveBarrel5" parent="." instance=ExtResource("1_ve3uk")]
+[node name="ExplosiveBarrel5" parent="." instance=ExtResource("1_5e1qi")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 44, 1.05, -88)
 
-[node name="ExplosiveBarrel6" parent="." instance=ExtResource("1_ve3uk")]
+[node name="ExplosiveBarrel6" parent="." instance=ExtResource("1_5e1qi")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 51, 1.05, -82)
 
-[node name="ExplosiveBarrel7" parent="." instance=ExtResource("1_ve3uk")]
+[node name="ExplosiveBarrel7" parent="." instance=ExtResource("1_5e1qi")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 42, 1.05, -73)
 
-[node name="ExplosiveBarrel8" parent="." instance=ExtResource("1_ve3uk")]
+[node name="ExplosiveBarrel8" parent="." instance=ExtResource("1_5e1qi")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 42, 1.05, -75)
 
-[node name="ExplosiveBarrel9" parent="." instance=ExtResource("1_ve3uk")]
+[node name="ExplosiveBarrel9" parent="." instance=ExtResource("1_5e1qi")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 42, 3.05, -74)
 
-[node name="ExplosiveBarrel2" parent="." instance=ExtResource("1_ve3uk")]
+[node name="ExplosiveBarrel2" parent="." instance=ExtResource("1_5e1qi")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 41.0577, 1.05, -48.1252)
 
-[node name="ExplosiveBarrel3" parent="." instance=ExtResource("1_ve3uk")]
+[node name="ExplosiveBarrel3" parent="." instance=ExtResource("1_5e1qi")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 39.9843, 3.05, -48.0685)
 
 [node name="DeleteZone" type="Area3D" parent="."]
@@ -274,7 +274,7 @@ shape = SubResource("BoxShape3D_dvnq2")
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 6, -97, 6)
 shape = SubResource("BoxShape3D_dvnq2")
 
-[node name="Enemy" parent="." instance=ExtResource("7_63dbe")]
+[node name="Enemy" parent="." instance=ExtResource("5_7ns25")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 7.93963, 2, -28.4437)
 
 [node name="Info" parent="Enemy" index="0"]
@@ -284,19 +284,19 @@ max_health = 1.0
 [node name="Mesh" parent="Enemy" index="2"]
 mesh = SubResource("SphereMesh_usv3u")
 
-[node name="Enemy2" parent="." instance=ExtResource("7_63dbe")]
+[node name="Enemy2" parent="." instance=ExtResource("5_7ns25")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 62, 1, -53)
 
-[node name="Enemy3" parent="." instance=ExtResource("7_63dbe")]
+[node name="Enemy3" parent="." instance=ExtResource("5_7ns25")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 61, 1, -49)
 
-[node name="Enemy4" parent="." instance=ExtResource("7_63dbe")]
+[node name="Enemy4" parent="." instance=ExtResource("5_7ns25")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 61, 1, -90)
 
-[node name="Enemy5" parent="." instance=ExtResource("7_63dbe")]
+[node name="Enemy5" parent="." instance=ExtResource("5_7ns25")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 61, 1, -86)
 
-[node name="Enemy6" parent="." instance=ExtResource("7_63dbe")]
+[node name="Enemy6" parent="." instance=ExtResource("5_7ns25")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 62, 1, -83)
 
 [node name="Prop" parent="." instance=ExtResource("8_6noad")]

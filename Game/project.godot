@@ -11,60 +11,32 @@ config_version=5
 [application]
 
 config/name="WorkingTitle"
-run/main_scene="res://Elements/environments/misc/main_menu/main_menu.tscn"
+run/main_scene="res://Elements/function/main_menu.tscn"
 config/features=PackedStringArray("4.2", "Forward Plus")
 config/icon="res://Art/textures/icon.svg"
 
 [autoload]
 
-LoadingScreen="*res://Elements/function/menus/loading_screen.gd"
+LoadingScreen="*res://Elements/function/loading_screen.gd"
 
 [file_customization]
 
 folder_colors={
 "res://Art/": "red",
-"res://Art/audio/": "orange",
-"res://Art/blend/": "yellow",
-"res://Art/blend/assets/": "green",
-"res://Art/blend/levels_chapter1/": "green",
-"res://Art/blend/levels_chapter2/": "green",
-"res://Art/blend/misc/": "green",
-"res://Art/environment/": "orange",
-"res://Art/filters/": "yellow",
-"res://Art/materials/": "orange",
-"res://Art/materials/floor/": "green",
-"res://Art/materials/walls/": "green",
-"res://Art/textures/": "yellow",
-"res://Art/textures/hud/": "green",
-"res://Art/textures/palettes/": "green",
-"res://Elements/": "red",
-"res://Elements/assets/": "orange",
-"res://Elements/assets/hostile/": "yellow",
-"res://Elements/assets/hostile/explosion/": "green",
-"res://Elements/assets/hostile/explosive_barrel/": "green",
-"res://Elements/assets/hostile/grenade/": "green",
-"res://Elements/assets/hostile/hazard/": "green",
-"res://Elements/assets/passive/": "yellow",
-"res://Elements/assets/passive/breakable_glass/": "green",
-"res://Elements/assets/passive/button/": "green",
-"res://Elements/assets/passive/jump_pad/": "green",
-"res://Elements/assets/passive/props/": "green",
-"res://Elements/enemies/": "yellow",
-"res://Elements/enemies/bomber/": "green",
-"res://Elements/enemies/copycat/": "green",
-"res://Elements/enemies/copycat_v2/": "green",
-"res://Elements/enemies/enemy/": "green",
-"res://Elements/enemies/sentry/": "green",
-"res://Elements/environments/": "orange",
-"res://Elements/environments/chapter1/": "green",
-"res://Elements/environments/chapter2/": "green",
-"res://Elements/environments/misc/": "green",
-"res://Elements/function/": "yellow",
-"res://Elements/function/info/": "green",
-"res://Elements/function/menus/": "green",
-"res://Elements/function/objective/": "green",
-"res://Elements/function/player/": "green",
-"res://Elements/function/saving/": "green"
+"res://Art/blend/assets/": "gray",
+"res://Art/blend/levels_chapter1/": "gray",
+"res://Art/blend/levels_chapter2/": "gray",
+"res://Art/blend/misc/": "gray",
+"res://Art/materials/floor/": "gray",
+"res://Art/materials/walls/": "gray",
+"res://Art/textures/hud/": "gray",
+"res://Art/textures/palettes/": "gray",
+"res://Elements/": "blue",
+"res://Elements/assets/hostile/": "gray",
+"res://Elements/assets/passive/": "gray",
+"res://Elements/environments/chapter1/": "gray",
+"res://Elements/environments/chapter2/": "gray",
+"res://Elements/environments/misc/": "gray"
 }
 
 [input]

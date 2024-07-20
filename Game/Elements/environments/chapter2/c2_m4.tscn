@@ -1,12 +1,12 @@
 [gd_scene load_steps=40 format=3 uid="uid://boa48qb8hnllg"]
 
-[ext_resource type="PackedScene" uid="uid://msdo88p274sw" path="res://Elements/function/objective/objective_level_start.tscn" id="1_0bq1j"]
-[ext_resource type="PackedScene" uid="uid://bcou7suhphdrp" path="res://Elements/function/player/player_v2.tscn" id="1_ll6ok"]
+[ext_resource type="PackedScene" uid="uid://bcou7suhphdrp" path="res://Elements/function/player.tscn" id="1_kn2uw"]
 [ext_resource type="PackedScene" uid="uid://chfjnfoqk48dy" path="res://Art/blend/levels_chapter2/c2_m4.blend" id="1_qcqmy"]
-[ext_resource type="PackedScene" uid="uid://cihisq18677xu" path="res://Elements/function/objective/objective_item.tscn" id="2_6rj4f"]
-[ext_resource type="PackedScene" uid="uid://c4ousj15h5a10" path="res://Elements/environments/misc/main_menu/main_menu.tscn" id="2_auu7j"]
+[ext_resource type="PackedScene" uid="uid://msdo88p274sw" path="res://Elements/function/objective.tscn" id="2_mbjw1"]
+[ext_resource type="PackedScene" uid="uid://c4ousj15h5a10" path="res://Elements/function/main_menu.tscn" id="3_62aff"]
 [ext_resource type="PackedScene" uid="uid://ckdmt4lj1dp6j" path="res://Elements/assets/passive/props/prop_fragile.tscn" id="4_10evl"]
-[ext_resource type="PackedScene" uid="uid://ch7t6b0c3tjwr" path="res://Elements/enemies/enemy/enemy.tscn" id="5_biphg"]
+[ext_resource type="PackedScene" uid="uid://cihisq18677xu" path="res://Elements/function/objective_item.tscn" id="4_beyjn"]
+[ext_resource type="PackedScene" uid="uid://ch7t6b0c3tjwr" path="res://Elements/enemies/enemy.tscn" id="7_iey5q"]
 
 [sub_resource type="SphereShape3D" id="SphereShape3D_ys8nc"]
 radius = 6.0
@@ -174,14 +174,14 @@ size = Vector3(50, 10, 20)
 
 [node name="c2_m4" type="Node3D"]
 
-[node name="Player_v2" parent="." instance=ExtResource("1_ll6ok")]
+[node name="Player_v2" parent="." instance=ExtResource("1_kn2uw")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -16, 1, 5)
 
-[node name="ObjectiveLevelStart" parent="." instance=ExtResource("1_0bq1j")]
+[node name="ObjectiveLevelStart" parent="." instance=ExtResource("2_mbjw1")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -15, 5, 5)
-nextscene = ExtResource("2_auu7j")
+nextscene = ExtResource("3_62aff")
 
-[node name="ObjectiveItem" parent="." instance=ExtResource("2_6rj4f")]
+[node name="ObjectiveItem" parent="." instance=ExtResource("4_beyjn")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 140, 3, 30)
 
 [node name="Area3D2" type="Area3D" parent="ObjectiveItem" groups=["light"]]
@@ -264,7 +264,7 @@ omni_range = 7.0
 [node name="CollisionShape3D2" type="CollisionShape3D" parent="Props/PropFragile4/Area3D"]
 shape = SubResource("SphereShape3D_ys8nc")
 
-[node name="Enemy" parent="." instance=ExtResource("5_biphg")]
+[node name="Enemy" parent="." instance=ExtResource("7_iey5q")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 46.466, 2, -4.81382)
 speed = 12
 damage = 5
@@ -277,7 +277,7 @@ DisplayHealthBar = false
 material_override = SubResource("StandardMaterial3D_qvrct")
 mesh = SubResource("SphereMesh_qukd8")
 
-[node name="Enemy2" parent="." instance=ExtResource("5_biphg")]
+[node name="Enemy2" parent="." instance=ExtResource("7_iey5q")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 56.466, 2, -12.8138)
 speed = 12
 damage = 5
@@ -290,7 +290,7 @@ DisplayHealthBar = false
 material_override = SubResource("StandardMaterial3D_qvrct")
 mesh = SubResource("SphereMesh_h3i4c")
 
-[node name="Enemy3" parent="." instance=ExtResource("5_biphg")]
+[node name="Enemy3" parent="." instance=ExtResource("7_iey5q")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 72.466, 2, -14.8138)
 speed = 12
 damage = 5
@@ -303,7 +303,7 @@ DisplayHealthBar = false
 material_override = SubResource("StandardMaterial3D_qvrct")
 mesh = SubResource("SphereMesh_0gg6c")
 
-[node name="Enemy4" parent="." instance=ExtResource("5_biphg")]
+[node name="Enemy4" parent="." instance=ExtResource("7_iey5q")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 66.466, 2, 2.18618)
 speed = 12
 damage = 5
@@ -316,7 +316,7 @@ DisplayHealthBar = false
 material_override = SubResource("StandardMaterial3D_qvrct")
 mesh = SubResource("SphereMesh_btg1t")
 
-[node name="Enemy5" parent="." instance=ExtResource("5_biphg")]
+[node name="Enemy5" parent="." instance=ExtResource("7_iey5q")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 63.466, 2, 12.1862)
 speed = 12
 damage = 5
@@ -329,7 +329,7 @@ DisplayHealthBar = false
 material_override = SubResource("StandardMaterial3D_qvrct")
 mesh = SubResource("SphereMesh_odod1")
 
-[node name="Enemy6" parent="." instance=ExtResource("5_biphg")]
+[node name="Enemy6" parent="." instance=ExtResource("7_iey5q")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 86.466, 2, 16.1862)
 speed = 12
 damage = 5
@@ -342,7 +342,7 @@ DisplayHealthBar = false
 material_override = SubResource("StandardMaterial3D_qvrct")
 mesh = SubResource("SphereMesh_3j8ni")
 
-[node name="Enemy7" parent="." instance=ExtResource("5_biphg")]
+[node name="Enemy7" parent="." instance=ExtResource("7_iey5q")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 109.466, 2, 25.1862)
 speed = 12
 damage = 5
@@ -355,7 +355,7 @@ DisplayHealthBar = false
 material_override = SubResource("StandardMaterial3D_qvrct")
 mesh = SubResource("SphereMesh_m03o8")
 
-[node name="Enemy8" parent="." instance=ExtResource("5_biphg")]
+[node name="Enemy8" parent="." instance=ExtResource("7_iey5q")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 141.466, 2, 21.1862)
 speed = 12
 damage = 5
@@ -368,7 +368,7 @@ DisplayHealthBar = false
 material_override = SubResource("StandardMaterial3D_qvrct")
 mesh = SubResource("SphereMesh_0nx3b")
 
-[node name="Enemy9" parent="." instance=ExtResource("5_biphg")]
+[node name="Enemy9" parent="." instance=ExtResource("7_iey5q")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 134.466, 2, 2.18618)
 speed = 12
 damage = 5
@@ -381,7 +381,7 @@ DisplayHealthBar = false
 material_override = SubResource("StandardMaterial3D_qvrct")
 mesh = SubResource("SphereMesh_coxiq")
 
-[node name="Enemy10" parent="." instance=ExtResource("5_biphg")]
+[node name="Enemy10" parent="." instance=ExtResource("7_iey5q")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 119.466, 2, -4.81382)
 speed = 12
 damage = 5
@@ -394,7 +394,7 @@ DisplayHealthBar = false
 material_override = SubResource("StandardMaterial3D_qvrct")
 mesh = SubResource("SphereMesh_bq6tv")
 
-[node name="Enemy11" parent="." instance=ExtResource("5_biphg")]
+[node name="Enemy11" parent="." instance=ExtResource("7_iey5q")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 104.466, 2, -8.81382)
 speed = 12
 damage = 5
@@ -407,7 +407,7 @@ DisplayHealthBar = false
 material_override = SubResource("StandardMaterial3D_qvrct")
 mesh = SubResource("SphereMesh_yobnd")
 
-[node name="Enemy12" parent="." instance=ExtResource("5_biphg")]
+[node name="Enemy12" parent="." instance=ExtResource("7_iey5q")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 105.466, 2, -23.8138)
 speed = 12
 damage = 5
@@ -420,7 +420,7 @@ DisplayHealthBar = false
 material_override = SubResource("StandardMaterial3D_qvrct")
 mesh = SubResource("SphereMesh_cjhsc")
 
-[node name="Enemy13" parent="." instance=ExtResource("5_biphg")]
+[node name="Enemy13" parent="." instance=ExtResource("7_iey5q")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 81.466, 2, -25.8138)
 speed = 12
 damage = 5
