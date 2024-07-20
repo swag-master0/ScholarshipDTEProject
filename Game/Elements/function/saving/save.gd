@@ -18,6 +18,7 @@ const save_playerhub_path = "user://save_playerhub.tres"
 @export var player_hub_objects : Array = []   # Array of objects, which are turned into PackedScenes to maintain their children's properties
 
 
+
 func save_game_level(data : String):
 	# Saves the script itself, with the variables in it
 	push_warning("Save System: Saving game save data")
@@ -49,20 +50,31 @@ func load_game():
 # -- Save Player Hub is overwriting the level save, and replacing it with an empty string
 # -- * Fixed by splitting the progression and playerhub into 2 different save files
 
-func save_player_hub(objects_to_save):
-	push_warning("Save System: Saving Player Hub Objects")
+func save_player_hub(objects_to_save, type_of_save : bool = true):
 	
-	player_hub_objects = [] # attempt to clear the old saved objects, to avoid accidentally generating another 2.2 MB file
-	player_hub_objects = objects_to_save
+	if type_of_save:
+		push_warning("Save System: Saving player hub objects")
+		
+		player_hub_objects = [] # attempt to clear the old saved objects, to avoid accidentally generating another 2.2 MB file
+		player_hub_objects = objects_to_save
+		
+		
+		ResourceSaver.save(self, save_playerhub_path)
+		
+		push_warning("Save System: Player hub save sucessful!")
 	
-	
-	ResourceSaver.save(self, save_playerhub_path)
-	
-	push_warning("Save System: Player Hub save sucessful!")
+	else: # adding new objects
+		push_warning("Save System: Importing objects to playerhub")
+		
+		for i in objects_to_save:
+			player_hub_objects.append(i)
+		
+		
+		ResourceSaver.save(self, save_playerhub_path)
 
 
 func load_player_hub(root_node):
-	push_warning("Save System: Loading Player Hub Objects")
+	push_warning("Save System: Loading player hub objects")
 	if ResourceLoader.exists(save_playerhub_path):
 		var retrieved_save = ResourceLoader.load(save_playerhub_path, "")
 		player_hub_objects = retrieved_save.player_hub_objects
@@ -74,7 +86,8 @@ func load_player_hub(root_node):
 	
 	
 	else:
-		push_error("Save System: Player Hub Load Failed")
+		push_error("Save System: Player hub load Ffiled")
+
 
 
 
