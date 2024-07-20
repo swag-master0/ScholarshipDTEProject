@@ -4,7 +4,7 @@
 [ext_resource type="PackedScene" uid="uid://chfjnfoqk48dy" path="res://Art/blend/levels_chapter2/c2_m4.blend" id="1_qcqmy"]
 [ext_resource type="PackedScene" uid="uid://msdo88p274sw" path="res://Elements/function/objective.tscn" id="2_mbjw1"]
 [ext_resource type="PackedScene" uid="uid://c4ousj15h5a10" path="res://Elements/function/main_menu.tscn" id="3_62aff"]
-[ext_resource type="PackedScene" uid="uid://ckdmt4lj1dp6j" path="res://Elements/assets/passive/props/prop_fragile.tscn" id="4_10evl"]
+[ext_resource type="PackedScene" uid="uid://ckdmt4lj1dp6j" path="res://Elements/assets/props/template/prop_fragile.tscn" id="4_10evl"]
 [ext_resource type="PackedScene" uid="uid://cihisq18677xu" path="res://Elements/function/objective_item.tscn" id="4_beyjn"]
 [ext_resource type="PackedScene" uid="uid://ch7t6b0c3tjwr" path="res://Elements/enemies/enemy.tscn" id="7_iey5q"]
 

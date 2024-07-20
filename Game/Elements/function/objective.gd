@@ -53,7 +53,7 @@ func ChangeScene():
 			
 			# check if the object is not a script, or else it causes a crash
 			# this is a massive hack, but i don't care
-			if ObjectToSave is Script:
+			if !is_instance_valid(ObjectToSave):
 				pass
 			else:
 				ObjectToSave.position = Vector3(0, 5, 0)

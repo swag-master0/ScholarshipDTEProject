@@ -1,0 +1,32 @@
+[gd_scene load_steps=7 format=3 uid="uid://dwuyqcbn1btlf"]
+
+[ext_resource type="PackedScene" uid="uid://dpnvhb6hxwohn" path="res://Art/blend/assets/picture_xlarge.blend" id="1_cr0a2"]
+[ext_resource type="Script" path="res://Elements/assets/props/template/prop.gd" id="1_esioc"]
+[ext_resource type="Shader" path="res://Elements/assets/props/pictureXL.gdshader" id="3_8qxqd"]
+[ext_resource type="Texture2D" uid="uid://c60vvo7qajvij" path="res://Art/textures/assets/horse.jpg" id="4_wcuhl"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_x1d8a"]
+render_priority = 0
+shader = ExtResource("3_8qxqd")
+shader_parameter/picture = ExtResource("4_wcuhl")
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_41fy3"]
+size = Vector3(4.00378, 4.00226, 0.401465)
+
+[node name="PictureFrameXL" type="RigidBody3D"]
+freeze = true
+script = ExtResource("1_esioc")
+
+[node name="picture_xlarge" parent="." instance=ExtResource("1_cr0a2")]
+transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 0, 0, 0)
+
+[node name="Picture_XLarge" parent="picture_xlarge" index="0"]
+surface_material_override/1 = SubResource("ShaderMaterial_x1d8a")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.000427246, 0.00088501, -0.172456)
+shape = SubResource("BoxShape3D_41fy3")
+
+[node name="Sound" type="AudioStreamPlayer3D" parent="."]
+
+[editable path="picture_xlarge"]

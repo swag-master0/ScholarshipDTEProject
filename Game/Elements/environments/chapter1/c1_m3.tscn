@@ -7,7 +7,7 @@
 [ext_resource type="PackedScene" uid="uid://ch7t6b0c3tjwr" path="res://Elements/enemies/enemy.tscn" id="5_7ns25"]
 [ext_resource type="PackedScene" uid="uid://bs5hdiefi57co" path="res://Art/blend/levels_chapter1/c1_m3.blend" id="5_lwdk2"]
 [ext_resource type="PackedScene" uid="uid://msdo88p274sw" path="res://Elements/function/objective.tscn" id="7_8sx0s"]
-[ext_resource type="PackedScene" uid="uid://bbb07r3hee2bp" path="res://Elements/assets/passive/props/prop.tscn" id="8_6noad"]
+[ext_resource type="PackedScene" uid="uid://bbb07r3hee2bp" path="res://Elements/assets/props/template/prop.tscn" id="8_6noad"]
 [ext_resource type="PackedScene" uid="uid://cihisq18677xu" path="res://Elements/function/objective_item.tscn" id="8_jt0ca"]
 
 [sub_resource type="GDScript" id="GDScript_ur7ug"]

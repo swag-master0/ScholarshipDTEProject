@@ -5,10 +5,17 @@ extends RigidBody3D
 
 var ungrabbable_group = "ungrabbable"
 
+
+
+func _ready():
+	self.sleeping = true
+	
+	if ungrabbable:
+		self.add_to_group(ungrabbable_group)
+
+
 func _on_body_entered(_body):
 	if !sound.is_playing():
 		sound.play()
 
-func _ready():
-	if ungrabbable:
-		self.add_to_group(ungrabbable_group)
+

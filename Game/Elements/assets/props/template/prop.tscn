@@ -1,6 +1,6 @@
 [gd_scene load_steps=5 format=3 uid="uid://bbb07r3hee2bp"]
 
-[ext_resource type="Script" path="res://Elements/assets/passive/props/prop.gd" id="1_hjtkc"]
+[ext_resource type="Script" path="res://Elements/assets/props/template/prop.gd" id="1_hjtkc"]
 [ext_resource type="AudioStream" uid="uid://b2jgcpimq7mm8" path="res://Art/audio/collision.wav" id="2_48dmc"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_tcb5b"]

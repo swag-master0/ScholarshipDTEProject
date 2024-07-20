@@ -1,10 +1,10 @@
-[gd_scene load_steps=19 format=3 uid="uid://rq3g3n4qshr3"]
+[gd_scene load_steps=24 format=3 uid="uid://rq3g3n4qshr3"]
 
 [ext_resource type="PackedScene" uid="uid://bcou7suhphdrp" path="res://Elements/function/player.tscn" id="1_01d17"]
 [ext_resource type="PackedScene" uid="uid://c61dj4vsac881" path="res://Art/blend/levels_chapter1/c1_m1.blend" id="1_wejc2"]
 [ext_resource type="PackedScene" uid="uid://msdo88p274sw" path="res://Elements/function/objective.tscn" id="4_5dpaq"]
 [ext_resource type="PackedScene" uid="uid://cov8v6858hevf" path="res://Elements/environments/chapter1/c1_m2.tscn" id="4_ymukl"]
-[ext_resource type="PackedScene" uid="uid://bbb07r3hee2bp" path="res://Elements/assets/passive/props/prop.tscn" id="5_p2srq"]
+[ext_resource type="PackedScene" uid="uid://bbb07r3hee2bp" path="res://Elements/assets/props/template/prop.tscn" id="5_p2srq"]
 [ext_resource type="PackedScene" uid="uid://g2jwt8atruu7" path="res://Art/environment/environment.tscn" id="6_gi71d"]
 [ext_resource type="Shader" path="res://Art/materials/walls/walls.gdshader" id="6_kr6lf"]
 [ext_resource type="Shader" uid="uid://dtjh0fi6sbiji" path="res://Art/materials/floor/floor.tres" id="6_rvsjl"]
@@ -13,6 +13,10 @@
 [ext_resource type="Texture2D" uid="uid://bfujcpxg1vljk" path="res://Art/materials/floor/floor_normal.tres" id="7_r2asb"]
 [ext_resource type="Texture2D" uid="uid://bebs4m6uaixb7" path="res://Art/materials/walls/walls_noise.tres" id="9_b8x7o"]
 [ext_resource type="Texture2D" uid="uid://ydrsdeeq0ayc" path="res://Art/materials/walls/walls_normal.tres" id="10_fevyh"]
+[ext_resource type="PackedScene" uid="uid://dwuyqcbn1btlf" path="res://Elements/assets/props/pictureXL.tscn" id="14_u7g1x"]
+[ext_resource type="Shader" path="res://Elements/assets/props/pictureXL.gdshader" id="15_8sq3x"]
+[ext_resource type="Texture2D" uid="uid://bcsw4ar8qveyg" path="res://Art/textures/assets/caveman.jpg" id="16_htrd4"]
+[ext_resource type="PackedScene" uid="uid://ddmqlkxnxvnf6" path="res://Elements/assets/props/lamp.tscn" id="17_6y3mn"]
 
 [sub_resource type="GDScript" id="GDScript_x6txf"]
 resource_name = "c1_m1-functionality"
@@ -71,6 +75,11 @@ shader_parameter/normal_tex = ExtResource("10_fevyh")
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_m2epx"]
 size = Vector3(20, 10, 20)
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_uma5b"]
+render_priority = 0
+shader = ExtResource("15_8sq3x")
+shader_parameter/picture = ExtResource("16_htrd4")
 
 [node name="BasicLevel" type="Node3D"]
 script = SubResource("GDScript_x6txf")
@@ -134,6 +143,17 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 48, 1, -48)
 [node name="Prop13" parent="Props" instance=ExtResource("5_p2srq")]
 transform = Transform3D(0.819812, 0, 0.572633, 0, 1, 0, -0.572633, 0, 0.819812, 31.4343, 1, -16.9251)
 
+[node name="PictureFrameXL" parent="." instance=ExtResource("14_u7g1x")]
+transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 30, 4.64692, -22.7765)
+
+[node name="Picture_XLarge" parent="PictureFrameXL/picture_xlarge" index="0"]
+surface_material_override/1 = SubResource("ShaderMaterial_uma5b")
+
+[node name="Lamp" parent="." instance=ExtResource("17_6y3mn")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 32, 1.00013, -25)
+
 [connection signal="body_entered" from="TutorialTrigger" to="." method="_on_tutorial_trigger_body_entered"]
 
 [editable path="basic"]
+[editable path="PictureFrameXL"]
+[editable path="PictureFrameXL/picture_xlarge"]
