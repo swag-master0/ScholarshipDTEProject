@@ -1,4 +1,4 @@
-[gd_scene load_steps=20 format=3 uid="uid://rq3g3n4qshr3"]
+[gd_scene load_steps=19 format=3 uid="uid://rq3g3n4qshr3"]
 
 [ext_resource type="PackedScene" uid="uid://bcou7suhphdrp" path="res://Elements/function/player.tscn" id="1_01d17"]
 [ext_resource type="PackedScene" uid="uid://c61dj4vsac881" path="res://Art/blend/levels_chapter1/c1_m1.blend" id="1_wejc2"]
@@ -13,7 +13,6 @@
 [ext_resource type="Texture2D" uid="uid://bfujcpxg1vljk" path="res://Art/materials/floor/floor_normal.tres" id="7_r2asb"]
 [ext_resource type="Texture2D" uid="uid://bebs4m6uaixb7" path="res://Art/materials/walls/walls_noise.tres" id="9_b8x7o"]
 [ext_resource type="Texture2D" uid="uid://ydrsdeeq0ayc" path="res://Art/materials/walls/walls_normal.tres" id="10_fevyh"]
-[ext_resource type="PackedScene" uid="uid://bxgj4gik1a0ua" path="res://Art/blend/assets/wall.blend" id="11_6ruqa"]
 
 [sub_resource type="GDScript" id="GDScript_x6txf"]
 resource_name = "c1_m1-functionality"
@@ -134,10 +133,6 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 48, 1, -48)
 
 [node name="Prop13" parent="Props" instance=ExtResource("5_p2srq")]
 transform = Transform3D(0.819812, 0, 0.572633, 0, 1, 0, -0.572633, 0, 0.819812, 31.4343, 1, -16.9251)
-
-[node name="wall" parent="." instance=ExtResource("11_6ruqa")]
-transform = Transform3D(0.5, 0, -0.866025, 0, 1, 0, 0.866025, 0, 0.5, 166.039, 14.7257, -170.665)
-visible = false
 
 [connection signal="body_entered" from="TutorialTrigger" to="." method="_on_tutorial_trigger_body_entered"]
 
