@@ -44,7 +44,7 @@ func _on_tutorial_trigger_body_entered(body):
 		body.sendHintToPlayer(\"[wave][center][color=SILVER]Use MOUSE 1 to pick up objects\")
 
 
-# Called every frame. 'delta' is the elapsed time since the previous frame.
+
 func _process(_delta):
 	for i in self.get_children():
 		if i.is_in_group(\"player\"):
@@ -84,11 +84,11 @@ shader_parameter/picture = ExtResource("16_htrd4")
 [node name="BasicLevel" type="Node3D"]
 script = SubResource("GDScript_x6txf")
 
-[node name="Player_v2" parent="." instance=ExtResource("1_01d17")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2, 0)
+[node name="Player" parent="." instance=ExtResource("1_01d17")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -16.7242, 0)
 
 [node name="ObjectiveLevelStart" parent="." instance=ExtResource("4_5dpaq")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.428513, 5, 0.786789)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.428513, -14.935, 0.786789)
 nextscene = ExtResource("4_ymukl")
 nextscene_string = "res://Elements/environments/chapter1/c1_m2.tscn"
 
@@ -98,7 +98,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 43.6728, 2.00001, -42.8468)
 [node name="basic" parent="." instance=ExtResource("1_wejc2")]
 
 [node name="Floor " parent="basic" index="1"]
-material_override = SubResource("ShaderMaterial_8isy6")
+surface_material_override/0 = SubResource("ShaderMaterial_8isy6")
 
 [node name="Terrain " parent="basic" index="2"]
 material_override = SubResource("ShaderMaterial_0vtjb")

@@ -1,9 +1,9 @@
-[gd_scene load_steps=10 format=3 uid="uid://msdo88p274sw"]
+[gd_scene load_steps=8 format=3 uid="uid://msdo88p274sw"]
 
 [ext_resource type="Script" path="res://Elements/function/objective.gd" id="1_xiuf5"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_denne"]
-size = Vector3(10, 10, 10)
+size = Vector3(10, 26, 10)
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_laijd"]
 transparency = 1
@@ -96,16 +96,11 @@ _data = {
 "idle": SubResource("Animation_7v5ra")
 }
 
-[sub_resource type="BoxShape3D" id="BoxShape3D_5ekgj"]
-size = Vector3(10, 1, 10)
-
-[sub_resource type="BoxMesh" id="BoxMesh_agcj8"]
-size = Vector3(10, 1, 10)
-
 [node name="ObjectiveLevelStart" type="Area3D" groups=["objective_start"]]
 script = ExtResource("1_xiuf5")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -8, 0)
 shape = SubResource("BoxShape3D_denne")
 
 [node name="Pointer" type="MeshInstance3D" parent="."]
@@ -117,16 +112,6 @@ libraries = {
 "": SubResource("AnimationLibrary_aawhx")
 }
 autoplay = "idle"
-
-[node name="StaticBody3D" type="StaticBody3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -4.5, 0)
-
-[node name="CollisionShape3D2" type="CollisionShape3D" parent="StaticBody3D"]
-shape = SubResource("BoxShape3D_5ekgj")
-
-[node name="MeshInstance3D" type="MeshInstance3D" parent="StaticBody3D"]
-mesh = SubResource("BoxMesh_agcj8")
-skeleton = NodePath("../..")
 
 [connection signal="body_entered" from="." to="." method="_on_body_entered"]
 [connection signal="body_exited" from="." to="." method="_on_body_exited"]

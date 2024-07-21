@@ -9,6 +9,7 @@ height = 1.2231
 
 [node name="Lamp" type="RigidBody3D"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
+mass = 7.38
 max_contacts_reported = 1
 contact_monitor = true
 script = ExtResource("1_m2sg2")

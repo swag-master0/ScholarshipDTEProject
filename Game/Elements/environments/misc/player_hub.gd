@@ -1,11 +1,17 @@
 extends Node3D
 
+@onready var animation_player = $AnimationPlayer
 
 
 func _ready():
 	var save = SaveGame.new()
 	
 	save.load_player_hub(self)
+	
+	animation_player.play("open")
+	#animation_player.play("open", -1, -1, true) to play it backwards
+	
+	
 
 
 func _process(_delta):
@@ -51,6 +57,9 @@ func save_hub_objects():
 
 
 func _on_portal_body_entered(body):
+	if body is RigidBody3D:
+		body.queue_free()
+	
 	save_hub_objects()
 	
 	if body.is_in_group("player"):

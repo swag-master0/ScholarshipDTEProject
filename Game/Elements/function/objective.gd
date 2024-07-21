@@ -13,6 +13,9 @@ func _process(_delta):
 	if player_colliding and objective_colliding:
 		ChangeScene()
 	
+	for i in self.get_overlapping_bodies():
+		if i.is_in_group("player"):
+			i.velocity.y += 1.5
 
 
 func _on_body_entered(body):

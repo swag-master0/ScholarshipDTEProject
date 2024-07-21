@@ -3,7 +3,7 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://ctnbrrls3ra0x"
-path.s3tc="res://.godot/imported/player_eyes-2.png-367a99e39b008e03014ac6acc751bfc0.s3tc.ctex"
+path.s3tc="res://.godot/imported/player_eyes-2.png-d4701b2297facb10ab8e6822f76ddb9f.s3tc.ctex"
 metadata={
 "imported_formats": ["s3tc_bptc"],
 "vram_texture": true
@@ -11,8 +11,8 @@ metadata={
 
 [deps]
 
-source_file="res://Art/textures/hud/player_eyes-2.png"
-dest_files=["res://.godot/imported/player_eyes-2.png-367a99e39b008e03014ac6acc751bfc0.s3tc.ctex"]
+source_file="res://Art/textures/assets/player_eyes-2.png"
+dest_files=["res://.godot/imported/player_eyes-2.png-d4701b2297facb10ab8e6822f76ddb9f.s3tc.ctex"]
 
 [params]
 

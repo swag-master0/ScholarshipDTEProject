@@ -14,6 +14,7 @@ shader_parameter/picture = ExtResource("4_wcuhl")
 size = Vector3(4.00378, 4.00226, 0.401465)
 
 [node name="PictureFrameXL" type="RigidBody3D"]
+mass = 19.26
 freeze = true
 script = ExtResource("1_esioc")
 

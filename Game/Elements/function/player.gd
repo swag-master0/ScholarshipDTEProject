@@ -11,6 +11,7 @@ extends CharacterBody3D
 @export var SENSITIVITY : float = 0.25
 @export var MAX_LOOK : float = 60
 @export var MIN_LOOK : float = -75
+@export var ANIM_RUN_SPEED : float = 1.3
 
 @export_category("Gameplay")
 @export var SAVE_GAME : bool = true
@@ -19,7 +20,7 @@ extends CharacterBody3D
 @export var JUMP_FALLMULTIPLIER : float = 5
 @export var TURN_VELOCITY : float = 50
 @export var PICKUP_RANGE : float = 6
-@export var THROW_FORCE : float = 2000
+@export var THROW_FORCE : float = 500
 
 
 # Player Model
@@ -152,7 +153,7 @@ func _physics_process(delta):
 	
 	# player rotation code
 	if isHolding:
-		character.rotation.y = atan2(cursor.position.x, cursor.position.z)
+		character.rotation.y = atan2(ray_endpos.position.x, ray_endpos.position.z)
 	elif !isHolding and velocity:
 		character.rotation.y = lerp_angle(character.rotation.y, atan2(faceDirection.x, faceDirection.z), delta * TURN_VELOCITY)
 	elif !velocity and is_on_floor():
@@ -161,25 +162,35 @@ func _physics_process(delta):
 	
 	
 	if !isHolding:
-		if not is_on_floor():
-			state_machine.travel("fall")
-			
-		elif velocity and is_on_floor():
-			state_machine.travel("run")
-			
-		else:
-			state_machine.travel("idle")
+		animation_tree.set("parameters/fall/Blend2/blend_amount", 0.0)
+		animation_tree.set("parameters/idle/Blend2/blend_amount", 0.0)
+		animation_tree.set("parameters/jump/Blend2/blend_amount", 0.0)
+		animation_tree.set("parameters/run/Blend2/blend_amount", 0.0)
+		
 	
 	elif isHolding:
-		if not is_on_floor():
-			state_machine.travel("Grab-Fall")
-			
-		elif velocity and is_on_floor():
-			state_machine.travel("Grab-Run")
-			
-		else:
-			state_machine.travel("Grab-Idle")
-			
+		animation_tree.set("parameters/fall/Blend2/blend_amount", 1.0)
+		animation_tree.set("parameters/idle/Blend2/blend_amount", 1.0)
+		animation_tree.set("parameters/jump/Blend2/blend_amount", 1.0)
+		animation_tree.set("parameters/run/Blend2/blend_amount", 1.0)
+	
+	
+	if not is_on_floor():
+		state_machine.travel("fall")
+		
+	elif velocity and is_on_floor():
+		state_machine.travel("run")
+		
+		var anim_speed : float = (4.0 / 30.0) * SPEED * ANIM_RUN_SPEED
+		animation_tree.set("parameters/run/TimeScale/scale", anim_speed) # get time for 1 step * player vel
+		
+		if footstep_delay.is_stopped() and is_on_floor():
+			footstep_delay.start()
+			sound_footstep.pitch_scale = randf_range(75, 125) / 100
+			sound_footstep.play()
+		
+	else:
+		state_machine.travel("idle")
 	
 	
 	
@@ -190,25 +201,19 @@ func _physics_process(delta):
 	if direction:
 		velocity.x = direction.x * SPEED
 		velocity.z = direction.z * SPEED
-		
-		if footstep_delay.is_stopped() and is_on_floor():
-			footstep_delay.start()
-			sound_footstep.pitch_scale = randf_range(75, 125) / 100
-			sound_footstep.play()
-			
+	
 	else:
 		velocity.x = move_toward(velocity.x, 0, SPEED)
 		velocity.z = move_toward(velocity.z, 0, SPEED)
 	
 	move_and_slide()
 	
+	
+	
+	
 
 # process is the player throwing mechanic and healthbar code
 func _process(_delta):
-	
-	# For debugging the save system
-	#var save = SaveGame.new()
-	#print(save.load_game().level)
 	
 	# Handle picking up RIGID BODIES
 	if (NearestObject() and NearestObject() is RigidBody3D and global_position.distance_to(NearestObject().global_position) <= PICKUP_RANGE) and isHolding == false:
@@ -274,7 +279,7 @@ func _process(_delta):
 					object.global_position = holdpoint_backup.global_position
 			
 			
-			object.apply_force(force * THROW_FORCE)
+			object.apply_impulse(force * THROW_FORCE)
 			
 			object = null
 		
