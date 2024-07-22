@@ -1,0 +1,40 @@
+[gd_scene load_steps=8 format=3 uid="uid://cvvftnad63kd4"]
+
+[ext_resource type="Script" path="res://Elements/assets/props/template/prop.gd" id="1_1uayg"]
+[ext_resource type="AudioStream" uid="uid://b2jgcpimq7mm8" path="res://Art/audio/collision.wav" id="2_bxw6u"]
+[ext_resource type="PackedScene" uid="uid://b1o680dbbxy4s" path="res://Art/blend/assets/picture_large.blend" id="2_ucr63"]
+[ext_resource type="Shader" path="res://Elements/assets/props/picture_image.gdshader" id="3_8opru"]
+[ext_resource type="Texture2D" uid="uid://batmtsqum2nm8" path="res://Art/textures/assets/wizard.png" id="4_6ooy7"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_ksfk1"]
+size = Vector3(4, 2, 0.319824)
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_5dudm"]
+render_priority = 0
+shader = ExtResource("3_8opru")
+shader_parameter/picture = ExtResource("4_6ooy7")
+
+[node name="PictureL" type="RigidBody3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
+mass = 15.0
+max_contacts_reported = 1
+contact_monitor = true
+script = ExtResource("1_1uayg")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0.155029)
+shape = SubResource("BoxShape3D_ksfk1")
+
+[node name="picture_large" parent="." instance=ExtResource("2_ucr63")]
+
+[node name="Picture_Large" parent="picture_large" index="0"]
+surface_material_override/1 = SubResource("ShaderMaterial_5dudm")
+
+[node name="Sound" type="AudioStreamPlayer3D" parent="."]
+stream = ExtResource("2_bxw6u")
+volume_db = -50.0
+max_distance = 15.0
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]
+
+[editable path="picture_large"]

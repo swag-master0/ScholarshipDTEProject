@@ -14,7 +14,7 @@
 [ext_resource type="Texture2D" uid="uid://bebs4m6uaixb7" path="res://Art/materials/walls/walls_noise.tres" id="9_b8x7o"]
 [ext_resource type="Texture2D" uid="uid://ydrsdeeq0ayc" path="res://Art/materials/walls/walls_normal.tres" id="10_fevyh"]
 [ext_resource type="PackedScene" uid="uid://dwuyqcbn1btlf" path="res://Elements/assets/props/pictureXL.tscn" id="14_u7g1x"]
-[ext_resource type="Shader" path="res://Elements/assets/props/pictureXL.gdshader" id="15_8sq3x"]
+[ext_resource type="Shader" path="res://Elements/assets/props/picture_image.gdshader" id="15_8sq3x"]
 [ext_resource type="Texture2D" uid="uid://bcsw4ar8qveyg" path="res://Art/textures/assets/caveman.jpg" id="16_htrd4"]
 [ext_resource type="PackedScene" uid="uid://ddmqlkxnxvnf6" path="res://Elements/assets/props/lamp.tscn" id="17_6y3mn"]
 

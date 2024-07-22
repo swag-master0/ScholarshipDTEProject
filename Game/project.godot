@@ -13,7 +13,7 @@ config_version=5
 config/name="WorkingTitle"
 run/main_scene="res://Elements/function/main_menu.tscn"
 config/features=PackedStringArray("4.2", "Forward Plus")
-config/icon="res://Art/textures/icon.svg"
+config/icon="res://Art/textures/misc/icon.svg"
 
 [autoload]
 
@@ -31,6 +31,7 @@ folder_colors={
 "res://Art/materials/walls/": "gray",
 "res://Art/textures/assets/": "gray",
 "res://Art/textures/hud/": "gray",
+"res://Art/textures/misc/": "gray",
 "res://Art/textures/palettes/": "gray",
 "res://Elements/": "blue",
 "res://Elements/assets/hostile/": "gray",

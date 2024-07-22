@@ -8,7 +8,8 @@
 		{
 			"name":"Scene",
 			"nodes":[
-				0
+				0,
+				1
 			]
 		}
 	],
@@ -16,12 +17,30 @@
 		{
 			"mesh":0,
 			"name":"Cylinder"
+		},
+		{
+			"mesh":1,
+			"name":"Collisions -colonly"
 		}
 	],
 	"materials":[
 		{
 			"doubleSided":true,
 			"name":"Material",
+			"pbrMetallicRoughness":{
+				"baseColorFactor":[
+					0.8002997636795044,
+					0.29494816064834595,
+					0.09187643229961395,
+					1
+				],
+				"metallicFactor":0,
+				"roughnessFactor":0.5
+			}
+		},
+		{
+			"doubleSided":true,
+			"name":"Material.001",
 			"pbrMetallicRoughness":{
 				"baseColorFactor":[
 					0.8002997636795044,
@@ -46,6 +65,20 @@
 					},
 					"indices":3,
 					"material":0
+				}
+			]
+		},
+		{
+			"name":"Cylinder.001",
+			"primitives":[
+				{
+					"attributes":{
+						"POSITION":4,
+						"NORMAL":5,
+						"TEXCOORD_0":6
+					},
+					"indices":3,
+					"material":1
 				}
 			]
 		}
@@ -84,6 +117,34 @@
 			"componentType":5123,
 			"count":564,
 			"type":"SCALAR"
+		},
+		{
+			"bufferView":4,
+			"componentType":5126,
+			"count":278,
+			"max":[
+				0.6448831558227539,
+				0.5290653705596924,
+				0.6448831558227539
+			],
+			"min":[
+				-0.6448831558227539,
+				-0.5,
+				-0.6448831558227539
+			],
+			"type":"VEC3"
+		},
+		{
+			"bufferView":5,
+			"componentType":5126,
+			"count":278,
+			"type":"VEC3"
+		},
+		{
+			"bufferView":6,
+			"componentType":5126,
+			"count":278,
+			"type":"VEC2"
 		}
 	],
 	"bufferViews":[
@@ -110,11 +171,29 @@
 			"byteLength":1128,
 			"byteOffset":8896,
 			"target":34963
+		},
+		{
+			"buffer":0,
+			"byteLength":3336,
+			"byteOffset":10024,
+			"target":34962
+		},
+		{
+			"buffer":0,
+			"byteLength":3336,
+			"byteOffset":13360,
+			"target":34962
+		},
+		{
+			"buffer":0,
+			"byteLength":2224,
+			"byteOffset":16696,
+			"target":34962
 		}
 	],
 	"buffers":[
 		{
-			"byteLength":10024,
+			"byteLength":18920,
 			"uri":"pot-e8075fe0ba918d0b7ea3e637f56d5164.bin"
 		}
 	]

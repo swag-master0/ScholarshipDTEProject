@@ -2,7 +2,7 @@
 
 [ext_resource type="PackedScene" uid="uid://dpnvhb6hxwohn" path="res://Art/blend/assets/picture_xlarge.blend" id="1_cr0a2"]
 [ext_resource type="Script" path="res://Elements/assets/props/template/prop.gd" id="1_esioc"]
-[ext_resource type="Shader" path="res://Elements/assets/props/pictureXL.gdshader" id="3_8qxqd"]
+[ext_resource type="Shader" path="res://Elements/assets/props/picture_image.gdshader" id="3_8qxqd"]
 [ext_resource type="Texture2D" uid="uid://c60vvo7qajvij" path="res://Art/textures/assets/horse.jpg" id="4_wcuhl"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_x1d8a"]

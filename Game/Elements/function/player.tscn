@@ -17,7 +17,7 @@
 [ext_resource type="Shader" path="res://Art/filters/colour_palette.gdshader" id="15_bbpvp"]
 [ext_resource type="Shader" path="res://Art/filters/quantisation.gdshader" id="16_dvf37"]
 [ext_resource type="Shader" path="res://Art/filters/sobel_outlines.gdshader" id="17_5fr21"]
-[ext_resource type="Texture2D" uid="uid://coovc1tanag1y" path="res://Art/textures/full_colours.png" id="18_18tbb"]
+[ext_resource type="Texture2D" uid="uid://coovc1tanag1y" path="res://Art/textures/misc/full_colours.png" id="18_18tbb"]
 [ext_resource type="Shader" path="res://Art/filters/pixellation.gdshader" id="19_uaq3q"]
 
 [sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_ijhnm"]
