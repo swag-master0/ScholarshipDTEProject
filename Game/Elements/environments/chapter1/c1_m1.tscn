@@ -26,17 +26,17 @@ var dialogue_triggered = false
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
-	pass
-	# I'm now skipping this, since it's causing fatal errors now
-	\"\"\"
-	for i in get_children():
+	await get_tree().create_timer(2).timeout
+	
+	
+	for i in self.get_children():
 		if i.is_in_group(\"player\"):
-			await get_tree().create_timer(2).timeout
 			
-			i.sendHintToPlayer(\"[wave][center][color=SILVER]Find the objective item\")
 			
-			#i.Dialogue(\"Go get me the objective item already. It's here somewhere.\")
-	\"\"\"
+			i.dialogue_queue.append(\"Hello\")
+			i.dialogue_queue.append(\"World!\")
+			
+			i.Dialogue()
 
 
 func _on_tutorial_trigger_body_entered(body):

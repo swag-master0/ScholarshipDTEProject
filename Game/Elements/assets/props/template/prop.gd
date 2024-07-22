@@ -19,7 +19,7 @@ func _on_body_entered(_body):
 		sound.play()
 
 
-func _process(delta):
+func _process(_delta):
 	if self.position.y < -500:
 		self.queue_free()
 		

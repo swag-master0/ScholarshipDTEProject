@@ -1,5 +1,9 @@
 extends CharacterBody3D
 
+func TOP():
+	pass 
+	# Literally only here so I have an easier way getting around function hell.
+	# Click top in the methods list, and you're at the variables
 
 
 # INFO: PLAYER VARIABLES
@@ -85,6 +89,7 @@ var canPause = true
 var selectionsound = false
 var levelchangetriggered = false
 var healthvisualindicator = false
+var dialoguespeaking = false
 
 var tutorial_pickup = false
 var tutorial_proximitydrop = false
@@ -98,6 +103,7 @@ var main_menu = "res://Elements/function/main_menu.tscn"
 @export var object : RigidBody3D
 @export var level_completed : bool = false
 @export var player_hub : String = "res://Elements/environments/misc/player_hub.tscn"
+@export var dialogue_queue : Array = [] 
 
 
 
@@ -112,7 +118,7 @@ func _ready():
 	
 	
 	# the funny
-	print_rich("[font_size=120][color=CORNFLOWER_BLUE][wave]heck you")
+#	print_rich("[font_size=120][color=CORNFLOWER_BLUE][wave]heck you")
 	
 	if SAVE_GAME:
 		var save_system = SaveGame.new()
@@ -135,6 +141,7 @@ func _input(event):
 		
 
 func _physics_process(delta):
+	
 	if !is_on_floor():
 		velocity.y -= gravity * delta * JUMP_FALLMULTIPLIER
 	
@@ -214,7 +221,9 @@ func _physics_process(delta):
 
 # process is the player throwing mechanic and healthbar code
 func _process(_delta):
+	Dialogue()
 	
+	#print(dialogue_queue)
 	# Handle picking up RIGID BODIES
 	if (NearestObject() and NearestObject() is RigidBody3D and global_position.distance_to(NearestObject().global_position) <= PICKUP_RANGE) and isHolding == false:
 		
@@ -408,30 +417,40 @@ func _hinttext_timeout():
 
 
 # INFO: DIALOGUE SYSTEM
-# NOTE: This is probably gonna get removed
-func Dialogue(dialogue : String, delay : float = 0.05):
-	hud_dialogue.visible = true
-	
-	hud_dialogue.text = "[center]" + dialogue
-	hud_dialoguedelay.wait_time = delay
+func Dialogue(text_speed : float = 0.05, time_until_continue : float = 4):
 	
 	
-	for i in dialogue.length():
-		hud_dialogue.visible_characters = i + 1
+	if dialoguespeaking == false and !dialogue_queue.is_empty():
+		dialoguespeaking = true
 		
-		sound_dialogue.pitch_scale = randf_range(50, 150) / 100
-		sound_dialogue.play()
+		for i in dialogue_queue:
+			var dialogue : String = i
+			dialogue_queue.erase(i)
+			
+			hud_dialogue.visible = true
+			hud_dialogue.text = dialogue
+			hud_dialoguedelay.wait_time = text_speed
+			
+			for x in dialogue.length():
+				hud_dialogue.visible_characters = x + 1
+				
+				sound_dialogue.pitch_scale = randf_range(50, 150) / 100
+				sound_dialogue.play()
+				
+				hud_dialoguedelay.start()
+				await hud_dialoguedelay.timeout
 		
-		hud_dialoguedelay.start()
-		await hud_dialoguedelay.timeout
 		
-		# restarts this timer after every character
-		hud_dialogueremove.start()
-
+		
+		await get_tree().create_timer(time_until_continue).timeout
+		dialoguespeaking = false
+		hud_dialogue.visible = false
+		
 
 func _on_remove_characters_timeout():
 	hud_dialogue.visible = false
 	hud_dialogue.text = ""
+	
 
 
 
