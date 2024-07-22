@@ -90,7 +90,6 @@ var selectionsound = false
 var levelchangetriggered = false
 var healthvisualindicator = false
 var dialoguespeaking = false
-var oldcampos = 0
 
 var tutorial_pickup = false
 var tutorial_proximitydrop = false
@@ -328,20 +327,6 @@ func _process(_delta):
 	
 	if level_completed:
 		Nextlevel()
-	
-	
-	# wind sounds
-	if !oldcampos:
-		oldcampos = camera.position
-	elif oldcampos != camera.position:
-		var dist = camera.position.distance_squared_to(oldcampos)
-		print(dist)
-		
-		sound_select.volume_db = dist - 20
-		sound_select.autoplay = true
-		sound_select.playing = true
-		
-	
 	
 	
 	if self.global_position.y <= -1000:
