@@ -1,29 +1,8 @@
-[gd_scene load_steps=5 format=3 uid="uid://cucaydsdot6k0"]
+[gd_scene load_steps=2 format=3 uid="uid://dmkhkm80jpdqd"]
 
-[ext_resource type="Script" path="res://Elements/assets/props/template/prop.gd" id="1_lpfim"]
-[ext_resource type="PackedScene" uid="uid://dwy11mvp6tfit" path="res://Art/blend/assets/shelf.blend" id="2_65oeg"]
-[ext_resource type="AudioStream" uid="uid://b2jgcpimq7mm8" path="res://Art/audio/collision.wav" id="3_s5eiu"]
+[ext_resource type="PackedScene" uid="uid://dwy11mvp6tfit" path="res://Art/blend/assets/prop/shelf.blend" id="1_nqmf2"]
 
-[sub_resource type="BoxShape3D" id="BoxShape3D_tcb5b"]
-size = Vector3(4.05725, 4.60071, 1.37933)
+[node name="shelf" instance=ExtResource("1_nqmf2")]
 
-[node name="Shelf" type="RigidBody3D"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
-mass = 30.0
-max_contacts_reported = 1
-contact_monitor = true
-script = ExtResource("1_lpfim")
-
-[node name="shelf" parent="." instance=ExtResource("2_65oeg")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.256963, 0)
-
-[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0545044, 1.30035, 0.0256042)
-shape = SubResource("BoxShape3D_tcb5b")
-
-[node name="Sound" type="AudioStreamPlayer3D" parent="."]
-stream = ExtResource("3_s5eiu")
-volume_db = -50.0
-max_distance = 15.0
-
-[connection signal="body_entered" from="." to="." method="_on_body_entered"]
+[node name="Shelf -rigid" parent="." index="0"]
+mass = 40.0

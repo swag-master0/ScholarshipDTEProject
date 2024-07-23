@@ -1,0 +1,8 @@
+[gd_scene load_steps=2 format=3 uid="uid://h5siu0krokek"]
+
+[ext_resource type="PackedScene" uid="uid://ch462kej8uqrs" path="res://Art/blend/assets/prop/table_3.blend" id="1_lpmn4"]
+
+[node name="table_3" instance=ExtResource("1_lpmn4")]
+
+[node name="Table_3 -rigid" parent="." index="0"]
+mass = 20.0

@@ -1,0 +1,8 @@
+[gd_scene load_steps=2 format=3 uid="uid://currpdc0rou40"]
+
+[ext_resource type="PackedScene" uid="uid://dymow0g7scca8" path="res://Art/blend/assets/prop/couch_small.blend" id="1_jtq06"]
+
+[node name="couch_small" instance=ExtResource("1_jtq06")]
+
+[node name="CouchSmall -rigid" parent="." index="0"]
+mass = 25.0

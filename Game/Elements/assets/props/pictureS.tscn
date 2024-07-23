@@ -2,8 +2,8 @@
 
 [ext_resource type="Script" path="res://Elements/assets/props/template/prop.gd" id="1_1uayg"]
 [ext_resource type="AudioStream" uid="uid://b2jgcpimq7mm8" path="res://Art/audio/collision.wav" id="2_bxw6u"]
-[ext_resource type="PackedScene" uid="uid://1fe0383qt5xy" path="res://Art/blend/assets/picture_small.blend" id="2_of8o0"]
-[ext_resource type="Shader" path="res://Elements/assets/props/picture_image.gdshader" id="3_clafp"]
+[ext_resource type="PackedScene" uid="uid://1fe0383qt5xy" path="res://Art/blend/assets/prop/picture_small.blend" id="2_of8o0"]
+[ext_resource type="Shader" path="res://Elements/assets/props/materials/picture_image.gdshader" id="3_clafp"]
 [ext_resource type="Texture2D" uid="uid://bysh1ur37uogr" path="res://Art/textures/assets/real.jpg" id="4_v5u4x"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_tcb5b"]

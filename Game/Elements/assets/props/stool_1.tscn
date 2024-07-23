@@ -1,0 +1,8 @@
+[gd_scene load_steps=2 format=3 uid="uid://1k5dw6s6pdvj"]
+
+[ext_resource type="PackedScene" uid="uid://cndqn0lkcgo5i" path="res://Art/blend/assets/prop/stool_1.blend" id="1_f3810"]
+
+[node name="stool_1" instance=ExtResource("1_f3810")]
+
+[node name="Stool_1 -rigid" parent="." index="0"]
+mass = 10.0

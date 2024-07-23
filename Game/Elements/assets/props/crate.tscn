@@ -1,0 +1,8 @@
+[gd_scene load_steps=2 format=3 uid="uid://dhaxwpsinvu6u"]
+
+[ext_resource type="PackedScene" uid="uid://ejqcxr4vpya" path="res://Art/blend/assets/prop/crate.blend" id="1_u8y3l"]
+
+[node name="crate" instance=ExtResource("1_u8y3l")]
+
+[node name="Crate -rigid" parent="." index="0"]
+mass = 15.0

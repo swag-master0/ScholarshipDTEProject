@@ -1,0 +1,8 @@
+[gd_scene load_steps=2 format=3 uid="uid://c775kwttbjh40"]
+
+[ext_resource type="PackedScene" uid="uid://bck2n8xf7lgbq" path="res://Art/blend/assets/prop/vase.blend" id="1_ejc5v"]
+
+[node name="vase" instance=ExtResource("1_ejc5v")]
+
+[node name="Vase -rigid" parent="." index="0"]
+mass = 10.0

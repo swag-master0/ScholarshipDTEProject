@@ -1,31 +1,5 @@
-[gd_scene load_steps=5 format=3 uid="uid://dhejktumttlcs"]
+[gd_scene load_steps=2 format=3 uid="uid://dhejktumttlcs"]
 
-[ext_resource type="Script" path="res://Elements/assets/props/template/prop.gd" id="1_mop51"]
 [ext_resource type="PackedScene" uid="uid://v7xe0iekhe20" path="res://Art/blend/assets/bench.blend" id="2_xfdru"]
-[ext_resource type="AudioStream" uid="uid://b2jgcpimq7mm8" path="res://Art/audio/collision.wav" id="3_5vcsq"]
 
-[sub_resource type="BoxShape3D" id="BoxShape3D_t3it8"]
-size = Vector3(2, 2.37122, 4)
-
-[node name="Bench" type="RigidBody3D"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
-mass = 5.0
-max_contacts_reported = 1
-contact_monitor = true
-script = ExtResource("1_mop51")
-
-[node name="bench" parent="." instance=ExtResource("2_xfdru")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.565295, 0)
-
-[node name="Sound" type="AudioStreamPlayer3D" parent="."]
-stream = ExtResource("3_5vcsq")
-volume_db = -50.0
-max_distance = 15.0
-
-[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.194779, 0)
-shape = SubResource("BoxShape3D_t3it8")
-
-[connection signal="body_entered" from="." to="." method="_on_body_entered"]
-
-[editable path="bench"]
+[node name="bench" instance=ExtResource("2_xfdru")]

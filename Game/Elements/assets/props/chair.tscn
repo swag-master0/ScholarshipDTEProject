@@ -1,0 +1,9 @@
+[gd_scene load_steps=2 format=3 uid="uid://i43wpwf0q6em"]
+
+[ext_resource type="PackedScene" uid="uid://cmtupm8x7ns2t" path="res://Art/blend/assets/prop/chair.blend" id="1_52he4"]
+
+[node name="chair" instance=ExtResource("1_52he4")]
+
+[node name="Chair -rigid" parent="." index="0"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0)
+mass = 10.0
