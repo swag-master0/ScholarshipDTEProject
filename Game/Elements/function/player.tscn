@@ -1,8 +1,10 @@
-[gd_scene load_steps=64 format=3 uid="uid://bcou7suhphdrp"]
+[gd_scene load_steps=74 format=3 uid="uid://bcou7suhphdrp"]
 
 [ext_resource type="Script" path="res://Elements/function/player.gd" id="1_0ncw4"]
 [ext_resource type="PackedScene" uid="uid://4lv8cegk7f53" path="res://Art/blend/assets/main/player.blend" id="2_ww4ji"]
 [ext_resource type="Texture2D" uid="uid://b7b8lqiwyngpq" path="res://Art/textures/assets/player_eyes-1.png" id="3_ne7oo"]
+[ext_resource type="Shader" path="res://Art/materials/player/player_hat.gdshader" id="3_pbnjn"]
+[ext_resource type="Shader" path="res://Art/materials/player/player_skin.gdshader" id="4_5kk05"]
 [ext_resource type="Texture2D" uid="uid://ctnbrrls3ra0x" path="res://Art/textures/assets/player_eyes-2.png" id="4_m8bfp"]
 [ext_resource type="PackedScene" uid="uid://cft1b4l0aljye" path="res://Elements/function/info.tscn" id="5_7n0o5"]
 [ext_resource type="Shader" path="res://Art/filters/a-os_filter.gdshader" id="6_k3b8r"]
@@ -140,6 +142,48 @@ graph_offset = Vector2(874, -73)
 radius = 0.474599
 height = 2.30568
 
+[sub_resource type="Gradient" id="Gradient_863f6"]
+interpolation_mode = 1
+offsets = PackedFloat32Array(0, 0.55)
+
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_snykk"]
+noise_type = 2
+frequency = 0.3981
+fractal_type = 0
+
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_4ko1r"]
+in_3d_space = true
+as_normal_map = true
+color_ramp = SubResource("Gradient_863f6")
+noise = SubResource("FastNoiseLite_snykk")
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_booyl"]
+render_priority = 0
+shader = ExtResource("3_pbnjn")
+shader_parameter/normal = SubResource("NoiseTexture2D_4ko1r")
+
+[sub_resource type="Gradient" id="Gradient_untfa"]
+interpolation_mode = 1
+offsets = PackedFloat32Array(0, 0.045)
+
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_ln41e"]
+noise_type = 2
+seed = 5
+frequency = 0.0138
+fractal_type = 0
+cellular_distance_function = 1
+cellular_return_type = 4
+
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_bhqf6"]
+as_normal_map = true
+color_ramp = SubResource("Gradient_untfa")
+noise = SubResource("FastNoiseLite_ln41e")
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_mhwhj"]
+render_priority = 0
+shader = ExtResource("4_5kk05")
+shader_parameter/normal = SubResource("NoiseTexture2D_bhqf6")
+
 [sub_resource type="SpriteFrames" id="SpriteFrames_n15er"]
 animations = [{
 "frames": [{
@@ -260,17 +304,17 @@ shader_parameter/VIEWPORT_TEXTURE = SubResource("ViewportTexture_kwbue")
 [sub_resource type="ViewportTexture" id="ViewportTexture_nkgtc"]
 viewport_path = NodePath("A-OS")
 
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_1odvh"]
-bg_color = Color(0.6, 0.6, 0.6, 0)
-
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_btmbw"]
-bg_color = Color(0.188235, 1, 0.113725, 1)
-
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_nqrcn"]
 bg_color = Color(0.752941, 0, 0, 1)
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_lr4wr"]
 bg_color = Color(1, 1, 1, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_1odvh"]
+bg_color = Color(0.6, 0.6, 0.6, 0)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_btmbw"]
+bg_color = Color(0.188235, 1, 0.113725, 1)
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_gdws8"]
 animations = [{
@@ -324,25 +368,29 @@ shape = SubResource("CapsuleShape3D_nrsfh")
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1, 0)
 
 [node name="Skeleton3D" parent="PlayerModel/player/Armature" index="0"]
-bones/0/position = Vector3(-0.00183521, -0.0752814, 0)
-bones/1/rotation = Quaternion(0.000486118, -0.000719598, 0.817826, 0.575466)
-bones/2/rotation = Quaternion(-0.000761064, -0.000507966, 0.288305, 0.957538)
-bones/3/rotation = Quaternion(-0.000786557, -0.000133238, 0.398386, 0.917218)
+bones/0/position = Vector3(-0.00183521, -0.115159, 0)
+bones/1/rotation = Quaternion(0.00289401, -0.0042852, 0.808842, 0.588003)
+bones/2/rotation = Quaternion(-0.0045243, -0.00301897, 0.264424, 0.964391)
+bones/3/rotation = Quaternion(-0.0048483, -0.000821905, 0.341659, 0.939811)
 bones/4/rotation = Quaternion(-1.76656e-06, -7.13439e-08, 0.0895694, 0.995981)
-bones/5/rotation = Quaternion(0.000548283, 0.000685262, -0.842665, 0.538438)
-bones/6/rotation = Quaternion(-0.000745694, 0.000535676, -0.2771, 0.960841)
-bones/7/rotation = Quaternion(-0.000890161, 0.000139895, -0.352204, 0.935923)
-bones/8/rotation = Quaternion(-0.00018147, 6.64165e-06, -0.0784582, 0.996917)
-bones/9/rotation = Quaternion(0.00499463, 0, 0, 0.999988)
-bones/10/rotation = Quaternion(0.705876, -0.0416946, -0.705876, 0.0416946)
-bones/11/rotation = Quaternion(7.48765e-09, 1.57428e-08, -0.137252, 0.990536)
+bones/5/rotation = Quaternion(0.00337246, 0.00421491, -0.811548, 0.584261)
+bones/6/rotation = Quaternion(-0.00457457, 0.00328626, -0.244375, 0.969664)
+bones/7/rotation = Quaternion(-0.00537191, 0.000844252, -0.371818, 0.92829)
+bones/8/rotation = Quaternion(-0.00109309, 4.00076e-05, -0.0977854, 0.995207)
+bones/9/rotation = Quaternion(0.0296845, 0, 0, 0.999559)
+bones/10/rotation = Quaternion(0.703919, -0.0670673, -0.703919, 0.0670673)
+bones/11/rotation = Quaternion(1.08873e-08, 1.56204e-08, -0.184495, 0.982834)
 bones/12/rotation = Quaternion(2.11264e-09, -5.16456e-15, -0.0279828, 0.999608)
-bones/13/rotation = Quaternion(0.705874, 0.0417423, 0.705874, 0.0417423)
-bones/14/rotation = Quaternion(7.49023e-09, -1.57426e-08, 0.137366, 0.99052)
+bones/13/rotation = Quaternion(0.703945, 0.0667973, 0.703945, 0.0667973)
+bones/14/rotation = Quaternion(1.08875e-08, -1.56204e-08, 0.184496, 0.982833)
 bones/15/rotation = Quaternion(2.11486e-09, 1.65905e-15, 0.0280122, 0.999608)
 
+[node name="Player" parent="PlayerModel/player/Armature/Skeleton3D" index="0"]
+surface_material_override/1 = SubResource("ShaderMaterial_booyl")
+surface_material_override/2 = SubResource("ShaderMaterial_mhwhj")
+
 [node name="FaceAttachment" type="BoneAttachment3D" parent="PlayerModel/player/Armature/Skeleton3D" index="1"]
-transform = Transform3D(1, 0, 0, 0, 0.99995, -0.00998913, 0, 0.00998913, 0.99995, -0.00183521, 0.509262, 0)
+transform = Transform3D(1, 0, 0, 0, 0.998238, -0.0593428, 0, 0.0593428, 0.998238, -0.00183521, 0.469385, 0)
 bone_name = "Head"
 bone_idx = 9
 
@@ -425,6 +473,7 @@ grow_horizontal = 2
 grow_vertical = 2
 
 [node name="Dialogue" type="RichTextLabel" parent="HUD"]
+visible = false
 layout_mode = 1
 anchors_preset = 5
 anchor_left = 0.5
@@ -482,6 +531,46 @@ grow_vertical = 2
 color = Color(1, 1, 1, 0)
 
 [node name="Timer" type="Timer" parent="HUD/HurtVFX"]
+
+[node name="Health (WIP)" type="TextureProgressBar" parent="HUD"]
+visible = false
+texture_filter = 1
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -180.0
+offset_top = -193.0
+offset_right = 180.0
+grow_horizontal = 2
+grow_vertical = 0
+max_value = 20.0
+value = 11.0
+
+[node name="HealthWhite" type="ProgressBar" parent="HUD/Health (WIP)"]
+visible = false
+z_index = -1
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -180.0
+offset_top = -50.0
+offset_right = 180.0
+grow_horizontal = 2
+grow_vertical = 0
+pivot_offset = Vector2(180, 25)
+theme_override_styles/background = SubResource("StyleBoxFlat_nqrcn")
+theme_override_styles/fill = SubResource("StyleBoxFlat_lr4wr")
+max_value = 20.0
+value = 10.0
+allow_greater = true
+allow_lesser = true
+show_percentage = false
 
 [node name="Health" type="ProgressBar" parent="HUD"]
 layout_mode = 1

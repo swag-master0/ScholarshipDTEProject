@@ -28,6 +28,7 @@ folder_colors={
 "res://Art/blend/levels_chapter2/": "gray",
 "res://Art/blend/misc/": "gray",
 "res://Art/materials/floor/": "gray",
+"res://Art/materials/player/": "gray",
 "res://Art/materials/walls/": "gray",
 "res://Art/textures/assets/": "gray",
 "res://Art/textures/hud/": "gray",
