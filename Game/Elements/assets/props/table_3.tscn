@@ -1,8 +1,12 @@
-[gd_scene load_steps=2 format=3 uid="uid://h5siu0krokek"]
+[gd_scene load_steps=3 format=3 uid="uid://h5siu0krokek"]
 
 [ext_resource type="PackedScene" uid="uid://ch462kej8uqrs" path="res://Art/blend/assets/prop/table_3.blend" id="1_lpmn4"]
+[ext_resource type="Script" path="res://Elements/assets/props/template/prop.gd" id="2_0a5x3"]
 
 [node name="table_3" instance=ExtResource("1_lpmn4")]
 
 [node name="Table_3 -rigid" parent="." index="0"]
 mass = 20.0
+script = ExtResource("2_0a5x3")
+
+[node name="Sound" type="AudioStreamPlayer3D" parent="Table_3 -rigid" index="2"]

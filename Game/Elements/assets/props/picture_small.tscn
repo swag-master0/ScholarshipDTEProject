@@ -1,0 +1,13 @@
+[gd_scene load_steps=3 format=3 uid="uid://dqaxkncc187ot"]
+
+[ext_resource type="PackedScene" uid="uid://1fe0383qt5xy" path="res://Art/blend/assets/prop/picture_small.blend" id="1_phnge"]
+[ext_resource type="Script" path="res://Elements/assets/props/template/prop.gd" id="2_vyaql"]
+
+[node name="picture_small" instance=ExtResource("1_phnge")]
+
+[node name="Picture_Small -rigid" parent="." index="0"]
+mass = 15.0
+script = ExtResource("2_vyaql")
+
+[node name="Sound" type="AudioStreamPlayer3D" parent="Picture_Small -rigid" index="2"]
+transform = Transform3D(1, 0, 0, 0, 0, 1, 0, -1, 0, 0, 0, 0)

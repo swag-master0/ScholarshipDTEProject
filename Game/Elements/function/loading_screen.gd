@@ -40,6 +40,9 @@ func _enter_tree():
 
 
 func scene_transition():
+	print_rich("[color=PINK]Scene transition... ")
+	print("")
+	print("")
 	transition(false)
 	
 	await get_tree().create_timer(1).timeout

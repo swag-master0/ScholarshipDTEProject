@@ -1,0 +1,12 @@
+[gd_scene load_steps=3 format=3 uid="uid://cdxkrkn34253v"]
+
+[ext_resource type="PackedScene" uid="uid://b1o680dbbxy4s" path="res://Art/blend/assets/prop/picture_large.blend" id="1_6ka8l"]
+[ext_resource type="Script" path="res://Elements/assets/props/template/prop.gd" id="2_fy2o3"]
+
+[node name="picture_large" instance=ExtResource("1_6ka8l")]
+
+[node name="Picture_Large -rigid" parent="." index="0"]
+mass = 20.0
+script = ExtResource("2_fy2o3")
+
+[node name="Sound" type="AudioStreamPlayer3D" parent="Picture_Large -rigid" index="2"]

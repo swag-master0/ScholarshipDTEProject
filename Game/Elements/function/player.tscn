@@ -1,14 +1,16 @@
-[gd_scene load_steps=59 format=3 uid="uid://bcou7suhphdrp"]
+[gd_scene load_steps=64 format=3 uid="uid://bcou7suhphdrp"]
 
 [ext_resource type="Script" path="res://Elements/function/player.gd" id="1_0ncw4"]
-[ext_resource type="PackedScene" uid="uid://4lv8cegk7f53" path="res://Art/blend/assets/player.blend" id="2_ww4ji"]
+[ext_resource type="PackedScene" uid="uid://4lv8cegk7f53" path="res://Art/blend/assets/main/player.blend" id="2_ww4ji"]
 [ext_resource type="Texture2D" uid="uid://b7b8lqiwyngpq" path="res://Art/textures/assets/player_eyes-1.png" id="3_ne7oo"]
 [ext_resource type="Texture2D" uid="uid://ctnbrrls3ra0x" path="res://Art/textures/assets/player_eyes-2.png" id="4_m8bfp"]
 [ext_resource type="PackedScene" uid="uid://cft1b4l0aljye" path="res://Elements/function/info.tscn" id="5_7n0o5"]
+[ext_resource type="Shader" path="res://Art/filters/a-os_filter.gdshader" id="6_k3b8r"]
 [ext_resource type="Texture2D" uid="uid://cix4ak6aasuam" path="res://Art/textures/hud/selection.png" id="6_nvyjp"]
 [ext_resource type="Texture2D" uid="uid://dmnjpb8ox2bsu" path="res://Art/textures/hud/mouse1-1.png" id="7_wsnhi"]
 [ext_resource type="Texture2D" uid="uid://cvguvo850eb22" path="res://Art/textures/hud/mouse1-2.png" id="8_hj47o"]
 [ext_resource type="PackedScene" uid="uid://233quw6ftjqa" path="res://Elements/function/options_menu.tscn" id="9_vjmmq"]
+[ext_resource type="PackedScene" uid="uid://d3qcg4xjm6x5x" path="res://Elements/function/a-os.tscn" id="10_f5mm7"]
 [ext_resource type="AudioStream" uid="uid://w2v2x3att67l" path="res://Art/audio/click.wav" id="10_iq0rl"]
 [ext_resource type="AudioStream" uid="uid://eiiqal51bdu" path="res://Art/audio/player_select.wav" id="11_bg06q"]
 [ext_resource type="AudioStream" uid="uid://bdxfhhvgttnt5" path="res://Art/audio/player_death.wav" id="12_3vcwe"]
@@ -247,6 +249,17 @@ size = Vector3(2, 3, 2)
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_j7m3i"]
 
+[sub_resource type="ViewportTexture" id="ViewportTexture_kwbue"]
+viewport_path = NodePath("A-OS")
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_qxjs8"]
+resource_local_to_scene = true
+shader = ExtResource("6_k3b8r")
+shader_parameter/VIEWPORT_TEXTURE = SubResource("ViewportTexture_kwbue")
+
+[sub_resource type="ViewportTexture" id="ViewportTexture_nkgtc"]
+viewport_path = NodePath("A-OS")
+
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_1odvh"]
 bg_color = Color(0.6, 0.6, 0.6, 0)
 
@@ -311,25 +324,25 @@ shape = SubResource("CapsuleShape3D_nrsfh")
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1, 0)
 
 [node name="Skeleton3D" parent="PlayerModel/player/Armature" index="0"]
-bones/0/position = Vector3(-0.00183521, -0.115069, 0)
-bones/1/rotation = Quaternion(0.00288818, -0.00427655, 0.808864, 0.587973)
-bones/2/rotation = Quaternion(-0.00451745, -0.0030144, 0.264468, 0.964379)
-bones/3/rotation = Quaternion(-0.00482408, -0.000817798, 0.342002, 0.939687)
+bones/0/position = Vector3(-0.00183521, -0.0752814, 0)
+bones/1/rotation = Quaternion(0.000486118, -0.000719598, 0.817826, 0.575466)
+bones/2/rotation = Quaternion(-0.000761064, -0.000507966, 0.288305, 0.957538)
+bones/3/rotation = Quaternion(-0.000786557, -0.000133238, 0.398386, 0.917218)
 bones/4/rotation = Quaternion(-1.76656e-06, -7.13439e-08, 0.0895694, 0.995981)
-bones/5/rotation = Quaternion(0.0033556, 0.00419384, -0.811742, 0.583992)
-bones/6/rotation = Quaternion(-0.00456344, 0.00327827, -0.244471, 0.96964)
-bones/7/rotation = Quaternion(-0.005361, 0.000842537, -0.37177, 0.928309)
-bones/8/rotation = Quaternion(-0.00109087, 3.99264e-05, -0.0977384, 0.995212)
-bones/9/rotation = Quaternion(0.0296395, 0, 0, 0.999561)
-bones/10/rotation = Quaternion(0.703924, -0.0670102, -0.703925, 0.0670102)
-bones/11/rotation = Quaternion(1.11168e-08, 1.56207e-08, -0.184416, 0.982848)
+bones/5/rotation = Quaternion(0.000548283, 0.000685262, -0.842665, 0.538438)
+bones/6/rotation = Quaternion(-0.000745694, 0.000535676, -0.2771, 0.960841)
+bones/7/rotation = Quaternion(-0.000890161, 0.000139895, -0.352204, 0.935923)
+bones/8/rotation = Quaternion(-0.00018147, 6.64165e-06, -0.0784582, 0.996917)
+bones/9/rotation = Quaternion(0.00499463, 0, 0, 0.999988)
+bones/10/rotation = Quaternion(0.705876, -0.0416946, -0.705876, 0.0416946)
+bones/11/rotation = Quaternion(7.48765e-09, 1.57428e-08, -0.137252, 0.990536)
 bones/12/rotation = Quaternion(2.11264e-09, -5.16456e-15, -0.0279828, 0.999608)
-bones/13/rotation = Quaternion(0.703949, 0.0667516, 0.703949, 0.0667516)
-bones/14/rotation = Quaternion(1.11167e-08, -1.56207e-08, 0.184418, 0.982848)
+bones/13/rotation = Quaternion(0.705874, 0.0417423, 0.705874, 0.0417423)
+bones/14/rotation = Quaternion(7.49023e-09, -1.57426e-08, 0.137366, 0.99052)
 bones/15/rotation = Quaternion(2.11486e-09, 1.65905e-15, 0.0280122, 0.999608)
 
 [node name="FaceAttachment" type="BoneAttachment3D" parent="PlayerModel/player/Armature/Skeleton3D" index="1"]
-transform = Transform3D(1, 0, 0, 0, 0.998243, -0.059253, 0, 0.059253, 0.998243, -0.00183521, 0.469475, 0)
+transform = Transform3D(1, 0, 0, 0, 0.99995, -0.00998913, 0, 0.00998913, 0.99995, -0.00183521, 0.509262, 0)
 bone_name = "Head"
 bone_idx = 9
 
@@ -412,7 +425,6 @@ grow_horizontal = 2
 grow_vertical = 2
 
 [node name="Dialogue" type="RichTextLabel" parent="HUD"]
-visible = false
 layout_mode = 1
 anchors_preset = 5
 anchor_left = 0.5
@@ -426,6 +438,22 @@ pivot_offset = Vector2(250, 75)
 theme_override_colors/default_color = Color(1, 1, 1, 1)
 theme_override_font_sizes/normal_font_size = 22
 bbcode_enabled = true
+
+[node name="A-OS Visual" type="TextureRect" parent="HUD/Dialogue"]
+material = SubResource("ShaderMaterial_qxjs8")
+layout_mode = 1
+anchors_preset = 6
+anchor_left = 1.0
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+offset_left = -150.0
+offset_top = -75.0
+offset_bottom = 75.0
+grow_horizontal = 0
+grow_vertical = 2
+texture = SubResource("ViewportTexture_nkgtc")
+expand_mode = 5
 
 [node name="ColorRect" type="ColorRect" parent="HUD/Dialogue"]
 z_index = -1
@@ -714,6 +742,8 @@ offset_right = 3.0
 offset_bottom = 3.0
 grow_horizontal = 2
 grow_vertical = 2
+
+[node name="A-OS" parent="." instance=ExtResource("10_f5mm7")]
 
 [node name="Audio" type="Node" parent="."]
 

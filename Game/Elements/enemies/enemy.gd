@@ -17,26 +17,26 @@ var gravity = ProjectSettings.get_setting("physics/3d/default_gravity")
 
 # navigating
 func _physics_process(delta):
-	
 	var direction = Vector3()
 	
-	for i in range(self.get_parent_node_3d().get_children().size()):
-		
-		if self.get_parent_node_3d().get_children()[i] is CharacterBody3D and self.get_parent_node_3d().get_children()[i].is_in_group("player") and !$AnimationPlayer.is_playing():
-			var player = self.get_parent_node_3d().get_children()[i]
+	if ready:
+		for i in range(self.get_parent_node_3d().get_children().size()):
 			
-			if light_based and ready:
-				nav.target_position = player.position
+			if self.get_parent_node_3d().get_children()[i] is CharacterBody3D and self.get_parent_node_3d().get_children()[i].is_in_group("player") and !$AnimationPlayer.is_playing():
+				var player = self.get_parent_node_3d().get_children()[i]
 				
-			
-			elif !light_based:
-				raycast.target_position = player.global_position - global_position
-			
-				if raycast.get_collider() == player:
+				if light_based and ready:
 					nav.target_position = player.position
-			
-			else:
-				pass
+					
+				
+				elif !light_based:
+					raycast.target_position = player.global_position - global_position
+				
+					if raycast.get_collider() == player:
+						nav.target_position = player.position
+				
+				else:
+					pass
 	
 	
 	raycast.global_position = global_position

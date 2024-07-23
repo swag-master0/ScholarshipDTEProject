@@ -1,4 +1,4 @@
-[gd_scene load_steps=17 format=3 uid="uid://w2l3dpbjub7c"]
+[gd_scene load_steps=16 format=3 uid="uid://w2l3dpbjub7c"]
 
 [ext_resource type="PackedScene" uid="uid://b5c4qe603h5o" path="res://Elements/assets/hostile/explosive_barrel.tscn" id="1_5e1qi"]
 [ext_resource type="PackedScene" uid="uid://bcou7suhphdrp" path="res://Elements/function/player.tscn" id="2_adrog"]
@@ -10,7 +10,6 @@
 [ext_resource type="PackedScene" uid="uid://msdo88p274sw" path="res://Elements/function/objective.tscn" id="7_8sx0s"]
 [ext_resource type="PackedScene" uid="uid://bbb07r3hee2bp" path="res://Elements/assets/props/template/prop.tscn" id="8_6noad"]
 [ext_resource type="PackedScene" uid="uid://cihisq18677xu" path="res://Elements/function/objective_item.tscn" id="8_jt0ca"]
-[ext_resource type="PackedScene" uid="uid://ddmqlkxnxvnf6" path="res://Elements/assets/props/lamp.tscn" id="11_wrutl"]
 
 [sub_resource type="GDScript" id="GDScript_ur7ug"]
 resource_name = "c1_m3-functionality"
@@ -175,9 +174,6 @@ transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 9.3623
 transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 5.36239, 1, -22.8921)
 
 [node name="Props" type="Node" parent="."]
-
-[node name="Lamp" parent="Props" instance=ExtResource("11_wrutl")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 52.4658, -2.41186, -85.0602)
 
 [node name="ExplosiveBarrel" parent="Props" instance=ExtResource("1_5e1qi")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 39, 1.05, -49)

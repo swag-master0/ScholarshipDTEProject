@@ -1,8 +1,12 @@
-[gd_scene load_steps=2 format=3 uid="uid://currpdc0rou40"]
+[gd_scene load_steps=3 format=3 uid="uid://currpdc0rou40"]
 
 [ext_resource type="PackedScene" uid="uid://dymow0g7scca8" path="res://Art/blend/assets/prop/couch_small.blend" id="1_jtq06"]
+[ext_resource type="Script" path="res://Elements/assets/props/template/prop.gd" id="2_fysgu"]
 
 [node name="couch_small" instance=ExtResource("1_jtq06")]
 
 [node name="CouchSmall -rigid" parent="." index="0"]
 mass = 25.0
+script = ExtResource("2_fysgu")
+
+[node name="Sound" type="AudioStreamPlayer3D" parent="CouchSmall -rigid" index="2"]

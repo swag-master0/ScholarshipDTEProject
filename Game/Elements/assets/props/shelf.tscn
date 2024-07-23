@@ -1,8 +1,12 @@
-[gd_scene load_steps=2 format=3 uid="uid://dmkhkm80jpdqd"]
+[gd_scene load_steps=3 format=3 uid="uid://dmkhkm80jpdqd"]
 
 [ext_resource type="PackedScene" uid="uid://dwy11mvp6tfit" path="res://Art/blend/assets/prop/shelf.blend" id="1_nqmf2"]
+[ext_resource type="Script" path="res://Elements/assets/props/template/prop.gd" id="2_mkujy"]
 
 [node name="shelf" instance=ExtResource("1_nqmf2")]
 
 [node name="Shelf -rigid" parent="." index="0"]
 mass = 40.0
+script = ExtResource("2_mkujy")
+
+[node name="Sound" type="AudioStreamPlayer3D" parent="Shelf -rigid" index="2"]

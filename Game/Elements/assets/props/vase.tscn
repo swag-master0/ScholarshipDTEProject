@@ -1,8 +1,12 @@
-[gd_scene load_steps=2 format=3 uid="uid://c775kwttbjh40"]
+[gd_scene load_steps=3 format=3 uid="uid://c775kwttbjh40"]
 
 [ext_resource type="PackedScene" uid="uid://bck2n8xf7lgbq" path="res://Art/blend/assets/prop/vase.blend" id="1_ejc5v"]
+[ext_resource type="Script" path="res://Elements/assets/props/template/prop.gd" id="2_3od1b"]
 
 [node name="vase" instance=ExtResource("1_ejc5v")]
 
 [node name="Vase -rigid" parent="." index="0"]
 mass = 10.0
+script = ExtResource("2_3od1b")
+
+[node name="Sound" type="AudioStreamPlayer3D" parent="Vase -rigid" index="2"]

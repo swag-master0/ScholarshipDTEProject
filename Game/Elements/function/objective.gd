@@ -7,10 +7,13 @@ var player = null
 
 var player_colliding = false
 var objective_colliding = false
+var level_change_triggered = false
+
 
 
 func _process(_delta):
-	if player_colliding and objective_colliding:
+	if player_colliding and objective_colliding and !level_change_triggered:
+		level_change_triggered = true
 		ChangeScene()
 	
 	for i in self.get_overlapping_bodies():
@@ -22,7 +25,8 @@ func _on_body_entered(body):
 	if body.is_in_group("player") and ready:
 		player_colliding = true
 		
-		if is_instance_valid(body.object) and body.object.is_in_group("objective"):
+		if is_instance_valid(body.object) and body.object.is_in_group("objective") and !level_change_triggered:
+			level_change_triggered = true
 			ChangeScene()
 	
 	if body.is_in_group("objective"):
@@ -63,7 +67,7 @@ func ChangeScene():
 			
 			packed.pack(ObjectToSave)
 			objects_to_save.append(packed)
-	
+		
 	var save = SaveGame.new()
 	save.save_player_hub(objects_to_save, false)
 	

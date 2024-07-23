@@ -6,6 +6,9 @@ extends Node3D
 func _ready():
 	var save = SaveGame.new()
 	
+	await get_tree().create_timer(1).timeout
+	
+	# causes error ????
 	save.load_player_hub(self)
 	
 	animation_player.play("open")
@@ -17,6 +20,7 @@ func _ready():
 func _process(_delta):
 	if Input.is_action_just_pressed("escape"):
 		save_hub_objects()
+	
 
 
 

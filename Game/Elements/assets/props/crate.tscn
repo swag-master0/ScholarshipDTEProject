@@ -1,8 +1,12 @@
-[gd_scene load_steps=2 format=3 uid="uid://dhaxwpsinvu6u"]
+[gd_scene load_steps=3 format=3 uid="uid://dhaxwpsinvu6u"]
 
 [ext_resource type="PackedScene" uid="uid://ejqcxr4vpya" path="res://Art/blend/assets/prop/crate.blend" id="1_u8y3l"]
+[ext_resource type="Script" path="res://Elements/assets/props/template/prop.gd" id="2_bj7j1"]
 
 [node name="crate" instance=ExtResource("1_u8y3l")]
 
 [node name="Crate -rigid" parent="." index="0"]
 mass = 15.0
+script = ExtResource("2_bj7j1")
+
+[node name="Sound" type="AudioStreamPlayer3D" parent="Crate -rigid" index="2"]

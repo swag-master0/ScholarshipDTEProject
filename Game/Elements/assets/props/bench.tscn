@@ -1,5 +1,13 @@
-[gd_scene load_steps=2 format=3 uid="uid://dhejktumttlcs"]
+[gd_scene load_steps=3 format=3 uid="uid://dhejktumttlcs"]
 
-[ext_resource type="PackedScene" uid="uid://v7xe0iekhe20" path="res://Art/blend/assets/bench.blend" id="2_xfdru"]
+[ext_resource type="Script" path="res://Elements/assets/props/template/prop.gd" id="2_ebi8x"]
+[ext_resource type="PackedScene" uid="uid://v7xe0iekhe20" path="res://Art/blend/assets/prop/bench.blend" id="2_xfdru"]
 
 [node name="bench" instance=ExtResource("2_xfdru")]
+
+[node name="Bench -rigid" parent="." index="0"]
+mass = 25.0
+script = ExtResource("2_ebi8x")
+
+[node name="Sound" type="AudioStreamPlayer3D" parent="Bench -rigid" index="2"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.823671, -0.857975, 0)

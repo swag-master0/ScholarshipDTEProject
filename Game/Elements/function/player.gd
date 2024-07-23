@@ -500,8 +500,8 @@ func viewEnemyHealth(enemy : Object, visibility : bool):
 
 func RestartLevel():
 	var save = SaveGame.new()
-	save.save_game_level(get_tree().current_scene.scene_file_path)
-	print_rich("[rainbow]Saved Level:", save.load_game().level)
+	#save.save_game_level(get_tree().current_scene.scene_file_path)
+	#print_rich("[rainbow]Saved Level:", save.load_game().level)
 	
 	LoadingScreen.next_scene = player_hub
 	LoadingScreen.scene_transition()

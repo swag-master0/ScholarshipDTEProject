@@ -20,26 +20,41 @@ const save_addtoplayerhub_path = "user://save_playerhub_add.tres"
 @export var add_new_objects : Array = []
 
 
+
+# -- For some reason, the game is saving an empty array of hub objects upon loading the hub scene
+# -- TODO: investigate this jank behavior
+
+
+
+
+
+
+
 func save_game_level(data : String):
 	# Saves the script itself, with the variables in it
-	push_warning("Save System: Saving game save data")
+	print_rich("[color=YELLOW]Save System: Saving game save data : ", data)
 	
 	level = data
 	
 	
 	ResourceSaver.save(self, save_progression_path)
 	
-	push_warning("Save System: Game save successful!")
+	#push_warning("Save System: Game save successful!")
+	print_rich("[color=YELLOW]Save System: Game save successful!")
 	
 
 
 func load_game():
-	push_warning("Save System: Retrieving Game Save Data")
+	#push_warning("Save System: Retrieving Game Save Data")
+	print_rich("[color=YELLOW]Save System: Retrieving game save data")
+	
 	
 	if ResourceLoader.exists(save_progression_path):
 		var retrieved_save = ResourceLoader.load(save_progression_path, "")
 		level = retrieved_save.level
+		print_rich("[color=GREEN]Save System: Loaded Successfully : ", retrieved_save)
 		return retrieved_save # Returns the resource where everything is held
+		
 		
 	else:
 		return null # If the resource loader fails for some reason, returns null
@@ -51,10 +66,13 @@ func load_game():
 # -- Save Player Hub is overwriting the level save, and replacing it with an empty string
 # -- * Fixed by splitting the progression and playerhub into 2 different save files
 
-func save_player_hub(objects_to_save, type_of_save : bool = true):
+func save_player_hub(objects_to_save : Array, type_of_save : bool = true):
+	print_rich("[color=RED]Save Hub System: Save initialised: ", objects_to_save, ", ", type_of_save)
 	
-	if type_of_save:
-		push_warning("Save System: Saving player hub objects")
+	
+	if type_of_save and !objects_to_save.is_empty():
+		print_rich("[color=ORANGE]Save Hub System: Saving player hub objects : ", objects_to_save)
+		#push_warning("Save System: Saving player hub objects")
 		
 		player_hub_objects = [] # attempt to clear the old saved objects, to avoid accidentally generating another 2.2 MB file
 		player_hub_objects = objects_to_save
@@ -62,10 +80,13 @@ func save_player_hub(objects_to_save, type_of_save : bool = true):
 		
 		ResourceSaver.save(self, save_playerhub_path)
 		
-		push_warning("Save System: Player hub save sucessful!")
+		#push_warning("Save System: Player hub save sucessful!")
+		print_rich("[color=GREEN]Save Hub System: Player hub save successful")
 	
-	else: # adding new objects
+	elif !type_of_save and !objects_to_save.is_empty(): # adding new objects
 		#push_warning("Save System: Importing objects to playerhub")
+		print_rich("[color=ORANGE]Save Hub System: Importing new player hub objects : ", objects_to_save)
+		
 		
 		for i in objects_to_save:
 			add_new_objects.append(i)
@@ -75,7 +96,8 @@ func save_player_hub(objects_to_save, type_of_save : bool = true):
 
 
 func load_player_hub(root_node):
-	push_warning("Save System: Loading player hub objects")
+	print_rich("[color=ORANGE]Save Hub System: Loading player hub objects to : ", root_node)
+	#push_warning("Save System: Loading player hub objects")
 	if ResourceLoader.exists(save_playerhub_path):
 		var retrieved_save = ResourceLoader.load(save_playerhub_path, "")
 		player_hub_objects = retrieved_save.player_hub_objects
@@ -84,11 +106,12 @@ func load_player_hub(root_node):
 			if i is PackedScene:
 				var new_object = i.instantiate()
 				root_node.add_child(new_object)
+				print_rich("[color=GREY]Loaded Object: ", new_object)
+		
 		
 	
 	
 	if ResourceLoader.exists(save_addtoplayerhub_path):
-		print("true")
 		var added_retrieved_save = ResourceLoader.load(save_addtoplayerhub_path, "")
 		add_new_objects = added_retrieved_save.add_new_objects
 		
@@ -97,13 +120,15 @@ func load_player_hub(root_node):
 			if i is PackedScene:
 				var new_object = i.instantiate()
 				root_node.add_child(new_object)
+				print_rich("[color=GREY]Loaded Newly Added Object: ", new_object)
 		
 		add_new_objects = []
 		ResourceSaver.save(self, save_addtoplayerhub_path)
 	
 	
 	else:
-		push_error("Save System: Player hub load Ffiled")
+		#push_error("Save System: Player hub load Failed")
+		print_rich("[color=RED]Player Hub Load Failed")
 
 
 
