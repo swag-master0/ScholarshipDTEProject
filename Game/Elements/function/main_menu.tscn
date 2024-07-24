@@ -90,13 +90,16 @@ grow_vertical = 2
 color = Color(0.345098, 0.345098, 0.345098, 0.392157)
 
 [node name="Label" type="Label" parent="GUI/MainMenu"]
-layout_mode = 0
-offset_top = 35.0
-offset_right = 600.0
-offset_bottom = 286.0
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -300.0
+offset_right = 300.0
+offset_bottom = 130.0
+grow_horizontal = 2
 theme_override_font_sizes/font_size = 90
-text = "Working
-Title"
+text = "Working Title"
 horizontal_alignment = 1
 vertical_alignment = 1
 clip_text = true

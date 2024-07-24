@@ -140,15 +140,15 @@ func _physics_process(delta):
 	if (Input.is_action_pressed("forward") or Input.is_action_pressed("left") or Input.is_action_pressed("right") or Input.is_action_pressed("backward")):
 		faceDirection = Vector3(Input.get_action_strength("right") - Input.get_action_strength("left"), 0 ,Input.get_action_strength("backward") - Input.get_action_strength("forward")).normalized()
 	
-	#character.rotation.y = atan2(cursor.position.x, cursor.position.z)
+	character.rotation.y = atan2(ray_endpos.position.x, ray_endpos.position.z)
 	
 	# player rotation code
-	if isHolding:
-		character.rotation.y = atan2(ray_endpos.position.x, ray_endpos.position.z)
-	elif !isHolding and velocity:
-		character.rotation.y = lerp_angle(character.rotation.y, atan2(faceDirection.x, faceDirection.z), delta * TURN_VELOCITY)
-	elif !velocity and is_on_floor():
-		pass
+#	if isHolding:
+#		character.rotation.y = atan2(ray_endpos.position.x, ray_endpos.position.z)
+#	elif !isHolding and velocity:
+#		character.rotation.y = lerp_angle(character.rotation.y, atan2(faceDirection.x, faceDirection.z), delta * TURN_VELOCITY)
+#	elif !velocity and is_on_floor():
+#		pass
 	
 	
 	

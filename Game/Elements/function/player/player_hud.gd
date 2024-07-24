@@ -6,7 +6,7 @@ extends Control
 @onready var tutorial_mode = parent.tutorial_mode
 
 @onready var hud_health = $Health
-@onready var hud_healthwhite = $Health/HealthWhite
+#@onready var hud_healthwhite = $Health/HealthWhite
 @onready var hud_enemyhealth = $EnemyHealth
 
 @onready var hinttext = $Hints
@@ -50,7 +50,7 @@ func _process(delta):
 		
 		hud_health.value = health
 		hud_health.max_value = max_health
-		hud_healthwhite.max_value = max_health
+		#hud_healthwhite.max_value = max_health
 		
 		if health == max_health:
 			hud_health.visible = false
@@ -59,17 +59,17 @@ func _process(delta):
 		
 		
 		
-		if hud_healthwhite.value != hud_health.value and !healthvisualindicator:
-			healthvisualindicator = true
-			
-			var tween = get_tree().create_tween()
-			tween.set_ease(Tween.EASE_IN)
-			tween.tween_property(hud_healthwhite, "value", health, 1)
-			
-			await tween.finished
-			hud_healthwhite.value = hud_health.value
-			
-			healthvisualindicator = false
+		#if hud_healthwhite.value != hud_health.value and !healthvisualindicator:
+		#	healthvisualindicator = true
+		#	
+		#	var tween = get_tree().create_tween()
+		#	tween.set_ease(Tween.EASE_IN)
+		#	tween.tween_property(hud_healthwhite, "value", health, 1)
+		#	
+		#	await tween.finished
+		#	hud_healthwhite.value = hud_health.value
+		#	
+		#	healthvisualindicator = false
 
 
 

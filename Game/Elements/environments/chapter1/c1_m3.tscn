@@ -78,7 +78,7 @@ barrel = ExtResource("1_5e1qi")
 [node name="WorldEnvironment" parent="." instance=ExtResource("2_prdrn")]
 
 [node name="Player_v2" parent="." instance=ExtResource("2_adrog")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -15, 1, -12)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3, 9, -12)
 
 [node name="Timer" type="Timer" parent="."]
 wait_time = 5.0

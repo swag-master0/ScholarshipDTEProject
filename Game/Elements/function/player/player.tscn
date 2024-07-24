@@ -1,7 +1,8 @@
-[gd_scene load_steps=81 format=3 uid="uid://bcou7suhphdrp"]
+[gd_scene load_steps=85 format=3 uid="uid://bcou7suhphdrp"]
 
 [ext_resource type="Script" path="res://Elements/function/player/player.gd" id="1_0ncw4"]
 [ext_resource type="PackedScene" uid="uid://4lv8cegk7f53" path="res://Art/blend/assets/main/player.blend" id="2_ww4ji"]
+[ext_resource type="Script" path="res://Elements/function/player/ik_animation.gd" id="2_yd4pm"]
 [ext_resource type="Texture2D" uid="uid://b7b8lqiwyngpq" path="res://Art/textures/assets/player_eyes-1.png" id="3_ne7oo"]
 [ext_resource type="Shader" path="res://Art/materials/player/player_hat.gdshader" id="3_pbnjn"]
 [ext_resource type="Shader" path="res://Art/materials/player/player_skin.gdshader" id="4_5kk05"]
@@ -13,10 +14,13 @@
 [ext_resource type="Script" path="res://Elements/function/player/player_hud.gd" id="8_3kk53"]
 [ext_resource type="Texture2D" uid="uid://cvguvo850eb22" path="res://Art/textures/hud/mouse1-2.png" id="8_hj47o"]
 [ext_resource type="PackedScene" uid="uid://233quw6ftjqa" path="res://Elements/function/options_menu.tscn" id="9_vjmmq"]
+[ext_resource type="Texture2D" uid="uid://d2vondr2822wx" path="res://Art/textures/hud/healthbar_v2_colour.png" id="10_327mf"]
 [ext_resource type="PackedScene" uid="uid://d3qcg4xjm6x5x" path="res://Elements/function/a-os.tscn" id="10_f5mm7"]
 [ext_resource type="AudioStream" uid="uid://w2v2x3att67l" path="res://Art/audio/click.wav" id="10_iq0rl"]
+[ext_resource type="Texture2D" uid="uid://cy8kx0mafcdsf" path="res://Art/textures/hud/healthbar_v2_outline.png" id="11_06le2"]
 [ext_resource type="AudioStream" uid="uid://eiiqal51bdu" path="res://Art/audio/player_select.wav" id="11_bg06q"]
 [ext_resource type="AudioStream" uid="uid://bdxfhhvgttnt5" path="res://Art/audio/player_death.wav" id="12_3vcwe"]
+[ext_resource type="Texture2D" uid="uid://doaw75lk5teaf" path="res://Art/textures/hud/hud-dude.png" id="12_6sc6w"]
 [ext_resource type="AudioStream" uid="uid://bwu6q554kl8jd" path="res://Art/audio/player_hurt.wav" id="13_03cy8"]
 [ext_resource type="AudioStream" uid="uid://bk7fdh3m3au1n" path="res://Art/audio/dialogue.wav" id="14_inpwu"]
 [ext_resource type="Texture2D" uid="uid://d2e7ax2fpiihe" path="res://Art/textures/hud/crosshair_aim.png" id="15_2dr0c"]
@@ -59,7 +63,7 @@ filter_enabled = true
 filters = ["Armature/Skeleton3D:ArmLower.L", "Armature/Skeleton3D:ArmLower.R", "Armature/Skeleton3D:ArmUpper.L", "Armature/Skeleton3D:ArmUpper.R", "Armature/Skeleton3D:Hand.L", "Armature/Skeleton3D:Hand.R", "Armature/Skeleton3D:Shoulder.L", "Armature/Skeleton3D:Shoulder.R"]
 
 [sub_resource type="AnimationNodeBlendTree" id="AnimationNodeBlendTree_2f60j"]
-graph_offset = Vector2(-277, 63)
+graph_offset = Vector2(-305, 55)
 nodes/Animation/node = SubResource("AnimationNodeAnimation_6jv6s")
 nodes/Animation/position = Vector2(-120, 120)
 "nodes/Animation 2/node" = SubResource("AnimationNodeAnimation_4gp2c")
@@ -89,7 +93,7 @@ nodes/Blend2/position = Vector2(120, 140)
 node_connections = [&"Blend2", 0, &"Animation", &"Blend2", 1, &"Animation 2", &"output", 0, &"Blend2"]
 
 [sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_sbl3m"]
-animation = &"run"
+animation = &"run_nolegs"
 
 [sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_ngvyp"]
 animation = &"grab"
@@ -101,15 +105,15 @@ filters = ["Armature/Skeleton3D:ArmLower.L", "Armature/Skeleton3D:ArmLower.R", "
 [sub_resource type="AnimationNodeTimeScale" id="AnimationNodeTimeScale_150v6"]
 
 [sub_resource type="AnimationNodeBlendTree" id="AnimationNodeBlendTree_r8vxk"]
-graph_offset = Vector2(-301.67, 40.48)
+graph_offset = Vector2(-386.081, 33.6361)
 nodes/Animation/node = SubResource("AnimationNodeAnimation_ngvyp")
 nodes/Animation/position = Vector2(-220, 200)
 "nodes/Animation 2/node" = SubResource("AnimationNodeAnimation_sbl3m")
 "nodes/Animation 2/position" = Vector2(-220, 60)
 nodes/Blend2/node = SubResource("AnimationNodeBlend2_s1hax")
-nodes/Blend2/position = Vector2(20, 100)
+nodes/Blend2/position = Vector2(60, 160)
 nodes/TimeScale/node = SubResource("AnimationNodeTimeScale_150v6")
-nodes/TimeScale/position = Vector2(240, 140)
+nodes/TimeScale/position = Vector2(240, 160)
 nodes/output/position = Vector2(420, 160)
 node_connections = [&"Blend2", 0, &"Animation 2", &"Blend2", 1, &"Animation", &"TimeScale", 0, &"Blend2", &"output", 0, &"TimeScale"]
 
@@ -140,7 +144,7 @@ states/jump/position = Vector2(1358, 24)
 states/run/node = SubResource("AnimationNodeBlendTree_r8vxk")
 states/run/position = Vector2(1358, 166)
 transitions = ["fall", "jump", SubResource("AnimationNodeStateMachineTransition_iww2x"), "jump", "fall", SubResource("AnimationNodeStateMachineTransition_qafhq"), "jump", "idle", SubResource("AnimationNodeStateMachineTransition_ewjhy"), "idle", "jump", SubResource("AnimationNodeStateMachineTransition_egp6e"), "idle", "run", SubResource("AnimationNodeStateMachineTransition_h1bte"), "run", "idle", SubResource("AnimationNodeStateMachineTransition_p6kwk"), "Start", "idle", SubResource("AnimationNodeStateMachineTransition_dgmis")]
-graph_offset = Vector2(874, -73)
+graph_offset = Vector2(945, -67)
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_nrsfh"]
 radius = 0.474599
@@ -298,7 +302,7 @@ size = Vector3(2, 3, 2)
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_j7m3i"]
 
 [sub_resource type="ViewportTexture" id="ViewportTexture_kwbue"]
-viewport_path = NodePath("A-OS")
+viewport_path = NodePath(".")
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_qxjs8"]
 resource_local_to_scene = true
@@ -306,19 +310,19 @@ shader = ExtResource("6_k3b8r")
 shader_parameter/VIEWPORT_TEXTURE = SubResource("ViewportTexture_kwbue")
 
 [sub_resource type="ViewportTexture" id="ViewportTexture_nkgtc"]
-viewport_path = NodePath("A-OS")
-
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_nqrcn"]
-bg_color = Color(0.752941, 0, 0, 1)
-
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_lr4wr"]
-bg_color = Color(1, 1, 1, 1)
+viewport_path = NodePath(".")
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_1odvh"]
 bg_color = Color(0.6, 0.6, 0.6, 0)
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_btmbw"]
 bg_color = Color(0.188235, 1, 0.113725, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_nqrcn"]
+bg_color = Color(0.752941, 0, 0, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_lr4wr"]
+bg_color = Color(1, 1, 1, 1)
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_gdws8"]
 animations = [{
@@ -374,7 +378,7 @@ root_node = NodePath("../PlayerModel/player")
 tree_root = SubResource("AnimationNodeStateMachine_1wy8i")
 anim_player = NodePath("../PlayerModel/player/AnimationPlayer")
 parameters/fall/Blend2/blend_amount = 0.0
-parameters/idle/Blend2/blend_amount = 0.0
+parameters/idle/Blend2/blend_amount = 1.0
 parameters/jump/Blend2/blend_amount = 0.0
 parameters/run/Blend2/blend_amount = 0.0
 parameters/run/TimeScale/scale = 1.0
@@ -387,31 +391,28 @@ shape = SubResource("CapsuleShape3D_nrsfh")
 
 [node name="player" parent="PlayerModel" instance=ExtResource("2_ww4ji")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1, 0)
+script = ExtResource("2_yd4pm")
 
 [node name="Skeleton3D" parent="PlayerModel/player/Armature" index="0"]
-bones/0/position = Vector3(-0.00183521, -0.106291, 0)
-bones/1/rotation = Quaternion(0.00242346, -0.00358841, 0.810614, 0.585565)
-bones/2/rotation = Quaternion(-0.00380326, -0.00253786, 0.269014, 0.963125)
-bones/3/rotation = Quaternion(-0.00393916, -0.00066776, 0.35449, 0.935052)
-bones/4/rotation = Quaternion(-1.76656e-06, -7.13439e-08, 0.0895694, 0.995981)
-bones/5/rotation = Quaternion(0.0027399, 0.00342434, -0.818746, 0.574139)
-bones/6/rotation = Quaternion(-0.00372132, 0.0026733, -0.251697, 0.967795)
-bones/7/rotation = Quaternion(-0.00444553, 0.00069866, -0.367777, 0.929903)
-bones/8/rotation = Quaternion(-0.000904227, 3.3095e-05, -0.0937836, 0.995592)
-bones/9/rotation = Quaternion(0.0249538, 0, 0, 0.999689)
-bones/10/rotation = Quaternion(0.704434, -0.0614248, -0.704434, 0.0614248)
-bones/11/rotation = Quaternion(6.90339e-09, 1.56507e-08, -0.174047, 0.984738)
-bones/12/rotation = Quaternion(2.11264e-09, -5.16456e-15, -0.0279828, 0.999608)
-bones/13/rotation = Quaternion(0.704433, 0.0614365, 0.704433, 0.0614365)
-bones/14/rotation = Quaternion(6.90757e-09, -1.56506e-08, 0.174058, 0.984735)
-bones/15/rotation = Quaternion(2.11486e-09, 1.65905e-15, 0.0280122, 0.999608)
+bones/0/position = Vector3(-0.00183521, -0.329011, 0)
+bones/0/rotation = Quaternion(0.0177734, 0, 0, 0.999842)
+bones/1/rotation = Quaternion(0.0605536, 0.160037, 0.821015, 0.544661)
+bones/2/rotation = Quaternion(0.00374937, 0.0344373, -0.000282406, 0.9994)
+bones/3/rotation = Quaternion(0.0858453, 0.0523296, 0.474358, 0.874572)
+bones/4/rotation = Quaternion(0.00144754, -0.000836406, 0.0619159, 0.99808)
+bones/5/rotation = Quaternion(-0.0604681, 0.199294, -0.832425, 0.513512)
+bones/6/rotation = Quaternion(-0.00820663, 0.0528772, -0.00477633, 0.998556)
+bones/7/rotation = Quaternion(0.115494, 0.0267435, -0.23409, 0.96496)
+bones/8/rotation = Quaternion(-0.00557845, 0.0010827, -0.0785195, 0.996896)
+bones/12/rotation = Quaternion(-2.43078e-11, -5.33254e-15, 0.000321965, 1)
+bones/15/rotation = Quaternion(3.8503e-11, 3.54924e-15, 0.000509984, 1)
 
 [node name="Player" parent="PlayerModel/player/Armature/Skeleton3D" index="0"]
 surface_material_override/1 = SubResource("ShaderMaterial_booyl")
 surface_material_override/2 = SubResource("ShaderMaterial_mhwhj")
 
 [node name="FaceAttachment" type="BoneAttachment3D" parent="PlayerModel/player/Armature/Skeleton3D" index="1"]
-transform = Transform3D(1, 0, 0, 0, 0.998755, -0.0498921, 0, 0.0498921, 0.998755, -0.00183521, 0.478252, 0)
+transform = Transform3D(1, 0, 0, 0, 0.999368, -0.0355413, 0, 0.0355413, 0.999368, -0.00183521, 0.255163, 0.0207754)
 bone_name = "Head"
 bone_idx = 9
 
@@ -430,6 +431,38 @@ spot_range = 1.0
 spot_attenuation = 1.49648
 spot_angle = 78.68
 
+[node name="RightLegIK" type="SkeletonIK3D" parent="PlayerModel/player/Armature/Skeleton3D" index="2"]
+process_priority = 1
+root_bone = &"LegUpper.R"
+tip_bone = &"Foot.R"
+target_node = NodePath("../../../LegR-IKRoot")
+
+[node name="LeftLegIK" type="SkeletonIK3D" parent="PlayerModel/player/Armature/Skeleton3D" index="3"]
+process_priority = 1
+root_bone = &"LegUpper.L"
+tip_bone = &"Foot.L"
+target_node = NodePath("../../../LegL-IKRoot")
+
+[node name="LegR-IKRoot" type="Node3D" parent="PlayerModel/player"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.130761, -1.00737, -0.028597)
+top_level = true
+
+[node name="LegL-IKRoot" type="Node3D" parent="PlayerModel/player"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.125434, -1.01954, -0.027397)
+top_level = true
+
+[node name="LegR-Base" type="Node3D" parent="PlayerModel/player"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.130761, 0.0138894, -0.028597)
+
+[node name="LegL-Base" type="Node3D" parent="PlayerModel/player"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.125434, 0.00171518, -0.027397)
+
+[node name="LegR-BaseWalking" type="Node3D" parent="PlayerModel/player"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.118581, 0.0277787, 0.922647)
+
+[node name="LegL-BaseWalking" type="Node3D" parent="PlayerModel/player"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.137614, 0.0156046, 0.923847)
+
 [node name="ObstructionDetector" type="Area3D" parent="PlayerModel"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 2)
 
@@ -444,17 +477,18 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 1.5)
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, -1.5)
 
 [node name="CentralCameraPoint" type="Marker3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.02762, 0.417642)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.01149, 0.273736)
 
 [node name="SpringArm3D" type="SpringArm3D" parent="CentralCameraPoint"]
-transform = Transform3D(0.866026, 0, 0.5, 0, 1, 0, -0.5, 0, 0.866026, 0, 0, 0)
+transform = Transform3D(1, 0, 0, 0, 0.965926, 0.258819, 0, -0.258819, 0.965926, 0, 0, 0)
 spring_length = 3.0
 margin = 1.0
 
 [node name="Camera3D" type="Camera3D" parent="CentralCameraPoint/SpringArm3D"]
-transform = Transform3D(0.866026, 0, -0.5, 0, 1, 0, 0.5, 0, 0.866026, 0.104, 0, 2.947)
+transform = Transform3D(1, 0, 0, 0, 0.965926, -0.258819, 0, 0.258819, 0.965926, 0.104, 0, 2.947)
 doppler_tracking = 2
-fov = 80.0
+current = true
+fov = 90.0
 size = 39.544
 
 [node name="EndPos" type="Node3D" parent="CentralCameraPoint/SpringArm3D/Camera3D"]
@@ -554,47 +588,44 @@ color = Color(1, 1, 1, 0)
 
 [node name="Timer" type="Timer" parent="HUD/HurtVFX"]
 
-[node name="Health (WIP)" type="TextureProgressBar" parent="HUD"]
-visible = false
+[node name="Health" type="TextureProgressBar" parent="HUD"]
 texture_filter = 1
 layout_mode = 1
-anchors_preset = 7
+anchors_preset = -1
 anchor_left = 0.5
-anchor_top = 1.0
+anchor_top = 0.85
 anchor_right = 0.5
-anchor_bottom = 1.0
-offset_left = -180.0
-offset_top = -193.0
-offset_right = 180.0
-grow_horizontal = 2
-grow_vertical = 0
+anchor_bottom = 0.85
+offset_left = -112.0
+offset_top = -80.0
+offset_right = -55.0
+offset_bottom = -20.0
+scale = Vector2(2, 2)
 max_value = 20.0
-value = 11.0
+value = 20.0
+fill_mode = 4
+texture_over = ExtResource("11_06le2")
+texture_progress = ExtResource("10_327mf")
+radial_initial_angle = 280.0
+radial_fill_degrees = 160.0
+radial_center_offset = Vector2(0, 40)
 
-[node name="HealthWhite" type="ProgressBar" parent="HUD/Health (WIP)"]
-visible = false
-z_index = -1
+[node name="Dude" type="TextureRect" parent="HUD/Health"]
 layout_mode = 1
 anchors_preset = 7
 anchor_left = 0.5
 anchor_top = 1.0
 anchor_right = 0.5
 anchor_bottom = 1.0
-offset_left = -180.0
-offset_top = -50.0
-offset_right = 180.0
+offset_left = -11.0
+offset_top = -22.0
+offset_right = 11.0
 grow_horizontal = 2
 grow_vertical = 0
-pivot_offset = Vector2(180, 25)
-theme_override_styles/background = SubResource("StyleBoxFlat_nqrcn")
-theme_override_styles/fill = SubResource("StyleBoxFlat_lr4wr")
-max_value = 20.0
-value = 10.0
-allow_greater = true
-allow_lesser = true
-show_percentage = false
+texture = ExtResource("12_6sc6w")
 
-[node name="Health" type="ProgressBar" parent="HUD"]
+[node name="Health_Old" type="ProgressBar" parent="HUD"]
+visible = false
 layout_mode = 1
 anchors_preset = 7
 anchor_left = 0.5
@@ -616,7 +647,7 @@ allow_greater = true
 allow_lesser = true
 show_percentage = false
 
-[node name="HealthWhite" type="ProgressBar" parent="HUD/Health"]
+[node name="HealthWhite" type="ProgressBar" parent="HUD/Health_Old"]
 z_index = -1
 layout_mode = 1
 anchors_preset = 7
@@ -935,7 +966,6 @@ expand_mode = 4
 
 [node name="Pixellation" type="CanvasLayer" parent="Filters"]
 layer = -1
-visible = false
 
 [node name="Pixellation" type="ColorRect" parent="Filters/Pixellation"]
 material = SubResource("ShaderMaterial_4rgcg")
