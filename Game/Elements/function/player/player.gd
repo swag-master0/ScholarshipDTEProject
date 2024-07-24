@@ -47,23 +47,12 @@ func TOP():
 
 # Info
 @onready var info = $Info
-@onready var max_health = info.health
 
 # HUD
 @onready var HUD = $HUD
-@onready var hud_health = $HUD/Health
-@onready var hud_healthwhite = $HUD/Health/HealthWhite
-@onready var hud_enemyhealth = $HUD/EnemyHealth
-@onready var hinttext = $HUD/Hints
-@onready var hinttimer = $HUD/Hints/Timer
-@onready var hud_dialogue = $HUD/Dialogue
-@onready var hud_dialoguedelay = $HUD/Dialogue/DelayBetweenCharacters
-@onready var hud_dialogueremove = $HUD/Dialogue/RemoveCharacters
 @onready var pausemenu = $HUD/PauseMenu
 @onready var deathscreen = $HUD/DeathScreen
 @onready var hurtvfx = $HUD/HurtVFX
-@onready var indicator = $HUD/Indicator
-@onready var indicator_tutorial = $HUD/Indicator/AnimatedSprite2D
 @onready var options_menu = $HUD/OptionsMenu
 @onready var hud_levelcomplete = $HUD/LevelCompleted
 @onready var hud_levelcomplete_delay = $HUD/LevelCompleted/Delay
@@ -74,7 +63,6 @@ func TOP():
 @onready var sound_footstep = $Audio/PlayerWalk
 @onready var sound_select = $Audio/PlayerSelect
 @onready var sound_hurt = $Audio/PlayerHurt
-@onready var sound_dialogue = $Audio/Dialogue
 
 @onready var animation_tree = $AnimationTree
 @onready var state_machine = animation_tree.get("parameters/playback")
@@ -84,22 +72,18 @@ var gravity = ProjectSettings.get_setting("physics/3d/default_gravity")
 var faceDirection = Vector3.FORWARD
 
 var oldparent = null
-var isHolding = false
-var canPause = true
-var selectionsound = false
-var levelchangetriggered = false
-var healthvisualindicator = false
-var dialoguespeaking = false
 
-var tutorial_pickup = false
+var canPause = true
+var levelchangetriggered = false
+
 var tutorial_proximitydrop = false
-var tutorial_objective = false
 
 var main_menu = "res://Elements/function/main_menu.tscn"
 
 
 # please leave object blank, but keep as export
 @export_group("Programming Stuff")
+@export var isHolding = false
 @export var object : RigidBody3D
 @export var level_completed : bool = false
 @export var player_hub : String = "res://Elements/environments/misc/player_hub.tscn"
@@ -221,7 +205,7 @@ func _physics_process(delta):
 
 # process is the player throwing mechanic and healthbar code
 func _process(_delta):
-	Dialogue()
+	HUD.Dialogue()
 	
 	# Handle picking up RIGID BODIES
 	if (NearestObject() and NearestObject() is RigidBody3D and global_position.distance_to(NearestObject().global_position) <= PICKUP_RANGE) and isHolding == false:
@@ -229,7 +213,7 @@ func _process(_delta):
 		if NearestObject().is_in_group("ungrabbable"):
 			return
 		
-		setCursorPosition(NearestObject().global_position, true)
+		HUD.setCursorPosition(NearestObject().global_position, true)
 		
 		
 		
@@ -246,8 +230,15 @@ func _process(_delta):
 			object.set_collision_layer_value(1, false)
 			object.set_collision_mask_value(1, false)
 			
+			
+			
 		else:
 			pass
+	
+	
+	#if character.position.distance_to(cursor.position) < 4 and character.position.distance_to(cursor.position) > -4 and isHolding:
+	if pivot.rotation.x < -1 and isHolding:
+		HUD.changeCrosshair(3)
 	
 	
 	if !Input.is_action_pressed("click"): 
@@ -273,13 +264,15 @@ func _process(_delta):
 			#var force = (ray.get_collision_point() - position).normalized()
 			
 			
-			if character.position.distance_to(cursor.position) < 4 and character.position.distance_to(cursor.position) > -4:
+			#if character.position.distance_to(cursor.position) < 4 and character.position.distance_to(cursor.position) > -4:
+			if pivot.rotation.x < -1:
 				force = Vector3(0, 0, 0)
-				#drop_indicator.visible = true
+				
+				#HUD.changeCrosshair(3)
 				
 				if tutorial_mode and !tutorial_proximitydrop:
 					tutorial_proximitydrop = true
-					sendHintToPlayer("You can drop items gently when the cursor is over yourself")
+					HUD.sendHintToPlayer("You can drop items gently when the cursor is over yourself")
 			
 			
 			for i in obstruction_detection.get_overlapping_bodies():
@@ -290,39 +283,6 @@ func _process(_delta):
 			object.apply_impulse(force * THROW_FORCE)
 			
 			object = null
-		
-	
-	if ready: 
-		var health = info.health
-		
-		hud_health.value = health
-		hud_health.max_value = max_health
-		hud_healthwhite.max_value = max_health
-		
-		if health == max_health:
-			hud_health.visible = false
-		else:
-			hud_health.visible = true
-		
-		"""
-		# visibly display damage on the player (this is stupid)
-		var health_ratio : float = health / max_health
-		var mat = character.get_active_material(0)
-		mat.set_shader_parameter("health", health_ratio)
-		"""
-		
-		
-		if hud_healthwhite.value != hud_health.value and !healthvisualindicator:
-			healthvisualindicator = true
-			
-			var tween = get_tree().create_tween()
-			tween.set_ease(Tween.EASE_IN)
-			tween.tween_property(hud_healthwhite, "value", health, 1)
-			
-			await tween.finished
-			hud_healthwhite.value = hud_health.value
-			
-			healthvisualindicator = false
 	
 	
 	if level_completed:
@@ -346,20 +306,20 @@ func MousePosition():
 			var rayHit = ray.get_collider()
 			cursor.global_position = ray.get_collision_point()
 			
-			setCursorPosition(Vector3(), false)
-			viewEnemyHealth(null, false)
+			HUD.setCursorPosition(Vector3(), false)
+			HUD.viewEnemyHealth(null, false)
 			
 			if rayHit.is_in_group("enemy"):
 				for i in rayHit.get_children():
 					if i.is_in_group("info"):
 						if i.DisplayHealthBar == true:
-							viewEnemyHealth(rayHit, true)
+							HUD.viewEnemyHealth(rayHit, true)
 				
 				
 				
 				if Input.is_action_pressed("click"):
 					cursor.global_position = rayHit.global_position
-					setCursorPosition(rayHit.global_position, true)
+					HUD.setCursorPosition(rayHit.global_position, true)
 					
 		
 		
@@ -399,104 +359,6 @@ func _on_info_death():
 	$Audio/PlayerDeath.pitch_scale = randf_range(75, 125) / 100 # random value between 0.75 and 1.25
 	$Audio/PlayerDeath.play()
 	DeathScreen()
-
-
-
-
-func sendHintToPlayer(hint):
-	HUD.sendHintToPlayer(hint)
-	"""
-	hinttext.text = hint
-	hinttimer.start()
-	"""
-
-
-func _hinttext_timeout():
-	hinttext.text = ""
-	
-	if tutorial_pickup:
-		tutorial_pickup = false
-
-
-# INFO: DIALOGUE SYSTEM
-func Dialogue(text_speed : float = 0.05, time_until_continue : float = 4):
-	
-	
-	if dialoguespeaking == false and !dialogue_queue.is_empty():
-		dialoguespeaking = true
-		
-		for i in dialogue_queue:
-			var dialogue : String = i
-			dialogue_queue.erase(i)
-			
-			hud_dialogue.visible = true
-			hud_dialogue.text = dialogue
-			hud_dialoguedelay.wait_time = text_speed
-			
-			for x in dialogue.length():
-				hud_dialogue.visible_characters = x + 1
-				
-				sound_dialogue.pitch_scale = randf_range(50, 150) / 100
-				sound_dialogue.play()
-				
-				hud_dialoguedelay.start()
-				await hud_dialoguedelay.timeout
-		
-		
-		
-		await get_tree().create_timer(time_until_continue).timeout
-		dialoguespeaking = false
-		hud_dialogue.visible = false
-		
-
-func _on_remove_characters_timeout():
-	hud_dialogue.visible = false
-	hud_dialogue.text = ""
-	
-
-
-
-
-# INFO: LOCK-ON CURSOR AND ENEMY HEALTH BARS
-func setCursorPosition(pos : Vector3, visibility : bool):
-	
-	if visibility:
-		
-		indicator.visible = true
-		indicator.position = camera.unproject_position(pos) - indicator.size / 2
-		
-		
-		if tutorial_mode:
-			indicator_tutorial.visible = true
-			
-			if !tutorial_pickup:
-				tutorial_pickup = true
-				sendHintToPlayer("Use MOUSE 1 to pick up and throw objects")
-		
-		else:
-			indicator_tutorial.visible = false
-		
-	
-	elif !visibility:
-		indicator.visible = false
-		selectionsound = false
-
-
-func viewEnemyHealth(enemy : Object, visibility : bool):
-	var healthbar = hud_enemyhealth
-	
-	if visibility:
-		
-		healthbar.visible = true
-		healthbar.position = (camera.unproject_position(enemy.global_position) - healthbar.size / 2) + Vector2(0, -50)
-		
-		for i in enemy.get_children():
-			if i.is_in_group("info"):
-				healthbar.value = i.health
-				healthbar.max_value = i.max_health
-	
-	elif !visibility:
-		healthbar.visible = false
 
 
 

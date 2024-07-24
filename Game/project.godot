@@ -19,6 +19,16 @@ config/icon="res://Art/textures/misc/icon.svg"
 
 LoadingScreen="*res://Elements/function/loading_screen.gd"
 
+[display]
+
+window/size/viewport_width=480
+window/size/viewport_height=270
+window/size/borderless=true
+window/size/window_width_override=1920
+window/size/window_height_override=1080
+window/stretch/mode="viewport"
+window/stretch/scale_mode="integer"
+
 [file_customization]
 
 folder_colors={

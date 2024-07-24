@@ -34,25 +34,27 @@ func _ready():
 			i.dialogue_queue.append(\"Hello\")
 			i.dialogue_queue.append(\"World!\")
 			
-			i.Dialogue()
+		#	i.Dialogue()
 
-
+\"\"\"
 func _on_tutorial_trigger_body_entered(body):
 	if body.is_in_group(\"player\"):
 		body.sendHintToPlayer(\"[wave][center][color=SILVER]Use MOUSE 1 to pick up objects\")
-
+\"\"\"
 
 
 func _process(_delta):
+	pass
+	\"\"\"
 	for i in self.get_children():
 		if i.is_in_group(\"player\"):
 			if i.object != null and i.object.is_in_group(\"objective\") and !dialogue_triggered:
 				dialogue_triggered = true
 				
-				i.sendHintToPlayer(\"[wave][center][color=SILVER]Bring it back to the start\")
+				#i.sendHintToPlayer(\"[wave][center][color=SILVER]Bring it back to the start\")
 				
 				#i.Dialogue(\"Good. Now get that thing back here.\")
-
+\"\"\"
 
 "
 

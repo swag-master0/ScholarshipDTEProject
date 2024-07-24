@@ -2,28 +2,48 @@ extends Control
 
 @onready var parent = $".."
 @onready var info = $"../Info"
+@onready var camera = $"../CentralCameraPoint/SpringArm3D/Camera3D"
+@onready var tutorial_mode = parent.tutorial_mode
 
 @onready var hud_health = $Health
 @onready var hud_healthwhite = $Health/HealthWhite
+@onready var hud_enemyhealth = $EnemyHealth
 
 @onready var hinttext = $Hints
 @onready var hinttimer = $Hints/Timer
 
-var health = info.health
-var max_health = info.max_health
+@onready var dialogue_queue = parent.dialogue_queue
+@onready var hud_dialogue = $Dialogue
+@onready var hud_dialoguedelay = $Dialogue/DelayBetweenCharacters
+@onready var hud_dialogueremove = $Dialogue/RemoveCharacters
+@onready var sound_dialogue = $"../Audio/Dialogue"
 
+@onready var indicator = $Indicator
+@onready var indicator_tutorial = $Indicator/AnimatedSprite2D
+
+@onready var crosshair = $Crosshair
+
+
+
+
+
+@onready var health = info.health
+@onready var max_health = info.max_health
+
+var dialoguespeaking = false
 var tutorial_pickup = false
-
-
 var healthvisualindicator = false
+var selectionsound = false
+var current_crosshair = 0
 
-# Called when the node enters the scene tree for the first time.
-func _ready():
-	pass # Replace with function body.
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
+	
+	if parent.isHolding and current_crosshair != 3:
+		changeCrosshair(1)
+	
 	
 	if ready: 
 		var health = info.health
@@ -98,4 +118,68 @@ func Dialogue(text_speed : float = 0.05, time_until_continue : float = 4):
 		dialoguespeaking = false
 		hud_dialogue.visible = false
 		
+
+func _on_remove_characters_timeout():
+	hud_dialogue.visible = false
+	hud_dialogue.text = ""
+
+
+# INFO: LOCK-ON CURSOR AND ENEMY HEALTH BARS
+func setCursorPosition(pos : Vector3, visibility : bool):
+	
+	if visibility:
+		
+		indicator.visible = true
+		indicator.position = camera.unproject_position(pos) - indicator.size / 2
+		changeCrosshair(2)
+		
+		
+		if tutorial_mode:
+			indicator_tutorial.visible = true
+			
+			if !tutorial_pickup:
+				tutorial_pickup = true
+				sendHintToPlayer("Use MOUSE 1 to pick up and throw objects")
+		
+		else:
+			indicator_tutorial.visible = false
+		
+	
+	elif !visibility:
+		indicator.visible = false
+		selectionsound = false
+		
+		changeCrosshair(0)
+		
+
+
+func viewEnemyHealth(enemy : Object, visibility : bool):
+	var healthbar = hud_enemyhealth
+	
+	if visibility:
+		
+		healthbar.visible = true
+		healthbar.position = (camera.unproject_position(enemy.global_position) - healthbar.size / 2) + Vector2(0, -50)
+		
+		for i in enemy.get_children():
+			if i.is_in_group("info"):
+				healthbar.value = i.health
+				healthbar.max_value = i.max_health
+	
+	elif !visibility:
+		healthbar.visible = false
+
+
+
+func changeCrosshair(type : int):
+	crosshair.texture.current_frame = type
+	current_crosshair = type
+	
+
+
+
+
+
+
+
 
