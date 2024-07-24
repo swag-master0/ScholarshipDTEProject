@@ -1,7 +1,7 @@
 [gd_scene load_steps=16 format=3 uid="uid://w2l3dpbjub7c"]
 
 [ext_resource type="PackedScene" uid="uid://b5c4qe603h5o" path="res://Elements/assets/hostile/explosive_barrel.tscn" id="1_5e1qi"]
-[ext_resource type="PackedScene" uid="uid://bcou7suhphdrp" path="res://Elements/function/player.tscn" id="2_adrog"]
+[ext_resource type="PackedScene" uid="uid://bcou7suhphdrp" path="res://Elements/function/player/player.tscn" id="2_adrog"]
 [ext_resource type="PackedScene" uid="uid://g2jwt8atruu7" path="res://Art/environment/environment.tscn" id="2_prdrn"]
 [ext_resource type="PackedScene" uid="uid://bkvmwrsm7nbyt" path="res://Elements/environments/chapter1/c1_m4.tscn" id="3_bf0fb"]
 [ext_resource type="PackedScene" uid="uid://bv51trmf3yaw0" path="res://Elements/assets/hostile/hazard.tscn" id="4_526u1"]

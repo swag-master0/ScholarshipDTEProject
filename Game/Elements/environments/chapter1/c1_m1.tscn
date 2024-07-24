@@ -1,6 +1,6 @@
 [gd_scene load_steps=21 format=3 uid="uid://rq3g3n4qshr3"]
 
-[ext_resource type="PackedScene" uid="uid://bcou7suhphdrp" path="res://Elements/function/player.tscn" id="1_01d17"]
+[ext_resource type="PackedScene" uid="uid://bcou7suhphdrp" path="res://Elements/function/player/player.tscn" id="1_01d17"]
 [ext_resource type="PackedScene" uid="uid://c61dj4vsac881" path="res://Art/blend/levels_chapter1/c1_m1.blend" id="1_wejc2"]
 [ext_resource type="PackedScene" uid="uid://msdo88p274sw" path="res://Elements/function/objective.tscn" id="4_5dpaq"]
 [ext_resource type="PackedScene" uid="uid://cov8v6858hevf" path="res://Elements/environments/chapter1/c1_m2.tscn" id="4_ymukl"]

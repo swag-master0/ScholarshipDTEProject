@@ -1,6 +1,6 @@
-[gd_scene load_steps=74 format=3 uid="uid://bcou7suhphdrp"]
+[gd_scene load_steps=75 format=3 uid="uid://bcou7suhphdrp"]
 
-[ext_resource type="Script" path="res://Elements/function/player.gd" id="1_0ncw4"]
+[ext_resource type="Script" path="res://Elements/function/player/player.gd" id="1_0ncw4"]
 [ext_resource type="PackedScene" uid="uid://4lv8cegk7f53" path="res://Art/blend/assets/main/player.blend" id="2_ww4ji"]
 [ext_resource type="Texture2D" uid="uid://b7b8lqiwyngpq" path="res://Art/textures/assets/player_eyes-1.png" id="3_ne7oo"]
 [ext_resource type="Shader" path="res://Art/materials/player/player_hat.gdshader" id="3_pbnjn"]
@@ -10,6 +10,7 @@
 [ext_resource type="Shader" path="res://Art/filters/a-os_filter.gdshader" id="6_k3b8r"]
 [ext_resource type="Texture2D" uid="uid://cix4ak6aasuam" path="res://Art/textures/hud/selection.png" id="6_nvyjp"]
 [ext_resource type="Texture2D" uid="uid://dmnjpb8ox2bsu" path="res://Art/textures/hud/mouse1-1.png" id="7_wsnhi"]
+[ext_resource type="Script" path="res://Elements/function/player/player_hud.gd" id="8_3kk53"]
 [ext_resource type="Texture2D" uid="uid://cvguvo850eb22" path="res://Art/textures/hud/mouse1-2.png" id="8_hj47o"]
 [ext_resource type="PackedScene" uid="uid://233quw6ftjqa" path="res://Elements/function/options_menu.tscn" id="9_vjmmq"]
 [ext_resource type="PackedScene" uid="uid://d3qcg4xjm6x5x" path="res://Elements/function/a-os.tscn" id="10_f5mm7"]
@@ -368,21 +369,21 @@ shape = SubResource("CapsuleShape3D_nrsfh")
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1, 0)
 
 [node name="Skeleton3D" parent="PlayerModel/player/Armature" index="0"]
-bones/0/position = Vector3(-0.00183521, -0.115159, 0)
-bones/1/rotation = Quaternion(0.00289401, -0.0042852, 0.808842, 0.588003)
-bones/2/rotation = Quaternion(-0.0045243, -0.00301897, 0.264424, 0.964391)
-bones/3/rotation = Quaternion(-0.0048483, -0.000821905, 0.341659, 0.939811)
+bones/0/position = Vector3(-0.00183521, -0.0755515, 0)
+bones/1/rotation = Quaternion(0.000502124, -0.0007433, 0.817767, 0.575549)
+bones/2/rotation = Quaternion(-0.000786905, -0.000525208, 0.288142, 0.957587)
+bones/3/rotation = Quaternion(-0.000814022, -0.000137894, 0.398008, 0.917382)
 bones/4/rotation = Quaternion(-1.76656e-06, -7.13439e-08, 0.0895694, 0.995981)
-bones/5/rotation = Quaternion(0.00337246, 0.00421491, -0.811548, 0.584261)
-bones/6/rotation = Quaternion(-0.00457457, 0.00328626, -0.244375, 0.969664)
-bones/7/rotation = Quaternion(-0.00537191, 0.000844252, -0.371818, 0.92829)
-bones/8/rotation = Quaternion(-0.00109309, 4.00076e-05, -0.0977854, 0.995207)
-bones/9/rotation = Quaternion(0.0296845, 0, 0, 0.999559)
-bones/10/rotation = Quaternion(0.703919, -0.0670673, -0.703919, 0.0670673)
-bones/11/rotation = Quaternion(1.08873e-08, 1.56204e-08, -0.184495, 0.982834)
+bones/5/rotation = Quaternion(0.000567847, 0.000709714, -0.842458, 0.538761)
+bones/6/rotation = Quaternion(-0.000770264, 0.000553326, -0.276891, 0.960901)
+bones/7/rotation = Quaternion(-0.000921915, 0.000144885, -0.352344, 0.93587)
+bones/8/rotation = Quaternion(-0.000188077, 6.88347e-06, -0.0785984, 0.996906)
+bones/9/rotation = Quaternion(0.00516416, 0, 0, 0.999987)
+bones/10/rotation = Quaternion(0.705866, -0.0418667, -0.705866, 0.0418667)
+bones/11/rotation = Quaternion(7.48261e-09, 1.57421e-08, -0.137573, 0.990492)
 bones/12/rotation = Quaternion(2.11264e-09, -5.16456e-15, -0.0279828, 0.999608)
-bones/13/rotation = Quaternion(0.703945, 0.0667973, 0.703945, 0.0667973)
-bones/14/rotation = Quaternion(1.08875e-08, -1.56204e-08, 0.184496, 0.982833)
+bones/13/rotation = Quaternion(0.705863, 0.041914, 0.705863, 0.0419141)
+bones/14/rotation = Quaternion(7.48519e-09, -1.57419e-08, 0.137686, 0.990476)
 bones/15/rotation = Quaternion(2.11486e-09, 1.65905e-15, 0.0280122, 0.999608)
 
 [node name="Player" parent="PlayerModel/player/Armature/Skeleton3D" index="0"]
@@ -390,7 +391,7 @@ surface_material_override/1 = SubResource("ShaderMaterial_booyl")
 surface_material_override/2 = SubResource("ShaderMaterial_mhwhj")
 
 [node name="FaceAttachment" type="BoneAttachment3D" parent="PlayerModel/player/Armature/Skeleton3D" index="1"]
-transform = Transform3D(1, 0, 0, 0, 0.998238, -0.0593428, 0, 0.0593428, 0.998238, -0.00183521, 0.469385, 0)
+transform = Transform3D(1, 0, 0, 0, 0.999947, -0.0103282, 0, 0.0103282, 0.999947, -0.00183521, 0.508992, 0)
 bone_name = "Head"
 bone_idx = 9
 
@@ -471,6 +472,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+script = ExtResource("8_3kk53")
 
 [node name="Dialogue" type="RichTextLabel" parent="HUD"]
 visible = false
@@ -938,6 +940,7 @@ color = Color(1, 1, 1, 0)
 [connection signal="takeDamage" from="Info" to="." method="_on_info_take_damage"]
 [connection signal="timeout" from="HUD/Dialogue/RemoveCharacters" to="." method="_on_remove_characters_timeout"]
 [connection signal="timeout" from="HUD/Hints/Timer" to="." method="_hinttext_timeout"]
+[connection signal="timeout" from="HUD/Hints/Timer" to="HUD" method="_hinttext_timeout"]
 [connection signal="pressed" from="HUD/PauseMenu/ResumeButton" to="." method="_on_resume_button_pressed"]
 [connection signal="pressed" from="HUD/PauseMenu/RestartButton" to="." method="_on_restart_button_pressed"]
 [connection signal="pressed" from="HUD/PauseMenu/OptionsButton" to="." method="_on_options_button_pressed"]

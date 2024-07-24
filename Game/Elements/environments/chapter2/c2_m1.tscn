@@ -2,7 +2,7 @@
 
 [ext_resource type="PackedScene" uid="uid://ch3t1bgj51uvs" path="res://Elements/enemies/sentry.tscn" id="1_u0axa"]
 [ext_resource type="PackedScene" uid="uid://dkteohkuoghg0" path="res://Art/blend/levels_chapter2/c2_m1.blend" id="1_usv7o"]
-[ext_resource type="PackedScene" uid="uid://bcou7suhphdrp" path="res://Elements/function/player.tscn" id="2_ml0gj"]
+[ext_resource type="PackedScene" uid="uid://bcou7suhphdrp" path="res://Elements/function/player/player.tscn" id="2_ml0gj"]
 [ext_resource type="PackedScene" uid="uid://msdo88p274sw" path="res://Elements/function/objective.tscn" id="3_1pict"]
 [ext_resource type="PackedScene" uid="uid://bbb07r3hee2bp" path="res://Elements/assets/props/template/prop.tscn" id="3_r0mmd"]
 [ext_resource type="PackedScene" uid="uid://e1ifpcaik1si" path="res://Elements/environments/chapter2/c2_m2.tscn" id="4_ejm2i"]

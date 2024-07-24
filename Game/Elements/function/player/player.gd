@@ -404,8 +404,11 @@ func _on_info_death():
 
 
 func sendHintToPlayer(hint):
+	HUD.sendHintToPlayer(hint)
+	"""
 	hinttext.text = hint
 	hinttimer.start()
+	"""
 
 
 func _hinttext_timeout():

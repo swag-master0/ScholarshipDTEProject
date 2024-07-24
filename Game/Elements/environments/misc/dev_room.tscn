@@ -1,7 +1,7 @@
 [gd_scene load_steps=8 format=3 uid="uid://cx1a4ujrxixpp"]
 
 [ext_resource type="PackedScene" uid="uid://g2jwt8atruu7" path="res://Art/environment/environment.tscn" id="1_j3tyq"]
-[ext_resource type="PackedScene" uid="uid://bcou7suhphdrp" path="res://Elements/function/player.tscn" id="2_dg15a"]
+[ext_resource type="PackedScene" uid="uid://bcou7suhphdrp" path="res://Elements/function/player/player.tscn" id="2_dg15a"]
 
 [sub_resource type="Gradient" id="Gradient_313rr"]
 interpolation_mode = 1
