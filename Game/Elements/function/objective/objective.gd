@@ -8,7 +8,7 @@ var player_colliding = false
 var objective_colliding = false
 
 
-func _process(delta):
+func _process(_delta):
 	if player_colliding and objective_colliding:
 		ChangeScene()
 	

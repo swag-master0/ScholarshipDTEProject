@@ -1,4 +1,4 @@
-[gd_scene load_steps=15 format=3 uid="uid://c3jh1kk8goxry"]
+[gd_scene load_steps=16 format=3 uid="uid://c3jh1kk8goxry"]
 
 [ext_resource type="PackedScene" uid="uid://dkteohkuoghg0" path="res://Art/blend/levels_chapter2/c2_m1.blend" id="1_usv7o"]
 [ext_resource type="PackedScene" uid="uid://ch3t1bgj51uvs" path="res://Elements/enemies/sentry/sentry.tscn" id="1_w338e"]
@@ -26,6 +26,9 @@ func _on_trigger_body_entered(body):
 
 
 "
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_vg5n6"]
+albedo_color = Color(1, 1, 0.894118, 1)
 
 [sub_resource type="Environment" id="Environment_qndx8"]
 background_mode = 1
@@ -72,6 +75,9 @@ transform = Transform3D(0.258819, 0, 0.965926, 0, 1, 0, -0.965926, 0, 0.258819, 
 
 [node name="c2_m1" parent="." instance=ExtResource("1_usv7o")]
 
+[node name="Level (fixed)" parent="c2_m1" index="1"]
+material_override = SubResource("StandardMaterial3D_vg5n6")
+
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
 transform = Transform3D(0.866025, 0.482963, 0.12941, 0, -0.258819, 0.965926, 0.5, -0.836516, -0.224144, -19, 7.73072, 32)
 light_color = Color(0.533333, 0.533333, 0.533333, 1)
@@ -112,6 +118,7 @@ mesh = SubResource("CapsuleMesh_bk0pr")
 [connection signal="body_entered" from="Trigger" to="." method="_on_trigger_body_entered"]
 [connection signal="death" from="Sentry/Info" to="." method="_on_info_death"]
 
+[editable path="c2_m1"]
 [editable path="Prop"]
 [editable path="Sentry"]
 [editable path="Sentry/Info"]

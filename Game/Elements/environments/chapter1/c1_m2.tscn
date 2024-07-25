@@ -1,4 +1,4 @@
-[gd_scene load_steps=14 format=3 uid="uid://cov8v6858hevf"]
+[gd_scene load_steps=15 format=3 uid="uid://cov8v6858hevf"]
 
 [ext_resource type="PackedScene" uid="uid://bcou7suhphdrp" path="res://Elements/function/player/player_v2.tscn" id="3_voxtl"]
 [ext_resource type="PackedScene" uid="uid://ch7t6b0c3tjwr" path="res://Elements/enemies/enemy/enemy.tscn" id="4_8i10n"]
@@ -66,6 +66,9 @@ polygons = [PackedInt32Array(3, 2, 0), PackedInt32Array(0, 2, 1), PackedInt32Arr
 geometry_parsed_geometry_type = 1
 agent_max_slope = 70.0
 
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_vg5n6"]
+albedo_color = Color(1, 1, 0.894118, 1)
+
 [sub_resource type="BoxShape3D" id="BoxShape3D_fw0uv"]
 size = Vector3(29.615, 18.725, 33.845)
 
@@ -104,6 +107,9 @@ sky_mode = 1
 navigation_mesh = SubResource("NavigationMesh_a2gje")
 
 [node name="level" parent="NavigationRegion3D" instance=ExtResource("4_y0qnk")]
+
+[node name="Level" parent="NavigationRegion3D/level" index="1"]
+material_override = SubResource("StandardMaterial3D_vg5n6")
 
 [node name="Trigger" type="Area3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 73, 8, -51)
@@ -170,6 +176,13 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 35.6706, 1, 2.8873)
 
 [node name="Prop9" parent="Props" instance=ExtResource("7_tk5jc")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 38.6706, 1, 1.8873)
+
+[node name="OmniLight3D" type="OmniLight3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 70, 12, -43)
+light_energy = 3.087
+shadow_enabled = true
+omni_range = 21.457
+omni_attenuation = 0.933033
 
 [connection signal="body_entered" from="Trigger" to="." method="_on_trigger_body_entered"]
 [connection signal="body_entered" from="DialogueTrigger" to="." method="_on_dialogue_trigger_body_entered"]

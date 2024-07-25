@@ -1,7 +1,6 @@
-[gd_scene load_steps=29 format=3 uid="uid://bcou7suhphdrp"]
+[gd_scene load_steps=28 format=3 uid="uid://bcou7suhphdrp"]
 
 [ext_resource type="Script" path="res://Elements/function/player/player_v2.gd" id="1_2nm4r"]
-[ext_resource type="Shader" uid="uid://brxy1akmulll1" path="res://Art/materials/player.tres" id="2_w1nsb"]
 [ext_resource type="PackedScene" uid="uid://cft1b4l0aljye" path="res://Elements/function/info/info.tscn" id="4_ua0e3"]
 [ext_resource type="Texture2D" uid="uid://djwowo0gdnhek" path="res://Art/textures/mouse_base.png" id="5_u7k2l"]
 [ext_resource type="Texture2D" uid="uid://dmnjpb8ox2bsu" path="res://Art/textures/mouse1-1.png" id="6_ne0wx"]
@@ -14,9 +13,6 @@
 [ext_resource type="AudioStream" uid="uid://bk7fdh3m3au1n" path="res://Art/audio/dialogue.wav" id="13_4dygs"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_ysax4"]
-render_priority = 0
-shader = ExtResource("2_w1nsb")
-shader_parameter/health = 0.0
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_jofc1"]
 emission = Color(1, 1, 1, 1)
@@ -178,15 +174,18 @@ libraries = {
 }
 
 [node name="CentralCameraPoint" type="Marker3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.4, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.4, 0)
 
-[node name="Camera3D" type="Camera3D" parent="CentralCameraPoint"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1, 1, 5)
+[node name="SpringArm3D" type="SpringArm3D" parent="CentralCameraPoint"]
+spring_length = 5.0
+
+[node name="Camera3D" type="Camera3D" parent="CentralCameraPoint/SpringArm3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 5)
 doppler_tracking = 2
 fov = 90.0
 size = 39.544
 
-[node name="RayCast3D" type="RayCast3D" parent="CentralCameraPoint/Camera3D"]
+[node name="RayCast3D" type="RayCast3D" parent="CentralCameraPoint/SpringArm3D/Camera3D"]
 target_position = Vector3(0, 0, -2000)
 debug_shape_custom_color = Color(1, 0, 0, 1)
 

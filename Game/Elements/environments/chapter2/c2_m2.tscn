@@ -1,4 +1,4 @@
-[gd_scene load_steps=25 format=3 uid="uid://e1ifpcaik1si"]
+[gd_scene load_steps=26 format=3 uid="uid://e1ifpcaik1si"]
 
 [ext_resource type="PackedScene" uid="uid://msdo88p274sw" path="res://Elements/function/objective/objective_level_start.tscn" id="1_fn0xy"]
 [ext_resource type="PackedScene" uid="uid://bcou7suhphdrp" path="res://Elements/function/player/player_v2.tscn" id="1_iwowe"]
@@ -50,6 +50,9 @@ func _on_pain_body_entered(body):
 	
 
 "
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_vg5n6"]
+albedo_color = Color(1, 1, 0.894118, 1)
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_5joel"]
 albedo_color = Color(0.494118, 0, 0, 1)
@@ -133,6 +136,9 @@ nextscene_string = "res://Elements/environments/chapter2/c2_m3.tscn"
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 125, 1, -45)
 
 [node name="c2_m2" parent="." instance=ExtResource("1_phkl0")]
+
+[node name="Level" parent="c2_m2" index="0"]
+material_override = SubResource("StandardMaterial3D_vg5n6")
 
 [node name="Pain" type="Area3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 20.5, -1, 0)

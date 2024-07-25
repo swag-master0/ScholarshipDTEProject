@@ -27,8 +27,8 @@ extends CharacterBody3D
 
 # Camera
 @onready var pivot = $CentralCameraPoint
-@onready var camera = $CentralCameraPoint/Camera3D
-@onready var ray = $CentralCameraPoint/Camera3D/RayCast3D
+@onready var camera = $CentralCameraPoint/SpringArm3D/Camera3D
+@onready var ray = $CentralCameraPoint/SpringArm3D/Camera3D/RayCast3D
 
 # Cursor
 @onready var cursor = $Cursor
@@ -249,11 +249,11 @@ func _process(_delta):
 			hud_health.visible = true
 		
 		
-		var health_ratio : float = max_health / health
-		print_rich("[rainbow]", health_ratio)
+		#var health_ratio : float = max_health / health
+	#	print_rich("[rainbow]", health_ratio)
 		
 		# TODO: test this properly
-		$PlayerModel.set_instance_shader_parameter("health", health_ratio - 1)
+	#	$PlayerModel.set_instance_shader_parameter("health", health_ratio - 1)
 		
 		
 		if hud_healthwhite.value != hud_health.value and !healthvisualindicator:
