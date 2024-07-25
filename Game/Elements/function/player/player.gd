@@ -66,6 +66,8 @@ func TOP():
 
 @onready var animation_tree = $AnimationTree
 @onready var state_machine = animation_tree.get("parameters/playback")
+@onready var idle_timer = $AnimationTree/IdleTimer
+
 
 
 var gravity = ProjectSettings.get_setting("physics/3d/default_gravity")
@@ -140,15 +142,31 @@ func _physics_process(delta):
 	if (Input.is_action_pressed("forward") or Input.is_action_pressed("left") or Input.is_action_pressed("right") or Input.is_action_pressed("backward")):
 		faceDirection = Vector3(Input.get_action_strength("right") - Input.get_action_strength("left"), 0 ,Input.get_action_strength("backward") - Input.get_action_strength("forward")).normalized()
 	
-	character.rotation.y = atan2(ray_endpos.position.x, ray_endpos.position.z)
+	#character.rotation.y = atan2(ray_endpos.position.x, ray_endpos.position.z)
 	
 	# player rotation code
-#	if isHolding:
-#		character.rotation.y = atan2(ray_endpos.position.x, ray_endpos.position.z)
-#	elif !isHolding and velocity:
-#		character.rotation.y = lerp_angle(character.rotation.y, atan2(faceDirection.x, faceDirection.z), delta * TURN_VELOCITY)
-#	elif !velocity and is_on_floor():
-#		pass
+	if isHolding:
+		character.rotation.y = atan2(ray_endpos.position.x, ray_endpos.position.z)
+	elif !isHolding and velocity:
+		character.rotation.y = lerp_angle(character.rotation.y, atan2(faceDirection.x, faceDirection.z), delta * TURN_VELOCITY)
+	elif !velocity and is_on_floor():
+		pass
+	
+	
+	
+	# player movement from template (im too lazy to change it, nor do I need to)
+	var input_dir = Input.get_vector("left", "right", "forward", "backward")
+	var direction = (transform.basis * Vector3(input_dir.x, 0, input_dir.y)).normalized()
+	
+	if direction:
+		velocity.x = direction.x * SPEED
+		velocity.z = direction.z * SPEED
+	
+	else:
+		velocity.x = move_toward(velocity.x, 0, SPEED)
+		velocity.z = move_toward(velocity.z, 0, SPEED)
+	
+	move_and_slide()
 	
 	
 	
@@ -172,8 +190,6 @@ func _physics_process(delta):
 	elif velocity and is_on_floor():
 		state_machine.travel("run")
 		
-		var anim_speed : float = (4.0 / 30.0) * SPEED * ANIM_RUN_SPEED
-		animation_tree.set("parameters/run/TimeScale/scale", anim_speed) # get time for 1 step * player vel
 		
 		if footstep_delay.is_stopped() and is_on_floor():
 			footstep_delay.start()
@@ -181,27 +197,11 @@ func _physics_process(delta):
 			sound_footstep.play()
 		
 	else:
+		
 		state_machine.travel("idle")
 	
-	
-	
-	# player movement from template (im too lazy to change it, nor do I need to)
-	var input_dir = Input.get_vector("left", "right", "forward", "backward")
-	var direction = (transform.basis * Vector3(input_dir.x, 0, input_dir.y)).normalized()
-	
-	if direction:
-		velocity.x = direction.x * SPEED
-		velocity.z = direction.z * SPEED
-	
-	else:
-		velocity.x = move_toward(velocity.x, 0, SPEED)
-		velocity.z = move_toward(velocity.z, 0, SPEED)
-	
-	move_and_slide()
-	
-	
-	
-	
+
+
 
 # process is the player throwing mechanic and healthbar code
 func _process(_delta):
@@ -327,6 +327,13 @@ func MousePosition():
 			cursor.global_position = ray_endpos.global_position
 
 
+func _on_idle_timer_timeout():
+	
+	print('triggered!!!')
+	state_machine.travel("idle-flair1")
+	
+	#animation_tree.
+	pass # Replace with function body.
 
 
 func NearestObject():
@@ -345,6 +352,10 @@ func NearestObject():
 	
 	if closest_node:
 		return closest_node
+
+
+
+
 
 
 func _on_info_take_damage():
@@ -470,3 +481,6 @@ func _on_delay_timeout():
 
 
 # <-- This number is the amount of times I have lost the will to live
+
+
+
