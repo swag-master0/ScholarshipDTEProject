@@ -1,4 +1,4 @@
-[gd_scene load_steps=95 format=3 uid="uid://bcou7suhphdrp"]
+[gd_scene load_steps=96 format=3 uid="uid://bcou7suhphdrp"]
 
 [ext_resource type="Script" path="res://Elements/function/player/player.gd" id="1_0ncw4"]
 [ext_resource type="PackedScene" uid="uid://4lv8cegk7f53" path="res://Art/blend/assets/main/player.blend" id="2_ww4ji"]
@@ -365,8 +365,10 @@ size = Vector3(2, 3, 2)
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_j7m3i"]
 
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_8j27o"]
+
 [sub_resource type="ViewportTexture" id="ViewportTexture_8wrpo"]
-viewport_path = NodePath(".")
+viewport_path = NodePath("A-OS")
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_1odvh"]
 bg_color = Color(0.6, 0.6, 0.6, 0)
@@ -452,21 +454,21 @@ shape = SubResource("CapsuleShape3D_nrsfh")
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1, 0)
 
 [node name="Skeleton3D" parent="PlayerModel/player/Armature" index="0"]
-bones/0/position = Vector3(-0.00183521, -0.0687756, 0)
-bones/1/rotation = Quaternion(0.000120193, -0.000177738, 0.819172, 0.573547)
-bones/2/rotation = Quaternion(-0.000194768, -0.000130107, 0.291883, 0.956454)
-bones/3/rotation = Quaternion(-0.000125175, -2.11004e-05, 0.407478, 0.913215)
+bones/0/position = Vector3(-0.00183521, -0.0707524, 0)
+bones/1/rotation = Quaternion(0.000201194, -0.000297684, 0.818875, 0.573972)
+bones/2/rotation = Quaternion(-0.000315083, -0.000210387, 0.291123, 0.956686)
+bones/3/rotation = Quaternion(-0.000326101, -5.51674e-05, 0.40472, 0.914441)
 bones/4/rotation = Quaternion(-6.35795e-06, -2.53072e-07, 0.0895676, 0.995981)
-bones/5/rotation = Quaternion(8.72006e-05, 0.000109003, -0.847496, 0.530801)
-bones/6/rotation = Quaternion(-0.000118522, 8.51282e-05, -0.282429, 0.959288)
-bones/7/rotation = Quaternion(-0.000296278, 4.65593e-05, -0.349593, 0.936902)
-bones/8/rotation = Quaternion(-3.77697e-05, 1.38218e-06, -0.075409, 0.997153)
-bones/9/rotation = Quaternion(0.00127929, 0, 0, 0.999999)
-bones/10/rotation = Quaternion(0.70705, 0.00959056, -0.707043, -0.00890399)
-bones/11/rotation = Quaternion(-4.57384e-06, 2.61327e-05, -0.00255664, 0.999997)
+bones/5/rotation = Quaternion(0.000226953, 0.000283666, -0.846039, 0.533121)
+bones/6/rotation = Quaternion(-0.000308347, 0.000221495, -0.280817, 0.959761)
+bones/7/rotation = Quaternion(-0.00036856, 5.79192e-05, -0.349911, 0.936783)
+bones/8/rotation = Quaternion(-7.49956e-05, 2.74469e-06, -0.076199, 0.997093)
+bones/9/rotation = Quaternion(0.00206865, 0, 0, 0.999998)
+bones/10/rotation = Quaternion(0.70705, 0.00958933, -0.707043, -0.008904)
+bones/11/rotation = Quaternion(-4.56598e-06, 2.56191e-05, -0.00250678, 0.999997)
 bones/12/rotation = Quaternion(2.13178e-09, -1.13731e-12, -0.0279828, 0.999608)
-bones/13/rotation = Quaternion(0.707047, -0.0093031, 0.707046, -0.00919292)
-bones/14/rotation = Quaternion(-7.32775e-07, -4.27571e-06, 0.0025957, 0.999997)
+bones/13/rotation = Quaternion(0.707047, -0.00930203, 0.707046, -0.00919218)
+bones/14/rotation = Quaternion(-7.30575e-07, -4.14092e-06, 0.00251384, 0.999997)
 bones/15/rotation = Quaternion(2.11414e-09, 1.70597e-13, 0.0280121, 0.999608)
 
 [node name="Player" parent="PlayerModel/player/Armature/Skeleton3D" index="0"]
@@ -474,7 +476,7 @@ surface_material_override/1 = SubResource("ShaderMaterial_booyl")
 surface_material_override/2 = SubResource("ShaderMaterial_mhwhj")
 
 [node name="FaceAttachment" type="BoneAttachment3D" parent="PlayerModel/player/Armature/Skeleton3D" index="1"]
-transform = Transform3D(1, 0, 0, 0, 0.999997, -0.00255858, 0, 0.00255858, 0.999997, -0.00183521, 0.515768, 0)
+transform = Transform3D(1, 0, 0, 0, 0.999991, -0.00413729, 0, 0.00413729, 0.999991, -0.00183521, 0.513791, 0)
 bone_name = "Head"
 bone_idx = 9
 
@@ -574,6 +576,7 @@ theme_override_font_sizes/normal_font_size = 22
 bbcode_enabled = true
 
 [node name="A-OS Visual" type="TextureRect" parent="HUD/Dialogue"]
+material = SubResource("ShaderMaterial_8j27o")
 layout_mode = 1
 anchors_preset = 6
 anchor_left = 1.0
@@ -920,15 +923,15 @@ texture = SubResource("AnimatedTexture_x7bso")
 [node name="A-OS" parent="." instance=ExtResource("20_sjfsg")]
 
 [node name="Skeleton3D" parent="A-OS/Scene/a-os/A-OS" index="0"]
-bones/0/position = Vector3(0.143941, -0.157692, 1.98509e-08)
-bones/0/rotation = Quaternion(-0.026336, 0, 0, 0.999653)
+bones/0/position = Vector3(-0.192875, -0.311692, 0)
+bones/0/rotation = Quaternion(-0.0308862, 0.0119787, 0.000654487, 0.999451)
 
 [node name="Icosphere" parent="A-OS/Scene/a-os/A-OS/Skeleton3D" index="0"]
 surface_material_override/0 = null
 surface_material_override/1 = null
 
 [node name="BoneAttachment3D" parent="A-OS/Scene/a-os/A-OS/Skeleton3D" index="1"]
-transform = Transform3D(1, 0, 0, 0, 0.998613, 0.0526537, 0, -0.0526537, 0.998613, 0.143941, -0.157692, 1.98509e-08)
+transform = Transform3D(0.999712, -0.00204821, 0.0239038, 0.000568304, 0.998091, 0.0617541, -0.0239846, -0.0617227, 0.997805, -0.192875, -0.311692, 0)
 
 [node name="Audio" type="Node" parent="."]
 

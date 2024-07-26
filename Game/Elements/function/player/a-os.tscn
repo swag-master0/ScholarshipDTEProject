@@ -134,15 +134,15 @@ anim_player = NodePath("../a-os/AnimationPlayer")
 [node name="a-os" parent="Scene" instance=ExtResource("2_ortrh")]
 
 [node name="Skeleton3D" parent="Scene/a-os/A-OS" index="0"]
-bones/0/position = Vector3(-0.035587, 0.0301739, 4.19923e-08)
-bones/0/rotation = Quaternion(0.00387036, 0.0204415, -0.000533952, 0.999783)
+bones/0/position = Vector3(0.0283445, -0.256164, -7.75391e-09)
+bones/0/rotation = Quaternion(0.00579926, 0, 0, 0.999983)
 
 [node name="Icosphere" parent="Scene/a-os/A-OS/Skeleton3D" index="0"]
 surface_material_override/0 = SubResource("ShaderMaterial_rlrbh")
 surface_material_override/1 = SubResource("ShaderMaterial_6o3t4")
 
 [node name="BoneAttachment3D" type="BoneAttachment3D" parent="Scene/a-os/A-OS/Skeleton3D" index="1"]
-transform = Transform3D(0.999164, 0.00122591, 0.04087, -0.000909441, 0.999969, -0.00776088, -0.0408783, 0.00771722, 0.999134, -0.035587, 0.0301739, 4.19923e-08)
+transform = Transform3D(1, 0, 0, 0, 0.999933, -0.0115983, 0, 0.0115983, 0.999933, 0.0283445, -0.256164, -7.75391e-09)
 bone_name = "Bone"
 bone_idx = 0
 

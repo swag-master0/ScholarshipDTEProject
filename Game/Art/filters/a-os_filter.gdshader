@@ -3,21 +3,20 @@ render_mode unshaded, blend_premul_alpha;
 
 uniform sampler2D SCREEN_TEXTURE: hint_screen_texture, repeat_disable, filter_nearest;
 uniform sampler2D VIEWPORT_TEXTURE;
-const float threshold = 0.5;
+const int pixel_size = 3;
+
 
 
 void fragment() {
-	vec4 colour = texture(VIEWPORT_TEXTURE, UV);
-	vec4 roundedcol = round(colour);
+	
+	float x = float(int(FRAGCOORD.x) % pixel_size);
+	float y = float(int(FRAGCOORD.y) % pixel_size);
+	
+	x = FRAGCOORD.x + floor(float(pixel_size) / 2.0) - x;
+	y = FRAGCOORD.y + floor(float(pixel_size) / 2.0) - y;
 	
 	
-	if (roundedcol.r > threshold) {
-		roundedcol = vec4(1.0, 1.0, 1.0, 1.0);
-	} else {
-		roundedcol = vec4(0.0, 0.0, 0.0, 0.0);
-	}
-	
-	COLOR = roundedcol;
+	COLOR = texture(VIEWPORT_TEXTURE, vec2(x, y) / vec2(1.0 / SCREEN_PIXEL_SIZE.x, 1.0 / SCREEN_PIXEL_SIZE.y));
 }
 
 

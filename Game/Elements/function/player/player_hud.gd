@@ -39,10 +39,13 @@ var current_crosshair = 0
 
 # -- Experimental text-to-speech stuff
 var voices = DisplayServer.tts_get_voices_for_language("en")
-var voice_id = voices[0]
+var voice_id = voices[1]
 
 
 
+
+func _ready():
+	print(voices)
 
 
 
@@ -132,6 +135,15 @@ func Dialogue(text_speed : float = 0.05, time_until_continue : float = 4):
 func _on_remove_characters_timeout():
 	hud_dialogue.visible = false
 	hud_dialogue.text = ""
+
+
+
+func TextToSpeech():
+	
+	pass
+
+
+
 
 
 # INFO: LOCK-ON CURSOR AND ENEMY HEALTH BARS
