@@ -37,6 +37,14 @@ var selectionsound = false
 var current_crosshair = 0
 
 
+# -- Experimental text-to-speech stuff
+var voices = DisplayServer.tts_get_voices_for_language("en")
+var voice_id = voices[0]
+
+
+
+
+
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
@@ -102,6 +110,8 @@ func Dialogue(text_speed : float = 0.05, time_until_continue : float = 4):
 			hud_dialogue.visible = true
 			hud_dialogue.text = dialogue
 			hud_dialoguedelay.wait_time = text_speed
+			
+			DisplayServer.tts_speak(dialogue, voice_id)
 			
 			for x in dialogue.length():
 				hud_dialogue.visible_characters = x + 1

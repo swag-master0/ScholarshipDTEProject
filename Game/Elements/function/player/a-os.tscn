@@ -1,0 +1,160 @@
+[gd_scene load_steps=15 format=3 uid="uid://d3qcg4xjm6x5x"]
+
+[ext_resource type="Script" path="res://Elements/function/player/a-os.gd" id="1_141mi"]
+[ext_resource type="PackedScene" uid="uid://dgj0swcywi380" path="res://Art/blend/assets/main/a-os.blend" id="2_ortrh"]
+[ext_resource type="Shader" path="res://Art/materials/player/a-os_black.gdshader" id="3_2j02a"]
+[ext_resource type="Shader" path="res://Art/materials/player/a-os_white.gdshader" id="4_ayo6c"]
+[ext_resource type="Texture2D" uid="uid://dakdkin3narkl" path="res://Art/textures/hud/a-os/a-os_face-1.png" id="5_wtnwb"]
+[ext_resource type="Texture2D" uid="uid://b13wr06ggbju2" path="res://Art/textures/hud/a-os/a-os_face-2.png" id="6_caheb"]
+[ext_resource type="Texture2D" uid="uid://2ciwv34tmimw" path="res://Art/textures/hud/a-os/a-os_face-3.png" id="7_wtvax"]
+[ext_resource type="Texture2D" uid="uid://bcyutlxovj0uf" path="res://Art/textures/hud/a-os/a-os_face-4.png" id="8_8gwh8"]
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_pvfvg"]
+animation = &"idle"
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_tmtct"]
+advance_mode = 2
+
+[sub_resource type="AnimationNodeStateMachine" id="AnimationNodeStateMachine_44exl"]
+states/Start/position = Vector2(216, 100)
+states/idle/node = SubResource("AnimationNodeAnimation_pvfvg")
+states/idle/position = Vector2(420, 100)
+transitions = ["Start", "idle", SubResource("AnimationNodeStateMachineTransition_tmtct")]
+graph_offset = Vector2(-23, 1)
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_rlrbh"]
+render_priority = 0
+shader = ExtResource("3_2j02a")
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_6o3t4"]
+render_priority = 0
+shader = ExtResource("4_ayo6c")
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_eqd0k"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("5_wtnwb")
+}, {
+"duration": 1.0,
+"texture": ExtResource("6_caheb")
+}, {
+"duration": 1.0,
+"texture": ExtResource("6_caheb")
+}, {
+"duration": 1.0,
+"texture": ExtResource("7_wtvax")
+}, {
+"duration": 1.0,
+"texture": ExtResource("5_wtnwb")
+}, {
+"duration": 1.0,
+"texture": ExtResource("7_wtvax")
+}, {
+"duration": 1.0,
+"texture": ExtResource("7_wtvax")
+}, {
+"duration": 1.0,
+"texture": ExtResource("5_wtnwb")
+}, {
+"duration": 1.0,
+"texture": ExtResource("5_wtnwb")
+}, {
+"duration": 1.0,
+"texture": ExtResource("7_wtvax")
+}, {
+"duration": 1.0,
+"texture": ExtResource("6_caheb")
+}, {
+"duration": 1.0,
+"texture": ExtResource("6_caheb")
+}, {
+"duration": 1.0,
+"texture": ExtResource("5_wtnwb")
+}, {
+"duration": 1.0,
+"texture": ExtResource("7_wtvax")
+}, {
+"duration": 1.0,
+"texture": ExtResource("6_caheb")
+}, {
+"duration": 1.0,
+"texture": ExtResource("8_8gwh8")
+}, {
+"duration": 1.0,
+"texture": ExtResource("7_wtvax")
+}, {
+"duration": 1.0,
+"texture": ExtResource("5_wtnwb")
+}, {
+"duration": 1.0,
+"texture": ExtResource("7_wtvax")
+}, {
+"duration": 1.0,
+"texture": ExtResource("6_caheb")
+}, {
+"duration": 1.0,
+"texture": ExtResource("7_wtvax")
+}, {
+"duration": 1.0,
+"texture": ExtResource("5_wtnwb")
+}, {
+"duration": 1.0,
+"texture": ExtResource("5_wtnwb")
+}, {
+"duration": 1.0,
+"texture": ExtResource("8_8gwh8")
+}, {
+"duration": 1.0,
+"texture": ExtResource("6_caheb")
+}, {
+"duration": 1.0,
+"texture": ExtResource("5_wtnwb")
+}, {
+"duration": 1.0,
+"texture": ExtResource("7_wtvax")
+}],
+"loop": true,
+"name": &"idle",
+"speed": 4.0
+}]
+
+[node name="A-OS" type="SubViewport"]
+transparent_bg = true
+script = ExtResource("1_141mi")
+
+[node name="Scene" type="Node3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -10, 0)
+
+[node name="AnimationTree" type="AnimationTree" parent="Scene"]
+root_node = NodePath("../a-os")
+tree_root = SubResource("AnimationNodeStateMachine_44exl")
+anim_player = NodePath("../a-os/AnimationPlayer")
+
+[node name="a-os" parent="Scene" instance=ExtResource("2_ortrh")]
+
+[node name="Skeleton3D" parent="Scene/a-os/A-OS" index="0"]
+bones/0/position = Vector3(-0.035587, 0.0301739, 4.19923e-08)
+bones/0/rotation = Quaternion(0.00387036, 0.0204415, -0.000533952, 0.999783)
+
+[node name="Icosphere" parent="Scene/a-os/A-OS/Skeleton3D" index="0"]
+surface_material_override/0 = SubResource("ShaderMaterial_rlrbh")
+surface_material_override/1 = SubResource("ShaderMaterial_6o3t4")
+
+[node name="BoneAttachment3D" type="BoneAttachment3D" parent="Scene/a-os/A-OS/Skeleton3D" index="1"]
+transform = Transform3D(0.999164, 0.00122591, 0.04087, -0.000909441, 0.999969, -0.00776088, -0.0408783, 0.00771722, 0.999134, -0.035587, 0.0301739, 4.19923e-08)
+bone_name = "Bone"
+bone_idx = 0
+
+[node name="Eyes" type="AnimatedSprite3D" parent="Scene/a-os/A-OS/Skeleton3D/BoneAttachment3D"]
+transform = Transform3D(0.999508, 0.00389817, -0.031113, -0.0023325, 0.998737, 0.0502008, 0.0312694, -0.0501035, 0.998255, 0.0156765, 0.342555, 0.820696)
+texture_filter = 0
+sprite_frames = SubResource("SpriteFrames_eqd0k")
+animation = &"idle"
+autoplay = "idle"
+frame_progress = 0.815628
+
+[node name="Camera3D" type="Camera3D" parent="Scene"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.175454, 2.31176)
+
+[editable path="Scene/a-os"]

@@ -94,7 +94,12 @@ var main_menu = "res://Elements/function/main_menu.tscn"
 
 
 
+
+
+
+
 func _ready():
+	
 	Engine.time_scale = 1
 	canPause = true
 	pausemenu.visible = false
