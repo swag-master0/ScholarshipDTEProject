@@ -38,14 +38,14 @@ var current_crosshair = 0
 
 
 # -- Experimental text-to-speech stuff
-var voices = DisplayServer.tts_get_voices_for_language("en")
-var voice_id = voices[1]
+#var voices = DisplayServer.tts_get_voices()
+#var voice_id = voices[1].id
 
 
 
 
-func _ready():
-	print(voices)
+#func _ready():
+#	print(voices)
 
 
 
@@ -102,7 +102,6 @@ func _hinttext_timeout():
 # INFO: DIALOGUE SYSTEM
 func Dialogue(text_speed : float = 0.05, time_until_continue : float = 4):
 	
-	
 	if dialoguespeaking == false and !dialogue_queue.is_empty():
 		dialoguespeaking = true
 		
@@ -114,7 +113,10 @@ func Dialogue(text_speed : float = 0.05, time_until_continue : float = 4):
 			hud_dialogue.text = dialogue
 			hud_dialoguedelay.wait_time = text_speed
 			
-			DisplayServer.tts_speak(dialogue, voice_id)
+			
+			# tts_speak(text: String, voice: String, volume: int = 50, pitch: float = 1.0, rate: float = 1.0, utterance_id: int = 0, interrupt: bool = false)
+			#DisplayServer.tts_speak(dialogue, voice_id, 50, 0, 1.2, 0, true)
+			
 			
 			for x in dialogue.length():
 				hud_dialogue.visible_characters = x + 1

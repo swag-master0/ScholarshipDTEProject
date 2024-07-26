@@ -361,8 +361,6 @@ func NearestObject():
 
 
 
-
-
 func _on_info_take_damage():
 	sound_hurt.pitch_scale = randf_range(75, 125) / 100 # random value between 0.75 and 1.25
 	sound_hurt.play(0)
@@ -405,8 +403,10 @@ func PauseMenu(toggle : bool):
 		
 		if toggle == true:
 			Input.set_mouse_mode(Input.MOUSE_MODE_VISIBLE)
+			DisplayServer.tts_pause()
 		else:
 			Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
+			DisplayServer.tts_resume()
 
 
 func _on_resume_button_pressed():

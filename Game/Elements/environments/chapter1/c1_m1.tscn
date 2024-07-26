@@ -31,10 +31,9 @@ func _ready():
 		if i.is_in_group(\"player\"):
 			
 			
-			i.dialogue_queue.append(\"Hello\")
-			i.dialogue_queue.append(\"World!\")
-			
-		#	i.Dialogue()
+			i.dialogue_queue.append(\"The quick brown fox jumped over the lazy dog.\")
+			i.dialogue_queue.append(\"Please fucking kill me life is a nightmare nightmare nightmare nightmare nightmare nightmare nightmare nightmare \")
+			i.dialogue_queue.append(\"McDonald's Drive Thru Employee: hey man, tf is a skibidi gyatt burgers with extra goon, a kaicenat happymeal series, a skibidi goonshake that you ordered, that's not even in the menu, are you braindead? maybe try go away and never come back. if you really force me to make that, how about i make you gone.\")
 
 \"\"\"
 func _on_tutorial_trigger_body_entered(body):
