@@ -33,6 +33,7 @@ func TOP():
 @onready var holdpoint_backup = $PlayerModel/HoldPoint/Backup
 @onready var obstruction_detection = $PlayerModel/ObstructionDetector
 
+
 # Camera
 @onready var pivot = $CentralCameraPoint
 @onready var camera = $CentralCameraPoint/SpringArm3D/Camera3D
@@ -47,6 +48,8 @@ func TOP():
 
 # Info
 @onready var info = $Info
+
+@onready var A_OS = $"A-OS"
 
 # HUD
 @onready var HUD = $HUD
@@ -106,6 +109,8 @@ func _ready():
 	deathscreen.visible = false
 	
 	Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
+	
+	A_OS.own_world_3d = true
 	
 	
 	# the funny

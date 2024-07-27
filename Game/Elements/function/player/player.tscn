@@ -454,21 +454,21 @@ shape = SubResource("CapsuleShape3D_nrsfh")
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1, 0)
 
 [node name="Skeleton3D" parent="PlayerModel/player/Armature" index="0"]
-bones/0/position = Vector3(-0.00183521, -0.0763341, 0)
-bones/1/rotation = Quaternion(0.000503542, -0.0007454, 0.817761, 0.575557)
-bones/2/rotation = Quaternion(-0.000863251, -0.00057615, 0.287659, 0.957732)
-bones/3/rotation = Quaternion(-0.000893605, -0.000151388, 0.396911, 0.917857)
+bones/0/position = Vector3(-0.00183521, -0.0704276, 0)
+bones/1/rotation = Quaternion(0.000197561, -0.000292304, 0.818888, 0.573953)
+bones/2/rotation = Quaternion(-0.000283191, -0.000189106, 0.291324, 0.956624)
+bones/3/rotation = Quaternion(-0.000293085, -4.95696e-05, 0.405173, 0.91424)
 bones/4/rotation = Quaternion(-6.35795e-06, -2.53072e-07, 0.0895676, 0.995981)
-bones/5/rotation = Quaternion(0.000621658, 0.000776967, -0.84189, 0.539649)
-bones/6/rotation = Quaternion(-0.000844402, 0.000606586, -0.27626, 0.961082)
-bones/7/rotation = Quaternion(-0.00100925, 0.000158611, -0.352728, 0.935726)
-bones/8/rotation = Quaternion(-0.000186169, 6.81366e-06, -0.0785579, 0.99691)
-bones/9/rotation = Quaternion(0.00566506, 0, 0, 0.999984)
-bones/10/rotation = Quaternion(0.707058, -0.00889916, -0.707035, 0.00952201)
-bones/11/rotation = Quaternion(-9.30065e-05, 2.68498e-05, -0.053487, 0.998569)
+bones/5/rotation = Quaternion(0.00020399, 0.000254966, -0.846279, 0.53274)
+bones/6/rotation = Quaternion(-0.000277159, 0.00019909, -0.281082, 0.959684)
+bones/7/rotation = Quaternion(-0.000385948, 6.06519e-05, -0.349988, 0.936754)
+bones/8/rotation = Quaternion(-6.74107e-05, 2.46707e-06, -0.076038, 0.997105)
+bones/9/rotation = Quaternion(0.00185941, 0, 0, 0.999998)
+bones/10/rotation = Quaternion(0.70705, 0.00959066, -0.707043, -0.008904)
+bones/11/rotation = Quaternion(-4.57445e-06, 2.61715e-05, -0.00256039, 0.999997)
 bones/12/rotation = Quaternion(2.13178e-09, -1.13731e-12, -0.0279828, 0.999608)
-bones/13/rotation = Quaternion(0.707108, 6.46743e-05, 0.707106, 0.000169685)
-bones/14/rotation = Quaternion(-7.87627e-06, -4.32451e-06, 0.0284147, 0.999596)
+bones/13/rotation = Quaternion(0.707047, -0.00930308, 0.707046, -0.0091929)
+bones/14/rotation = Quaternion(-7.32747e-07, -4.27338e-06, 0.0025943, 0.999997)
 bones/15/rotation = Quaternion(2.11414e-09, 1.70597e-13, 0.0280121, 0.999608)
 
 [node name="Player" parent="PlayerModel/player/Armature/Skeleton3D" index="0"]
@@ -476,7 +476,7 @@ surface_material_override/1 = SubResource("ShaderMaterial_booyl")
 surface_material_override/2 = SubResource("ShaderMaterial_mhwhj")
 
 [node name="FaceAttachment" type="BoneAttachment3D" parent="PlayerModel/player/Armature/Skeleton3D" index="1"]
-transform = Transform3D(1, 0, 0, 0, 0.999936, -0.0113299, 0, 0.0113299, 0.999936, -0.00183521, 0.508209, 0)
+transform = Transform3D(1, 0, 0, 0, 0.999993, -0.00371882, 0, 0.00371882, 0.999993, -0.00183521, 0.514116, 0)
 bone_name = "Head"
 bone_idx = 9
 
@@ -554,15 +554,15 @@ shape = SubResource("CapsuleShape3D_j7m3i")
 [node name="A-OS" parent="." instance=ExtResource("20_sjfsg")]
 
 [node name="Skeleton3D" parent="A-OS/Scene/a-os/A-OS" index="0"]
-bones/0/position = Vector3(-0.161394, 0.0602085, -1.94691e-08)
-bones/0/rotation = Quaternion(0.0256029, 0.0324541, -0.000855912, 0.999145)
+bones/0/position = Vector3(-0.203592, -0.30117, 0)
+bones/0/rotation = Quaternion(-0.0270585, 0.00898119, 0.000605859, 0.999593)
 
 [node name="Icosphere" parent="A-OS/Scene/a-os/A-OS/Skeleton3D" index="0"]
 surface_material_override/0 = null
 surface_material_override/1 = null
 
 [node name="BoneAttachment3D" parent="A-OS/Scene/a-os/A-OS/Skeleton3D" index="1"]
-transform = Transform3D(0.997892, 0.0033722, 0.0648088, -4.85237e-05, 0.998688, -0.0512176, -0.0648965, 0.0511065, 0.996582, -0.161394, 0.0602085, -1.94691e-08)
+transform = Transform3D(0.999838, -0.00169726, 0.0179223, 0.00072519, 0.998535, 0.0541058, -0.0179879, -0.0540841, 0.998374, -0.203592, -0.30117, 0)
 
 [node name="HUD" type="Control" parent="."]
 layout_mode = 3
@@ -573,7 +573,8 @@ grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("8_3kk53")
 
-[node name="Dialogue" type="RichTextLabel" parent="HUD"]
+[node name="DialogueBox" type="ColorRect" parent="HUD"]
+visible = false
 layout_mode = 1
 anchors_preset = 5
 anchor_left = 0.5
@@ -584,11 +585,9 @@ offset_right = 250.0
 offset_bottom = 190.0
 grow_horizontal = 2
 pivot_offset = Vector2(250, 75)
-theme_override_colors/default_color = Color(1, 1, 1, 1)
-theme_override_font_sizes/normal_font_size = 22
-bbcode_enabled = true
+color = Color(0, 0, 0, 0.458824)
 
-[node name="A-OS Visual" type="TextureRect" parent="HUD/Dialogue"]
+[node name="A-OS Visual" type="TextureRect" parent="HUD/DialogueBox"]
 material = SubResource("ShaderMaterial_8j27o")
 layout_mode = 1
 anchors_preset = 6
@@ -604,20 +603,20 @@ grow_vertical = 2
 texture = SubResource("ViewportTexture_8wrpo")
 expand_mode = 5
 
-[node name="ColorRect" type="ColorRect" parent="HUD/Dialogue"]
-z_index = -1
+[node name="DialogueText" type="RichTextLabel" parent="HUD/DialogueBox"]
+z_index = 1
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
+offset_right = -150.0
 grow_horizontal = 2
 grow_vertical = 2
-color = Color(0, 0, 0, 0.352941)
 
-[node name="DelayBetweenCharacters" type="Timer" parent="HUD/Dialogue"]
+[node name="DelayBetweenCharacters" type="Timer" parent="HUD/DialogueBox"]
 one_shot = true
 
-[node name="RemoveCharacters" type="Timer" parent="HUD/Dialogue"]
+[node name="RemoveCharacters" type="Timer" parent="HUD/DialogueBox"]
 wait_time = 5.0
 one_shot = true
 
@@ -1022,8 +1021,8 @@ color = Color(1, 1, 1, 0)
 [connection signal="timeout" from="AnimationTree/IdleTimer" to="." method="_on_idle_timer_timeout"]
 [connection signal="death" from="Info" to="." method="_on_info_death"]
 [connection signal="takeDamage" from="Info" to="." method="_on_info_take_damage"]
-[connection signal="timeout" from="HUD/Dialogue/RemoveCharacters" to="." method="_on_remove_characters_timeout"]
-[connection signal="timeout" from="HUD/Dialogue/RemoveCharacters" to="HUD" method="_on_remove_characters_timeout"]
+[connection signal="timeout" from="HUD/DialogueBox/RemoveCharacters" to="." method="_on_remove_characters_timeout"]
+[connection signal="timeout" from="HUD/DialogueBox/RemoveCharacters" to="HUD" method="_on_remove_characters_timeout"]
 [connection signal="timeout" from="HUD/Hints/Timer" to="." method="_hinttext_timeout"]
 [connection signal="timeout" from="HUD/Hints/Timer" to="HUD" method="_hinttext_timeout"]
 [connection signal="pressed" from="HUD/PauseMenu/ResumeButton" to="." method="_on_resume_button_pressed"]

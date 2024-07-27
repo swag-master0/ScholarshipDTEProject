@@ -124,7 +124,7 @@ transparent_bg = true
 script = ExtResource("1_141mi")
 
 [node name="Scene" type="Node3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -10, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -3, 0)
 
 [node name="AnimationTree" type="AnimationTree" parent="Scene"]
 root_node = NodePath("../a-os")
@@ -134,15 +134,15 @@ anim_player = NodePath("../a-os/AnimationPlayer")
 [node name="a-os" parent="Scene" instance=ExtResource("2_ortrh")]
 
 [node name="Skeleton3D" parent="Scene/a-os/A-OS" index="0"]
-bones/0/position = Vector3(0.0283445, -0.256164, -7.75391e-09)
-bones/0/rotation = Quaternion(0.00579926, 0, 0, 0.999983)
+bones/0/position = Vector3(-0.0984793, 0.0543411, 4.19923e-08)
+bones/0/rotation = Quaternion(0.0195447, 0.0295421, -0.000771668, 0.999372)
 
 [node name="Icosphere" parent="Scene/a-os/A-OS/Skeleton3D" index="0"]
 surface_material_override/0 = SubResource("ShaderMaterial_rlrbh")
 surface_material_override/1 = SubResource("ShaderMaterial_6o3t4")
 
 [node name="BoneAttachment3D" type="BoneAttachment3D" parent="Scene/a-os/A-OS/Skeleton3D" index="1"]
-transform = Transform3D(1, 0, 0, 0, 0.999933, -0.0115983, 0, 0.0115983, 0.999933, 0.0283445, -0.256164, -7.75391e-09)
+transform = Transform3D(0.998253, 0.00269715, 0.0590169, -0.000387584, 0.999235, -0.0391105, -0.0590773, 0.0390193, 0.997491, -0.0984793, 0.0543411, 4.19923e-08)
 bone_name = "Bone"
 bone_idx = 0
 

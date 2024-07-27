@@ -11,7 +11,7 @@ func _ready():
 	# causes error ????
 	save.load_player_hub(self)
 	
-	animation_player.play("open")
+	#animation_player.play("open")
 	#animation_player.play("open", -1, -1, true) to play it backwards
 	
 	

@@ -1,6 +1,6 @@
 [gd_scene load_steps=5 format=3 uid="uid://ces1s7p5atsbn"]
 
-[ext_resource type="Script" path="res://Elements/assets/passive/jump_pad.gd" id="1_kfssd"]
+[ext_resource type="Script" path="res://Elements/assets/misc/jump_pad.gd" id="1_kfssd"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_sbr58"]
 size = Vector3(3, 1, 3)

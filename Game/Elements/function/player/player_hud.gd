@@ -13,17 +13,17 @@ extends Control
 @onready var hinttimer = $Hints/Timer
 
 @onready var dialogue_queue = parent.dialogue_queue
-@onready var hud_dialogue = $Dialogue
-@onready var hud_dialoguedelay = $Dialogue/DelayBetweenCharacters
-@onready var hud_dialogueremove = $Dialogue/RemoveCharacters
+@onready var hud_dialogue_box = $DialogueBox
+@onready var hud_dialogue = $DialogueBox/DialogueText
+@onready var hud_dialoguedelay = $DialogueBox/DelayBetweenCharacters
+@onready var hud_dialogueremove = $DialogueBox/RemoveCharacters
+@onready var hud_AOSvisual = $"DialogueBox/A-OS Visual"
 @onready var sound_dialogue = $"../Audio/Dialogue"
 
 @onready var indicator = $Indicator
 @onready var indicator_tutorial = $Indicator/AnimatedSprite2D
 
 @onready var crosshair = $Crosshair
-
-
 
 
 
@@ -45,7 +45,7 @@ var current_crosshair = 0
 
 
 #func _ready():
-#	print(voices)
+	#hud_AOSvisual.texture.viewport_path = $"../A-OS"
 
 
 
@@ -105,9 +105,13 @@ func Dialogue(text_speed : float = 0.05, time_until_continue : float = 4):
 	if dialoguespeaking == false and !dialogue_queue.is_empty():
 		dialoguespeaking = true
 		
+		hud_dialogue_box.visible = true
+		
 		for i in dialogue_queue:
-			var dialogue : String = i
-			dialogue_queue.erase(i)
+			#hud_dialogue.visible = true
+			print(i)
+			var dialogue = dialogue_queue.pop_front()
+			#dialogue_queue.erase(i)
 			
 			hud_dialogue.visible = true
 			hud_dialogue.text = dialogue
@@ -131,7 +135,7 @@ func Dialogue(text_speed : float = 0.05, time_until_continue : float = 4):
 		
 		await get_tree().create_timer(time_until_continue).timeout
 		dialoguespeaking = false
-		hud_dialogue.visible = false
+		hud_dialogue_box.visible = false
 		
 
 func _on_remove_characters_timeout():

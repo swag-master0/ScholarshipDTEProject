@@ -1,7 +1,7 @@
 [gd_scene load_steps=13 format=3 uid="uid://dwe6hqxcxga2x"]
 
 [ext_resource type="Script" path="res://Elements/enemies/bomber.gd" id="1_iqn42"]
-[ext_resource type="PackedScene" uid="uid://d03b14il32qs5" path="res://Elements/assets/hostile/explosion.tscn" id="2_s131x"]
+[ext_resource type="PackedScene" uid="uid://d03b14il32qs5" path="res://Elements/assets/gameplay/explosion.tscn" id="2_s131x"]
 [ext_resource type="PackedScene" uid="uid://cft1b4l0aljye" path="res://Elements/function/info.tscn" id="2_w0jxb"]
 [ext_resource type="AudioStream" uid="uid://b3roo26suawn4" path="res://Art/audio/bomber_buildup.wav" id="4_bujc0"]
 

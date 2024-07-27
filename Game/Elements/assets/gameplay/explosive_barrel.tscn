@@ -1,7 +1,7 @@
 [gd_scene load_steps=7 format=3 uid="uid://b5c4qe603h5o"]
 
-[ext_resource type="Script" path="res://Elements/assets/hostile/explosive_barrel.gd" id="1_q17t3"]
-[ext_resource type="PackedScene" uid="uid://d03b14il32qs5" path="res://Elements/assets/hostile/explosion.tscn" id="2_rt6tb"]
+[ext_resource type="Script" path="res://Elements/assets/gameplay/explosive_barrel.gd" id="1_q17t3"]
+[ext_resource type="PackedScene" uid="uid://d03b14il32qs5" path="res://Elements/assets/gameplay/explosion.tscn" id="2_rt6tb"]
 [ext_resource type="PackedScene" uid="uid://bcj7w8qtlukgu" path="res://Art/blend/assets/misc/barrel.blend" id="3_4m161"]
 
 [sub_resource type="PhysicsMaterial" id="PhysicsMaterial_vgn1v"]

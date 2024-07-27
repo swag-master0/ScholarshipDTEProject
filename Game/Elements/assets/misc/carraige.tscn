@@ -1,0 +1,40 @@
+[gd_scene load_steps=9 format=3 uid="uid://4lamctxd2su2"]
+
+[ext_resource type="PackedScene" uid="uid://cm6onu1j88k44" path="res://Art/blend/assets/misc/carraige.blend" id="1_dfra7"]
+[ext_resource type="Script" path="res://Elements/assets/misc/carraige.gd" id="2_4gx4s"]
+[ext_resource type="Shader" path="res://Art/materials/carraige.gdshader" id="2_set1g"]
+
+[sub_resource type="Gradient" id="Gradient_0ayei"]
+interpolation_mode = 1
+offsets = PackedFloat32Array(0, 0.512821)
+
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_sq4o6"]
+noise_type = 2
+fractal_type = 0
+cellular_return_type = 0
+domain_warp_enabled = true
+domain_warp_type = 2
+
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_4w6m3"]
+as_normal_map = true
+color_ramp = SubResource("Gradient_0ayei")
+noise = SubResource("FastNoiseLite_sq4o6")
+
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_tesbh"]
+color_ramp = SubResource("Gradient_0ayei")
+noise = SubResource("FastNoiseLite_sq4o6")
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_0od4x"]
+render_priority = 0
+shader = ExtResource("2_set1g")
+shader_parameter/text = SubResource("NoiseTexture2D_tesbh")
+shader_parameter/normal = SubResource("NoiseTexture2D_4w6m3")
+
+[node name="carraige" instance=ExtResource("1_dfra7")]
+script = ExtResource("2_4gx4s")
+
+[node name="Mesh" parent="." index="0"]
+surface_material_override/0 = SubResource("ShaderMaterial_0od4x")
+
+[node name="CollisionShape3D" parent="CollisionsFull " index="0"]
+disabled = true

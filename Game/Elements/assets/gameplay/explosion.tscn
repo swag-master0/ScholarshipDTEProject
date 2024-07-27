@@ -1,6 +1,6 @@
 [gd_scene load_steps=9 format=3 uid="uid://d03b14il32qs5"]
 
-[ext_resource type="Script" path="res://Elements/assets/hostile/explosion.gd" id="1_l0qbb"]
+[ext_resource type="Script" path="res://Elements/assets/gameplay/explosion.gd" id="1_l0qbb"]
 [ext_resource type="AudioStream" uid="uid://cm410bdt0as57" path="res://Art/audio/explosion.wav" id="2_weawm"]
 
 [sub_resource type="SphereShape3D" id="SphereShape3D_2q2av"]
