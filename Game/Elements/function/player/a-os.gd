@@ -1,1 +1,1 @@
-extends SubViewport
+extends Node3D

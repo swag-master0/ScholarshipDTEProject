@@ -91,12 +91,10 @@ var main_menu = "res://Elements/function/main_menu.tscn"
 @export var isHolding = false
 @export var object : RigidBody3D
 @export var level_completed : bool = false
-@export var player_hub : String = "res://Elements/environments/misc/player_hub.tscn"
+@export var player_hub : String = "res://Elements/environments/misc/player_cell.tscn"
 @export var dialogue_queue : Array = [] 
 
-
-
-
+signal DialogueFinished
 
 
 
@@ -109,8 +107,6 @@ func _ready():
 	deathscreen.visible = false
 	
 	Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
-	
-	A_OS.own_world_3d = true
 	
 	
 	# the funny
@@ -363,6 +359,9 @@ func NearestObject():
 	if closest_node:
 		return closest_node
 
+
+func SendHintToPlayer(hint: String):
+	HUD.sendHintToPlayer(hint)
 
 
 

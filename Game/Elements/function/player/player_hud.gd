@@ -6,7 +6,7 @@ extends Control
 @onready var tutorial_mode = parent.tutorial_mode
 
 @onready var hud_health = $Health
-#@onready var hud_healthwhite = $Health/HealthWhite
+@onready var hud_healthwhite = $Health/HealthWhite
 @onready var hud_enemyhealth = $EnemyHealth
 
 @onready var hinttext = $Hints
@@ -35,6 +35,7 @@ var tutorial_pickup = false
 var healthvisualindicator = false
 var selectionsound = false
 var current_crosshair = 0
+
 
 
 # -- Experimental text-to-speech stuff
@@ -70,17 +71,17 @@ func _process(delta):
 		
 		
 		
-		#if hud_healthwhite.value != hud_health.value and !healthvisualindicator:
-		#	healthvisualindicator = true
-		#	
-		#	var tween = get_tree().create_tween()
-		#	tween.set_ease(Tween.EASE_IN)
-		#	tween.tween_property(hud_healthwhite, "value", health, 1)
-		#	
-		#	await tween.finished
-		#	hud_healthwhite.value = hud_health.value
-		#	
-		#	healthvisualindicator = false
+		if hud_healthwhite.value != hud_health.value and !healthvisualindicator:
+			healthvisualindicator = true
+			
+			var tween = get_tree().create_tween()
+			tween.set_ease(Tween.EASE_IN)
+			tween.tween_property(hud_healthwhite, "value", health, 1)
+			
+			await tween.finished
+			hud_healthwhite.value = hud_health.value
+			
+			healthvisualindicator = false
 
 
 
@@ -134,6 +135,9 @@ func Dialogue(text_speed : float = 0.05, time_until_continue : float = 4):
 		
 		
 		await get_tree().create_timer(time_until_continue).timeout
+		
+		parent.emit_signal("DialogueFinished")
+		
 		dialoguespeaking = false
 		hud_dialogue_box.visible = false
 		
