@@ -49,8 +49,6 @@ func TOP():
 # Info
 @onready var info = $Info
 
-@onready var A_OS = $"A-OS"
-
 # HUD
 @onready var HUD = $HUD
 @onready var pausemenu = $HUD/PauseMenu
@@ -302,6 +300,9 @@ func _process(_delta):
 		PauseMenu(true)
 
 
+
+func FinishDialogue(dialogue: String):
+	emit_signal("DialogueFinished", dialogue)
 
 
 

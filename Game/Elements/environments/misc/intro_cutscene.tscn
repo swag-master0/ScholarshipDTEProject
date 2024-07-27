@@ -171,7 +171,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -7, 0)
 shape = SubResource("BoxShape3D_080nk")
 
 [node name="Player" parent="." instance=ExtResource("2_tar4w")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3, 2, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.00438, 0)
 SAVE_GAME = false
 
 [node name="player_hub" parent="." instance=ExtResource("3_gglld")]
@@ -202,5 +202,6 @@ environment = SubResource("Environment_ppwta")
 
 [connection signal="body_entered" from="RailsPlayerHub/Crushed" to="Node" method="_on_crushed_body_entered"]
 [connection signal="body_entered" from="Portal" to="." method="_on_portal_body_entered"]
+[connection signal="DialogueFinished" from="Player" to="Node" method="_on_player_dialogue_finished"]
 
 [editable path="player_hub"]

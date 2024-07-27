@@ -25,6 +25,8 @@ extends Control
 
 @onready var crosshair = $Crosshair
 
+@onready var A_OS = $"../A-OS Viewport/A-OS"
+
 
 
 @onready var health = info.health
@@ -41,16 +43,11 @@ var current_crosshair = 0
 # -- Experimental text-to-speech stuff
 #var voices = DisplayServer.tts_get_voices()
 #var voice_id = voices[1].id
+# tts_speak(text: String, voice: String, volume: int = 50, pitch: float = 1.0, rate: float = 1.0, utterance_id: int = 0, interrupt: bool = false)
+			#DisplayServer.tts_speak(dialogue, voice_id, 50, 0, 1.2, 0, true)
 
 
 
-
-#func _ready():
-	#hud_AOSvisual.texture.viewport_path = $"../A-OS"
-
-
-
-# Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
 	
 	if parent.isHolding and current_crosshair != 3:
@@ -95,13 +92,11 @@ func _hinttext_timeout():
 	
 	if tutorial_pickup:
 		tutorial_pickup = false
-		
-		
 
 
 
 # INFO: DIALOGUE SYSTEM
-func Dialogue(text_speed : float = 0.05, time_until_continue : float = 4):
+func Dialogue(text_speed : float = 0.05, time_until_continue : float = 2.5):
 	
 	if dialoguespeaking == false and !dialogue_queue.is_empty():
 		dialoguespeaking = true
@@ -109,34 +104,34 @@ func Dialogue(text_speed : float = 0.05, time_until_continue : float = 4):
 		hud_dialogue_box.visible = true
 		
 		for i in dialogue_queue:
-			#hud_dialogue.visible = true
-			print(i)
 			var dialogue = dialogue_queue.pop_front()
-			#dialogue_queue.erase(i)
 			
-			hud_dialogue.visible = true
-			hud_dialogue.text = dialogue
-			hud_dialoguedelay.wait_time = text_speed
+			if dialogue is int:
+				A_OS.ApplyMood(dialogue)
+				continue
 			
-			
-			# tts_speak(text: String, voice: String, volume: int = 50, pitch: float = 1.0, rate: float = 1.0, utterance_id: int = 0, interrupt: bool = false)
-			#DisplayServer.tts_speak(dialogue, voice_id, 50, 0, 1.2, 0, true)
-			
-			
-			for x in dialogue.length():
-				hud_dialogue.visible_characters = x + 1
+			elif dialogue is String:
 				
-				sound_dialogue.pitch_scale = randf_range(50, 150) / 100
-				sound_dialogue.play()
+				hud_dialogue.visible = true
+				hud_dialogue.text = dialogue
+				hud_dialoguedelay.wait_time = text_speed
 				
-				hud_dialoguedelay.start()
-				await hud_dialoguedelay.timeout
+				
+				for x in dialogue.length():
+					hud_dialogue.visible_characters = x + 1
+					
+					sound_dialogue.pitch_scale = randf_range(50, 150) / 100
+					sound_dialogue.play()
+					
+					hud_dialoguedelay.start()
+					await hud_dialoguedelay.timeout
+			
+			
+			parent.FinishDialogue(dialogue)
+			await get_tree().create_timer(text_speed * dialogue.length() + time_until_continue).timeout
 		
 		
 		
-		await get_tree().create_timer(time_until_continue).timeout
-		
-		parent.emit_signal("DialogueFinished")
 		
 		dialoguespeaking = false
 		hud_dialogue_box.visible = false
@@ -145,12 +140,6 @@ func Dialogue(text_speed : float = 0.05, time_until_continue : float = 4):
 func _on_remove_characters_timeout():
 	hud_dialogue.visible = false
 	hud_dialogue.text = ""
-
-
-
-func TextToSpeech():
-	
-	pass
 
 
 
