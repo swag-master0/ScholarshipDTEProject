@@ -1,30 +1,44 @@
-[gd_scene load_steps=14 format=3 uid="uid://g2jwt8atruu7"]
+[gd_scene load_steps=17 format=3 uid="uid://g2jwt8atruu7"]
 
 [ext_resource type="Shader" path="res://Art/environment/environment.gdshader" id="1_cm3yc"]
 [ext_resource type="Texture2D" uid="uid://d2l05gk7w0ofx" path="res://Art/environment/sunset_jhbcentral.jpg" id="2_v8ij2"]
 
-[sub_resource type="Gradient" id="Gradient_y2idl"]
-interpolation_mode = 1
-offsets = PackedFloat32Array(0, 0.227848)
-colors = PackedColorArray(0, 0, 0, 1, 0.255659, 0.255659, 0.255659, 1)
+[sub_resource type="Gradient" id="Gradient_pgec4"]
+offsets = PackedFloat32Array(0.35443, 1)
+colors = PackedColorArray(0, 0, 0, 1, 0.603414, 0.19963, 0.137439, 1)
 
-[sub_resource type="FastNoiseLite" id="FastNoiseLite_307ei"]
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_4okqe"]
 noise_type = 2
-fractal_type = 3
-cellular_return_type = 0
+frequency = 0.0031
+domain_warp_enabled = true
 
-[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_8pjfp"]
-width = 1024
-height = 1024
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_6pjfi"]
 seamless = true
-color_ramp = SubResource("Gradient_y2idl")
-noise = SubResource("FastNoiseLite_307ei")
+seamless_blend_skirt = 0.585
+color_ramp = SubResource("Gradient_pgec4")
+noise = SubResource("FastNoiseLite_4okqe")
+
+[sub_resource type="Gradient" id="Gradient_n4hhs"]
+offsets = PackedFloat32Array(0, 0.493671, 1)
+colors = PackedColorArray(0, 0, 0, 1, 0.068716, 0.0191235, 0.00267253, 1, 0.139194, 0.0387373, 0.00541359, 1)
+
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_5sv87"]
+noise_type = 2
+fractal_type = 2
+cellular_jitter = 1.915
+domain_warp_enabled = true
+
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_uhrgb"]
+seamless = true
+color_ramp = SubResource("Gradient_n4hhs")
+noise = SubResource("FastNoiseLite_5sv87")
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_y7ns5"]
 shader = ExtResource("1_cm3yc")
 shader_parameter/quality = 4.0
 shader_parameter/skyTexture = ExtResource("2_v8ij2")
-shader_parameter/noise1 = SubResource("NoiseTexture2D_8pjfp")
+shader_parameter/cloudlayer1 = SubResource("NoiseTexture2D_6pjfi")
+shader_parameter/cloudlayer2 = SubResource("NoiseTexture2D_uhrgb")
 
 [sub_resource type="Sky" id="Sky_qpxpt"]
 sky_material = SubResource("ShaderMaterial_y7ns5")
