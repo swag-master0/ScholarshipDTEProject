@@ -1,12 +1,30 @@
-[gd_scene load_steps=6 format=3 uid="uid://g2jwt8atruu7"]
+[gd_scene load_steps=14 format=3 uid="uid://g2jwt8atruu7"]
 
 [ext_resource type="Shader" path="res://Art/environment/environment.gdshader" id="1_cm3yc"]
 [ext_resource type="Texture2D" uid="uid://d2l05gk7w0ofx" path="res://Art/environment/sunset_jhbcentral.jpg" id="2_v8ij2"]
+
+[sub_resource type="Gradient" id="Gradient_y2idl"]
+interpolation_mode = 1
+offsets = PackedFloat32Array(0, 0.227848)
+colors = PackedColorArray(0, 0, 0, 1, 0.255659, 0.255659, 0.255659, 1)
+
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_307ei"]
+noise_type = 2
+fractal_type = 3
+cellular_return_type = 0
+
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_8pjfp"]
+width = 1024
+height = 1024
+seamless = true
+color_ramp = SubResource("Gradient_y2idl")
+noise = SubResource("FastNoiseLite_307ei")
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_y7ns5"]
 shader = ExtResource("1_cm3yc")
 shader_parameter/quality = 4.0
 shader_parameter/skyTexture = ExtResource("2_v8ij2")
+shader_parameter/noise1 = SubResource("NoiseTexture2D_8pjfp")
 
 [sub_resource type="Sky" id="Sky_qpxpt"]
 sky_material = SubResource("ShaderMaterial_y7ns5")
@@ -28,6 +46,40 @@ volumetric_fog_sky_affect = 0.5
 volumetric_fog_temporal_reprojection_enabled = false
 volumetric_fog_temporal_reprojection_amount = 0.5
 
+[sub_resource type="Curve" id="Curve_e1wfq"]
+_data = [Vector2(0, 0), 0.0, 0.0, 0, 0, Vector2(0.293814, 0.863158), 0.235628, 0.235628, 0, 0, Vector2(0.654639, 0), 0.0, 0.0, 0, 0]
+point_count = 3
+
+[sub_resource type="CurveTexture" id="CurveTexture_jkdd5"]
+curve = SubResource("Curve_e1wfq")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_5rb4k"]
+lifetime_randomness = 0.15
+emission_shape_offset = Vector3(0, 5, 0)
+emission_shape = 3
+emission_box_extents = Vector3(100, 1, 100)
+gravity = Vector3(64.22, 0, -124.835)
+scale_curve = SubResource("CurveTexture_jkdd5")
+turbulence_enabled = true
+turbulence_noise_strength = 1.92
+turbulence_noise_scale = 0.0
+turbulence_noise_speed_random = 0.0
+turbulence_influence_min = 0.0
+turbulence_influence_max = 0.057
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_mhqoh"]
+shading_mode = 0
+albedo_color = Color(1, 1, 1, 0.521569)
+use_particle_trails = true
+distance_fade_mode = 1
+distance_fade_max_distance = 100.0
+
+[sub_resource type="TubeTrailMesh" id="TubeTrailMesh_d3a2p"]
+material = SubResource("StandardMaterial3D_mhqoh")
+radial_steps = 3
+sections = 2
+section_length = 0.129
+
 [node name="WorldEnvironment" type="WorldEnvironment"]
 environment = SubResource("Environment_760ow")
 
@@ -39,3 +91,14 @@ directional_shadow_mode = 0
 directional_shadow_fade_start = 0.0
 directional_shadow_pancake_size = 0.0
 sky_mode = 1
+
+[node name="Wind" type="GPUParticles3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 14, 0)
+visible = false
+amount = 25
+lifetime = 4.0
+visibility_aabb = AABB(-92, -1, -73, 184, 2, 146)
+trail_enabled = true
+trail_lifetime = 10.0
+process_material = SubResource("ParticleProcessMaterial_5rb4k")
+draw_pass_1 = SubResource("TubeTrailMesh_d3a2p")
