@@ -79,10 +79,10 @@ size = Vector3(20, 10, 20)
 script = SubResource("GDScript_x6txf")
 
 [node name="Player" parent="." instance=ExtResource("1_01d17")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3, 8.2758, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -7.7242, 0)
 
 [node name="ObjectiveLevelStart" parent="." instance=ExtResource("4_5dpaq")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.428513, -14.935, 0.786789)
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 0, 0.5, 0)
 nextscene = ExtResource("4_ymukl")
 nextscene_string = "res://Elements/environments/chapter1/c1_m2.tscn"
 

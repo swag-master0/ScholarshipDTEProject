@@ -1,7 +1,12 @@
-extends Area3D
+extends Node3D
 
 @export var nextscene : PackedScene
 @export var nextscene_string : String = "res://Elements/function/main_menu.tscn"
+
+@onready var animations = $AnimationPlayer
+@onready var trigger = $Trigger
+@onready var bottom = $Bottom
+
 
 var player = null
 
@@ -11,42 +16,61 @@ var level_change_triggered = false
 
 
 
+
+func _ready():
+	animations.play("up")
+
+
+
 func _process(_delta):
 	if player_colliding and objective_colliding and !level_change_triggered:
 		level_change_triggered = true
-		ChangeScene()
+		animations.play("down")
 	
-	for i in self.get_overlapping_bodies():
-		if i.is_in_group("player"):
-			i.velocity.y += 1.5
+	
 
 
-func _on_body_entered(body):
+
+
+func _on_player_detector_body_entered(body):
 	if body.is_in_group("player") and ready:
 		player_colliding = true
 		
 		if is_instance_valid(body.object) and body.object.is_in_group("objective") and !level_change_triggered:
 			level_change_triggered = true
-			ChangeScene()
-	
+			animations.play("down")
+
+
+func _on_body_entered(body):
 	if body.is_in_group("objective"):
 		objective_colliding = true
 	
 
-
-func _on_body_exited(body):
+func _on_player_detector_body_exited(body):
 	if body.is_in_group("player"):
 		player_colliding = false
-	
+
+func _on_body_exited(body):
 	if body.is_in_group("objective"):
 		objective_colliding = false
 	
 
 
+
+
+func _on_bottom_body_entered(body):
+	if body.is_in_group("player") and level_change_triggered == true:
+		ChangeScene()
+
+
+
+
+
+
 func ChangeScene():
 	var objects_to_save = []
 	
-	for i in self.get_overlapping_bodies():
+	for i in trigger.get_overlapping_bodies():
 		if i is RigidBody3D:
 			
 			# Save each object as it's own PackedScene, to save mesh data and all children of each object
@@ -75,10 +99,5 @@ func ChangeScene():
 	for i in self.get_parent().get_children():
 		if i.is_in_group("player"):
 			i.level_completed = true
-
-
-
-
-
 
 

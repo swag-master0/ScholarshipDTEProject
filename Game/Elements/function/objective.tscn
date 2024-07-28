@@ -1,9 +1,107 @@
-[gd_scene load_steps=8 format=3 uid="uid://msdo88p274sw"]
+[gd_scene load_steps=16 format=3 uid="uid://msdo88p274sw"]
 
 [ext_resource type="Script" path="res://Elements/function/objective.gd" id="1_xiuf5"]
+[ext_resource type="PackedScene" uid="uid://bmgk0u34rg2cy" path="res://Art/blend/assets/misc/rail.blend" id="2_s0vyh"]
+[ext_resource type="PackedScene" uid="uid://4lamctxd2su2" path="res://Elements/assets/misc/carraige.tscn" id="3_at43o"]
+
+[sub_resource type="Animation" id="Animation_76epk"]
+resource_name = "up"
+length = 5.0
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("carraige:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 5),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector3(0, -23, 0), Vector3(0, 0, 0)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("carraige:enable_col")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 4.9),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [true, false]
+}
+
+[sub_resource type="Animation" id="Animation_xpdgq"]
+resource_name = "down"
+length = 5.0
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("carraige:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 5),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector3(0, 0, 0), Vector3(0, -23, 0)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("carraige:enable_col")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 5),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [true, true]
+}
+
+[sub_resource type="Animation" id="Animation_nm60k"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("carraige:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(0, 0, 0)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("carraige:enable_col")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_l7v8j"]
+_data = {
+"RESET": SubResource("Animation_nm60k"),
+"down": SubResource("Animation_xpdgq"),
+"up": SubResource("Animation_76epk")
+}
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_rcahp"]
+size = Vector3(1.77759, 3, 1.52832)
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_denne"]
-size = Vector3(10, 26, 10)
+size = Vector3(3.39505, 31, 3.30591)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_3uaue"]
+size = Vector3(5, 5, 5)
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_laijd"]
 transparency = 1
@@ -21,7 +119,7 @@ length = 0.001
 tracks/0/type = "bezier"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("Pointer:position:x")
+tracks/0/path = NodePath("oldstuff/Pointer:position:x")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
@@ -32,7 +130,7 @@ tracks/0/keys = {
 tracks/1/type = "bezier"
 tracks/1/imported = false
 tracks/1/enabled = true
-tracks/1/path = NodePath("Pointer:position:y")
+tracks/1/path = NodePath("oldstuff/Pointer:position:y")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
@@ -43,7 +141,7 @@ tracks/1/keys = {
 tracks/2/type = "bezier"
 tracks/2/imported = false
 tracks/2/enabled = true
-tracks/2/path = NodePath("Pointer:position:z")
+tracks/2/path = NodePath("oldstuff/Pointer:position:z")
 tracks/2/interp = 1
 tracks/2/loop_wrap = true
 tracks/2/keys = {
@@ -59,7 +157,7 @@ loop_mode = 1
 tracks/0/type = "bezier"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("Pointer:position:x")
+tracks/0/path = NodePath("oldstuff/Pointer:position:x")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
@@ -70,7 +168,7 @@ tracks/0/keys = {
 tracks/1/type = "bezier"
 tracks/1/imported = false
 tracks/1/enabled = true
-tracks/1/path = NodePath("Pointer:position:y")
+tracks/1/path = NodePath("oldstuff/Pointer:position:y")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
@@ -81,7 +179,7 @@ tracks/1/keys = {
 tracks/2/type = "bezier"
 tracks/2/imported = false
 tracks/2/enabled = true
-tracks/2/path = NodePath("Pointer:position:z")
+tracks/2/path = NodePath("oldstuff/Pointer:position:z")
 tracks/2/interp = 1
 tracks/2/loop_wrap = true
 tracks/2/keys = {
@@ -96,22 +194,55 @@ _data = {
 "idle": SubResource("Animation_7v5ra")
 }
 
-[node name="ObjectiveLevelStart" type="Area3D" groups=["objective_start"]]
+[node name="ObjectiveLevelStart" type="Node3D" groups=["objective_start"]]
 script = ExtResource("1_xiuf5")
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -8, 0)
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_l7v8j")
+}
+
+[node name="rail" parent="." instance=ExtResource("2_s0vyh")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -27, -2.66234)
+
+[node name="carraige" parent="." instance=ExtResource("3_at43o")]
+enable_col = true
+
+[node name="PlayerDetector" type="Area3D" parent="carraige"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="carraige/PlayerDetector"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0423584, 1, 0.0766602)
+shape = SubResource("BoxShape3D_rcahp")
+
+[node name="Trigger" type="Area3D" parent="."]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Trigger"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.00175476, -5.5, 0.0264893)
 shape = SubResource("BoxShape3D_denne")
 
-[node name="Pointer" type="MeshInstance3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2, 0)
-mesh = SubResource("CylinderMesh_o5c4b")
+[node name="Bottom" type="Area3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -19, 0)
 
-[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Bottom"]
+shape = SubResource("BoxShape3D_3uaue")
+
+[node name="oldstuff" type="Node" parent="."]
+
+[node name="Pointer" type="MeshInstance3D" parent="oldstuff"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2, 0)
+visible = false
+mesh = SubResource("CylinderMesh_o5c4b")
+skeleton = NodePath("../..")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="oldstuff"]
+root_node = NodePath("../..")
 libraries = {
 "": SubResource("AnimationLibrary_aawhx")
 }
 autoplay = "idle"
 
-[connection signal="body_entered" from="." to="." method="_on_body_entered"]
-[connection signal="body_exited" from="." to="." method="_on_body_exited"]
+[connection signal="body_entered" from="carraige/PlayerDetector" to="." method="_on_player_detector_body_entered"]
+[connection signal="body_exited" from="carraige/PlayerDetector" to="." method="_on_player_detector_body_exited"]
+[connection signal="body_entered" from="Trigger" to="." method="_on_body_entered"]
+[connection signal="body_exited" from="Trigger" to="." method="_on_body_exited"]
+[connection signal="body_entered" from="Bottom" to="." method="_on_bottom_body_entered"]

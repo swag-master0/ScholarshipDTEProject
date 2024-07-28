@@ -2,7 +2,7 @@ extends Node3D
 
 
 @export var enable_col : bool = false
-@onready var full_collisions = $"CollisionsFull /CollisionShape3D"
+@onready var full_collisions = $CollisionsFull
 
 
 func _process(delta):

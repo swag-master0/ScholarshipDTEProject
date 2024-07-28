@@ -23,6 +23,22 @@
 			]
 		}
 	],
+	"materials":[
+		{
+			"doubleSided":true,
+			"name":"Material",
+			"pbrMetallicRoughness":{
+				"baseColorFactor":[
+					0.10183495283126831,
+					0.10183495283126831,
+					0.10183495283126831,
+					1
+				],
+				"metallicFactor":0.5,
+				"roughnessFactor":0.5
+			}
+		}
+	],
 	"meshes":[
 		{
 			"name":"Cube.001",
@@ -34,7 +50,8 @@
 						"TEXCOORD_0":2,
 						"TANGENT":3
 					},
-					"indices":4
+					"indices":4,
+					"material":0
 				}
 			]
 		}

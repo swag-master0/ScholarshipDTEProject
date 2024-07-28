@@ -74,7 +74,7 @@ tracks/0/keys = {
 "times": PackedFloat32Array(0, 1.2, 1.5, 2),
 "transitions": PackedFloat32Array(1, 1, 1, 1),
 "update": 0,
-"values": [Vector3(0, 39.7289, -0.322777), Vector3(0, 8.74577, -0.322955), Vector3(0, 3.90467, -0.322983), Vector3(0, 1, -0.323)]
+"values": [Vector3(0, 29.7289, -0.322777), Vector3(0, 8.74577, -0.322955), Vector3(0, 3.90467, -0.322983), Vector3(0, 1, -0.323)]
 }
 tracks/1/type = "value"
 tracks/1/imported = false
@@ -126,7 +126,7 @@ tracks/0/keys = {
 "times": PackedFloat32Array(0.5, 2.5, 5),
 "transitions": PackedFloat32Array(1, 1, 1),
 "update": 0,
-"values": [Vector3(0, 1, -0.323), Vector3(0, 9.5, -0.323), Vector3(0, 35, -0.323)]
+"values": [Vector3(0, 1, -0.323), Vector3(0, 9.5, -0.323), Vector3(0, 42, -0.323)]
 }
 tracks/1/type = "value"
 tracks/1/imported = false
@@ -198,7 +198,6 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 39.7289, -0.322777)
 enable_col = true
 
 [node name="Area3D" type="Area3D" parent="RailsPlayerHub/carraige"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.475067, 0)
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="RailsPlayerHub/carraige/Area3D"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.5, 0)

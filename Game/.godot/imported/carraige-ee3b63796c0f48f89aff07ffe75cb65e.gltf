@@ -136,41 +136,41 @@
 		{
 			"bufferView":4,
 			"componentType":5126,
-			"count":116,
+			"count":167,
 			"max":[
-				2,
+				3,
 				1.7603161334991455,
-				2
+				3
 			],
 			"min":[
-				-2,
+				-3,
 				-0.6000000238418579,
-				-2
+				-3
 			],
 			"type":"VEC3"
 		},
 		{
 			"bufferView":5,
 			"componentType":5126,
-			"count":116,
+			"count":167,
 			"type":"VEC3"
 		},
 		{
 			"bufferView":6,
 			"componentType":5126,
-			"count":116,
+			"count":167,
 			"type":"VEC2"
 		},
 		{
 			"bufferView":7,
 			"componentType":5126,
-			"count":116,
+			"count":167,
 			"type":"VEC4"
 		},
 		{
 			"bufferView":8,
 			"componentType":5123,
-			"count":276,
+			"count":384,
 			"type":"SCALAR"
 		},
 		{
@@ -241,68 +241,68 @@
 		},
 		{
 			"buffer":0,
-			"byteLength":1392,
+			"byteLength":2004,
 			"byteOffset":28320,
 			"target":34962
 		},
 		{
 			"buffer":0,
-			"byteLength":1392,
-			"byteOffset":29712,
+			"byteLength":2004,
+			"byteOffset":30324,
 			"target":34962
 		},
 		{
 			"buffer":0,
-			"byteLength":928,
-			"byteOffset":31104,
+			"byteLength":1336,
+			"byteOffset":32328,
 			"target":34962
 		},
 		{
 			"buffer":0,
-			"byteLength":1856,
-			"byteOffset":32032,
+			"byteLength":2672,
+			"byteOffset":33664,
 			"target":34962
 		},
 		{
 			"buffer":0,
-			"byteLength":552,
-			"byteOffset":33888,
+			"byteLength":768,
+			"byteOffset":36336,
 			"target":34963
 		},
 		{
 			"buffer":0,
 			"byteLength":768,
-			"byteOffset":34440,
+			"byteOffset":37104,
 			"target":34962
 		},
 		{
 			"buffer":0,
 			"byteLength":768,
-			"byteOffset":35208,
+			"byteOffset":37872,
 			"target":34962
 		},
 		{
 			"buffer":0,
 			"byteLength":512,
-			"byteOffset":35976,
+			"byteOffset":38640,
 			"target":34962
 		},
 		{
 			"buffer":0,
 			"byteLength":1024,
-			"byteOffset":36488,
+			"byteOffset":39152,
 			"target":34962
 		},
 		{
 			"buffer":0,
 			"byteLength":216,
-			"byteOffset":37512,
+			"byteOffset":40176,
 			"target":34963
 		}
 	],
 	"buffers":[
 		{
-			"byteLength":37728,
+			"byteLength":40392,
 			"uri":"carraige-ee3b63796c0f48f89aff07ffe75cb65e.bin"
 		}
 	]

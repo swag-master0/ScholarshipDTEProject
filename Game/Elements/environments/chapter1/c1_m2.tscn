@@ -99,14 +99,14 @@ prop = ExtResource("7_tk5jc")
 
 [node name="WorldEnvironment" parent="." instance=ExtResource("3_1kepo")]
 
-[node name="Player_v2" parent="." instance=ExtResource("3_voxtl")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2, 0)
+[node name="Player" parent="." instance=ExtResource("3_voxtl")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -10, 0)
 
 [node name="ObjectiveItem" parent="." instance=ExtResource("5_0wf4d")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 70.3351, 8.5, -45.3473)
 
 [node name="ObjectiveLevelStart" parent="." instance=ExtResource("6_ey64y")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -7.10904, 0)
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 0, 0.65, 0)
 nextscene = ExtResource("7_3aj01")
 nextscene_string = "res://Elements/environments/chapter1/c1_m3.tscn"
 
