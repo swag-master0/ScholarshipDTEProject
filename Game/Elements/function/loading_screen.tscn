@@ -157,5 +157,6 @@ texture_repeat = 1
 scale = Vector2(10, 10)
 sprite_frames = SubResource("SpriteFrames_qfqr4")
 autoplay = "default"
-frame_progress = 0.40373
+frame = 4
+frame_progress = 0.353582
 centered = false

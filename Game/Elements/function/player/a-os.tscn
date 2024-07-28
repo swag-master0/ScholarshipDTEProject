@@ -133,14 +133,20 @@ animations = [{
 "texture": ExtResource("10_2dy2u")
 }, {
 "duration": 1.0,
+"texture": ExtResource("9_qvsxm")
+}, {
+"duration": 1.0,
 "texture": ExtResource("11_wl5p1")
+}, {
+"duration": 1.0,
+"texture": ExtResource("9_qvsxm")
 }, {
 "duration": 1.0,
 "texture": ExtResource("12_i3ovg")
 }],
 "loop": true,
 "name": &"default",
-"speed": 1.0
+"speed": 5.0
 }]
 
 [node name="A-OS" type="Node3D"]
@@ -157,15 +163,15 @@ anim_player = NodePath("../a-os/AnimationPlayer")
 [node name="a-os" parent="Scene" instance=ExtResource("2_ortrh")]
 
 [node name="Skeleton3D" parent="Scene/a-os/A-OS" index="0"]
-bones/0/position = Vector3(0.0178095, -0.247195, 0)
-bones/0/rotation = Quaternion(-0.00251504, 0, 0, 0.999997)
+bones/0/position = Vector3(0.0210272, -0.00434256, 4.19923e-08)
+bones/0/rotation = Quaternion(-0.0124223, 0.0109749, -0.000286675, 0.999863)
 
 [node name="Icosphere" parent="Scene/a-os/A-OS/Skeleton3D" index="0"]
 surface_material_override/0 = SubResource("ShaderMaterial_rlrbh")
 surface_material_override/1 = SubResource("ShaderMaterial_6o3t4")
 
 [node name="BoneAttachment3D" type="BoneAttachment3D" parent="Scene/a-os/A-OS/Skeleton3D" index="1"]
-transform = Transform3D(1, 0, 0, 0, 0.999987, 0.00503007, 0, -0.00503007, 0.999987, 0.0178095, -0.247195, 0)
+transform = Transform3D(0.999759, 0.000300604, 0.021954, -0.00084594, 0.999691, 0.0248349, -0.0219397, -0.0248475, 0.99945, 0.0210272, -0.00434256, 4.19923e-08)
 bone_name = "Bone"
 bone_idx = 0
 
@@ -185,5 +191,7 @@ visible = false
 pixel_size = 0.15
 texture_filter = 0
 sprite_frames = SubResource("SpriteFrames_kogcd")
+autoplay = "default"
+frame_progress = 0.802104
 
 [editable path="Scene/a-os"]

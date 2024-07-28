@@ -1,9 +1,10 @@
-[gd_scene load_steps=17 format=3 uid="uid://c8axtmdbhahks"]
+[gd_scene load_steps=19 format=3 uid="uid://c8axtmdbhahks"]
 
 [ext_resource type="Script" path="res://Elements/environments/misc/player_cell.gd" id="1_kngen"]
 [ext_resource type="Script" path="res://Elements/environments/misc/introsequence.gd" id="2_r8356"]
 [ext_resource type="PackedScene" uid="uid://bcou7suhphdrp" path="res://Elements/function/player/player.tscn" id="2_tar4w"]
 [ext_resource type="PackedScene" uid="uid://no1bk2mkfory" path="res://Art/blend/misc/player_hub.blend" id="3_gglld"]
+[ext_resource type="PackedScene" uid="uid://dhaxwpsinvu6u" path="res://Elements/assets/props/crate.tscn" id="3_xh7qe"]
 [ext_resource type="Shader" uid="uid://dtjh0fi6sbiji" path="res://Art/materials/floor/floor.tres" id="4_4xd8j"]
 [ext_resource type="Texture2D" uid="uid://bfujcpxg1vljk" path="res://Art/materials/floor/floor_normal.tres" id="5_jt3b1"]
 [ext_resource type="PackedScene" uid="uid://bmgk0u34rg2cy" path="res://Art/blend/assets/misc/rail.blend" id="6_gm6vi"]
@@ -47,6 +48,18 @@ tracks/2/keys = {
 "update": 0,
 "values": [0.0]
 }
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("RailsPlayerHub/carraige:enable_col")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
 
 [sub_resource type="Animation" id="Animation_2l42s"]
 resource_name = "down"
@@ -87,6 +100,18 @@ tracks/2/keys = {
 "update": 1,
 "values": [0.0, 4.0, 0.0]
 }
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("RailsPlayerHub/carraige:enable_col")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0, 2),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [true, false]
+}
 
 [sub_resource type="Animation" id="Animation_wjo43"]
 resource_name = "up"
@@ -103,6 +128,18 @@ tracks/0/keys = {
 "update": 0,
 "values": [Vector3(0, 1, -0.323), Vector3(0, 9.5, -0.323), Vector3(0, 35, -0.323)]
 }
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("RailsPlayerHub/carraige:enable_col")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 5),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [true, true]
+}
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_ik50q"]
 _data = {
@@ -110,6 +147,9 @@ _data = {
 "down": SubResource("Animation_2l42s"),
 "up": SubResource("Animation_wjo43")
 }
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_e6j31"]
+size = Vector3(3, 6, 3)
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_qrjw0"]
 size = Vector3(3.39905, 0.794922, 3.79041)
@@ -132,6 +172,7 @@ script = ExtResource("1_kngen")
 
 [node name="Node" type="Node" parent="."]
 script = ExtResource("2_r8356")
+object = ExtResource("3_xh7qe")
 
 [node name="RailsPlayerHub" type="Node3D" parent="."]
 
@@ -156,6 +197,13 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 32, -3)
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 39.7289, -0.322777)
 enable_col = true
 
+[node name="Area3D" type="Area3D" parent="RailsPlayerHub/carraige"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.475067, 0)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="RailsPlayerHub/carraige/Area3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.5, 0)
+shape = SubResource("BoxShape3D_e6j31")
+
 [node name="Crushed" type="Area3D" parent="RailsPlayerHub"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1, 0)
 
@@ -164,7 +212,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.000427246, -0.102539, -0.24
 shape = SubResource("BoxShape3D_qrjw0")
 
 [node name="Portal" type="Area3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 38, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 49.2511, 0)
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Portal"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -7, 0)
@@ -200,8 +248,10 @@ spot_angle = 60.0
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
 environment = SubResource("Environment_ppwta")
 
+[connection signal="body_entered" from="RailsPlayerHub/carraige/Area3D" to="Node" method="_on_area_3d_body_entered"]
 [connection signal="body_entered" from="RailsPlayerHub/Crushed" to="Node" method="_on_crushed_body_entered"]
 [connection signal="body_entered" from="Portal" to="." method="_on_portal_body_entered"]
 [connection signal="DialogueFinished" from="Player" to="Node" method="_on_player_dialogue_finished"]
 
+[editable path="RailsPlayerHub/carraige"]
 [editable path="player_hub"]
