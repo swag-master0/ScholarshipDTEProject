@@ -1,7 +1,8 @@
-[gd_scene load_steps=97 format=3 uid="uid://bcou7suhphdrp"]
+[gd_scene load_steps=107 format=3 uid="uid://bcou7suhphdrp"]
 
 [ext_resource type="Script" path="res://Elements/function/player/player.gd" id="1_0ncw4"]
 [ext_resource type="PackedScene" uid="uid://4lv8cegk7f53" path="res://Art/blend/assets/main/player.blend" id="2_ww4ji"]
+[ext_resource type="Shader" path="res://Art/materials/player/player_limbs.gdshader" id="3_h2cvn"]
 [ext_resource type="Shader" path="res://Art/materials/player/player_hat.gdshader" id="3_pbnjn"]
 [ext_resource type="Shader" path="res://Art/materials/player/player_skin.gdshader" id="4_5kk05"]
 [ext_resource type="Texture2D" uid="uid://b7b8lqiwyngpq" path="res://Art/assets/assets/player_eyes-1.png" id="5_5usx4"]
@@ -144,7 +145,7 @@ filter_enabled = true
 filters = ["Armature/Skeleton3D:ArmLower.L", "Armature/Skeleton3D:ArmLower.R", "Armature/Skeleton3D:ArmUpper.L", "Armature/Skeleton3D:ArmUpper.R", "Armature/Skeleton3D:Hand.L", "Armature/Skeleton3D:Hand.R", "Armature/Skeleton3D:Shoulder.L", "Armature/Skeleton3D:Shoulder.R"]
 
 [sub_resource type="AnimationNodeBlendTree" id="AnimationNodeBlendTree_0baqh"]
-graph_offset = Vector2(-309, 16)
+graph_offset = Vector2(-345, 47)
 nodes/Animation/node = SubResource("AnimationNodeAnimation_ydcme")
 nodes/Animation/position = Vector2(-120, 120)
 "nodes/Animation 2/node" = SubResource("AnimationNodeAnimation_hb3mw")
@@ -152,6 +153,9 @@ nodes/Animation/position = Vector2(-120, 120)
 nodes/Blend2/node = SubResource("AnimationNodeBlend2_vnde5")
 nodes/Blend2/position = Vector2(120, 140)
 node_connections = [&"Blend2", 0, &"Animation", &"Blend2", 1, &"Animation 2", &"output", 0, &"Blend2"]
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_3x2no"]
+animation = &"land"
 
 [sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_sbl3m"]
 animation = &"run"
@@ -182,10 +186,6 @@ node_connections = [&"Blend2", 0, &"Animation 2", &"Blend2", 1, &"Animation", &"
 
 [sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_qafhq"]
 
-[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_ewjhy"]
-
-[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_egp6e"]
-
 [sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_h1bte"]
 
 [sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_p6kwk"]
@@ -193,11 +193,21 @@ node_connections = [&"Blend2", 0, &"Animation 2", &"Blend2", 1, &"Animation", &"
 [sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_dgmis"]
 advance_mode = 2
 
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_af18q"]
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_kh3cs"]
+switch_mode = 2
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_s4485"]
+switch_mode = 2
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_34iav"]
+
 [sub_resource type="AnimationNodeStateMachine" id="AnimationNodeStateMachine_1wy8i"]
 states/End/position = Vector2(1740, 95)
 states/Start/position = Vector2(1179, 95)
 states/fall/node = SubResource("AnimationNodeBlendTree_hh5sj")
-states/fall/position = Vector2(1358, -44)
+states/fall/position = Vector2(1358, -109)
 states/idle/node = SubResource("AnimationNodeBlendTree_2f60j")
 states/idle/position = Vector2(1358, 95)
 states/idle-flair1/node = SubResource("AnimationNodeAnimation_gftke")
@@ -205,15 +215,22 @@ states/idle-flair1/position = Vector2(1515, 46)
 states/idle-flair2/node = SubResource("AnimationNodeAnimation_xvqg4")
 states/idle-flair2/position = Vector2(1515, 166)
 states/jump/node = SubResource("AnimationNodeBlendTree_0baqh")
-states/jump/position = Vector2(1358, 24)
+states/jump/position = Vector2(1358, -41)
+states/land/node = SubResource("AnimationNodeAnimation_3x2no")
+states/land/position = Vector2(1358, 31)
 states/run/node = SubResource("AnimationNodeBlendTree_r8vxk")
 states/run/position = Vector2(1358, 166)
-transitions = ["fall", "jump", SubResource("AnimationNodeStateMachineTransition_iww2x"), "jump", "fall", SubResource("AnimationNodeStateMachineTransition_qafhq"), "jump", "idle", SubResource("AnimationNodeStateMachineTransition_ewjhy"), "idle", "jump", SubResource("AnimationNodeStateMachineTransition_egp6e"), "idle", "run", SubResource("AnimationNodeStateMachineTransition_h1bte"), "run", "idle", SubResource("AnimationNodeStateMachineTransition_p6kwk"), "Start", "idle", SubResource("AnimationNodeStateMachineTransition_dgmis")]
-graph_offset = Vector2(906, -91)
+transitions = ["fall", "jump", SubResource("AnimationNodeStateMachineTransition_iww2x"), "jump", "fall", SubResource("AnimationNodeStateMachineTransition_qafhq"), "idle", "run", SubResource("AnimationNodeStateMachineTransition_h1bte"), "run", "idle", SubResource("AnimationNodeStateMachineTransition_p6kwk"), "Start", "idle", SubResource("AnimationNodeStateMachineTransition_dgmis"), "idle", "land", SubResource("AnimationNodeStateMachineTransition_af18q"), "land", "idle", SubResource("AnimationNodeStateMachineTransition_kh3cs"), "land", "jump", SubResource("AnimationNodeStateMachineTransition_s4485"), "jump", "land", SubResource("AnimationNodeStateMachineTransition_34iav")]
+graph_offset = Vector2(900, -136)
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_nrsfh"]
 radius = 0.474599
 height = 2.30568
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_c5koe"]
+render_priority = 0
+shader = ExtResource("3_h2cvn")
+shader_parameter/color = Vector3(0, 0, 0)
 
 [sub_resource type="Gradient" id="Gradient_863f6"]
 interpolation_mode = 1
@@ -233,6 +250,7 @@ noise = SubResource("FastNoiseLite_snykk")
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_booyl"]
 render_priority = 0
 shader = ExtResource("3_pbnjn")
+shader_parameter/base_colour = Vector3(0.075, 0.025, 0.025)
 shader_parameter/normal = SubResource("NoiseTexture2D_4ko1r")
 
 [sub_resource type="Gradient" id="Gradient_untfa"]
@@ -255,6 +273,7 @@ noise = SubResource("FastNoiseLite_ln41e")
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_mhwhj"]
 render_priority = 0
 shader = ExtResource("4_5kk05")
+shader_parameter/base_colour = Vector3(0.8, 0.3, 0)
 shader_parameter/normal = SubResource("NoiseTexture2D_bhqf6")
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_n15er"]
@@ -439,6 +458,39 @@ shader_parameter/outline_threshold = 0.25
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_4rgcg"]
 shader = ExtResource("19_uaq3q")
 
+[sub_resource type="Curve" id="Curve_h13y2"]
+_data = [Vector2(0, 0), 0.0, 0.0, 0, 0, Vector2(0.5, 0.178947), 0.235628, 0.235628, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
+point_count = 3
+
+[sub_resource type="CurveTexture" id="CurveTexture_jkdd5"]
+curve = SubResource("Curve_h13y2")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_ekwho"]
+lifetime_randomness = 0.12
+emission_shape = 3
+emission_box_extents = Vector3(25, 25, 25)
+gravity = Vector3(1, 0, 1)
+scale_min = 0.0
+scale_curve = SubResource("CurveTexture_jkdd5")
+turbulence_enabled = true
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_c8kfo"]
+transparency = 1
+shading_mode = 0
+albedo_color = Color(0.788235, 0.788235, 0.788235, 0.505882)
+billboard_mode = 3
+particles_anim_h_frames = 1
+particles_anim_v_frames = 1
+particles_anim_loop = false
+distance_fade_mode = 1
+distance_fade_min_distance = 5.0
+distance_fade_max_distance = 15.0
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_4twoe"]
+material = SubResource("StandardMaterial3D_c8kfo")
+size = Vector2(0.25, 0.25)
+orientation = 2
+
 [node name="Player" type="CharacterBody3D" groups=["player"]]
 floor_max_angle = 1.22173
 script = ExtResource("1_0ncw4")
@@ -466,31 +518,30 @@ shape = SubResource("CapsuleShape3D_nrsfh")
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1, 0)
 
 [node name="Skeleton3D" parent="PlayerModel/player/Armature" index="0"]
-bones/0/position = Vector3(-0.00183521, -0.262538, 0)
-bones/0/rotation = Quaternion(0, 0.330121, 0, 0.943939)
-bones/1/rotation = Quaternion(-0.239039, 0.390458, 0.25116, 0.852832)
-bones/2/rotation = Quaternion(-0.132031, -0.180672, 0.73707, 0.637694)
-bones/3/rotation = Quaternion(0.241591, 0.551968, 0.78711, 0.131997)
-bones/4/rotation = Quaternion(0.10875, 0.0330341, 0.267881, 0.956725)
-bones/5/rotation = Quaternion(-0.23691, 0.0512434, -0.363989, 0.899311)
-bones/6/rotation = Quaternion(0.357571, 0.15807, -0.440807, 0.807989)
-bones/7/rotation = Quaternion(0.758311, -0.451195, -0.138058, 0.449807)
-bones/8/rotation = Quaternion(0.200978, -0.0014077, -0.0270596, 0.979221)
-bones/9/rotation = Quaternion(0.000195199, 0.321257, -6.62192e-05, 0.946992)
-bones/10/rotation = Quaternion(0.911683, -0.22682, -0.334569, 0.0738292)
-bones/11/rotation = Quaternion(0.0345382, -0.00131849, -0.547114, 0.836344)
-bones/12/rotation = Quaternion(2.1982e-09, 2.73683e-09, -0.0279828, 0.999608)
-bones/13/rotation = Quaternion(0.669253, 0.231005, 0.667193, 0.231499)
-bones/14/rotation = Quaternion(-0.00741877, -0.000222163, 0.554539, 0.832125)
-bones/15/rotation = Quaternion(2.6786e-09, 3.0571e-09, 0.0280121, 0.999608)
+bones/0/position = Vector3(-0.00183521, -0.0675415, 0)
+bones/1/rotation = Quaternion(-0.0570161, -0.0345351, 0.532714, 0.843666)
+bones/2/rotation = Quaternion(0.141879, -0.00244143, -0.0872743, 0.986026)
+bones/3/rotation = Quaternion(0.47903, -0.00154839, -0.190605, 0.856853)
+bones/4/rotation = Quaternion(0.117026, 0.00036478, -0.0385708, 0.99238)
+bones/5/rotation = Quaternion(-0.139119, -0.234089, -0.478334, 0.834892)
+bones/6/rotation = Quaternion(0.0241139, -0.29022, -0.0667289, 0.954326)
+bones/7/rotation = Quaternion(0.102194, -0.527238, -0.57351, 0.618597)
+bones/8/rotation = Quaternion(0.0954105, -0.0315104, -0.172549, 0.979863)
+bones/10/rotation = Quaternion(0.707026, 0.00955089, -0.707067, -0.00886471)
+bones/11/rotation = Quaternion(-7.6939e-07, 0.000182404, -0.00251522, 0.999997)
+bones/12/rotation = Quaternion(1.20274e-08, -1.19763e-11, -0.159271, 0.987235)
+bones/13/rotation = Quaternion(0.707047, -0.00919023, 0.707049, -0.00908036)
+bones/14/rotation = Quaternion(-1.49522e-07, -2.58695e-05, 0.00271165, 0.999996)
+bones/15/rotation = Quaternion(1.10694e-08, 1.63783e-12, 0.146534, 0.989206)
 
 [node name="Player" parent="PlayerModel/player/Armature/Skeleton3D" index="0"]
 lod_bias = 128.0
+surface_material_override/0 = SubResource("ShaderMaterial_c5koe")
 surface_material_override/1 = SubResource("ShaderMaterial_booyl")
 surface_material_override/2 = SubResource("ShaderMaterial_mhwhj")
 
 [node name="FaceAttachment" type="BoneAttachment3D" parent="PlayerModel/player/Armature/Skeleton3D" index="1"]
-transform = Transform3D(0.241411, 0.000400057, 0.970423, -2.91038e-11, 1, -0.000412251, -0.970423, 9.95219e-05, 0.241411, -0.00183521, 0.322006, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.00183521, 0.517002, 0)
 bone_name = "Head"
 bone_idx = 9
 
@@ -1032,6 +1083,15 @@ grow_horizontal = 2
 grow_vertical = 2
 mouse_filter = 2
 color = Color(1, 1, 1, 0)
+
+[node name="Dust" type="GPUParticles3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
+visible = false
+amount = 1000
+lifetime = 20.0
+visibility_aabb = AABB(-49, -39, -54, 98, 78, 108)
+process_material = SubResource("ParticleProcessMaterial_ekwho")
+draw_pass_1 = SubResource("PlaneMesh_4twoe")
 
 [connection signal="timeout" from="AnimationTree/IdleTimer" to="." method="_on_idle_timer_timeout"]
 [connection signal="death" from="Info" to="." method="_on_info_death"]

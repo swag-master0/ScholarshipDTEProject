@@ -1,12 +1,8 @@
 shader_type spatial;
 
 uniform sampler2D normal;
-const vec3 base_colour = vec3(0.8, 0.3, 0.0);
+uniform vec3 base_colour = vec3(0.8, 0.3, 0.0);
 
-
-void vertex() {
-	VERTEX.y += round(sin(TIME * 5.0 + VERTEX.x * 10.0)) / 100.0;
-}
 
 void fragment() {
 	// Called for every pixel the material is visible on.

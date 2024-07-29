@@ -26,6 +26,9 @@ func TOP():
 @export var PICKUP_RANGE : float = 6
 @export var THROW_FORCE : float = 500
 
+@export_category("Visuals")
+@export var DISPLAY_DUST: bool = true
+
 
 # Player Model
 @onready var character = $PlayerModel
@@ -68,6 +71,10 @@ func TOP():
 @onready var animation_tree = $AnimationTree
 @onready var state_machine = animation_tree.get("parameters/playback")
 @onready var idle_timer = $AnimationTree/IdleTimer
+
+# visuals
+@onready var dust = $Dust
+
 
 
 
@@ -298,6 +305,11 @@ func _process(_delta):
 	
 	if Input.is_action_just_pressed("escape"):
 		PauseMenu(true)
+	
+	if DISPLAY_DUST and dust.visible != true:
+		dust.visible = true
+	elif !DISPLAY_DUST and dust.visible != false:
+		dust.visible = false
 
 
 
