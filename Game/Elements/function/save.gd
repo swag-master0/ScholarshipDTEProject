@@ -21,14 +21,6 @@ const save_addtoplayerhub_path = "user://save_playerhub_add.tres"
 
 
 
-# -- For some reason, the game is saving an empty array of hub objects upon loading the hub scene
-# -- TODO: investigate this jank behavior
-
-
-
-
-
-
 
 func save_game_level(data : String):
 	# Saves the script itself, with the variables in it
@@ -69,6 +61,8 @@ func load_game():
 func save_player_hub(objects_to_save : Array, type_of_save : bool = true):
 	print_rich("[color=RED]Save Hub System: Save initialised: ", objects_to_save, ", ", type_of_save)
 	
+	if !ResourceLoader.exists(save_playerhub_path):
+		ResourceSaver.save(self, save_playerhub_path)
 	
 	if type_of_save and !objects_to_save.is_empty():
 		print_rich("[color=ORANGE]Save Hub System: Saving player hub objects : ", objects_to_save)

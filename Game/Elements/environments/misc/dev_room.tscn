@@ -32,7 +32,7 @@ normal_texture = SubResource("NoiseTexture2D_l4rqg")
 [node name="WorldEnvironment" parent="." instance=ExtResource("1_j3tyq")]
 
 [node name="Player" parent="." instance=ExtResource("2_dg15a")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.50438, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 71.5044, 0)
 SAVE_GAME = false
 
 [node name="CSGBox3D" type="CSGBox3D" parent="."]
@@ -51,3 +51,8 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -7, 1.67954, 0)
 radius = 1.0
 smooth_faces = false
 material = SubResource("ShaderMaterial_wid46")
+
+[node name="CSGBox3D2" type="CSGBox3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.5, 66, 0)
+use_collision = true
+size = Vector3(6, 1, 5)

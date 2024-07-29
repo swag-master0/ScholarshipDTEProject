@@ -28,7 +28,6 @@ extends Control
 @onready var A_OS = $"../A-OS Viewport/A-OS"
 
 
-
 @onready var health = info.health
 @onready var max_health = info.max_health
 
@@ -48,14 +47,14 @@ var current_crosshair = 0
 
 
 
-func _process(delta):
+func _process(_delta):
 	
 	if parent.isHolding and current_crosshair != 3:
 		changeCrosshair(1)
 	
 	
 	if ready: 
-		var health = info.health
+		#var currenthealth = info.health
 		
 		hud_health.value = health
 		hud_health.max_value = max_health

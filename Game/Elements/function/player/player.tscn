@@ -1,4 +1,4 @@
-[gd_scene load_steps=107 format=3 uid="uid://bcou7suhphdrp"]
+[gd_scene load_steps=109 format=3 uid="uid://bcou7suhphdrp"]
 
 [ext_resource type="Script" path="res://Elements/function/player/player.gd" id="1_0ncw4"]
 [ext_resource type="PackedScene" uid="uid://4lv8cegk7f53" path="res://Art/blend/assets/main/player.blend" id="2_ww4ji"]
@@ -35,6 +35,9 @@
 [sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_ijhnm"]
 animation = &"grab"
 
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_illlx"]
+animation = &"jump"
+
 [sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_1p7wm"]
 animation = &"fall"
 
@@ -42,21 +45,21 @@ animation = &"fall"
 filter_enabled = true
 filters = ["Armature/Skeleton3D:ArmLower.L", "Armature/Skeleton3D:ArmLower.R", "Armature/Skeleton3D:ArmUpper.L", "Armature/Skeleton3D:ArmUpper.R", "Armature/Skeleton3D:Hand.L", "Armature/Skeleton3D:Hand.R", "Armature/Skeleton3D:Shoulder.L", "Armature/Skeleton3D:Shoulder.R"]
 
+[sub_resource type="AnimationNodeBlend2" id="AnimationNodeBlend2_lvly3"]
+
 [sub_resource type="AnimationNodeBlendTree" id="AnimationNodeBlendTree_hh5sj"]
-graph_offset = Vector2(-268, 84)
+graph_offset = Vector2(-739, 33)
 nodes/Animation/node = SubResource("AnimationNodeAnimation_1p7wm")
-nodes/Animation/position = Vector2(-40, 140)
+nodes/Animation/position = Vector2(-420, 100)
 "nodes/Animation 2/node" = SubResource("AnimationNodeAnimation_ijhnm")
 "nodes/Animation 2/position" = Vector2(-40, 260)
+"nodes/Animation 3/node" = SubResource("AnimationNodeAnimation_illlx")
+"nodes/Animation 3/position" = Vector2(-420, 240)
 nodes/Blend2/node = SubResource("AnimationNodeBlend2_1r0s2")
 nodes/Blend2/position = Vector2(140, 140)
-node_connections = [&"Blend2", 0, &"Animation", &"Blend2", 1, &"Animation 2", &"output", 0, &"Blend2"]
-
-[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_gftke"]
-animation = &"idle-flair1"
-
-[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_xvqg4"]
-animation = &"idle-flair2"
+nodes/FallDirection/node = SubResource("AnimationNodeBlend2_lvly3")
+nodes/FallDirection/position = Vector2(-200, 100)
+node_connections = [&"Blend2", 0, &"FallDirection", &"Blend2", 1, &"Animation 2", &"FallDirection", 0, &"Animation", &"FallDirection", 1, &"Animation 3", &"output", 0, &"Blend2"]
 
 [sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_4gp2c"]
 animation = &"grab"
@@ -134,28 +137,29 @@ nodes/IdleAnimLoop/position = Vector2(-160, -20)
 nodes/output/position = Vector2(580, 140)
 node_connections = [&"Blend2", 0, &"IdleAnimLoop", &"Blend2", 1, &"Animation 2", &"output", 0, &"Blend2"]
 
-[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_hb3mw"]
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_y2p4x"]
 animation = &"grab"
 
-[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_ydcme"]
-animation = &"jump"
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_sxbrk"]
+animation = &"land"
 
-[sub_resource type="AnimationNodeBlend2" id="AnimationNodeBlend2_vnde5"]
+[sub_resource type="AnimationNodeBlend2" id="AnimationNodeBlend2_577qj"]
 filter_enabled = true
 filters = ["Armature/Skeleton3D:ArmLower.L", "Armature/Skeleton3D:ArmLower.R", "Armature/Skeleton3D:ArmUpper.L", "Armature/Skeleton3D:ArmUpper.R", "Armature/Skeleton3D:Hand.L", "Armature/Skeleton3D:Hand.R", "Armature/Skeleton3D:Shoulder.L", "Armature/Skeleton3D:Shoulder.R"]
 
-[sub_resource type="AnimationNodeBlendTree" id="AnimationNodeBlendTree_0baqh"]
-graph_offset = Vector2(-345, 47)
-nodes/Animation/node = SubResource("AnimationNodeAnimation_ydcme")
-nodes/Animation/position = Vector2(-120, 120)
-"nodes/Animation 2/node" = SubResource("AnimationNodeAnimation_hb3mw")
-"nodes/Animation 2/position" = Vector2(-120, 240)
-nodes/Blend2/node = SubResource("AnimationNodeBlend2_vnde5")
-nodes/Blend2/position = Vector2(120, 140)
-node_connections = [&"Blend2", 0, &"Animation", &"Blend2", 1, &"Animation 2", &"output", 0, &"Blend2"]
+[sub_resource type="AnimationNodeTimeScale" id="AnimationNodeTimeScale_8dhvt"]
 
-[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_3x2no"]
-animation = &"land"
+[sub_resource type="AnimationNodeBlendTree" id="AnimationNodeBlendTree_oxhiu"]
+graph_offset = Vector2(-487, 106)
+nodes/Animation/node = SubResource("AnimationNodeAnimation_sxbrk")
+nodes/Animation/position = Vector2(-280, 140)
+"nodes/Animation 2/node" = SubResource("AnimationNodeAnimation_y2p4x")
+"nodes/Animation 2/position" = Vector2(-280, 280)
+nodes/Blend2/node = SubResource("AnimationNodeBlend2_577qj")
+nodes/Blend2/position = Vector2(20, 140)
+nodes/TimeScale/node = SubResource("AnimationNodeTimeScale_8dhvt")
+nodes/TimeScale/position = Vector2(160, 140)
+node_connections = [&"Blend2", 0, &"Animation", &"Blend2", 1, &"Animation 2", &"TimeScale", 0, &"Blend2", &"output", 0, &"TimeScale"]
 
 [sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_sbl3m"]
 animation = &"run"
@@ -182,10 +186,6 @@ nodes/TimeScale/position = Vector2(240, 160)
 nodes/output/position = Vector2(420, 160)
 node_connections = [&"Blend2", 0, &"Animation 2", &"Blend2", 1, &"Animation", &"TimeScale", 0, &"Blend2", &"output", 0, &"TimeScale"]
 
-[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_iww2x"]
-
-[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_qafhq"]
-
 [sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_h1bte"]
 
 [sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_p6kwk"]
@@ -193,35 +193,39 @@ node_connections = [&"Blend2", 0, &"Animation 2", &"Blend2", 1, &"Animation", &"
 [sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_dgmis"]
 advance_mode = 2
 
-[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_af18q"]
+[sub_resource type="Curve" id="Curve_cijqr"]
+_data = [Vector2(0, 0), 0.0, 0.0, 0, 0, Vector2(0.0542636, 1), 0.0, 0.0, 0, 0]
+point_count = 2
 
-[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_kh3cs"]
-switch_mode = 2
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_rr3lq"]
+xfade_time = 0.1
+xfade_curve = SubResource("Curve_cijqr")
 
-[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_s4485"]
-switch_mode = 2
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_n3x8u"]
+xfade_time = 0.1
+xfade_curve = SubResource("Curve_cijqr")
 
-[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_34iav"]
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_0xway"]
+xfade_time = 0.1
+xfade_curve = SubResource("Curve_cijqr")
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_tw7kb"]
+xfade_time = 0.1
+xfade_curve = SubResource("Curve_cijqr")
 
 [sub_resource type="AnimationNodeStateMachine" id="AnimationNodeStateMachine_1wy8i"]
 states/End/position = Vector2(1740, 95)
-states/Start/position = Vector2(1179, 95)
+states/Start/position = Vector2(1184, 95)
 states/fall/node = SubResource("AnimationNodeBlendTree_hh5sj")
-states/fall/position = Vector2(1358, -109)
+states/fall/position = Vector2(1484, -32)
 states/idle/node = SubResource("AnimationNodeBlendTree_2f60j")
 states/idle/position = Vector2(1358, 95)
-states/idle-flair1/node = SubResource("AnimationNodeAnimation_gftke")
-states/idle-flair1/position = Vector2(1515, 46)
-states/idle-flair2/node = SubResource("AnimationNodeAnimation_xvqg4")
-states/idle-flair2/position = Vector2(1515, 166)
-states/jump/node = SubResource("AnimationNodeBlendTree_0baqh")
-states/jump/position = Vector2(1358, -41)
-states/land/node = SubResource("AnimationNodeAnimation_3x2no")
-states/land/position = Vector2(1358, 31)
+states/land/node = SubResource("AnimationNodeBlendTree_oxhiu")
+states/land/position = Vector2(1358, -32)
 states/run/node = SubResource("AnimationNodeBlendTree_r8vxk")
-states/run/position = Vector2(1358, 166)
-transitions = ["fall", "jump", SubResource("AnimationNodeStateMachineTransition_iww2x"), "jump", "fall", SubResource("AnimationNodeStateMachineTransition_qafhq"), "idle", "run", SubResource("AnimationNodeStateMachineTransition_h1bte"), "run", "idle", SubResource("AnimationNodeStateMachineTransition_p6kwk"), "Start", "idle", SubResource("AnimationNodeStateMachineTransition_dgmis"), "idle", "land", SubResource("AnimationNodeStateMachineTransition_af18q"), "land", "idle", SubResource("AnimationNodeStateMachineTransition_kh3cs"), "land", "jump", SubResource("AnimationNodeStateMachineTransition_s4485"), "jump", "land", SubResource("AnimationNodeStateMachineTransition_34iav")]
-graph_offset = Vector2(900, -136)
+states/run/position = Vector2(1484, 95)
+transitions = ["idle", "run", SubResource("AnimationNodeStateMachineTransition_h1bte"), "run", "idle", SubResource("AnimationNodeStateMachineTransition_p6kwk"), "Start", "idle", SubResource("AnimationNodeStateMachineTransition_dgmis"), "land", "idle", SubResource("AnimationNodeStateMachineTransition_rr3lq"), "idle", "land", SubResource("AnimationNodeStateMachineTransition_n3x8u"), "land", "fall", SubResource("AnimationNodeStateMachineTransition_0xway"), "fall", "land", SubResource("AnimationNodeStateMachineTransition_tw7kb")]
+graph_offset = Vector2(867, -52)
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_nrsfh"]
 radius = 0.474599
@@ -380,8 +384,94 @@ animations = [{
 [sub_resource type="BoxShape3D" id="BoxShape3D_virh7"]
 size = Vector3(0.75, 1, 3)
 
+[sub_resource type="Animation" id="Animation_6ep85"]
+resource_name = "jump"
+length = 0.1
+step = 0.01
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("player/Armature/Skeleton3D/Player:surface_material_override/0:shader_parameter/color")
+tracks/0/interp = 0
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.02),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector3(100, 100, 100), Vector3(0, 0, 0)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("player/Armature/Skeleton3D/Player:surface_material_override/1:shader_parameter/base_colour")
+tracks/1/interp = 0
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.02),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector3(100, 100, 100), Vector3(0.075, 0.025, 0.025)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("player/Armature/Skeleton3D/Player:surface_material_override/2:shader_parameter/base_colour")
+tracks/2/interp = 0
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 0.02),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector3(100, 100, 100), Vector3(0.8, 0.3, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_6h6rl"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("player/Armature/Skeleton3D/Player:surface_material_override/0:shader_parameter/color")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(0, 0, 0)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("player/Armature/Skeleton3D/Player:surface_material_override/1:shader_parameter/base_colour")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(0.075, 0.025, 0.025)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("player/Armature/Skeleton3D/Player:surface_material_override/2:shader_parameter/base_colour")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(0.8, 0.3, 0)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_pacbt"]
+_data = {
+"RESET": SubResource("Animation_6h6rl"),
+"jump": SubResource("Animation_6ep85")
+}
+
 [sub_resource type="BoxShape3D" id="BoxShape3D_2e1ws"]
-size = Vector3(2, 3, 2)
+size = Vector3(4, 3, 4)
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_j7m3i"]
 
@@ -500,10 +590,12 @@ root_node = NodePath("../PlayerModel/player")
 tree_root = SubResource("AnimationNodeStateMachine_1wy8i")
 anim_player = NodePath("../PlayerModel/player/AnimationPlayer")
 parameters/fall/Blend2/blend_amount = 0.0
+parameters/fall/FallDirection/blend_amount = 1.0
 parameters/idle/Blend2/blend_amount = 0.0
-parameters/jump/Blend2/blend_amount = 0.0
+parameters/land/Blend2/blend_amount = 0.0
+parameters/land/TimeScale/scale = 3.0
 parameters/run/Blend2/blend_amount = 0.0
-parameters/run/TimeScale/scale = 2.5
+parameters/run/TimeScale/scale = 2.0
 
 [node name="IdleTimer" type="Timer" parent="AnimationTree"]
 wait_time = 10.0
@@ -518,21 +610,22 @@ shape = SubResource("CapsuleShape3D_nrsfh")
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1, 0)
 
 [node name="Skeleton3D" parent="PlayerModel/player/Armature" index="0"]
-bones/0/position = Vector3(-0.00183521, -0.0675415, 0)
-bones/1/rotation = Quaternion(-0.0570161, -0.0345351, 0.532714, 0.843666)
-bones/2/rotation = Quaternion(0.141879, -0.00244143, -0.0872743, 0.986026)
-bones/3/rotation = Quaternion(0.47903, -0.00154839, -0.190605, 0.856853)
-bones/4/rotation = Quaternion(0.117026, 0.00036478, -0.0385708, 0.99238)
-bones/5/rotation = Quaternion(-0.139119, -0.234089, -0.478334, 0.834892)
-bones/6/rotation = Quaternion(0.0241139, -0.29022, -0.0667289, 0.954326)
-bones/7/rotation = Quaternion(0.102194, -0.527238, -0.57351, 0.618597)
-bones/8/rotation = Quaternion(0.0954105, -0.0315104, -0.172549, 0.979863)
-bones/10/rotation = Quaternion(0.707026, 0.00955089, -0.707067, -0.00886471)
-bones/11/rotation = Quaternion(-7.6939e-07, 0.000182404, -0.00251522, 0.999997)
-bones/12/rotation = Quaternion(1.20274e-08, -1.19763e-11, -0.159271, 0.987235)
-bones/13/rotation = Quaternion(0.707047, -0.00919023, 0.707049, -0.00908036)
-bones/14/rotation = Quaternion(-1.49522e-07, -2.58695e-05, 0.00271165, 0.999996)
-bones/15/rotation = Quaternion(1.10694e-08, 1.63783e-12, 0.146534, 0.989206)
+bones/0/position = Vector3(-0.00183521, -0.345137, 0)
+bones/0/rotation = Quaternion(0.0229082, 0, 0, 0.999738)
+bones/1/rotation = Quaternion(0.430699, 0.414785, 0.430299, 0.676235)
+bones/2/rotation = Quaternion(0.017293, 0.0400253, 0.0169687, 0.998905)
+bones/3/rotation = Quaternion(-0.00157804, 0.0402486, -0.00111068, 0.999188)
+bones/4/rotation = Quaternion(-0.000378664, 0.00155659, -0.000953233, 0.999998)
+bones/5/rotation = Quaternion(-0.181194, 0.487791, -0.82528, 0.219412)
+bones/6/rotation = Quaternion(0.0200015, 0.206994, 0.026869, 0.977769)
+bones/7/rotation = Quaternion(-0.000632433, -0.0237604, -0.00105649, 0.999717)
+bones/8/rotation = Quaternion(-0.00213377, 0.00676337, 0.00209456, 0.999973)
+bones/10/rotation = Quaternion(0.563728, 0.301065, -0.648681, -0.41326)
+bones/11/rotation = Quaternion(-0.163674, 0.0157982, -0.356546, 0.919694)
+bones/12/rotation = Quaternion(0.0106875, -0.000265042, -0.0713855, 0.997392)
+bones/13/rotation = Quaternion(0.521751, 0.66524, 0.455205, 0.279322)
+bones/14/rotation = Quaternion(-0.0906893, 0.128992, 0.298315, 0.941352)
+bones/15/rotation = Quaternion(0.00231698, 0.00542739, 0.00546319, 0.999968)
 
 [node name="Player" parent="PlayerModel/player/Armature/Skeleton3D" index="0"]
 lod_bias = 128.0
@@ -541,7 +634,7 @@ surface_material_override/1 = SubResource("ShaderMaterial_booyl")
 surface_material_override/2 = SubResource("ShaderMaterial_mhwhj")
 
 [node name="FaceAttachment" type="BoneAttachment3D" parent="PlayerModel/player/Armature/Skeleton3D" index="1"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.00183521, 0.517002, 0)
+transform = Transform3D(1, 0, 0, 0, 0.99895, -0.0458044, 0, 0.0458044, 0.99895, -0.00183521, 0.238793, 0.0267747)
 bone_name = "Head"
 bone_idx = 9
 
@@ -572,6 +665,11 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 1.5)
 
 [node name="Backup" type="Marker3D" parent="PlayerModel/HoldPoint"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, -1.5)
+
+[node name="PlayerVisualAnims" type="AnimationPlayer" parent="PlayerModel"]
+libraries = {
+"": SubResource("AnimationLibrary_pacbt")
+}
 
 [node name="CentralCameraPoint" type="Marker3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.01149, 0.273736)

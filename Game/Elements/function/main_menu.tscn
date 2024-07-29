@@ -53,7 +53,7 @@ shader = ExtResource("7_cuoft")
 
 [node name="MainMenu" type="Node3D"]
 script = ExtResource("1_cvoh4")
-initial_level = "res://Elements/environments/chapter1/c1_m1.tscn"
+initial_level = "res://Elements/environments/misc/intro_cutscene.tscn"
 
 [node name="planning" parent="." instance=ExtResource("2_crmce")]
 

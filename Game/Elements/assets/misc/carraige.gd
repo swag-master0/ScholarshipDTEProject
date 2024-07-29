@@ -5,7 +5,7 @@ extends Node3D
 @onready var full_collisions = $CollisionsFull
 
 
-func _process(delta):
+func _process(_delta):
 	if enable_col == true:
 		full_collisions.disabled = false
 	else:

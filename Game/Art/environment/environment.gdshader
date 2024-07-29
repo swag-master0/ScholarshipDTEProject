@@ -11,24 +11,16 @@ uniform sampler2D cloudlayer2;
 
 void sky() {
 	vec2 sky_uv = (EYEDIR.xz / EYEDIR.y);
+	vec3 cloud1 = texture(cloudlayer1, vec2(sky_uv.x + TIME * 0.10, sky_uv.y + TIME * 0.2)).rgb;
+	vec3 cloud2 = texture(cloudlayer2, vec2(sky_uv.x + TIME * 0.05, sky_uv.y + TIME * 0.1)).rgb;
 	
-	//vec3 cloud_color = texture(noise1, sky_uv + TIME * 0.05).rgb;
-	//vec3 cloud_color1 = texture(cloudlayer1, vec2(sky_uv.x + TIME * 0.025, sky_uv.y + TIME * 0.05)).rgb;
-	//vec3 cloud_color2 = texture(cloudlayer2, vec2(sky_uv.x + TIME * 0.05, sky_uv.y + TIME * 0.1)).rgb;
-	vec2 uv = vec2(SKY_COORDS.x, SKY_COORDS.y - TIME / 100.0);
-	
-	vec3 cloud_color1 = texture(cloudlayer1, uv * 4.0).rgb;
-	vec3 cloud_color2 = texture(cloudlayer2, vec2(sky_uv.x + TIME * 0.05, sky_uv.y + TIME * 0.1)).rgb;
-	
-	
-	vec3 clouds = mix(cloud_color1, cloud_color2, 0.5);
-	
+	vec3 sky = mix(cloud1, cloud2, 0.5);
 	
 	if (SKY_COORDS.y > 0.5) { 
-		clouds = vec3(0.25, 0.25, 0.25);
+		sky = vec3(0.25, 0.25, 0.25);
 	}
 	
-	COLOR = clouds;
+	COLOR = sky;
 	
 	
 	

@@ -20,8 +20,8 @@ func TOP():
 @export_category("Gameplay")
 @export var SAVE_GAME : bool = true
 @export var SPEED : float = 10
-@export var JUMP_VELOCITY : float = 25
-@export var JUMP_FALLMULTIPLIER : float = 5
+@export var JUMP_VELOCITY : float = 35
+@export var JUMP_FALLMULTIPLIER : float = 10
 @export var TURN_VELOCITY : float = 50
 @export var PICKUP_RANGE : float = 6
 @export var THROW_FORCE : float = 500
@@ -74,7 +74,7 @@ func TOP():
 
 # visuals
 @onready var dust = $Dust
-
+@onready var visual_anims = $PlayerModel/PlayerVisualAnims
 
 
 
@@ -140,11 +140,15 @@ func _input(event):
 func _physics_process(delta):
 	
 	if !is_on_floor():
+		#print(gravity * delta * JUMP_FALLMULTIPLIER)
 		velocity.y -= gravity * delta * JUMP_FALLMULTIPLIER
+		velocity.y = clamp(velocity.y, -38, 500)
+		#velocity.y -= clamp(gravity * delta * JUMP_FALLMULTIPLIER, -9.8, 0)
 	
 	
 	if Input.is_action_pressed("jump") and is_on_floor():
 		velocity.y = JUMP_VELOCITY
+		visual_anims.play("jump")
 	
 	MousePosition()
 	
@@ -184,19 +188,21 @@ func _physics_process(delta):
 	if !isHolding:
 		animation_tree.set("parameters/fall/Blend2/blend_amount", 0.0)
 		animation_tree.set("parameters/idle/Blend2/blend_amount", 0.0)
-		animation_tree.set("parameters/jump/Blend2/blend_amount", 0.0)
 		animation_tree.set("parameters/run/Blend2/blend_amount", 0.0)
+		animation_tree.set("parameters/land/Blend2/blend_amount", 0.0)
 		
 	
 	elif isHolding:
 		animation_tree.set("parameters/fall/Blend2/blend_amount", 1.0)
 		animation_tree.set("parameters/idle/Blend2/blend_amount", 1.0)
-		animation_tree.set("parameters/jump/Blend2/blend_amount", 1.0)
 		animation_tree.set("parameters/run/Blend2/blend_amount", 1.0)
-	
+		animation_tree.set("parameters/land/Blend2/blend_amount", 1.0)
 	
 	if not is_on_floor():
 		state_machine.travel("fall")
+		animation_tree.set("parameters/fall/FallDirection/blend_amount", clamp(velocity.y, 0, 1))
+		
+		
 		
 	elif velocity and is_on_floor():
 		state_machine.travel("run")
@@ -395,7 +401,7 @@ func _on_info_death():
 
 
 func RestartLevel():
-	var save = SaveGame.new()
+	#var save = SaveGame.new()
 	#save.save_game_level(get_tree().current_scene.scene_file_path)
 	#print_rich("[rainbow]Saved Level:", save.load_game().level)
 	
@@ -484,17 +490,26 @@ func _on_delay_timeout():
 		if i.is_in_group("objective_start"):
 			var save = SaveGame.new()
 			save.save_game_level(i.nextscene_string)
-			print_rich("[rainbow]Saved Level:", save.load_game().level)
 			
-			LoadingScreen.next_scene = player_hub
-			LoadingScreen.scene_transition()
+			if get_tree().current_scene.scene_file_path == "res://Elements/environments/misc/intro_cutscene.tscn":
+				LoadingScreen.next_scene = save.load_game().level
+				LoadingScreen.scene_transition()
+			
+			else:
+				#save.save_game_level(i.nextscene_string)
+				print_rich("[rainbow]Saved Level:", save.load_game().level)
+				
+				LoadingScreen.next_scene = player_hub
+				LoadingScreen.scene_transition()
+	
 	
 	if !SAVE_GAME:
 		var save = SaveGame.new()
 		
-		if save.load_game().level:
-			LoadingScreen.next_scene = save.load_game().level
-			LoadingScreen.scene_transition()
+		if save.load_game():
+			if save.load_game().level:
+				LoadingScreen.next_scene = save.load_game().level
+				LoadingScreen.scene_transition()
 		else:
 			push_error("Failed to find next level.")
 	

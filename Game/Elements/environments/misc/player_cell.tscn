@@ -216,6 +216,7 @@ shape = SubResource("BoxShape3D_080nk")
 [node name="Player_v2" parent="." instance=ExtResource("2_anjfi")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 31, 0)
 SAVE_GAME = false
+DISPLAY_DUST = false
 
 [node name="player_hub" parent="." instance=ExtResource("3_ff6h1")]
 
