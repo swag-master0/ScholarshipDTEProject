@@ -23,8 +23,8 @@ color_ramp = SubResource("Gradient_pgec4")
 noise = SubResource("FastNoiseLite_4okqe")
 
 [sub_resource type="Gradient" id="Gradient_n4hhs"]
-offsets = PackedFloat32Array(0, 0.493671, 1)
-colors = PackedColorArray(0, 0, 0, 1, 0.068716, 0.0191235, 0.00267253, 1, 0.139194, 0.0387373, 0.00541359, 1)
+offsets = PackedFloat32Array(0, 0.64557, 1)
+colors = PackedColorArray(0, 0, 0, 1, 0.068716, 0.0191235, 0.00267253, 1, 0.296547, 0.114678, 0.022449, 1)
 
 [sub_resource type="FastNoiseLite" id="FastNoiseLite_5sv87"]
 noise_type = 2
@@ -57,10 +57,10 @@ fog_light_color = Color(0, 0, 0, 1)
 fog_light_energy = 0.5
 fog_density = 0.005
 fog_aerial_perspective = 1.0
+volumetric_fog_enabled = true
 volumetric_fog_density = 0.075
-volumetric_fog_albedo = Color(0, 0, 0, 1)
-volumetric_fog_emission_energy = 0.0
-volumetric_fog_sky_affect = 0.5
+volumetric_fog_albedo = Color(0.703808, 0.703808, 0.703808, 1)
+volumetric_fog_sky_affect = 0.0
 volumetric_fog_temporal_reprojection_enabled = false
 volumetric_fog_temporal_reprojection_amount = 0.5
 

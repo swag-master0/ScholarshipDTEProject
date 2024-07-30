@@ -1,6 +1,6 @@
-extends ColorRect
+extends Control
 
-@onready var windowed_button = $WindowedButton
+@onready var fullscreen_button = $ScrollContainer/VBoxContainer/FullscreenButton
 
 
 
@@ -18,16 +18,19 @@ func CloseMenu():
 
 func _ready():
 	if get_window().mode == 0: #windowed
-		windowed_button.text = "WINDOWED"
+		fullscreen_button.button_pressed = false
 	elif get_window().mode == 3: #fullscreen
-		windowed_button.text = "FULLSCREEN"
+		fullscreen_button.button_pressed = true
 
 func _on_windowed_button_pressed():
 	if get_window().mode == get_window().MODE_WINDOWED:
 		get_window().mode = get_window().MODE_FULLSCREEN
-		windowed_button.text = "FULLSCREEN"
+		fullscreen_button.button_pressed = true
 	
 	elif get_window().mode == get_window().MODE_FULLSCREEN:
 		get_window().mode = get_window().MODE_WINDOWED
-		windowed_button.text = "WINDOWED"
+		fullscreen_button.button_pressed = false
 	
+
+
+

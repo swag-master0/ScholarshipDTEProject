@@ -88,17 +88,14 @@ shadow_size = 1
 shadow_offset = Vector2(-7.5, 15)
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_xaokg"]
-content_margin_left = 15.0
-content_margin_top = 15.0
-content_margin_right = 15.0
-content_margin_bottom = 15.0
+content_margin_top = 6.0
+content_margin_bottom = 6.0
 
 [resource]
 BoxContainer/constants/separation = 6
 Button/colors/font_focus_color = Color(0.909844, 0.901626, 0.430666, 1)
 Button/colors/font_outline_color = Color(0.378483, 0.124547, 0.0755399, 1)
-Button/constants/outline_size = 2
-Button/font_sizes/font_size = 16
+Button/font_sizes/font_size = 12
 Button/fonts/font = ExtResource("2_u6bhg")
 Button/styles/focus = SubResource("StyleBoxLine_42ewb")
 Button/styles/hover = SubResource("StyleBoxFlat_ownpo")
@@ -109,11 +106,16 @@ Fonts/fonts/normal = ExtResource("1_b011t")
 Label/font_sizes/font_size = 23
 Label/fonts/font = ExtResource("1_b011t")
 Panel/styles/panel = SubResource("StyleBoxFlat_qo53n")
-ProgressBar/font_sizes/font_size = 20
+ProgressBar/font_sizes/font_size = 9
 ProgressBar/fonts/font = ExtResource("2_u6bhg")
 ProgressBar/styles/background = SubResource("StyleBoxFlat_3nfej")
 ProgressBar/styles/fill = SubResource("StyleBoxFlat_1bjw4")
 RichTextLabel/constants/outline_size = 0
+RichTextLabel/font_sizes/bold_font_size = 9
+RichTextLabel/font_sizes/bold_italics_font_size = 9
+RichTextLabel/font_sizes/italics_font_size = 9
+RichTextLabel/font_sizes/mono_font_size = 9
+RichTextLabel/font_sizes/normal_font_size = 9
 RichTextLabel/fonts/bold_font = ExtResource("1_k2bvi")
 RichTextLabel/fonts/bold_italics_font = ExtResource("2_u6bhg")
 RichTextLabel/fonts/italics_font = ExtResource("3_7k8v5")

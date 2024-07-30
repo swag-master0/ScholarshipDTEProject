@@ -3,29 +3,39 @@ render_mode unshaded, blend_mix;
 
 uniform sampler2D SCREEN_TEXTURE: hint_screen_texture, repeat_disable, filter_nearest;
 
-uniform float outline_alpha = 0.75;
-uniform float outline_threshold = 0.25;
+const float outline_alpha = 0.5;
+const float outline_threshold = 0.25;
 
 
 // For Sobel filtering
 vec3 convolution(sampler2D tex, vec2 uv, vec2 pixel_size) {
 	vec3 conv = vec3(0.0);
-	
-	// For Gaussian Blurring (see wikipedia page for full mathematics)
-	float gauss[25] = {
-		0.00390625, 0.015625, 0.0234375, 0.015625, 0.00390625,
-		0.015625, 0.0625, 0.09375, 0.0625, 0.015625, 0.0234375,
-		0.09375, 0.140625, 0.09375, 0.0234375, 0.015625,
-		0.0625, 0.09375, 0.0625, 0.015625, 0.00390625,
-		0.015625, 0.0234375, 0.015625, 0.00390625
-	};
-	
-	for (int row = 0; row < 5; row++) {
-		for (int col = 0; col < 5; col++) {
-			conv += texture(tex, uv + vec2(float(col - 2), float(row - 2)) * pixel_size).rgb * gauss[row * 5 + col];
+	for (int row = 0; row < 1; row++) {
+		for (int col = 0; col < 1; col++) {
+			conv += texture(tex, uv + vec2(float(col - 1)) * pixel_size).rgb;
 		}
 	}
+	
 	return conv;
+	// For Gaussian Blurring (see wikipedia page for full mathematics)
+	//float gauss[25] = {
+	//	0.00390625, 0.015625, 0.0234375, 0.015625, 0.00390625,
+	//	0.015625, 0.0625, 0.09375, 0.0625, 0.015625, 0.0234375,
+	//	0.09375, 0.140625, 0.09375, 0.0234375, 0.015625,
+	//	0.0625, 0.09375, 0.0625, 0.015625, 0.00390625,
+	//	0.015625, 0.0234375, 0.015625, 0.00390625
+	//};
+	
+	//int sobel_amount = 3;
+	//
+	//for (int row = 0; row < sobel_amount; row++) {
+	//	for (int col = 0; col < sobel_amount; col++) {
+	//		conv += texture(tex, uv + vec2(float(col - 2), float(row - 2)) * pixel_size).rgb * gauss[row * 3 + col];
+	//	}
+	//}
+	
+	//return conv;
+	
 }
 
 

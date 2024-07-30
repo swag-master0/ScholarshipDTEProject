@@ -17,7 +17,7 @@ void sky() {
 	vec3 sky = mix(cloud1, cloud2, 0.5);
 	
 	if (SKY_COORDS.y > 0.5) { 
-		sky = vec3(0.25, 0.25, 0.25);
+		sky = vec3(0.05, 0.05, 0.05);
 	}
 	
 	COLOR = sky;
