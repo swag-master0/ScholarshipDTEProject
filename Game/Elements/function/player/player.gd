@@ -113,16 +113,17 @@ func _ready():
 	
 	Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
 	
-	
+	ApplySettings()
 	# the funny
 #	print_rich("[font_size=120][color=CORNFLOWER_BLUE][wave]heck you")
 	
 	if SAVE_GAME:
 		var save_system = SaveGame.new()
-		save_system.save_game_level(get_tree().current_scene.scene_file_path)
-		print_rich("[rainbow]Saved Level:", save_system.load_game().level)
+		save_system.save_game(get_tree().current_scene.scene_file_path)
+		print_rich("[rainbow]Saved Level: ", save_system.load_game().level)
 	else:
 		print("Saving is turned off for this level")
+	
 
 
 func _input(event):
@@ -312,6 +313,8 @@ func _process(_delta):
 	if Input.is_action_just_pressed("escape"):
 		PauseMenu(true)
 	
+
+	
 	if DISPLAY_DUST and dust.visible != true:
 		dust.visible = true
 	elif !DISPLAY_DUST and dust.visible != false:
@@ -416,9 +419,22 @@ func QuitToMenu():
 
 
 
+func ApplySettings():
+	# update sensitivity and volume settings
+	var new_config = SaveConfig.new()
+	var settings = new_config.load_config()
+	
+	SENSITIVITY = settings.SENSITIVITY
+	
+	AudioServer.set_bus_volume_db(AudioServer.get_bus_index("music"), linear_to_db(settings.VOLUME_MUSIC))
+	AudioServer.set_bus_volume_db(AudioServer.get_bus_index("sfx"), linear_to_db(settings.VOLUME_SFX))
+	AudioServer.set_bus_volume_db(AudioServer.get_bus_index("ambience"), linear_to_db(settings.VOLUME_AMBIENCE))
+	
 
 
 func PauseMenu(toggle : bool):
+	ApplySettings()
+	
 	if canPause == true:
 		Input.set_mouse_mode(Input.MOUSE_MODE_VISIBLE)
 		get_tree().paused = toggle
@@ -489,7 +505,7 @@ func _on_delay_timeout():
 	for i in self.get_parent().get_children():
 		if i.is_in_group("objective_start"):
 			var save = SaveGame.new()
-			save.save_game_level(i.nextscene_string)
+			save.save_game(i.nextscene_string)
 			
 			if get_tree().current_scene.scene_file_path == "res://Elements/environments/misc/intro_cutscene.tscn":
 				LoadingScreen.next_scene = save.load_game().level

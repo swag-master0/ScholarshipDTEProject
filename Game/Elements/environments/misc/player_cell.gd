@@ -4,12 +4,11 @@ extends Node3D
 
 
 func _ready():
-	var save = SaveGame.new()
+	var save = SaveCell.new()
 	
 	await get_tree().create_timer(1).timeout
 	
-	# causes error ????
-	save.load_player_hub(self)
+	save.load_cell(self)
 	
 	#animation_player.play("open")
 	#animation_player.play("open", -1, -1, true) to play it backwards
@@ -55,8 +54,8 @@ func save_hub_objects():
 	
 	
 	
-	var save = SaveGame.new()
-	save.save_player_hub(objects_to_save)
+	var save = SaveCell.new()
+	save.save_cell(objects_to_save)
 
 
 

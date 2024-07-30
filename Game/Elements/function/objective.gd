@@ -92,8 +92,8 @@ func ChangeScene():
 			packed.pack(ObjectToSave)
 			objects_to_save.append(packed)
 		
-	var save = SaveGame.new()
-	save.save_player_hub(objects_to_save, false)
+	var save = SaveCell.new()
+	save.save_cell(objects_to_save, false)
 	
 	# this is to trigger the GUI screen for the player completing the level
 	for i in self.get_parent().get_children():

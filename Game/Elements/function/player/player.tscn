@@ -602,21 +602,21 @@ shape = SubResource("CapsuleShape3D_nrsfh")
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1, 0)
 
 [node name="Skeleton3D" parent="PlayerModel/player/Armature" index="0"]
-bones/0/position = Vector3(-0.00183521, -0.0746749, 0)
-bones/1/rotation = Quaternion(0.000446612, -0.000661098, 0.817971, 0.575258)
-bones/2/rotation = Quaternion(-0.000700305, -0.000467424, 0.288689, 0.957423)
-bones/3/rotation = Quaternion(-0.000724898, -0.000122783, 0.399235, 0.916848)
+bones/0/position = Vector3(-0.00183521, -0.0766751, 0)
+bones/1/rotation = Quaternion(0.000555817, -0.000822808, 0.817569, 0.57583)
+bones/2/rotation = Quaternion(-0.000892949, -0.000595966, 0.287471, 0.957789)
+bones/3/rotation = Quaternion(-0.000928279, -0.000157266, 0.396432, 0.918064)
 bones/4/rotation = Quaternion(-6.35795e-06, -2.53072e-07, 0.0895676, 0.995981)
-bones/5/rotation = Quaternion(0.000504323, 0.000630321, -0.843128, 0.537712)
-bones/6/rotation = Quaternion(-0.000685054, 0.000492114, -0.277616, 0.960692)
-bones/7/rotation = Quaternion(-0.000818804, 0.00012868, -0.351891, 0.936041)
-bones/8/rotation = Quaternion(-0.000166612, 6.09787e-06, -0.078143, 0.996942)
-bones/9/rotation = Quaternion(0.00459599, 0, 0, 0.999989)
-bones/10/rotation = Quaternion(0.705901, -0.0412726, -0.705901, 0.0412726)
-bones/11/rotation = Quaternion(1.18802e-08, 1.57444e-08, -0.13653, 0.990636)
+bones/5/rotation = Quaternion(0.000645774, 0.000807106, -0.841634, 0.540047)
+bones/6/rotation = Quaternion(-0.000873998, 0.000627848, -0.276009, 0.961155)
+bones/7/rotation = Quaternion(-0.00102369, 0.000160879, -0.352791, 0.935702)
+bones/8/rotation = Quaternion(-0.000211285, 7.73297e-06, -0.0790908, 0.996867)
+bones/9/rotation = Quaternion(0.00584807, 0, 0, 0.999983)
+bones/10/rotation = Quaternion(0.705827, -0.0425275, -0.705827, 0.0425276)
+bones/11/rotation = Quaternion(7.46223e-09, 1.57393e-08, -0.13887, 0.990311)
 bones/12/rotation = Quaternion(2.11264e-09, -9.40588e-16, -0.0279828, 0.999608)
-bones/13/rotation = Quaternion(0.705898, 0.0413211, 0.705898, 0.0413211)
-bones/14/rotation = Quaternion(1.18794e-08, -1.57443e-08, 0.13658, 0.990629)
+bones/13/rotation = Quaternion(0.705824, 0.0425737, 0.705824, 0.0425738)
+bones/14/rotation = Quaternion(7.46585e-09, -1.57392e-08, 0.138918, 0.990304)
 bones/15/rotation = Quaternion(2.11486e-09, 2.15884e-15, 0.0280121, 0.999608)
 
 [node name="Player" parent="PlayerModel/player/Armature/Skeleton3D" index="0"]
@@ -626,7 +626,7 @@ surface_material_override/1 = SubResource("ShaderMaterial_booyl")
 surface_material_override/2 = SubResource("ShaderMaterial_mhwhj")
 
 [node name="FaceAttachment" type="BoneAttachment3D" parent="PlayerModel/player/Armature/Skeleton3D" index="1"]
-transform = Transform3D(1, 0, 0, 0, 0.999958, -0.00919189, 0, 0.00919189, 0.999958, -0.00183521, 0.509869, 0)
+transform = Transform3D(1, 0, 0, 0, 0.999932, -0.0116959, 0, 0.0116959, 0.999932, -0.00183521, 0.507868, 0)
 bone_name = "Head"
 bone_idx = 9
 
@@ -1067,22 +1067,27 @@ texture = SubResource("AnimatedTexture_x7bso")
 [node name="PlayerWalk" type="AudioStreamPlayer" parent="Audio"]
 stream = ExtResource("10_iq0rl")
 volume_db = -10.0
+bus = &"sfx"
 
 [node name="PlayerSelect" type="AudioStreamPlayer" parent="Audio"]
 stream = ExtResource("11_bg06q")
 volume_db = -20.0
+bus = &"sfx"
 
 [node name="PlayerDeath" type="AudioStreamPlayer" parent="Audio"]
 stream = ExtResource("12_3vcwe")
 volume_db = -20.0
+bus = &"sfx"
 
 [node name="PlayerHurt" type="AudioStreamPlayer" parent="Audio"]
 stream = ExtResource("13_03cy8")
 volume_db = -20.0
+bus = &"sfx"
 
 [node name="Dialogue" type="AudioStreamPlayer" parent="Audio"]
 stream = ExtResource("14_inpwu")
 volume_db = -20.0
+bus = &"sfx"
 
 [node name="FootstepDelay" type="Timer" parent="Audio"]
 wait_time = 0.1
