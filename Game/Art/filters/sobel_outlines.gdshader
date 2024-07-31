@@ -1,5 +1,5 @@
 shader_type canvas_item;
-render_mode unshaded, blend_mix;
+render_mode unshaded;
 
 uniform sampler2D SCREEN_TEXTURE: hint_screen_texture, repeat_disable, filter_nearest;
 

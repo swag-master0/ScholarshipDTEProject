@@ -5,7 +5,7 @@
 [ext_resource type="PackedScene" uid="uid://bcj7w8qtlukgu" path="res://Art/blend/assets/misc/barrel.blend" id="3_4m161"]
 
 [sub_resource type="PhysicsMaterial" id="PhysicsMaterial_vgn1v"]
-friction = 0.27
+rough = true
 
 [sub_resource type="CylinderShape3D" id="CylinderShape3D_laxei"]
 height = 1.93726

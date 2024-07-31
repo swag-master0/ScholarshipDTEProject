@@ -1,4 +1,4 @@
-[gd_scene load_steps=104 format=3 uid="uid://bcou7suhphdrp"]
+[gd_scene load_steps=97 format=3 uid="uid://bcou7suhphdrp"]
 
 [ext_resource type="Script" path="res://Elements/function/player/player.gd" id="1_0ncw4"]
 [ext_resource type="PackedScene" uid="uid://4lv8cegk7f53" path="res://Art/blend/assets/main/player.blend" id="2_ww4ji"]
@@ -18,13 +18,11 @@
 [ext_resource type="AudioStream" uid="uid://bk7fdh3m3au1n" path="res://Art/audio/dialogue.wav" id="14_inpwu"]
 [ext_resource type="Texture2D" uid="uid://cix4ak6aasuam" path="res://Art/assets/hud/selection.png" id="14_pvb8u"]
 [ext_resource type="Texture2D" uid="uid://dmnjpb8ox2bsu" path="res://Art/assets/hud/mouse1-1.png" id="15_5hkb5"]
-[ext_resource type="Shader" path="res://Art/filters/colour_palette.gdshader" id="15_bbpvp"]
 [ext_resource type="Texture2D" uid="uid://cvguvo850eb22" path="res://Art/assets/hud/mouse1-2.png" id="16_5kyhk"]
 [ext_resource type="Shader" path="res://Art/filters/quantisation.gdshader" id="16_dvf37"]
 [ext_resource type="Shader" path="res://Art/filters/sobel_outlines.gdshader" id="17_5fr21"]
 [ext_resource type="Texture2D" uid="uid://d2e7ax2fpiihe" path="res://Art/assets/hud/crosshair_aim.png" id="18_p3pnq"]
 [ext_resource type="Texture2D" uid="uid://balyxc0uut580" path="res://Art/assets/hud/crosshair_grab.png" id="19_qxdpl"]
-[ext_resource type="Shader" path="res://Art/filters/pixellation.gdshader" id="19_uaq3q"]
 [ext_resource type="Texture2D" uid="uid://dyt6pn156jijw" path="res://Art/assets/hud/crosshair_drop_indicator.png" id="20_dwyva"]
 [ext_resource type="PackedScene" uid="uid://d3qcg4xjm6x5x" path="res://Elements/function/player/a-os.tscn" id="20_sjfsg"]
 
@@ -380,92 +378,6 @@ animations = [{
 [sub_resource type="BoxShape3D" id="BoxShape3D_virh7"]
 size = Vector3(0.75, 1, 3)
 
-[sub_resource type="Animation" id="Animation_6h6rl"]
-length = 0.001
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("player/Armature/Skeleton3D/Player:surface_material_override/0:shader_parameter/color")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Vector3(0, 0, 0)]
-}
-tracks/1/type = "value"
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/path = NodePath("player/Armature/Skeleton3D/Player:surface_material_override/1:shader_parameter/base_colour")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Vector3(0.075, 0.025, 0.025)]
-}
-tracks/2/type = "value"
-tracks/2/imported = false
-tracks/2/enabled = true
-tracks/2/path = NodePath("player/Armature/Skeleton3D/Player:surface_material_override/2:shader_parameter/base_colour")
-tracks/2/interp = 1
-tracks/2/loop_wrap = true
-tracks/2/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Vector3(0.8, 0.3, 0)]
-}
-
-[sub_resource type="Animation" id="Animation_6ep85"]
-resource_name = "jump"
-length = 0.1
-step = 0.01
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("player/Armature/Skeleton3D/Player:surface_material_override/0:shader_parameter/color")
-tracks/0/interp = 0
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.02),
-"transitions": PackedFloat32Array(1, 1),
-"update": 0,
-"values": [Vector3(100, 100, 100), Vector3(0, 0, 0)]
-}
-tracks/1/type = "value"
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/path = NodePath("player/Armature/Skeleton3D/Player:surface_material_override/1:shader_parameter/base_colour")
-tracks/1/interp = 0
-tracks/1/loop_wrap = true
-tracks/1/keys = {
-"times": PackedFloat32Array(0, 0.02),
-"transitions": PackedFloat32Array(1, 1),
-"update": 0,
-"values": [Vector3(100, 100, 100), Vector3(0.075, 0.025, 0.025)]
-}
-tracks/2/type = "value"
-tracks/2/imported = false
-tracks/2/enabled = true
-tracks/2/path = NodePath("player/Armature/Skeleton3D/Player:surface_material_override/2:shader_parameter/base_colour")
-tracks/2/interp = 0
-tracks/2/loop_wrap = true
-tracks/2/keys = {
-"times": PackedFloat32Array(0, 0.02),
-"transitions": PackedFloat32Array(1, 1),
-"update": 0,
-"values": [Vector3(100, 100, 100), Vector3(0.8, 0.3, 0)]
-}
-
-[sub_resource type="AnimationLibrary" id="AnimationLibrary_pacbt"]
-_data = {
-"RESET": SubResource("Animation_6h6rl"),
-"jump": SubResource("Animation_6ep85")
-}
-
 [sub_resource type="BoxShape3D" id="BoxShape3D_2e1ws"]
 size = Vector3(4, 3, 4)
 
@@ -528,17 +440,11 @@ frame_2/duration = 1.0
 frame_3/texture = ExtResource("20_dwyva")
 frame_3/duration = 1.0
 
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_1evt4"]
-shader = ExtResource("15_bbpvp")
-
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_m2pfy"]
 shader = ExtResource("16_dvf37")
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_al30p"]
 shader = ExtResource("17_5fr21")
-
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_4rgcg"]
-shader = ExtResource("19_uaq3q")
 
 [sub_resource type="Curve" id="Curve_h13y2"]
 _data = [Vector2(0, 0), 0.0, 0.0, 0, 0, Vector2(0.5, 0.178947), 0.235628, 0.235628, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
@@ -599,23 +505,22 @@ shape = SubResource("CapsuleShape3D_nrsfh")
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1, 0)
 
 [node name="Skeleton3D" parent="PlayerModel/player/Armature" index="0"]
-bones/0/position = Vector3(-0.00183521, -0.263149, 0)
-bones/0/rotation = Quaternion(0, 0.214755, 0, 0.976668)
-bones/1/rotation = Quaternion(-0.239106, 0.390567, 0.2509, 0.852839)
-bones/2/rotation = Quaternion(-0.132074, -0.180732, 0.737197, 0.63752)
-bones/3/rotation = Quaternion(0.241591, 0.551968, 0.78711, 0.131997)
-bones/4/rotation = Quaternion(0.108911, 0.0330832, 0.268143, 0.956631)
-bones/5/rotation = Quaternion(-0.236985, 0.0512596, -0.363762, 0.899382)
-bones/6/rotation = Quaternion(0.3577, 0.158128, -0.440853, 0.807895)
-bones/7/rotation = Quaternion(0.758311, -0.451195, -0.138058, 0.449807)
-bones/8/rotation = Quaternion(0.201277, -0.0014098, -0.0269861, 0.979162)
-bones/9/rotation = Quaternion(0.000179625, 0.490508, -0.000101106, 0.871437)
-bones/10/rotation = Quaternion(0.907032, -0.244585, -0.332885, 0.0815979)
-bones/11/rotation = Quaternion(0.0343013, -0.00124765, -0.551296, 0.833603)
-bones/12/rotation = Quaternion(2.1982e-09, 2.73683e-09, -0.0279828, 0.999608)
-bones/13/rotation = Quaternion(0.67154, 0.221042, 0.671836, 0.220932)
-bones/14/rotation = Quaternion(0.000930774, 2.90932e-05, 0.556382, 0.830926)
-bones/15/rotation = Quaternion(2.6786e-09, 3.0571e-09, 0.0280121, 0.999608)
+bones/0/position = Vector3(-0.00183521, -0.0685565, 0)
+bones/1/rotation = Quaternion(4.86802e-05, -7.18422e-05, 0.819435, 0.573172)
+bones/2/rotation = Quaternion(-0.000147334, -9.84567e-05, 0.292182, 0.956363)
+bones/3/rotation = Quaternion(-2.67766e-05, -4.41706e-06, 0.408827, 0.912612)
+bones/4/rotation = Quaternion(-6.35795e-06, -2.53072e-07, 0.0895676, 0.995981)
+bones/5/rotation = Quaternion(1.87582e-05, 2.3464e-05, -0.848208, 0.529664)
+bones/6/rotation = Quaternion(-9.74851e-05, 7.0016e-05, -0.282607, 0.959236)
+bones/7/rotation = Quaternion(-0.000213394, 3.35331e-05, -0.349229, 0.937038)
+bones/8/rotation = Quaternion(-1.52424e-05, 5.57674e-07, -0.074931, 0.997189)
+bones/9/rotation = Quaternion(0.000968089, 0, 0, 1)
+bones/10/rotation = Quaternion(0.706119, -0.0373694, -0.706119, 0.0373694)
+bones/11/rotation = Quaternion(7.99553e-09, 1.57616e-08, -0.128468, 0.991714)
+bones/12/rotation = Quaternion(2.11264e-09, -9.40588e-16, -0.0279828, 0.999608)
+bones/13/rotation = Quaternion(0.706116, 0.037425, 0.706116, 0.037425)
+bones/14/rotation = Quaternion(7.99863e-09, -1.57614e-08, 0.128526, 0.991706)
+bones/15/rotation = Quaternion(2.11486e-09, 2.15884e-15, 0.0280121, 0.999608)
 
 [node name="Player" parent="PlayerModel/player/Armature/Skeleton3D" index="0"]
 lod_bias = 128.0
@@ -624,7 +529,7 @@ surface_material_override/1 = SubResource("ShaderMaterial_booyl")
 surface_material_override/2 = SubResource("ShaderMaterial_mhwhj")
 
 [node name="FaceAttachment" type="BoneAttachment3D" parent="PlayerModel/player/Armature/Skeleton3D" index="1"]
-transform = Transform3D(0.112333, 0.000409642, 0.993671, -4.36557e-11, 1, -0.000412251, -0.993671, 4.63093e-05, 0.112333, -0.00183521, 0.321394, 0)
+transform = Transform3D(1, 0, 0, 0, 0.999998, -0.00193618, 0, 0.00193618, 0.999998, -0.00183521, 0.515987, 0)
 bone_name = "Head"
 bone_idx = 9
 
@@ -655,11 +560,6 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 1.5)
 
 [node name="Backup" type="Marker3D" parent="PlayerModel/HoldPoint"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, -1.5)
-
-[node name="PlayerVisualAnims" type="AnimationPlayer" parent="PlayerModel"]
-libraries = {
-"": SubResource("AnimationLibrary_pacbt")
-}
 
 [node name="CentralCameraPoint" type="Marker3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.01149, 0.273736)
@@ -799,7 +699,6 @@ grow_vertical = 0
 pivot_offset = Vector2(180, 25)
 max_value = 20.0
 value = 10.0
-rounded = true
 allow_greater = true
 allow_lesser = true
 
@@ -820,7 +719,6 @@ allow_lesser = true
 show_percentage = false
 
 [node name="EnemyHealth" type="ProgressBar" parent="HUD"]
-visible = false
 layout_mode = 1
 anchors_preset = 7
 anchor_left = 0.5
@@ -1093,18 +991,6 @@ one_shot = true
 
 [node name="Filters" type="Node" parent="."]
 
-[node name="ColourPallete" type="CanvasLayer" parent="Filters"]
-layer = -1
-visible = false
-
-[node name="ColourPalette" type="ColorRect" parent="Filters/ColourPallete"]
-material = SubResource("ShaderMaterial_1evt4")
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-
 [node name="Quantisation" type="CanvasLayer" parent="Filters"]
 layer = -1
 
@@ -1129,20 +1015,6 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 mouse_filter = 2
-
-[node name="Pixellation" type="CanvasLayer" parent="Filters"]
-layer = -1
-visible = false
-
-[node name="Pixellation" type="ColorRect" parent="Filters/Pixellation"]
-material = SubResource("ShaderMaterial_4rgcg")
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-mouse_filter = 2
-color = Color(1, 1, 1, 0)
 
 [node name="Dust" type="GPUParticles3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)

@@ -25,7 +25,7 @@ func _process(_delta):
 	if !triggered:
 		triggered = true
 		
-		$AnimationPlayer.play("explosion")
+		$Particles.emitting = true
 		
 		$ExplosionSFX.pitch_scale = randf_range(75, 125) / 100
 		$ExplosionSFX.play()
@@ -35,9 +35,15 @@ func _process(_delta):
 		timer.start() # not doing this results in timer constantly restarting, which means it never deletes itself.
 	
 
+func _on_particles_finished():
+	await get_tree().create_timer(0.1).timeout
+	$OmniLight3D.light_energy = 0
 
 func _on_timer_timeout():
 	self.queue_free()
+
+
+
 
 
 

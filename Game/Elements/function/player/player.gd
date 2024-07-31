@@ -74,7 +74,6 @@ func TOP():
 
 # visuals
 @onready var dust = $Dust
-@onready var visual_anims = $PlayerModel/PlayerVisualAnims
 
 
 
@@ -150,7 +149,7 @@ func _physics_process(delta):
 	
 	if Input.is_action_pressed("jump") and is_on_floor():
 		velocity.y = JUMP_VELOCITY
-		visual_anims.play("jump")
+		
 	
 	MousePosition()
 	
@@ -307,7 +306,7 @@ func _process(_delta):
 	
 	
 	if self.global_position.y <= -1000:
-		DeathScreen()
+		info.Damage(9999)
 	
 	if Input.is_action_just_pressed("escape"):
 		PauseMenu(true)
@@ -373,14 +372,13 @@ func NearestObject():
 
 
 #region Player UI
-
-
 func RestartLevel():
 	#var save = SaveGame.new()
 	#save.save_game_level(get_tree().current_scene.scene_file_path)
 	#print_rich("[rainbow]Saved Level:", save.load_game().level)
 	
-	LoadingScreen.next_scene = player_hub
+	#LoadingScreen.next_scene = player_hub
+	LoadingScreen.next_scene = get_tree().current_scene.scene_file_path
 	LoadingScreen.scene_transition()
 
 
@@ -513,7 +511,16 @@ func _on_info_take_damage():
 func _on_info_death():
 	$Audio/PlayerDeath.pitch_scale = randf_range(75, 125) / 100 # random value between 0.75 and 1.25
 	$Audio/PlayerDeath.play()
-	DeathScreen()
+	
+	canPause = false
+	
+	if SAVE_GAME:
+		var save = SaveGame.new()
+		save.save_game(get_tree().current_scene.scene_file_path)
+	
+	LoadingScreen.next_scene = player_hub
+	LoadingScreen.scene_transition()
+	#DeathScreen()
 
 #endregion
 
@@ -521,6 +528,3 @@ func _on_info_death():
 
 
 # <-- This number is the amount of times I have lost the will to live
-
-
-

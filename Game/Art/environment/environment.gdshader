@@ -1,9 +1,5 @@
 shader_type sky;
 
-uniform float quality = 4.0;
-uniform sampler2D skyTexture;
-const vec3 colour = vec3(1, 0.5, 0);
-
 uniform sampler2D cloudlayer1;
 uniform sampler2D cloudlayer2;
 
@@ -21,10 +17,5 @@ void sky() {
 	}
 	
 	COLOR = sky;
-	
-	
-	
-	
-	
 	
 }

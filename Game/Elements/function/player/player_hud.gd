@@ -54,13 +54,13 @@ func _process(_delta):
 	
 	
 	if ready: 
-		#var currenthealth = info.health
+		var currenthealth = info.health
 		
-		hud_health.value = health
+		hud_health.value = currenthealth
 		hud_health.max_value = max_health
 		#hud_healthwhite.max_value = max_health
 		
-		if health == max_health:
+		if currenthealth == max_health:
 			hud_health.visible = false
 		else:
 			hud_health.visible = true
@@ -72,7 +72,7 @@ func _process(_delta):
 			
 			var tween = get_tree().create_tween()
 			tween.set_ease(Tween.EASE_IN)
-			tween.tween_property(hud_healthwhite, "value", health, 1)
+			tween.tween_property(hud_healthwhite, "value", currenthealth, 1)
 			
 			await tween.finished
 			hud_healthwhite.value = hud_health.value

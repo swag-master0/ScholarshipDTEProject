@@ -1,12 +1,11 @@
-[gd_scene load_steps=18 format=3 uid="uid://g2jwt8atruu7"]
+[gd_scene load_steps=17 format=3 uid="uid://g2jwt8atruu7"]
 
 [ext_resource type="Shader" path="res://Art/environment/environment.gdshader" id="1_cm3yc"]
-[ext_resource type="Texture2D" uid="uid://d2l05gk7w0ofx" path="res://Art/environment/sunset_jhbcentral.jpg" id="2_v8ij2"]
 
 [sub_resource type="Gradient" id="Gradient_pgec4"]
 interpolation_mode = 1
 offsets = PackedFloat32Array(0.35443, 0.759494)
-colors = PackedColorArray(0, 0, 0, 1, 0.603922, 0.2, 0.137255, 0.419608)
+colors = PackedColorArray(0, 0, 0, 1, 0.648095, 0.112596, 0.16397, 0.419608)
 
 [sub_resource type="FastNoiseLite" id="FastNoiseLite_4okqe"]
 noise_type = 3
@@ -23,8 +22,8 @@ color_ramp = SubResource("Gradient_pgec4")
 noise = SubResource("FastNoiseLite_4okqe")
 
 [sub_resource type="Gradient" id="Gradient_n4hhs"]
-offsets = PackedFloat32Array(0, 0.64557, 1)
-colors = PackedColorArray(0, 0, 0, 1, 0.068716, 0.0191235, 0.00267253, 1, 0.296547, 0.114678, 0.022449, 1)
+offsets = PackedFloat32Array(0, 0.740506, 1)
+colors = PackedColorArray(0, 0.00283045, 0, 1, 0.0763027, 0.0146269, 0.00375457, 1, 0.346075, 0.0320814, 0.0322837, 1)
 
 [sub_resource type="FastNoiseLite" id="FastNoiseLite_5sv87"]
 noise_type = 2
@@ -39,8 +38,6 @@ noise = SubResource("FastNoiseLite_5sv87")
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_y7ns5"]
 shader = ExtResource("1_cm3yc")
-shader_parameter/quality = 4.0
-shader_parameter/skyTexture = ExtResource("2_v8ij2")
 shader_parameter/cloudlayer1 = SubResource("NoiseTexture2D_6pjfi")
 shader_parameter/cloudlayer2 = SubResource("NoiseTexture2D_uhrgb")
 
@@ -59,10 +56,10 @@ fog_density = 0.005
 fog_aerial_perspective = 1.0
 volumetric_fog_enabled = true
 volumetric_fog_density = 0.075
-volumetric_fog_albedo = Color(0.703808, 0.703808, 0.703808, 1)
+volumetric_fog_albedo = Color(0.665915, 0.732849, 0.581883, 1)
 volumetric_fog_sky_affect = 0.0
 volumetric_fog_temporal_reprojection_enabled = false
-volumetric_fog_temporal_reprojection_amount = 0.5
+volumetric_fog_temporal_reprojection_amount = 0.739
 
 [sub_resource type="Curve" id="Curve_e1wfq"]
 _data = [Vector2(0, 0), 0.0, 0.0, 0, 0, Vector2(0.5, 0.178947), 0.235628, 0.235628, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
