@@ -6,7 +6,7 @@ func TOP():
 	# Click top in the methods list, and you're at the variables
 
 
-# INFO: PLAYER VARIABLES
+#region INFO: PLAYER VARIABLES
 @export_group("Player Variables")
 @export_category("Tutorial")
 @export var tutorial_mode : bool = false
@@ -100,9 +100,11 @@ var main_menu = "res://Elements/function/main_menu.tscn"
 @export var dialogue_queue : Array = [] 
 
 signal DialogueFinished
+#endregion
 
 
 
+#region Player Gameplay
 
 func _ready():
 	
@@ -124,7 +126,6 @@ func _ready():
 	else:
 		print("Saving is turned off for this level")
 	
-
 
 func _input(event):
 	if event is InputEventMouseMotion and canPause == true:
@@ -218,8 +219,6 @@ func _physics_process(delta):
 		
 		state_machine.travel("idle")
 	
-
-
 
 # process is the player throwing mechanic and healthbar code
 func _process(_delta):
@@ -322,11 +321,6 @@ func _process(_delta):
 
 
 
-func FinishDialogue(dialogue: String):
-	emit_signal("DialogueFinished", dialogue)
-
-
-
 func MousePosition():
 	if  ready and canPause: # This statement looks very dumb but without it it'll sometimes crash. The crashing isn't even consistant either!
 		
@@ -355,15 +349,6 @@ func MousePosition():
 			cursor.global_position = ray_endpos.global_position
 
 
-func _on_idle_timer_timeout():
-	
-	print('triggered!!!')
-	state_machine.travel("idle-flair1")
-	
-	#animation_tree.
-	pass # Replace with function body.
-
-
 func NearestObject():
 	var objects = detection.get_overlapping_bodies()
 	
@@ -381,26 +366,13 @@ func NearestObject():
 	if closest_node:
 		return closest_node
 
-
-func SendHintToPlayer(hint: String):
-	HUD.sendHintToPlayer(hint)
+#endregion
 
 
 
-func _on_info_take_damage():
-	sound_hurt.pitch_scale = randf_range(75, 125) / 100 # random value between 0.75 and 1.25
-	sound_hurt.play(0)
-	
-	$PlayerModel/player/AnimationPlayer.play("pain")
 
 
-
-func _on_info_death():
-	$Audio/PlayerDeath.pitch_scale = randf_range(75, 125) / 100 # random value between 0.75 and 1.25
-	$Audio/PlayerDeath.play()
-	DeathScreen()
-
-
+#region Player UI
 
 
 func RestartLevel():
@@ -418,6 +390,9 @@ func QuitToMenu():
 	LoadingScreen.scene_transition()
 
 
+func FinishDialogue(dialogue: String):
+	emit_signal("DialogueFinished", dialogue)
+
 
 func ApplySettings():
 	# update sensitivity and volume settings
@@ -430,7 +405,6 @@ func ApplySettings():
 	AudioServer.set_bus_volume_db(AudioServer.get_bus_index("sfx"), linear_to_db(settings.VOLUME_SFX))
 	AudioServer.set_bus_volume_db(AudioServer.get_bus_index("ambience"), linear_to_db(settings.VOLUME_AMBIENCE))
 	
-
 
 func PauseMenu(toggle : bool):
 	ApplySettings()
@@ -448,26 +422,6 @@ func PauseMenu(toggle : bool):
 			DisplayServer.tts_resume()
 
 
-func _on_resume_button_pressed():
-	PauseMenu(false)
-
-
-func _on_restart_button_pressed():
-	RestartLevel()
-
-
-func _on_quit_button_pressed():
-	QuitToMenu()
-
-
-func _on_options_button_pressed():
-	options_menu.visible = true
-
-
-
-
-
-
 func DeathScreen():
 	canPause = false
 	Input.set_mouse_mode(Input.MOUSE_MODE_VISIBLE)
@@ -475,16 +429,6 @@ func DeathScreen():
 	tween.tween_property(Engine, "time_scale", 0, 0.2)
 	
 	deathscreen.visible = true
-
-
-
-func _on_death_restart_button_pressed():
-	RestartLevel()
-
-
-func _on_death_quit_button_pressed():
-	QuitToMenu()
-
 
 
 func Nextlevel():
@@ -530,6 +474,49 @@ func _on_delay_timeout():
 			push_error("Failed to find next level.")
 	
 	
+
+
+
+func _on_resume_button_pressed():
+	PauseMenu(false)
+
+func _on_restart_button_pressed():
+	RestartLevel()
+
+func _on_death_restart_button_pressed():
+	RestartLevel()
+
+func _on_quit_button_pressed():
+	QuitToMenu()
+
+func _on_death_quit_button_pressed():
+	QuitToMenu()
+
+func _on_options_button_pressed():
+	options_menu.visible = true
+
+#endregion
+
+
+
+#region Player Misc
+
+func SendHintToPlayer(hint: String):
+	HUD.sendHintToPlayer(hint)
+
+func _on_info_take_damage():
+	sound_hurt.pitch_scale = randf_range(75, 125) / 100 # random value between 0.75 and 1.25
+	sound_hurt.play(0)
+	
+	$PlayerModel/player/AnimationPlayer.play("pain")
+
+func _on_info_death():
+	$Audio/PlayerDeath.pitch_scale = randf_range(75, 125) / 100 # random value between 0.75 and 1.25
+	$Audio/PlayerDeath.play()
+	DeathScreen()
+
+#endregion
+
 
 
 

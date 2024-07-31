@@ -589,9 +589,6 @@ parameters/land/TimeScale/scale = 3.0
 parameters/run/Blend2/blend_amount = 0.0
 parameters/run/TimeScale/scale = 2.0
 
-[node name="IdleTimer" type="Timer" parent="AnimationTree"]
-wait_time = 10.0
-
 [node name="Collision" type="CollisionShape3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.148464, 0)
 shape = SubResource("CapsuleShape3D_nrsfh")
@@ -602,22 +599,23 @@ shape = SubResource("CapsuleShape3D_nrsfh")
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1, 0)
 
 [node name="Skeleton3D" parent="PlayerModel/player/Armature" index="0"]
-bones/0/position = Vector3(-0.00183521, -0.0766751, 0)
-bones/1/rotation = Quaternion(0.000555817, -0.000822808, 0.817569, 0.57583)
-bones/2/rotation = Quaternion(-0.000892949, -0.000595966, 0.287471, 0.957789)
-bones/3/rotation = Quaternion(-0.000928279, -0.000157266, 0.396432, 0.918064)
-bones/4/rotation = Quaternion(-6.35795e-06, -2.53072e-07, 0.0895676, 0.995981)
-bones/5/rotation = Quaternion(0.000645774, 0.000807106, -0.841634, 0.540047)
-bones/6/rotation = Quaternion(-0.000873998, 0.000627848, -0.276009, 0.961155)
-bones/7/rotation = Quaternion(-0.00102369, 0.000160879, -0.352791, 0.935702)
-bones/8/rotation = Quaternion(-0.000211285, 7.73297e-06, -0.0790908, 0.996867)
-bones/9/rotation = Quaternion(0.00584807, 0, 0, 0.999983)
-bones/10/rotation = Quaternion(0.705827, -0.0425275, -0.705827, 0.0425276)
-bones/11/rotation = Quaternion(7.46223e-09, 1.57393e-08, -0.13887, 0.990311)
-bones/12/rotation = Quaternion(2.11264e-09, -9.40588e-16, -0.0279828, 0.999608)
-bones/13/rotation = Quaternion(0.705824, 0.0425737, 0.705824, 0.0425738)
-bones/14/rotation = Quaternion(7.46585e-09, -1.57392e-08, 0.138918, 0.990304)
-bones/15/rotation = Quaternion(2.11486e-09, 2.15884e-15, 0.0280121, 0.999608)
+bones/0/position = Vector3(-0.00183521, -0.263149, 0)
+bones/0/rotation = Quaternion(0, 0.214755, 0, 0.976668)
+bones/1/rotation = Quaternion(-0.239106, 0.390567, 0.2509, 0.852839)
+bones/2/rotation = Quaternion(-0.132074, -0.180732, 0.737197, 0.63752)
+bones/3/rotation = Quaternion(0.241591, 0.551968, 0.78711, 0.131997)
+bones/4/rotation = Quaternion(0.108911, 0.0330832, 0.268143, 0.956631)
+bones/5/rotation = Quaternion(-0.236985, 0.0512596, -0.363762, 0.899382)
+bones/6/rotation = Quaternion(0.3577, 0.158128, -0.440853, 0.807895)
+bones/7/rotation = Quaternion(0.758311, -0.451195, -0.138058, 0.449807)
+bones/8/rotation = Quaternion(0.201277, -0.0014098, -0.0269861, 0.979162)
+bones/9/rotation = Quaternion(0.000179625, 0.490508, -0.000101106, 0.871437)
+bones/10/rotation = Quaternion(0.907032, -0.244585, -0.332885, 0.0815979)
+bones/11/rotation = Quaternion(0.0343013, -0.00124765, -0.551296, 0.833603)
+bones/12/rotation = Quaternion(2.1982e-09, 2.73683e-09, -0.0279828, 0.999608)
+bones/13/rotation = Quaternion(0.67154, 0.221042, 0.671836, 0.220932)
+bones/14/rotation = Quaternion(0.000930774, 2.90932e-05, 0.556382, 0.830926)
+bones/15/rotation = Quaternion(2.6786e-09, 3.0571e-09, 0.0280121, 0.999608)
 
 [node name="Player" parent="PlayerModel/player/Armature/Skeleton3D" index="0"]
 lod_bias = 128.0
@@ -626,7 +624,7 @@ surface_material_override/1 = SubResource("ShaderMaterial_booyl")
 surface_material_override/2 = SubResource("ShaderMaterial_mhwhj")
 
 [node name="FaceAttachment" type="BoneAttachment3D" parent="PlayerModel/player/Armature/Skeleton3D" index="1"]
-transform = Transform3D(1, 0, 0, 0, 0.999932, -0.0116959, 0, 0.0116959, 0.999932, -0.00183521, 0.507868, 0)
+transform = Transform3D(0.112333, 0.000409642, 0.993671, -4.36557e-11, 1, -0.000412251, -0.993671, 4.63093e-05, 0.112333, -0.00183521, 0.321394, 0)
 bone_name = "Head"
 bone_idx = 9
 
@@ -1155,7 +1153,6 @@ visibility_aabb = AABB(-49, -39, -54, 98, 78, 108)
 process_material = SubResource("ParticleProcessMaterial_ekwho")
 draw_pass_1 = SubResource("PlaneMesh_4twoe")
 
-[connection signal="timeout" from="AnimationTree/IdleTimer" to="." method="_on_idle_timer_timeout"]
 [connection signal="death" from="Info" to="." method="_on_info_death"]
 [connection signal="takeDamage" from="Info" to="." method="_on_info_take_damage"]
 [connection signal="timeout" from="HUD/DialogueBox/RemoveCharacters" to="." method="_on_remove_characters_timeout"]
