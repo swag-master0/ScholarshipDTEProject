@@ -15,7 +15,6 @@ func TOP():
 @export var SENSITIVITY : float = 0.25
 @export var MAX_LOOK : float = 60
 @export var MIN_LOOK : float = -75
-@export var ANIM_RUN_SPEED : float = 1.3
 
 @export_category("Gameplay")
 @export var SAVE_GAME : bool = true
@@ -56,7 +55,6 @@ func TOP():
 @onready var HUD = $HUD
 @onready var pausemenu = $HUD/PauseMenu
 @onready var deathscreen = $HUD/DeathScreen
-@onready var hurtvfx = $HUD/HurtVFX
 @onready var options_menu = $HUD/OptionsMenu
 @onready var hud_levelcomplete = $HUD/LevelCompleted
 @onready var hud_levelcomplete_delay = $HUD/LevelCompleted/Delay
@@ -70,7 +68,6 @@ func TOP():
 
 @onready var animation_tree = $AnimationTree
 @onready var state_machine = animation_tree.get("parameters/playback")
-@onready var idle_timer = $AnimationTree/IdleTimer
 
 # visuals
 @onready var dust = $Dust

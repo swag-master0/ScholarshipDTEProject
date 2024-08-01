@@ -1,102 +1,93 @@
-[gd_scene load_steps=15 format=3 uid="uid://ch7t6b0c3tjwr"]
+[gd_scene load_steps=10 format=3 uid="uid://ch7t6b0c3tjwr"]
 
 [ext_resource type="Script" path="res://Elements/enemies/enemy.gd" id="1_nn6r1"]
+[ext_resource type="PackedScene" uid="uid://c34yykkhuoiy6" path="res://Art/blend/assets/enemies/spider.blend" id="2_llwai"]
 [ext_resource type="PackedScene" uid="uid://cft1b4l0aljye" path="res://Elements/function/info.tscn" id="2_repm0"]
-
-[sub_resource type="SphereShape3D" id="SphereShape3D_4tw2s"]
-radius = 1.1
 
 [sub_resource type="SphereShape3D" id="SphereShape3D_jtg0j"]
 radius = 2.0
 
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_ysnhb"]
-resource_local_to_scene = true
-albedo_color = Color(0.450648, 0.450648, 0.450648, 1)
+[sub_resource type="BoxShape3D" id="BoxShape3D_n31ol"]
+size = Vector3(1.255, 1.185, 1.335)
 
-[sub_resource type="SphereMesh" id="SphereMesh_o28ak"]
-resource_local_to_scene = true
-material = SubResource("StandardMaterial3D_ysnhb")
-radius = 1.0
-height = 2.0
-rings = 8
+[sub_resource type="BoxShape3D" id="BoxShape3D_ka4oa"]
+size = Vector3(2, 1.59082, 2.45581)
 
-[sub_resource type="PrismMesh" id="PrismMesh_s31ka"]
-
-[sub_resource type="BoxShape3D" id="BoxShape3D_kl4ud"]
-
-[sub_resource type="BoxShape3D" id="BoxShape3D_7ia3a"]
-size = Vector3(2, 2, 3)
-
-[sub_resource type="SphereShape3D" id="SphereShape3D_4mudu"]
-radius = 1.0
-
-[sub_resource type="Animation" id="Animation_8o45j"]
-length = 0.001
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("Mesh/Weapon:position")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Vector3(0, 0, 0)]
-}
-tracks/1/type = "value"
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/path = NodePath("Mesh:mesh:material:albedo_color")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Color(0.450648, 0.450648, 0.450648, 1)]
-}
-
-[sub_resource type="Animation" id="Animation_yjkdv"]
-resource_name = "attack"
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("Mesh/Weapon:position")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.1, 0.4, 0.5, 0.8, 1),
-"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1),
-"update": 0,
-"values": [Vector3(0, 0, 0), Vector3(0, 0, -1), Vector3(0, 0, -1), Vector3(0, 0, 2), Vector3(0, 0, 2), Vector3(0, 0, 0)]
-}
-
-[sub_resource type="Animation" id="Animation_yp0v3"]
-resource_name = "hurt"
+[sub_resource type="Animation" id="Animation_74tlh"]
+resource_name = "hit_timing"
+length = 0.66
 step = 0.05
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("Mesh:mesh:material:albedo_color")
-tracks/0/interp = 0
+tracks/0/path = NodePath(".:CAN_DEAL_DAMAGE")
+tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.05, 0.1, 0.15, 0.2, 0.25, 0.3, 0.35, 0.4, 0.45, 0.5),
-"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1),
-"update": 0,
-"values": [Color(0.450648, 0.450648, 0.450648, 1), Color(1, 0, 0, 1), Color(1, 1, 1, 1), Color(1, 0, 0, 1), Color(1, 1, 1, 1), Color(1, 0, 0, 1), Color(1, 1, 1, 1), Color(1, 0, 0, 1), Color(1, 1, 1, 1), Color(1, 0, 0, 1), Color(0.450648, 0.450648, 0.450648, 1)]
+"times": PackedFloat32Array(0, 0.45, 0.55),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 1,
+"values": [false, true, false]
 }
 
-[sub_resource type="AnimationLibrary" id="AnimationLibrary_qk3dd"]
+[sub_resource type="Animation" id="Animation_g5rft"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:CAN_DEAL_DAMAGE")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_7yuj8"]
 _data = {
-"RESET": SubResource("Animation_8o45j"),
-"attack": SubResource("Animation_yjkdv"),
-"hurt": SubResource("Animation_yp0v3")
+"RESET": SubResource("Animation_g5rft"),
+"hit_timing": SubResource("Animation_74tlh")
 }
 
 [node name="Enemy" type="CharacterBody3D" groups=["enemy"]]
 script = ExtResource("1_nn6r1")
+
+[node name="SoftPush" type="Area3D" parent="."]
+visible = false
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="SoftPush"]
+shape = SubResource("SphereShape3D_jtg0j")
+
+[node name="spider" parent="." instance=ExtResource("2_llwai")]
+transform = Transform3D(-3.36578e-08, 0, 0.77, 0, 0.77, 0, -0.77, 0, -3.36578e-08, 0, 0, 0)
+
+[node name="Skeleton3D" parent="spider/Armature" index="0"]
+bones/1/rotation = Quaternion(-0.149018, 0.782433, 0.505362, 0.331966)
+bones/1/scale = Vector3(1, 1, 1)
+bones/2/rotation = Quaternion(-0.702285, -0.0862438, -0.0275889, 0.706113)
+bones/2/scale = Vector3(1, 1, 1)
+bones/3/rotation = Quaternion(-0.0728106, -0.00221087, -0.0128997, 0.99726)
+bones/3/scale = Vector3(1, 1, 1)
+bones/4/scale = Vector3(1, 1, 1)
+bones/5/rotation = Quaternion(0.160542, 0.0013776, -0.836209, 0.524384)
+bones/5/scale = Vector3(1, 1, 1)
+bones/6/rotation = Quaternion(0.0230141, -8.12204e-08, -0.13309, 0.990837)
+bones/6/scale = Vector3(1, 1, 1)
+bones/8/rotation = Quaternion(-0.754688, -0.0525371, 0.295545, 0.583386)
+bones/8/scale = Vector3(1, 1, 1)
+bones/9/rotation = Quaternion(-0.128149, -1.39438e-08, 0.0689897, 0.989352)
+bones/9/scale = Vector3(1, 1, 1)
+bones/10/rotation = Quaternion(-0.573347, 0.392601, 0.0485376, 0.717483)
+bones/11/rotation = Quaternion(-0.624861, 0.153984, -0.194082, 0.740385)
+bones/11/scale = Vector3(1, 1, 1)
+bones/12/rotation = Quaternion(-0.0759253, 0.00272062, -0.0234733, 0.996834)
+bones/12/scale = Vector3(1, 1, 1)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, 0)
+shape = SubResource("BoxShape3D_n31ol")
 
 [node name="Info" parent="." instance=ExtResource("2_repm0")]
 health = 6.0
@@ -105,34 +96,18 @@ DamagePlayerOnPlayerCollision = false
 PlayKillSound = true
 PlayHurtSound = true
 
+[node name="Hitbox" parent="Info" index="1"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, 0)
+
 [node name="CollisionShape3D" parent="Info/Hitbox" index="0"]
-shape = SubResource("SphereShape3D_4tw2s")
+shape = SubResource("BoxShape3D_n31ol")
 
-[node name="SoftPush" type="Area3D" parent="."]
+[node name="HitArea" type="Area3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, 0)
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="SoftPush"]
-shape = SubResource("SphereShape3D_jtg0j")
-
-[node name="Mesh" type="MeshInstance3D" parent="."]
-mesh = SubResource("SphereMesh_o28ak")
-
-[node name="Weapon" type="MeshInstance3D" parent="Mesh"]
-transform = Transform3D(1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 0, 0)
-mesh = SubResource("PrismMesh_s31ka")
-
-[node name="HitDetector" type="Area3D" parent="Mesh/Weapon"]
-
-[node name="CollisionShape3D" type="CollisionShape3D" parent="Mesh/Weapon/HitDetector"]
-shape = SubResource("BoxShape3D_kl4ud")
-
-[node name="Detection" type="Area3D" parent="Mesh"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 1.5)
-
-[node name="CollisionShape3D" type="CollisionShape3D" parent="Mesh/Detection"]
-shape = SubResource("BoxShape3D_7ia3a")
-
-[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
-shape = SubResource("SphereShape3D_4mudu")
+[node name="CollisionShape3D" type="CollisionShape3D" parent="HitArea"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.29541, 0.728)
+shape = SubResource("BoxShape3D_ka4oa")
 
 [node name="NavigationAgent3D" type="NavigationAgent3D" parent="."]
 avoidance_enabled = true
@@ -141,17 +116,17 @@ avoidance_enabled = true
 top_level = true
 target_position = Vector3(5, 0, 0)
 
-[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+[node name="HitTiming" type="AnimationPlayer" parent="."]
 libraries = {
-"": SubResource("AnimationLibrary_qk3dd")
+"": SubResource("AnimationLibrary_7yuj8")
 }
 
 [node name="AttackDelay" type="Timer" parent="."]
-wait_time = 3.0
+wait_time = 0.7
 one_shot = true
 
 [connection signal="death" from="Info" to="." method="_on_info_death"]
 [connection signal="takeDamage" from="Info" to="." method="_on_info_take_damage"]
-[connection signal="body_entered" from="Mesh/Weapon/HitDetector" to="." method="_on_hit_detector_body_entered"]
 
+[editable path="spider"]
 [editable path="Info"]
