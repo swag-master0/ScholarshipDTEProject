@@ -122,6 +122,7 @@ size = Vector3(2, 2, 2)
 radius = 6.0
 
 [node name="Copycat_v2" type="RigidBody3D" groups=["enemy", "ungrabbable"]]
+mass = 45.0
 script = ExtResource("1_y5ayu")
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]

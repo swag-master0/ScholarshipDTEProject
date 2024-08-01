@@ -1,85 +1,40 @@
-extends CharacterBody3D
+extends RigidBody3D
 
-@export var speed = 2
-@export var accel = 10
-@export var damage = 5
+@export var speed = 1000
 
 @export var explosion : PackedScene 
-
-@onready var nav : NavigationAgent3D = $NavigationAgent3D
 @onready var raycast = $RayCast3D
-@onready var mesh = $MeshInstance3D
-@onready var coll = $CollisionShape3D
-@onready var push = $SoftPush
+@onready var fuse = $FuseTime
+@onready var audio = $Buildup
 
-@onready var info = $Info
-@onready var health = info.health
 
-var gravity = ProjectSettings.get_setting("physics/3d/default_gravity")
-
+var player
+var fuse_triggered = false
 
 # navigating
 func _physics_process(delta):
-	if not is_on_floor():
-		velocity.y -= gravity * delta
-	
 	
 	var direction = Vector3()
+	raycast.global_position = global_position
+	raycast.global_rotation = Vector3(0, 0, 0)
 	
-	for i in range(self.get_parent_node_3d().get_children().size()):
-		
-		if self.get_parent_node_3d().get_children()[i] is CharacterBody3D and self.get_parent_node_3d().get_children()[i].is_in_group("player"):
-			var player = self.get_parent_node_3d().get_children()[i]
-			
+	for i in self.get_parent_node_3d().get_children():
+		if i is CharacterBody3D and i.is_in_group("player"):
+			player = i
 			raycast.target_position = player.global_position - global_position
-			
-			if raycast.get_collider() == player:
-				nav.target_position = player.position
-			
-			else:
-				pass
-			
-	
-	direction = nav.get_next_path_position() - global_position
-	direction = direction.normalized()
-	
-	velocity = velocity.lerp(direction * speed, accel * delta)
-	
-	if not is_on_floor():
-		velocity.y -= gravity * delta * 10
-	
-	for i in push.get_overlapping_bodies():
-		if (i.is_in_group("enemy") and i != self):
-			var difference = i.global_position - self.global_position
-			velocity -= difference
-	
-	move_and_slide()
-	
-	for i in get_slide_collision_count():
-		var collisions = get_slide_collision(i)
-		if collisions.get_collider() is RigidBody3D:
-			collisions.get_collider().apply_central_impulse(-collisions.get_normal() * 0.5)
 
 
-func _on_info_take_damage():
-	speed = 0
-	$AnimationPlayer.play("buildup")
-	$Buildup.play(1)
-	$Delay.start()
+func _process(delta):
+	if raycast.get_collider() == player and get_colliding_bodies().size() > 0:
+		print("applying force")
+		self.apply_impulse(((player.global_position - global_position).normalized() * delta) * speed)
+	
 
-func _on_info_death():
-	speed = 0
-	$AnimationPlayer.play("buildup")
-	$Buildup.play(1)
-	$Delay.start()
-
-func _on_body_entered(body):
-	if body is CharacterBody3D and body.is_in_group("player"):
-		speed = 0
-		$AnimationPlayer.play("buildup")
-		$Buildup.play(1)
-		$Delay.start()
-
+func _on_trigger_body_entered(body):
+	if body.is_in_group("player") and fuse_triggered == false:
+		fuse_triggered = true
+		fuse.start()
+		audio.play()
 
 
 
@@ -89,6 +44,8 @@ func _on_delay_timeout():
 	created_explosion.position = position
 	
 	self.queue_free()
+
+
 
 
 

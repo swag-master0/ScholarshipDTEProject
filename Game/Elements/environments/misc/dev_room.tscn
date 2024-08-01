@@ -1,9 +1,10 @@
-[gd_scene load_steps=10 format=3 uid="uid://cx1a4ujrxixpp"]
+[gd_scene load_steps=11 format=3 uid="uid://cx1a4ujrxixpp"]
 
 [ext_resource type="PackedScene" uid="uid://g2jwt8atruu7" path="res://Art/environment/environment.tscn" id="1_j3tyq"]
 [ext_resource type="PackedScene" uid="uid://bcou7suhphdrp" path="res://Elements/function/player/player.tscn" id="2_dg15a"]
 [ext_resource type="PackedScene" uid="uid://b5c4qe603h5o" path="res://Elements/assets/gameplay/explosive_barrel.tscn" id="3_xj2rw"]
 [ext_resource type="PackedScene" uid="uid://ch3t1bgj51uvs" path="res://Elements/enemies/sentry.tscn" id="4_g5gl7"]
+[ext_resource type="PackedScene" uid="uid://dwe6hqxcxga2x" path="res://Elements/enemies/bomber.tscn" id="5_53l2r"]
 
 [sub_resource type="Gradient" id="Gradient_313rr"]
 interpolation_mode = 1
@@ -59,3 +60,6 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4.72513, 3.5, -1.01116)
 
 [node name="Sentry" parent="." instance=ExtResource("4_g5gl7")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 9.1404, 2, -8.28659)
+
+[node name="Bomber" parent="." instance=ExtResource("5_53l2r")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1, 3, -11)

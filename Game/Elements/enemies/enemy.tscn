@@ -13,6 +13,21 @@ size = Vector3(1.255, 1.185, 1.335)
 [sub_resource type="BoxShape3D" id="BoxShape3D_ka4oa"]
 size = Vector3(2, 1.59082, 2.45581)
 
+[sub_resource type="Animation" id="Animation_g5rft"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:CAN_DEAL_DAMAGE")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+
 [sub_resource type="Animation" id="Animation_74tlh"]
 resource_name = "hit_timing"
 length = 0.66
@@ -28,21 +43,6 @@ tracks/0/keys = {
 "transitions": PackedFloat32Array(1, 1, 1),
 "update": 1,
 "values": [false, true, false]
-}
-
-[sub_resource type="Animation" id="Animation_g5rft"]
-length = 0.001
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath(".:CAN_DEAL_DAMAGE")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 1,
-"values": [false]
 }
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_7yuj8"]
@@ -70,7 +70,6 @@ bones/2/rotation = Quaternion(-0.702285, -0.0862438, -0.0275889, 0.706113)
 bones/2/scale = Vector3(1, 1, 1)
 bones/3/rotation = Quaternion(-0.0728106, -0.00221087, -0.0128997, 0.99726)
 bones/3/scale = Vector3(1, 1, 1)
-bones/4/scale = Vector3(1, 1, 1)
 bones/5/rotation = Quaternion(0.160542, 0.0013776, -0.836209, 0.524384)
 bones/5/scale = Vector3(1, 1, 1)
 bones/6/rotation = Quaternion(0.0230141, -8.12204e-08, -0.13309, 0.990837)
