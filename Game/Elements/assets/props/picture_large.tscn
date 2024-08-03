@@ -17,6 +17,7 @@ shader_parameter/picture = ExtResource("4_1g7s8")
 [node name="Picture_Large -rigid" parent="." index="0"]
 mass = 20.0
 freeze = true
+freeze_mode = 1
 script = ExtResource("2_fy2o3")
 
 [node name="Picture_Large -rigid" parent="Picture_Large -rigid" index="0"]

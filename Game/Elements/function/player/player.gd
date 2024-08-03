@@ -240,6 +240,7 @@ func _process(_delta):
 			object.global_transform = holdpoint.global_transform
 			object.reparent(character)
 			object.set_freeze_enabled(true)
+			object.set_freeze_mode(0)
 			object.set_collision_layer_value(1, false)
 			object.set_collision_mask_value(1, false)
 			

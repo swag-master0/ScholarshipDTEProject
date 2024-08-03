@@ -1,4 +1,4 @@
-[gd_scene load_steps=27 format=3 uid="uid://rq3g3n4qshr3"]
+[gd_scene load_steps=28 format=3 uid="uid://rq3g3n4qshr3"]
 
 [ext_resource type="PackedScene" uid="uid://bcou7suhphdrp" path="res://Elements/function/player/player.tscn" id="1_01d17"]
 [ext_resource type="PackedScene" uid="uid://c61dj4vsac881" path="res://Art/blend/levels_chapter1/c1_m1.blend" id="1_wejc2"]
@@ -20,6 +20,7 @@
 [ext_resource type="PackedScene" uid="uid://i43wpwf0q6em" path="res://Elements/assets/props/chair.tscn" id="17_34r8c"]
 [ext_resource type="PackedScene" uid="uid://dhejktumttlcs" path="res://Elements/assets/props/bench.tscn" id="18_hwqgn"]
 [ext_resource type="PackedScene" uid="uid://dp2x6cakupfs6" path="res://Elements/assets/props/pot.tscn" id="20_6rdim"]
+[ext_resource type="PackedScene" uid="uid://dqgrckw7n88n4" path="res://Elements/assets/props/table.tscn" id="21_t6n2y"]
 
 [sub_resource type="GDScript" id="GDScript_x6txf"]
 resource_name = "c1_m1-functionality"
@@ -124,7 +125,7 @@ shape = SubResource("BoxShape3D_m2epx")
 [node name="Props" type="Node" parent="."]
 
 [node name="picture_xlarge" parent="Props" instance=ExtResource("13_umhby")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 39, 3, -50)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 32.7995, 4.05804, -50)
 
 [node name="Picture_XLarge -rigid" parent="Props/picture_xlarge" index="0"]
 transform = Transform3D(1, 0, 0, 0, -1, 4.37114e-08, 0, -4.37114e-08, -1, 0, 0, 0)
@@ -133,13 +134,10 @@ transform = Transform3D(1, 0, 0, 0, -1, 4.37114e-08, 0, -4.37114e-08, -1, 0, 0, 
 surface_material_override/1 = SubResource("ShaderMaterial_giiva")
 
 [node name="vase" parent="Props" instance=ExtResource("13_bp6gc")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 13, 0, 0)
-
-[node name="bench" parent="Props" instance=ExtResource("18_hwqgn")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 31, 0, -2)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 32.7163, 0.0933142, -43.8966)
 
 [node name="lamp" parent="Props" instance=ExtResource("17_6y3mn")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 20.7481, 4.76837e-07, -2.90547)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 38.2521, 0.281553, 3.57369)
 
 [node name="chair" parent="Props" instance=ExtResource("17_34r8c")]
 transform = Transform3D(-0.707107, 0, -0.707107, 0, 1, 0, 0.707107, 0, -0.707107, 41.9933, 0.629685, -37.4913)
@@ -152,6 +150,21 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 39.4324, 0, -36.3556)
 
 [node name="pot2" parent="Props" instance=ExtResource("20_6rdim")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 40.3939, 1.1448, -41.0623)
+
+[node name="bench" parent="Props" instance=ExtResource("18_hwqgn")]
+transform = Transform3D(0.965926, 0, 0.258819, 0, 1, 0, -0.258819, 0, 0.965926, 33, 0, -39)
+
+[node name="chair2" parent="Props" instance=ExtResource("17_34r8c")]
+transform = Transform3D(-0.5, 0, -0.866025, 0, 1, 0, 0.866025, 0, -0.5, 47, 0, -34)
+
+[node name="lamp2" parent="Props" instance=ExtResource("17_6y3mn")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 35, 0, -48)
+
+[node name="table" parent="Props" instance=ExtResource("21_t6n2y")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 37.3885, 3.8147e-06, -39.0486)
+
+[node name="vase3" parent="Props" instance=ExtResource("13_bp6gc")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 37.2219, 1.25642, -39.055)
 
 [connection signal="body_entered" from="TutorialTrigger" to="." method="_on_tutorial_trigger_body_entered"]
 

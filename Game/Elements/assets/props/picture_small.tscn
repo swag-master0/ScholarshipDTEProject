@@ -17,6 +17,7 @@ shader_parameter/picture = ExtResource("4_cj1mp")
 [node name="Picture_Small -rigid" parent="." index="0"]
 mass = 15.0
 freeze = true
+freeze_mode = 1
 script = ExtResource("2_vyaql")
 
 [node name="Picture_Small -rigid" parent="Picture_Small -rigid" index="0"]
