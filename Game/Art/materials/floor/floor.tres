@@ -3,7 +3,7 @@
 [resource]
 code = "shader_type spatial;
 
-const vec3 colour = vec3(2.0, 2.0, 2.5); 
+const vec3 colour = vec3(2.0, 2.5, 2.0); 
 uniform sampler2D normal;
 uniform float amount = 1.0;
 

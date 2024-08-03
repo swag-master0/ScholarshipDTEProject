@@ -1,7 +1,7 @@
 shader_type spatial;
 //render_mode diffuse_toon, specular_toon;
 
-const vec3 wall_colour = vec3(2.0, 2.0, 2.5);
+const vec3 wall_colour = vec3(2.0, 2.5, 2.0);
 uniform sampler2D noise;
 uniform sampler2D normal_tex;
 uniform float amount = 1.0;

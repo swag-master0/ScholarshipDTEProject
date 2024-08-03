@@ -13,12 +13,6 @@ const save_progression_path = "user://save.tres"
 @export var level : String   # must be a string of the file path to go to, default level initially
 
 
-@export_group("Player Hub Objects")
-@export var player_hub_objects : Array = []   # Array of objects, which are turned into PackedScenes to maintain their children's properties
-@export var add_new_objects : Array = []
-
-
-
 
 func save_game(data : String):
 	# Saves the script itself, with the variables in it
@@ -26,12 +20,12 @@ func save_game(data : String):
 	
 	level = data
 	
-	
 	ResourceSaver.save(self, save_progression_path)
 	
 	#push_warning("Save System: Game save successful!")
 	print_rich("[color=YELLOW]Save System: Game save successful!")
 	
+
 
 
 func load_game():

@@ -1,4 +1,4 @@
-[gd_resource type="Theme" load_steps=15 format=3 uid="uid://qpcg0ktiqy0j"]
+[gd_resource type="Theme" load_steps=17 format=3 uid="uid://qpcg0ktiqy0j"]
 
 [ext_resource type="FontFile" uid="uid://cqbvpus3tgxud" path="res://Art/assets/fonts/dm_mono/DMMono-Regular.ttf" id="1_b011t"]
 [ext_resource type="FontFile" uid="uid://bhsxceshgem2w" path="res://Art/assets/fonts/dm_mono/DMMono-Medium.ttf" id="1_k2bvi"]
@@ -77,6 +77,14 @@ shadow_size = 1
 shadow_offset = Vector2(-5, 5)
 anti_aliasing = false
 
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_00gio"]
+
+[sub_resource type="StyleBoxLine" id="StyleBoxLine_mysfo"]
+content_margin_left = 12.0
+color = Color(1, 1, 1, 1)
+thickness = 5
+vertical = true
+
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_qo53n"]
 draw_center = false
 skew = Vector2(0.51, 0)
@@ -135,6 +143,9 @@ Fonts/fonts/large = ExtResource("2_u6bhg")
 Fonts/fonts/normal = ExtResource("1_b011t")
 Label/font_sizes/font_size = 23
 Label/fonts/font = ExtResource("1_b011t")
+LineEdit/fonts/font = ExtResource("2_u6bhg")
+LineEdit/styles/focus = SubResource("StyleBoxEmpty_00gio")
+LineEdit/styles/normal = SubResource("StyleBoxLine_mysfo")
 Panel/styles/panel = SubResource("StyleBoxFlat_qo53n")
 ProgressBar/font_sizes/font_size = 9
 ProgressBar/fonts/font = ExtResource("2_u6bhg")

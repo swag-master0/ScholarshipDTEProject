@@ -37,11 +37,6 @@ var selectionsound = false
 
 
 
-# -- Experimental text-to-speech stuff
-#var voices = DisplayServer.tts_get_voices()
-#var voice_id = voices[1].id
-# tts_speak(text: String, voice: String, volume: int = 50, pitch: float = 1.0, rate: float = 1.0, utterance_id: int = 0, interrupt: bool = false)
-			#DisplayServer.tts_speak(dialogue, voice_id, 50, 0, 1.2, 0, true)
 
 func _ready():
 	hud_dialogue_box.visible = false
@@ -102,12 +97,12 @@ func Dialogue(text_speed : float = 0.05, time_until_continue : float = 2.5):
 		for i in dialogue_queue:
 			var dialogue = dialogue_queue.pop_front()
 			
+			
 			if dialogue is int:
 				A_OS.ApplyMood(dialogue)
 				continue
 			
 			elif dialogue is String:
-				
 				hud_dialogue.visible = true
 				hud_dialogue.text = dialogue
 				hud_dialoguedelay.wait_time = text_speed
@@ -118,16 +113,13 @@ func Dialogue(text_speed : float = 0.05, time_until_continue : float = 2.5):
 					
 					sound_dialogue.pitch_scale = randf_range(50, 150) / 100
 					sound_dialogue.play()
+					A_OS.Yap()
 					
 					hud_dialoguedelay.start()
 					await hud_dialoguedelay.timeout
 			
-			
 			parent.FinishDialogue(dialogue)
 			await get_tree().create_timer(text_speed * dialogue.length() + time_until_continue).timeout
-		
-		
-		
 		
 		dialoguespeaking = false
 		hud_dialogue_box.visible = false
@@ -143,7 +135,6 @@ func _on_remove_characters_timeout():
 
 # INFO: LOCK-ON CURSOR AND ENEMY HEALTH BARS
 func setCursorPosition(pos : Vector3, visibility : bool):
-	
 	if visibility:
 		
 		indicator.visible = true

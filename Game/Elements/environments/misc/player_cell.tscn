@@ -214,7 +214,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 42.2807, 0)
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 4.34674, 0)
 shape = SubResource("BoxShape3D_080nk")
 
-[node name="Player_v2" parent="." instance=ExtResource("2_anjfi")]
+[node name="Player" parent="." instance=ExtResource("2_anjfi")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 31, 0)
 SAVE_GAME = false
 DISPLAY_DUST = false

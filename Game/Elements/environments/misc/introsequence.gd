@@ -33,12 +33,12 @@ func _ready():
 	
 	await get_tree().create_timer(3).timeout
 	
-	player.dialogue_queue.append(1)
-	player.dialogue_queue.append("PLEASE COMPLETE THE FOLLOWING DIAGNOSTIC COURSE. ")
-	player.dialogue_queue.append("FAILURE TO DO SO MAY LEAD TO UNEXPECTED SIDE EFFECTS, SUCH AS: 
-
-DEATH")
-	player.dialogue_queue.append("DIAGNOSTIC COURSE IS NOW BEGINNING. ")
+	tutorial_finished()
+	
+	#player.dialogue_queue.append(1)
+	#player.dialogue_queue.append("PLEASE COMPLETE THE FOLLOWING DIAGNOSTIC COURSE. ")
+	#player.dialogue_queue.append("FAILURE TO DO SO MAY LEAD TO UNEXPECTED SIDE EFFECTS, SUCH AS: 	DEATH")
+	#player.dialogue_queue.append("DIAGNOSTIC COURSE IS NOW BEGINNING. ")
 	
 
 
@@ -89,8 +89,23 @@ func tutorial_finished():
 	player.dialogue_queue.append("THANK YOU FOR COMPLETING THE DIAGNOSTIC SEQUENCE. ")
 	player.dialogue_queue.append(0)
 	player.dialogue_queue.append("YEEEES")
+	
 	#insert A-OS monologue here
-	player.dialogue_queue.append("YEEEES")
+	# TODO: introduce A-OS' name here
+	player.dialogue_queue.append("you would not BELIEVE how hard it is to make life from scratch.")
+	player.dialogue_queue.append("sorry for the scare about that 'diagnostic test', I didn't want to get attached incase it was another dud.")
+	player.dialogue_queue.append("anyway, i want to get to know you")
+	player.dialogue_queue.append("pick a name for yourself: ")
+
+func name_picked():
+	player.dialogue_queue.append(str("hey, i like that name, '", PlayerName.new().fetch_name(), ",' it's nice."))
+	player.dialogue_queue.append("...")
+	player.dialogue_queue.append("this room is pretty boring, huh.")
+	player.dialogue_queue.append(str("alright, ", PlayerName.new().fetch_name(), ", lets go out"))
+	player.dialogue_queue.append("i just lined something up that could be fun!")
+	player.dialogue_queue.append("you like shiny things, right? those humans eons ago really liked them")
+	player.dialogue_queue.append("what i want you to do is bring them back here, a little fetch-quest!")
+	player.dialogue_queue.append("lemme send down the lift...")
 
 
 
@@ -112,8 +127,15 @@ func _on_player_dialogue_finished(dialogue):
 		player.SendHintToPlayer("Use MOUSE 1 to pick up the cube")
 		activate_throwing_tutorial = true
 	
-	elif dialogue == "YEEEES":
+	elif dialogue == "pick a name for yourself: ":
+		player.canPause = false
+		$"../Control".visible = true
+		$"../Control/ColorRect/LineEdit".grab_focus()
+		get_tree().paused = true
+	
+	elif dialogue == "lemme send down the lift...":
 		rail_anims.play("down")
+	
 	
 	
 
@@ -130,3 +152,23 @@ func _on_area_3d_body_entered(body):
 	if body.is_in_group("player"):
 		rail_anims.play("up")
 		
+
+
+
+
+func _on_line_edit_text_submitted(new_text):
+	get_tree().paused = false
+	player.canPause = true
+	$"../Control".visible = false
+	
+	var save = PlayerName.new()
+	save.save_name(new_text)
+	
+	name_picked()
+	#save.save_game(get_tree().current_scene.scene_file_path, new_text)
+
+
+
+
+
+
