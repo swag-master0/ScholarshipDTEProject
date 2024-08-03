@@ -1,0 +1,32 @@
+[gd_resource type="ShaderMaterial" load_steps=7 format=3 uid="uid://dvlj73j848yaf"]
+
+[ext_resource type="Shader" path="res://Art/materials/props/wood_1.gdshader" id="1_j2d0k"]
+
+[sub_resource type="Gradient" id="Gradient_v51oq"]
+interpolation_mode = 1
+offsets = PackedFloat32Array(0, 0.54023)
+colors = PackedColorArray(0.326067, 0.149553, 0.024401, 1, 0.240575, 0.0618957, 0.0174826, 1)
+
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_0tma7"]
+frequency = 0.006
+fractal_type = 3
+fractal_gain = 1.08
+
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_glvcv"]
+color_ramp = SubResource("Gradient_v51oq")
+noise = SubResource("FastNoiseLite_0tma7")
+
+[sub_resource type="Gradient" id="Gradient_2fvrb"]
+interpolation_mode = 1
+offsets = PackedFloat32Array(0, 0.505747)
+
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_s8rgv"]
+as_normal_map = true
+color_ramp = SubResource("Gradient_2fvrb")
+noise = SubResource("FastNoiseLite_0tma7")
+
+[resource]
+render_priority = 0
+shader = ExtResource("1_j2d0k")
+shader_parameter/noise = SubResource("NoiseTexture2D_glvcv")
+shader_parameter/normal = SubResource("NoiseTexture2D_s8rgv")

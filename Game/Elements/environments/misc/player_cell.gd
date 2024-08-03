@@ -60,8 +60,8 @@ func save_hub_objects():
 
 
 func _on_portal_body_entered(body):
-	if body is RigidBody3D:
-		body.queue_free()
+	#if body is RigidBody3D:
+	#	body.queue_free()
 	
 	save_hub_objects()
 	

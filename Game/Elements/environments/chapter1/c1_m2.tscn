@@ -71,12 +71,14 @@ agent_max_slope = 70.0
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_pcbh4"]
 render_priority = 0
 shader = ExtResource("8_e1yx6")
+shader_parameter/amount = 1.0
 shader_parameter/noise = ExtResource("9_5uvtt")
 shader_parameter/normal_tex = ExtResource("10_qke8v")
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_0i6hu"]
 render_priority = 0
 shader = ExtResource("11_ei1hd")
+shader_parameter/amount = 1.0
 shader_parameter/normal = ExtResource("12_mqm84")
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_lynqq"]

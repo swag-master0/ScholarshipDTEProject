@@ -159,6 +159,7 @@ size = Vector3(5, 6.30652, 5)
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_hrqgb"]
 render_priority = 0
 shader = ExtResource("4_6os4k")
+shader_parameter/amount = 1.0
 shader_parameter/normal = ExtResource("5_3k8u3")
 
 [sub_resource type="Environment" id="Environment_ppwta"]

@@ -5,10 +5,11 @@ code = "shader_type spatial;
 
 const vec3 colour = vec3(2.0, 2.0, 2.5); 
 uniform sampler2D normal;
+uniform float amount = 1.0;
 
 
 void fragment() {
-	NORMAL_MAP = textureLod(normal, UV, 0.25).rgb;
+	NORMAL_MAP = textureLod(normal, UV * amount, 0.25).rgb;
 	
 	ALBEDO = colour;
 	

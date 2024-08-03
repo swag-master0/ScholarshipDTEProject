@@ -75,6 +75,7 @@ func load_cell(root_node):
 			if i is PackedScene:
 				var new_object = i.instantiate()
 				root_node.add_child(new_object)
+				new_object.global_position = Vector3(0, 60, 0)
 				print_rich("[color=GREY]Loaded Newly Added Object: ", new_object)
 		
 		add_new_objects = []

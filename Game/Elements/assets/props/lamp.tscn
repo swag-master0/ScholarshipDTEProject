@@ -1,7 +1,11 @@
-[gd_scene load_steps=3 format=3 uid="uid://blx6snb20uj8u"]
+[gd_scene load_steps=4 format=3 uid="uid://blx6snb20uj8u"]
 
 [ext_resource type="Script" path="res://Elements/assets/props/template/prop.gd" id="1_m2sg2"]
 [ext_resource type="PackedScene" uid="uid://dp4vuieqvjwte" path="res://Art/blend/assets/prop/lamp.blend" id="2_ny8sa"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_ntnrf"]
+albedo_color = Color(0.995755, 0.991839, 0.861707, 1)
+disable_receive_shadows = true
 
 [node name="lamp" instance=ExtResource("2_ny8sa")]
 
@@ -12,14 +16,16 @@ script = ExtResource("1_m2sg2")
 
 [node name="Lamp -rigid" parent="Lamp -rigid" index="0"]
 transform = Transform3D(0.15, 0, 0, 0, 0.15, 0, 0, 0, 0.15, 0, 0, 0)
+surface_material_override/2 = SubResource("StandardMaterial3D_ntnrf")
 
 [node name="CollisionShape3D" parent="Lamp -rigid" index="1"]
 transform = Transform3D(0.15, 0, 0, 0, 0.15, 0, 0, 0, 0.15, 0, 0, 0)
 
 [node name="OmniLight3D" type="OmniLight3D" parent="Lamp -rigid" index="2"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.585212, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.469153, 0)
 light_color = Color(0.932738, 0.894484, 0.501812, 1)
 light_energy = 0.5
+shadow_enabled = true
 omni_range = 7.5
 omni_attenuation = 0.329877
 

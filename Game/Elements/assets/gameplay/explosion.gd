@@ -8,15 +8,18 @@ extends Node3D
 @export var damage : float = 8
 
 var triggered = false
+var affected = []
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(_delta):
 	for i in $Area3D.get_overlapping_bodies():
 		
-		if i is RigidBody3D:
+		if i is RigidBody3D and !(affected.has(i)):
 			i.apply_force((i.global_position - center.global_position).normalized() * force)
+			affected.append(i)
 			
-		if i.is_in_group("player") or i.is_in_group("enemy"):
+		if (i.is_in_group("player") or i.is_in_group("enemy")) and !(affected.has(i)):
+			affected.append(i)
 			for x in i.get_children():
 				if x.is_in_group("info"):
 					x.Damage(damage)

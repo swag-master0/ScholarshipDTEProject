@@ -23,7 +23,6 @@ extends Control
 @onready var indicator = $Indicator
 @onready var indicator_tutorial = $Indicator/AnimatedSprite2D
 
-@onready var crosshair = $Crosshair
 
 @onready var A_OS = $"../A-OS Viewport/A-OS"
 
@@ -35,7 +34,6 @@ var dialoguespeaking = false
 var tutorial_pickup = false
 var healthvisualindicator = false
 var selectionsound = false
-var current_crosshair = 0
 
 
 
@@ -45,12 +43,11 @@ var current_crosshair = 0
 # tts_speak(text: String, voice: String, volume: int = 50, pitch: float = 1.0, rate: float = 1.0, utterance_id: int = 0, interrupt: bool = false)
 			#DisplayServer.tts_speak(dialogue, voice_id, 50, 0, 1.2, 0, true)
 
+func _ready():
+	hud_dialogue_box.visible = false
 
 
 func _process(_delta):
-	
-	if parent.isHolding and current_crosshair != 3:
-		changeCrosshair(1)
 	
 	
 	if ready: 
@@ -151,7 +148,6 @@ func setCursorPosition(pos : Vector3, visibility : bool):
 		
 		indicator.visible = true
 		indicator.position = camera.unproject_position(pos) - indicator.size / 2
-		changeCrosshair(2)
 		
 		
 		if tutorial_mode:
@@ -168,8 +164,6 @@ func setCursorPosition(pos : Vector3, visibility : bool):
 	elif !visibility:
 		indicator.visible = false
 		selectionsound = false
-		
-		changeCrosshair(0)
 		
 
 
@@ -190,11 +184,6 @@ func viewEnemyHealth(enemy : Object, visibility : bool):
 		healthbar.visible = false
 
 
-
-func changeCrosshair(type : int):
-	crosshair.texture.current_frame = type
-	current_crosshair = type
-	
 
 
 

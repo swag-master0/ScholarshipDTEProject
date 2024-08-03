@@ -249,11 +249,6 @@ func _process(_delta):
 			pass
 	
 	
-	#if character.position.distance_to(cursor.position) < 4 and character.position.distance_to(cursor.position) > -4 and isHolding:
-	if pivot.rotation.x < -1 and isHolding:
-		HUD.changeCrosshair(3)
-	
-	
 	if !Input.is_action_pressed("click"): 
 		# check if the object exists still, or else crash
 		if !is_instance_valid(object):
@@ -280,8 +275,6 @@ func _process(_delta):
 			#if character.position.distance_to(cursor.position) < 4 and character.position.distance_to(cursor.position) > -4:
 			if pivot.rotation.x < -1:
 				force = Vector3(0, 0, 0)
-				
-				#HUD.changeCrosshair(3)
 				
 				if tutorial_mode and !tutorial_proximitydrop:
 					tutorial_proximitydrop = true

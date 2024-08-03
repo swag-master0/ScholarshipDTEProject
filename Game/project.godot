@@ -46,6 +46,7 @@ folder_colors={
 "res://Art/blend/misc/": "gray",
 "res://Art/materials/floor/": "gray",
 "res://Art/materials/player/": "gray",
+"res://Art/materials/props/": "gray",
 "res://Art/materials/walls/": "gray",
 "res://Elements/": "blue",
 "res://Elements/assets/gameplay/": "gray",
