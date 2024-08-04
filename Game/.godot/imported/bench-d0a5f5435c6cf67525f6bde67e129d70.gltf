@@ -15,12 +15,7 @@
 	"nodes":[
 		{
 			"mesh":0,
-			"name":"Bench -rigid",
-			"translation":[
-				0.8236711621284485,
-				0.8579745292663574,
-				0
-			]
+			"name":"Bench -rigid"
 		}
 	],
 	"materials":[
@@ -86,14 +81,14 @@
 			"componentType":5126,
 			"count":192,
 			"max":[
-				0.1763288378715515,
-				1.6706784963607788,
-				2
+				1.2542846202850342,
+				1.6852731704711914,
+				2.0017924308776855
 			],
 			"min":[
-				-2.1455016136169434,
-				-0.06579697132110596,
-				-2
+				-1.0675458908081055,
+				-0.051202304661273956,
+				-1.998207688331604
 			],
 			"type":"VEC3"
 		},
@@ -124,35 +119,35 @@
 		{
 			"bufferView":5,
 			"componentType":5126,
-			"count":204,
+			"count":199,
 			"max":[
-				0.1763288378715515,
-				1.5322799682617188,
-				1.9034192562103271
+				1.2542846202850342,
+				1.5468746423721313,
+				1.9052115678787231
 			],
 			"min":[
-				-2.223982810974121,
-				-1.2442469596862793,
-				-1.910190463066101
+				-1.1460270881652832,
+				-1.2296522855758667,
+				-1.908398151397705
 			],
 			"type":"VEC3"
 		},
 		{
 			"bufferView":6,
 			"componentType":5126,
-			"count":204,
+			"count":199,
 			"type":"VEC3"
 		},
 		{
 			"bufferView":7,
 			"componentType":5126,
-			"count":204,
+			"count":199,
 			"type":"VEC2"
 		},
 		{
 			"bufferView":8,
 			"componentType":5126,
-			"count":204,
+			"count":199,
 			"type":"VEC4"
 		},
 		{
@@ -195,38 +190,38 @@
 		},
 		{
 			"buffer":0,
-			"byteLength":2448,
+			"byteLength":2388,
 			"byteOffset":9792,
 			"target":34962
 		},
 		{
 			"buffer":0,
-			"byteLength":2448,
-			"byteOffset":12240,
+			"byteLength":2388,
+			"byteOffset":12180,
 			"target":34962
 		},
 		{
 			"buffer":0,
-			"byteLength":1632,
-			"byteOffset":14688,
+			"byteLength":1592,
+			"byteOffset":14568,
 			"target":34962
 		},
 		{
 			"buffer":0,
-			"byteLength":3264,
-			"byteOffset":16320,
+			"byteLength":3184,
+			"byteOffset":16160,
 			"target":34962
 		},
 		{
 			"buffer":0,
 			"byteLength":864,
-			"byteOffset":19584,
+			"byteOffset":19344,
 			"target":34963
 		}
 	],
 	"buffers":[
 		{
-			"byteLength":20448,
+			"byteLength":20208,
 			"uri":"bench-d0a5f5435c6cf67525f6bde67e129d70.bin"
 		}
 	]

@@ -1,4 +1,4 @@
-[gd_scene load_steps=23 format=3 uid="uid://cov8v6858hevf"]
+[gd_scene load_steps=39 format=3 uid="uid://cov8v6858hevf"]
 
 [ext_resource type="PackedScene" uid="uid://ch7t6b0c3tjwr" path="res://Elements/enemies/enemy.tscn" id="1_7b51b"]
 [ext_resource type="PackedScene" uid="uid://g2jwt8atruu7" path="res://Art/environment/environment.tscn" id="3_1kepo"]
@@ -14,6 +14,21 @@
 [ext_resource type="Shader" uid="uid://dtjh0fi6sbiji" path="res://Art/materials/floor/floor.tres" id="11_ei1hd"]
 [ext_resource type="Texture2D" uid="uid://bfujcpxg1vljk" path="res://Art/materials/floor/floor_normal.tres" id="12_mqm84"]
 [ext_resource type="Shader" path="res://Art/materials/terrain.gdshader" id="14_iwppb"]
+[ext_resource type="PackedScene" uid="uid://blx6snb20uj8u" path="res://Elements/assets/props/lamp.tscn" id="15_r5nck"]
+[ext_resource type="PackedScene" uid="uid://c1h8mvyaciq6r" path="res://Elements/assets/props/stool_2.tscn" id="16_2agqp"]
+[ext_resource type="PackedScene" uid="uid://1k5dw6s6pdvj" path="res://Elements/assets/props/stool_1.tscn" id="17_8lj30"]
+[ext_resource type="PackedScene" uid="uid://dp2x6cakupfs6" path="res://Elements/assets/props/pot.tscn" id="18_u417g"]
+[ext_resource type="PackedScene" uid="uid://b121pmvvvcf8i" path="res://Elements/assets/props/table_2.tscn" id="19_mdoal"]
+[ext_resource type="PackedScene" uid="uid://dqgrckw7n88n4" path="res://Elements/assets/props/table.tscn" id="20_44o3j"]
+[ext_resource type="PackedScene" uid="uid://c775kwttbjh40" path="res://Elements/assets/props/vase.tscn" id="21_jcqp2"]
+[ext_resource type="PackedScene" uid="uid://cp8y4w0hidlhu" path="res://Elements/assets/props/picture_xlarge.tscn" id="22_yam4c"]
+[ext_resource type="Shader" path="res://Art/materials/props/picture_image.gdshader" id="23_5tkwj"]
+[ext_resource type="PackedScene" uid="uid://dhaxwpsinvu6u" path="res://Elements/assets/props/crate.tscn" id="23_ncaea"]
+[ext_resource type="Texture2D" uid="uid://bvapu74ntnlx1" path="res://Art/assets/misc/bean.jpg" id="24_5eaps"]
+[ext_resource type="PackedScene" uid="uid://dmkhkm80jpdqd" path="res://Elements/assets/props/shelf.tscn" id="26_08g6o"]
+[ext_resource type="PackedScene" uid="uid://currpdc0rou40" path="res://Elements/assets/props/couch_small.tscn" id="27_8kips"]
+[ext_resource type="PackedScene" uid="uid://cggscg4u3txqj" path="res://Elements/assets/props/boombox.tscn" id="28_880h2"]
+[ext_resource type="PackedScene" uid="uid://h5siu0krokek" path="res://Elements/assets/props/table_3.tscn" id="29_walm4"]
 
 [sub_resource type="GDScript" id="GDScript_jf0va"]
 resource_name = "c1_m2-functionality"
@@ -94,6 +109,12 @@ size = Vector3(20, 10, 15)
 [sub_resource type="BoxShape3D" id="BoxShape3D_jt1we"]
 size = Vector3(3.915, 10.635, 12.815)
 
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_l3stx"]
+render_priority = 0
+shader = ExtResource("23_5tkwj")
+shader_parameter/emission_strength = 0.2
+shader_parameter/picture = ExtResource("24_5eaps")
+
 [node name="Level" type="Node3D"]
 script = SubResource("GDScript_jf0va")
 enemy_type = ExtResource("1_7b51b")
@@ -105,7 +126,7 @@ prop = ExtResource("7_tk5jc")
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -10, 0)
 
 [node name="ObjectiveItem" parent="." instance=ExtResource("5_0wf4d")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 70.3351, 8.5, -45.3473)
+transform = Transform3D(0.103175, 0, 0.994663, 0, 1, 0, -0.994663, 0, 0.103175, 63.0908, 13.1496, -45.3473)
 
 [node name="ObjectiveLevelStart" parent="." instance=ExtResource("6_ey64y")]
 transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 0, 0.65, 0)
@@ -163,32 +184,54 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 25.5284, 10, 3.05913)
 
 [node name="Props" type="Node" parent="."]
 
-[node name="Prop" parent="Props" instance=ExtResource("7_tk5jc")]
-transform = Transform3D(0.707107, 0, 0.707107, 0, 1, 0, -0.707107, 0, 0.707107, 58, 2, -30)
+[node name="lamp" parent="." instance=ExtResource("15_r5nck")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 60, 0, -32)
 
-[node name="Prop2" parent="Props" instance=ExtResource("7_tk5jc")]
-transform = Transform3D(-0.258819, 0, 0.965926, 0, 1, 0, -0.965926, 0, -0.258819, 58, 2, -33)
+[node name="stool_2" parent="." instance=ExtResource("16_2agqp")]
+transform = Transform3D(0.865379, 0, 0.501118, 0, 1, 0, -0.501118, 0, 0.865379, 63, 0, -28)
 
-[node name="Prop3" parent="Props" instance=ExtResource("7_tk5jc")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 58, 5, -31)
+[node name="stool_1" parent="." instance=ExtResource("17_8lj30")]
+transform = Transform3D(0.994185, 0, -0.107687, 0, 1, 0, 0.107687, 0, 0.994185, 63, 1, -28)
 
-[node name="Prop4" parent="Props" instance=ExtResource("7_tk5jc")]
-transform = Transform3D(0.707107, 0, 0.707107, 0, 1, 0, -0.707107, 0, 0.707107, 70, 2, -38)
+[node name="pot" parent="." instance=ExtResource("18_u417g")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 68, 0, -20)
 
-[node name="Prop5" parent="Props" instance=ExtResource("7_tk5jc")]
-transform = Transform3D(0.707107, 0, -0.707107, 0, 1, 0, 0.707107, 0, 0.707107, 77, 2, -36)
+[node name="table_2" parent="." instance=ExtResource("19_mdoal")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 73, 0, -30)
 
-[node name="Prop6" parent="Props" instance=ExtResource("7_tk5jc")]
-transform = Transform3D(0.707107, 0, 0.707107, 0, 1, 0, -0.707107, 0, 0.707107, 83, 2, -35)
+[node name="table" parent="." instance=ExtResource("20_44o3j")]
+transform = Transform3D(0.896626, 0, 0.44279, 0, 1, 0, -0.44279, 0, 0.896626, 66, 0, -33)
 
-[node name="Prop7" parent="Props" instance=ExtResource("7_tk5jc")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 31.6706, 1, -6.1127)
+[node name="vase" parent="." instance=ExtResource("21_jcqp2")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 66, 1, -33)
 
-[node name="Prop8" parent="Props" instance=ExtResource("7_tk5jc")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 35.6706, 1, 2.8873)
+[node name="picture_xlarge" parent="." instance=ExtResource("22_yam4c")]
+transform = Transform3D(-4.37114e-08, 1, 2.98023e-08, 0, 2.98023e-08, -1, -1, -4.37114e-08, -1.3027e-15, 55, 5, -36)
 
-[node name="Prop9" parent="Props" instance=ExtResource("7_tk5jc")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 38.6706, 1, 1.8873)
+[node name="Picture_XLarge -rigid" parent="picture_xlarge/Picture_XLarge -rigid" index="0"]
+transform = Transform3D(1, 0, 2.11758e-22, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, -1, 0, 0)
+surface_material_override/1 = SubResource("ShaderMaterial_l3stx")
+
+[node name="crate" parent="." instance=ExtResource("23_ncaea")]
+transform = Transform3D(0.958532, 0, 0.284986, 0, 1, 0, -0.284986, 0, 0.958532, 59, 1, -38)
+
+[node name="lamp2" parent="." instance=ExtResource("15_r5nck")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 76.8683, 8.28154, -41.5694)
+
+[node name="shelf" parent="." instance=ExtResource("26_08g6o")]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 63.2859, 8.71595, -44.9494)
+
+[node name="couch_small" parent="." instance=ExtResource("27_8kips")]
+transform = Transform3D(0.965926, 0, -0.258819, 0, 1, 0, 0.258819, 0, 0.965926, 74.641, 8.48363, -47)
+
+[node name="vase2" parent="." instance=ExtResource("21_jcqp2")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 71.7207, 1.04904e-05, -37.9967)
+
+[node name="boombox" parent="." instance=ExtResource("28_880h2")]
+transform = Transform3D(0.670854, 0, 0.74159, 0, 1, 0, -0.74159, 0, 0.670854, 58.9733, 2.79335, -38.0077)
+
+[node name="table_3" parent="." instance=ExtResource("29_walm4")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 69.9976, 8.01034, -43.8873)
 
 [connection signal="body_entered" from="Trigger" to="." method="_on_trigger_body_entered"]
 [connection signal="body_entered" from="DialogueTrigger" to="." method="_on_dialogue_trigger_body_entered"]
@@ -196,3 +239,4 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 38.6706, 1, 1.8873)
 
 [editable path="WorldEnvironment"]
 [editable path="NavigationRegion3D/level"]
+[editable path="picture_xlarge"]

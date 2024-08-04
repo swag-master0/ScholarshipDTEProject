@@ -1,0 +1,12 @@
+[gd_scene load_steps=3 format=3 uid="uid://b8yxaet5rm1ae"]
+
+[ext_resource type="PackedScene" uid="uid://g57jyhpuwnhx" path="res://Art/blend/assets/prop/brick.blend" id="1_5flym"]
+[ext_resource type="Script" path="res://Elements/assets/props/template/prop.gd" id="2_gjisr"]
+
+[node name="brick" instance=ExtResource("1_5flym")]
+
+[node name="Brick -rigid" parent="." index="0"]
+mass = 15.0
+script = ExtResource("2_gjisr")
+
+[node name="Sound" type="AudioStreamPlayer3D" parent="Brick -rigid" index="2"]

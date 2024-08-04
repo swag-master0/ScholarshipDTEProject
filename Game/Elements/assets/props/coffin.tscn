@@ -1,0 +1,12 @@
+[gd_scene load_steps=3 format=3 uid="uid://bfrpck2673n1q"]
+
+[ext_resource type="PackedScene" uid="uid://xpbppyrt8yl" path="res://Art/blend/assets/prop/coffin.blend" id="1_0lmch"]
+[ext_resource type="Script" path="res://Elements/assets/props/template/prop.gd" id="2_lyttn"]
+
+[node name="coffin" instance=ExtResource("1_0lmch")]
+
+[node name="Coffin -rigid" parent="." index="0"]
+mass = 30.0
+script = ExtResource("2_lyttn")
+
+[node name="Sound" type="AudioStreamPlayer3D" parent="Coffin -rigid" index="2"]

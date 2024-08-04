@@ -10,7 +10,7 @@ disable_receive_shadows = true
 [node name="lamp" instance=ExtResource("2_ny8sa")]
 
 [node name="Lamp -rigid" parent="." index="0"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.806461, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0)
 mass = 8.0
 script = ExtResource("1_m2sg2")
 
@@ -22,7 +22,7 @@ surface_material_override/2 = SubResource("StandardMaterial3D_ntnrf")
 transform = Transform3D(0.15, 0, 0, 0, 0.15, 0, 0, 0, 0.15, 0, 0, 0)
 
 [node name="OmniLight3D" type="OmniLight3D" parent="Lamp -rigid" index="2"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.469153, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.828523, 0)
 light_color = Color(0.932738, 0.894484, 0.501812, 1)
 light_energy = 0.5
 shadow_enabled = true

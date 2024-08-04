@@ -1,7 +1,7 @@
 shader_type spatial;
 
 uniform sampler2D normal;
-uniform vec3 base_colour = vec3(0.8, 0.3, 0.0);
+uniform vec3 base_colour = vec3(0.8, 0.025, 0.0);
 
 
 void fragment() {

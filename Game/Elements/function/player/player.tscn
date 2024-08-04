@@ -1,4 +1,4 @@
-[gd_scene load_steps=91 format=3 uid="uid://bcou7suhphdrp"]
+[gd_scene load_steps=92 format=3 uid="uid://bcou7suhphdrp"]
 
 [ext_resource type="Script" path="res://Elements/function/player/player.gd" id="1_0ncw4"]
 [ext_resource type="PackedScene" uid="uid://4lv8cegk7f53" path="res://Art/blend/assets/main/player.blend" id="2_ww4ji"]
@@ -19,6 +19,7 @@
 [ext_resource type="Texture2D" uid="uid://cix4ak6aasuam" path="res://Art/assets/hud/selection.png" id="14_pvb8u"]
 [ext_resource type="Texture2D" uid="uid://dmnjpb8ox2bsu" path="res://Art/assets/hud/mouse1-1.png" id="15_5hkb5"]
 [ext_resource type="Texture2D" uid="uid://cvguvo850eb22" path="res://Art/assets/hud/mouse1-2.png" id="16_5kyhk"]
+[ext_resource type="AudioStream" uid="uid://bclhxlykmyxll" path="res://Art/audio/CameraWind.mp3" id="16_8yp7b"]
 [ext_resource type="Shader" path="res://Art/filters/quantisation.gdshader" id="16_dvf37"]
 [ext_resource type="Shader" path="res://Art/filters/sobel_outlines.gdshader" id="17_5fr21"]
 [ext_resource type="PackedScene" uid="uid://d3qcg4xjm6x5x" path="res://Elements/function/player/a-os.tscn" id="20_sjfsg"]
@@ -250,13 +251,12 @@ shader_parameter/normal = SubResource("NoiseTexture2D_4ko1r")
 
 [sub_resource type="Gradient" id="Gradient_untfa"]
 interpolation_mode = 1
-offsets = PackedFloat32Array(0, 0.045)
+offsets = PackedFloat32Array(0, 0.538745)
 
 [sub_resource type="FastNoiseLite" id="FastNoiseLite_ln41e"]
-noise_type = 2
+noise_type = 0
 seed = 5
-frequency = 0.0138
-fractal_type = 0
+frequency = 1.0
 cellular_distance_function = 1
 cellular_return_type = 4
 
@@ -268,7 +268,7 @@ noise = SubResource("FastNoiseLite_ln41e")
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_mhwhj"]
 render_priority = 0
 shader = ExtResource("4_5kk05")
-shader_parameter/base_colour = Vector3(0.8, 0.3, 0)
+shader_parameter/base_colour = Vector3(0.8, 0.025, 0)
 shader_parameter/normal = SubResource("NoiseTexture2D_bhqf6")
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_n15er"]
@@ -485,22 +485,23 @@ shape = SubResource("CapsuleShape3D_nrsfh")
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1, 0)
 
 [node name="Skeleton3D" parent="PlayerModel/player/Armature" index="0"]
-bones/0/position = Vector3(-0.00183521, -0.0775404, 0)
-bones/1/rotation = Quaternion(0.000618192, -0.000915173, 0.817338, 0.576157)
-bones/2/rotation = Quaternion(-0.000969107, -0.000646782, 0.28699, 0.957933)
-bones/3/rotation = Quaternion(-0.00102422, -0.000173534, 0.395109, 0.918634)
-bones/4/rotation = Quaternion(-6.35795e-06, -2.53072e-07, 0.0895676, 0.995981)
-bones/5/rotation = Quaternion(0.000712501, 0.000890502, -0.840927, 0.541147)
-bones/6/rotation = Quaternion(-0.000924724, 0.000664288, -0.275577, 0.961278)
-bones/7/rotation = Quaternion(-0.00114513, 0.000179966, -0.353324, 0.9355)
-bones/8/rotation = Quaternion(-0.000214595, 7.8541e-06, -0.079161, 0.996862)
-bones/9/rotation = Quaternion(0.00626324, 0, 0, 0.99998)
-bones/10/rotation = Quaternion(0.705806, -0.0428644, -0.705806, 0.0428645)
-bones/11/rotation = Quaternion(8.89761e-09, 1.57371e-08, -0.139823, 0.990177)
-bones/12/rotation = Quaternion(2.11264e-09, -9.40588e-16, -0.0279828, 0.999608)
-bones/13/rotation = Quaternion(0.705804, 0.04291, 0.705804, 0.04291)
-bones/14/rotation = Quaternion(7.44933e-09, -1.57368e-08, 0.139969, 0.990156)
-bones/15/rotation = Quaternion(2.11486e-09, 2.15884e-15, 0.0280121, 0.999608)
+bones/0/position = Vector3(-0.00183521, -0.0997295, 0)
+bones/0/rotation = Quaternion(0, 0.0351595, 0, 0.999382)
+bones/1/rotation = Quaternion(-0.0407827, 0.0666192, 0.759055, 0.646324)
+bones/2/rotation = Quaternion(-0.0221249, -0.0302572, 0.374493, 0.926472)
+bones/3/rotation = Quaternion(0.0428836, 0.0980389, 0.511237, 0.852752)
+bones/4/rotation = Quaternion(0.0178252, 0.00541604, 0.119088, 0.992709)
+bones/5/rotation = Quaternion(-0.0398705, 0.00865251, -0.792708, 0.608235)
+bones/6/rotation = Quaternion(0.0591813, 0.0261924, -0.313236, 0.947468)
+bones/7/rotation = Quaternion(0.134051, -0.0797746, -0.339652, 0.927525)
+bones/8/rotation = Quaternion(0.0329385, -0.000230523, -0.0671668, 0.997198)
+bones/9/rotation = Quaternion(0.000205439, 0.0815213, -1.68036e-05, 0.996672)
+bones/10/rotation = Quaternion(0.752162, -0.0676717, -0.652958, 0.0576127)
+bones/11/rotation = Quaternion(0.000565698, -5.41988e-05, -0.208797, 0.977959)
+bones/12/rotation = Quaternion(2.1982e-09, 2.73683e-09, -0.0279828, 0.999608)
+bones/13/rotation = Quaternion(0.703769, 0.0684677, 0.703877, 0.0676732)
+bones/14/rotation = Quaternion(0.000453288, 4.34751e-05, 0.206618, 0.978422)
+bones/15/rotation = Quaternion(2.6786e-09, 3.0571e-09, 0.0280121, 0.999608)
 
 [node name="Player" parent="PlayerModel/player/Armature/Skeleton3D" index="0"]
 lod_bias = 128.0
@@ -509,7 +510,7 @@ surface_material_override/1 = SubResource("ShaderMaterial_booyl")
 surface_material_override/2 = SubResource("ShaderMaterial_mhwhj")
 
 [node name="FaceAttachment" type="BoneAttachment3D" parent="PlayerModel/player/Armature/Skeleton3D" index="1"]
-transform = Transform3D(1, 0, 0, 0, 0.999922, -0.0125262, 0, 0.0125262, 0.999922, -0.00183521, 0.507003, 0)
+transform = Transform3D(0.972849, 9.54112e-05, 0.231439, -3.63798e-12, 1, -0.000412251, -0.231439, 0.000401058, 0.972849, -0.00183521, 0.484814, 0)
 bone_name = "Head"
 bone_idx = 9
 
@@ -543,6 +544,10 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, -1.5)
 
 [node name="CentralCameraPoint" type="Marker3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.01149, 0.273736)
+
+[node name="Wind" type="Node3D" parent="CentralCameraPoint"]
+transform = Transform3D(1, 0, 0, 0, 0.965926, -0.258819, 0, 0.258819, 0.965926, 0.104, 0, 2.947)
+top_level = true
 
 [node name="SpringArm3D" type="SpringArm3D" parent="CentralCameraPoint"]
 transform = Transform3D(1, 0, 0, 0, 0.965926, 0.258819, 0, -0.258819, 0.965926, 0, 0, 0)
@@ -578,6 +583,7 @@ shape = SubResource("BoxShape3D_2e1ws")
 health = 20.0
 max_health = 20.0
 invincibility_frames = 0.05
+TakeDamageFromRigidBodies = false
 DamagePlayerOnPlayerCollision = false
 
 [node name="Timeout" parent="Info" index="0"]
@@ -609,10 +615,10 @@ layout_mode = 1
 anchors_preset = 5
 anchor_left = 0.5
 anchor_right = 0.5
-offset_left = -100.0
-offset_top = 15.0
-offset_right = 100.0
-offset_bottom = 75.0
+offset_left = -125.0
+offset_top = 10.0
+offset_right = 125.0
+offset_bottom = 80.0
 grow_horizontal = 2
 pivot_offset = Vector2(250, 75)
 
@@ -672,9 +678,9 @@ anchor_top = 1.0
 anchor_right = 0.5
 anchor_bottom = 1.0
 offset_left = -71.5
-offset_top = -50.0
+offset_top = -80.0
 offset_right = 71.5
-offset_bottom = -32.0
+offset_bottom = -62.0
 grow_horizontal = 2
 grow_vertical = 0
 pivot_offset = Vector2(180, 25)
@@ -708,8 +714,8 @@ anchor_right = 0.5
 anchor_bottom = 1.0
 offset_left = -960.0
 offset_top = -1180.0
-offset_right = -915.0
-offset_bottom = -1170.0
+offset_right = -825.0
+offset_bottom = -1150.0
 grow_horizontal = 2
 grow_vertical = 0
 pivot_offset = Vector2(45, 7)
@@ -727,8 +733,10 @@ anchor_left = 1.0
 anchor_top = 1.0
 anchor_right = 1.0
 anchor_bottom = 1.0
-offset_left = -130.0
-offset_top = -101.0
+offset_left = -155.0
+offset_top = -126.0
+offset_right = -25.0
+offset_bottom = -25.0
 grow_horizontal = 0
 grow_vertical = 0
 bbcode_enabled = true
@@ -744,17 +752,18 @@ visible = false
 layout_mode = 1
 anchors_preset = 9
 anchor_bottom = 1.0
-offset_right = 218.0
+offset_right = 250.0
 grow_vertical = 2
 theme_override_styles/panel = SubResource("StyleBoxFlat_h4201")
 
 [node name="ColorRect" type="ColorRect" parent="HUD/PauseMenu"]
+visible = false
 show_behind_parent = true
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
-offset_right = 453.0
+offset_right = 1266.0
 grow_horizontal = 2
 grow_vertical = 2
 color = Color(0, 0, 0, 0.666667)
@@ -764,10 +773,10 @@ layout_mode = 1
 anchors_preset = 4
 anchor_top = 0.5
 anchor_bottom = 0.5
-offset_left = 40.0
-offset_top = -35.0
-offset_right = 165.0
-offset_bottom = -10.0
+offset_left = 35.0
+offset_top = -80.0
+offset_right = 160.0
+offset_bottom = -55.0
 grow_vertical = 2
 text = "resume"
 
@@ -776,9 +785,10 @@ layout_mode = 1
 anchors_preset = 4
 anchor_top = 0.5
 anchor_bottom = 0.5
-offset_left = 50.0
-offset_right = 175.0
-offset_bottom = 25.0
+offset_left = 40.0
+offset_top = -45.0
+offset_right = 165.0
+offset_bottom = -20.0
 grow_vertical = 2
 text = "restart level"
 
@@ -787,10 +797,10 @@ layout_mode = 1
 anchors_preset = 4
 anchor_top = 0.5
 anchor_bottom = 0.5
-offset_left = 60.0
-offset_top = 35.0
-offset_right = 185.0
-offset_bottom = 60.0
+offset_left = 46.0
+offset_top = -10.0
+offset_right = 171.0
+offset_bottom = 15.0
 grow_vertical = 2
 text = "options
 "
@@ -800,14 +810,15 @@ layout_mode = 1
 anchors_preset = 4
 anchor_top = 0.5
 anchor_bottom = 0.5
-offset_left = 70.0
-offset_top = 70.0
-offset_right = 195.0
-offset_bottom = 95.0
+offset_left = 53.0
+offset_top = 25.0
+offset_right = 178.0
+offset_bottom = 50.0
 grow_vertical = 2
 text = "quit to menu"
 
 [node name="Indicator" type="TextureRect" parent="HUD"]
+visible = false
 modulate = Color(1, 1, 1, 0.490196)
 texture_filter = 1
 texture_repeat = 1
@@ -938,6 +949,10 @@ grow_horizontal = 2
 grow_vertical = 2
 
 [node name="Audio" type="Node" parent="."]
+
+[node name="CameraWind" type="AudioStreamPlayer" parent="Audio"]
+stream = ExtResource("16_8yp7b")
+autoplay = true
 
 [node name="PlayerWalk" type="AudioStreamPlayer" parent="Audio"]
 stream = ExtResource("10_iq0rl")

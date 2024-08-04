@@ -1,4 +1,4 @@
-[gd_scene load_steps=28 format=3 uid="uid://rq3g3n4qshr3"]
+[gd_scene load_steps=31 format=3 uid="uid://rq3g3n4qshr3"]
 
 [ext_resource type="PackedScene" uid="uid://bcou7suhphdrp" path="res://Elements/function/player/player.tscn" id="1_01d17"]
 [ext_resource type="PackedScene" uid="uid://c61dj4vsac881" path="res://Art/blend/levels_chapter1/c1_m1.blend" id="1_wejc2"]
@@ -21,6 +21,9 @@
 [ext_resource type="PackedScene" uid="uid://dhejktumttlcs" path="res://Elements/assets/props/bench.tscn" id="18_hwqgn"]
 [ext_resource type="PackedScene" uid="uid://dp2x6cakupfs6" path="res://Elements/assets/props/pot.tscn" id="20_6rdim"]
 [ext_resource type="PackedScene" uid="uid://dqgrckw7n88n4" path="res://Elements/assets/props/table.tscn" id="21_t6n2y"]
+[ext_resource type="PackedScene" uid="uid://bsbl4boqt5vj4" path="res://Elements/assets/props/cone.tscn" id="22_bjjyq"]
+[ext_resource type="PackedScene" uid="uid://ctc20d63lt2h0" path="res://Elements/assets/props/bucket.tscn" id="23_fxv8a"]
+[ext_resource type="PackedScene" uid="uid://brfvkewj7bfba" path="res://Elements/assets/props/lamp_tall.tscn" id="24_lhqsg"]
 
 [sub_resource type="GDScript" id="GDScript_x6txf"]
 resource_name = "c1_m1-functionality"
@@ -32,14 +35,13 @@ var dialogue_triggered = false
 func _ready():
 	await get_tree().create_timer(2).timeout
 	
-	
 	for i in self.get_children():
 		if i.is_in_group(\"player\"):
+			i.dialogue_queue.append(0)
 			
-			
-			i.dialogue_queue.append(\"The quick brown fox jumped over the lazy dog.\")
-			i.dialogue_queue.append(\"Please fucking kill me life is a nightmare nightmare nightmare nightmare nightmare nightmare nightmare nightmare \")
-			i.dialogue_queue.append(\"McDonald's Drive Thru Employee: hey man, tf is a skibidi gyatt burgers with extra goon, a kaicenat happymeal series, a skibidi goonshake that you ordered, that's not even in the menu, are you braindead? maybe try go away and never come back. if you really force me to make that, how about i make you gone.\")
+			i.dialogue_queue.append(\"\")
+			i.dialogue_queue.append(\"\")
+			i.dialogue_queue.append(\"\")
 
 \"\"\"
 func _on_tutorial_trigger_body_entered(body):
@@ -165,6 +167,18 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 37.3885, 3.8147e-06, -39.0486
 
 [node name="vase3" parent="Props" instance=ExtResource("13_bp6gc")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 37.2219, 1.25642, -39.055)
+
+[node name="cone" parent="." instance=ExtResource("22_bjjyq")]
+transform = Transform3D(0.911446, 0, 0.411419, 0, 1, 0, -0.411419, 0, 0.911446, 29.5004, 4.76837e-06, -3.81927)
+
+[node name="chair" parent="." instance=ExtResource("17_34r8c")]
+transform = Transform3D(-0.621695, 0, 0.78326, 0, 1, 0, -0.78326, 0, -0.621695, 15.0326, 3.8147e-06, 3.29671)
+
+[node name="bucket" parent="." instance=ExtResource("23_fxv8a")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 31.121, 3.8147e-06, -4.69173)
+
+[node name="lamp_tall" parent="." instance=ExtResource("24_lhqsg")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 32, 0, -9)
 
 [connection signal="body_entered" from="TutorialTrigger" to="." method="_on_tutorial_trigger_body_entered"]
 

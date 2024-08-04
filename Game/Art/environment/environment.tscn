@@ -1,4 +1,4 @@
-[gd_scene load_steps=17 format=3 uid="uid://g2jwt8atruu7"]
+[gd_scene load_steps=18 format=3 uid="uid://g2jwt8atruu7"]
 
 [ext_resource type="Shader" path="res://Art/environment/environment.gdshader" id="1_cm3yc"]
 
@@ -50,6 +50,7 @@ background_color = Color(0.359069, 0.359069, 0.359069, 1)
 sky = SubResource("Sky_qpxpt")
 ambient_light_source = 2
 ambient_light_color = Color(0.0768358, 0.0768358, 0.0768358, 1)
+ssr_enabled = true
 fog_light_color = Color(0, 0, 0, 1)
 fog_light_energy = 0.5
 fog_density = 0.005
@@ -59,6 +60,12 @@ volumetric_fog_albedo = Color(0.665915, 0.732849, 0.581883, 1)
 volumetric_fog_sky_affect = 0.0
 volumetric_fog_temporal_reprojection_enabled = false
 volumetric_fog_temporal_reprojection_amount = 0.739
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_enlk5"]
+shading_mode = 0
+
+[sub_resource type="SphereMesh" id="SphereMesh_s8xx5"]
+material = SubResource("StandardMaterial3D_enlk5")
 
 [sub_resource type="Curve" id="Curve_e1wfq"]
 _data = [Vector2(0, 0), 0.0, 0.0, 0, 0, Vector2(0.5, 0.178947), 0.235628, 0.235628, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
@@ -93,19 +100,21 @@ material = SubResource("StandardMaterial3D_avwqc")
 size = Vector2(0.5, 0.5)
 orientation = 2
 
-[sub_resource type="BoxMesh" id="BoxMesh_u8mio"]
-
 [node name="WorldEnvironment" type="WorldEnvironment"]
 environment = SubResource("Environment_760ow")
 
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
-transform = Transform3D(0.985169, 0.0060543, 0.171482, -0.152325, 0.490927, 0.857781, -0.0789919, -0.87118, 0.484568, 0, 0, 0)
+transform = Transform3D(0.914182, -0.125891, 0.385257, -0.277352, 0.498815, 0.821133, -0.295545, -0.857517, 0.421092, 0, 0, 0)
 light_color = Color(0.165656, 0.165656, 0.165656, 1)
 shadow_enabled = true
-directional_shadow_mode = 0
+directional_shadow_mode = 1
 directional_shadow_fade_start = 0.0
 directional_shadow_pancake_size = 0.0
 sky_mode = 1
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+visible = false
+mesh = SubResource("SphereMesh_s8xx5")
 
 [node name="Wind" type="GPUParticles3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1, 0)
@@ -114,7 +123,3 @@ amount = 10000
 lifetime = 20.0
 process_material = SubResource("ParticleProcessMaterial_5rb4k")
 draw_pass_1 = SubResource("PlaneMesh_1foml")
-
-[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
-visible = false
-mesh = SubResource("BoxMesh_u8mio")

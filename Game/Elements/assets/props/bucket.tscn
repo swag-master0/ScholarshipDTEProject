@@ -1,0 +1,12 @@
+[gd_scene load_steps=3 format=3 uid="uid://ctc20d63lt2h0"]
+
+[ext_resource type="PackedScene" uid="uid://c2x31np1fpvp1" path="res://Art/blend/assets/prop/bucket.blend" id="1_33c5a"]
+[ext_resource type="Script" path="res://Elements/assets/props/template/prop.gd" id="2_nbeem"]
+
+[node name="bucket" instance=ExtResource("1_33c5a")]
+
+[node name="Bucket -rigid" parent="." index="0"]
+mass = 15.0
+script = ExtResource("2_nbeem")
+
+[node name="Sound" type="AudioStreamPlayer3D" parent="Bucket -rigid" index="2"]

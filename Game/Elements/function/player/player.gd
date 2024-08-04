@@ -302,7 +302,12 @@ func _process(_delta):
 	if Input.is_action_just_pressed("escape"):
 		PauseMenu(true)
 	
-
+	
+	
+	var tween = get_tree().create_tween()
+	tween.tween_property($CentralCameraPoint/Wind, "position", camera.global_position, 0.05)
+	tween.tween_property($Audio/CameraWind, "pitch_scale", $CentralCameraPoint/Wind.global_position.distance_to(camera.global_position), 0.3)
+	
 	
 	if DISPLAY_DUST and dust.visible != true:
 		dust.visible = true

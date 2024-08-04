@@ -154,7 +154,7 @@ autoplay = "idle"
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 3, 0)
 
 [node name="Bone" type="BoneAttachment3D" parent="Scene/FaceAttachment"]
-transform = Transform3D(0.999555, -0.00238444, 0.0297215, 0.000355468, 0.997679, 0.0680851, -0.0298149, -0.0680443, 0.997237, -0.177771, -0.31856, 0)
+transform = Transform3D(0.999555, -0.00238444, 0.0297215, 0.000355468, 0.997679, 0.0680851, -0.0298149, -0.0680443, 0.997237, -0.177771, -3.31856, 0)
 bone_name = "Bone"
 bone_idx = 0
 use_external_skeleton = true

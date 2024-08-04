@@ -1,0 +1,12 @@
+[gd_scene load_steps=3 format=3 uid="uid://bsbl4boqt5vj4"]
+
+[ext_resource type="PackedScene" uid="uid://dcpwndoor4g25" path="res://Art/blend/assets/prop/cone.blend" id="1_434wn"]
+[ext_resource type="Script" path="res://Elements/assets/props/template/prop.gd" id="2_wr1e7"]
+
+[node name="cone" instance=ExtResource("1_434wn")]
+
+[node name="Cone -rigid" parent="." index="0"]
+mass = 15.0
+script = ExtResource("2_wr1e7")
+
+[node name="Sound" type="AudioStreamPlayer3D" parent="Cone -rigid" index="2"]

@@ -1,0 +1,20 @@
+[gd_scene load_steps=3 format=3 uid="uid://brfvkewj7bfba"]
+
+[ext_resource type="PackedScene" uid="uid://b7y7x8qaskmjm" path="res://Art/blend/assets/prop/lamp_tall.blend" id="1_54vn6"]
+[ext_resource type="Script" path="res://Elements/assets/props/template/prop.gd" id="2_ljhby"]
+
+[node name="lamp_tall" instance=ExtResource("1_54vn6")]
+
+[node name="LampTall -rigid" parent="." index="0"]
+mass = 25.0
+script = ExtResource("2_ljhby")
+
+[node name="Sound" type="AudioStreamPlayer3D" parent="LampTall -rigid" index="2"]
+
+[node name="OmniLight3D2" type="OmniLight3D" parent="LampTall -rigid" index="3"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.28866, 0)
+light_color = Color(0.932738, 0.894484, 0.501812, 1)
+light_energy = 0.35
+shadow_enabled = true
+omni_range = 10.0
+omni_attenuation = 0.329877

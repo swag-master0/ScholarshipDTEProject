@@ -1,0 +1,12 @@
+[gd_scene load_steps=3 format=3 uid="uid://bsmhlbfqb0hvo"]
+
+[ext_resource type="PackedScene" uid="uid://cpnjtrlw2h02x" path="res://Art/blend/assets/prop/anvil.blend" id="1_k5dfb"]
+[ext_resource type="Script" path="res://Elements/assets/props/template/prop.gd" id="2_i0ysq"]
+
+[node name="anvil" instance=ExtResource("1_k5dfb")]
+
+[node name="Anvil -rigid" parent="." index="0"]
+mass = 80.0
+script = ExtResource("2_i0ysq")
+
+[node name="Sound" type="AudioStreamPlayer3D" parent="Anvil -rigid" index="2"]
