@@ -112,8 +112,6 @@ func _ready():
 	Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
 	
 	ApplySettings()
-	# the funny
-#	print_rich("[font_size=120][color=CORNFLOWER_BLUE][wave]heck you")
 	
 	if SAVE_GAME:
 		var save_system = SaveGame.new()
@@ -138,10 +136,8 @@ func _input(event):
 func _physics_process(delta):
 	
 	if !is_on_floor():
-		#print(gravity * delta * JUMP_FALLMULTIPLIER)
 		velocity.y -= gravity * delta * JUMP_FALLMULTIPLIER
 		velocity.y = clamp(velocity.y, -38, 500)
-		#velocity.y -= clamp(gravity * delta * JUMP_FALLMULTIPLIER, -9.8, 0)
 	
 	
 	if Input.is_action_pressed("jump") and is_on_floor():
@@ -155,9 +151,7 @@ func _physics_process(delta):
 	if (Input.is_action_pressed("forward") or Input.is_action_pressed("left") or Input.is_action_pressed("right") or Input.is_action_pressed("backward")):
 		faceDirection = Vector3(Input.get_action_strength("right") - Input.get_action_strength("left"), 0 ,Input.get_action_strength("backward") - Input.get_action_strength("forward")).normalized()
 	
-	#character.rotation.y = atan2(ray_endpos.position.x, ray_endpos.position.z)
 	
-	# player rotation code
 	if isHolding:
 		character.rotation.y = atan2(ray_endpos.position.x, ray_endpos.position.z)
 	elif !isHolding and velocity:
@@ -166,8 +160,6 @@ func _physics_process(delta):
 		pass
 	
 	
-	
-	# player movement from template (im too lazy to change it, nor do I need to)
 	var input_dir = Input.get_vector("left", "right", "forward", "backward")
 	var direction = (transform.basis * Vector3(input_dir.x, 0, input_dir.y)).normalized()
 	
@@ -216,11 +208,9 @@ func _physics_process(delta):
 		state_machine.travel("idle")
 	
 
-# process is the player throwing mechanic and healthbar code
 func _process(_delta):
 	HUD.Dialogue()
 	
-	# Handle picking up RIGID BODIES
 	if (NearestObject() and NearestObject() is RigidBody3D and global_position.distance_to(NearestObject().global_position) <= PICKUP_RANGE) and isHolding == false:
 		
 		if NearestObject().is_in_group("ungrabbable"):
@@ -251,7 +241,6 @@ func _process(_delta):
 	
 	
 	if !Input.is_action_pressed("click"): 
-		# check if the object exists still, or else crash
 		if !is_instance_valid(object):
 			object = null
 			isHolding = false
@@ -270,10 +259,8 @@ func _process(_delta):
 			object.set_collision_mask_value(1, true)
 			
 			var force = (cursor.global_position - position).normalized()
-			#var force = (ray.get_collision_point() - position).normalized()
-			
-			
-			#if character.position.distance_to(cursor.position) < 4 and character.position.distance_to(cursor.position) > -4:
+		
+		
 			if pivot.rotation.x < -1:
 				force = Vector3(0, 0, 0)
 				
@@ -369,11 +356,6 @@ func NearestObject():
 
 #region Player UI
 func RestartLevel():
-	#var save = SaveGame.new()
-	#save.save_game_level(get_tree().current_scene.scene_file_path)
-	#print_rich("[rainbow]Saved Level:", save.load_game().level)
-	
-	#LoadingScreen.next_scene = player_hub
 	LoadingScreen.next_scene = get_tree().current_scene.scene_file_path
 	LoadingScreen.scene_transition()
 
@@ -389,7 +371,6 @@ func FinishDialogue(dialogue: String):
 
 
 func ApplySettings():
-	# update sensitivity and volume settings
 	var new_config = SaveConfig.new()
 	var settings = new_config.load_config()
 	
@@ -450,9 +431,6 @@ func _on_delay_timeout():
 				LoadingScreen.scene_transition()
 			
 			else:
-				#save.save_game_level(i.nextscene_string)
-				print_rich("[rainbow]Saved Level:", save.load_game().level)
-				
 				LoadingScreen.next_scene = player_hub
 				LoadingScreen.scene_transition()
 	
@@ -516,7 +494,6 @@ func _on_info_death():
 	
 	LoadingScreen.next_scene = player_hub
 	LoadingScreen.scene_transition()
-	#DeathScreen()
 
 #endregion
 

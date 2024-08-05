@@ -8,6 +8,8 @@ extends Node3D
 
 func _ready():
 	Input.set_mouse_mode(Input.MOUSE_MODE_VISIBLE)
+	print_rich("[font_size=120][color=CORNFLOWER_BLUE][wave]heck you")
+	
 
 func _on_play_button_pressed():
 	var save = SaveGame.new()

@@ -10,7 +10,7 @@ config_version=5
 
 [application]
 
-config/name="WorkingTitle"
+config/name="Amelioration"
 run/main_scene="res://Elements/function/main_menu.tscn"
 config/features=PackedStringArray("4.2", "Forward Plus")
 config/icon="res://Art/assets/misc/icon.svg"
