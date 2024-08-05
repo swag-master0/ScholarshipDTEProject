@@ -103,11 +103,14 @@ func name_picked():
 	player.dialogue_queue.append("this room is pretty boring, huh.")
 	player.dialogue_queue.append(str("alright, ", PlayerName.new().fetch_name(), ", lets go out"))
 	player.dialogue_queue.append("i just lined something up that could be fun!")
-	player.dialogue_queue.append("you like shiny things, right? those humans eons ago really liked them")
-	player.dialogue_queue.append("what i want you to do is bring them back here, a little fetch-quest!")
-	player.dialogue_queue.append("lemme send down the lift...")
+	player.dialogue_queue.append("i just remembered that you require food to live, and i don't have any on standby")
+	player.dialogue_queue.append("lets go find some")
+	player.dialogue_queue.append("lemme send down the lift... we're going to the surface!")
 
-
+# i just realised you can't eat, because i never gave you a mouth
+# oh well, guess you'll starve
+# on the bright side, it'll take you approximately 4 years to starve
+# i'll just revive you when that happens anyway, <name>!
 
 func _on_player_dialogue_finished(dialogue):
 	if dialogue == "DIAGNOSTIC COURSE IS NOW BEGINNING. ":

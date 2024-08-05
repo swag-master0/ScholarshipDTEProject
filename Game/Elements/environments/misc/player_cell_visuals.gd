@@ -1,6 +1,11 @@
 extends Node
 
 
+var c1_m2_IntroDialogue = [
+	""
+]
+
+
 
 @onready var rail_anims = $"../RailsPlayerHub/AnimationPlayer"
 var allow_exit = false
