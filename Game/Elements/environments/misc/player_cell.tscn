@@ -122,10 +122,10 @@ tracks/0/path = NodePath("RailsPlayerHub/carraige:position")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
-"times": PackedFloat32Array(0.5, 2.5, 5),
+"times": PackedFloat32Array(0.5, 2, 5),
 "transitions": PackedFloat32Array(1, 1, 1),
 "update": 0,
-"values": [Vector3(0, 1, -0.323), Vector3(0, 9.5, -0.323), Vector3(0, 42, -0.323)]
+"values": [Vector3(0, 1, -0.323), Vector3(0, 9.5, -0.323), Vector3(0, 63, -0.323)]
 }
 tracks/1/type = "value"
 tracks/1/imported = false
@@ -168,7 +168,7 @@ background_mode = 1
 [node name="PlayerHub" type="Node3D"]
 script = ExtResource("1_vgvtl")
 
-[node name="Node" type="Node" parent="."]
+[node name="DialogueHandler" type="Node" parent="."]
 script = ExtResource("2_fxe48")
 
 [node name="RailsPlayerHub" type="Node3D" parent="."]
@@ -208,14 +208,14 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.000427246, -0.102539, -0.24
 shape = SubResource("BoxShape3D_eeenf")
 
 [node name="Portal" type="Area3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 42.2807, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 58.2261, 0)
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Portal"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 4.34674, 0)
 shape = SubResource("BoxShape3D_080nk")
 
 [node name="Player" parent="." instance=ExtResource("2_anjfi")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 31, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 33, 0)
 SAVE_GAME = false
 DISPLAY_DUST = false
 
@@ -245,8 +245,9 @@ spot_angle = 60.0
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
 environment = SubResource("Environment_ppwta")
 
-[connection signal="body_entered" from="RailsPlayerHub/carraige/Area3D" to="Node" method="_on_exit_body_entered"]
+[connection signal="body_entered" from="RailsPlayerHub/carraige/Area3D" to="DialogueHandler" method="_on_exit_body_entered"]
 [connection signal="body_entered" from="Portal" to="." method="_on_portal_body_entered"]
+[connection signal="DialogueFinished" from="Player" to="DialogueHandler" method="_on_player_dialogue_finished"]
 
 [editable path="RailsPlayerHub/carraige"]
 [editable path="player_hub"]
