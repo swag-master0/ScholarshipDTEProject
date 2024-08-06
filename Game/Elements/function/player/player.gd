@@ -83,7 +83,6 @@ var canPause = true
 var levelchangetriggered = false
 
 var tutorial_proximitydrop = false
-
 var main_menu = "res://Elements/function/main_menu.tscn"
 
 
