@@ -1,4 +1,4 @@
-[gd_scene load_steps=96 format=3 uid="uid://bcou7suhphdrp"]
+[gd_scene load_steps=97 format=3 uid="uid://bcou7suhphdrp"]
 
 [ext_resource type="Script" path="res://Elements/function/player/player.gd" id="1_0ncw4"]
 [ext_resource type="PackedScene" uid="uid://4lv8cegk7f53" path="res://Art/blend/assets/main/player.blend" id="2_ww4ji"]
@@ -14,6 +14,7 @@
 [ext_resource type="Theme" uid="uid://qpcg0ktiqy0j" path="res://Art/materials/theme.tres" id="10_mghpg"]
 [ext_resource type="AudioStream" uid="uid://eiiqal51bdu" path="res://Art/audio/player_select.wav" id="11_bg06q"]
 [ext_resource type="AudioStream" uid="uid://bdxfhhvgttnt5" path="res://Art/audio/player_death.wav" id="12_3vcwe"]
+[ext_resource type="Texture2D" uid="uid://doaw75lk5teaf" path="res://Art/assets/hud/hud-dude.png" id="12_7h4vn"]
 [ext_resource type="Texture2D" uid="uid://dq1jh3wfs4h7j" path="res://Art/assets/hud/paused.png" id="12_u6uc1"]
 [ext_resource type="AudioStream" uid="uid://bwu6q554kl8jd" path="res://Art/audio/player_hurt.wav" id="13_03cy8"]
 [ext_resource type="AudioStream" uid="uid://bk7fdh3m3au1n" path="res://Art/audio/dialogue.wav" id="14_inpwu"]
@@ -386,12 +387,13 @@ size = Vector3(4, 3, 4)
 viewport_path = NodePath("A-OS Viewport")
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_pcmpf"]
-bg_color = Color(1, 1, 1, 1)
-draw_center = false
-skew = Vector2(1.5, 0)
-border_width_right = 6
-border_color = Color(0.137255, 0.0392157, 0.0156863, 1)
+bg_color = Color(0.238516, 0.0632626, 0.0307648, 1)
+skew = Vector2(0.6, 0)
+border_width_right = 5
+border_color = Color(0.238516, 0.0632626, 0.0307648, 1)
 corner_detail = 1
+shadow_size = 1
+shadow_offset = Vector2(15, 15)
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_nqrcn"]
 bg_color = Color(0.752941, 0, 0, 1)
@@ -491,21 +493,21 @@ shape = SubResource("CapsuleShape3D_nrsfh")
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1, 0)
 
 [node name="Skeleton3D" parent="PlayerModel/player/Armature" index="0"]
-bones/0/position = Vector3(-0.00183521, -0.0716424, 0)
-bones/1/rotation = Quaternion(0.000254234, -0.000376226, 0.81868, 0.57425)
-bones/2/rotation = Quaternion(-0.000402485, -0.000268705, 0.290571, 0.956853)
-bones/3/rotation = Quaternion(-0.000416571, -7.05066e-05, 0.403477, 0.91499)
+bones/0/position = Vector3(-0.00183521, -0.0687856, 0)
+bones/1/rotation = Quaternion(0.000106214, -0.000157038, 0.819224, 0.573474)
+bones/2/rotation = Quaternion(-0.000121946, -8.15163e-05, 0.292342, 0.956314)
+bones/3/rotation = Quaternion(-0.000126195, -2.12733e-05, 0.407464, 0.913221)
 bones/4/rotation = Quaternion(-6.35795e-06, -2.53072e-07, 0.0895676, 0.995981)
-bones/5/rotation = Quaternion(0.000289878, 0.000362309, -0.845381, 0.534163)
-bones/6/rotation = Quaternion(-0.000393815, 0.000282893, -0.280091, 0.959973)
-bones/7/rotation = Quaternion(-0.000468426, 7.36142e-05, -0.35035, 0.936619)
-bones/8/rotation = Quaternion(-9.57824e-05, 3.50548e-06, -0.0766401, 0.997059)
-bones/9/rotation = Quaternion(0.00264208, 0, 0, 0.999997)
-bones/10/rotation = Quaternion(0.706012, -0.0393381, -0.706012, 0.0393382)
-bones/11/rotation = Quaternion(7.55553e-09, 1.57522e-08, -0.132922, 0.991127)
+bones/5/rotation = Quaternion(8.79097e-05, 0.000109889, -0.847489, 0.530813)
+bones/6/rotation = Quaternion(-0.000119483, 8.5819e-05, -0.282421, 0.959291)
+bones/7/rotation = Quaternion(-0.000142819, 2.24414e-05, -0.348918, 0.937153)
+bones/8/rotation = Quaternion(-3.95394e-05, 1.44697e-06, -0.0754466, 0.99715)
+bones/9/rotation = Quaternion(0.000801521, 0, 0, 1)
+bones/10/rotation = Quaternion(0.706111, -0.0375155, -0.706111, 0.0375155)
+bones/11/rotation = Quaternion(1.19891e-08, 1.57594e-08, -0.129522, 0.991577)
 bones/12/rotation = Quaternion(2.11264e-09, -9.40588e-16, -0.0279828, 0.999608)
-bones/13/rotation = Quaternion(0.706009, 0.0393901, 0.706009, 0.0393902)
-bones/14/rotation = Quaternion(7.55906e-09, -1.57521e-08, 0.132975, 0.991119)
+bones/13/rotation = Quaternion(0.706108, 0.0375708, 0.706108, 0.0375709)
+bones/14/rotation = Quaternion(1.19882e-08, -1.57593e-08, 0.129578, 0.991569)
 bones/15/rotation = Quaternion(2.11486e-09, 2.15884e-15, 0.0280121, 0.999608)
 
 [node name="Player" parent="PlayerModel/player/Armature/Skeleton3D" index="0"]
@@ -515,7 +517,7 @@ surface_material_override/1 = SubResource("ShaderMaterial_booyl")
 surface_material_override/2 = SubResource("ShaderMaterial_mhwhj")
 
 [node name="FaceAttachment" type="BoneAttachment3D" parent="PlayerModel/player/Armature/Skeleton3D" index="1"]
-transform = Transform3D(1, 0, 0, 0, 0.999986, -0.00528413, 0, 0.00528413, 0.999986, -0.00183521, 0.512901, 0)
+transform = Transform3D(1, 0, 0, 0, 0.999999, -0.00160304, 0, 0.00160304, 0.999999, -0.00183521, 0.515758, 0)
 bone_name = "Head"
 bone_idx = 9
 
@@ -689,7 +691,7 @@ grow_horizontal = 2
 grow_vertical = 0
 pivot_offset = Vector2(180, 25)
 max_value = 20.0
-value = 10.0
+value = 8.0
 allow_greater = true
 allow_lesser = true
 
@@ -708,6 +710,21 @@ value = 10.0
 allow_greater = true
 allow_lesser = true
 show_percentage = false
+
+[node name="Dude" type="TextureRect" parent="HUD/Health"]
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -30.0
+offset_top = 5.0
+offset_right = 30.0
+offset_bottom = 65.0
+grow_horizontal = 2
+grow_vertical = 0
+texture = ExtResource("12_7h4vn")
 
 [node name="EnemyHealth" type="ProgressBar" parent="HUD"]
 layout_mode = 1
