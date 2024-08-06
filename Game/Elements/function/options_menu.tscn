@@ -31,10 +31,10 @@ anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = -92.5
-offset_top = -180.0
-offset_right = 92.5
-offset_bottom = 180.0
+offset_left = -277.5
+offset_top = -540.0
+offset_right = 277.5
+offset_bottom = 540.0
 grow_horizontal = 2
 grow_vertical = 2
 color = Color(0.447059, 0.0745098, 0, 0.360784)
@@ -46,10 +46,10 @@ anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = -87.5
-offset_top = -125.0
-offset_right = 87.5
-offset_bottom = 125.0
+offset_left = -262.5
+offset_top = -375.0
+offset_right = 262.501
+offset_bottom = 375.0
 grow_horizontal = 2
 grow_vertical = 2
 
@@ -58,13 +58,13 @@ layout_mode = 2
 
 [node name="GameLabel2" type="Label" parent="ScrollContainer/VBoxContainer"]
 layout_mode = 2
-theme_override_font_sizes/font_size = 12
+theme_override_font_sizes/font_size = 26
 text = "- Game -"
 horizontal_alignment = 1
 
 [node name="SensitivityLabel" type="Label" parent="ScrollContainer/VBoxContainer"]
 layout_mode = 2
-theme_override_font_sizes/font_size = 10
+theme_override_font_sizes/font_size = 14
 text = "SENSITIVITY:"
 
 [node name="SensitivitySlider" type="HSlider" parent="ScrollContainer/VBoxContainer"]
@@ -80,12 +80,12 @@ text = "4.0"
 [node name="Empty2" type="Label" parent="ScrollContainer/VBoxContainer"]
 layout_mode = 2
 theme_override_font_sizes/font_size = 12
-text = "                      "
+text = "                                                                        "
 horizontal_alignment = 1
 
 [node name="VideoLabel" type="Label" parent="ScrollContainer/VBoxContainer"]
 layout_mode = 2
-theme_override_font_sizes/font_size = 12
+theme_override_font_sizes/font_size = 26
 text = "- Video -"
 horizontal_alignment = 1
 
@@ -100,13 +100,13 @@ horizontal_alignment = 1
 
 [node name="Audio" type="Label" parent="ScrollContainer/VBoxContainer"]
 layout_mode = 2
-theme_override_font_sizes/font_size = 12
+theme_override_font_sizes/font_size = 26
 text = "- Audio -"
 horizontal_alignment = 1
 
 [node name="MusicLabel" type="Label" parent="ScrollContainer/VBoxContainer"]
 layout_mode = 2
-theme_override_font_sizes/font_size = 10
+theme_override_font_sizes/font_size = 14
 text = "MUSIC:"
 
 [node name="MusicSlider" type="HSlider" parent="ScrollContainer/VBoxContainer"]
@@ -116,7 +116,7 @@ step = 0.01
 
 [node name="SFXLabel" type="Label" parent="ScrollContainer/VBoxContainer"]
 layout_mode = 2
-theme_override_font_sizes/font_size = 10
+theme_override_font_sizes/font_size = 14
 text = "SFX:"
 
 [node name="SFXSlider" type="HSlider" parent="ScrollContainer/VBoxContainer"]
@@ -126,7 +126,7 @@ step = 0.01
 
 [node name="AmbienceLabel" type="Label" parent="ScrollContainer/VBoxContainer"]
 layout_mode = 2
-theme_override_font_sizes/font_size = 10
+theme_override_font_sizes/font_size = 14
 text = "AMBIENCE:"
 
 [node name="AmbienceSlider" type="HSlider" parent="ScrollContainer/VBoxContainer"]
@@ -134,15 +134,56 @@ layout_mode = 2
 max_value = 3.0
 step = 0.01
 
+[node name="Empty4" type="Label" parent="ScrollContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 12
+text = "                                                                        
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+"
+horizontal_alignment = 1
+
 [node name="BackButton" type="Button" parent="."]
 layout_mode = 1
 anchors_preset = 4
 anchor_top = 0.5
 anchor_bottom = 0.5
 offset_left = 90.0
-offset_top = -100.0
-offset_right = 190.0
-offset_bottom = -75.0
+offset_top = -107.5
+offset_right = 390.0
+offset_bottom = -27.5
 grow_vertical = 2
 text = "BACK"
 

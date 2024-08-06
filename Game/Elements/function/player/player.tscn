@@ -1,4 +1,4 @@
-[gd_scene load_steps=92 format=3 uid="uid://bcou7suhphdrp"]
+[gd_scene load_steps=96 format=3 uid="uid://bcou7suhphdrp"]
 
 [ext_resource type="Script" path="res://Elements/function/player/player.gd" id="1_0ncw4"]
 [ext_resource type="PackedScene" uid="uid://4lv8cegk7f53" path="res://Art/blend/assets/main/player.blend" id="2_ww4ji"]
@@ -14,6 +14,7 @@
 [ext_resource type="Theme" uid="uid://qpcg0ktiqy0j" path="res://Art/materials/theme.tres" id="10_mghpg"]
 [ext_resource type="AudioStream" uid="uid://eiiqal51bdu" path="res://Art/audio/player_select.wav" id="11_bg06q"]
 [ext_resource type="AudioStream" uid="uid://bdxfhhvgttnt5" path="res://Art/audio/player_death.wav" id="12_3vcwe"]
+[ext_resource type="Texture2D" uid="uid://dq1jh3wfs4h7j" path="res://Art/assets/hud/paused.png" id="12_u6uc1"]
 [ext_resource type="AudioStream" uid="uid://bwu6q554kl8jd" path="res://Art/audio/player_hurt.wav" id="13_03cy8"]
 [ext_resource type="AudioStream" uid="uid://bk7fdh3m3au1n" path="res://Art/audio/dialogue.wav" id="14_inpwu"]
 [ext_resource type="Texture2D" uid="uid://cix4ak6aasuam" path="res://Art/assets/hud/selection.png" id="14_pvb8u"]
@@ -23,6 +24,7 @@
 [ext_resource type="Shader" path="res://Art/filters/quantisation.gdshader" id="16_dvf37"]
 [ext_resource type="Shader" path="res://Art/filters/sobel_outlines.gdshader" id="17_5fr21"]
 [ext_resource type="PackedScene" uid="uid://d3qcg4xjm6x5x" path="res://Elements/function/player/a-os.tscn" id="20_sjfsg"]
+[ext_resource type="Shader" path="res://Art/filters/pixellation.gdshader" id="23_cil3e"]
 
 [sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_ijhnm"]
 animation = &"grab"
@@ -397,15 +399,6 @@ bg_color = Color(0.752941, 0, 0, 1)
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_btmbw"]
 bg_color = Color(0.188235, 1, 0.113725, 1)
 
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_h4201"]
-bg_color = Color(0.447059, 0.0745098, 0, 0.360784)
-skew = Vector2(-0.435, 0)
-border_width_right = 15
-border_color = Color(0.0784314, 0.0784314, 0.0509804, 0.752941)
-corner_detail = 1
-expand_margin_left = 595.0
-anti_aliasing = false
-
 [sub_resource type="SpriteFrames" id="SpriteFrames_gdws8"]
 animations = [{
 "frames": [{
@@ -423,8 +416,21 @@ animations = [{
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_m2pfy"]
 shader = ExtResource("16_dvf37")
 
+[sub_resource type="Gradient" id="Gradient_8ar3y"]
+offsets = PackedFloat32Array(0.60066, 1)
+colors = PackedColorArray(0, 0, 0, 0, 0, 0, 0, 0.694118)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_0kq1m"]
+gradient = SubResource("Gradient_8ar3y")
+fill = 1
+fill_from = Vector2(0.5, 0.5)
+metadata/_snap_enabled = true
+
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_al30p"]
 shader = ExtResource("17_5fr21")
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_01co8"]
+shader = ExtResource("23_cil3e")
 
 [sub_resource type="Curve" id="Curve_h13y2"]
 _data = [Vector2(0, 0), 0.0, 0.0, 0, 0, Vector2(0.5, 0.178947), 0.235628, 0.235628, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
@@ -485,21 +491,21 @@ shape = SubResource("CapsuleShape3D_nrsfh")
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1, 0)
 
 [node name="Skeleton3D" parent="PlayerModel/player/Armature" index="0"]
-bones/0/position = Vector3(-0.00183521, -0.0685093, 0)
-bones/1/rotation = Quaternion(0.000102069, -0.000150901, 0.819239, 0.573452)
-bones/2/rotation = Quaternion(-0.000133556, -8.9263e-05, 0.292269, 0.956336)
-bones/3/rotation = Quaternion(-7.82341e-05, -1.31416e-05, 0.408122, 0.912928)
+bones/0/position = Vector3(-0.00183521, -0.0716424, 0)
+bones/1/rotation = Quaternion(0.000254234, -0.000376226, 0.81868, 0.57425)
+bones/2/rotation = Quaternion(-0.000402485, -0.000268705, 0.290571, 0.956853)
+bones/3/rotation = Quaternion(-0.000416571, -7.05066e-05, 0.403477, 0.91499)
 bones/4/rotation = Quaternion(-6.35795e-06, -2.53072e-07, 0.0895676, 0.995981)
-bones/5/rotation = Quaternion(5.45504e-05, 6.81969e-05, -0.847836, 0.530259)
-bones/6/rotation = Quaternion(-9.29487e-05, 6.67571e-05, -0.282646, 0.959224)
-bones/7/rotation = Quaternion(-0.000156389, 2.45741e-05, -0.348978, 0.937131)
-bones/8/rotation = Quaternion(-3.18227e-05, 1.16452e-06, -0.0752828, 0.997162)
-bones/9/rotation = Quaternion(0.000877691, 0, 0, 1)
-bones/10/rotation = Quaternion(0.70612, -0.0373392, -0.70612, 0.0373393)
-bones/11/rotation = Quaternion(7.61747e-09, 1.57605e-08, -0.12896, 0.99165)
+bones/5/rotation = Quaternion(0.000289878, 0.000362309, -0.845381, 0.534163)
+bones/6/rotation = Quaternion(-0.000393815, 0.000282893, -0.280091, 0.959973)
+bones/7/rotation = Quaternion(-0.000468426, 7.36142e-05, -0.35035, 0.936619)
+bones/8/rotation = Quaternion(-9.57824e-05, 3.50548e-06, -0.0766401, 0.997059)
+bones/9/rotation = Quaternion(0.00264208, 0, 0, 0.999997)
+bones/10/rotation = Quaternion(0.706012, -0.0393381, -0.706012, 0.0393382)
+bones/11/rotation = Quaternion(7.55553e-09, 1.57522e-08, -0.132922, 0.991127)
 bones/12/rotation = Quaternion(2.11264e-09, -9.40588e-16, -0.0279828, 0.999608)
-bones/13/rotation = Quaternion(0.706117, 0.0373949, 0.706117, 0.0373949)
-bones/14/rotation = Quaternion(7.62094e-09, -1.57604e-08, 0.129017, 0.991642)
+bones/13/rotation = Quaternion(0.706009, 0.0393901, 0.706009, 0.0393902)
+bones/14/rotation = Quaternion(7.55906e-09, -1.57521e-08, 0.132975, 0.991119)
 bones/15/rotation = Quaternion(2.11486e-09, 2.15884e-15, 0.0280121, 0.999608)
 
 [node name="Player" parent="PlayerModel/player/Armature/Skeleton3D" index="0"]
@@ -509,7 +515,7 @@ surface_material_override/1 = SubResource("ShaderMaterial_booyl")
 surface_material_override/2 = SubResource("ShaderMaterial_mhwhj")
 
 [node name="FaceAttachment" type="BoneAttachment3D" parent="PlayerModel/player/Armature/Skeleton3D" index="1"]
-transform = Transform3D(1, 0, 0, 0, 0.999998, -0.00175538, 0, 0.00175538, 0.999998, -0.00183521, 0.516034, 0)
+transform = Transform3D(1, 0, 0, 0, 0.999986, -0.00528413, 0, 0.00528413, 0.999986, -0.00183521, 0.512901, 0)
 bone_name = "Head"
 bone_idx = 9
 
@@ -614,10 +620,10 @@ layout_mode = 1
 anchors_preset = 5
 anchor_left = 0.5
 anchor_right = 0.5
-offset_left = -125.0
-offset_top = 10.0
-offset_right = 125.0
-offset_bottom = 80.0
+offset_left = -375.0
+offset_top = 30.0
+offset_right = 375.0
+offset_bottom = 230.0
 grow_horizontal = 2
 pivot_offset = Vector2(250, 75)
 
@@ -629,10 +635,9 @@ anchor_left = 1.0
 anchor_top = 0.5
 anchor_right = 1.0
 anchor_bottom = 0.5
-offset_left = -50.0
-offset_top = -40.0
-offset_right = 25.0
-offset_bottom = 35.0
+offset_left = -250.0
+offset_top = -125.0
+offset_bottom = 125.0
 grow_horizontal = 0
 grow_vertical = 2
 texture = SubResource("ViewportTexture_8wrpo")
@@ -643,8 +648,8 @@ layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
-offset_left = -19.0
-offset_right = -44.0
+offset_left = 21.0
+offset_right = -255.0
 grow_horizontal = 2
 grow_vertical = 2
 text = "dialogue"
@@ -676,10 +681,10 @@ anchor_left = 0.5
 anchor_top = 1.0
 anchor_right = 0.5
 anchor_bottom = 1.0
-offset_left = -71.5
-offset_top = -80.0
-offset_right = 71.5
-offset_bottom = -62.0
+offset_left = -180.0
+offset_top = -230.0
+offset_right = 180.0
+offset_bottom = -180.0
 grow_horizontal = 2
 grow_vertical = 0
 pivot_offset = Vector2(180, 25)
@@ -732,10 +737,8 @@ anchor_left = 1.0
 anchor_top = 1.0
 anchor_right = 1.0
 anchor_bottom = 1.0
-offset_left = -155.0
-offset_top = -126.0
-offset_right = -25.0
-offset_bottom = -25.0
+offset_left = -520.0
+offset_top = -404.0
 grow_horizontal = 0
 grow_vertical = 0
 bbcode_enabled = true
@@ -745,37 +748,42 @@ scroll_active = false
 wait_time = 6.0
 one_shot = true
 
-[node name="PauseMenu" type="Panel" parent="HUD"]
+[node name="PauseMenu" type="ColorRect" parent="HUD"]
 process_mode = 2
 visible = false
-layout_mode = 1
-anchors_preset = 9
-anchor_bottom = 1.0
-offset_right = 250.0
-grow_vertical = 2
-theme_override_styles/panel = SubResource("StyleBoxFlat_h4201")
-
-[node name="ColorRect" type="ColorRect" parent="HUD/PauseMenu"]
-visible = false
-show_behind_parent = true
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
-offset_right = 1266.0
 grow_horizontal = 2
 grow_vertical = 2
-color = Color(0, 0, 0, 0.666667)
+color = Color(0, 0, 0, 0.556863)
+
+[node name="ColorRect" type="TextureRect" parent="HUD/PauseMenu"]
+show_behind_parent = true
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -50.0
+offset_top = -50.0
+offset_right = 50.0
+offset_bottom = 50.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("12_u6uc1")
 
 [node name="ResumeButton" type="Button" parent="HUD/PauseMenu"]
 layout_mode = 1
 anchors_preset = 4
 anchor_top = 0.5
 anchor_bottom = 0.5
-offset_left = 35.0
-offset_top = -80.0
-offset_right = 160.0
-offset_bottom = -55.0
+offset_left = 250.0
+offset_top = -190.0
+offset_right = 625.0
+offset_bottom = -115.0
 grow_vertical = 2
 text = "resume"
 
@@ -784,10 +792,10 @@ layout_mode = 1
 anchors_preset = 4
 anchor_top = 0.5
 anchor_bottom = 0.5
-offset_left = 40.0
-offset_top = -45.0
-offset_right = 165.0
-offset_bottom = -20.0
+offset_left = 250.0
+offset_top = -90.0
+offset_right = 625.0
+offset_bottom = -15.0
 grow_vertical = 2
 text = "restart level"
 
@@ -796,10 +804,10 @@ layout_mode = 1
 anchors_preset = 4
 anchor_top = 0.5
 anchor_bottom = 0.5
-offset_left = 46.0
-offset_top = -10.0
-offset_right = 171.0
-offset_bottom = 15.0
+offset_left = 250.0
+offset_top = 10.0
+offset_right = 625.0
+offset_bottom = 85.0
 grow_vertical = 2
 text = "options
 "
@@ -809,10 +817,10 @@ layout_mode = 1
 anchors_preset = 4
 anchor_top = 0.5
 anchor_bottom = 0.5
-offset_left = 53.0
-offset_top = 25.0
-offset_right = 178.0
-offset_bottom = 50.0
+offset_left = 250.0
+offset_top = 110.0
+offset_right = 625.0
+offset_bottom = 185.0
 grow_vertical = 2
 text = "quit to menu"
 
@@ -822,8 +830,8 @@ modulate = Color(1, 1, 1, 0.490196)
 texture_filter = 1
 texture_repeat = 1
 layout_mode = 1
-offset_right = 32.0
-offset_bottom = 32.0
+offset_right = 64.0
+offset_bottom = 64.0
 pivot_offset = Vector2(16, 16)
 texture = ExtResource("14_pvb8u")
 expand_mode = 1
@@ -985,6 +993,7 @@ one_shot = true
 [node name="Filters" type="Node" parent="."]
 
 [node name="Quantisation" type="CanvasLayer" parent="Filters"]
+process_mode = 3
 layer = -1
 
 [node name="ColorRect" type="ColorRect" parent="Filters/Quantisation"]
@@ -995,6 +1004,14 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 mouse_filter = 2
+
+[node name="Overlay" type="TextureRect" parent="Filters"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = SubResource("GradientTexture2D_0kq1m")
 
 [node name="Outlines" type="CanvasLayer" parent="Filters"]
 process_mode = 3
@@ -1008,6 +1025,18 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 mouse_filter = 2
+
+[node name="Pixelisation" type="CanvasLayer" parent="Filters"]
+process_mode = 3
+layer = -1
+
+[node name="Pixelisation" type="ColorRect" parent="Filters/Pixelisation"]
+material = SubResource("ShaderMaterial_01co8")
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
 
 [node name="Dust" type="GPUParticles3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
