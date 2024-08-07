@@ -106,6 +106,7 @@ func name_picked():
 	player.dialogue_queue.append("i just remembered that you require food to live, and i don't have any on standby")
 	player.dialogue_queue.append("lets go find some")
 	player.dialogue_queue.append("lemme send down the lift... we're going to the surface!")
+	# If this is changed, remember to do the same with the dialogue checker in order to allow the elevator to come down!
 
 # i just realised you can't eat, because i never gave you a mouth
 # oh well, guess you'll starve
@@ -136,7 +137,7 @@ func _on_player_dialogue_finished(dialogue):
 		$"../Control/ColorRect/LineEdit".grab_focus()
 		get_tree().paused = true
 	
-	elif dialogue == "lemme send down the lift...":
+	elif dialogue == "lemme send down the lift... we're going to the surface":
 		rail_anims.play("down")
 	
 	

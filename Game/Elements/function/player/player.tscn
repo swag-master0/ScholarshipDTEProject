@@ -493,21 +493,21 @@ shape = SubResource("CapsuleShape3D_nrsfh")
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1, 0)
 
 [node name="Skeleton3D" parent="PlayerModel/player/Armature" index="0"]
-bones/0/position = Vector3(-0.00183521, -0.0775417, 0)
-bones/1/rotation = Quaternion(0.000618819, -0.000916101, 0.817336, 0.57616)
-bones/2/rotation = Quaternion(-0.000968254, -0.000646212, 0.286995, 0.957931)
-bones/3/rotation = Quaternion(-0.0010238, -0.000173462, 0.395115, 0.918631)
+bones/0/position = Vector3(-0.00183521, -0.0774743, 0)
+bones/1/rotation = Quaternion(0.000587224, -0.000869315, 0.817453, 0.575995)
+bones/2/rotation = Quaternion(-0.00101131, -0.000674942, 0.286723, 0.958013)
+bones/3/rotation = Quaternion(-0.00104525, -0.000177098, 0.394819, 0.918759)
 bones/4/rotation = Quaternion(-6.35795e-06, -2.53072e-07, 0.0895676, 0.995981)
-bones/5/rotation = Quaternion(0.000712205, 0.000890132, -0.84093, 0.541142)
-bones/6/rotation = Quaternion(-0.000924631, 0.000664221, -0.275578, 0.961278)
-bones/7/rotation = Quaternion(-0.00114377, 0.000179752, -0.353318, 0.935502)
-bones/8/rotation = Quaternion(-0.00021475, 7.85981e-06, -0.0791643, 0.996862)
-bones/9/rotation = Quaternion(0.00625859, 0, 0, 0.99998)
-bones/10/rotation = Quaternion(0.705806, -0.0428638, -0.705806, 0.0428638)
-bones/11/rotation = Quaternion(8.87268e-09, 1.57371e-08, -0.139817, 0.990177)
+bones/5/rotation = Quaternion(0.000727123, 0.000908776, -0.840772, 0.541388)
+bones/6/rotation = Quaternion(-0.000929301, 0.000667576, -0.275538, 0.961289)
+bones/7/rotation = Quaternion(-0.00117597, 0.000184812, -0.35346, 0.935449)
+bones/8/rotation = Quaternion(-0.000206917, 7.57306e-06, -0.0789981, 0.996875)
+bones/9/rotation = Quaternion(0.00649331, 0, 0, 0.999979)
+bones/10/rotation = Quaternion(0.705805, -0.0428948, -0.705805, 0.0428949)
+bones/11/rotation = Quaternion(1.01299e-08, 1.57364e-08, -0.140157, 0.990129)
 bones/12/rotation = Quaternion(2.11264e-09, -9.40588e-16, -0.0279828, 0.999608)
-bones/13/rotation = Quaternion(0.705804, 0.0429094, 0.705804, 0.0429094)
-bones/14/rotation = Quaternion(7.44946e-09, -1.57368e-08, 0.13996, 0.990157)
+bones/13/rotation = Quaternion(0.705802, 0.0429404, 0.705802, 0.0429404)
+bones/14/rotation = Quaternion(7.44275e-09, -1.57359e-08, 0.140387, 0.990097)
 bones/15/rotation = Quaternion(2.11486e-09, 2.15884e-15, 0.0280121, 0.999608)
 
 [node name="Player" parent="PlayerModel/player/Armature/Skeleton3D" index="0"]
@@ -517,7 +517,7 @@ surface_material_override/1 = SubResource("ShaderMaterial_booyl")
 surface_material_override/2 = SubResource("ShaderMaterial_mhwhj")
 
 [node name="FaceAttachment" type="BoneAttachment3D" parent="PlayerModel/player/Armature/Skeleton3D" index="1"]
-transform = Transform3D(1, 0, 0, 0, 0.999922, -0.0125169, 0, 0.0125169, 0.999922, -0.00183521, 0.507002, 0)
+transform = Transform3D(1, 0, 0, 0, 0.999916, -0.0129863, 0, 0.0129863, 0.999916, -0.00183521, 0.507069, 0)
 bone_name = "Head"
 bone_idx = 9
 
@@ -546,11 +546,11 @@ shape = SubResource("BoxShape3D_virh7")
 [node name="HoldPointPivot" type="Node3D" parent="PlayerModel"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.261848, 0)
 
-[node name="HoldPoint" type="Marker3D" parent="PlayerModel/HoldPointPivot"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 1.5)
+[node name="Backup" type="Marker3D" parent="PlayerModel/HoldPointPivot"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
 
-[node name="Backup" type="Marker3D" parent="PlayerModel/HoldPointPivot/HoldPoint"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, -1.5)
+[node name="HoldPoint" type="Marker3D" parent="PlayerModel/HoldPointPivot"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 2)
 
 [node name="CentralCameraPoint" type="Marker3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.01149, 0.273736)
@@ -771,7 +771,6 @@ one_shot = true
 
 [node name="PauseMenu" type="ColorRect" parent="HUD"]
 process_mode = 2
-visible = false
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -779,22 +778,6 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 color = Color(0, 0, 0, 0.556863)
-
-[node name="ColorRect" type="TextureRect" parent="HUD/PauseMenu"]
-show_behind_parent = true
-layout_mode = 1
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = -50.0
-offset_top = -50.0
-offset_right = 50.0
-offset_bottom = 50.0
-grow_horizontal = 2
-grow_vertical = 2
-texture = ExtResource("12_u6uc1")
 
 [node name="ResumeButton" type="Button" parent="HUD/PauseMenu"]
 layout_mode = 1
@@ -844,6 +827,22 @@ offset_right = 625.0
 offset_bottom = 185.0
 grow_vertical = 2
 text = "quit to menu"
+
+[node name="ColorRect" type="TextureRect" parent="HUD/PauseMenu"]
+show_behind_parent = true
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -50.0
+offset_top = -50.0
+offset_right = 50.0
+offset_bottom = 50.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("12_u6uc1")
 
 [node name="Indicator" type="TextureRect" parent="HUD"]
 visible = false

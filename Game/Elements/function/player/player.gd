@@ -32,9 +32,8 @@ func TOP():
 # Player Model
 @onready var character = $PlayerModel
 @onready var holdpoint_pivot = $PlayerModel/HoldPointPivot
-
 @onready var holdpoint = $PlayerModel/HoldPointPivot/HoldPoint
-@onready var holdpoint_backup = $PlayerModel/HoldPointPivot/HoldPoint/Backup
+@onready var holdpoint_backup = $PlayerModel/HoldPointPivot/Backup
 @onready var obstruction_detection = $PlayerModel/ObstructionDetector
 
 
@@ -135,8 +134,6 @@ func _input(event):
 		pivot.rotate_x(deg_to_rad(-event.relative.y * SENSITIVITY))
 		pivot.rotation.x = clamp(pivot.rotation.x, deg_to_rad(MIN_LOOK), deg_to_rad(MAX_LOOK))
 		
-		#holdpoint_pivot.rotate_x(deg_to_rad(event.relative.y * SENSITIVITY))
-		#holdpoint_pivot.rotation.x = clamp(holdpoint_pivot.rotation.x, deg_to_rad(-45), deg_to_rad(45))
 
 func _physics_process(delta):
 	
@@ -169,10 +166,16 @@ func _physics_process(delta):
 	var input_dir = Input.get_vector("left", "right", "forward", "backward")
 	var direction = (transform.basis * Vector3(input_dir.x, 0, input_dir.y)).normalized()
 	
-	if direction:
+	#if direction:
+	#	velocity.x = direction.x * SPEED
+	#	velocity.z = direction.z * SPEED
+	if direction and !isHolding:
 		velocity.x = direction.x * SPEED
 		velocity.z = direction.z * SPEED
-	
+	elif direction and isHolding:
+		velocity.x = direction.x * SPEED / (clamp(object.mass / 4, 4, 10) - 3)
+		velocity.z = direction.z * SPEED / (clamp(object.mass / 4, 4, 10) - 3)
+		
 	else:
 		velocity.x = move_toward(velocity.x, 0, SPEED)
 		velocity.z = move_toward(velocity.z, 0, SPEED)
@@ -217,7 +220,7 @@ func _physics_process(delta):
 func _process(_delta):
 	HUD.Dialogue()
 	
-	holdpoint_pivot.look_at(cursor.global_position, Vector3.UP, true)
+	holdpoint_pivot.rotation.x = clamp(-pivot.rotation.x, deg_to_rad(-60), deg_to_rad(0))
 	
 	
 	if (NearestObject() and NearestObject() is RigidBody3D and global_position.distance_to(NearestObject().global_position) <= PICKUP_RANGE) and isHolding == false:
@@ -234,9 +237,9 @@ func _process(_delta):
 			object = NearestObject()
 			oldparent = object.get_parent()
 			
-			holdpoint.position = Vector3(0, 1, 2)
+			#holdpoint.position = Vector3(0, 1, 2)
 			object.global_transform = holdpoint.global_transform
-			
+			#object.global_position = holdpoint.global_position
 			
 			object.reparent(holdpoint)
 			object.set_freeze_enabled(true)
