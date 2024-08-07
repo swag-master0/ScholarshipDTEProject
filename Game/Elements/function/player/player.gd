@@ -13,7 +13,7 @@ func TOP():
 
 @export_category("Preferences")
 @export var SENSITIVITY : float = 0.25
-@export var MAX_LOOK : float = 60
+@export var MAX_LOOK : float = 55
 @export var MIN_LOOK : float = -75
 
 @export_category("Gameplay")
@@ -31,12 +31,12 @@ func TOP():
 
 # Player Model
 @onready var character = $PlayerModel
-@onready var holdpoint = $PlayerModel/HoldPoint
-@onready var holdpoint_backup = $PlayerModel/HoldPoint/Backup
+@onready var holdpoint_pivot = $PlayerModel/HoldPointPivot
+
+@onready var holdpoint = $PlayerModel/HoldPointPivot/HoldPoint
+@onready var holdpoint_backup = $PlayerModel/HoldPointPivot/HoldPoint/Backup
 @onready var obstruction_detection = $PlayerModel/ObstructionDetector
 
-@onready var character_viewpoint = $PlayerModel/CharacterViewpoint
-@onready var character_holdpoint = $PlayerModel/CharacterViewpoint/HoldPoint
 
 
 # Camera
@@ -126,6 +126,7 @@ func _ready():
 func _input(event):
 	if event is InputEventMouseMotion and canPause == true:
 		
+		
 		rotate_y(deg_to_rad(-event.relative.x * SENSITIVITY))
 		
 		if !velocity and !isHolding:
@@ -134,6 +135,8 @@ func _input(event):
 		pivot.rotate_x(deg_to_rad(-event.relative.y * SENSITIVITY))
 		pivot.rotation.x = clamp(pivot.rotation.x, deg_to_rad(MIN_LOOK), deg_to_rad(MAX_LOOK))
 		
+		#holdpoint_pivot.rotate_x(deg_to_rad(event.relative.y * SENSITIVITY))
+		#holdpoint_pivot.rotation.x = clamp(holdpoint_pivot.rotation.x, deg_to_rad(-45), deg_to_rad(45))
 
 func _physics_process(delta):
 	
@@ -153,17 +156,14 @@ func _physics_process(delta):
 	if (Input.is_action_pressed("forward") or Input.is_action_pressed("left") or Input.is_action_pressed("right") or Input.is_action_pressed("backward")):
 		faceDirection = Vector3(Input.get_action_strength("right") - Input.get_action_strength("left"), 0 ,Input.get_action_strength("backward") - Input.get_action_strength("forward")).normalized()
 	
-	var tween = get_tree().create_tween()
-	tween.tween_property(character, "rotation.y", atan2(ray_endpos.position.x, ray_endpos.position.z), 0.1)
 	
 	
-	# Old rotation code
-#	if isHolding:
-#		character.rotation.y = atan2(ray_endpos.position.x, ray_endpos.position.z)
-#	elif !isHolding and velocity:
-#		character.rotation.y = lerp_angle(character.rotation.y, atan2(faceDirection.x, faceDirection.z), delta * TURN_VELOCITY)
-#	elif !velocity and is_on_floor():
-#		pass
+	if isHolding:
+		character.rotation.y = atan2(ray_endpos.position.x, ray_endpos.position.z)
+	elif !isHolding and velocity:
+		character.rotation.y = lerp_angle(character.rotation.y, atan2(faceDirection.x, faceDirection.z), delta * TURN_VELOCITY)
+	elif !velocity and is_on_floor():
+		pass
 	
 	
 	var input_dir = Input.get_vector("left", "right", "forward", "backward")
@@ -217,13 +217,15 @@ func _physics_process(delta):
 func _process(_delta):
 	HUD.Dialogue()
 	
+	holdpoint_pivot.look_at(cursor.global_position, Vector3.UP, true)
+	
+	
 	if (NearestObject() and NearestObject() is RigidBody3D and global_position.distance_to(NearestObject().global_position) <= PICKUP_RANGE) and isHolding == false:
 		
 		if NearestObject().is_in_group("ungrabbable"):
 			return
 		
 		HUD.setCursorPosition(NearestObject().global_position, true)
-		
 		
 		
 		if Input.is_action_just_pressed("click"):
@@ -233,14 +235,10 @@ func _process(_delta):
 			oldparent = object.get_parent()
 			
 			holdpoint.position = Vector3(0, 1, 2)
-			#object.global_transform = holdpoint.global_transform
+			object.global_transform = holdpoint.global_transform
 			
-		#	Tweening wont work, this only triggers once
-		#	var tween = get_tree().create_tween()
-		#	tween.tween_property(object, "global_transform", character_holdpoint.global_transform, 0.1)
-			object.global_transform = character_holdpoint.global_transform
 			
-			object.reparent(character)
+			object.reparent(holdpoint)
 			object.set_freeze_enabled(true)
 			object.set_freeze_mode(0)
 			object.set_collision_layer_value(1, false)
@@ -319,7 +317,6 @@ func MousePosition():
 	if  ready and canPause: # This statement looks very dumb but without it it'll sometimes crash. The crashing isn't even consistant either!
 		
 		if ray.is_colliding() and is_instance_valid(ray.get_collider()):
-			character_viewpoint.target_position = ray.get_collision_point()
 			var rayHit = ray.get_collider()
 			cursor.global_position = ray.get_collision_point()
 			
