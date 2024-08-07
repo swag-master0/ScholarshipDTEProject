@@ -35,6 +35,9 @@ func TOP():
 @onready var holdpoint_backup = $PlayerModel/HoldPoint/Backup
 @onready var obstruction_detection = $PlayerModel/ObstructionDetector
 
+@onready var character_viewpoint = $PlayerModel/CharacterViewpoint
+@onready var character_holdpoint = $PlayerModel/CharacterViewpoint/HoldPoint
+
 
 # Camera
 @onready var pivot = $CentralCameraPoint
@@ -150,13 +153,17 @@ func _physics_process(delta):
 	if (Input.is_action_pressed("forward") or Input.is_action_pressed("left") or Input.is_action_pressed("right") or Input.is_action_pressed("backward")):
 		faceDirection = Vector3(Input.get_action_strength("right") - Input.get_action_strength("left"), 0 ,Input.get_action_strength("backward") - Input.get_action_strength("forward")).normalized()
 	
+	var tween = get_tree().create_tween()
+	tween.tween_property(character, "rotation.y", atan2(ray_endpos.position.x, ray_endpos.position.z), 0.1)
 	
-	if isHolding:
-		character.rotation.y = atan2(ray_endpos.position.x, ray_endpos.position.z)
-	elif !isHolding and velocity:
-		character.rotation.y = lerp_angle(character.rotation.y, atan2(faceDirection.x, faceDirection.z), delta * TURN_VELOCITY)
-	elif !velocity and is_on_floor():
-		pass
+	
+	# Old rotation code
+#	if isHolding:
+#		character.rotation.y = atan2(ray_endpos.position.x, ray_endpos.position.z)
+#	elif !isHolding and velocity:
+#		character.rotation.y = lerp_angle(character.rotation.y, atan2(faceDirection.x, faceDirection.z), delta * TURN_VELOCITY)
+#	elif !velocity and is_on_floor():
+#		pass
 	
 	
 	var input_dir = Input.get_vector("left", "right", "forward", "backward")
@@ -226,7 +233,13 @@ func _process(_delta):
 			oldparent = object.get_parent()
 			
 			holdpoint.position = Vector3(0, 1, 2)
-			object.global_transform = holdpoint.global_transform
+			#object.global_transform = holdpoint.global_transform
+			
+		#	Tweening wont work, this only triggers once
+		#	var tween = get_tree().create_tween()
+		#	tween.tween_property(object, "global_transform", character_holdpoint.global_transform, 0.1)
+			object.global_transform = character_holdpoint.global_transform
+			
 			object.reparent(character)
 			object.set_freeze_enabled(true)
 			object.set_freeze_mode(0)
@@ -306,6 +319,7 @@ func MousePosition():
 	if  ready and canPause: # This statement looks very dumb but without it it'll sometimes crash. The crashing isn't even consistant either!
 		
 		if ray.is_colliding() and is_instance_valid(ray.get_collider()):
+			character_viewpoint.target_position = ray.get_collision_point()
 			var rayHit = ray.get_collider()
 			cursor.global_position = ray.get_collision_point()
 			

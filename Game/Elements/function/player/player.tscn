@@ -483,7 +483,7 @@ parameters/land/TimeScale/scale = 3.0
 parameters/run/Blend2/blend_amount = 0.0
 parameters/run/TimeScale/scale = 2.0
 
-[node name="Collision" type="CollisionShape3D" parent="."]
+[node name="CollisionShape" type="CollisionShape3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.148464, 0)
 shape = SubResource("CapsuleShape3D_nrsfh")
 
@@ -493,22 +493,24 @@ shape = SubResource("CapsuleShape3D_nrsfh")
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1, 0)
 
 [node name="Skeleton3D" parent="PlayerModel/player/Armature" index="0"]
-bones/0/position = Vector3(-0.00183521, -0.0679261, 0)
-bones/1/rotation = Quaternion(2.84865e-05, -4.19395e-05, 0.819509, 0.573066)
-bones/2/rotation = Quaternion(-4.14119e-05, -2.77804e-05, 0.292851, 0.956158)
-bones/3/rotation = Quaternion(-3.22748e-05, -5.34926e-06, 0.408752, 0.912646)
-bones/4/rotation = Quaternion(-6.35795e-06, -2.53072e-07, 0.0895676, 0.995981)
-bones/5/rotation = Quaternion(2.25826e-05, 2.82437e-05, -0.848168, 0.529728)
-bones/6/rotation = Quaternion(-3.69516e-05, 2.65299e-05, -0.283121, 0.959084)
-bones/7/rotation = Quaternion(-4.86895e-05, 7.64797e-06, -0.348504, 0.937307)
-bones/8/rotation = Quaternion(-9.90777e-06, 3.62422e-07, -0.0748178, 0.997197)
-bones/9/rotation = Quaternion(0.000273154, 0, 0, 1)
-bones/10/rotation = Quaternion(0.70614, -0.0369672, -0.70614, 0.0369672)
-bones/11/rotation = Quaternion(7.62588e-09, 1.57616e-08, -0.128422, 0.99172)
-bones/12/rotation = Quaternion(2.11264e-09, -9.40588e-16, -0.0279828, 0.999608)
-bones/13/rotation = Quaternion(0.706137, 0.0370235, 0.706137, 0.0370235)
-bones/14/rotation = Quaternion(7.62934e-09, -1.57615e-08, 0.128479, 0.991712)
-bones/15/rotation = Quaternion(2.11486e-09, 2.15884e-15, 0.0280121, 0.999608)
+visible = false
+bones/0/position = Vector3(-0.00183521, -0.263149, 0)
+bones/0/rotation = Quaternion(0, -0.213019, 0, 0.977048)
+bones/1/rotation = Quaternion(-0.145181, -0.205511, 0.622558, 0.741019)
+bones/2/rotation = Quaternion(0.0999244, -0.0513394, 0.0736718, 0.990935)
+bones/3/rotation = Quaternion(0.731573, -0.0219659, 0.186462, 0.655402)
+bones/4/rotation = Quaternion(0.157226, -0.00204761, 0.0371327, 0.986862)
+bones/5/rotation = Quaternion(-0.00733414, -0.133639, -0.59029, 0.796018)
+bones/6/rotation = Quaternion(0.0355755, -0.109654, -0.049441, 0.992102)
+bones/7/rotation = Quaternion(0.0430717, -0.111926, -0.624894, 0.771444)
+bones/8/rotation = Quaternion(0.0178162, -0.00539915, -0.171156, 0.985068)
+bones/9/rotation = Quaternion(0.000195199, -0.321257, 6.62192e-05, 0.946992)
+bones/10/rotation = Quaternion(0.671581, -0.221185, -0.671676, 0.22115)
+bones/11/rotation = Quaternion(0.000560397, -1.76927e-05, -0.557697, 0.830044)
+bones/12/rotation = Quaternion(2.1982e-09, 2.73683e-09, -0.0279828, 0.999608)
+bones/13/rotation = Quaternion(0.906926, 0.244921, 0.332904, 0.0817008)
+bones/14/rotation = Quaternion(0.0345155, 0.00125418, 0.55031, 0.834246)
+bones/15/rotation = Quaternion(2.6786e-09, 3.0571e-09, 0.0280121, 0.999608)
 
 [node name="Player" parent="PlayerModel/player/Armature/Skeleton3D" index="0"]
 lod_bias = 128.0
@@ -517,7 +519,7 @@ surface_material_override/1 = SubResource("ShaderMaterial_booyl")
 surface_material_override/2 = SubResource("ShaderMaterial_mhwhj")
 
 [node name="FaceAttachment" type="BoneAttachment3D" parent="PlayerModel/player/Armature/Skeleton3D" index="1"]
-transform = Transform3D(1, 0, 0, 0, 1, -0.000546309, 0, 0.000546309, 1, -0.00183521, 0.516617, 0)
+transform = Transform3D(0.468292, -0.000364254, -0.883574, -5.82077e-11, 1, -0.000412251, 0.883574, 0.000193054, 0.468292, -0.00183521, 0.321394, 0)
 bone_name = "Head"
 bone_idx = 9
 
@@ -548,6 +550,13 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 1.5)
 
 [node name="Backup" type="Marker3D" parent="PlayerModel/HoldPoint"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, -1.5)
+
+[node name="CharacterViewpoint" type="RayCast3D" parent="PlayerModel"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.686971, 0)
+target_position = Vector3(0, 0, -10)
+
+[node name="HoldPoint" type="Marker3D" parent="PlayerModel/CharacterViewpoint"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -2)
 
 [node name="CentralCameraPoint" type="Marker3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.01149, 0.273736)
