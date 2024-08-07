@@ -1,7 +1,7 @@
 [gd_scene load_steps=6 format=3 uid="uid://ckdmt4lj1dp6j"]
 
 [ext_resource type="Script" path="res://Elements/assets/props/template/prop_fragile.gd" id="1_p34hv"]
-[ext_resource type="AudioStream" uid="uid://b2jgcpimq7mm8" path="res://Art/audio/collision.wav" id="2_7g73c"]
+[ext_resource type="AudioStream" uid="uid://b2jgcpimq7mm8" path="res://Art/audio/impact/old/collision.wav" id="2_7g73c"]
 
 [sub_resource type="CylinderShape3D" id="CylinderShape3D_sg8y4"]
 radius = 1.0

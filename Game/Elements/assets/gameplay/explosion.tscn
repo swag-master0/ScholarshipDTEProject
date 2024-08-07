@@ -1,7 +1,7 @@
 [gd_scene load_steps=12 format=3 uid="uid://d03b14il32qs5"]
 
 [ext_resource type="Script" path="res://Elements/assets/gameplay/explosion.gd" id="1_l0qbb"]
-[ext_resource type="AudioStream" uid="uid://cm410bdt0as57" path="res://Art/audio/explosion.wav" id="2_weawm"]
+[ext_resource type="AudioStream" uid="uid://cm410bdt0as57" path="res://Art/audio/misc/explosion.wav" id="2_weawm"]
 
 [sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_m64h2"]
 particle_flag_align_y = true

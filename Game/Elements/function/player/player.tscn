@@ -10,21 +10,21 @@
 [ext_resource type="Texture2D" uid="uid://ctnbrrls3ra0x" path="res://Art/assets/assets/player_eyes-2.png" id="6_jjkqh"]
 [ext_resource type="Script" path="res://Elements/function/player/player_hud.gd" id="8_3kk53"]
 [ext_resource type="PackedScene" uid="uid://233quw6ftjqa" path="res://Elements/function/options_menu.tscn" id="9_vjmmq"]
-[ext_resource type="AudioStream" uid="uid://w2v2x3att67l" path="res://Art/audio/click.wav" id="10_iq0rl"]
 [ext_resource type="Theme" uid="uid://qpcg0ktiqy0j" path="res://Art/materials/theme.tres" id="10_mghpg"]
-[ext_resource type="AudioStream" uid="uid://eiiqal51bdu" path="res://Art/audio/player_select.wav" id="11_bg06q"]
-[ext_resource type="AudioStream" uid="uid://bdxfhhvgttnt5" path="res://Art/audio/player_death.wav" id="12_3vcwe"]
+[ext_resource type="AudioStream" uid="uid://eiiqal51bdu" path="res://Art/audio/player/player_select.wav" id="11_bg06q"]
 [ext_resource type="Texture2D" uid="uid://doaw75lk5teaf" path="res://Art/assets/hud/hud-dude.png" id="12_7h4vn"]
 [ext_resource type="Texture2D" uid="uid://dq1jh3wfs4h7j" path="res://Art/assets/hud/paused.png" id="12_u6uc1"]
-[ext_resource type="AudioStream" uid="uid://bwu6q554kl8jd" path="res://Art/audio/player_hurt.wav" id="13_03cy8"]
-[ext_resource type="AudioStream" uid="uid://bk7fdh3m3au1n" path="res://Art/audio/dialogue.wav" id="14_inpwu"]
 [ext_resource type="Texture2D" uid="uid://cix4ak6aasuam" path="res://Art/assets/hud/selection.png" id="14_pvb8u"]
 [ext_resource type="Texture2D" uid="uid://dmnjpb8ox2bsu" path="res://Art/assets/hud/mouse1-1.png" id="15_5hkb5"]
 [ext_resource type="Texture2D" uid="uid://cvguvo850eb22" path="res://Art/assets/hud/mouse1-2.png" id="16_5kyhk"]
-[ext_resource type="AudioStream" uid="uid://bclhxlykmyxll" path="res://Art/audio/CameraWind.mp3" id="16_8yp7b"]
+[ext_resource type="AudioStream" uid="uid://bclhxlykmyxll" path="res://Art/audio/ambient/CameraWind.mp3" id="16_8yp7b"]
 [ext_resource type="Shader" path="res://Art/filters/quantisation.gdshader" id="16_dvf37"]
 [ext_resource type="Shader" path="res://Art/filters/sobel_outlines.gdshader" id="17_5fr21"]
+[ext_resource type="AudioStream" uid="uid://w2v2x3att67l" path="res://Art/audio/player/click.wav" id="19_588om"]
 [ext_resource type="PackedScene" uid="uid://d3qcg4xjm6x5x" path="res://Elements/function/player/a-os.tscn" id="20_sjfsg"]
+[ext_resource type="AudioStream" uid="uid://bdxfhhvgttnt5" path="res://Art/audio/player/player_death.wav" id="21_3msr6"]
+[ext_resource type="AudioStream" uid="uid://bwu6q554kl8jd" path="res://Art/audio/player/player_hurt.wav" id="22_6jsqo"]
+[ext_resource type="AudioStream" uid="uid://bk7fdh3m3au1n" path="res://Art/audio/player/dialogue.wav" id="23_6dhoq"]
 [ext_resource type="Shader" path="res://Art/filters/pixellation.gdshader" id="23_cil3e"]
 
 [sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_ijhnm"]
@@ -493,21 +493,21 @@ shape = SubResource("CapsuleShape3D_nrsfh")
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1, 0)
 
 [node name="Skeleton3D" parent="PlayerModel/player/Armature" index="0"]
-bones/0/position = Vector3(-0.00183521, -0.0774743, 0)
-bones/1/rotation = Quaternion(0.000587224, -0.000869315, 0.817453, 0.575995)
-bones/2/rotation = Quaternion(-0.00101131, -0.000674942, 0.286723, 0.958013)
-bones/3/rotation = Quaternion(-0.00104525, -0.000177098, 0.394819, 0.918759)
+bones/0/position = Vector3(-0.00183521, -0.0710231, 0)
+bones/1/rotation = Quaternion(0.000223817, -0.000331184, 0.818791, 0.574091)
+bones/2/rotation = Quaternion(-0.000341671, -0.000228127, 0.290955, 0.956737)
+bones/3/rotation = Quaternion(-0.00035362, -5.98333e-05, 0.404342, 0.914608)
 bones/4/rotation = Quaternion(-6.35795e-06, -2.53072e-07, 0.0895676, 0.995981)
-bones/5/rotation = Quaternion(0.000727123, 0.000908776, -0.840772, 0.541388)
-bones/6/rotation = Quaternion(-0.000929301, 0.000667576, -0.275538, 0.961289)
-bones/7/rotation = Quaternion(-0.00117597, 0.000184812, -0.35346, 0.935449)
-bones/8/rotation = Quaternion(-0.000206917, 7.57306e-06, -0.0789981, 0.996875)
-bones/9/rotation = Quaternion(0.00649331, 0, 0, 0.999979)
-bones/10/rotation = Quaternion(0.705805, -0.0428948, -0.705805, 0.0428949)
-bones/11/rotation = Quaternion(1.01299e-08, 1.57364e-08, -0.140157, 0.990129)
+bones/5/rotation = Quaternion(0.000246094, 0.000307588, -0.845839, 0.533438)
+bones/6/rotation = Quaternion(-0.000334345, 0.000240172, -0.280596, 0.959826)
+bones/7/rotation = Quaternion(-0.000399635, 6.2803e-05, -0.350048, 0.936732)
+bones/8/rotation = Quaternion(-8.1319e-05, 2.97611e-06, -0.0763332, 0.997082)
+bones/9/rotation = Quaternion(0.00224309, 0, 0, 0.999997)
+bones/10/rotation = Quaternion(0.706034, -0.0389431, -0.706034, 0.0389431)
+bones/11/rotation = Quaternion(7.56706e-09, 1.57538e-08, -0.132185, 0.991225)
 bones/12/rotation = Quaternion(2.11264e-09, -9.40588e-16, -0.0279828, 0.999608)
-bones/13/rotation = Quaternion(0.705802, 0.0429404, 0.705802, 0.0429404)
-bones/14/rotation = Quaternion(7.44275e-09, -1.57359e-08, 0.140387, 0.990097)
+bones/13/rotation = Quaternion(0.706031, 0.0389958, 0.706031, 0.0389958)
+bones/14/rotation = Quaternion(7.57058e-09, -1.57537e-08, 0.132239, 0.991218)
 bones/15/rotation = Quaternion(2.11486e-09, 2.15884e-15, 0.0280121, 0.999608)
 
 [node name="Player" parent="PlayerModel/player/Armature/Skeleton3D" index="0"]
@@ -517,7 +517,7 @@ surface_material_override/1 = SubResource("ShaderMaterial_booyl")
 surface_material_override/2 = SubResource("ShaderMaterial_mhwhj")
 
 [node name="FaceAttachment" type="BoneAttachment3D" parent="PlayerModel/player/Armature/Skeleton3D" index="1"]
-transform = Transform3D(1, 0, 0, 0, 0.999916, -0.0129863, 0, 0.0129863, 0.999916, -0.00183521, 0.507069, 0)
+transform = Transform3D(1, 0, 0, 0, 0.99999, -0.00448616, 0, 0.00448616, 0.99999, -0.00183521, 0.51352, 0)
 bone_name = "Head"
 bone_idx = 9
 
@@ -982,7 +982,7 @@ stream = ExtResource("16_8yp7b")
 autoplay = true
 
 [node name="PlayerWalk" type="AudioStreamPlayer" parent="Audio"]
-stream = ExtResource("10_iq0rl")
+stream = ExtResource("19_588om")
 volume_db = -10.0
 bus = &"sfx"
 
@@ -992,17 +992,17 @@ volume_db = -20.0
 bus = &"sfx"
 
 [node name="PlayerDeath" type="AudioStreamPlayer" parent="Audio"]
-stream = ExtResource("12_3vcwe")
+stream = ExtResource("21_3msr6")
 volume_db = -20.0
 bus = &"sfx"
 
 [node name="PlayerHurt" type="AudioStreamPlayer" parent="Audio"]
-stream = ExtResource("13_03cy8")
+stream = ExtResource("22_6jsqo")
 volume_db = -20.0
 bus = &"sfx"
 
 [node name="Dialogue" type="AudioStreamPlayer" parent="Audio"]
-stream = ExtResource("14_inpwu")
+stream = ExtResource("23_6dhoq")
 volume_db = -20.0
 bus = &"sfx"
 

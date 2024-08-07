@@ -2,7 +2,7 @@
 
 [ext_resource type="Script" path="res://Elements/enemies/bomber.gd" id="1_iqn42"]
 [ext_resource type="PackedScene" uid="uid://d03b14il32qs5" path="res://Elements/assets/gameplay/explosion.tscn" id="2_s131x"]
-[ext_resource type="AudioStream" uid="uid://b3roo26suawn4" path="res://Art/audio/bomber_buildup.wav" id="4_bujc0"]
+[ext_resource type="AudioStream" uid="uid://b3roo26suawn4" path="res://Art/audio/enemy/bomber_buildup.wav" id="4_bujc0"]
 [ext_resource type="PackedScene" uid="uid://dxj1vlaxxy54b" path="res://Art/blend/assets/enemies/bomber.blend" id="5_006x1"]
 
 [sub_resource type="SphereShape3D" id="SphereShape3D_4mudu"]
