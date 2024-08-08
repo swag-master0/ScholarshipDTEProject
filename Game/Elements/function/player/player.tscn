@@ -494,21 +494,21 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1, 0)
 
 [node name="Skeleton3D" parent="PlayerModel/player/Armature" index="0"]
 bones/0/position = Vector3(-0.00183521, -0.263149, 0)
-bones/0/rotation = Quaternion(0, -0.213019, 0, 0.977048)
-bones/1/rotation = Quaternion(-0.145181, -0.205511, 0.622558, 0.741019)
-bones/2/rotation = Quaternion(0.0999244, -0.0513394, 0.0736718, 0.990935)
-bones/3/rotation = Quaternion(0.731573, -0.0219659, 0.186462, 0.655402)
-bones/4/rotation = Quaternion(0.157226, -0.00204761, 0.0371327, 0.986862)
-bones/5/rotation = Quaternion(-0.00733414, -0.133639, -0.59029, 0.796018)
-bones/6/rotation = Quaternion(0.0355755, -0.109654, -0.049441, 0.992102)
-bones/7/rotation = Quaternion(0.0430717, -0.111926, -0.624894, 0.771444)
-bones/8/rotation = Quaternion(0.0178162, -0.00539915, -0.171156, 0.985068)
-bones/9/rotation = Quaternion(0.000195199, -0.321257, 6.62192e-05, 0.946992)
-bones/10/rotation = Quaternion(0.671581, -0.221185, -0.671676, 0.22115)
-bones/11/rotation = Quaternion(0.000718001, -2.27623e-05, -0.55777, 0.829995)
+bones/0/rotation = Quaternion(0, 0.214755, 0, 0.976668)
+bones/1/rotation = Quaternion(-0.239106, 0.390567, 0.2509, 0.852839)
+bones/2/rotation = Quaternion(-0.132075, -0.180732, 0.737197, 0.63752)
+bones/3/rotation = Quaternion(0.241591, 0.551968, 0.78711, 0.131997)
+bones/4/rotation = Quaternion(0.108911, 0.0330832, 0.268143, 0.956631)
+bones/5/rotation = Quaternion(-0.236985, 0.0512596, -0.363762, 0.899382)
+bones/6/rotation = Quaternion(0.3577, 0.158128, -0.440853, 0.807895)
+bones/7/rotation = Quaternion(0.758311, -0.451195, -0.138058, 0.449807)
+bones/8/rotation = Quaternion(0.201277, -0.00140979, -0.0269861, 0.979162)
+bones/9/rotation = Quaternion(0.000159416, -0.633924, 0.000130668, 0.773395)
+bones/10/rotation = Quaternion(0.907032, -0.244585, -0.332885, 0.0815979)
+bones/11/rotation = Quaternion(0.0344571, -0.00125693, -0.551064, 0.83375)
 bones/12/rotation = Quaternion(2.1982e-09, 2.73683e-09, -0.0279828, 0.999608)
-bones/13/rotation = Quaternion(0.906926, 0.244921, 0.332904, 0.0817008)
-bones/14/rotation = Quaternion(0.0345155, 0.00125418, 0.55031, 0.834246)
+bones/13/rotation = Quaternion(0.67154, 0.221042, 0.671836, 0.220932)
+bones/14/rotation = Quaternion(0.000625072, 1.94947e-05, 0.556307, 0.830977)
 bones/15/rotation = Quaternion(2.6786e-09, 3.0571e-09, 0.0280121, 0.999608)
 
 [node name="Player" parent="PlayerModel/player/Armature/Skeleton3D" index="0"]
@@ -518,7 +518,7 @@ surface_material_override/1 = SubResource("ShaderMaterial_booyl")
 surface_material_override/2 = SubResource("ShaderMaterial_mhwhj")
 
 [node name="FaceAttachment" type="BoneAttachment3D" parent="PlayerModel/player/Armature/Skeleton3D" index="1"]
-transform = Transform3D(0.468292, -0.000364254, -0.883574, -5.82077e-11, 1, -0.000412251, 0.883574, 0.000193054, 0.468292, -0.00183521, 0.321394, 0)
+transform = Transform3D(0.589503, -0.000333002, -0.807766, 2.91038e-11, 1, -0.000412251, 0.807766, 0.000243023, 0.589503, -0.00183521, 0.321394, 0)
 bone_name = "Head"
 bone_idx = 9
 
@@ -675,6 +675,8 @@ layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
+offset_right = -1920.0
+offset_bottom = -1080.0
 grow_horizontal = 2
 grow_vertical = 2
 color = Color(1, 1, 1, 0)
@@ -771,81 +773,6 @@ scroll_active = false
 wait_time = 6.0
 one_shot = true
 
-[node name="PauseMenu" type="ColorRect" parent="HUD"]
-process_mode = 2
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-color = Color(0, 0, 0, 0.556863)
-
-[node name="ResumeButton" type="Button" parent="HUD/PauseMenu"]
-layout_mode = 1
-anchors_preset = 4
-anchor_top = 0.5
-anchor_bottom = 0.5
-offset_left = 250.0
-offset_top = -190.0
-offset_right = 625.0
-offset_bottom = -115.0
-grow_vertical = 2
-text = "resume"
-
-[node name="RestartButton" type="Button" parent="HUD/PauseMenu"]
-layout_mode = 1
-anchors_preset = 4
-anchor_top = 0.5
-anchor_bottom = 0.5
-offset_left = 250.0
-offset_top = -90.0
-offset_right = 625.0
-offset_bottom = -15.0
-grow_vertical = 2
-text = "restart level"
-
-[node name="OptionsButton" type="Button" parent="HUD/PauseMenu"]
-layout_mode = 1
-anchors_preset = 4
-anchor_top = 0.5
-anchor_bottom = 0.5
-offset_left = 250.0
-offset_top = 10.0
-offset_right = 625.0
-offset_bottom = 85.0
-grow_vertical = 2
-text = "options
-"
-
-[node name="QuitButton" type="Button" parent="HUD/PauseMenu"]
-layout_mode = 1
-anchors_preset = 4
-anchor_top = 0.5
-anchor_bottom = 0.5
-offset_left = 250.0
-offset_top = 110.0
-offset_right = 625.0
-offset_bottom = 185.0
-grow_vertical = 2
-text = "quit to menu"
-
-[node name="ColorRect" type="TextureRect" parent="HUD/PauseMenu"]
-show_behind_parent = true
-layout_mode = 1
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = -50.0
-offset_top = -50.0
-offset_right = 50.0
-offset_bottom = 50.0
-grow_horizontal = 2
-grow_vertical = 2
-texture = ExtResource("12_u6uc1")
-
 [node name="Indicator" type="TextureRect" parent="HUD"]
 visible = false
 modulate = Color(1, 1, 1, 0.490196)
@@ -923,6 +850,81 @@ offset_top = 82.0
 offset_right = 110.0
 offset_bottom = 164.0
 grow_horizontal = 2
+grow_vertical = 2
+text = "quit to menu"
+
+[node name="PauseMenu" type="ColorRect" parent="HUD"]
+process_mode = 3
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0, 0, 0, 0.588235)
+
+[node name="PauseIcon" type="TextureRect" parent="HUD/PauseMenu"]
+show_behind_parent = true
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -50.0
+offset_top = -50.0
+offset_right = 50.0
+offset_bottom = 50.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("12_u6uc1")
+
+[node name="ResumeButton" type="Button" parent="HUD/PauseMenu"]
+layout_mode = 1
+anchors_preset = 4
+anchor_top = 0.5
+anchor_bottom = 0.5
+offset_left = 250.0
+offset_top = -190.0
+offset_right = 625.0
+offset_bottom = -115.0
+grow_vertical = 2
+text = "resume"
+
+[node name="RestartButton" type="Button" parent="HUD/PauseMenu"]
+layout_mode = 1
+anchors_preset = 4
+anchor_top = 0.5
+anchor_bottom = 0.5
+offset_left = 250.0
+offset_top = -90.0
+offset_right = 625.0
+offset_bottom = -15.0
+grow_vertical = 2
+text = "restart level"
+
+[node name="OptionsButton" type="Button" parent="HUD/PauseMenu"]
+layout_mode = 1
+anchors_preset = 4
+anchor_top = 0.5
+anchor_bottom = 0.5
+offset_left = 250.0
+offset_top = 10.0
+offset_right = 625.0
+offset_bottom = 85.0
+grow_vertical = 2
+text = "options
+"
+
+[node name="QuitButton" type="Button" parent="HUD/PauseMenu"]
+layout_mode = 1
+anchors_preset = 4
+anchor_top = 0.5
+anchor_bottom = 0.5
+offset_left = 250.0
+offset_top = 110.0
+offset_right = 625.0
+offset_bottom = 185.0
 grow_vertical = 2
 text = "quit to menu"
 
@@ -1033,6 +1035,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+mouse_filter = 2
 texture = SubResource("GradientTexture2D_0kq1m")
 
 [node name="Outlines" type="CanvasLayer" parent="Filters"]
@@ -1075,12 +1078,12 @@ draw_pass_1 = SubResource("PlaneMesh_4twoe")
 [connection signal="timeout" from="HUD/DialogueBox/RemoveCharacters" to="HUD" method="_on_remove_characters_timeout"]
 [connection signal="timeout" from="HUD/Hints/Timer" to="." method="_hinttext_timeout"]
 [connection signal="timeout" from="HUD/Hints/Timer" to="HUD" method="_hinttext_timeout"]
+[connection signal="pressed" from="HUD/DeathScreen/DeathRestartButton" to="." method="_on_death_restart_button_pressed"]
+[connection signal="pressed" from="HUD/DeathScreen/DeathQuitButton" to="." method="_on_death_quit_button_pressed"]
 [connection signal="pressed" from="HUD/PauseMenu/ResumeButton" to="." method="_on_resume_button_pressed"]
 [connection signal="pressed" from="HUD/PauseMenu/RestartButton" to="." method="_on_restart_button_pressed"]
 [connection signal="pressed" from="HUD/PauseMenu/OptionsButton" to="." method="_on_options_button_pressed"]
 [connection signal="pressed" from="HUD/PauseMenu/QuitButton" to="." method="_on_quit_button_pressed"]
-[connection signal="pressed" from="HUD/DeathScreen/DeathRestartButton" to="." method="_on_death_restart_button_pressed"]
-[connection signal="pressed" from="HUD/DeathScreen/DeathQuitButton" to="." method="_on_death_quit_button_pressed"]
 [connection signal="timeout" from="HUD/LevelCompleted/Delay" to="." method="_on_delay_timeout"]
 
 [editable path="PlayerModel/player"]

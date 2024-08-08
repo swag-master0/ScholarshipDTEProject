@@ -35,7 +35,7 @@ var tutorial_pickup = false
 var healthvisualindicator = false
 var selectionsound = false
 
-
+var skipBBCode = false
 
 
 func _ready():
@@ -106,8 +106,13 @@ func Dialogue(text_speed : float = 0.05, time_until_continue : float = 2.5):
 				hud_dialogue.text = dialogue
 				hud_dialoguedelay.wait_time = text_speed
 				
+				# I was gonna have some over-complicated mechanism here that filtered the RichTextLabel's BBCode to format correctly
+				# But turns out Godot just automatically does it lmao
+				# I have to do this or else it includes each bb code character when emitting the audio and effects, meaning it sounds like there's more letters than there actually are
+				var formatted_string = hud_dialogue.get_parsed_text()
 				
-				for x in dialogue.length():
+				for x in formatted_string.length():
+					
 					hud_dialogue.visible_characters = x + 1
 					
 					sound_dialogue.pitch_scale = randf_range(50, 150) / 100

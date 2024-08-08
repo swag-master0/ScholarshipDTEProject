@@ -92,7 +92,7 @@ func tutorial_finished():
 	
 	#insert A-OS monologue here
 	# TODO: introduce A-OS' name here
-	player.dialogue_queue.append("you would not BELIEVE how hard it is to make life from scratch.")
+	player.dialogue_queue.append("you would not BELIEVE how hard it is to make life from scratch. [img]'res://Art/assets/misc/bean.jpg'[/img]")
 	player.dialogue_queue.append("sorry for the scare about that 'diagnostic test', I didn't want to get attached incase it was another dud.")
 	player.dialogue_queue.append("anyway, i want to get to know you")
 	player.dialogue_queue.append("pick a name for yourself: ")
