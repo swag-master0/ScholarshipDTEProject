@@ -97,7 +97,6 @@ func Dialogue(text_speed : float = 0.05, time_until_continue : float = 2.5):
 		for i in dialogue_queue:
 			var dialogue = dialogue_queue.pop_front()
 			
-			
 			if dialogue is int:
 				A_OS.ApplyMood(dialogue)
 				continue
