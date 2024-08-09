@@ -51,8 +51,8 @@ func _ready():
 func _on_body_entered(_body):
 	if !sound.is_playing():
 		
-		if material == 0:
-			sound.stream = generic_sounds[0]
+	#	if material == 0:
+	#		sound.stream = generic_sounds[0]
 		
 		sound.play()
 

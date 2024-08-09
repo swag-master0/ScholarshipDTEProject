@@ -15,7 +15,7 @@
 	"nodes":[
 		{
 			"mesh":0,
-			"name":"Cube",
+			"name":"Tree -col",
 			"translation":[
 				0,
 				1,
@@ -43,7 +43,7 @@
 		{
 			"bufferView":0,
 			"componentType":5126,
-			"count":198,
+			"count":70,
 			"max":[
 				0.9772800207138062,
 				9.948739051818848,
@@ -59,19 +59,19 @@
 		{
 			"bufferView":1,
 			"componentType":5126,
-			"count":198,
+			"count":70,
 			"type":"VEC3"
 		},
 		{
 			"bufferView":2,
 			"componentType":5126,
-			"count":198,
+			"count":70,
 			"type":"VEC2"
 		},
 		{
 			"bufferView":3,
 			"componentType":5126,
-			"count":198,
+			"count":70,
 			"type":"VEC4"
 		},
 		{
@@ -84,38 +84,38 @@
 	"bufferViews":[
 		{
 			"buffer":0,
-			"byteLength":2376,
+			"byteLength":840,
 			"byteOffset":0,
 			"target":34962
 		},
 		{
 			"buffer":0,
-			"byteLength":2376,
-			"byteOffset":2376,
+			"byteLength":840,
+			"byteOffset":840,
 			"target":34962
 		},
 		{
 			"buffer":0,
-			"byteLength":1584,
-			"byteOffset":4752,
+			"byteLength":560,
+			"byteOffset":1680,
 			"target":34962
 		},
 		{
 			"buffer":0,
-			"byteLength":3168,
-			"byteOffset":6336,
+			"byteLength":1120,
+			"byteOffset":2240,
 			"target":34962
 		},
 		{
 			"buffer":0,
 			"byteLength":408,
-			"byteOffset":9504,
+			"byteOffset":3360,
 			"target":34963
 		}
 	],
 	"buffers":[
 		{
-			"byteLength":9912,
+			"byteLength":3768,
 			"uri":"tree-d881621e3bd9ea22f657ef0ee5176abc.bin"
 		}
 	]
