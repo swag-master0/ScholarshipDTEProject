@@ -117,18 +117,18 @@ states/idle-flair1/position = Vector2(462, -72)
 states/idle-flair2/node = SubResource("AnimationNodeAnimation_kap55")
 states/idle-flair2/position = Vector2(462, 235)
 transitions = ["Start", "idle", SubResource("AnimationNodeStateMachineTransition_37yuh"), "idle-flair1", "idle 2", SubResource("AnimationNodeStateMachineTransition_x8fcp"), "idle 2", "idle-flair2", SubResource("AnimationNodeStateMachineTransition_00asx"), "idle-flair2", "idle", SubResource("AnimationNodeStateMachineTransition_5myx6"), "idle", "idle 3", SubResource("AnimationNodeStateMachineTransition_1tyqk"), "idle 3", "idle-flair1", SubResource("AnimationNodeStateMachineTransition_sve7g")]
-graph_offset = Vector2(40, -148)
+graph_offset = Vector2(-22, -140)
 
 [sub_resource type="AnimationNodeBlendTree" id="AnimationNodeBlendTree_2f60j"]
-graph_offset = Vector2(-437.251, -127.7)
+graph_offset = Vector2(-488.188, -81.2466)
 nodes/Animation/node = SubResource("AnimationNodeAnimation_6jv6s")
-nodes/Animation/position = Vector2(-120, 120)
+nodes/Animation/position = Vector2(-420, 180)
 "nodes/Animation 2/node" = SubResource("AnimationNodeAnimation_4gp2c")
 "nodes/Animation 2/position" = Vector2(-120, 240)
 nodes/Blend2/node = SubResource("AnimationNodeBlend2_e2yh6")
 nodes/Blend2/position = Vector2(120, 140)
 nodes/IdleAnimLoop/node = SubResource("AnimationNodeStateMachine_ehtag")
-nodes/IdleAnimLoop/position = Vector2(-160, -20)
+nodes/IdleAnimLoop/position = Vector2(-120, -20)
 nodes/output/position = Vector2(580, 140)
 node_connections = [&"Blend2", 0, &"IdleAnimLoop", &"Blend2", 1, &"Animation 2", &"output", 0, &"Blend2"]
 
@@ -220,7 +220,7 @@ states/land/position = Vector2(1358, -32)
 states/run/node = SubResource("AnimationNodeBlendTree_r8vxk")
 states/run/position = Vector2(1484, 95)
 transitions = ["idle", "run", SubResource("AnimationNodeStateMachineTransition_h1bte"), "run", "idle", SubResource("AnimationNodeStateMachineTransition_p6kwk"), "Start", "idle", SubResource("AnimationNodeStateMachineTransition_dgmis"), "land", "idle", SubResource("AnimationNodeStateMachineTransition_rr3lq"), "idle", "land", SubResource("AnimationNodeStateMachineTransition_n3x8u"), "land", "fall", SubResource("AnimationNodeStateMachineTransition_0xway"), "fall", "land", SubResource("AnimationNodeStateMachineTransition_tw7kb")]
-graph_offset = Vector2(867, -52)
+graph_offset = Vector2(936, -194)
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_nrsfh"]
 radius = 0.474599
@@ -508,22 +508,23 @@ shape = SubResource("CapsuleShape3D_nrsfh")
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1, 0)
 
 [node name="Skeleton3D" parent="PlayerModel/player/Armature" index="0"]
-bones/0/position = Vector3(-0.00183521, -0.0686468, 0)
-bones/1/rotation = Quaternion(9.01155e-05, -0.000133199, 0.819283, 0.573389)
-bones/2/rotation = Quaternion(-0.000174818, -0.000116795, 0.292009, 0.956416)
-bones/3/rotation = Quaternion(-7.87867e-05, -1.32353e-05, 0.408114, 0.912931)
-bones/4/rotation = Quaternion(-6.35795e-06, -2.53072e-07, 0.0895676, 0.995981)
-bones/5/rotation = Quaternion(5.49347e-05, 6.86773e-05, -0.847832, 0.530265)
-bones/6/rotation = Quaternion(-0.000106157, 7.62455e-05, -0.282534, 0.959257)
-bones/7/rotation = Quaternion(-0.000261418, 4.10806e-05, -0.34944, 0.936959)
-bones/8/rotation = Quaternion(-2.8295e-05, 1.0354e-06, -0.075208, 0.997168)
-bones/9/rotation = Quaternion(0.0011484, 0, 0, 0.999999)
-bones/10/rotation = Quaternion(0.706116, -0.037427, -0.706116, 0.037427)
-bones/11/rotation = Quaternion(7.61737e-09, 1.57605e-08, -0.128967, 0.991649)
-bones/12/rotation = Quaternion(2.11264e-09, -9.40588e-16, -0.0279828, 0.999608)
-bones/13/rotation = Quaternion(0.706113, 0.0374825, 0.706113, 0.0374825)
-bones/14/rotation = Quaternion(7.62084e-09, -1.57604e-08, 0.129024, 0.991642)
-bones/15/rotation = Quaternion(2.11486e-09, 2.15884e-15, 0.0280121, 0.999608)
+bones/0/position = Vector3(-0.00183521, -0.263149, 0)
+bones/0/rotation = Quaternion(0, 0.214755, 0, 0.976668)
+bones/1/rotation = Quaternion(-0.239106, 0.390567, 0.2509, 0.852839)
+bones/2/rotation = Quaternion(-0.132075, -0.180732, 0.737197, 0.63752)
+bones/3/rotation = Quaternion(0.241591, 0.551968, 0.78711, 0.131997)
+bones/4/rotation = Quaternion(0.108911, 0.0330832, 0.268143, 0.956631)
+bones/5/rotation = Quaternion(-0.236985, 0.0512596, -0.363762, 0.899382)
+bones/6/rotation = Quaternion(0.3577, 0.158128, -0.440853, 0.807895)
+bones/7/rotation = Quaternion(0.758311, -0.451195, -0.138058, 0.449807)
+bones/8/rotation = Quaternion(0.201277, -0.0014098, -0.0269861, 0.979162)
+bones/9/rotation = Quaternion(0.000179625, 0.490508, -0.000101106, 0.871437)
+bones/10/rotation = Quaternion(0.907032, -0.244585, -0.332885, 0.0815979)
+bones/11/rotation = Quaternion(0.0342965, -0.00124736, -0.551303, 0.833599)
+bones/12/rotation = Quaternion(2.1982e-09, 2.73683e-09, -0.0279828, 0.999608)
+bones/13/rotation = Quaternion(0.67154, 0.221042, 0.671836, 0.220932)
+bones/14/rotation = Quaternion(0.000940146, 2.93875e-05, 0.556385, 0.830924)
+bones/15/rotation = Quaternion(2.6786e-09, 3.0571e-09, 0.0280121, 0.999608)
 
 [node name="Player" parent="PlayerModel/player/Armature/Skeleton3D" index="0"]
 lod_bias = 128.0
@@ -532,7 +533,7 @@ surface_material_override/1 = SubResource("ShaderMaterial_booyl")
 surface_material_override/2 = SubResource("ShaderMaterial_mhwhj")
 
 [node name="FaceAttachment" type="BoneAttachment3D" parent="PlayerModel/player/Armature/Skeleton3D" index="1"]
-transform = Transform3D(1, 0, 0, 0, 0.999997, -0.00229681, 0, 0.00229681, 0.999997, -0.00183521, 0.515897, 0)
+transform = Transform3D(0.112333, 0.000409642, 0.993671, -1.45519e-11, 1, -0.000412251, -0.993671, 4.63093e-05, 0.112333, -0.00183521, 0.321394, 0)
 bone_name = "Head"
 bone_idx = 9
 

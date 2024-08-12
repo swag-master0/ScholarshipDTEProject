@@ -1,7 +1,13 @@
-[gd_scene load_steps=3 format=3 uid="uid://dhejktumttlcs"]
+[gd_scene load_steps=9 format=3 uid="uid://dhejktumttlcs"]
 
 [ext_resource type="Script" path="res://Elements/assets/props/template/prop.gd" id="2_ebi8x"]
 [ext_resource type="PackedScene" uid="uid://v7xe0iekhe20" path="res://Art/blend/assets/prop/bench.blend" id="2_xfdru"]
+[ext_resource type="AudioStream" uid="uid://b3l5ttx8c8jjr" path="res://Art/audio/impact/clang-metallic-1.wav" id="3_c2247"]
+[ext_resource type="AudioStream" uid="uid://bhucfve8tudyx" path="res://Art/audio/impact/clang-metallic-2.wav" id="4_a8wi2"]
+[ext_resource type="AudioStream" uid="uid://cmrd2tlply6v6" path="res://Art/audio/impact/thump-1.wav" id="5_b8l1k"]
+[ext_resource type="AudioStream" uid="uid://d00tijva2c6cn" path="res://Art/audio/impact/thump-2.wav" id="6_rr7jh"]
+[ext_resource type="AudioStream" uid="uid://cj157ctmjk6jj" path="res://Art/audio/impact/thump-3.wav" id="7_0vl5y"]
+[ext_resource type="AudioStream" uid="uid://q028ee08mw53" path="res://Art/audio/impact/thump-4.wav" id="8_h425a"]
 
 [node name="bench" instance=ExtResource("2_xfdru")]
 transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 0, 0, 0)
@@ -17,5 +23,23 @@ transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 0, 0, 
 [node name="CollisionShape3D" parent="Bench -rigid" index="1"]
 transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 0, 0, 0)
 
-[node name="Sound" type="AudioStreamPlayer3D" parent="Bench -rigid" index="2"]
+[node name="Sound" type="Node3D" parent="Bench -rigid" index="2"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.823671, -0.857975, 0)
+
+[node name="AudioStreamPlayer3D" type="AudioStreamPlayer3D" parent="Bench -rigid/Sound" index="0"]
+stream = ExtResource("3_c2247")
+
+[node name="AudioStreamPlayer3D2" type="AudioStreamPlayer3D" parent="Bench -rigid/Sound" index="1"]
+stream = ExtResource("4_a8wi2")
+
+[node name="AudioStreamPlayer3D3" type="AudioStreamPlayer3D" parent="Bench -rigid/Sound" index="2"]
+stream = ExtResource("5_b8l1k")
+
+[node name="AudioStreamPlayer3D4" type="AudioStreamPlayer3D" parent="Bench -rigid/Sound" index="3"]
+stream = ExtResource("6_rr7jh")
+
+[node name="AudioStreamPlayer3D5" type="AudioStreamPlayer3D" parent="Bench -rigid/Sound" index="4"]
+stream = ExtResource("7_0vl5y")
+
+[node name="AudioStreamPlayer3D6" type="AudioStreamPlayer3D" parent="Bench -rigid/Sound" index="5"]
+stream = ExtResource("8_h425a")

@@ -1,13 +1,20 @@
-[gd_scene load_steps=3 format=3 uid="uid://i43wpwf0q6em"]
+[gd_scene load_steps=5 format=3 uid="uid://i43wpwf0q6em"]
 
 [ext_resource type="PackedScene" uid="uid://cmtupm8x7ns2t" path="res://Art/blend/assets/prop/chair.blend" id="1_52he4"]
 [ext_resource type="Script" path="res://Elements/assets/props/template/prop.gd" id="2_qqhs5"]
+[ext_resource type="AudioStream" uid="uid://ddjpyn7uhjk7g" path="res://Art/audio/impact/clatter-wood-1.wav" id="3_hh8dc"]
+[ext_resource type="AudioStream" uid="uid://ct6o1mf65ohkd" path="res://Art/audio/impact/clatter-wood-3.wav" id="4_pq6kf"]
 
 [node name="chair" instance=ExtResource("1_52he4")]
 
 [node name="Chair -rigid" parent="." index="0"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0)
 mass = 10.0
 script = ExtResource("2_qqhs5")
 
-[node name="Sound" type="AudioStreamPlayer3D" parent="Chair -rigid" index="2"]
+[node name="Sound" type="Node3D" parent="Chair -rigid" index="2"]
+
+[node name="AudioStreamPlayer3D" type="AudioStreamPlayer3D" parent="Chair -rigid/Sound" index="0"]
+stream = ExtResource("3_hh8dc")
+
+[node name="AudioStreamPlayer3D2" type="AudioStreamPlayer3D" parent="Chair -rigid/Sound" index="1"]
+stream = ExtResource("4_pq6kf")

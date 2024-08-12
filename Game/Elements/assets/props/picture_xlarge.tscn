@@ -1,10 +1,12 @@
-[gd_scene load_steps=7 format=3 uid="uid://cp8y4w0hidlhu"]
+[gd_scene load_steps=9 format=3 uid="uid://cp8y4w0hidlhu"]
 
 [ext_resource type="PackedScene" uid="uid://dpnvhb6hxwohn" path="res://Art/blend/assets/prop/picture_xlarge.blend" id="1_h7ais"]
 [ext_resource type="Script" path="res://Elements/assets/props/template/prop.gd" id="2_ohn3y"]
 [ext_resource type="Material" uid="uid://dvlj73j848yaf" path="res://Art/materials/props/wood_1.tres" id="3_7c20e"]
 [ext_resource type="Shader" path="res://Art/materials/props/picture_image.gdshader" id="3_vm48h"]
 [ext_resource type="Texture2D" uid="uid://bweg3yqy8hjot" path="res://Art/assets/misc/icon.svg" id="4_bbrbr"]
+[ext_resource type="AudioStream" uid="uid://ddjpyn7uhjk7g" path="res://Art/audio/impact/clatter-wood-1.wav" id="6_htadv"]
+[ext_resource type="AudioStream" uid="uid://ct6o1mf65ohkd" path="res://Art/audio/impact/clatter-wood-3.wav" id="7_cg0rn"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_nggf7"]
 render_priority = 0
@@ -28,4 +30,10 @@ surface_material_override/1 = SubResource("ShaderMaterial_nggf7")
 [node name="CollisionShape3D" parent="Picture_XLarge -rigid" index="1"]
 transform = Transform3D(1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 0, 0, 0)
 
-[node name="Sound" type="AudioStreamPlayer3D" parent="Picture_XLarge -rigid" index="2"]
+[node name="Sound" type="Node3D" parent="Picture_XLarge -rigid" index="2"]
+
+[node name="AudioStreamPlayer3D" type="AudioStreamPlayer3D" parent="Picture_XLarge -rigid/Sound" index="0"]
+stream = ExtResource("6_htadv")
+
+[node name="AudioStreamPlayer3D2" type="AudioStreamPlayer3D" parent="Picture_XLarge -rigid/Sound" index="1"]
+stream = ExtResource("7_cg0rn")

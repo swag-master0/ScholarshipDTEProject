@@ -1,7 +1,9 @@
-[gd_scene load_steps=3 format=3 uid="uid://cxin5ii35rudp"]
+[gd_scene load_steps=5 format=3 uid="uid://cxin5ii35rudp"]
 
 [ext_resource type="PackedScene" uid="uid://caxopdvvjcnvu" path="res://Art/blend/assets/prop/ladder.blend" id="1_3vqmb"]
 [ext_resource type="Script" path="res://Elements/assets/props/template/prop.gd" id="2_03xcp"]
+[ext_resource type="AudioStream" uid="uid://ddjpyn7uhjk7g" path="res://Art/audio/impact/clatter-wood-1.wav" id="3_603o0"]
+[ext_resource type="AudioStream" uid="uid://ct6o1mf65ohkd" path="res://Art/audio/impact/clatter-wood-3.wav" id="4_qyh3d"]
 
 [node name="ladder" instance=ExtResource("1_3vqmb")]
 
@@ -9,4 +11,10 @@
 mass = 30.0
 script = ExtResource("2_03xcp")
 
-[node name="Sound" type="AudioStreamPlayer3D" parent="Ladder -rigid" index="2"]
+[node name="Sound" type="Node3D" parent="Ladder -rigid" index="2"]
+
+[node name="AudioStreamPlayer3D" type="AudioStreamPlayer3D" parent="Ladder -rigid/Sound" index="0"]
+stream = ExtResource("3_603o0")
+
+[node name="AudioStreamPlayer3D2" type="AudioStreamPlayer3D" parent="Ladder -rigid/Sound" index="1"]
+stream = ExtResource("4_qyh3d")

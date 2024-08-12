@@ -1,12 +1,21 @@
-[gd_scene load_steps=3 format=3 uid="uid://dmkhkm80jpdqd"]
+[gd_scene load_steps=5 format=3 uid="uid://dmkhkm80jpdqd"]
 
 [ext_resource type="PackedScene" uid="uid://dwy11mvp6tfit" path="res://Art/blend/assets/prop/shelf.blend" id="1_nqmf2"]
 [ext_resource type="Script" path="res://Elements/assets/props/template/prop.gd" id="2_mkujy"]
+[ext_resource type="AudioStream" uid="uid://ddjpyn7uhjk7g" path="res://Art/audio/impact/clatter-wood-1.wav" id="3_rr2to"]
+[ext_resource type="AudioStream" uid="uid://ct6o1mf65ohkd" path="res://Art/audio/impact/clatter-wood-3.wav" id="4_ijxn8"]
 
 [node name="shelf" instance=ExtResource("1_nqmf2")]
 
 [node name="Shelf -rigid" parent="." index="0"]
 mass = 40.0
 script = ExtResource("2_mkujy")
+ungrabbable = true
 
-[node name="Sound" type="AudioStreamPlayer3D" parent="Shelf -rigid" index="2"]
+[node name="Sound" type="Node3D" parent="Shelf -rigid" index="2"]
+
+[node name="AudioStreamPlayer3D" type="AudioStreamPlayer3D" parent="Shelf -rigid/Sound" index="0"]
+stream = ExtResource("3_rr2to")
+
+[node name="AudioStreamPlayer3D2" type="AudioStreamPlayer3D" parent="Shelf -rigid/Sound" index="1"]
+stream = ExtResource("4_ijxn8")
