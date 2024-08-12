@@ -1,20 +1,26 @@
 extends CharacterBody3D
 
-@export var speed = 9
+@export var speed = 7
 @export var accel = 10
 @export var damage = 3
 @export var light_based : bool = false
+@export var erraticness : float = 1
 
 @export var CAN_DEAL_DAMAGE: bool = false
 
 @onready var nav : NavigationAgent3D = $NavigationAgent3D
 @onready var raycast = $RayCast3D
 @onready var coll = $CollisionShape3D
+@onready var change_direction = $ChangeDirection
+
 
 @onready var info = $Info
 @onready var health = info.health
 
+
+
 var gravity = ProjectSettings.get_setting("physics/3d/default_gravity")
+var erraticness_value : Vector3
 
 
 func _process(_delta):
@@ -60,8 +66,15 @@ func _physics_process(delta):
 	direction = nav.get_next_path_position() - global_position
 	direction = direction.normalized()
 	
+	if direction and change_direction.is_stopped():
+		change_direction.start()
+	if !direction:
+		change_direction.stop()
+		
+	
+	
 	if $AttackDelay.is_stopped():
-		velocity = velocity.lerp(direction * speed, accel * delta)
+		velocity = velocity.lerp((direction + erraticness_value.normalized()) * speed, accel * delta)
 	else:
 		velocity = Vector3(0, 0, 0)
 	
@@ -99,10 +112,10 @@ func _physics_process(delta):
 	
 	
 	# push rigid bodies
-	for i in get_slide_collision_count():
-		var collisions = get_slide_collision(i)
-		if collisions.get_collider() is RigidBody3D:
-			collisions.get_collider().apply_central_impulse(-collisions.get_normal() * 0.5)
+#	for i in get_slide_collision_count():
+#		var collisions = get_slide_collision(i)
+#		if collisions.get_collider() is RigidBody3D:
+#			collisions.get_collider().apply_central_impulse(-collisions.get_normal() * 0.5)
 
 
 
@@ -115,10 +128,6 @@ func _on_info_death():
 
 
 
-
-
-
-
-
-
-
+func _on_change_direction_timeout():
+	erraticness_value = Vector3(randf_range(-erraticness, erraticness), 0, randf_range(-erraticness, erraticness))
+	#velocity += Vector3(randf_range(-erraticness, erraticness), 0, randf_range(-erraticness, erraticness))

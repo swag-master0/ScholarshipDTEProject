@@ -173,7 +173,7 @@ func _physics_process(delta):
 		velocity.x = direction.x * SPEED
 		velocity.z = direction.z * SPEED
 	elif direction and isHolding:
-		velocity.x = direction.x * SPEED / (clamp(object.mass / 4, 4, 10) - 3)
+		velocity.x = direction.x * SPEED / (clamp(object.mass / 4, 4, 5) - 3)
 		velocity.z = direction.z * SPEED / (clamp(object.mass / 4, 4, 10) - 3)
 		
 	else:
@@ -237,9 +237,7 @@ func _process(_delta):
 			object = NearestObject()
 			oldparent = object.get_parent()
 			
-			#holdpoint.position = Vector3(0, 1, 2)
 			object.global_transform = holdpoint.global_transform
-			#object.global_position = holdpoint.global_position
 			
 			object.reparent(holdpoint)
 			object.set_freeze_enabled(true)
@@ -274,7 +272,7 @@ func _process(_delta):
 			var force = (cursor.global_position - position).normalized()
 		
 		
-			if pivot.rotation.x < -1:
+			if pivot.rotation.x < -1 and is_on_floor():
 				force = Vector3(0, 0, 0)
 				
 				if tutorial_mode and !tutorial_proximitydrop:

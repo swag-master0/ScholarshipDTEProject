@@ -10,7 +10,7 @@ font_size = 97
 size = Vector3(4, 1.15, 0.75)
 
 [node name="ObjectiveItem" type="RigidBody3D" groups=["objective"]]
-mass = 20.0
+mass = 10.0
 script = ExtResource("1_xm2n2")
 
 [node name="ObjectiveItem" type="MeshInstance3D" parent="."]

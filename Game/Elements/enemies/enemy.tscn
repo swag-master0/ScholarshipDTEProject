@@ -124,8 +124,11 @@ libraries = {
 wait_time = 0.7
 one_shot = true
 
+[node name="ChangeDirection" type="Timer" parent="."]
+
 [connection signal="death" from="Info" to="." method="_on_info_death"]
 [connection signal="takeDamage" from="Info" to="." method="_on_info_take_damage"]
+[connection signal="timeout" from="ChangeDirection" to="." method="_on_change_direction_timeout"]
 
 [editable path="spider"]
 [editable path="Info"]
