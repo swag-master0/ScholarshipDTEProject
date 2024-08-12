@@ -30,13 +30,10 @@ var hasDied = false
 func calculateDamageBasedOnVelocity(body):
 	if body is RigidBody3D:
 		var vel = abs(body.get_linear_velocity())
-		print(vel)
 		
 		var magnitude = sqrt(vel.x + vel.y + vel.z) # calculate magnitude of the force
-		print_rich("[rainbow]", magnitude)
 		
 		if magnitude > MagnitudeThreshold:
-			print_rich("[rainbow]took damage")
 			return magnitude
 		else:
 			return 0
