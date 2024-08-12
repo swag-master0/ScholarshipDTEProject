@@ -1,12 +1,10 @@
 extends RigidBody3D
 
 @export var ungrabbable : bool = false
-
+@export var force_for_sound : float = 1.5
 
 var ungrabbable_group = "ungrabbable"
 
-@export_category("Audio")
-@export var material : int = 0
 
 # 0
 var generic_sounds = [
@@ -49,12 +47,20 @@ func _ready():
 
 
 func _on_body_entered(_body):
-	if !sound.is_playing():
+	if (abs(self.linear_velocity.x) > force_for_sound) or (abs(self.linear_velocity.y) > force_for_sound) or (abs(self.linear_velocity.z) > force_for_sound):
+		var selected_sound = randi_range(0, sound.get_children().size() - 1)
+		sound.get_children()[selected_sound].play()
+		print(selected_sound)
+		print(sound.get_children()[selected_sound])
+	
+	#if !sound.is_playing():
+		
+		
 		
 	#	if material == 0:
 	#		sound.stream = generic_sounds[0]
 		
-		sound.play()
+	#	sound.play()
 
 
 func _process(_delta):

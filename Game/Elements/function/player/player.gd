@@ -305,7 +305,6 @@ func _process(_delta):
 	var tween = get_tree().create_tween()
 	tween.tween_property($CentralCameraPoint/Wind, "position", camera.global_position, 0.05)
 	var distance = $CentralCameraPoint/Wind.global_position.distance_to(camera.global_position)
-	print(distance)
 	tween.tween_property($Audio/CameraWind, "pitch_scale", clamp(distance, 0, 2) + 0.1, 0.3)
 	
 	

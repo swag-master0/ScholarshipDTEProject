@@ -1,7 +1,8 @@
-[gd_scene load_steps=5 format=3 uid="uid://bbb07r3hee2bp"]
+[gd_scene load_steps=6 format=3 uid="uid://bbb07r3hee2bp"]
 
 [ext_resource type="Script" path="res://Elements/assets/props/template/prop.gd" id="1_hjtkc"]
-[ext_resource type="AudioStream" uid="uid://b2jgcpimq7mm8" path="res://Art/audio/impact/old/collision.wav" id="2_48dmc"]
+[ext_resource type="AudioStream" uid="uid://b3l5ttx8c8jjr" path="res://Art/audio/impact/clang-metallic-1.wav" id="2_xmg8y"]
+[ext_resource type="AudioStream" uid="uid://bhucfve8tudyx" path="res://Art/audio/impact/clang-metallic-2.wav" id="3_61dn1"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_tcb5b"]
 size = Vector3(2, 2, 2)
@@ -22,9 +23,16 @@ shape = SubResource("BoxShape3D_tcb5b")
 [node name="MeshInstance3D" type="MeshInstance3D" parent="."]
 mesh = SubResource("BoxMesh_epg7q")
 
-[node name="Sound" type="AudioStreamPlayer3D" parent="."]
-stream = ExtResource("2_48dmc")
-volume_db = -50.0
+[node name="Sound" type="Node3D" parent="."]
+
+[node name="Sound" type="AudioStreamPlayer3D" parent="Sound"]
+stream = ExtResource("2_xmg8y")
+pitch_scale = 0.65
+max_distance = 15.0
+
+[node name="Sound2" type="AudioStreamPlayer3D" parent="Sound"]
+stream = ExtResource("3_61dn1")
+pitch_scale = 0.65
 max_distance = 15.0
 
 [connection signal="body_entered" from="." to="." method="_on_body_entered"]

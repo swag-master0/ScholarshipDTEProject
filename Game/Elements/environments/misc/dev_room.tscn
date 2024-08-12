@@ -1,4 +1,4 @@
-[gd_scene load_steps=14 format=3 uid="uid://cx1a4ujrxixpp"]
+[gd_scene load_steps=15 format=3 uid="uid://cx1a4ujrxixpp"]
 
 [ext_resource type="PackedScene" uid="uid://g2jwt8atruu7" path="res://Art/environment/environment.tscn" id="1_j3tyq"]
 [ext_resource type="PackedScene" uid="uid://bcou7suhphdrp" path="res://Elements/function/player/player.tscn" id="2_dg15a"]
@@ -8,6 +8,7 @@
 [ext_resource type="PackedScene" uid="uid://ctc20d63lt2h0" path="res://Elements/assets/props/bucket.tscn" id="6_bs01s"]
 [ext_resource type="PackedScene" uid="uid://i43wpwf0q6em" path="res://Elements/assets/props/chair.tscn" id="7_hh0wx"]
 [ext_resource type="PackedScene" uid="uid://bfrpck2673n1q" path="res://Elements/assets/props/coffin.tscn" id="8_wje06"]
+[ext_resource type="PackedScene" uid="uid://bbb07r3hee2bp" path="res://Elements/assets/props/template/prop.tscn" id="9_cslja"]
 
 [sub_resource type="Gradient" id="Gradient_313rr"]
 interpolation_mode = 1
@@ -75,3 +76,12 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -10, 2.3477, -8)
 
 [node name="coffin" parent="." instance=ExtResource("8_wje06")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -12, 1.49667, 8)
+
+[node name="Prop" parent="." instance=ExtResource("9_cslja")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -19.7657, 4.5, -6.52516)
+mass = 10.0
+
+[node name="CSGBox3D2" type="CSGBox3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 23, 5.5, 3)
+use_collision = true
+size = Vector3(1, 10, 47)
