@@ -9,6 +9,7 @@ var hasDied = false
 @onready var timer = $Timeout
 @onready var sound_hurt = $Hurt
 @onready var sound_kill = $Kill
+@onready var particles = $Particles
 
 
 @export_group("Variables")
@@ -22,6 +23,7 @@ var hasDied = false
 @export var DamagePlayerOnPlayerCollision : bool = true
 @export var PlayKillSound : bool = false
 @export var PlayHurtSound : bool = false
+@export var DisplayDamageParticles : bool = false
 @export var DisplayHealthBar : bool = true
 @export var MagnitudeThreshold : float = 0.5
 
@@ -48,6 +50,17 @@ func Damage(damage: float):
 			if PlayHurtSound:
 				sound_hurt.pitch_scale = randf_range(75, 125) / 100
 				sound_hurt.play()
+			
+			if DisplayDamageParticles:
+				for i in particles.get_children():
+					if i is GPUParticles3D:
+						var random_chance = randf_range(0, 1)
+						
+						if random_chance > 0.5:
+							i.emitting = true
+						else:
+							continue
+			
 			
 			emit_signal("takeDamage") # TakeDamage is to be used to indicate to objects whether they're taking damage, use to activate vfx and sfx
 		

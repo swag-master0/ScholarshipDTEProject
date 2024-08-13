@@ -519,11 +519,11 @@ bones/6/rotation = Quaternion(0.3577, 0.158128, -0.440853, 0.807895)
 bones/7/rotation = Quaternion(0.758311, -0.451195, -0.138058, 0.449807)
 bones/8/rotation = Quaternion(0.201277, -0.0014098, -0.0269861, 0.979162)
 bones/9/rotation = Quaternion(0.000179625, 0.490508, -0.000101106, 0.871437)
-bones/10/rotation = Quaternion(0.907032, -0.244585, -0.332885, 0.0815979)
-bones/11/rotation = Quaternion(0.0342965, -0.00124736, -0.551303, 0.833599)
+bones/10/rotation = Quaternion(0.907032, -0.244586, -0.332885, 0.0815979)
+bones/11/rotation = Quaternion(0.0343271, -0.00124919, -0.551258, 0.833628)
 bones/12/rotation = Quaternion(2.1982e-09, 2.73683e-09, -0.0279828, 0.999608)
 bones/13/rotation = Quaternion(0.67154, 0.221042, 0.671836, 0.220932)
-bones/14/rotation = Quaternion(0.000940146, 2.93875e-05, 0.556385, 0.830924)
+bones/14/rotation = Quaternion(0.00088011, 2.75025e-05, 0.55637, 0.830935)
 bones/15/rotation = Quaternion(2.6786e-09, 3.0571e-09, 0.0280121, 0.999608)
 
 [node name="Player" parent="PlayerModel/player/Armature/Skeleton3D" index="0"]
@@ -533,7 +533,7 @@ surface_material_override/1 = SubResource("ShaderMaterial_booyl")
 surface_material_override/2 = SubResource("ShaderMaterial_mhwhj")
 
 [node name="FaceAttachment" type="BoneAttachment3D" parent="PlayerModel/player/Armature/Skeleton3D" index="1"]
-transform = Transform3D(0.112333, 0.000409642, 0.993671, -1.45519e-11, 1, -0.000412251, -0.993671, 4.63093e-05, 0.112333, -0.00183521, 0.321394, 0)
+transform = Transform3D(0.112333, 0.000409642, 0.993671, -2.91038e-11, 1, -0.000412251, -0.993671, 4.63093e-05, 0.112333, -0.00183521, 0.321394, 0)
 bone_name = "Head"
 bone_idx = 9
 
