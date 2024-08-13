@@ -19,8 +19,6 @@ func _on_body_entered(_body):
 	if (abs(self.linear_velocity.x) > force_for_sound) or (abs(self.linear_velocity.y) > force_for_sound) or (abs(self.linear_velocity.z) > force_for_sound):
 		var selected_sound = randi_range(0, sound.get_children().size() - 1)
 		sound.get_children()[selected_sound].play()
-	#	print(selected_sound)
-	#	print(sound.get_children()[selected_sound])
 	
 
 
