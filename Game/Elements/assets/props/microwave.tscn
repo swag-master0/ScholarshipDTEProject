@@ -9,6 +9,8 @@
 
 [node name="Microwave -rigid" parent="." index="0"]
 mass = 15.0
+max_contacts_reported = 5
+contact_monitor = true
 script = ExtResource("2_003d4")
 
 [node name="Sound" type="Node3D" parent="Microwave -rigid" index="2"]
@@ -18,3 +20,5 @@ stream = ExtResource("3_u0ok8")
 
 [node name="AudioStreamPlayer3D2" type="AudioStreamPlayer3D" parent="Microwave -rigid/Sound" index="1"]
 stream = ExtResource("4_e2ekw")
+
+[connection signal="body_entered" from="Microwave -rigid" to="Microwave -rigid" method="_on_body_entered"]

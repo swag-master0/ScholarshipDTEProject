@@ -83,8 +83,7 @@ func _process(_delta):
 			elif amount_of_waves == 1:
 				amount_to_spawn = 50
 			elif amount_of_waves == 0:
-				amount_to_spawn = 100
-				player.SendHintToPlayer(\"At times, it's best to run.\")
+				amount_to_spawn = 0
 			
 			for i in range(amount_to_spawn):
 				var desired_enemy = enemy

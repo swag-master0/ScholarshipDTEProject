@@ -8,6 +8,8 @@ extends CharacterBody3D
 
 @export var CAN_DEAL_DAMAGE: bool = false
 
+@export var corpse : PackedScene
+
 @onready var nav : NavigationAgent3D = $NavigationAgent3D
 @onready var raycast = $RayCast3D
 @onready var coll = $CollisionShape3D
@@ -124,7 +126,15 @@ func _on_info_take_damage():
 
 
 func _on_info_death():
+	var created_corpse = corpse.instantiate()
+	get_parent().add_child(created_corpse)
+	created_corpse.global_position = global_position
+	created_corpse.global_rotation = global_rotation
+	created_corpse.StartRagdoll()
+	
+	
 	self.queue_free()
+	
 
 
 

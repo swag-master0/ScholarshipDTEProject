@@ -20,6 +20,8 @@ shader_parameter/picture = ExtResource("4_bbrbr")
 mass = 30.0
 freeze = true
 freeze_mode = 1
+max_contacts_reported = 5
+contact_monitor = true
 script = ExtResource("2_ohn3y")
 
 [node name="Picture_XLarge -rigid" parent="Picture_XLarge -rigid" index="0"]
@@ -37,3 +39,5 @@ stream = ExtResource("6_htadv")
 
 [node name="AudioStreamPlayer3D2" type="AudioStreamPlayer3D" parent="Picture_XLarge -rigid/Sound" index="1"]
 stream = ExtResource("7_cg0rn")
+
+[connection signal="body_entered" from="Picture_XLarge -rigid" to="Picture_XLarge -rigid" method="_on_body_entered"]

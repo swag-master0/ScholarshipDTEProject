@@ -9,6 +9,8 @@
 
 [node name="Crate -rigid" parent="." index="0"]
 mass = 15.0
+max_contacts_reported = 5
+contact_monitor = true
 script = ExtResource("2_bj7j1")
 
 [node name="Sound" type="Node3D" parent="Crate -rigid" index="2"]
@@ -18,3 +20,5 @@ stream = ExtResource("3_dskm5")
 
 [node name="AudioStreamPlayer3D2" type="AudioStreamPlayer3D" parent="Crate -rigid/Sound" index="1"]
 stream = ExtResource("4_uswjg")
+
+[connection signal="body_entered" from="Crate -rigid" to="Crate -rigid" method="_on_body_entered"]

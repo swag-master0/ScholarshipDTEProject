@@ -9,6 +9,8 @@
 
 [node name="Coffin -rigid" parent="." index="0"]
 mass = 30.0
+max_contacts_reported = 5
+contact_monitor = true
 script = ExtResource("2_lyttn")
 ungrabbable = true
 
@@ -19,3 +21,5 @@ stream = ExtResource("3_5khjj")
 
 [node name="AudioStreamPlayer3D2" type="AudioStreamPlayer3D" parent="Coffin -rigid/Sound" index="1"]
 stream = ExtResource("4_h3ija")
+
+[connection signal="body_entered" from="Coffin -rigid" to="Coffin -rigid" method="_on_body_entered"]

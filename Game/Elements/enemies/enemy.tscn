@@ -1,14 +1,15 @@
-[gd_scene load_steps=10 format=3 uid="uid://ch7t6b0c3tjwr"]
+[gd_scene load_steps=11 format=3 uid="uid://ch7t6b0c3tjwr"]
 
 [ext_resource type="Script" path="res://Elements/enemies/enemy.gd" id="1_nn6r1"]
+[ext_resource type="PackedScene" uid="uid://dcmdw7jaornc0" path="res://Elements/enemies/enemy_ragdoll.tscn" id="2_asn15"]
 [ext_resource type="PackedScene" uid="uid://c34yykkhuoiy6" path="res://Art/blend/assets/enemies/spider.blend" id="2_llwai"]
 [ext_resource type="PackedScene" uid="uid://cft1b4l0aljye" path="res://Elements/function/info.tscn" id="2_repm0"]
 
-[sub_resource type="SphereShape3D" id="SphereShape3D_jtg0j"]
-radius = 2.0
-
 [sub_resource type="BoxShape3D" id="BoxShape3D_n31ol"]
 size = Vector3(1.255, 1.185, 1.335)
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_jtg0j"]
+radius = 2.0
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_ka4oa"]
 size = Vector3(2, 1.59082, 2.45581)
@@ -53,12 +54,11 @@ _data = {
 
 [node name="Enemy" type="CharacterBody3D" groups=["enemy"]]
 script = ExtResource("1_nn6r1")
+corpse = ExtResource("2_asn15")
 
-[node name="SoftPush" type="Area3D" parent="."]
-visible = false
-
-[node name="CollisionShape3D" type="CollisionShape3D" parent="SoftPush"]
-shape = SubResource("SphereShape3D_jtg0j")
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, 0)
+shape = SubResource("BoxShape3D_n31ol")
 
 [node name="spider" parent="." instance=ExtResource("2_llwai")]
 transform = Transform3D(-3.36578e-08, 0, 0.77, 0, 0.77, 0, -0.77, 0, -3.36578e-08, 0, 0, 0)
@@ -84,22 +84,25 @@ bones/11/scale = Vector3(1, 1, 1)
 bones/12/rotation = Quaternion(-0.0759253, 0.00272062, -0.0234733, 0.996834)
 bones/12/scale = Vector3(1, 1, 1)
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, 0)
-shape = SubResource("BoxShape3D_n31ol")
-
 [node name="Info" parent="." instance=ExtResource("2_repm0")]
 health = 6.0
 max_health = 6.0
 DamagePlayerOnPlayerCollision = false
 PlayKillSound = true
 PlayHurtSound = true
+DisplayDamageParticles = true
 
 [node name="Hitbox" parent="Info" index="1"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, 0)
 
 [node name="CollisionShape3D" parent="Info/Hitbox" index="0"]
 shape = SubResource("BoxShape3D_n31ol")
+
+[node name="SoftPush" type="Area3D" parent="."]
+visible = false
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="SoftPush"]
+shape = SubResource("SphereShape3D_jtg0j")
 
 [node name="HitArea" type="Area3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, 0)

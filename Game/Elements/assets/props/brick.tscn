@@ -11,6 +11,8 @@
 
 [node name="Brick -rigid" parent="." index="0"]
 mass = 15.0
+max_contacts_reported = 5
+contact_monitor = true
 script = ExtResource("2_gjisr")
 
 [node name="Sound" type="Node3D" parent="Brick -rigid" index="2"]
@@ -26,3 +28,5 @@ stream = ExtResource("5_fft25")
 
 [node name="AudioStreamPlayer3D4" type="AudioStreamPlayer3D" parent="Brick -rigid/Sound" index="3"]
 stream = ExtResource("6_8kkk0")
+
+[connection signal="body_entered" from="Brick -rigid" to="Brick -rigid" method="_on_body_entered"]

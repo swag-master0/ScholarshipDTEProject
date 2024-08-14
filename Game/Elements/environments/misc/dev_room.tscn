@@ -1,4 +1,4 @@
-[gd_scene load_steps=15 format=3 uid="uid://cx1a4ujrxixpp"]
+[gd_scene load_steps=22 format=3 uid="uid://cx1a4ujrxixpp"]
 
 [ext_resource type="PackedScene" uid="uid://g2jwt8atruu7" path="res://Art/environment/environment.tscn" id="1_j3tyq"]
 [ext_resource type="PackedScene" uid="uid://bcou7suhphdrp" path="res://Elements/function/player/player.tscn" id="2_dg15a"]
@@ -9,6 +9,26 @@
 [ext_resource type="PackedScene" uid="uid://i43wpwf0q6em" path="res://Elements/assets/props/chair.tscn" id="7_hh0wx"]
 [ext_resource type="PackedScene" uid="uid://bfrpck2673n1q" path="res://Elements/assets/props/coffin.tscn" id="8_wje06"]
 [ext_resource type="PackedScene" uid="uid://bbb07r3hee2bp" path="res://Elements/assets/props/template/prop.tscn" id="9_cslja"]
+[ext_resource type="PackedScene" uid="uid://fg26bpnnc3lq" path="res://Elements/assets/props/rock_1.tscn" id="10_n8mri"]
+[ext_resource type="PackedScene" uid="uid://bgobrloxn3vug" path="res://Elements/assets/props/rock_2.tscn" id="11_8xys3"]
+[ext_resource type="PackedScene" uid="uid://hfryhtqbwdgv" path="res://Elements/assets/props/rock_3.tscn" id="12_72fdf"]
+[ext_resource type="PackedScene" uid="uid://ch7t6b0c3tjwr" path="res://Elements/enemies/enemy.tscn" id="13_mne7o"]
+[ext_resource type="PackedScene" uid="uid://dcmdw7jaornc0" path="res://Elements/enemies/enemy_ragdoll.tscn" id="14_ahs1u"]
+
+[sub_resource type="GDScript" id="GDScript_uw2g3"]
+resource_name = "dev_room"
+script/source = "extends Node3D
+
+@onready var ragdoll = $Ragdoll
+
+func _ready():
+	pass
+	#ragdoll.physical_bones_start_simulation()
+"
+
+[sub_resource type="NavigationMesh" id="NavigationMesh_hnjbd"]
+vertices = PackedVector3Array(-37, 1, -20, -37, 1, 26, 23, 1, 26, 23, 1, -20)
+polygons = [PackedInt32Array(3, 2, 0), PackedInt32Array(0, 2, 1)]
 
 [sub_resource type="Gradient" id="Gradient_313rr"]
 interpolation_mode = 1
@@ -35,18 +55,22 @@ normal_texture = SubResource("NoiseTexture2D_l4rqg")
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_wid46"]
 
 [node name="DevRoom" type="Node3D"]
+script = SubResource("GDScript_uw2g3")
+
+[node name="NavigationRegion3D" type="NavigationRegion3D" parent="."]
+navigation_mesh = SubResource("NavigationMesh_hnjbd")
+
+[node name="CSGBox3D" type="CSGBox3D" parent="NavigationRegion3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -7, 0, 3)
+use_collision = true
+size = Vector3(61, 1, 47)
+material = SubResource("StandardMaterial3D_b8niq")
 
 [node name="WorldEnvironment" parent="." instance=ExtResource("1_j3tyq")]
 
 [node name="Player" parent="." instance=ExtResource("2_dg15a")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 3.92723, 0)
 SAVE_GAME = false
-
-[node name="CSGBox3D" type="CSGBox3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -7, 0, 3)
-use_collision = true
-size = Vector3(61, 1, 47)
-material = SubResource("StandardMaterial3D_b8niq")
 
 [node name="OmniLight3D" type="OmniLight3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3, 4, 0)
@@ -79,9 +103,32 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -12, 1.49667, 8)
 
 [node name="Prop" parent="." instance=ExtResource("9_cslja")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -19.7657, 4.5, -6.52516)
-mass = 10.0
 
 [node name="CSGBox3D2" type="CSGBox3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 23, 5.5, 3)
 use_collision = true
 size = Vector3(1, 10, 47)
+
+[node name="rock1" parent="." instance=ExtResource("10_n8mri")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.21585, 1.21836, -7.63936)
+
+[node name="rock2" parent="." instance=ExtResource("11_8xys3")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.23543, 1.85602, -7.24869)
+
+[node name="rock3" parent="." instance=ExtResource("12_72fdf")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.58846, 2.04905, -4.06049)
+
+[node name="SpotLight3D" type="SpotLight3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 0.93178, 0.363024, 0, -0.363024, 0.93178, 19.8362, 10, 25)
+light_energy = 6.313
+spot_range = 56.9307
+spot_angle = 36.2547
+
+[node name="Prop2" parent="." instance=ExtResource("9_cslja")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.62811, 1.5, 6.38285)
+
+[node name="Enemy" parent="." instance=ExtResource("13_mne7o")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 11.3134, 0.563952, 1.48477)
+
+[node name="Ragdoll" parent="." instance=ExtResource("14_ahs1u")]
+transform = Transform3D(-3.36578e-08, 0, 0.77, 0, 0.77, 0, -0.77, 0, -3.36578e-08, 17.1185, 2.18409, 1.11586)

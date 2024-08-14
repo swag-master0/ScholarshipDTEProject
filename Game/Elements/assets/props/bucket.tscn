@@ -9,6 +9,8 @@
 
 [node name="Bucket -rigid" parent="." index="0"]
 mass = 15.0
+max_contacts_reported = 5
+contact_monitor = true
 script = ExtResource("2_nbeem")
 
 [node name="Sound" type="Node3D" parent="Bucket -rigid" index="2"]
@@ -18,3 +20,5 @@ stream = ExtResource("3_g8u7a")
 
 [node name="AudioStreamPlayer3D2" type="AudioStreamPlayer3D" parent="Bucket -rigid/Sound" index="1"]
 stream = ExtResource("4_ux0fi")
+
+[connection signal="body_entered" from="Bucket -rigid" to="Bucket -rigid" method="_on_body_entered"]

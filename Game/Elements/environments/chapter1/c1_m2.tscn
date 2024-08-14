@@ -233,6 +233,9 @@ transform = Transform3D(0.670854, 0, 0.74159, 0, 1, 0, -0.74159, 0, 0.670854, 58
 [node name="table_3" parent="." instance=ExtResource("29_walm4")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 69.9976, 8.01034, -43.8873)
 
+[node name="Enemy" parent="." instance=ExtResource("1_7b51b")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 67.6323, 3.8147e-06, -25.1031)
+
 [connection signal="body_entered" from="Trigger" to="." method="_on_trigger_body_entered"]
 [connection signal="body_entered" from="DialogueTrigger" to="." method="_on_dialogue_trigger_body_entered"]
 [connection signal="body_entered" from="EnemyExampleTrigger" to="." method="_on_enemy_example_trigger_body_entered"]

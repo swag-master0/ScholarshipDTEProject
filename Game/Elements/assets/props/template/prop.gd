@@ -1,7 +1,7 @@
 extends RigidBody3D
 
 @export var ungrabbable : bool = false
-@export var force_for_sound : float = 1.5
+@export var force_for_sound : float = 0.2
 
 var ungrabbable_group = "ungrabbable"
 
@@ -13,12 +13,26 @@ func _ready():
 	
 	if ungrabbable:
 		self.add_to_group(ungrabbable_group)
+	
 
 
 func _on_body_entered(_body):
-	if (abs(self.linear_velocity.x) > force_for_sound) or (abs(self.linear_velocity.y) > force_for_sound) or (abs(self.linear_velocity.z) > force_for_sound):
+	var vel = abs(self.get_linear_velocity())
+	
+	var magnitude = sqrt(vel.x + vel.y + vel.z) # calculate magnitude of the force
+	
+	if magnitude > force_for_sound:
+		print_rich("[rainbow]prop sound triggered")
+		
 		var selected_sound = randi_range(0, sound.get_children().size() - 1)
-		sound.get_children()[selected_sound].play()
+		if sound.get_children()[selected_sound] is AudioStreamPlayer3D:
+			var audio = sound.get_children()[selected_sound]
+			
+			audio.volume_db = clamp(linear_to_db(magnitude), 0, 5) 
+			audio.pitch_scale = (15 / self.mass)
+			audio.play()
+		
+		print_rich("[rainbow]", sound.get_children()[selected_sound])
 	
 
 

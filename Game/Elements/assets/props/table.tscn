@@ -9,6 +9,8 @@
 
 [node name="Table -rigid" parent="." index="0"]
 mass = 40.0
+max_contacts_reported = 5
+contact_monitor = true
 script = ExtResource("2_fpnl4")
 ungrabbable = true
 
@@ -19,3 +21,5 @@ stream = ExtResource("3_epe3k")
 
 [node name="AudioStreamPlayer3D2" type="AudioStreamPlayer3D" parent="Table -rigid/Sound" index="1"]
 stream = ExtResource("4_4xkgq")
+
+[connection signal="body_entered" from="Table -rigid" to="Table -rigid" method="_on_body_entered"]

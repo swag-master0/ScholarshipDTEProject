@@ -11,6 +11,8 @@
 
 [node name="Pot -rigid" parent="." index="0"]
 mass = 5.0
+max_contacts_reported = 5
+contact_monitor = true
 script = ExtResource("2_c4i2q")
 
 [node name="Sound" type="Node3D" parent="Pot -rigid" index="2"]
@@ -26,3 +28,5 @@ stream = ExtResource("5_tjalt")
 
 [node name="AudioStreamPlayer3D4" type="AudioStreamPlayer3D" parent="Pot -rigid/Sound" index="3"]
 stream = ExtResource("6_jkckd")
+
+[connection signal="body_entered" from="Pot -rigid" to="Pot -rigid" method="_on_body_entered"]

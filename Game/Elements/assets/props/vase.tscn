@@ -11,6 +11,8 @@
 
 [node name="Vase -rigid" parent="." index="0"]
 mass = 10.0
+max_contacts_reported = 5
+contact_monitor = true
 script = ExtResource("2_3od1b")
 
 [node name="Sound" type="Node3D" parent="Vase -rigid" index="2"]
@@ -26,3 +28,5 @@ stream = ExtResource("5_56q77")
 
 [node name="AudioStreamPlayer3D4" type="AudioStreamPlayer3D" parent="Vase -rigid/Sound" index="3"]
 stream = ExtResource("6_whpka")
+
+[connection signal="body_entered" from="Vase -rigid" to="Vase -rigid" method="_on_body_entered"]

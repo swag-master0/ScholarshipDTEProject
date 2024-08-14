@@ -9,7 +9,7 @@
 [ext_resource type="Texture2D" uid="uid://bfujcpxg1vljk" path="res://Art/materials/floor/floor_normal.tres" id="5_jt3b1"]
 [ext_resource type="PackedScene" uid="uid://bmgk0u34rg2cy" path="res://Art/blend/assets/misc/rail.blend" id="6_gm6vi"]
 [ext_resource type="PackedScene" uid="uid://4lamctxd2su2" path="res://Elements/assets/misc/carraige.tscn" id="7_nnqxf"]
-[ext_resource type="Theme" uid="uid://qpcg0ktiqy0j" path="res://Art/materials/theme.tres" id="10_5he3v"]
+[ext_resource type="Theme" uid="uid://qpcg0ktiqy0j" path="res://Art/assets/theme.tres" id="10_5he3v"]
 
 [sub_resource type="Animation" id="Animation_w48k8"]
 length = 0.001

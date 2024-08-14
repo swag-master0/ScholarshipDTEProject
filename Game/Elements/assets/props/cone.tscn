@@ -11,6 +11,8 @@
 
 [node name="Cone -rigid" parent="." index="0"]
 mass = 15.0
+max_contacts_reported = 5
+contact_monitor = true
 script = ExtResource("2_wr1e7")
 
 [node name="Sound" type="Node3D" parent="Cone -rigid" index="2"]
@@ -26,3 +28,5 @@ stream = ExtResource("5_8f4eq")
 
 [node name="AudioStreamPlayer3D4" type="AudioStreamPlayer3D" parent="Cone -rigid/Sound" index="3"]
 stream = ExtResource("6_eiydx")
+
+[connection signal="body_entered" from="Cone -rigid" to="Cone -rigid" method="_on_body_entered"]

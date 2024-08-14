@@ -11,6 +11,8 @@
 
 [node name="CouchSmall -rigid" parent="." index="0"]
 mass = 25.0
+max_contacts_reported = 5
+contact_monitor = true
 script = ExtResource("2_fysgu")
 
 [node name="Sound" type="Node3D" parent="CouchSmall -rigid" index="2"]
@@ -26,3 +28,5 @@ stream = ExtResource("5_a6wuw")
 
 [node name="AudioStreamPlayer3D4" type="AudioStreamPlayer3D" parent="CouchSmall -rigid/Sound" index="3"]
 stream = ExtResource("6_pirga")
+
+[connection signal="body_entered" from="CouchSmall -rigid" to="CouchSmall -rigid" method="_on_body_entered"]

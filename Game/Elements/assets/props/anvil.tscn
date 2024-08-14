@@ -9,6 +9,8 @@
 
 [node name="Anvil -rigid" parent="." index="0"]
 mass = 80.0
+max_contacts_reported = 5
+contact_monitor = true
 script = ExtResource("2_i0ysq")
 
 [node name="Sound" type="Node3D" parent="Anvil -rigid" index="2"]
@@ -20,3 +22,5 @@ pitch_scale = 0.5
 [node name="AudioStreamPlayer3D2" type="AudioStreamPlayer3D" parent="Anvil -rigid/Sound" index="1"]
 stream = ExtResource("4_1gxwa")
 pitch_scale = 0.5
+
+[connection signal="body_entered" from="Anvil -rigid" to="Anvil -rigid" method="_on_body_entered"]
