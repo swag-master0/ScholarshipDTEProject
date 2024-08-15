@@ -492,6 +492,7 @@ func _on_info_take_damage():
 	sound_hurt.pitch_scale = randf_range(75, 125) / 100 # random value between 0.75 and 1.25
 	sound_hurt.play(0)
 	
+	HUD.PainVisuals()
 	$PlayerModel/player/AnimationPlayer.play("pain")
 
 func _on_info_death():

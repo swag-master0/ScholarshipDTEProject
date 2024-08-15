@@ -26,6 +26,9 @@ extends Control
 
 @onready var A_OS = $"../A-OS Viewport/A-OS"
 
+@onready var hurt_vfx = $HurtVFX
+@onready var pain_animation = $HurtVFX/AnimationPlayer
+
 
 @onready var health = info.health
 @onready var max_health = info.max_health
@@ -40,6 +43,7 @@ var skipBBCode = false
 
 func _ready():
 	hud_dialogue_box.visible = false
+	hurt_vfx.visible = false
 
 
 func _process(_delta):
@@ -134,6 +138,9 @@ func _on_remove_characters_timeout():
 	hud_dialogue.text = ""
 
 
+func PainVisuals():
+	hurt_vfx.visible = true
+	pain_animation.play("pain")
 
 
 

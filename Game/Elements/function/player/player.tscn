@@ -1,4 +1,4 @@
-[gd_scene load_steps=90 format=3 uid="uid://bcou7suhphdrp"]
+[gd_scene load_steps=97 format=3 uid="uid://bcou7suhphdrp"]
 
 [ext_resource type="Script" path="res://Elements/function/player/player.gd" id="1_0ncw4"]
 [ext_resource type="PackedScene" uid="uid://4lv8cegk7f53" path="res://Art/blend/assets/main/player.blend" id="2_ww4ji"]
@@ -14,6 +14,7 @@
 [ext_resource type="AudioStream" uid="uid://eiiqal51bdu" path="res://Art/audio/player/player_select.wav" id="11_bg06q"]
 [ext_resource type="Texture2D" uid="uid://doaw75lk5teaf" path="res://Art/assets/hud/hud-dude.png" id="12_7h4vn"]
 [ext_resource type="Texture2D" uid="uid://dq1jh3wfs4h7j" path="res://Art/assets/hud/paused.png" id="12_u6uc1"]
+[ext_resource type="Texture2D" uid="uid://dp1ls6ddglxoj" path="res://Art/assets/assets/cartoon_particle_5.png" id="13_n1max"]
 [ext_resource type="Texture2D" uid="uid://cix4ak6aasuam" path="res://Art/assets/hud/selection.png" id="14_pvb8u"]
 [ext_resource type="Texture2D" uid="uid://dmnjpb8ox2bsu" path="res://Art/assets/hud/mouse1-1.png" id="15_5hkb5"]
 [ext_resource type="Texture2D" uid="uid://cvguvo850eb22" path="res://Art/assets/hud/mouse1-2.png" id="16_5kyhk"]
@@ -335,6 +336,92 @@ size = Vector3(4, 3, 4)
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_j7m3i"]
 
+[sub_resource type="Animation" id="Animation_f0djo"]
+resource_name = "pain"
+length = 0.4
+step = 0.05
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("ColorRect:color")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.0210477, 0.4),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Color(0.756863, 0.27451, 0.211765, 0), Color(0.758747, 0.274727, 0.211329, 0.470588), Color(0.756863, 0.27451, 0.211765, 0)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("../Health/Dude:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.03, 0.06, 0.09, 0.12),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1),
+"update": 0,
+"values": [Vector2(150, 55), Vector2(140, 55), Vector2(160, 55), Vector2(140, 55), Vector2(150, 55)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("../Health/Dude/GPUParticles2D:emitting")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 0.1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [true, false]
+}
+
+[sub_resource type="Animation" id="Animation_u4wsj"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("ColorRect:color")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(0.758747, 0.274727, 0.211329, 0.470588)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("../Health/Dude:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(150, 55)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("../Health/Dude/GPUParticles2D:emitting")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_g40j1"]
+_data = {
+"RESET": SubResource("Animation_u4wsj"),
+"pain": SubResource("Animation_f0djo")
+}
+
 [sub_resource type="ViewportTexture" id="ViewportTexture_8wrpo"]
 viewport_path = NodePath("A-OS Viewport")
 
@@ -346,6 +433,21 @@ border_color = Color(0.238516, 0.0632626, 0.0307648, 1)
 corner_detail = 1
 shadow_size = 1
 shadow_offset = Vector2(15, 15)
+
+[sub_resource type="Curve" id="Curve_y55ov"]
+_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="CurveTexture" id="CurveTexture_pfixp"]
+curve = SubResource("Curve_y55ov")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_gyi4v"]
+particle_flag_disable_z = true
+direction = Vector3(0, -1, 0)
+initial_velocity_min = 72.58
+initial_velocity_max = 72.58
+gravity = Vector3(0, 98, 0)
+scale_curve = SubResource("CurveTexture_pfixp")
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_nqrcn"]
 bg_color = Color(0.752941, 0, 0, 1)
@@ -460,22 +562,23 @@ shape = SubResource("CapsuleShape3D_nrsfh")
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1, 0)
 
 [node name="Skeleton3D" parent="PlayerModel/player/Armature" index="0"]
-bones/0/position = Vector3(-0.00183521, -0.0749405, 0)
-bones/1/rotation = Quaternion(0.000462789, -0.000685053, 0.817912, 0.575343)
-bones/2/rotation = Quaternion(-0.000726379, -0.000484822, 0.288524, 0.957472)
-bones/3/rotation = Quaternion(-0.000752254, -0.000127421, 0.398859, 0.917012)
-bones/4/rotation = Quaternion(-6.35795e-06, -2.53072e-07, 0.0895676, 0.995981)
-bones/5/rotation = Quaternion(0.00052335, 0.000654101, -0.842928, 0.538026)
-bones/6/rotation = Quaternion(-0.000703492, 0.00050536, -0.277459, 0.960737)
-bones/7/rotation = Quaternion(-0.000840843, 0.000132144, -0.351988, 0.936004)
-bones/8/rotation = Quaternion(-0.00017273, 6.32184e-06, -0.0782728, 0.996932)
-bones/9/rotation = Quaternion(0.00476707, 0, 0, 0.999989)
-bones/10/rotation = Quaternion(0.705894, -0.0413951, -0.705894, 0.0413951)
-bones/11/rotation = Quaternion(7.49395e-09, 1.57437e-08, -0.13685, 0.990592)
-bones/12/rotation = Quaternion(2.11264e-09, -9.40588e-16, -0.0279828, 0.999608)
-bones/13/rotation = Quaternion(0.705891, 0.0414433, 0.705891, 0.0414434)
-bones/14/rotation = Quaternion(7.49755e-09, -1.57436e-08, 0.1369, 0.990585)
-bones/15/rotation = Quaternion(2.11486e-09, 2.15884e-15, 0.0280121, 0.999608)
+bones/0/position = Vector3(0.01181, -0.0956289, 0.0168383)
+bones/0/rotation = Quaternion(0, 0.000879729, 0, 1)
+bones/1/rotation = Quaternion(-0.123909, 0.409716, 0.805694, 0.409434)
+bones/2/rotation = Quaternion(-0.0832785, 0.151913, 0.0268079, 0.984514)
+bones/3/rotation = Quaternion(0.494872, -0.3231, 0.165436, 0.789518)
+bones/4/rotation = Quaternion(0.124827, 0.00433421, -0.00983012, 0.99212)
+bones/5/rotation = Quaternion(0.0401357, 0.0277039, -0.901497, 0.430028)
+bones/6/rotation = Quaternion(-0.00638698, -0.0588278, 0.0119058, 0.998177)
+bones/7/rotation = Quaternion(0.667106, -0.0384816, 0.20291, 0.715763)
+bones/8/rotation = Quaternion(0.190654, -0.00112064, 0.0444487, 0.98065)
+bones/9/rotation = Quaternion(0.000205248, 0.0921977, -1.90043e-05, 0.995741)
+bones/10/rotation = Quaternion(0.725105, -0.0588811, -0.684408, 0.0483911)
+bones/11/rotation = Quaternion(0.00347368, -0.000380969, -0.190289, 0.981722)
+bones/12/rotation = Quaternion(1.92161e-09, 1.2374e-10, -0.0279848, 0.999608)
+bones/13/rotation = Quaternion(0.705543, 0.0486166, 0.704836, 0.0552328)
+bones/14/rotation = Quaternion(-0.00303399, -0.000341629, 0.185431, 0.982653)
+bones/15/rotation = Quaternion(2.12541e-09, 4.23081e-11, 0.0280101, 0.999608)
 
 [node name="Player" parent="PlayerModel/player/Armature/Skeleton3D" index="0"]
 lod_bias = 128.0
@@ -484,7 +587,7 @@ surface_material_override/1 = ExtResource("4_oor3j")
 surface_material_override/2 = ExtResource("5_mq2xk")
 
 [node name="FaceAttachment" type="BoneAttachment3D" parent="PlayerModel/player/Armature/Skeleton3D" index="1"]
-transform = Transform3D(1, 0, 0, 0, 0.999955, -0.00953403, 0, 0.00953403, 0.999955, -0.00183521, 0.509603, 0)
+transform = Transform3D(0.982675, 7.64063e-05, 0.185339, 7.27596e-12, 1, -0.000412251, -0.185339, 0.000405109, 0.982674, 0.01181, 0.488915, 0.0168383)
 bone_name = "Head"
 bone_idx = 9
 
@@ -591,6 +694,28 @@ grow_vertical = 2
 theme = ExtResource("10_n3t0k")
 script = ExtResource("8_3kk53")
 
+[node name="HurtVFX" type="Control" parent="HUD"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="HUD/HurtVFX"]
+libraries = {
+"": SubResource("AnimationLibrary_g40j1")
+}
+
+[node name="ColorRect" type="ColorRect" parent="HUD/HurtVFX"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.758747, 0.274727, 0.211329, 0.470588)
+
 [node name="DialogueBox" type="Panel" parent="HUD"]
 texture_filter = 1
 layout_mode = 1
@@ -638,20 +763,6 @@ one_shot = true
 [node name="RemoveCharacters" type="Timer" parent="HUD/DialogueBox"]
 wait_time = 5.0
 one_shot = true
-
-[node name="HurtVFX" type="ColorRect" parent="HUD"]
-visible = false
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-offset_right = -1920.0
-offset_bottom = -1080.0
-grow_horizontal = 2
-grow_vertical = 2
-color = Color(1, 1, 1, 0)
-
-[node name="Timer" type="Timer" parent="HUD/HurtVFX"]
 
 [node name="Health" type="ProgressBar" parent="HUD"]
 texture_filter = 1
@@ -702,7 +813,18 @@ offset_right = 30.0
 offset_bottom = 65.0
 grow_horizontal = 2
 grow_vertical = 0
+pivot_offset = Vector2(30, 30)
 texture = ExtResource("12_7h4vn")
+
+[node name="GPUParticles2D" type="GPUParticles2D" parent="HUD/Health/Dude"]
+position = Vector2(30, 30)
+amount = 5
+process_material = SubResource("ParticleProcessMaterial_gyi4v")
+texture = ExtResource("13_n1max")
+lifetime = 2.0
+one_shot = true
+speed_scale = 5.0
+explosiveness = 1.0
 
 [node name="EnemyHealth" type="ProgressBar" parent="HUD"]
 layout_mode = 1
