@@ -1,6 +1,6 @@
 [gd_scene load_steps=11 format=3 uid="uid://codvp41rfhoag"]
 
-[ext_resource type="Script" path="res://Elements/enemies/copycat_v2.gd" id="1_y5ayu"]
+[ext_resource type="Script" path="res://Elements/enemies/unused/copycat_v2.gd" id="1_y5ayu"]
 [ext_resource type="PackedScene" uid="uid://cft1b4l0aljye" path="res://Elements/function/info.tscn" id="1_ysy3y"]
 
 [sub_resource type="Animation" id="Animation_npk1j"]

@@ -1,4 +1,4 @@
-[gd_scene load_steps=39 format=3 uid="uid://cov8v6858hevf"]
+[gd_scene load_steps=41 format=3 uid="uid://cov8v6858hevf"]
 
 [ext_resource type="PackedScene" uid="uid://ch7t6b0c3tjwr" path="res://Elements/enemies/enemy.tscn" id="1_7b51b"]
 [ext_resource type="PackedScene" uid="uid://g2jwt8atruu7" path="res://Art/environment/environment.tscn" id="3_1kepo"]
@@ -24,10 +24,12 @@
 [ext_resource type="PackedScene" uid="uid://cp8y4w0hidlhu" path="res://Elements/assets/props/picture_xlarge.tscn" id="22_yam4c"]
 [ext_resource type="Shader" path="res://Art/materials/props/picture_image.gdshader" id="23_5tkwj"]
 [ext_resource type="PackedScene" uid="uid://dhaxwpsinvu6u" path="res://Elements/assets/props/crate.tscn" id="23_ncaea"]
-[ext_resource type="Texture2D" uid="uid://bvapu74ntnlx1" path="res://Art/assets/misc/bean.jpg" id="24_5eaps"]
+[ext_resource type="Texture2D" uid="uid://dk6dn3hd6uy1h" path="res://Art/assets/misc/suffering.png" id="25_mb124"]
 [ext_resource type="PackedScene" uid="uid://dmkhkm80jpdqd" path="res://Elements/assets/props/shelf.tscn" id="26_08g6o"]
 [ext_resource type="PackedScene" uid="uid://currpdc0rou40" path="res://Elements/assets/props/couch_small.tscn" id="27_8kips"]
 [ext_resource type="PackedScene" uid="uid://cggscg4u3txqj" path="res://Elements/assets/props/boombox.tscn" id="28_880h2"]
+[ext_resource type="PackedScene" uid="uid://dqaxkncc187ot" path="res://Elements/assets/props/picture_small.tscn" id="28_lbb36"]
+[ext_resource type="PackedScene" uid="uid://cdxkrkn34253v" path="res://Elements/assets/props/picture_large.tscn" id="29_uht8y"]
 [ext_resource type="PackedScene" uid="uid://h5siu0krokek" path="res://Elements/assets/props/table_3.tscn" id="29_walm4"]
 
 [sub_resource type="GDScript" id="GDScript_jf0va"]
@@ -109,11 +111,11 @@ size = Vector3(20, 10, 15)
 [sub_resource type="BoxShape3D" id="BoxShape3D_jt1we"]
 size = Vector3(3.915, 10.635, 12.815)
 
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_l3stx"]
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_wuyxa"]
 render_priority = 0
 shader = ExtResource("23_5tkwj")
 shader_parameter/emission_strength = 0.2
-shader_parameter/picture = ExtResource("24_5eaps")
+shader_parameter/picture = ExtResource("25_mb124")
 
 [node name="Level" type="Node3D"]
 script = SubResource("GDScript_jf0va")
@@ -126,7 +128,7 @@ prop = ExtResource("7_tk5jc")
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -10, 0)
 
 [node name="ObjectiveItem" parent="." instance=ExtResource("5_0wf4d")]
-transform = Transform3D(0.103175, 0, 0.994663, 0, 1, 0, -0.994663, 0, 0.103175, 63.0908, 13.1496, -45.3473)
+transform = Transform3D(0.103175, 0, 0.994663, 0, 1, 0, -0.994663, 0, 0.103175, 63.4424, 13.8643, -45.3473)
 
 [node name="ObjectiveLevelStart" parent="." instance=ExtResource("6_ey64y")]
 transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 0, 0.65, 0)
@@ -184,57 +186,59 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 25.5284, 10, 3.05913)
 
 [node name="Props" type="Node" parent="."]
 
-[node name="lamp" parent="." instance=ExtResource("15_r5nck")]
+[node name="lamp" parent="Props" instance=ExtResource("15_r5nck")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 60, 0, -32)
 
-[node name="stool_2" parent="." instance=ExtResource("16_2agqp")]
+[node name="stool_2" parent="Props" instance=ExtResource("16_2agqp")]
 transform = Transform3D(0.865379, 0, 0.501118, 0, 1, 0, -0.501118, 0, 0.865379, 63, 0, -28)
 
-[node name="stool_1" parent="." instance=ExtResource("17_8lj30")]
+[node name="stool_1" parent="Props" instance=ExtResource("17_8lj30")]
 transform = Transform3D(0.994185, 0, -0.107687, 0, 1, 0, 0.107687, 0, 0.994185, 63, 1, -28)
 
-[node name="pot" parent="." instance=ExtResource("18_u417g")]
+[node name="pot" parent="Props" instance=ExtResource("18_u417g")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 68, 0, -20)
 
-[node name="table_2" parent="." instance=ExtResource("19_mdoal")]
+[node name="table_2" parent="Props" instance=ExtResource("19_mdoal")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 73, 0, -30)
 
-[node name="table" parent="." instance=ExtResource("20_44o3j")]
+[node name="table" parent="Props" instance=ExtResource("20_44o3j")]
 transform = Transform3D(0.896626, 0, 0.44279, 0, 1, 0, -0.44279, 0, 0.896626, 66, 0, -33)
 
-[node name="vase" parent="." instance=ExtResource("21_jcqp2")]
+[node name="vase" parent="Props" instance=ExtResource("21_jcqp2")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 66, 1, -33)
 
-[node name="picture_xlarge" parent="." instance=ExtResource("22_yam4c")]
-transform = Transform3D(-4.37114e-08, 1, 2.98023e-08, 0, 2.98023e-08, -1, -1, -4.37114e-08, -1.3027e-15, 55, 5, -36)
-
-[node name="Picture_XLarge -rigid" parent="picture_xlarge/Picture_XLarge -rigid" index="0"]
-transform = Transform3D(1, 0, 2.11758e-22, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, -1, 0, 0)
-surface_material_override/1 = SubResource("ShaderMaterial_l3stx")
-
-[node name="crate" parent="." instance=ExtResource("23_ncaea")]
+[node name="crate" parent="Props" instance=ExtResource("23_ncaea")]
 transform = Transform3D(0.958532, 0, 0.284986, 0, 1, 0, -0.284986, 0, 0.958532, 59, 1, -38)
 
-[node name="lamp2" parent="." instance=ExtResource("15_r5nck")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 76.8683, 8.28154, -41.5694)
+[node name="picture_xlarge2" parent="Props" instance=ExtResource("22_yam4c")]
+transform = Transform3D(-1, 0, 8.74228e-08, 0, 1, 0, -8.74228e-08, 0, -1, 66.716, 12.3225, -50.0246)
 
-[node name="shelf" parent="." instance=ExtResource("26_08g6o")]
-transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 63.2859, 8.71595, -44.9494)
+[node name="Picture_XLarge -rigid" parent="Props/picture_xlarge2/Picture_XLarge -rigid" index="0"]
+surface_material_override/1 = SubResource("ShaderMaterial_wuyxa")
 
-[node name="couch_small" parent="." instance=ExtResource("27_8kips")]
-transform = Transform3D(0.965926, 0, -0.258819, 0, 1, 0, 0.258819, 0, 0.965926, 74.641, 8.48363, -47)
+[node name="lamp2" parent="Props" instance=ExtResource("15_r5nck")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 76.8683, 8.75656, -41.5694)
 
-[node name="vase2" parent="." instance=ExtResource("21_jcqp2")]
+[node name="shelf" parent="Props" instance=ExtResource("26_08g6o")]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 63.2859, 10.6401, -44.9494)
+
+[node name="couch_small" parent="Props" instance=ExtResource("27_8kips")]
+transform = Transform3D(0.965926, 0, -0.258819, 0, 1, 0, 0.258819, 0, 0.965926, 74.641, 9.52473, -47)
+
+[node name="vase2" parent="Props" instance=ExtResource("21_jcqp2")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 71.7207, 1.04904e-05, -37.9967)
 
-[node name="boombox" parent="." instance=ExtResource("28_880h2")]
+[node name="boombox" parent="Props" instance=ExtResource("28_880h2")]
 transform = Transform3D(0.670854, 0, 0.74159, 0, 1, 0, -0.74159, 0, 0.670854, 58.9733, 2.79335, -38.0077)
 
-[node name="table_3" parent="." instance=ExtResource("29_walm4")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 69.9976, 8.01034, -43.8873)
+[node name="table_3" parent="Props" instance=ExtResource("29_walm4")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 69.9976, 8.73407, -43.8873)
 
-[node name="Enemy" parent="." instance=ExtResource("1_7b51b")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 67.6323, 3.8147e-06, -25.1031)
+[node name="picture_small" parent="Props" instance=ExtResource("28_lbb36")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 60, 5, -40)
+
+[node name="picture_large" parent="Props" instance=ExtResource("29_uht8y")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 54, 5, -31)
 
 [connection signal="body_entered" from="Trigger" to="." method="_on_trigger_body_entered"]
 [connection signal="body_entered" from="DialogueTrigger" to="." method="_on_dialogue_trigger_body_entered"]
@@ -242,4 +246,4 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 67.6323, 3.8147e-06, -25.1031
 
 [editable path="WorldEnvironment"]
 [editable path="NavigationRegion3D/level"]
-[editable path="picture_xlarge"]
+[editable path="Props/picture_xlarge2"]

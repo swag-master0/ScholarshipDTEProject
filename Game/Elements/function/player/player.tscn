@@ -1,4 +1,4 @@
-[gd_scene load_steps=97 format=3 uid="uid://bcou7suhphdrp"]
+[gd_scene load_steps=98 format=3 uid="uid://bcou7suhphdrp"]
 
 [ext_resource type="Script" path="res://Elements/function/player/player.gd" id="1_0ncw4"]
 [ext_resource type="PackedScene" uid="uid://4lv8cegk7f53" path="res://Art/blend/assets/main/player.blend" id="2_ww4ji"]
@@ -331,10 +331,53 @@ animations = [{
 [sub_resource type="BoxShape3D" id="BoxShape3D_virh7"]
 size = Vector3(0.75, 1, 3)
 
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_xqya7"]
+radius = 0.861523
+height = 2.48431
+
 [sub_resource type="BoxShape3D" id="BoxShape3D_2e1ws"]
 size = Vector3(4, 3, 4)
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_j7m3i"]
+
+[sub_resource type="Animation" id="Animation_u4wsj"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("ColorRect:color")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(0.758747, 0.274727, 0.211329, 0.470588)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("../Health/Dude:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(150, 55)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("../Health/Dude/GPUParticles2D:emitting")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
 
 [sub_resource type="Animation" id="Animation_f0djo"]
 resource_name = "pain"
@@ -375,45 +418,6 @@ tracks/2/keys = {
 "transitions": PackedFloat32Array(1, 1),
 "update": 1,
 "values": [true, false]
-}
-
-[sub_resource type="Animation" id="Animation_u4wsj"]
-length = 0.001
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("ColorRect:color")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Color(0.758747, 0.274727, 0.211329, 0.470588)]
-}
-tracks/1/type = "value"
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/path = NodePath("../Health/Dude:position")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Vector2(150, 55)]
-}
-tracks/2/type = "value"
-tracks/2/imported = false
-tracks/2/enabled = true
-tracks/2/path = NodePath("../Health/Dude/GPUParticles2D:emitting")
-tracks/2/interp = 1
-tracks/2/loop_wrap = true
-tracks/2/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 1,
-"values": [true]
 }
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_g40j1"]
@@ -553,32 +557,33 @@ parameters/run/Blend2/blend_amount = 0.0
 parameters/run/TimeScale/scale = 2.0
 
 [node name="CollisionShape" type="CollisionShape3D" parent="."]
+editor_description = "Main Collision Shape for the player"
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.148464, 0)
 shape = SubResource("CapsuleShape3D_nrsfh")
 
 [node name="PlayerModel" type="Node3D" parent="."]
+editor_description = "The playermodel, containing data like the mesh, skeleton, and various other stuff"
 
 [node name="player" parent="PlayerModel" instance=ExtResource("2_ww4ji")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1, 0)
 
 [node name="Skeleton3D" parent="PlayerModel/player/Armature" index="0"]
-bones/0/position = Vector3(0.01181, -0.0956289, 0.0168383)
-bones/0/rotation = Quaternion(0, 0.000879729, 0, 1)
-bones/1/rotation = Quaternion(-0.123909, 0.409716, 0.805694, 0.409434)
-bones/2/rotation = Quaternion(-0.0832785, 0.151913, 0.0268079, 0.984514)
-bones/3/rotation = Quaternion(0.494872, -0.3231, 0.165436, 0.789518)
-bones/4/rotation = Quaternion(0.124827, 0.00433421, -0.00983012, 0.99212)
-bones/5/rotation = Quaternion(0.0401357, 0.0277039, -0.901497, 0.430028)
-bones/6/rotation = Quaternion(-0.00638698, -0.0588278, 0.0119058, 0.998177)
-bones/7/rotation = Quaternion(0.667106, -0.0384816, 0.20291, 0.715763)
-bones/8/rotation = Quaternion(0.190654, -0.00112064, 0.0444487, 0.98065)
-bones/9/rotation = Quaternion(0.000205248, 0.0921977, -1.90043e-05, 0.995741)
-bones/10/rotation = Quaternion(0.725105, -0.0588811, -0.684408, 0.0483911)
-bones/11/rotation = Quaternion(0.00347368, -0.000380969, -0.190289, 0.981722)
-bones/12/rotation = Quaternion(1.92161e-09, 1.2374e-10, -0.0279848, 0.999608)
-bones/13/rotation = Quaternion(0.705543, 0.0486166, 0.704836, 0.0552328)
-bones/14/rotation = Quaternion(-0.00303399, -0.000341629, 0.185431, 0.982653)
-bones/15/rotation = Quaternion(2.12541e-09, 4.23081e-11, 0.0280101, 0.999608)
+bones/0/position = Vector3(-0.00183521, -0.0713071, 0)
+bones/1/rotation = Quaternion(0.000235611, -0.000348649, 0.818748, 0.574153)
+bones/2/rotation = Quaternion(-0.000369565, -0.000246739, 0.290779, 0.95679)
+bones/3/rotation = Quaternion(-0.000382495, -6.4729e-05, 0.403945, 0.914783)
+bones/4/rotation = Quaternion(-6.35795e-06, -2.53072e-07, 0.0895676, 0.995981)
+bones/5/rotation = Quaternion(0.000266177, 0.000332688, -0.845629, 0.533771)
+bones/6/rotation = Quaternion(-0.000361623, 0.000259767, -0.280364, 0.959894)
+bones/7/rotation = Quaternion(-0.000431998, 6.78892e-05, -0.35019, 0.936679)
+bones/8/rotation = Quaternion(-8.79532e-05, 3.21892e-06, -0.076474, 0.997072)
+bones/9/rotation = Quaternion(0.0024261, 0, 0, 0.999997)
+bones/10/rotation = Quaternion(0.706024, -0.0391243, -0.706024, 0.0391243)
+bones/11/rotation = Quaternion(7.56177e-09, 1.57531e-08, -0.132523, 0.99118)
+bones/12/rotation = Quaternion(2.11264e-09, -9.40588e-16, -0.0279828, 0.999608)
+bones/13/rotation = Quaternion(0.706021, 0.0391767, 0.706021, 0.0391767)
+bones/14/rotation = Quaternion(7.5653e-09, -1.5753e-08, 0.132577, 0.991173)
+bones/15/rotation = Quaternion(2.11486e-09, 2.15884e-15, 0.0280121, 0.999608)
 
 [node name="Player" parent="PlayerModel/player/Armature/Skeleton3D" index="0"]
 lod_bias = 128.0
@@ -587,7 +592,7 @@ surface_material_override/1 = ExtResource("4_oor3j")
 surface_material_override/2 = ExtResource("5_mq2xk")
 
 [node name="FaceAttachment" type="BoneAttachment3D" parent="PlayerModel/player/Armature/Skeleton3D" index="1"]
-transform = Transform3D(0.982675, 7.64063e-05, 0.185339, 7.27596e-12, 1, -0.000412251, -0.185339, 0.000405109, 0.982674, 0.01181, 0.488915, 0.0168383)
+transform = Transform3D(1, 0, 0, 0, 0.999988, -0.00485218, 0, 0.00485218, 0.999988, -0.00183521, 0.513236, 0)
 bone_name = "Head"
 bone_idx = 9
 
@@ -599,22 +604,16 @@ sprite_frames = SubResource("SpriteFrames_n15er")
 autoplay = "default"
 frame_progress = 0.739195
 
-[node name="SpotLight3D" type="SpotLight3D" parent="PlayerModel/player/Armature/Skeleton3D/FaceAttachment"]
-transform = Transform3D(1, 0, 0, 0, -0.997138, 0.0756029, 0, -0.0756029, -0.997138, 0, 0.239204, 0.549586)
-light_energy = 0.106
-spot_range = 1.0
-spot_attenuation = 1.49648
-spot_angle = 78.68
-
 [node name="ObstructionDetector" type="Area3D" parent="PlayerModel"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 2)
+visible = false
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="PlayerModel/ObstructionDetector"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.5, -0.5)
 shape = SubResource("BoxShape3D_virh7")
 
 [node name="HoldPointPivot" type="Node3D" parent="PlayerModel"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.713259, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.45126, 0)
 
 [node name="Backup" type="Marker3D" parent="PlayerModel/HoldPointPivot"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
@@ -624,9 +623,16 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 2)
 
 [node name="OmniLight3D" type="OmniLight3D" parent="PlayerModel"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.43653, 0)
-light_color = Color(0.0161245, 0.265556, 0.359653, 1)
+light_color = Color(0.23, 0.23, 0.23, 1)
+
+[node name="SoftPush" type="Area3D" parent="PlayerModel"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.673798, 0)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="PlayerModel/SoftPush"]
+shape = SubResource("CapsuleShape3D_xqya7")
 
 [node name="CentralCameraPoint" type="Marker3D" parent="."]
+editor_description = "The pivot point used for the camera"
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.01149, 0.273736)
 
 [node name="Wind" type="Node3D" parent="CentralCameraPoint"]
@@ -655,7 +661,9 @@ collision_mask = 513
 debug_shape_custom_color = Color(1, 0, 0, 1)
 
 [node name="Cursor" type="Marker3D" parent="."]
+editor_description = "The cursor the game places in 3D space to fetch objects"
 transform = Transform3D(0.707107, 0, -0.707107, 0, 1, 0, 0.707107, 0, 0.707107, 0, 0, -4)
+visible = false
 gizmo_extents = 3.0
 
 [node name="Area3D" type="Area3D" parent="Cursor"]
@@ -665,6 +673,8 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
 shape = SubResource("BoxShape3D_2e1ws")
 
 [node name="Info" parent="." instance=ExtResource("5_7n0o5")]
+editor_description = "Player Hitbox"
+visible = false
 health = 20.0
 max_health = 20.0
 invincibility_frames = 0.05

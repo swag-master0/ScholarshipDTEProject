@@ -306,18 +306,29 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 7.93963, 2, -28.4437)
 
 [node name="Skeleton3D" parent="Enemy/spider/Armature" index="0"]
 bones/1/rotation = Quaternion(-0.120468, 0.871344, 0.386259, 0.27758)
+bones/1/scale = Vector3(1, 1, 1)
 bones/2/rotation = Quaternion(-0.851004, -0.00340442, 0.013212, 0.524981)
+bones/2/scale = Vector3(1, 1, 1)
 bones/3/rotation = Quaternion(-0.135727, -6.12924e-08, 0.00188086, 0.990745)
+bones/3/scale = Vector3(1, 1, 1)
 bones/4/rotation = Quaternion(0.218255, -0.347949, -0.340695, 0.845708)
+bones/4/scale = Vector3(1, 1, 1)
+bones/5/rotation = Quaternion(0.160542, 0.0013776, -0.836209, 0.524384)
+bones/5/scale = Vector3(1, 1, 1)
 bones/6/rotation = Quaternion(0.0230141, -7.37849e-08, -0.13309, 0.990837)
+bones/6/scale = Vector3(1, 1, 1)
 bones/7/rotation = Quaternion(-0.459967, -0.328176, -0.039048, 0.82414)
 bones/8/rotation = Quaternion(-0.754688, -0.052537, 0.295545, 0.583386)
+bones/8/scale = Vector3(1, 1, 1)
 bones/9/rotation = Quaternion(-0.128149, -1.31788e-08, 0.0689897, 0.989352)
+bones/9/scale = Vector3(1, 1, 1)
 bones/10/rotation = Quaternion(-0.459967, 0.328176, 0.039048, 0.82414)
 bones/11/rotation = Quaternion(-0.754688, 0.052537, -0.295545, 0.583386)
+bones/11/scale = Vector3(1, 1, 1)
 bones/12/rotation = Quaternion(-0.128149, 1.31788e-08, -0.0689897, 0.989352)
+bones/12/scale = Vector3(1, 1, 1)
 
-[node name="Info" parent="Enemy" index="3"]
+[node name="Info" parent="Enemy" index="2"]
 health = 1.0
 max_health = 1.0
 

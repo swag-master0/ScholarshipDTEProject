@@ -1,4 +1,9 @@
-[gd_resource type="AudioBusLayout" format=3 uid="uid://d0diri1n00jc2"]
+[gd_resource type="AudioBusLayout" load_steps=2 format=3 uid="uid://d0diri1n00jc2"]
+
+[sub_resource type="AudioEffectReverb" id="AudioEffectReverb_fpjw4"]
+resource_name = "Reverb"
+room_size = 0.1
+wet = 0.1
 
 [resource]
 bus/1/name = &"music"
@@ -13,6 +18,8 @@ bus/2/mute = false
 bus/2/bypass_fx = false
 bus/2/volume_db = 0.0
 bus/2/send = &"Master"
+bus/2/effect/0/effect = SubResource("AudioEffectReverb_fpjw4")
+bus/2/effect/0/enabled = true
 bus/3/name = &"ambience"
 bus/3/solo = false
 bus/3/mute = false

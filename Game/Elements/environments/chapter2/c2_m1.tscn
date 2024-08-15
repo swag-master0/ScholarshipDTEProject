@@ -1,6 +1,6 @@
 [gd_scene load_steps=15 format=3 uid="uid://c3jh1kk8goxry"]
 
-[ext_resource type="PackedScene" uid="uid://ch3t1bgj51uvs" path="res://Elements/enemies/sentry.tscn" id="1_u0axa"]
+[ext_resource type="PackedScene" uid="uid://ch3t1bgj51uvs" path="res://Elements/enemies/unused/sentry.tscn" id="1_u0axa"]
 [ext_resource type="PackedScene" uid="uid://dkteohkuoghg0" path="res://Art/blend/levels_chapter2/c2_m1.blend" id="1_usv7o"]
 [ext_resource type="PackedScene" uid="uid://bcou7suhphdrp" path="res://Elements/function/player/player.tscn" id="2_ml0gj"]
 [ext_resource type="PackedScene" uid="uid://msdo88p274sw" path="res://Elements/function/objective.tscn" id="3_1pict"]

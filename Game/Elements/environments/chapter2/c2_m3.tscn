@@ -1,6 +1,6 @@
 [gd_scene load_steps=14 format=3 uid="uid://bnw1iqj5sw2f"]
 
-[ext_resource type="PackedScene" uid="uid://codvp41rfhoag" path="res://Elements/enemies/copycat_v2.tscn" id="1_mw032"]
+[ext_resource type="PackedScene" uid="uid://codvp41rfhoag" path="res://Elements/enemies/unused/copycat_v2.tscn" id="1_mw032"]
 [ext_resource type="PackedScene" uid="uid://bcou7suhphdrp" path="res://Elements/function/player/player.tscn" id="2_l6soh"]
 [ext_resource type="PackedScene" uid="uid://d31fcy57aohf6" path="res://Art/blend/levels_chapter2/c2_m3.blend" id="2_rhdrf"]
 [ext_resource type="PackedScene" uid="uid://cihisq18677xu" path="res://Elements/function/objective_item.tscn" id="3_ffqti"]

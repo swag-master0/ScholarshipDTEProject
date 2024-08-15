@@ -1,6 +1,6 @@
 [gd_scene load_steps=10 format=3 uid="uid://ch3t1bgj51uvs"]
 
-[ext_resource type="Script" path="res://Elements/enemies/sentry.gd" id="1_j4f2o"]
+[ext_resource type="Script" path="res://Elements/enemies/unused/sentry.gd" id="1_j4f2o"]
 [ext_resource type="PackedScene" uid="uid://bw2f0n3c7md1a" path="res://Elements/assets/gameplay/grenade.tscn" id="2_ougdt"]
 [ext_resource type="PackedScene" uid="uid://cft1b4l0aljye" path="res://Elements/function/info.tscn" id="3_45p8x"]
 

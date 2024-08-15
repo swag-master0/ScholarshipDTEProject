@@ -5,6 +5,7 @@ extends Node3D
 @onready var center = $Center
 
 @export var force : float = 1000
+@export var ragdoll_force : float = 10
 @export var damage : float = 8
 
 var triggered = false
@@ -16,6 +17,9 @@ func _process(_delta):
 		
 		if i is RigidBody3D and !(affected.has(i)):
 			i.apply_force((i.global_position - center.global_position).normalized() * force)
+			affected.append(i)
+		if i is PhysicalBone3D and !(affected.has(i)):
+			i.apply_impulse((i.global_position - center.global_position).normalized() * ragdoll_force)
 			affected.append(i)
 			
 		if (i.is_in_group("player") or i.is_in_group("enemy")) and !(affected.has(i)):

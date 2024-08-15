@@ -88,6 +88,9 @@ func _physics_process(delta):
 		if (i.is_in_group("enemy") and i != self):
 			var difference = i.global_position - self.global_position
 			velocity -= difference
+		
+		if i is PhysicalBone3D:
+			i.apply_impulse(((i.global_position - global_position).normalized() * 10) * delta)
 	
 	# literally only for c2_m4, since i'm too lazy to create a whole new enemy for a gimick
 	if light_based:

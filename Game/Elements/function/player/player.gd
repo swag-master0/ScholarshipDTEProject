@@ -35,6 +35,7 @@ func TOP():
 @onready var holdpoint = $PlayerModel/HoldPointPivot/HoldPoint
 @onready var holdpoint_backup = $PlayerModel/HoldPointPivot/Backup
 @onready var obstruction_detection = $PlayerModel/ObstructionDetector
+@onready var soft_push = $PlayerModel/SoftPush
 
 
 
@@ -217,7 +218,7 @@ func _physics_process(delta):
 		state_machine.travel("idle")
 	
 
-func _process(_delta):
+func _process(delta):
 	HUD.Dialogue()
 	
 	holdpoint_pivot.rotation.x = clamp(-pivot.rotation.x, deg_to_rad(-60), deg_to_rad(0))
@@ -306,6 +307,15 @@ func _process(_delta):
 	tween.tween_property($CentralCameraPoint/Wind, "position", camera.global_position, 0.05)
 	var distance = $CentralCameraPoint/Wind.global_position.distance_to(camera.global_position)
 	tween.tween_property($Audio/CameraWind, "pitch_scale", clamp(distance, 0, 2) + 0.1, 0.3)
+	
+	
+	for i in soft_push.get_overlapping_bodies():
+		if !(i.get_parent().is_in_group("player")):
+			if i is RigidBody3D:
+				print("applying force to rigid")
+				i.apply_impulse(((i.global_position - global_position).normalized() * 250) * delta)
+			elif i is PhysicalBone3D:
+				i.apply_impulse(((i.global_position - global_position).normalized() * 10) * delta)
 	
 	
 	if DISPLAY_DUST and dust.visible != true:

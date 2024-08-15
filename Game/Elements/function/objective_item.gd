@@ -2,6 +2,7 @@ extends RigidBody3D
 
 @onready var initial_pos = self.global_position
 
+
 # anti softlock, in case the objective item falls out of the world
 func _process(_delta):
 	if self.global_position.y < -500:
