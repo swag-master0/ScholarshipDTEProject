@@ -2,7 +2,7 @@
 
 [ext_resource type="Script" path="res://Elements/function/player/a-os.gd" id="1_141mi"]
 [ext_resource type="PackedScene" uid="uid://dgj0swcywi380" path="res://Art/blend/assets/main/a-os.blend" id="2_iy2j7"]
-[ext_resource type="Shader" path="res://Art/materials/player/a-os_white.gdshader" id="3_gxl6r"]
+[ext_resource type="Shader" path="res://Art/materials/unused/a-os_white.gdshader" id="3_gxl6r"]
 [ext_resource type="Texture2D" uid="uid://dakdkin3narkl" path="res://Art/assets/hud/a-os/a-os_face-1.png" id="3_tnsdo"]
 [ext_resource type="Texture2D" uid="uid://b1arkokdnxxxx" path="res://Art/assets/hud/a-os/a-os_mouth-1.png" id="4_lnspb"]
 [ext_resource type="Texture2D" uid="uid://b13wr06ggbju2" path="res://Art/assets/hud/a-os/a-os_face-2.png" id="4_wye6e"]

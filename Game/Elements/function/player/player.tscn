@@ -1,12 +1,12 @@
-[gd_scene load_steps=99 format=3 uid="uid://bcou7suhphdrp"]
+[gd_scene load_steps=90 format=3 uid="uid://bcou7suhphdrp"]
 
 [ext_resource type="Script" path="res://Elements/function/player/player.gd" id="1_0ncw4"]
 [ext_resource type="PackedScene" uid="uid://4lv8cegk7f53" path="res://Art/blend/assets/main/player.blend" id="2_ww4ji"]
-[ext_resource type="Shader" path="res://Art/materials/player/player_limbs.gdshader" id="3_h2cvn"]
-[ext_resource type="Shader" path="res://Art/materials/player/player_hat.gdshader" id="3_pbnjn"]
-[ext_resource type="Shader" path="res://Art/materials/player/player_skin.gdshader" id="4_5kk05"]
+[ext_resource type="Material" uid="uid://bi7cy033dy1o5" path="res://Art/materials/player_limbs.material" id="3_ek1l1"]
+[ext_resource type="Material" uid="uid://cy46o7chxy5s8" path="res://Art/materials/player_hat.material" id="4_oor3j"]
 [ext_resource type="Texture2D" uid="uid://b7b8lqiwyngpq" path="res://Art/assets/assets/player_eyes-1.png" id="5_5usx4"]
 [ext_resource type="PackedScene" uid="uid://cft1b4l0aljye" path="res://Elements/function/info.tscn" id="5_7n0o5"]
+[ext_resource type="Material" uid="uid://cdh2wbqo2jjpj" path="res://Art/materials/skin.material" id="5_mq2xk"]
 [ext_resource type="Texture2D" uid="uid://ctnbrrls3ra0x" path="res://Art/assets/assets/player_eyes-2.png" id="6_jjkqh"]
 [ext_resource type="Script" path="res://Elements/function/player/player_hud.gd" id="8_3kk53"]
 [ext_resource type="PackedScene" uid="uid://233quw6ftjqa" path="res://Elements/function/options_menu.tscn" id="9_vjmmq"]
@@ -225,54 +225,6 @@ graph_offset = Vector2(936, -194)
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_nrsfh"]
 radius = 0.474599
 height = 2.30568
-
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_c5koe"]
-render_priority = 0
-shader = ExtResource("3_h2cvn")
-shader_parameter/color = Vector3(0, 0, 0)
-
-[sub_resource type="Gradient" id="Gradient_863f6"]
-interpolation_mode = 1
-offsets = PackedFloat32Array(0, 0.55)
-
-[sub_resource type="FastNoiseLite" id="FastNoiseLite_snykk"]
-noise_type = 2
-frequency = 0.3981
-fractal_type = 0
-
-[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_4ko1r"]
-in_3d_space = true
-as_normal_map = true
-color_ramp = SubResource("Gradient_863f6")
-noise = SubResource("FastNoiseLite_snykk")
-
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_booyl"]
-render_priority = 0
-shader = ExtResource("3_pbnjn")
-shader_parameter/base_colour = Vector3(0.075, 0.025, 0.025)
-shader_parameter/normal = SubResource("NoiseTexture2D_4ko1r")
-
-[sub_resource type="Gradient" id="Gradient_untfa"]
-interpolation_mode = 1
-offsets = PackedFloat32Array(0, 0.538745)
-
-[sub_resource type="FastNoiseLite" id="FastNoiseLite_ln41e"]
-noise_type = 0
-seed = 5
-frequency = 1.0
-cellular_distance_function = 1
-cellular_return_type = 4
-
-[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_bhqf6"]
-as_normal_map = true
-color_ramp = SubResource("Gradient_untfa")
-noise = SubResource("FastNoiseLite_ln41e")
-
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_mhwhj"]
-render_priority = 0
-shader = ExtResource("4_5kk05")
-shader_parameter/base_colour = Vector3(0.8, 0.025, 0)
-shader_parameter/normal = SubResource("NoiseTexture2D_bhqf6")
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_n15er"]
 animations = [{
@@ -508,31 +460,31 @@ shape = SubResource("CapsuleShape3D_nrsfh")
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1, 0)
 
 [node name="Skeleton3D" parent="PlayerModel/player/Armature" index="0"]
-bones/0/position = Vector3(-0.00183521, -0.0712631, 0)
-bones/1/rotation = Quaternion(0.000233166, -0.000345028, 0.818757, 0.57414)
-bones/2/rotation = Quaternion(-0.000365243, -0.000243855, 0.290806, 0.956782)
-bones/3/rotation = Quaternion(-0.000378021, -6.39703e-05, 0.404007, 0.914756)
+bones/0/position = Vector3(-0.00183521, -0.0749405, 0)
+bones/1/rotation = Quaternion(0.000462789, -0.000685053, 0.817912, 0.575343)
+bones/2/rotation = Quaternion(-0.000726379, -0.000484822, 0.288524, 0.957472)
+bones/3/rotation = Quaternion(-0.000752254, -0.000127421, 0.398859, 0.917012)
 bones/4/rotation = Quaternion(-6.35795e-06, -2.53072e-07, 0.0895676, 0.995981)
-bones/5/rotation = Quaternion(0.000263065, 0.000328798, -0.845662, 0.533719)
-bones/6/rotation = Quaternion(-0.000357396, 0.000256731, -0.2804, 0.959883)
-bones/7/rotation = Quaternion(-0.000427186, 6.71329e-05, -0.350169, 0.936687)
-bones/8/rotation = Quaternion(-8.69251e-05, 3.1813e-06, -0.0764521, 0.997073)
-bones/9/rotation = Quaternion(0.00239774, 0, 0, 0.999997)
-bones/10/rotation = Quaternion(0.706025, -0.0390963, -0.706025, 0.0390963)
-bones/11/rotation = Quaternion(7.56259e-09, 1.57532e-08, -0.132471, 0.991187)
+bones/5/rotation = Quaternion(0.00052335, 0.000654101, -0.842928, 0.538026)
+bones/6/rotation = Quaternion(-0.000703492, 0.00050536, -0.277459, 0.960737)
+bones/7/rotation = Quaternion(-0.000840843, 0.000132144, -0.351988, 0.936004)
+bones/8/rotation = Quaternion(-0.00017273, 6.32184e-06, -0.0782728, 0.996932)
+bones/9/rotation = Quaternion(0.00476707, 0, 0, 0.999989)
+bones/10/rotation = Quaternion(0.705894, -0.0413951, -0.705894, 0.0413951)
+bones/11/rotation = Quaternion(7.49395e-09, 1.57437e-08, -0.13685, 0.990592)
 bones/12/rotation = Quaternion(2.11264e-09, -9.40588e-16, -0.0279828, 0.999608)
-bones/13/rotation = Quaternion(0.706022, 0.0391487, 0.706022, 0.0391487)
-bones/14/rotation = Quaternion(7.56611e-09, -1.57531e-08, 0.132524, 0.99118)
+bones/13/rotation = Quaternion(0.705891, 0.0414433, 0.705891, 0.0414434)
+bones/14/rotation = Quaternion(7.49755e-09, -1.57436e-08, 0.1369, 0.990585)
 bones/15/rotation = Quaternion(2.11486e-09, 2.15884e-15, 0.0280121, 0.999608)
 
 [node name="Player" parent="PlayerModel/player/Armature/Skeleton3D" index="0"]
 lod_bias = 128.0
-surface_material_override/0 = SubResource("ShaderMaterial_c5koe")
-surface_material_override/1 = SubResource("ShaderMaterial_booyl")
-surface_material_override/2 = SubResource("ShaderMaterial_mhwhj")
+surface_material_override/0 = ExtResource("3_ek1l1")
+surface_material_override/1 = ExtResource("4_oor3j")
+surface_material_override/2 = ExtResource("5_mq2xk")
 
 [node name="FaceAttachment" type="BoneAttachment3D" parent="PlayerModel/player/Armature/Skeleton3D" index="1"]
-transform = Transform3D(1, 0, 0, 0, 0.999988, -0.00479547, 0, 0.00479547, 0.999988, -0.00183521, 0.513281, 0)
+transform = Transform3D(1, 0, 0, 0, 0.999955, -0.00953403, 0, 0.00953403, 0.999955, -0.00183521, 0.509603, 0)
 bone_name = "Head"
 bone_idx = 9
 
@@ -559,13 +511,17 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.5, -0.5)
 shape = SubResource("BoxShape3D_virh7")
 
 [node name="HoldPointPivot" type="Node3D" parent="PlayerModel"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.261848, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.713259, 0)
 
 [node name="Backup" type="Marker3D" parent="PlayerModel/HoldPointPivot"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
 
 [node name="HoldPoint" type="Marker3D" parent="PlayerModel/HoldPointPivot"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 2)
+
+[node name="OmniLight3D" type="OmniLight3D" parent="PlayerModel"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.43653, 0)
+light_color = Color(0.0161245, 0.265556, 0.359653, 1)
 
 [node name="CentralCameraPoint" type="Marker3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.01149, 0.273736)
