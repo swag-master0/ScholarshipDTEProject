@@ -33,7 +33,11 @@ func _ready():
 	
 	await get_tree().create_timer(3).timeout
 	
+	# NOTE: this is just for debugging reasons. 
+	# Please remember to remove this when finished!
 	tutorial_finished()
+	
+	# Uncomment these lines:
 	
 	#player.dialogue_queue.append(1)
 	#player.dialogue_queue.append("PLEASE COMPLETE THE FOLLOWING DIAGNOSTIC COURSE. ")
@@ -92,14 +96,15 @@ func tutorial_finished():
 	
 	#insert A-OS monologue here
 	# TODO: introduce A-OS' name here
-	player.dialogue_queue.append("you would not BELIEVE how hard it is to make life from scratch. [img]'res://Art/assets/misc/bean.jpg'[/img]")
+	player.dialogue_queue.append("you would not BELIEVE how hard it is to make life from scratch.")
 	player.dialogue_queue.append("sorry for the scare about that 'diagnostic test', I didn't want to get attached incase it was another dud.")
-	player.dialogue_queue.append("anyway, i want to get to know you")
-	player.dialogue_queue.append("pick a name for yourself: ")
+	player.dialogue_queue.append("anyway, i am A-OS!")
+	player.dialogue_queue.append("i never gave you a name myself, would you like to?")
+	player.dialogue_queue.append("please, name yourself;")
 
 func name_picked():
 	player.dialogue_queue.append(str("hey, i like that name, '", PlayerName.new().fetch_name(), ",' it's nice."))
-	player.dialogue_queue.append("...")
+	player.dialogue_queue.append("now that introductions are out of the way") # CONTINUE HERE
 	player.dialogue_queue.append("this room is pretty boring, huh.")
 	player.dialogue_queue.append(str("alright, ", PlayerName.new().fetch_name(), ", lets go out"))
 	player.dialogue_queue.append("i just lined something up that could be fun!")
@@ -108,10 +113,6 @@ func name_picked():
 	player.dialogue_queue.append("lemme send down the lift... we're going to the surface!")
 	# If this is changed, remember to do the same with the dialogue checker in order to allow the elevator to come down!
 
-# i just realised you can't eat, because i never gave you a mouth
-# oh well, guess you'll starve
-# on the bright side, it'll take you approximately 4 years to starve
-# i'll just revive you when that happens anyway, <name>!
 
 func _on_player_dialogue_finished(dialogue):
 	if dialogue == "DIAGNOSTIC COURSE IS NOW BEGINNING. ":
@@ -131,7 +132,7 @@ func _on_player_dialogue_finished(dialogue):
 		player.SendHintToPlayer("Use MOUSE 1 to pick up the cube")
 		activate_throwing_tutorial = true
 	
-	elif dialogue == "pick a name for yourself: ":
+	elif dialogue == "please, name yourself;":
 		player.canPause = false
 		$"../Control".visible = true
 		$"../Control/ColorRect/LineEdit".grab_focus()
