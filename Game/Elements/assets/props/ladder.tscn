@@ -9,16 +9,14 @@
 
 [node name="Ladder -rigid" parent="." index="0"]
 mass = 30.0
-max_contacts_reported = 5
 contact_monitor = true
+max_contacts_reported = 5
 script = ExtResource("2_03xcp")
 
-[node name="Sound" type="Node3D" parent="Ladder -rigid" index="2"]
-
-[node name="AudioStreamPlayer3D" type="AudioStreamPlayer3D" parent="Ladder -rigid/Sound" index="0"]
+[node name="AudioStreamPlayer3D" type="AudioStreamPlayer3D" parent="Ladder -rigid" index="2"]
 stream = ExtResource("3_603o0")
 
-[node name="AudioStreamPlayer3D2" type="AudioStreamPlayer3D" parent="Ladder -rigid/Sound" index="1"]
+[node name="AudioStreamPlayer3D2" type="AudioStreamPlayer3D" parent="Ladder -rigid" index="3"]
 stream = ExtResource("4_qyh3d")
 
 [connection signal="body_entered" from="Ladder -rigid" to="Ladder -rigid" method="_on_body_entered"]

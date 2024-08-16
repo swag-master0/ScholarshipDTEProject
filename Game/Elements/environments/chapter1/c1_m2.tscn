@@ -95,7 +95,7 @@ shader_parameter/normal_tex = ExtResource("10_qke8v")
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_0i6hu"]
 render_priority = 0
 shader = ExtResource("11_ei1hd")
-shader_parameter/amount = 1.0
+shader_parameter/uv_scale = 1.0
 shader_parameter/normal = ExtResource("12_mqm84")
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_lynqq"]

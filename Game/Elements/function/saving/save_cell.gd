@@ -86,12 +86,3 @@ func load_cell(root_node):
 	else:
 		#push_error("Save System: Player hub load Failed")
 		print_rich("[color=RED]Player Hub Load Failed")
-
-
-
-
-
-
-
-
-

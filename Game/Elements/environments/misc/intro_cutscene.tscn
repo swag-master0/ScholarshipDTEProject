@@ -1,4 +1,4 @@
-[gd_scene load_steps=21 format=3 uid="uid://c8axtmdbhahks"]
+[gd_scene load_steps=31 format=3 uid="uid://c8axtmdbhahks"]
 
 [ext_resource type="Script" path="res://Elements/environments/misc/player_cell.gd" id="1_kngen"]
 [ext_resource type="Script" path="res://Elements/environments/misc/introsequence.gd" id="2_r8356"]
@@ -10,6 +10,7 @@
 [ext_resource type="PackedScene" uid="uid://bmgk0u34rg2cy" path="res://Art/blend/assets/misc/rail.blend" id="6_gm6vi"]
 [ext_resource type="PackedScene" uid="uid://4lamctxd2su2" path="res://Elements/assets/misc/carraige.tscn" id="7_nnqxf"]
 [ext_resource type="Theme" uid="uid://qpcg0ktiqy0j" path="res://Art/assets/theme.tres" id="10_5he3v"]
+[ext_resource type="Texture2D" uid="uid://dp1ls6ddglxoj" path="res://Art/assets/assets/cartoon_particle_5.png" id="10_h38d2"]
 
 [sub_resource type="Animation" id="Animation_w48k8"]
 length = 0.001
@@ -168,12 +169,71 @@ size = Vector3(6, 15, 6)
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_hrqgb"]
 render_priority = 0
 shader = ExtResource("4_4xd8j")
-shader_parameter/amount = 1.0
+shader_parameter/uv_scale = 1.0
 shader_parameter/normal = ExtResource("5_jt3b1")
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_n6wvs"]
+render_priority = 0
+shader = ExtResource("4_4xd8j")
+shader_parameter/uv_scale = 0.3
+shader_parameter/normal = ExtResource("5_jt3b1")
+
+[sub_resource type="Gradient" id="Gradient_vw2an"]
+colors = PackedColorArray(0.941176, 0.0431373, 0.0313726, 1, 0.949195, 0.896106, 0.0984805, 1)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_6e30b"]
+gradient = SubResource("Gradient_vw2an")
+
+[sub_resource type="Curve" id="Curve_th0ug"]
+_data = [Vector2(0, 0.726316), 0.0, 0.0, 0, 0, Vector2(0.22449, 1), 0.0, 0.0, 0, 0, Vector2(1, 0.126316), 0.0, 0.0, 0, 0]
+point_count = 3
+
+[sub_resource type="CurveTexture" id="CurveTexture_wwe6v"]
+curve = SubResource("Curve_th0ug")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_r4o6i"]
+emission_shape = 3
+emission_box_extents = Vector3(3.5, 0, 2)
+angle_min = 1.07288e-05
+angle_max = 360.0
+direction = Vector3(0, 1, 0)
+spread = 15.0
+initial_velocity_min = 30.0
+initial_velocity_max = 30.0
+gravity = Vector3(0, 0, 0)
+damping_max = 1.0
+scale_curve = SubResource("CurveTexture_wwe6v")
+color_ramp = SubResource("GradientTexture1D_6e30b")
+turbulence_enabled = true
+turbulence_noise_strength = 0.25
+turbulence_noise_scale = 1.5
+turbulence_noise_speed = Vector3(0.5, 0, 0.5)
+collision_mode = 1
+collision_friction = 0.0
+collision_bounce = 0.0
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_4s8yj"]
+transparency = 1
+blend_mode = 4
+shading_mode = 0
+vertex_color_use_as_albedo = true
+albedo_texture = ExtResource("10_h38d2")
+billboard_mode = 3
+billboard_keep_scale = true
+particles_anim_h_frames = 1
+particles_anim_v_frames = 1
+particles_anim_loop = false
+
+[sub_resource type="QuadMesh" id="QuadMesh_wklr1"]
+material = SubResource("StandardMaterial3D_4s8yj")
+size = Vector2(5, 5)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_6mpii"]
+size = Vector3(7, 5, 4)
 
 [sub_resource type="Environment" id="Environment_ppwta"]
 background_mode = 1
-volumetric_fog_enabled = true
+glow_enabled = true
 volumetric_fog_density = 0.025
 
 [node name="IntroCutscene" type="Node3D"]
@@ -236,6 +296,62 @@ DISPLAY_DUST = false
 
 [node name="Room" parent="player_hub" index="0"]
 surface_material_override/0 = SubResource("ShaderMaterial_hrqgb")
+
+[node name="Cube" parent="player_hub" index="3"]
+surface_material_override/0 = SubResource("ShaderMaterial_n6wvs")
+
+[node name="Incinerator" type="Node3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -8, 13)
+visible = false
+
+[node name="FireParticles" type="GPUParticles3D" parent="Incinerator"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.63445, 1.61781)
+amount = 500
+process_material = SubResource("ParticleProcessMaterial_r4o6i")
+draw_pass_1 = SubResource("QuadMesh_wklr1")
+
+[node name="Deletion" type="Area3D" parent="Incinerator"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Incinerator/Deletion"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2, 0)
+shape = SubResource("BoxShape3D_6mpii")
+
+[node name="OmniLight3D" type="OmniLight3D" parent="Incinerator"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.41675, -0.401999)
+light_color = Color(0.835528, 0.446337, 0.167556, 1)
+light_energy = 1000.0
+shadow_enabled = true
+omni_range = 10.444
+
+[node name="SpotLight3D" type="SpotLight3D" parent="Incinerator"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 10.2655, -0.413293)
+light_color = Color(0.842648, 0.457309, 0.28702, 1)
+light_energy = 13.49
+shadow_enabled = true
+spot_range = 12.1544
+spot_angle = 69.02
+
+[node name="GPUParticleCollisions" type="Node3D" parent="Incinerator"]
+
+[node name="GPUParticlesCollisionBox3D" type="GPUParticlesCollisionBox3D" parent="Incinerator/GPUParticleCollisions"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.45726, 6.49828, 2.38275)
+size = Vector3(9.9838, 15.07, 0.83606)
+
+[node name="GPUParticlesCollisionBox3D2" type="GPUParticlesCollisionBox3D" parent="Incinerator/GPUParticleCollisions"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4.10184, 6.49828, 0.00656128)
+size = Vector3(1.09092, 15.07, 5.58844)
+
+[node name="GPUParticlesCollisionBox3D3" type="GPUParticlesCollisionBox3D" parent="Incinerator/GPUParticleCollisions"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0386553, 6.49828, -1.49541)
+size = Vector3(9.37191, 15.07, 2.58449)
+
+[node name="GPUParticlesCollisionBox3D4" type="GPUParticlesCollisionBox3D" parent="Incinerator/GPUParticleCollisions"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4.17924, 6.49828, -0.203362)
+size = Vector3(1.09074, 15.07, 5.16859)
+
+[node name="GPUParticlesCollisionBox3D5" type="GPUParticlesCollisionBox3D" parent="Incinerator/GPUParticleCollisions"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.119852, 13.6256, -0.203362)
+size = Vector3(9.68892, 0.815273, 5.16859)
 
 [node name="Light2" type="SpotLight3D" parent="."]
 transform = Transform3D(-4.37114e-08, -0.788011, 0.615662, 0, 0.615662, 0.788011, -1, 3.4445e-08, -2.69114e-08, 9, 11, 0)

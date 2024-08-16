@@ -1,5 +1,10 @@
 extends Node3D
 
+signal ObjectBurnt
+
+var incinerator_active : bool = false
+@onready var incinerator = $Incinerator
+@onready var incinerator_anim = $Incinerator/AnimationPlayer
 
 
 
@@ -14,7 +19,6 @@ func _ready():
 	#animation_player.play("open", -1, -1, true) to play it backwards
 	
 	
-
 
 func _process(_delta):
 	if Input.is_action_just_pressed("escape"):
@@ -69,6 +73,27 @@ func _on_portal_body_entered(body):
 		body.Nextlevel()
 
 
+func ActivateIncinerator(type: bool):
+	if type:
+		incinerator_active = true
+		incinerator.visible = true
+		incinerator_anim.play("open")
+		# activate incinerator
+	elif !type:
+		incinerator_active = false
+		incinerator.visible = false
+		incinerator_anim.play("open", -1, -1)
+		# deactivate incinerator
 
 
 
+func _on_incinerator_body_entered(body):
+	if incinerator_active:
+		if body.is_in_group("player"):
+			for i in body.get_children():
+				if i.is_in_group("info"):
+					i.Damage(99999)
+		
+		if body is RigidBody3D:
+			ObjectBurnt.emit(body)
+			body.queue_free()

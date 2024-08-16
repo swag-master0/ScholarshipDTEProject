@@ -44,6 +44,3 @@ func load_game():
 		return null # If the resource loader fails for some reason, returns null
 		
 	
-
-
-

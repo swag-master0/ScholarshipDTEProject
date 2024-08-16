@@ -129,7 +129,7 @@ shader = ExtResource("9_nbti0")
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_ppbwq"]
 render_priority = 0
 shader = ExtResource("10_qj3ak")
-shader_parameter/amount = 2.0
+shader_parameter/uv_scale = 1.0
 shader_parameter/normal = ExtResource("11_mqdt5")
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_d65qo"]

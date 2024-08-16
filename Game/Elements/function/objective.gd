@@ -80,7 +80,17 @@ func ChangeScene():
 			var packed = PackedScene.new()
 			
 			for c in ObjectToSave.get_children():
+				# desperate attempt to also save the children of the children
+				# if this isn't done, errors WILL occur with objects with audio attached
+				for x in c.get_children():
+					print(x)
+					x.owner = c
+				
+				print(c)
 				c.owner = ObjectToSave
+				
+				
+				
 			
 			# check if the object is not a script, or else it causes a crash
 			# this is a massive hack, but i don't care
@@ -99,5 +109,3 @@ func ChangeScene():
 	for i in self.get_parent().get_children():
 		if i.is_in_group("player"):
 			i.level_completed = true
-
-

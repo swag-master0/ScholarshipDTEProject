@@ -9,16 +9,14 @@
 
 [node name="Stool_2 -rigid" parent="." index="0"]
 mass = 5.0
-max_contacts_reported = 5
 contact_monitor = true
+max_contacts_reported = 5
 script = ExtResource("2_kpqji")
 
-[node name="Sound" type="Node3D" parent="Stool_2 -rigid" index="2"]
-
-[node name="AudioStreamPlayer3D" type="AudioStreamPlayer3D" parent="Stool_2 -rigid/Sound" index="0"]
+[node name="AudioStreamPlayer3D" type="AudioStreamPlayer3D" parent="Stool_2 -rigid" index="2"]
 stream = ExtResource("3_wuq16")
 
-[node name="AudioStreamPlayer3D2" type="AudioStreamPlayer3D" parent="Stool_2 -rigid/Sound" index="1"]
+[node name="AudioStreamPlayer3D2" type="AudioStreamPlayer3D" parent="Stool_2 -rigid" index="3"]
 stream = ExtResource("4_miycn")
 
 [connection signal="body_entered" from="Stool_2 -rigid" to="Stool_2 -rigid" method="_on_body_entered"]

@@ -16,8 +16,8 @@ disable_receive_shadows = true
 [node name="Lamp -rigid" parent="." index="0"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0)
 mass = 8.0
-max_contacts_reported = 5
 contact_monitor = true
+max_contacts_reported = 5
 script = ExtResource("1_m2sg2")
 
 [node name="Lamp -rigid" parent="Lamp -rigid" index="0"]
@@ -35,18 +35,16 @@ shadow_enabled = true
 omni_range = 7.5
 omni_attenuation = 0.329877
 
-[node name="Sound" type="Node3D" parent="Lamp -rigid" index="3"]
-
-[node name="AudioStreamPlayer3D" type="AudioStreamPlayer3D" parent="Lamp -rigid/Sound" index="0"]
+[node name="AudioStreamPlayer3D" type="AudioStreamPlayer3D" parent="Lamp -rigid" index="3"]
 stream = ExtResource("3_wccnd")
 
-[node name="AudioStreamPlayer3D2" type="AudioStreamPlayer3D" parent="Lamp -rigid/Sound" index="1"]
+[node name="AudioStreamPlayer3D2" type="AudioStreamPlayer3D" parent="Lamp -rigid" index="4"]
 stream = ExtResource("4_pum7b")
 
-[node name="AudioStreamPlayer3D3" type="AudioStreamPlayer3D" parent="Lamp -rigid/Sound" index="2"]
+[node name="AudioStreamPlayer3D3" type="AudioStreamPlayer3D" parent="Lamp -rigid" index="5"]
 stream = ExtResource("5_j3w3a")
 
-[node name="AudioStreamPlayer3D4" type="AudioStreamPlayer3D" parent="Lamp -rigid/Sound" index="3"]
+[node name="AudioStreamPlayer3D4" type="AudioStreamPlayer3D" parent="Lamp -rigid" index="6"]
 stream = ExtResource("6_kwf0e")
 
 [connection signal="body_entered" from="Lamp -rigid" to="Lamp -rigid" method="_on_body_entered"]

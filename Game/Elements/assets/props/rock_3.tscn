@@ -12,25 +12,23 @@
 
 [node name="Rock3-rigid" parent="." index="0"]
 mass = 20.0
-max_contacts_reported = 5
 contact_monitor = true
+max_contacts_reported = 5
 script = ExtResource("2_sedi3")
 
 [node name="Rock3-rigid" parent="Rock3-rigid" index="0"]
 surface_material_override/0 = ExtResource("3_0vs1s")
 
-[node name="Sound" type="Node3D" parent="Rock3-rigid" index="2"]
-
-[node name="AudioStreamPlayer3D" type="AudioStreamPlayer3D" parent="Rock3-rigid/Sound" index="0"]
+[node name="AudioStreamPlayer3D" type="AudioStreamPlayer3D" parent="Rock3-rigid" index="2"]
 stream = ExtResource("2_hgxi8")
 
-[node name="AudioStreamPlayer3D2" type="AudioStreamPlayer3D" parent="Rock3-rigid/Sound" index="1"]
+[node name="AudioStreamPlayer3D2" type="AudioStreamPlayer3D" parent="Rock3-rigid" index="3"]
 stream = ExtResource("3_2o1us")
 
-[node name="AudioStreamPlayer3D3" type="AudioStreamPlayer3D" parent="Rock3-rigid/Sound" index="2"]
+[node name="AudioStreamPlayer3D3" type="AudioStreamPlayer3D" parent="Rock3-rigid" index="4"]
 stream = ExtResource("4_pqrr5")
 
-[node name="AudioStreamPlayer3D4" type="AudioStreamPlayer3D" parent="Rock3-rigid/Sound" index="3"]
+[node name="AudioStreamPlayer3D4" type="AudioStreamPlayer3D" parent="Rock3-rigid" index="5"]
 stream = ExtResource("5_h82xy")
 
 [connection signal="body_entered" from="Rock3-rigid" to="Rock3-rigid" method="_on_body_entered"]

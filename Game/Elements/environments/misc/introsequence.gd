@@ -168,9 +168,3 @@ func _on_line_edit_text_submitted(new_text):
 	
 	name_picked()
 	#save.save_game(get_tree().current_scene.scene_file_path, new_text)
-
-
-
-
-
-

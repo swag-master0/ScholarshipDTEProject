@@ -6,6 +6,8 @@ extends Node
 
 @onready var player = $"../Player"
 @onready var rail_anims = $"../RailsPlayerHub/AnimationPlayer"
+@onready var player_hub = $".."
+
 
 var c1_m1_IntroDialogue = [
 	0,
@@ -78,9 +80,14 @@ func _on_player_dialogue_finished(dialogue):
 	elif dialogue == c1_m3_IntroDialogue.back():
 		allow_exit = true
 	
+	elif dialogue == "i don't think something's right":
+		player_hub.ActivateIncinerator(true)
 
 
 func _on_exit_body_entered(body):
 	if body.is_in_group("player") and allow_exit == true:
 		rail_anims.play("up")
 
+
+func _on_player_hub_object_burnt(body):
+	print(body)

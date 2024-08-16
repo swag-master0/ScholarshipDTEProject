@@ -9,8 +9,8 @@
 
 [node name="LampTall -rigid" parent="." index="0"]
 mass = 25.0
-max_contacts_reported = 5
 contact_monitor = true
+max_contacts_reported = 5
 script = ExtResource("2_ljhby")
 
 [node name="OmniLight3D2" type="OmniLight3D" parent="LampTall -rigid" index="2"]
@@ -21,12 +21,10 @@ shadow_enabled = true
 omni_range = 10.0
 omni_attenuation = 0.329877
 
-[node name="Sound" type="Node3D" parent="LampTall -rigid" index="3"]
-
-[node name="AudioStreamPlayer3D" type="AudioStreamPlayer3D" parent="LampTall -rigid/Sound" index="0"]
+[node name="AudioStreamPlayer3D" type="AudioStreamPlayer3D" parent="LampTall -rigid" index="3"]
 stream = ExtResource("3_1jq2s")
 
-[node name="AudioStreamPlayer3D2" type="AudioStreamPlayer3D" parent="LampTall -rigid/Sound" index="1"]
+[node name="AudioStreamPlayer3D2" type="AudioStreamPlayer3D" parent="LampTall -rigid" index="4"]
 stream = ExtResource("4_cyita")
 
 [connection signal="body_entered" from="LampTall -rigid" to="LampTall -rigid" method="_on_body_entered"]
