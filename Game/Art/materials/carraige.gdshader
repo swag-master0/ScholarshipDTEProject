@@ -9,18 +9,18 @@ uniform sampler2D normal;
 void fragment() {
 	METALLIC = 0.75;
 	ROUGHNESS = 0.5;
-	
+
 	vec3 text_colour = texture(text, UV).rgb;
 	if (text_colour == vec3(1.0, 1.0, 1.0)) {
 		text_colour = colormain;
 	} else {
 		text_colour = colorsec;
 	}
-	
+
 	ALBEDO = text_colour;
 	NORMAL_MAP = texture(normal, UV).rgb;
-	
-	
+
+
 }
 
 //void light() {
