@@ -15,6 +15,7 @@ dest_files=["res://.godot/imported/DMMono-MediumItalic.ttf-b6e6b543bdb3f14b5d12b
 Rendering=null
 antialiasing=0
 generate_mipmaps=false
+disable_embedded_bitmaps=true
 multichannel_signed_distance_field=false
 msdf_pixel_range=8
 msdf_size=48
