@@ -346,6 +346,7 @@ environment = SubResource("Environment_ppwta")
 
 [node name="Incinerator" type="Node3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -8, 13)
+visible = false
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="Incinerator"]
 libraries = {
