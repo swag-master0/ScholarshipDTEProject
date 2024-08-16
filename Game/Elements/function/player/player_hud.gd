@@ -184,13 +184,3 @@ func viewEnemyHealth(enemy : Object, visibility : bool):
 	
 	elif !visibility:
 		healthbar.visible = false
-
-
-
-
-
-
-
-
-
-
