@@ -31,7 +31,6 @@ var playerHasObjective = false
 @onready var player = $Player
 
 
-# Called when the node enters the scene tree for the first time.
 func _ready():
 	await get_tree().create_timer(2).timeout
 	
@@ -53,8 +52,8 @@ func _process(_delta):
 				await get_tree().create_timer(2).timeout
 				
 				player.dialogue_queue.append(0)
-				player.dialogue_queue.append(\"that'll do for sustenance\")
-				#i.sendHintToPlayer(\"[wave][center][color=SILVER]Bring it back to the start\")
+				player.dialogue_queue.append(\"now, my favor for you, please bring that back here\")
+    player.dialogue_queue.append(\"the lift is waiting for you.\")
 				
 				#i.Dialogue(\"Good. Now get that thing back here.\")
 
@@ -65,6 +64,7 @@ func _on_tutorial_trigger_body_entered(body):
 		player.dialogue_queue.append(0)
 		player.dialogue_queue.append(\"hey, by the way. if you want to keep anything around here\")
 		player.dialogue_queue.append(\"feel free to bring it back with you. the lift (should) support it\")
+  player.dialogue_queue.append(\"i'd like to see how you'd decorate that box I gave you \")
 "
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_0vtjb"]
