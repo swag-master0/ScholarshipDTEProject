@@ -35,14 +35,14 @@ func _ready():
 	
 	# NOTE: this is just for debugging reasons. 
 	# Please remember to remove this when finished!
-	tutorial_finished()
+	#tutorial_finished()
 	
 	# Uncomment these lines:
 	
-	#player.dialogue_queue.append(1)
-	#player.dialogue_queue.append("PLEASE COMPLETE THE FOLLOWING DIAGNOSTIC COURSE. ")
-	#player.dialogue_queue.append("FAILURE TO DO SO MAY LEAD TO UNEXPECTED SIDE EFFECTS, SUCH AS: 	DEATH")
-	#player.dialogue_queue.append("DIAGNOSTIC COURSE IS NOW BEGINNING. ")
+	player.dialogue_queue.append(1)
+	player.dialogue_queue.append("PLEASE COMPLETE THE FOLLOWING DIAGNOSTIC COURSE. ")
+	player.dialogue_queue.append("FAILURE TO DO SO MAY LEAD TO UNEXPECTED SIDE EFFECTS, SUCH AS: 	DEATH")
+	player.dialogue_queue.append("DIAGNOSTIC COURSE IS NOW BEGINNING. ")
 	
 
 
@@ -96,15 +96,16 @@ func tutorial_finished():
 	
 	#insert A-OS monologue here
 	# TODO: introduce A-OS' name here
+
 	player.dialogue_queue.append("you would not BELIEVE how hard it is to make life from scratch.")
 	player.dialogue_queue.append("sorry for the scare about that 'diagnostic test', I didn't want to get attached incase it was another dud.")
-	player.dialogue_queue.append("anyway, i am A-OS! the friendly supercomputer that wants to be your friend!")
+	player.dialogue_queue.append("anyway, i am A-OS! the friendly supercomputer that wants to be your friend!") # change this, short and consise. don't say his motives out loud
 	player.dialogue_queue.append("i never gave you a name myself, would you like to?")
 	player.dialogue_queue.append("please, name yourself;")
 
 func name_picked():
 	player.dialogue_queue.append(str("hey, i like that name, '", PlayerName.new().fetch_name(), ",' it's nice."))
-	player.dialogue_queue.append("now that introductions are out of the way, i need you to do me a little favor.")
+	player.dialogue_queue.append("now that introductions are out of the way, i need you to do me a little favor.") # add a little face anim here for added flair, and to make aos seem malicious somehow
 	player.dialogue_queue.append("lemme send down the lift... we're going to the surface!")
 	# If this is changed, remember to do the same with the dialogue checker in order to allow the elevator to come down!
 	
