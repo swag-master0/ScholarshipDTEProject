@@ -2,8 +2,8 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://b13wr06ggbju2"
-path.s3tc="res://.godot/imported/a-os_face-2.png-ba4d61313ebe72496749c40d82b768ca.s3tc.ctex"
+uid="uid://bumqm1fmsxt0d"
+path.s3tc="res://.godot/imported/a-os_eye_closed.png-888da7221da1f649bc352edb5c96c7bc.s3tc.ctex"
 metadata={
 "imported_formats": ["s3tc_bptc"],
 "vram_texture": true
@@ -11,8 +11,8 @@ metadata={
 
 [deps]
 
-source_file="res://Art/assets/hud/a-os/a-os_face-2.png"
-dest_files=["res://.godot/imported/a-os_face-2.png-ba4d61313ebe72496749c40d82b768ca.s3tc.ctex"]
+source_file="res://Art/assets/hud/a-os/a-os_eye_closed.png"
+dest_files=["res://.godot/imported/a-os_eye_closed.png-888da7221da1f649bc352edb5c96c7bc.s3tc.ctex"]
 
 [params]
 

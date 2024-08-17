@@ -1,12 +1,13 @@
-[gd_scene load_steps=18 format=3 uid="uid://d3qcg4xjm6x5x"]
+[gd_scene load_steps=19 format=3 uid="uid://d3qcg4xjm6x5x"]
 
 [ext_resource type="Script" path="res://Elements/function/player/a-os.gd" id="1_141mi"]
 [ext_resource type="PackedScene" uid="uid://dgj0swcywi380" path="res://Art/blend/assets/main/a-os.blend" id="2_iy2j7"]
 [ext_resource type="Shader" path="res://Art/materials/unused/a-os_white.gdshader" id="3_gxl6r"]
-[ext_resource type="Texture2D" uid="uid://dakdkin3narkl" path="res://Art/assets/hud/a-os/a-os_face-1.png" id="3_tnsdo"]
-[ext_resource type="Texture2D" uid="uid://b13wr06ggbju2" path="res://Art/assets/hud/a-os/a-os_face-2.png" id="4_wye6e"]
-[ext_resource type="Texture2D" uid="uid://2ciwv34tmimw" path="res://Art/assets/hud/a-os/a-os_face-3.png" id="5_ilntk"]
-[ext_resource type="Texture2D" uid="uid://bcyutlxovj0uf" path="res://Art/assets/hud/a-os/a-os_face-4.png" id="6_6t2pp"]
+[ext_resource type="Texture2D" uid="uid://b2m3i1y7uwjau" path="res://Art/assets/hud/a-os/a-os_eye_default.png" id="4_5v35e"]
+[ext_resource type="Texture2D" uid="uid://cw8qkby0quhq6" path="res://Art/assets/hud/a-os/a-os_eye_anger.png" id="4_qx2ky"]
+[ext_resource type="Texture2D" uid="uid://bumqm1fmsxt0d" path="res://Art/assets/hud/a-os/a-os_eye_closed.png" id="5_mqq5y"]
+[ext_resource type="Texture2D" uid="uid://bbbub683a5ph8" path="res://Art/assets/hud/a-os/a-os_eye_sorrow.png" id="5_wdrxd"]
+[ext_resource type="Texture2D" uid="uid://fb6x30xa5b7e" path="res://Art/assets/hud/a-os/a-os_eye_closed_happy.png" id="6_v2iua"]
 [ext_resource type="Texture2D" uid="uid://y6mkqv2ruo4v" path="res://Art/assets/hud/loading_1.png" id="9_qvsxm"]
 [ext_resource type="Texture2D" uid="uid://wa7u80kcftoh" path="res://Art/assets/hud/loading_2.png" id="10_2dy2u"]
 [ext_resource type="Texture2D" uid="uid://c3lakgb5p7fga" path="res://Art/assets/hud/loading_3.png" id="11_wl5p1"]
@@ -16,6 +17,21 @@
 render_priority = 0
 shader = ExtResource("3_gxl6r")
 shader_parameter/colour = Vector3(0.2, 0.2, 0.2)
+
+[sub_resource type="Animation" id="Animation_p6e1s"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(1, 1, 1)]
+}
 
 [sub_resource type="Animation" id="Animation_3jkeg"]
 resource_name = "yap"
@@ -34,21 +50,6 @@ tracks/0/keys = {
 "values": [Vector3(1.1, 1.1, 1.1), Vector3(1, 1, 1)]
 }
 
-[sub_resource type="Animation" id="Animation_p6e1s"]
-length = 0.001
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath(".:scale")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Vector3(1, 1, 1)]
-}
-
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_lrclt"]
 _data = {
 "RESET": SubResource("Animation_p6e1s"),
@@ -59,55 +60,42 @@ _data = {
 animations = [{
 "frames": [{
 "duration": 1.0,
-"texture": ExtResource("3_tnsdo")
+"texture": ExtResource("4_qx2ky")
+}],
+"loop": true,
+"name": &"anger",
+"speed": 5.0
 }, {
+"frames": [{
 "duration": 1.0,
-"texture": ExtResource("4_wye6e")
+"texture": ExtResource("5_mqq5y")
+}],
+"loop": true,
+"name": &"closed",
+"speed": 5.0
 }, {
+"frames": [{
 "duration": 1.0,
-"texture": ExtResource("3_tnsdo")
+"texture": ExtResource("6_v2iua")
+}],
+"loop": true,
+"name": &"closed_happy",
+"speed": 5.0
 }, {
+"frames": [{
 "duration": 1.0,
-"texture": ExtResource("5_ilntk")
-}, {
-"duration": 1.0,
-"texture": ExtResource("4_wye6e")
-}, {
-"duration": 1.0,
-"texture": ExtResource("3_tnsdo")
-}, {
-"duration": 1.0,
-"texture": ExtResource("4_wye6e")
-}, {
-"duration": 1.0,
-"texture": ExtResource("5_ilntk")
-}, {
-"duration": 1.0,
-"texture": ExtResource("3_tnsdo")
-}, {
-"duration": 1.0,
-"texture": ExtResource("5_ilntk")
-}, {
-"duration": 1.0,
-"texture": ExtResource("4_wye6e")
-}, {
-"duration": 1.0,
-"texture": ExtResource("6_6t2pp")
-}, {
-"duration": 1.0,
-"texture": ExtResource("3_tnsdo")
-}, {
-"duration": 1.0,
-"texture": ExtResource("5_ilntk")
-}, {
-"duration": 1.0,
-"texture": ExtResource("4_wye6e")
-}, {
-"duration": 1.0,
-"texture": ExtResource("5_ilntk")
+"texture": ExtResource("4_5v35e")
 }],
 "loop": true,
 "name": &"idle",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("5_wdrxd")
+}],
+"loop": true,
+"name": &"sorrow",
 "speed": 5.0
 }]
 
@@ -141,7 +129,6 @@ animations = [{
 script = ExtResource("1_141mi")
 
 [node name="Scene" type="Node3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -3, 0)
 
 [node name="a-os" parent="Scene" instance=ExtResource("2_iy2j7")]
 
@@ -164,19 +151,30 @@ autoplay = "idle"
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 3, 0)
 
 [node name="Bone" type="BoneAttachment3D" parent="Scene/FaceAttachment"]
-transform = Transform3D(1, -6.61133e-06, 0.000175302, 6.54989e-06, 1, 0.000350452, -0.000175305, -0.000350451, 1, -0.000320869, -3.25034, 0)
+transform = Transform3D(1, -6.61132e-06, 0.000175302, 6.54988e-06, 1, 0.000350453, -0.000175305, -0.000350451, 1, -0.000320869, -3.25034, 0)
 bone_name = "Bone"
 bone_idx = 0
 use_external_skeleton = true
 external_skeleton = NodePath("../../a-os/A-OS/Skeleton3D")
 
-[node name="Eyes" type="AnimatedSprite3D" parent="Scene/FaceAttachment/Bone"]
-transform = Transform3D(0.999994, 0.000647317, -0.00339638, -0.000782048, 0.999207, -0.0398188, 0.0033679, 0.0398213, 0.999202, 0, 0.2, 0.85)
+[node name="EyePos" type="Node3D" parent="Scene/FaceAttachment/Bone"]
+transform = Transform3D(1, -1.64135e-12, -1.56814e-34, 1.64135e-12, 1, 0, 1.56814e-34, 0, 1, 0, 0.25, 0.85)
+
+[node name="EyeLeft" type="AnimatedSprite3D" parent="Scene/FaceAttachment/Bone/EyePos"]
+transform = Transform3D(0.999994, 0.000647317, -0.00339638, -0.000782048, 0.999207, -0.0398188, 0.0033679, 0.0398213, 0.999202, -0.25, 0, 0)
+pixel_size = 0.02
+texture_filter = 0
+sprite_frames = SubResource("SpriteFrames_mjxlo")
+animation = &"sorrow"
+autoplay = "idle"
+
+[node name="EyeRight" type="AnimatedSprite3D" parent="Scene/FaceAttachment/Bone/EyePos"]
+transform = Transform3D(-0.999994, 0.000647317, -0.00339637, 0.000782048, 0.999207, -0.0398189, -0.0033679, 0.0398213, 0.999201, 0.25, 0, 0)
+pixel_size = 0.02
 texture_filter = 0
 sprite_frames = SubResource("SpriteFrames_mjxlo")
 animation = &"idle"
 autoplay = "idle"
-frame_progress = 0.610576
 
 [node name="Camera3D" type="Camera3D" parent="Scene"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.175454, 2.31176)

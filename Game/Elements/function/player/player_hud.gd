@@ -91,7 +91,7 @@ func _hinttext_timeout():
 
 
 # INFO: DIALOGUE SYSTEM
-func Dialogue(text_speed : float = 0.05, time_until_continue : float = 2.5):
+func Dialogue(text_speed : float = 0.05, time_until_continue : float = 1.5):
 	
 	if dialoguespeaking == false and !dialogue_queue.is_empty():
 		dialoguespeaking = true

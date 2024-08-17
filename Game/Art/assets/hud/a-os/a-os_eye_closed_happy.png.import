@@ -2,8 +2,8 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://b1arkokdnxxxx"
-path.s3tc="res://.godot/imported/a-os_mouth-1.png-ee0c52d4b5f62abc4e2ce7b633706c68.s3tc.ctex"
+uid="uid://fb6x30xa5b7e"
+path.s3tc="res://.godot/imported/a-os_eye_closed_happy.png-bebeefcf526dbd964ff6f812dfa26303.s3tc.ctex"
 metadata={
 "imported_formats": ["s3tc_bptc"],
 "vram_texture": true
@@ -11,8 +11,8 @@ metadata={
 
 [deps]
 
-source_file="res://Art/assets/hud/a-os/a-os_mouth-1.png"
-dest_files=["res://.godot/imported/a-os_mouth-1.png-ee0c52d4b5f62abc4e2ce7b633706c68.s3tc.ctex"]
+source_file="res://Art/assets/hud/a-os/a-os_eye_closed_happy.png"
+dest_files=["res://.godot/imported/a-os_eye_closed_happy.png-bebeefcf526dbd964ff6f812dfa26303.s3tc.ctex"]
 
 [params]
 
