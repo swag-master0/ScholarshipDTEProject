@@ -172,6 +172,21 @@ shader_parameter/normal = ExtResource("5_3k8u3")
 [sub_resource type="Environment" id="Environment_ppwta"]
 background_mode = 1
 
+[sub_resource type="Animation" id="Animation_f716q"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("../player_hub/Cube:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(1.53458, 2.20195, 11)]
+}
+
 [sub_resource type="Animation" id="Animation_bnyv8"]
 resource_name = "open"
 step = 0.05
@@ -186,21 +201,6 @@ tracks/0/keys = {
 "transitions": PackedFloat32Array(1, 1, 1, 1),
 "update": 0,
 "values": [Vector3(1.53458, 2.20195, 11), Vector3(1.53458, 2.20195, 11.5596), Vector3(1.53458, 2.20195, 11.5596), Vector3(1.53458, 7.20195, 11.5596)]
-}
-
-[sub_resource type="Animation" id="Animation_f716q"]
-length = 0.001
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("../player_hub/Cube:position")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Vector3(1.53458, 2.20195, 11)]
 }
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_rcyei"]
@@ -321,6 +321,7 @@ DISPLAY_DUST = false
 surface_material_override/0 = SubResource("ShaderMaterial_hrqgb")
 
 [node name="Cube" parent="player_hub" index="3"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.53458, 2.20195, 11)
 surface_material_override/0 = SubResource("ShaderMaterial_cidha")
 
 [node name="Light2" type="SpotLight3D" parent="."]
@@ -356,6 +357,7 @@ libraries = {
 [node name="FireParticles" type="GPUParticles3D" parent="Incinerator"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.63445, 1.0478)
 amount = 500
+visibility_aabb = AABB(-8, -4, -4, 16, 22.49, 8)
 process_material = SubResource("ParticleProcessMaterial_6oiw8")
 draw_pass_1 = SubResource("QuadMesh_hwlvd")
 

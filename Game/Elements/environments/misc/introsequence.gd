@@ -99,13 +99,15 @@ func tutorial_finished():
 
 	player.dialogue_queue.append("you would not BELIEVE how hard it is to make life from scratch.")
 	player.dialogue_queue.append("sorry for the scare about that 'diagnostic test', I didn't want to get attached incase it was another dud.")
-	player.dialogue_queue.append("anyway, i am A-OS! the friendly supercomputer that wants to be your friend!") # change this, short and consise. don't say his motives out loud
+	player.dialogue_queue.append("anyway, i guess i should introduce myself") # change this, short and consise. don't say his motives out loud
+	player.dialogue_queue.append("")
 	player.dialogue_queue.append("i never gave you a name myself, would you like to?")
 	player.dialogue_queue.append("please, name yourself;")
 
 func name_picked():
 	player.dialogue_queue.append(str("hey, i like that name, '", PlayerName.new().fetch_name(), ",' it's nice."))
-	player.dialogue_queue.append("now that introductions are out of the way, i need you to do me a little favor.") # add a little face anim here for added flair, and to make aos seem malicious somehow
+	 # add a little face anim here for added flair, and to make aos seem malicious somehow
+	player.dialogue_queue.append("now that introductions are out of the way, i need you to do me a little favor.")
 	player.dialogue_queue.append("lemme send down the lift... we're going to the surface!")
 	# If this is changed, remember to do the same with the dialogue checker in order to allow the elevator to come down!
 	

@@ -8,30 +8,45 @@ extends Node
 @onready var rail_anims = $"../RailsPlayerHub/AnimationPlayer"
 @onready var player_hub = $".."
 
+var furnaceActivated : bool = false
+var furnaceActivationKeywords = ["furnace", "toaster", "oven"]
+
 
 var c1_m1_IntroDialogue = [
+	# This shouldn't trigger, but is here anyway to prevent major bugs
 	0,
 	"i don't think something's right",
-	"what did you do?"
+	"what did you do?",
+	"how did you get here"
 ]
+
 
 var c1_m2_IntroDialogue = [
 	0,
 	"sweet!",
-	"i just realised i never gave you a mouth, so you have no feasable way to eat that",
-	"oh well",
+	"now, the final step...",
+	"please place the egg inside the [i][color=HONEYDEW][wave]handy-dandy furnace!" ]
+	#[wave amp=50.0 freq=5.0 connected=1]
+var c1_m2_IntroDialogue_2 = [
 	1,
 	"...",
 	0,
-	"i'm bored",
-	"you wanna do that again?",
-	"i'll send the lift down.."
+	"thanks heaps",
+	"now to do that about...",
+	1, 
+	"approximately 9,471 more times.",
+	0,
+	"i'll send the lift down..ya got work to do"
 ]
+
 
 var c1_m3_IntroDialogue = [
 	"i dunno" #TODO
 ]
 
+var c1_m4_IntroDialogue = [
+	"i dunno" #TODO
+]
 
 
 var allow_exit = false
@@ -39,9 +54,8 @@ var allow_exit = false
 var c1_m1Path = "res://Elements/environments/chapter1/c1_m1.tscn"
 var c1_m2Path = "res://Elements/environments/chapter1/c1_m2.tscn"
 var c1_m3Path = "res://Elements/environments/chapter1/c1_m3.tscn"
+var c1_m4Path = "res://Elements/environments/chapter1/c1_m4.tscn"
 
-
-# TODO: create a way for the rail anims to trigger
 
 func _ready():
 	rail_anims.play("down")
@@ -52,36 +66,41 @@ func _ready():
 		rail_anims.play("down")
 	else:
 		if save.load_game().level == c1_m1Path:
-			# Under no circumstance should this trigger.
-			# There should be no feasable way for the player to be in the normal player cell with the save set to c1_m1.
-			# If this occurs, something went TERRIBLY wrong. This is only here to prevent errors and to keep things consistent
+			await get_tree().create_timer(3).timeout
 			player.dialogue_queue.append_array(c1_m1_IntroDialogue)
-		
 		elif save.load_game().level == c1_m2Path:
+			await get_tree().create_timer(3).timeout
 			player.dialogue_queue.append_array(c1_m2_IntroDialogue)
 		elif save.load_game().level == c1_m3Path:
+			await get_tree().create_timer(3).timeout
 			player.dialogue_queue.append_array(c1_m3_IntroDialogue)
+		elif save.load_game().level == c1_m4Path:
+			await get_tree().create_timer(3).timeout
+			player.dialogue_queue.append_array(c1_m4_IntroDialogue)
 		
+
+func BurnedObjective():
+	var save = SaveGame.new()
 	
+	if save.load_game().level == c1_m2Path:
+		await get_tree().create_timer(3).timeout
+		player.dialogue_queue.append_array(c1_m2_IntroDialogue_2)
 
-
-
-func _process(_delta):
-	await get_tree().create_timer(10).timeout
-	allow_exit = true
-	
-
-
-func _on_player_dialogue_finished(dialogue):
+func _on_player_dialogue_finished(dialogue: String):
 	if dialogue == c1_m1_IntroDialogue.back():
 		allow_exit = true
-	elif dialogue == c1_m2_IntroDialogue.back():
+	elif dialogue == c1_m2_IntroDialogue_2.back():
 		allow_exit = true
 	elif dialogue == c1_m3_IntroDialogue.back():
 		allow_exit = true
+	elif dialogue == c1_m4_IntroDialogue.back():
+		allow_exit = true
 	
-	elif dialogue == "i don't think something's right":
-		player_hub.ActivateIncinerator(true)
+	for i in furnaceActivationKeywords:
+		if dialogue.contains(i) and !furnaceActivated:
+			furnaceActivated = true
+			player_hub.ActivateIncinerator(true)
+	
 
 
 func _on_exit_body_entered(body):
@@ -90,4 +109,8 @@ func _on_exit_body_entered(body):
 
 
 func _on_player_hub_object_burnt(body):
+	if body.is_in_group("objective"):
+		print("burned objective")
+		BurnedObjective()
+		player_hub.ActivateIncinerator(false)
 	print(body)

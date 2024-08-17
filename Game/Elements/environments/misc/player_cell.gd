@@ -18,7 +18,7 @@ func _ready():
 	#animation_player.play("open")
 	#animation_player.play("open", -1, -1, true) to play it backwards
 	
-	
+
 
 func _process(_delta):
 	if Input.is_action_just_pressed("escape"):
@@ -80,9 +80,11 @@ func ActivateIncinerator(type: bool):
 		incinerator_anim.play("open")
 		# activate incinerator
 	elif !type:
+		incinerator_anim.play_backwards("open")
+		
+		await get_tree().create_timer(3).timeout
 		incinerator_active = false
 		incinerator.visible = false
-		incinerator_anim.play("open", -1, -1)
 		# deactivate incinerator
 
 
