@@ -1,4 +1,4 @@
-[gd_scene load_steps=19 format=3 uid="uid://d3qcg4xjm6x5x"]
+[gd_scene load_steps=20 format=3 uid="uid://d3qcg4xjm6x5x"]
 
 [ext_resource type="Script" path="res://Elements/function/player/a-os.gd" id="1_141mi"]
 [ext_resource type="PackedScene" uid="uid://dgj0swcywi380" path="res://Art/blend/assets/main/a-os.blend" id="2_iy2j7"]
@@ -99,6 +99,11 @@ animations = [{
 "speed": 5.0
 }]
 
+[sub_resource type="Environment" id="Environment_fr6e1"]
+glow_enabled = true
+glow_intensity = 8.0
+glow_strength = 1.3
+
 [sub_resource type="SpriteFrames" id="SpriteFrames_kogcd"]
 animations = [{
 "frames": [{
@@ -178,6 +183,7 @@ autoplay = "idle"
 
 [node name="Camera3D" type="Camera3D" parent="Scene"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.175454, 2.31176)
+environment = SubResource("Environment_fr6e1")
 size = 2.54
 
 [node name="Processing" type="AnimatedSprite3D" parent="Scene"]

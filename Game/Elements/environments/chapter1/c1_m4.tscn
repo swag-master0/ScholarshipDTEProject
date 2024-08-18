@@ -1,6 +1,7 @@
-[gd_scene load_steps=42 format=3 uid="uid://bkvmwrsm7nbyt"]
+[gd_scene load_steps=53 format=3 uid="uid://bkvmwrsm7nbyt"]
 
 [ext_resource type="PackedScene" uid="uid://ch7t6b0c3tjwr" path="res://Elements/enemies/enemy.tscn" id="1_45rao"]
+[ext_resource type="PackedScene" uid="uid://dwe6hqxcxga2x" path="res://Elements/enemies/bomber.tscn" id="2_np0wd"]
 [ext_resource type="PackedScene" uid="uid://cna5dpcxkdqae" path="res://Art/blend/levels_chapter1/c1_m4.blend" id="3_2iwqi"]
 [ext_resource type="PackedScene" uid="uid://g2jwt8atruu7" path="res://Art/environment/environment.tscn" id="3_feq5x"]
 [ext_resource type="PackedScene" uid="uid://bcou7suhphdrp" path="res://Elements/function/player/player.tscn" id="3_ode66"]
@@ -27,8 +28,17 @@
 [ext_resource type="PackedScene" uid="uid://dhejktumttlcs" path="res://Elements/assets/props/bench.tscn" id="29_ry664"]
 [ext_resource type="PackedScene" uid="uid://c775kwttbjh40" path="res://Elements/assets/props/vase.tscn" id="29_u6wd5"]
 [ext_resource type="Texture2D" uid="uid://mvfeo124q746" path="res://Art/assets/misc/literally_me.jpg" id="29_yjgr7"]
+[ext_resource type="Texture2D" uid="uid://kujnb7igsc5k" path="res://Art/assets/assets/decal1.png" id="30_vqpou"]
 [ext_resource type="PackedScene" uid="uid://1k5dw6s6pdvj" path="res://Elements/assets/props/stool_1.tscn" id="30_xo50s"]
 [ext_resource type="PackedScene" uid="uid://blx6snb20uj8u" path="res://Elements/assets/props/lamp.tscn" id="31_lvykg"]
+[ext_resource type="Texture2D" uid="uid://cusit6xjudxg8" path="res://Art/assets/assets/decal1_normal.png" id="31_ohhmp"]
+[ext_resource type="Texture2D" uid="uid://bugp0hkbmgn3s" path="res://Art/assets/assets/decal2.png" id="32_ibswl"]
+[ext_resource type="PackedScene" uid="uid://cdwnv2xmk7f6k" path="res://Elements/assets/misc/nest.tscn" id="33_e254x"]
+[ext_resource type="PackedScene" uid="uid://bsbl4boqt5vj4" path="res://Elements/assets/props/cone.tscn" id="34_1tojw"]
+[ext_resource type="PackedScene" uid="uid://brfvkewj7bfba" path="res://Elements/assets/props/lamp_tall.tscn" id="35_tkval"]
+[ext_resource type="PackedScene" uid="uid://currpdc0rou40" path="res://Elements/assets/props/couch_small.tscn" id="36_18hjh"]
+[ext_resource type="PackedScene" uid="uid://cdxkrkn34253v" path="res://Elements/assets/props/picture_large.tscn" id="37_7rmub"]
+[ext_resource type="Texture2D" uid="uid://3r73i8pm0van" path="res://Art/assets/misc/scenery.jpg" id="38_ffgp5"]
 
 [sub_resource type="GDScript" id="GDScript_w4vx7"]
 resource_name = "c2_m4-functionality"
@@ -39,6 +49,7 @@ var triggered = false
 #var spawns : int = 0
 
 var amount_to_spawn = 15
+var amount_to_spawn_bombers = 3
 var amount_of_waves = 3
 var time_between_waves = 5
 
@@ -77,12 +88,16 @@ func _process(_delta):
 			
 			if amount_of_waves == 3:
 				amount_to_spawn = 15
+				amount_to_spawn_bombers = 3
 			elif amount_of_waves == 2:
 				amount_to_spawn = 20
+				amount_to_spawn_bombers = 5
 			elif amount_of_waves == 1:
 				amount_to_spawn = 50
+				amount_to_spawn_bombers = 10
 			elif amount_of_waves == 0:
 				amount_to_spawn = 0
+				amount_to_spawn_bombers = 0
 			
 			for i in range(amount_to_spawn):
 				var desired_enemy = enemy
@@ -93,6 +108,14 @@ func _process(_delta):
 				new_enemy.global_position = spawnpoints.get_children()[randi_range(1, spawnpoints.get_children().size()) - 1].global_position
 				print(new_enemy.global_position)
 			
+			for i in range(amount_to_spawn_bombers):
+				var desired_enemy = bombers
+				
+				var new_enemy = desired_enemy.instantiate()
+				self.add_child(new_enemy)
+				
+				new_enemy.global_position = spawnpoints.get_children()[randi_range(1, spawnpoints.get_children().size()) - 1].global_position
+				print(new_enemy.global_position)
 			
 		
 		if amount_of_waves <= 0:
@@ -160,9 +183,16 @@ shader = ExtResource("28_7sodc")
 shader_parameter/emission_strength = 0.2
 shader_parameter/picture = ExtResource("29_yjgr7")
 
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_8yhyd"]
+render_priority = 0
+shader = ExtResource("28_7sodc")
+shader_parameter/emission_strength = 0.2
+shader_parameter/picture = ExtResource("38_ffgp5")
+
 [node name="Level" type="Node3D"]
 script = SubResource("GDScript_w4vx7")
 enemy = ExtResource("1_45rao")
+bombers = ExtResource("2_np0wd")
 
 [node name="WorldEnvironment" parent="." instance=ExtResource("3_feq5x")]
 
@@ -174,7 +204,7 @@ transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 0, 0.2
 nextscene_string = "res://Elements/function/demo_complete_screen.tscn"
 
 [node name="ObjectiveItem" parent="." instance=ExtResource("6_n6dr1")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 12, 2, 0)
+transform = Transform3D(1, 0, 0, 0, 0.958651, 0.284584, 0, -0.284584, 0.958651, 142.488, 1.79746, -69.3327)
 
 [node name="NavigationRegion3D" type="NavigationRegion3D" parent="."]
 navigation_mesh = SubResource("NavigationMesh_u278t")
@@ -358,9 +388,59 @@ transform = Transform3D(1, 0, 0, 3.72529e-09, 1, 0, 3.72529e-09, 2.98023e-08, 1,
 freeze = true
 freeze_mode = 1
 
+[node name="Decal2" type="Decal" parent="."]
+transform = Transform3D(0.899885, 0, 0.436127, 0, 1, 0, -0.436127, 0, 0.899885, 137.905, 1.58388, -67.3844)
+size = Vector3(6, 6, 6)
+texture_albedo = ExtResource("30_vqpou")
+texture_normal = ExtResource("31_ohhmp")
+modulate = Color(1, 1, 1, 0.443137)
+
+[node name="Decal3" type="Decal" parent="."]
+transform = Transform3D(0.899885, 0, 0.436127, 0.253384, 0.813913, -0.522822, -0.354969, 0.580987, 0.732428, 137.341, 4.05459, -71.6858)
+size = Vector3(10, 10, 10)
+texture_albedo = ExtResource("32_ibswl")
+texture_normal = ExtResource("32_ibswl")
+modulate = Color(1, 1, 1, 0.443137)
+
+[node name="Decal5" type="Decal" parent="."]
+transform = Transform3D(0.764103, -0.643542, 0.0447146, 0.396921, 0.414376, -0.818991, 0.508527, 0.643542, 0.572061, 82.5861, 7.60524, -49.6858)
+size = Vector3(10, 10, 10)
+texture_albedo = ExtResource("32_ibswl")
+texture_normal = ExtResource("32_ibswl")
+modulate = Color(1, 1, 1, 0.231373)
+
+[node name="Decal4" type="Decal" parent="."]
+transform = Transform3D(0.878389, -0.32972, -0.346002, 0.33889, 0.940153, -0.0355776, 0.337026, -0.0860057, 0.937559, 145.193, 4.05459, -63.4892)
+size = Vector3(10, 10, 10)
+texture_albedo = ExtResource("32_ibswl")
+texture_normal = ExtResource("32_ibswl")
+modulate = Color(1, 1, 1, 0.443137)
+
+[node name="nest" parent="." instance=ExtResource("33_e254x")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 142.6, 0.294669, -69.4537)
+
+[node name="cone" parent="." instance=ExtResource("34_1tojw")]
+transform = Transform3D(0.863422, 0, 0.504482, 0, 1, 0, -0.504482, 0, 0.863422, 127.239, 0.901751, -66.907)
+
+[node name="cone2" parent="." instance=ExtResource("34_1tojw")]
+transform = Transform3D(0.87608, 0, -0.482167, 0, 1, 0, 0.482167, 0, 0.87608, 125.007, 0.901751, -62.6746)
+
+[node name="lamp_tall" parent="." instance=ExtResource("35_tkval")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 145.581, 1.63216, -71.8231)
+
+[node name="couch_small" parent="." instance=ExtResource("36_18hjh")]
+transform = Transform3D(-0.707107, 0, 0.707107, 0, 1, 0, -0.707107, 0, -0.707107, 139.586, 1.52474, -62.729)
+
+[node name="picture_large" parent="." instance=ExtResource("37_7rmub")]
+transform = Transform3D(-1, 3.82137e-15, 8.74228e-08, 8.74228e-08, 4.37114e-08, 1, 0, 1, -4.37114e-08, 143.359, 3.00298, -75)
+
+[node name="Picture_Large -rigid" parent="picture_large/Picture_Large -rigid" index="0"]
+surface_material_override/1 = SubResource("ShaderMaterial_8yhyd")
+
 [connection signal="body_entered" from="Trigger" to="." method="_on_trigger_body_entered"]
 [connection signal="body_entered" from="ObjectiveArea" to="." method="_on_objective_area_body_entered"]
 
 [editable path="NavigationRegion3D/c2_m4"]
 [editable path="Props/picture_small"]
 [editable path="Props/lamp"]
+[editable path="picture_large"]

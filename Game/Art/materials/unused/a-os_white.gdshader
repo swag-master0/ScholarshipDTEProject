@@ -1,5 +1,5 @@
 shader_type spatial;
-render_mode unshaded;
+//render_mode unshaded;
 
 uniform vec3 colour = vec3(0.1, 0.1, 0.1);
 
@@ -9,5 +9,5 @@ void vertex() {
 
 void fragment() {
 	ALBEDO = colour;
+	EMISSION = colour * 5.0;
 }
-

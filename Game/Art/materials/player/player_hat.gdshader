@@ -9,5 +9,3 @@ void fragment() {
 	ALBEDO = base_colour;
 	NORMAL_MAP = textureLod(normal, UV, 1.0).rgb;
 }
-
-

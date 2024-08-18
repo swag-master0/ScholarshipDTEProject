@@ -9,6 +9,14 @@ extends Control
 
 @onready var sensitivity_num = $ScrollContainer/VBoxContainer/SensitivityNum
 
+@onready var save_data_reset = $ScrollContainer/VBoxContainer/SaveDataReset
+
+
+const save_progression_path = "user://save.tres"
+const save_config_path = "user://config.tres"
+const save_playerhub_path = "user://cell.tres"
+const save_addtoplayerhub_path = "user://cell_add.tres"
+const save_name_path = "user://save_plrname.tres"
 
 
 var default_sensitivity = 0.25
@@ -28,7 +36,6 @@ func _on_back_button_pressed():
 
 func CloseMenu():
 	self.visible = false
-
 
 
 func _ready():
@@ -80,6 +87,22 @@ func _on_ambience_slider_drag_ended(value_changed):
 
 
 
+func _on_save_data_reset_button_down():
+	await get_tree().create_timer(2).timeout
+	
+	
+	if save_data_reset.is_hovered() and Input.is_action_pressed("click"):
+		ClearSaveData()
+
+
+func ClearSaveData():
+	OS.move_to_trash(ProjectSettings.globalize_path(save_progression_path))
+	OS.move_to_trash(ProjectSettings.globalize_path(save_config_path))
+	OS.move_to_trash(ProjectSettings.globalize_path(save_playerhub_path))
+	OS.move_to_trash(ProjectSettings.globalize_path(save_addtoplayerhub_path))
+	OS.move_to_trash(ProjectSettings.globalize_path(save_name_path))
+	
+	get_tree().quit()
 
 
 
@@ -93,15 +116,3 @@ func SaveCurrentSettings():
 		sfx_slider.value,
 		ambience_slider.value
 	)
-
-
-
-
-
-
-
-
-
-
-
-

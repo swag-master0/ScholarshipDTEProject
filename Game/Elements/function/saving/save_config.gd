@@ -76,5 +76,3 @@ func load_config():
 		return retrieved_save # Returns the resource where everything is held
 		
 		
-
-
