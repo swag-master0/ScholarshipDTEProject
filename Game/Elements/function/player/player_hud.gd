@@ -41,6 +41,7 @@ var selectionsound = false
 var skipBBCode = false
 
 
+
 func _ready():
 	hud_dialogue_box.visible = false
 	hurt_vfx.visible = false
@@ -75,9 +76,6 @@ func _process(_delta):
 			
 			healthvisualindicator = false
 
-
-
-
 func sendHintToPlayer(hint):
 	hinttext.text = hint
 	hinttimer.start()
@@ -89,9 +87,8 @@ func _hinttext_timeout():
 		tutorial_pickup = false
 
 
-
 # INFO: DIALOGUE SYSTEM
-func Dialogue(text_speed : float = 0.05, time_until_continue : float = 1.5):
+func Dialogue(text_speed : float = 0.025, time_until_continue : float = 1.5):
 	
 	if dialoguespeaking == false and !dialogue_queue.is_empty():
 		dialoguespeaking = true

@@ -40,7 +40,7 @@ func _ready():
 	# Uncomment these lines:
 	
 	player.dialogue_queue.append(0)
-	player.dialogue_queue.append("PLEASE COMPLETE THE FOLLOWING DIAGNOSTIC COURSE. ")
+	player.dialogue_queue.append("PLEASE COMPLETE THE FOLLOWING DIAGNOSTIC COURSE. A-OS")
 	player.dialogue_queue.append("FAILURE TO DO SO MAY LEAD TO UNEXPECTED SIDE EFFECTS, SUCH AS: 	DEATH")
 	player.dialogue_queue.append("DIAGNOSTIC COURSE IS NOW BEGINNING. ")
 	
@@ -99,7 +99,8 @@ func tutorial_finished():
 
 	player.dialogue_queue.append("you would not BELIEVE how hard it is to make life from scratch.")
 	player.dialogue_queue.append("sorry for the scare about that 'diagnostic test', I didn't want to get attached incase it was another dud.")
-	player.dialogue_queue.append("anyway, i guess i should introduce myself") # change this, short and consise. don't say his motives out loud
+	player.dialogue_queue.append("anyway, i guess i should introduce myself.
+I am A-OS!") # change this, short and consise. don't say his motives out loud
 	player.dialogue_queue.append("")
 	player.dialogue_queue.append("i never gave you a name myself, would you like to?")
 	player.dialogue_queue.append("please, name yourself;")
