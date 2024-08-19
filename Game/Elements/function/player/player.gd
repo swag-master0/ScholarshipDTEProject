@@ -37,19 +37,15 @@ func TOP():
 @onready var obstruction_detection = $PlayerModel/ObstructionDetector
 @onready var soft_push = $PlayerModel/SoftPush
 
-
-
 # Camera
 @onready var pivot = $CentralCameraPoint
 @onready var camera = $CentralCameraPoint/SpringArm3D/Camera3D
 @onready var ray = $CentralCameraPoint/SpringArm3D/Camera3D/RayCast3D
 @onready var ray_endpos = $CentralCameraPoint/SpringArm3D/Camera3D/EndPos
 
-
 # Cursor
 @onready var cursor = $Cursor
 @onready var detection = $Cursor/Area3D
-
 
 # Info
 @onready var info = $Info
@@ -57,11 +53,7 @@ func TOP():
 # HUD
 @onready var HUD = $HUD
 @onready var pausemenu = $HUD/PauseMenu
-@onready var deathscreen = $HUD/DeathScreen
 @onready var options_menu = $HUD/OptionsMenu
-@onready var hud_levelcomplete = $HUD/LevelCompleted
-@onready var hud_levelcomplete_delay = $HUD/LevelCompleted/Delay
-
 
 # Audio
 @onready var footstep_delay = $Audio/FootstepDelay
@@ -109,7 +101,6 @@ func _ready():
 	Engine.time_scale = 1
 	canPause = true
 	pausemenu.visible = false
-	deathscreen.visible = false
 	
 	Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
 	
@@ -374,23 +365,17 @@ func NearestObject():
 
 
 
-
-
 #region Player UI
 func RestartLevel():
 	LoadingScreen.next_scene = get_tree().current_scene.scene_file_path
 	LoadingScreen.scene_transition()
 
-
-
 func QuitToMenu():
 	LoadingScreen.next_scene = main_menu
 	LoadingScreen.scene_transition()
 
-
 func FinishDialogue(dialogue: String):
 	emit_signal("DialogueFinished", dialogue)
-
 
 func ApplySettings():
 	var new_config = SaveConfig.new()
@@ -401,7 +386,6 @@ func ApplySettings():
 	AudioServer.set_bus_volume_db(AudioServer.get_bus_index("music"), linear_to_db(settings.VOLUME_MUSIC))
 	AudioServer.set_bus_volume_db(AudioServer.get_bus_index("sfx"), linear_to_db(settings.VOLUME_SFX))
 	AudioServer.set_bus_volume_db(AudioServer.get_bus_index("ambience"), linear_to_db(settings.VOLUME_AMBIENCE))
-	
 
 func PauseMenu(toggle : bool):
 	ApplySettings()
@@ -413,20 +397,8 @@ func PauseMenu(toggle : bool):
 		
 		if toggle == true:
 			Input.set_mouse_mode(Input.MOUSE_MODE_VISIBLE)
-			DisplayServer.tts_pause()
 		else:
 			Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
-			DisplayServer.tts_resume()
-
-
-func DeathScreen():
-	canPause = false
-	Input.set_mouse_mode(Input.MOUSE_MODE_VISIBLE)
-	var tween = create_tween()
-	tween.tween_property(Engine, "time_scale", 0, 0.2)
-	
-	deathscreen.visible = true
-
 
 func Nextlevel():
 	if levelchangetriggered == false:
@@ -438,7 +410,6 @@ func Nextlevel():
 		
 		hud_levelcomplete.visible = true
 		hud_levelcomplete_delay.start()
-
 
 func _on_delay_timeout():
 	get_tree().paused = false
@@ -466,10 +437,6 @@ func _on_delay_timeout():
 				LoadingScreen.scene_transition()
 		else:
 			push_error("Failed to find next level.")
-	
-	
-
-
 
 func _on_resume_button_pressed():
 	PauseMenu(false)
@@ -477,13 +444,7 @@ func _on_resume_button_pressed():
 func _on_restart_button_pressed():
 	RestartLevel()
 
-func _on_death_restart_button_pressed():
-	RestartLevel()
-
 func _on_quit_button_pressed():
-	QuitToMenu()
-
-func _on_death_quit_button_pressed():
 	QuitToMenu()
 
 func _on_options_button_pressed():

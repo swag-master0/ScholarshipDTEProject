@@ -134,12 +134,9 @@ func _on_remove_characters_timeout():
 	hud_dialogue.visible = false
 	hud_dialogue.text = ""
 
-
 func PainVisuals():
 	hurt_vfx.visible = true
 	pain_animation.play("pain")
-
-
 
 # INFO: LOCK-ON CURSOR AND ENEMY HEALTH BARS
 func setCursorPosition(pos : Vector3, visibility : bool):
@@ -164,20 +161,3 @@ func setCursorPosition(pos : Vector3, visibility : bool):
 		indicator.visible = false
 		selectionsound = false
 		
-
-
-func viewEnemyHealth(enemy : Object, visibility : bool):
-	var healthbar = hud_enemyhealth
-	
-	if visibility:
-		
-		healthbar.visible = true
-		healthbar.position = (camera.unproject_position(enemy.global_position) - healthbar.size / 2) + Vector2(0, -50)
-		
-		for i in enemy.get_children():
-			if i.is_in_group("info"):
-				healthbar.value = i.health
-				healthbar.max_value = i.max_health
-	
-	elif !visibility:
-		healthbar.visible = false

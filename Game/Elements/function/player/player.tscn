@@ -1,4 +1,4 @@
-[gd_scene load_steps=98 format=3 uid="uid://bcou7suhphdrp"]
+[gd_scene load_steps=96 format=3 uid="uid://bcou7suhphdrp"]
 
 [ext_resource type="Script" path="res://Elements/function/player/player.gd" id="1_0ncw4"]
 [ext_resource type="PackedScene" uid="uid://4lv8cegk7f53" path="res://Art/blend/assets/main/player.blend" id="2_ww4ji"]
@@ -453,12 +453,6 @@ initial_velocity_max = 72.58
 gravity = Vector3(0, 98, 0)
 scale_curve = SubResource("CurveTexture_pfixp")
 
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_nqrcn"]
-bg_color = Color(0.752941, 0, 0, 1)
-
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_btmbw"]
-bg_color = Color(0.188235, 1, 0.113725, 1)
-
 [sub_resource type="SpriteFrames" id="SpriteFrames_gdws8"]
 animations = [{
 "frames": [{
@@ -543,6 +537,22 @@ orientation = 2
 [node name="Player" type="CharacterBody3D" groups=["player"]]
 floor_max_angle = 1.22173
 script = ExtResource("1_0ncw4")
+tutorial_mode = null
+SENSITIVITY = null
+MAX_LOOK = null
+MIN_LOOK = null
+SAVE_GAME = null
+SPEED = null
+JUMP_VELOCITY = null
+JUMP_FALLMULTIPLIER = null
+TURN_VELOCITY = null
+PICKUP_RANGE = null
+THROW_FORCE = null
+DISPLAY_DUST = null
+isHolding = null
+level_completed = null
+player_hub = null
+dialogue_queue = null
 
 [node name="AnimationTree" type="AnimationTree" parent="."]
 root_node = NodePath("../PlayerModel/player")
@@ -568,22 +578,23 @@ editor_description = "The playermodel, containing data like the mesh, skeleton, 
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1, 0)
 
 [node name="Skeleton3D" parent="PlayerModel/player/Armature" index="0"]
-bones/0/position = Vector3(-0.00183521, -0.0775447, 0)
-bones/1/rotation = Quaternion(0.000620222, -0.000918179, 0.817331, 0.576168)
-bones/2/rotation = Quaternion(-0.00096634, -0.000644936, 0.287007, 0.957928)
-bones/3/rotation = Quaternion(-0.00102284, -0.0001733, 0.395128, 0.918626)
-bones/4/rotation = Quaternion(-6.35795e-06, -2.53072e-07, 0.0895676, 0.995981)
-bones/5/rotation = Quaternion(0.000711543, 0.000889304, -0.840937, 0.541131)
-bones/6/rotation = Quaternion(-0.000924424, 0.000664072, -0.27558, 0.961278)
-bones/7/rotation = Quaternion(-0.00114072, 0.000179273, -0.353305, 0.935507)
-bones/8/rotation = Quaternion(-0.000215098, 7.87252e-06, -0.0791717, 0.996861)
-bones/9/rotation = Quaternion(0.00624816, 0, 0, 0.999981)
-bones/10/rotation = Quaternion(0.705807, -0.0428625, -0.705806, 0.0428625)
-bones/11/rotation = Quaternion(8.81683e-09, 1.57372e-08, -0.139801, 0.99018)
-bones/12/rotation = Quaternion(2.11264e-09, -9.40588e-16, -0.0279828, 0.999608)
-bones/13/rotation = Quaternion(0.705804, 0.042908, 0.705804, 0.042908)
-bones/14/rotation = Quaternion(7.44976e-09, -1.57369e-08, 0.139941, 0.99016)
-bones/15/rotation = Quaternion(2.11486e-09, 2.15884e-15, 0.0280121, 0.999608)
+bones/0/position = Vector3(0.126037, -0.183851, 0.170503)
+bones/0/rotation = Quaternion(0, 0.000879729, 0, 1)
+bones/1/rotation = Quaternion(-0.116028, 0.311575, 0.853729, 0.400756)
+bones/2/rotation = Quaternion(-0.142967, 0.100558, 0.0503998, 0.983315)
+bones/3/rotation = Quaternion(0.609439, -0.314918, 0.249386, 0.683533)
+bones/4/rotation = Quaternion(0.169361, 0.00291292, -0.00302078, 0.985545)
+bones/5/rotation = Quaternion(0.150807, -0.0301599, -0.915993, 0.370547)
+bones/6/rotation = Quaternion(0.0686346, 0.0221924, -0.0365325, 0.996726)
+bones/7/rotation = Quaternion(0.608919, 0.0176387, 0.125196, 0.783092)
+bones/8/rotation = Quaternion(0.165878, 0.00164405, 0.0240615, 0.985851)
+bones/9/rotation = Quaternion(0.000205248, 0.0921977, -1.90043e-05, 0.995741)
+bones/10/rotation = Quaternion(0.716777, -0.0983106, -0.689106, 0.0412025)
+bones/11/rotation = Quaternion(0.054353, -0.00353045, -0.372217, 0.926546)
+bones/12/rotation = Quaternion(1.92161e-09, 1.2374e-10, -0.0279848, 0.999608)
+bones/13/rotation = Quaternion(0.709672, 0.0428532, 0.69715, 0.0922539)
+bones/14/rotation = Quaternion(-0.049635, -0.00326901, 0.370537, 0.927485)
+bones/15/rotation = Quaternion(2.12541e-09, 4.23081e-11, 0.0280101, 0.999608)
 
 [node name="Player" parent="PlayerModel/player/Armature/Skeleton3D" index="0"]
 lod_bias = 128.0
@@ -592,7 +603,7 @@ surface_material_override/1 = ExtResource("4_oor3j")
 surface_material_override/2 = ExtResource("5_mq2xk")
 
 [node name="FaceAttachment" type="BoneAttachment3D" parent="PlayerModel/player/Armature/Skeleton3D" index="1"]
-transform = Transform3D(1, 0, 0, 0, 0.999922, -0.0124961, 0, 0.0124961, 0.999922, -0.00183521, 0.506999, 0)
+transform = Transform3D(0.982675, 7.64063e-05, 0.185339, 7.27596e-12, 1, -0.000412251, -0.185339, 0.000405109, 0.982674, 0.126037, 0.400692, 0.170503)
 bone_name = "Head"
 bone_idx = 9
 
@@ -836,26 +847,6 @@ one_shot = true
 speed_scale = 5.0
 explosiveness = 1.0
 
-[node name="EnemyHealth" type="ProgressBar" parent="HUD"]
-layout_mode = 1
-anchors_preset = 7
-anchor_left = 0.5
-anchor_top = 1.0
-anchor_right = 0.5
-anchor_bottom = 1.0
-offset_left = -960.0
-offset_top = -1180.0
-offset_right = -825.0
-offset_bottom = -1150.0
-grow_horizontal = 2
-grow_vertical = 0
-pivot_offset = Vector2(45, 7)
-theme_override_styles/background = SubResource("StyleBoxFlat_nqrcn")
-theme_override_styles/fill = SubResource("StyleBoxFlat_btmbw")
-max_value = 20.0
-value = 10.0
-show_percentage = false
-
 [node name="Hints" type="RichTextLabel" parent="HUD"]
 texture_filter = 1
 layout_mode = 1
@@ -894,66 +885,6 @@ scale = Vector2(0.5, 0.5)
 sprite_frames = SubResource("SpriteFrames_gdws8")
 autoplay = "default"
 frame_progress = 0.798396
-
-[node name="DeathScreen" type="ColorRect" parent="HUD"]
-process_mode = 3
-visible = false
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-color = Color(1, 0.117647, 0.141176, 0.352941)
-
-[node name="RichTextLabel" type="RichTextLabel" parent="HUD/DeathScreen"]
-layout_mode = 1
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = -140.0
-offset_top = -210.0
-offset_right = 140.0
-offset_bottom = -85.0
-grow_horizontal = 2
-grow_vertical = 2
-pivot_offset = Vector2(140, 62)
-theme_override_font_sizes/normal_font_size = 90
-bbcode_enabled = true
-text = "[center]DEAD"
-
-[node name="DeathRestartButton" type="Button" parent="HUD/DeathScreen"]
-layout_mode = 1
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = -110.0
-offset_top = -41.0
-offset_right = 110.0
-offset_bottom = 41.0
-grow_horizontal = 2
-grow_vertical = 2
-pivot_offset = Vector2(110, 41)
-text = "restart level"
-
-[node name="DeathQuitButton" type="Button" parent="HUD/DeathScreen"]
-layout_mode = 1
-anchors_preset = -1
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = -110.0
-offset_top = 82.0
-offset_right = 110.0
-offset_bottom = 164.0
-grow_horizontal = 2
-grow_vertical = 2
-text = "quit to menu"
 
 [node name="PauseMenu" type="ColorRect" parent="HUD"]
 process_mode = 3
@@ -1033,39 +964,6 @@ text = "quit to menu"
 [node name="OptionsMenu" parent="HUD" instance=ExtResource("9_vjmmq")]
 visible = false
 layout_mode = 1
-
-[node name="LevelCompleted" type="ColorRect" parent="HUD"]
-process_mode = 2
-visible = false
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-color = Color(0, 1, 0, 0.352941)
-
-[node name="RichTextLabel" type="RichTextLabel" parent="HUD/LevelCompleted"]
-layout_mode = 1
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = -200.0
-offset_top = -50.0
-offset_right = 200.0
-offset_bottom = 50.0
-grow_horizontal = 2
-grow_vertical = 2
-pivot_offset = Vector2(200, 50)
-theme_override_font_sizes/normal_font_size = 50
-bbcode_enabled = true
-text = "[center]level complete"
-
-[node name="Delay" type="Timer" parent="HUD/LevelCompleted"]
-wait_time = 0.01
-one_shot = true
 
 [node name="Crosshair" type="ColorRect" parent="HUD"]
 layout_mode = 1
@@ -1192,13 +1090,10 @@ draw_pass_1 = SubResource("PlaneMesh_4twoe")
 [connection signal="timeout" from="HUD/DialogueBox/RemoveCharacters" to="HUD" method="_on_remove_characters_timeout"]
 [connection signal="timeout" from="HUD/Hints/Timer" to="." method="_hinttext_timeout"]
 [connection signal="timeout" from="HUD/Hints/Timer" to="HUD" method="_hinttext_timeout"]
-[connection signal="pressed" from="HUD/DeathScreen/DeathRestartButton" to="." method="_on_death_restart_button_pressed"]
-[connection signal="pressed" from="HUD/DeathScreen/DeathQuitButton" to="." method="_on_death_quit_button_pressed"]
 [connection signal="pressed" from="HUD/PauseMenu/ResumeButton" to="." method="_on_resume_button_pressed"]
 [connection signal="pressed" from="HUD/PauseMenu/RestartButton" to="." method="_on_restart_button_pressed"]
 [connection signal="pressed" from="HUD/PauseMenu/OptionsButton" to="." method="_on_options_button_pressed"]
 [connection signal="pressed" from="HUD/PauseMenu/QuitButton" to="." method="_on_quit_button_pressed"]
-[connection signal="timeout" from="HUD/LevelCompleted/Delay" to="." method="_on_delay_timeout"]
 
 [editable path="PlayerModel/player"]
 [editable path="Info"]
