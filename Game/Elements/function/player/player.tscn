@@ -537,22 +537,6 @@ orientation = 2
 [node name="Player" type="CharacterBody3D" groups=["player"]]
 floor_max_angle = 1.22173
 script = ExtResource("1_0ncw4")
-tutorial_mode = null
-SENSITIVITY = null
-MAX_LOOK = null
-MIN_LOOK = null
-SAVE_GAME = null
-SPEED = null
-JUMP_VELOCITY = null
-JUMP_FALLMULTIPLIER = null
-TURN_VELOCITY = null
-PICKUP_RANGE = null
-THROW_FORCE = null
-DISPLAY_DUST = null
-isHolding = null
-level_completed = null
-player_hub = null
-dialogue_queue = null
 
 [node name="AnimationTree" type="AnimationTree" parent="."]
 root_node = NodePath("../PlayerModel/player")

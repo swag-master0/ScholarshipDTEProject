@@ -324,21 +324,11 @@ func MousePosition():
 			cursor.global_position = ray.get_collision_point()
 			
 			HUD.setCursorPosition(Vector3(), false)
-			HUD.viewEnemyHealth(null, false)
 			
 			if rayHit.is_in_group("enemy"):
-				for i in rayHit.get_children():
-					if i.is_in_group("info"):
-						if i.DisplayHealthBar == true:
-							HUD.viewEnemyHealth(rayHit, true)
-				
-				
-				
 				if Input.is_action_pressed("click"):
 					cursor.global_position = rayHit.global_position
 					HUD.setCursorPosition(rayHit.global_position, true)
-					
-		
 		
 		elif !ray.is_colliding():
 			cursor.global_position = ray_endpos.global_position
@@ -406,37 +396,28 @@ func Nextlevel():
 		
 		Input.set_mouse_mode(Input.MOUSE_MODE_VISIBLE)
 		
-		get_tree().paused = true
-		
-		hud_levelcomplete.visible = true
-		hud_levelcomplete_delay.start()
-
-func _on_delay_timeout():
-	get_tree().paused = false
-	
-	for i in self.get_parent().get_children():
-		if i.is_in_group("objective_start"):
-			var save = SaveGame.new()
-			save.save_game(i.nextscene_string)
+		for i in self.get_parent().get_children():
+			if i.is_in_group("objective_start"):
+				var save = SaveGame.new()
+				save.save_game(i.nextscene_string)
 			
-			if get_tree().current_scene.scene_file_path == "res://Elements/environments/misc/intro_cutscene.tscn":
-				LoadingScreen.next_scene = save.load_game().level
-				LoadingScreen.scene_transition()
+				if get_tree().current_scene.scene_file_path == "res://Elements/environments/misc/intro_cutscene.tscn":
+					LoadingScreen.next_scene = save.load_game().level
+					LoadingScreen.scene_transition()
+				
+				else:
+					LoadingScreen.next_scene = player_hub
+					LoadingScreen.scene_transition()
 			
-			else:
-				LoadingScreen.next_scene = player_hub
-				LoadingScreen.scene_transition()
-	
-	
-	if !SAVE_GAME:
-		var save = SaveGame.new()
-		
-		if save.load_game():
-			if save.load_game().level:
-				LoadingScreen.next_scene = save.load_game().level
-				LoadingScreen.scene_transition()
-		else:
-			push_error("Failed to find next level.")
+			if !SAVE_GAME:
+				var save = SaveGame.new()
+				
+				if save.load_game():
+					if save.load_game().level:
+						LoadingScreen.next_scene = save.load_game().level
+						LoadingScreen.scene_transition()
+				else:
+					push_error("Failed to find next level.")
 
 func _on_resume_button_pressed():
 	PauseMenu(false)

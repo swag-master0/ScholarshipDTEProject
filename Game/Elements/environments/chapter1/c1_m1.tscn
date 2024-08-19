@@ -85,6 +85,22 @@ script = SubResource("GDScript_x6txf")
 
 [node name="Player" parent="." instance=ExtResource("1_01d17")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -7.7242, 0)
+tutorial_mode = false
+SENSITIVITY = 0.25
+MAX_LOOK = 55.0
+MIN_LOOK = -75.0
+SAVE_GAME = true
+SPEED = 10.0
+JUMP_VELOCITY = 35.0
+JUMP_FALLMULTIPLIER = 10.0
+TURN_VELOCITY = 50.0
+PICKUP_RANGE = 6.0
+THROW_FORCE = 500.0
+DISPLAY_DUST = true
+isHolding = false
+level_completed = false
+player_hub = "res://Elements/environments/misc/player_cell.tscn"
+dialogue_queue = []
 
 [node name="ObjectiveLevelStart" parent="." instance=ExtResource("4_5dpaq")]
 transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 0, 0.5, 0)

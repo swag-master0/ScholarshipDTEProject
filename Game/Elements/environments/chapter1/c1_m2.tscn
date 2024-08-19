@@ -125,7 +125,7 @@ prop = ExtResource("7_tk5jc")
 [node name="WorldEnvironment" parent="." instance=ExtResource("3_1kepo")]
 
 [node name="Player" parent="." instance=ExtResource("3_voxtl")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.0460191, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -9.95398, 0)
 
 [node name="ObjectiveItem" parent="." instance=ExtResource("5_0wf4d")]
 transform = Transform3D(0.103175, 0, 0.994663, 0, 1, 0, -0.994663, 0, 0.103175, 63.4424, 13.8643, -45.3473)

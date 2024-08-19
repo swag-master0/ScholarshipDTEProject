@@ -8,4 +8,3 @@ void fragment() {
 	ALBEDO = image;
 	EMISSION = image * emission_strength;
 }
-
