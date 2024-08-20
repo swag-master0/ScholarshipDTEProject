@@ -19,7 +19,7 @@ const save_addtoplayerhub_path = "user://cell_add.tres"
 const save_name_path = "user://save_plrname.tres"
 
 
-var default_sensitivity = 0.25
+var default_sensitivity = 0.15
 var default_fullscreen = true
 var default_musicvolume = 50
 var default_sfxvolume = 50

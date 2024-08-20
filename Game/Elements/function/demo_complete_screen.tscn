@@ -61,14 +61,14 @@ grow_horizontal = 2
 grow_vertical = 2
 color = Color(0.0823529, 0.0784314, 0.117647, 1)
 
-[node name="RichTextLabel" type="RichTextLabel" parent="."]
+[node name="MainText" type="RichTextLabel" parent="."]
 layout_mode = 1
 anchors_preset = 13
 anchor_left = 0.5
 anchor_right = 0.5
 anchor_bottom = 1.0
-offset_left = -425.5
-offset_right = 424.5
+offset_left = -620.5
+offset_right = 579.5
 grow_horizontal = 2
 grow_vertical = 2
 bbcode_enabled = true
@@ -77,20 +77,22 @@ text = "[center]
 
 
 
-[font_size=80][color=FIREBRICK ][u]The demo is over[/u]
-[font_size=12][color=WEB_GRAY]go home
+[font_size=120][color=FIREBRICK ][u][b]The demo is over[/b][/u]
+[font_size=12][color=WEB_GRAY][i]( go home )[/i]
 
-[color=WHITE][font_size=30][wave]Thank you[/wave] for playing.
+[color=LEMON_CHIFFON][font_size=40][wave]Thank you[/wave][color=WHITE] for playing.
 [font_size=20]
 [font_size=30]
 Obligatory reminder to please leave feedback [color=CORNFLOWER_BLUE][url=https://forms.gle/RDVXWQL4vZmkzYdd7]here[/url][color=WHITE].
 [font_size=20]Alternatively, you can leave a comment on the  [color=CORNFLOWER_BLUE][url=https://swag0.itch.io/amelioration]itch.io[/url][color=WHITE] page for this game.
 
+This won't be the end of the game in future. I'll (hopefully) manage to come up with a proper ending. :)
+
 
 
 "
 
-[node name="RichTextLabel2" type="RichTextLabel" parent="."]
+[node name="OptionalText" type="RichTextLabel" parent="."]
 layout_mode = 1
 anchors_preset = 13
 anchor_left = 0.5
@@ -113,9 +115,9 @@ anchor_top = 1.0
 anchor_right = 0.5
 anchor_bottom = 1.0
 offset_left = -194.0
-offset_top = -330.0
+offset_top = -193.0
 offset_right = 194.0
-offset_bottom = -254.0
+offset_bottom = -117.0
 grow_horizontal = 2
 grow_vertical = 0
 text = "LEAVE"
@@ -139,6 +141,6 @@ libraries = {
 }
 autoplay = "the_funny"
 
-[connection signal="meta_clicked" from="RichTextLabel" to="." method="_on_rich_text_label_meta_clicked"]
-[connection signal="meta_clicked" from="RichTextLabel2" to="." method="_on_rich_text_label_meta_clicked"]
+[connection signal="meta_clicked" from="MainText" to="." method="_on_rich_text_label_meta_clicked"]
+[connection signal="meta_clicked" from="OptionalText" to="." method="_on_rich_text_label_meta_clicked"]
 [connection signal="pressed" from="Button" to="." method="_on_button_pressed"]

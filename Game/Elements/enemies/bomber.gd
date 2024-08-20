@@ -44,8 +44,3 @@ func _on_delay_timeout():
 	created_explosion.position = position
 	
 	self.queue_free()
-
-
-
-
-

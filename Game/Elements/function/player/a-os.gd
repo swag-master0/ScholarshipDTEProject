@@ -94,7 +94,7 @@ func ApplyMood(mood: int):
 		
 		processing.visible = false
 	
-	
+
 
 func _process(_delta):
 	eye_pos.position = initial_position + eye_pos_offset

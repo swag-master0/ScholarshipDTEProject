@@ -18,6 +18,8 @@ var activate_throwing_tutorial = false
 var held = false
 var threw = false
 
+# INFO: I'd like to rewrite the entire dialogue sequence for this:
+# 		Think more like Portal 2's opening. (actually, just rip quotes lmao)
 
 
 func _ready():
@@ -40,8 +42,8 @@ func _ready():
 	# Uncomment these lines:
 	
 	player.dialogue_queue.append(0)
-	player.dialogue_queue.append("PLEASE COMPLETE THE FOLLOWING DIAGNOSTIC COURSE. A-OS")
-	player.dialogue_queue.append("FAILURE TO DO SO MAY LEAD TO UNEXPECTED SIDE EFFECTS, SUCH AS: 	DEATH")
+	player.dialogue_queue.append("PLEASE COMPLETE THE FOLLOWING DIAGNOSTIC COURSE.")
+	player.dialogue_queue.append("FAILURE TO DO SO MAY LEAD TO UNEXPECTED SIDE EFFECTS, SUCH AS: DEATH")
 	player.dialogue_queue.append("DIAGNOSTIC COURSE IS NOW BEGINNING. ")
 	
 
@@ -139,7 +141,7 @@ func _on_player_dialogue_finished(dialogue):
 		$"../Control/ColorRect/LineEdit".grab_focus()
 		get_tree().paused = true
 	
-	elif dialogue == "lemme send down the lift... we're going to the surface":
+	elif dialogue == "lemme send down the lift... we're going to the surface!":
 		rail_anims.play("down")
 	
 	

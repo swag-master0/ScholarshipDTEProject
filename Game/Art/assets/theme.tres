@@ -1,11 +1,9 @@
-[gd_resource type="Theme" load_steps=19 format=3 uid="uid://qpcg0ktiqy0j"]
+[gd_resource type="Theme" load_steps=17 format=3 uid="uid://qpcg0ktiqy0j"]
 
 [ext_resource type="FontFile" uid="uid://cqbvpus3tgxud" path="res://Art/assets/fonts/dm_mono/DMMono-Regular.ttf" id="1_b011t"]
 [ext_resource type="FontFile" uid="uid://dcwnyjmwhyqsn" path="res://Art/assets/fonts/dm_mono/DMMono-MediumItalic.ttf" id="2_u6bhg"]
-[ext_resource type="FontFile" uid="uid://dle4pso7gvret" path="res://Art/assets/fonts/pixelify_sans/PixelifySans-Bold.ttf" id="3_7a8s7"]
 [ext_resource type="FontFile" uid="uid://bgexhkq6mbkof" path="res://Art/assets/fonts/dm_mono/DMMono-Italic.ttf" id="3_7k8v5"]
-[ext_resource type="FontFile" uid="uid://bcsmocjtnjm7c" path="res://Art/assets/fonts/pixelify_sans/PixelifySans-Regular.ttf" id="5_58ck0"]
-[ext_resource type="FontFile" uid="uid://bx2khppwoxaml" path="res://Art/assets/fonts/pixelify_sans/PixelifySans-Medium.ttf" id="5_i7dyh"]
+[ext_resource type="FontFile" uid="uid://bhsxceshgem2w" path="res://Art/assets/fonts/dm_mono/DMMono-Medium.ttf" id="3_758nk"]
 
 [sub_resource type="StyleBoxLine" id="StyleBoxLine_42ewb"]
 color = Color(0, 0.635294, 0, 0)
@@ -120,10 +118,10 @@ RichTextLabel/font_sizes/bold_italics_font_size = 27
 RichTextLabel/font_sizes/italics_font_size = 27
 RichTextLabel/font_sizes/mono_font_size = 27
 RichTextLabel/font_sizes/normal_font_size = 27
-RichTextLabel/fonts/bold_font = ExtResource("3_7a8s7")
+RichTextLabel/fonts/bold_font = ExtResource("3_758nk")
 RichTextLabel/fonts/bold_italics_font = ExtResource("2_u6bhg")
 RichTextLabel/fonts/italics_font = ExtResource("3_7k8v5")
-RichTextLabel/fonts/mono_font = ExtResource("5_i7dyh")
-RichTextLabel/fonts/normal_font = ExtResource("5_58ck0")
+RichTextLabel/fonts/mono_font = ExtResource("3_758nk")
+RichTextLabel/fonts/normal_font = ExtResource("1_b011t")
 RichTextLabel/styles/normal = SubResource("StyleBoxEmpty_xaokg")
 TextEdit/fonts/font = ExtResource("1_b011t")
