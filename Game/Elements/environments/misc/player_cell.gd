@@ -78,6 +78,7 @@ func ActivateIncinerator(type: bool):
 		incinerator_active = true
 		incinerator.visible = true
 		incinerator_anim.play("open")
+		$Incinerator/Audio/Idle.play()
 		# activate incinerator
 	elif !type:
 		incinerator_anim.play_backwards("open")
@@ -85,6 +86,7 @@ func ActivateIncinerator(type: bool):
 		await get_tree().create_timer(3).timeout
 		incinerator_active = false
 		incinerator.visible = false
+		$Incinerator/Audio/Idle.stop()
 		# deactivate incinerator
 
 
@@ -97,5 +99,6 @@ func _on_incinerator_body_entered(body):
 					i.Damage(99999)
 		
 		if body is RigidBody3D:
+			$Incinerator/Audio/Burn.play()
 			ObjectBurnt.emit(body)
 			body.queue_free()

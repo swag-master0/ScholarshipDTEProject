@@ -1,4 +1,4 @@
-[gd_scene load_steps=31 format=3 uid="uid://b525133sxoobn"]
+[gd_scene load_steps=33 format=3 uid="uid://b525133sxoobn"]
 
 [ext_resource type="Script" path="res://Elements/environments/misc/player_cell.gd" id="1_vgvtl"]
 [ext_resource type="PackedScene" uid="uid://bcou7suhphdrp" path="res://Elements/function/player/player.tscn" id="2_anjfi"]
@@ -9,6 +9,8 @@
 [ext_resource type="PackedScene" uid="uid://bmgk0u34rg2cy" path="res://Art/blend/assets/misc/rail.blend" id="6_g5gla"]
 [ext_resource type="PackedScene" uid="uid://4lamctxd2su2" path="res://Elements/assets/misc/carraige.tscn" id="7_6hx2v"]
 [ext_resource type="Texture2D" uid="uid://dp1ls6ddglxoj" path="res://Art/assets/assets/cartoon_particle_5.png" id="9_pm47k"]
+[ext_resource type="AudioStream" uid="uid://bfa3bwv64pyvo" path="res://Art/audio/misc/fire-sound-efftect-21991.mp3" id="10_1jfbo"]
+[ext_resource type="AudioStream" uid="uid://mig8rgfdgftk" path="res://Art/audio/misc/fire-breath-6922.mp3" id="11_poehm"]
 
 [sub_resource type="Animation" id="Animation_w48k8"]
 length = 0.001
@@ -403,6 +405,14 @@ size = Vector3(1.09074, 15.07, 5.16859)
 [node name="GPUParticlesCollisionBox3D5" type="GPUParticlesCollisionBox3D" parent="Incinerator/GPUParticleCollisions"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.119852, 13.6256, -0.203362)
 size = Vector3(9.68892, 0.815273, 5.16859)
+
+[node name="Audio" type="Node3D" parent="Incinerator"]
+
+[node name="Idle" type="AudioStreamPlayer3D" parent="Incinerator/Audio"]
+stream = ExtResource("10_1jfbo")
+
+[node name="Burn" type="AudioStreamPlayer3D" parent="Incinerator/Audio"]
+stream = ExtResource("11_poehm")
 
 [connection signal="ObjectBurnt" from="." to="DialogueHandler" method="_on_player_hub_object_burnt"]
 [connection signal="body_entered" from="RailsPlayerHub/carraige/Area3D" to="DialogueHandler" method="_on_exit_body_entered"]

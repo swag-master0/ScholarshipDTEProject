@@ -27,6 +27,7 @@ func TOP():
 
 @export_category("Visuals")
 @export var DISPLAY_DUST: bool = true
+@export var AMBIENT_SOUND: bool = true
 
 
 # Player Model
@@ -97,7 +98,6 @@ signal DialogueFinished
 #region Player Gameplay
 
 func _ready():
-	
 	Engine.time_scale = 1
 	canPause = true
 	pausemenu.visible = false
@@ -113,6 +113,10 @@ func _ready():
 	else:
 		print("Saving is turned off for this level")
 	
+	if AMBIENT_SOUND:
+		$Audio/Ambient.play()
+	else:
+		$Audio/Ambient.stop()
 
 func _input(event):
 	if event is InputEventMouseMotion and canPause == true:
