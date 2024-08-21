@@ -6,9 +6,9 @@ default_value_enabled = true
 default_value = 1.0
 
 [sub_resource type="Gradient" id="Gradient_2usxy"]
-interpolation_mode = 2
-offsets = PackedFloat32Array(0.459119, 0.946541)
-colors = PackedColorArray(0, 0, 0, 1, 0.640961, 0.108152, 0.175332, 1)
+interpolation_mode = 1
+offsets = PackedFloat32Array(0, 0.523207, 0.772152)
+colors = PackedColorArray(0, 0, 0, 1, 0.639216, 0.109804, 0.176471, 1, 0.985866, 0.492756, 0.470591, 1)
 
 [sub_resource type="FastNoiseLite" id="FastNoiseLite_3erfx"]
 noise_type = 3
@@ -79,6 +79,7 @@ void fragment() {
 
 }
 "
+graph_offset = Vector2(-332, 52)
 nodes/fragment/0/position = Vector2(400, 140)
 nodes/fragment/4/node = SubResource("VisualShaderNodeTexture_05rwf")
 nodes/fragment/4/position = Vector2(120, 140)
