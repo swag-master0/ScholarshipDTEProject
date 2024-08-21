@@ -83,10 +83,8 @@ shadow_color = Color(0.0784314, 0.0784314, 0.0509804, 0.294118)
 shadow_offset = Vector2(-7.5, 15)
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_xaokg"]
-content_margin_left = 20.0
-content_margin_top = 25.0
-content_margin_right = 20.0
-content_margin_bottom = 20.0
+content_margin_left = 5.0
+content_margin_bottom = 5.0
 
 [resource]
 BoxContainer/constants/separation = 6
@@ -113,11 +111,11 @@ ProgressBar/fonts/font = ExtResource("2_u6bhg")
 ProgressBar/styles/background = SubResource("StyleBoxFlat_3nfej")
 ProgressBar/styles/fill = SubResource("StyleBoxFlat_1bjw4")
 RichTextLabel/constants/outline_size = 0
-RichTextLabel/font_sizes/bold_font_size = 27
-RichTextLabel/font_sizes/bold_italics_font_size = 27
-RichTextLabel/font_sizes/italics_font_size = 27
-RichTextLabel/font_sizes/mono_font_size = 27
-RichTextLabel/font_sizes/normal_font_size = 27
+RichTextLabel/font_sizes/bold_font_size = 22
+RichTextLabel/font_sizes/bold_italics_font_size = 22
+RichTextLabel/font_sizes/italics_font_size = 22
+RichTextLabel/font_sizes/mono_font_size = 22
+RichTextLabel/font_sizes/normal_font_size = 22
 RichTextLabel/fonts/bold_font = ExtResource("3_758nk")
 RichTextLabel/fonts/bold_italics_font = ExtResource("2_u6bhg")
 RichTextLabel/fonts/italics_font = ExtResource("3_7k8v5")

@@ -46,12 +46,11 @@ script/source = "extends Node3D
 
 var player_has_objective = false
 var triggered = false
+var dialogue_triggered = false
 #var spawns : int = 0
 
-var amount_to_spawn = 15
-var amount_to_spawn_bombers = 3
-var amount_of_waves = 3
-var time_between_waves = 5
+var amount_to_spawn = 20
+var amount_to_spawn_bombers = 4
 
 @onready var doors = $Doors
 @onready var spawnpoints = $Spawnpoints
@@ -66,77 +65,60 @@ var time_between_waves = 5
 # also, make enemies appear in waves
 
 func _ready():
+	await get_tree().create_timer(5).timeout
+	
+	player.dialogue_queue.append(1)
+	player.dialogue_queue.append(\"from what i've been able to see, this area [i]shouldn't[/i] have that many creatures\")
+	player.dialogue_queue.append(4)
+	player.dialogue_queue.append(\"i wonder why\")
+	
 	for i in doors.get_children():
 		i.global_position += Vector3(0, 50, 0)
 		i.visible = false
 
 
 
-func _process(_delta):
-	if triggered == true:
-		var next_wave = true 
-		
-		for i in get_children():
-			if i.is_in_group(\"enemy\"):
-				next_wave = false
-		
-		if amount_of_waves > 0 and next_wave:
-			amount_of_waves -= 1
-			
-			print(amount_of_waves)
-			#await get_tree().create_timer(time_between_waves).timeout
-			
-			if amount_of_waves == 3:
-				amount_to_spawn = 15
-				amount_to_spawn_bombers = 3
-			elif amount_of_waves == 2:
-				amount_to_spawn = 20
-				amount_to_spawn_bombers = 5
-			elif amount_of_waves == 1:
-				amount_to_spawn = 50
-				amount_to_spawn_bombers = 10
-			elif amount_of_waves == 0:
-				amount_to_spawn = 0
-				amount_to_spawn_bombers = 0
-			
-			for i in range(amount_to_spawn):
-				var desired_enemy = enemy
-				
-				var new_enemy = desired_enemy.instantiate()
-				self.add_child(new_enemy)
-				
-				new_enemy.global_position = spawnpoints.get_children()[randi_range(1, spawnpoints.get_children().size()) - 1].global_position
-				print(new_enemy.global_position)
-			
-			for i in range(amount_to_spawn_bombers):
-				var desired_enemy = bombers
-				
-				var new_enemy = desired_enemy.instantiate()
-				self.add_child(new_enemy)
-				
-				new_enemy.global_position = spawnpoints.get_children()[randi_range(1, spawnpoints.get_children().size()) - 1].global_position
-				print(new_enemy.global_position)
-			
-		
-		if amount_of_waves <= 0:
-			for i in doors.get_children():
-				i.global_position += Vector3(0, 50, 0)
-				i.visible = false
-		
-
 
 func _on_trigger_body_entered(body):
 	if body.is_in_group(\"player\") and !triggered and player_has_objective:
 		triggered = true
 		
-		for i in doors.get_children():
-			i.global_position -= Vector3(0, 50, 0)
-			i.visible = true
+		if !dialogue_triggered:
+			dialogue_triggered = true
+			
+			player.dialogue_queue.append(1)
+			player.dialogue_queue.append(\"HEADS UP!\")
+		
+		#for i in doors.get_children():
+		#	i.global_position -= Vector3(0, 50, 0)
+		#	i.visible = true
+		
+		for i in range(amount_to_spawn):
+			var desired_enemy = enemy
+			
+			var new_enemy = desired_enemy.instantiate()
+			self.add_child(new_enemy)
+			
+			new_enemy.global_position = spawnpoints.get_children()[randi_range(1, spawnpoints.get_children().size()) - 1].global_position
+		
+		for i in range(amount_to_spawn_bombers):
+			var desired_enemy = bombers
+			
+			var new_enemy = desired_enemy.instantiate()
+			self.add_child(new_enemy)
+			
+			new_enemy.global_position = spawnpoints.get_children()[randi_range(1, spawnpoints.get_children().size()) - 1].global_position
+			
 
 
 func _on_objective_area_body_entered(body):
 	if body.is_in_group(\"player\") and !triggered and !player_has_objective:
 		player_has_objective = true
+		
+		player.dialogue_queue.append(7)
+		player.dialogue_queue.append(\"i dunno what it is, but something's not right\")
+		player.dialogue_queue.append(1)
+		player.dialogue_queue.append(str(\"[i]be careful, \", PlayerName.new().fetch_name(), \"!\"))
 "
 
 [sub_resource type="NavigationMesh" id="NavigationMesh_u278t"]

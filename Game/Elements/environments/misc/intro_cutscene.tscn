@@ -275,7 +275,7 @@ size = Vector3(7, 5, 4)
 [node name="IntroCutscene" type="Node3D"]
 script = ExtResource("1_kngen")
 
-[node name="Node" type="Node" parent="."]
+[node name="DialogueHandler" type="Node" parent="."]
 process_mode = 3
 script = ExtResource("2_r8356")
 object = ExtResource("3_xh7qe")
@@ -457,11 +457,11 @@ size = Vector3(1.09074, 15.07, 5.16859)
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.119852, 13.6256, -0.203362)
 size = Vector3(9.68892, 0.815273, 5.16859)
 
-[connection signal="body_entered" from="RailsPlayerHub/carraige/Area3D" to="Node" method="_on_area_3d_body_entered"]
-[connection signal="body_entered" from="RailsPlayerHub/Crushed" to="Node" method="_on_crushed_body_entered"]
+[connection signal="body_entered" from="RailsPlayerHub/carraige/Area3D" to="DialogueHandler" method="_on_area_3d_body_entered"]
+[connection signal="body_entered" from="RailsPlayerHub/Crushed" to="DialogueHandler" method="_on_crushed_body_entered"]
 [connection signal="body_entered" from="Portal" to="." method="_on_portal_body_entered"]
-[connection signal="DialogueFinished" from="Player" to="Node" method="_on_player_dialogue_finished"]
-[connection signal="text_submitted" from="Control/ColorRect/LineEdit" to="Node" method="_on_line_edit_text_submitted"]
+[connection signal="DialogueFinished" from="Player" to="DialogueHandler" method="_on_player_dialogue_finished"]
+[connection signal="text_submitted" from="Control/ColorRect/LineEdit" to="DialogueHandler" method="_on_line_edit_text_submitted"]
 
 [editable path="RailsPlayerHub/carraige"]
 [editable path="player_hub"]

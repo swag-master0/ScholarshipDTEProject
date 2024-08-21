@@ -166,14 +166,14 @@ use_external_skeleton = true
 external_skeleton = NodePath("../../a-os/A-OS/Skeleton3D")
 
 [node name="EyePos" type="Node3D" parent="Scene/FaceAttachment/Bone"]
-transform = Transform3D(1, -1.64135e-12, -1.56814e-34, 1.64135e-12, 1, 0, 1.56814e-34, 0, 1, 0, 0.25, 0.85)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.25, 0.85)
 
 [node name="EyeLeft" type="AnimatedSprite3D" parent="Scene/FaceAttachment/Bone/EyePos"]
 transform = Transform3D(0.999994, 0.000647317, -0.00339638, -0.000782048, 0.999207, -0.0398188, 0.0033679, 0.0398213, 0.999202, -0.25, 0, 0)
 pixel_size = 0.02
 texture_filter = 0
 sprite_frames = SubResource("SpriteFrames_mjxlo")
-animation = &"closed_happy"
+animation = &"sorrow"
 autoplay = "idle"
 
 [node name="EyeRight" type="AnimatedSprite3D" parent="Scene/FaceAttachment/Bone/EyePos"]
@@ -181,7 +181,7 @@ transform = Transform3D(-0.999994, 0.000647317, -0.00339637, 0.000782048, 0.9992
 pixel_size = 0.02
 texture_filter = 0
 sprite_frames = SubResource("SpriteFrames_mjxlo")
-animation = &"closed_happy"
+animation = &"idle"
 autoplay = "idle"
 
 [node name="Camera3D" type="Camera3D" parent="Scene"]

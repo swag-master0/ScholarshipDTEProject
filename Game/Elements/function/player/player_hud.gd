@@ -23,6 +23,8 @@ extends Control
 @onready var indicator_tutorial = $Indicator/AnimatedSprite2D
 
 @onready var A_OS = $"../A-OS Viewport/A-OS"
+@onready var a_os_name = $DialogueBox/Name
+
 
 @onready var hurt_vfx = $HurtVFX
 @onready var pain_animation = $HurtVFX/AnimationPlayer
@@ -43,10 +45,12 @@ var skipBBCode = false
 func _ready():
 	hud_dialogue_box.visible = false
 	hurt_vfx.visible = false
+	
 
 
 func _process(_delta):
-	
+	if get_tree().current_scene.scene_file_path == "res://Elements/environments/misc/intro_cutscene.tscn":
+		a_os_name.visible = false
 	
 	if ready: 
 		var currenthealth = info.health
@@ -111,18 +115,27 @@ func Dialogue(text_speed : float = 0.025, time_until_continue : float = 1.5):
 				var formatted_string = hud_dialogue.get_parsed_text()
 				
 				for x in formatted_string.length():
-					
+					hud_dialoguedelay.wait_time = text_speed
 					hud_dialogue.visible_characters = x + 1
 					
 					sound_dialogue.pitch_scale = randf_range(50, 150) / 100
 					sound_dialogue.play()
 					A_OS.Yap()
 					
+					if formatted_string[x] == "-":
+						hud_dialoguedelay.wait_time = 0
+					elif formatted_string[x] == "." or formatted_string[x] == "," or formatted_string[x] == "{" or formatted_string[x] == "}":
+						hud_dialoguedelay.wait_time += 0.25
+					
 					hud_dialoguedelay.start()
 					await hud_dialoguedelay.timeout
 			
 			parent.FinishDialogue(dialogue)
-			await get_tree().create_timer(text_speed * dialogue.length() + time_until_continue).timeout
+			if dialogue is String:
+				if dialogue.ends_with("-"):
+					continue
+				else:
+					await get_tree().create_timer(text_speed * dialogue.length() + time_until_continue).timeout
 		
 		dialoguespeaking = false
 		hud_dialogue_box.visible = false

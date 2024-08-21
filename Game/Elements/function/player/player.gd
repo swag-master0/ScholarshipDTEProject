@@ -113,9 +113,7 @@ func _ready():
 		print("Saving is turned off for this level")
 
 func _input(event):
-	if event is InputEventMouseMotion and canPause == true:
-		
-		
+	if event is InputEventMouseMotion and canPause == true and info.health > 0:
 		rotate_y(deg_to_rad(-event.relative.x * SENSITIVITY))
 		
 		if !velocity and !isHolding:
@@ -126,86 +124,84 @@ func _input(event):
 		
 
 func _physics_process(delta):
-	
-	if !is_on_floor():
-		velocity.y -= gravity * delta * JUMP_FALLMULTIPLIER
-		velocity.y = clamp(velocity.y, -38, 500)
-	
-	
-	if Input.is_action_pressed("jump") and is_on_floor():
-		velocity.y = JUMP_VELOCITY
+	if info.health > 0:
+		if !is_on_floor():
+			velocity.y -= gravity * delta * JUMP_FALLMULTIPLIER
+			velocity.y = clamp(velocity.y, -38, 500)
 		
-	
-	MousePosition()
-	
-	
-	
-	if (Input.is_action_pressed("forward") or Input.is_action_pressed("left") or Input.is_action_pressed("right") or Input.is_action_pressed("backward")):
-		faceDirection = Vector3(Input.get_action_strength("right") - Input.get_action_strength("left"), 0 ,Input.get_action_strength("backward") - Input.get_action_strength("forward")).normalized()
-	
-	
-	
-	if isHolding:
-		character.rotation.y = atan2(ray_endpos.position.x, ray_endpos.position.z)
-	elif !isHolding and velocity:
-		character.rotation.y = lerp_angle(character.rotation.y, atan2(faceDirection.x, faceDirection.z), delta * TURN_VELOCITY)
-	elif !velocity and is_on_floor():
-		pass
-	
-	
-	var input_dir = Input.get_vector("left", "right", "forward", "backward")
-	var direction = (transform.basis * Vector3(input_dir.x, 0, input_dir.y)).normalized()
-	
-	#if direction:
-	#	velocity.x = direction.x * SPEED
-	#	velocity.z = direction.z * SPEED
-	if direction and !isHolding:
-		velocity.x = direction.x * SPEED
-		velocity.z = direction.z * SPEED
-	elif direction and isHolding:
-		velocity.x = direction.x * SPEED / (clamp(object.mass / 4, 4, 5) - 3)
-		velocity.z = direction.z * SPEED / (clamp(object.mass / 4, 4, 10) - 3)
 		
-	else:
-		velocity.x = move_toward(velocity.x, 0, SPEED)
-		velocity.z = move_toward(velocity.z, 0, SPEED)
-	
-	move_and_slide()
-	
-	
-	
-	if !isHolding:
-		animation_tree.set("parameters/fall/Blend2/blend_amount", 0.0)
-		animation_tree.set("parameters/idle/Blend2/blend_amount", 0.0)
-		animation_tree.set("parameters/run/Blend2/blend_amount", 0.0)
-		animation_tree.set("parameters/land/Blend2/blend_amount", 0.0)
+		if Input.is_action_pressed("jump") and is_on_floor():
+			velocity.y = JUMP_VELOCITY
+			
 		
-	
-	elif isHolding:
-		animation_tree.set("parameters/fall/Blend2/blend_amount", 1.0)
-		animation_tree.set("parameters/idle/Blend2/blend_amount", 1.0)
-		animation_tree.set("parameters/run/Blend2/blend_amount", 1.0)
-		animation_tree.set("parameters/land/Blend2/blend_amount", 1.0)
-	
-	if not is_on_floor():
-		state_machine.travel("fall")
-		animation_tree.set("parameters/fall/FallDirection/blend_amount", clamp(velocity.y, 0, 1))
+		MousePosition()
+		
+		
+		if (Input.is_action_pressed("forward") or Input.is_action_pressed("left") or Input.is_action_pressed("right") or Input.is_action_pressed("backward")):
+			faceDirection = Vector3(Input.get_action_strength("right") - Input.get_action_strength("left"), 0 ,Input.get_action_strength("backward") - Input.get_action_strength("forward")).normalized()
+		
+		
+		if isHolding:
+			character.rotation.y = atan2(ray_endpos.position.x, ray_endpos.position.z)
+		elif !isHolding and velocity:
+			character.rotation.y = lerp_angle(character.rotation.y, atan2(faceDirection.x, faceDirection.z), delta * TURN_VELOCITY)
+		elif !velocity and is_on_floor():
+			pass
+		
+		
+		var input_dir = Input.get_vector("left", "right", "forward", "backward")
+		var direction = (transform.basis * Vector3(input_dir.x, 0, input_dir.y)).normalized()
+		
+		#if direction:
+		#	velocity.x = direction.x * SPEED
+		#	velocity.z = direction.z * SPEED
+		if direction and !isHolding:
+			velocity.x = direction.x * SPEED
+			velocity.z = direction.z * SPEED
+		elif direction and isHolding:
+			velocity.x = direction.x * SPEED / (clamp(object.mass / 4, 4, 5) - 3)
+			velocity.z = direction.z * SPEED / (clamp(object.mass / 4, 4, 10) - 3)
+			
+		else:
+			velocity.x = move_toward(velocity.x, 0, SPEED)
+			velocity.z = move_toward(velocity.z, 0, SPEED)
+		
+		move_and_slide()
 		
 		
 		
-	elif velocity and is_on_floor():
-		state_machine.travel("run")
+		if !isHolding:
+			animation_tree.set("parameters/fall/Blend2/blend_amount", 0.0)
+			animation_tree.set("parameters/idle/Blend2/blend_amount", 0.0)
+			animation_tree.set("parameters/run/Blend2/blend_amount", 0.0)
+			animation_tree.set("parameters/land/Blend2/blend_amount", 0.0)
+			
 		
+		elif isHolding:
+			animation_tree.set("parameters/fall/Blend2/blend_amount", 1.0)
+			animation_tree.set("parameters/idle/Blend2/blend_amount", 1.0)
+			animation_tree.set("parameters/run/Blend2/blend_amount", 1.0)
+			animation_tree.set("parameters/land/Blend2/blend_amount", 1.0)
 		
-		if footstep_delay.is_stopped() and is_on_floor():
-			footstep_delay.start()
-			sound_footstep.pitch_scale = randf_range(75, 125) / 100
-			sound_footstep.play()
+		if not is_on_floor():
+			state_machine.travel("fall")
+			animation_tree.set("parameters/fall/FallDirection/blend_amount", clamp(velocity.y, 0, 1))
+			
+			
+			
+		elif velocity and is_on_floor():
+			state_machine.travel("run")
+			
+			
+			if footstep_delay.is_stopped() and is_on_floor():
+				footstep_delay.start()
+				sound_footstep.pitch_scale = randf_range(75, 125) / 100
+				sound_footstep.play()
+			
+		else:
+			
+			state_machine.travel("idle")
 		
-	else:
-		
-		state_machine.travel("idle")
-	
 
 func _process(delta):
 	HUD.Dialogue()

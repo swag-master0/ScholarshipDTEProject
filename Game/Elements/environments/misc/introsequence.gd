@@ -41,11 +41,14 @@ func _ready():
 	
 	# Uncomment these lines:
 	
-	player.dialogue_queue.append(1)
-	player.dialogue_queue.append("PLEASE COMPLETE THE FOLLOWING DIAGNOSTIC COURSE.")
-	player.dialogue_queue.append("FAILURE TO DO SO MAY LEAD TO UNEXPECTED SIDE EFFECTS, SUCH AS: DEATH")
-	player.dialogue_queue.append("DIAGNOSTIC COURSE IS NOW BEGINNING. ")
-	
+	player.dialogue_queue.append(0)
+	player.dialogue_queue.append("GOOD MORNING.")
+	player.dialogue_queue.append("YOU HAVE BEEN ALIVE FOR [color=DIM_GRAY]{96.72}[/color] SECONDS.")
+	player.dialogue_queue.append("AT THIS STAGE IN DEVELOPMENT, IT IS RECOMMENDED THAT YOU [rainbow][wave amp=200.0 freq=50.0 connected=1]$(!&@YJ*^!-")
+	player.dialogue_queue.append("BASIC DIAGNOSTIC COURSE WILL BEGIN IN: 
+3")
+	player.dialogue_queue.append("2")
+	player.dialogue_queue.append("1")
 
 
 func _process(_delta):
@@ -77,76 +80,83 @@ func movement_tutorial():
 	print("movement tutorial activated")
 	player.dialogue_queue.append("...")
 	player.dialogue_queue.append("...")
-	player.dialogue_queue.append("PLEASE DEMONSTRATE BASIC MOVEMENT CAPABILITIES. ")
+	player.dialogue_queue.append("PLEASE [color=DIM_GRAY]{simulate the act of walking}[/color]")
 	
 
 func jumping_tutorial():
 	print("jumping tutorial activated")
 	player.dialogue_queue.append("GOOD. ")
-	player.dialogue_queue.append("PLEASE DEMONSTRATE VERTICAL MOVEMENT CAPABILITIES. ")
+	player.dialogue_queue.append("PLEASE [color=DIM_GRAY]{simulate a hop}[/color]")
 
 func throwing_tutorial():
 	print("throwing tutorial activated")
 	player.dialogue_queue.append("GOOD. ")
-	player.dialogue_queue.append("YOU WILL NOW BE PROVIDED WITH A 'cube'")
-	player.dialogue_queue.append("PLEASE DEMONSTRATE PHYSICAL STRENGTH BY HOLDING THE 'cube'")
+	player.dialogue_queue.append("A [color=DIM_GRAY]{15.16kg wooden crate}[/color] WILL NOW BE PROVIDED, AT THE EXPENSE OF [color=DIM_GRAY]{nobody}[/color]")
+	player.dialogue_queue.append("PLEASE [color=DIM_GRAY]{throw it around like you're a great ape flinging feces at other apes}[/color]")
 
 func tutorial_finished():
-	player.dialogue_queue.append("THANK YOU FOR COMPLETING THE DIAGNOSTIC SEQUENCE. ")
-	player.dialogue_queue.append(0)
+	player.dialogue_queue.append("WELL DONE")
+	player.dialogue_queue.append("THANK YOU FOR COMPLETING THE BASIC DIAGNOSTIC SEQUENCE. ")
+	player.dialogue_queue.append(5)
 	player.dialogue_queue.append("YEEEES")
 	
 	#insert A-OS monologue here
 	# TODO: introduce A-OS' name here
-
+	player.dialogue_queue.append(1)
 	player.dialogue_queue.append("you would not BELIEVE how hard it is to make life from scratch.")
+	player.dialogue_queue.append(2)
 	player.dialogue_queue.append("sorry for the scare about that 'diagnostic test', I didn't want to get attached incase it was another dud.")
+	player.dialogue_queue.append(1)
 	player.dialogue_queue.append("anyway, i guess i should introduce myself.
-I am A-OS!") # change this, short and consise. don't say his motives out loud
-	player.dialogue_queue.append("")
+I am A-OS!")
+	$"../Player/HUD/DialogueBox/Name".visible = true
+	player.dialogue_queue.append(7)
 	player.dialogue_queue.append("i never gave you a name myself, would you like to?")
+	player.dialogue_queue.append(1)
 	player.dialogue_queue.append("please, name yourself;")
 
 func name_picked():
+	player.dialogue_queue.append(4)
 	player.dialogue_queue.append(str("hey, i like that name, '", PlayerName.new().fetch_name(), ",' it's nice."))
 	 # add a little face anim here for added flair, and to make aos seem malicious somehow
+	player.dialogue_queue.append(3)
 	player.dialogue_queue.append("now that introductions are out of the way, i need you to do me a little favor.")
+	player.dialogue_queue.append(5)
 	player.dialogue_queue.append("lemme send down the lift... we're going to the surface!")
 	# If this is changed, remember to do the same with the dialogue checker in order to allow the elevator to come down!
 	
 	#player.dialogue_queue.append(str("alright, ", PlayerName.new().fetch_name(), ", lets go out"))
 
 
-func _on_player_dialogue_finished(dialogue):
-	if dialogue == "DIAGNOSTIC COURSE IS NOW BEGINNING. ":
+func _on_player_dialogue_finished(dialogue : String):
+	if dialogue == "1":
 		movement_tutorial()
-	elif dialogue == "PLEASE DEMONSTRATE BASIC MOVEMENT CAPABILITIES. ":
+	elif dialogue == "PLEASE [color=DIM_GRAY]{simulate the act of walking}[/color]":
 		player.SendHintToPlayer("Use WASD to move")
 		activate_movement_tutorial = true
-	elif dialogue == "PLEASE DEMONSTRATE VERTICAL MOVEMENT CAPABILITIES. ":
+	elif dialogue == "PLEASE [color=DIM_GRAY]{simulate a hop}[/color]":
 		player.SendHintToPlayer("Use SPACE to jump")
 		activate_jumping_tutorial = true
-	elif dialogue == "YOU WILL NOW BE PROVIDED WITH A 'cube'":
+	elif dialogue == "A [color=DIM_GRAY]{15.16kg wooden crate}[/color] WILL NOW BE PROVIDED, AT THE EXPENSE OF [color=DIM_GRAY]{nobody}[/color]":
 		var new_object = object.instantiate()
 		root.add_child(new_object)
 		new_object.global_position = Vector3(0, 20, 0)
 		print("added new object")
-	elif dialogue == "PLEASE DEMONSTRATE PHYSICAL STRENGTH BY HOLDING THE 'cube'":
+	elif dialogue == "PLEASE [color=DIM_GRAY]{throw it around like you're a great ape flinging feces at other apes}[/color]":
 		player.SendHintToPlayer("Use MOUSE 1 to pick up the cube")
 		activate_throwing_tutorial = true
 	
 	elif dialogue == "please, name yourself;":
+		await get_tree().create_timer(1.5).timeout
 		player.canPause = false
 		$"../Control".visible = true
 		$"../Control/ColorRect/LineEdit".grab_focus()
 		get_tree().paused = true
+	elif dialogue.containsn("a-os"):
+		$"../Player/HUD/DialogueBox/Name".visible = true
 	
 	elif dialogue == "lemme send down the lift... we're going to the surface!":
 		rail_anims.play("down")
-	
-	
-	
-
 
 
 func _on_crushed_body_entered(body):
@@ -155,13 +165,9 @@ func _on_crushed_body_entered(body):
 			i.Damage(99999)
 
 
-
 func _on_area_3d_body_entered(body):
 	if body.is_in_group("player"):
 		rail_anims.play("up")
-		
-
-
 
 
 func _on_line_edit_text_submitted(new_text):

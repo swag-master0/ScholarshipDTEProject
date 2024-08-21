@@ -99,6 +99,31 @@ func ApplyMood(mood: int):
 		
 		processing.visible = false
 	
+	# Confused
+	if mood == 7:
+		a_os.visible = true
+		face.visible = true
+		
+		eye_pos_offset = Vector3(0, 0.1, 0)
+		eye_rot_offset = 7
+		
+		eye_left.play("sorrow")
+		eye_right.play("idle")
+		
+		processing.visible = false
+	
+	# Closed Eyes
+	if mood == 8:
+		a_os.visible = true
+		face.visible = true
+		
+		eye_pos_offset = Vector3(0, 0.1, 0)
+		eye_rot_offset = 0
+		
+		eye_left.play("closed")
+		eye_right.play("closed")
+		
+		processing.visible = false
 
 
 func _process(_delta):
