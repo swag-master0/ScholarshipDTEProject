@@ -27,7 +27,6 @@ func TOP():
 
 @export_category("Visuals")
 @export var DISPLAY_DUST: bool = true
-@export var AMBIENT_SOUND: bool = true
 
 
 # Player Model
@@ -112,11 +111,6 @@ func _ready():
 		print_rich("[rainbow]Saved Level: ", save_system.load_game().level)
 	else:
 		print("Saving is turned off for this level")
-	
-	if AMBIENT_SOUND:
-		$Audio/Ambient.play()
-	else:
-		$Audio/Ambient.stop()
 
 func _input(event):
 	if event is InputEventMouseMotion and canPause == true:
@@ -307,7 +301,6 @@ func _process(delta):
 	for i in soft_push.get_overlapping_bodies():
 		if !(i.get_parent().is_in_group("player")):
 			if i is RigidBody3D:
-				print("applying force to rigid")
 				i.apply_impulse(((i.global_position - global_position).normalized() * 250) * delta)
 			elif i is PhysicalBone3D:
 				i.apply_impulse(((i.global_position - global_position).normalized() * 10) * delta)

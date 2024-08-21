@@ -34,6 +34,7 @@ func ApplyMood(mood: int):
 		
 		processing.visible = false
 	
+	# Sorrow
 	if mood == 2:
 		a_os.visible = true
 		face.visible = true
@@ -46,6 +47,7 @@ func ApplyMood(mood: int):
 		
 		processing.visible = false
 	
+	# Angry
 	if mood == 3:
 		a_os.visible = true
 		face.visible = true
@@ -58,6 +60,7 @@ func ApplyMood(mood: int):
 		
 		processing.visible = false
 	
+	# Wink
 	if mood == 4:
 		a_os.visible = true
 		face.visible = true
@@ -70,6 +73,7 @@ func ApplyMood(mood: int):
 		
 		processing.visible = false
 	
+	# Very Happy
 	if mood == 5:
 		a_os.visible = true
 		face.visible = true
@@ -82,6 +86,7 @@ func ApplyMood(mood: int):
 		
 		processing.visible = false
 	
+	# Odd
 	if mood == 6:
 		a_os.visible = true
 		face.visible = true

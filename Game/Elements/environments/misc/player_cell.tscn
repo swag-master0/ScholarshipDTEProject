@@ -1,4 +1,4 @@
-[gd_scene load_steps=33 format=3 uid="uid://b525133sxoobn"]
+[gd_scene load_steps=36 format=3 uid="uid://b525133sxoobn"]
 
 [ext_resource type="Script" path="res://Elements/environments/misc/player_cell.gd" id="1_vgvtl"]
 [ext_resource type="PackedScene" uid="uid://bcou7suhphdrp" path="res://Elements/function/player/player.tscn" id="2_anjfi"]
@@ -6,11 +6,13 @@
 [ext_resource type="PackedScene" uid="uid://no1bk2mkfory" path="res://Art/blend/misc/player_hub.blend" id="3_ff6h1"]
 [ext_resource type="Shader" uid="uid://dtjh0fi6sbiji" path="res://Art/materials/floor/floor.tres" id="4_6os4k"]
 [ext_resource type="Texture2D" uid="uid://bfujcpxg1vljk" path="res://Art/materials/floor/floor_normal.tres" id="5_3k8u3"]
+[ext_resource type="AudioStream" uid="uid://csoer2bqta4xr" path="res://Art/audio/misc/elevator_idle.wav" id="5_07s8g"]
 [ext_resource type="PackedScene" uid="uid://bmgk0u34rg2cy" path="res://Art/blend/assets/misc/rail.blend" id="6_g5gla"]
+[ext_resource type="AudioStream" uid="uid://co1bf3eh4kfj8" path="res://Art/audio/misc/short-beep-tone-47916.mp3" id="6_w54mv"]
 [ext_resource type="PackedScene" uid="uid://4lamctxd2su2" path="res://Elements/assets/misc/carraige.tscn" id="7_6hx2v"]
 [ext_resource type="Texture2D" uid="uid://dp1ls6ddglxoj" path="res://Art/assets/assets/cartoon_particle_5.png" id="9_pm47k"]
-[ext_resource type="AudioStream" uid="uid://bfa3bwv64pyvo" path="res://Art/audio/misc/fire-sound-efftect-21991.mp3" id="10_1jfbo"]
-[ext_resource type="AudioStream" uid="uid://mig8rgfdgftk" path="res://Art/audio/misc/fire-breath-6922.mp3" id="11_poehm"]
+[ext_resource type="AudioStream" uid="uid://bfa3bwv64pyvo" path="res://Art/audio/misc/incinerator_idle.mp3" id="10_1jfbo"]
+[ext_resource type="AudioStream" uid="uid://my2rr4u66o2y" path="res://Art/audio/misc/incinerator_burn.wav" id="11_mfqnx"]
 
 [sub_resource type="Animation" id="Animation_w48k8"]
 length = 0.001
@@ -62,10 +64,35 @@ tracks/3/keys = {
 "update": 1,
 "values": [true]
 }
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("RailsPlayerHub/carraige/Audio/Ambient:playing")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/5/type = "value"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("RailsPlayerHub/carraige/Audio/Finish:playing")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
 
 [sub_resource type="Animation" id="Animation_2l42s"]
 resource_name = "down"
 length = 2.0
+step = 0.1
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
@@ -114,6 +141,30 @@ tracks/3/keys = {
 "update": 1,
 "values": [true, false]
 }
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("RailsPlayerHub/carraige/Audio/Ambient:playing")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0, 0.1, 2),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 1,
+"values": [false, true, false]
+}
+tracks/5/type = "value"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("RailsPlayerHub/carraige/Audio/Finish:playing")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"times": PackedFloat32Array(2),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
 
 [sub_resource type="Animation" id="Animation_wjo43"]
 resource_name = "up"
@@ -141,6 +192,30 @@ tracks/1/keys = {
 "transitions": PackedFloat32Array(1, 1),
 "update": 1,
 "values": [true, true]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("RailsPlayerHub/carraige/Audio/Ambient:playing")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 0.0666667, 5),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 1,
+"values": [false, true, false]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("RailsPlayerHub/carraige/Audio/Finish:playing")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(5),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
 }
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_ik50q"]
@@ -188,6 +263,142 @@ tracks/0/keys = {
 "update": 0,
 "values": [Vector3(1.53458, 2.20195, 11)]
 }
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Audio/Idle:playing")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("OmniLight3D:light_energy")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [1000.0]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("OmniLight3D:omni_range")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [10.0]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("Audio/Burn:playing")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/5/type = "value"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("SpotLight3D:spot_range")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [12.0]
+}
+tracks/6/type = "value"
+tracks/6/imported = false
+tracks/6/enabled = true
+tracks/6/path = NodePath("SpotLight3D:light_energy")
+tracks/6/interp = 1
+tracks/6/loop_wrap = true
+tracks/6/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [14.0]
+}
+
+[sub_resource type="Animation" id="Animation_35185"]
+resource_name = "burn"
+step = 0.05
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("OmniLight3D:light_energy")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.5, 1),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [1000.0, 250.0, 1000.0]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("OmniLight3D:omni_range")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.5, 1),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [10.0, 20.0, 10.0]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Audio/Burn:playing")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("SpotLight3D:spot_range")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0, 0.5, 1),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [12.0, 24.0, 12.0]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("SpotLight3D:light_energy")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0, 0.5, 1),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [14.0, 20.0, 14.0]
+}
 
 [sub_resource type="Animation" id="Animation_bnyv8"]
 resource_name = "open"
@@ -204,10 +415,23 @@ tracks/0/keys = {
 "update": 0,
 "values": [Vector3(1.53458, 2.20195, 11), Vector3(1.53458, 2.20195, 11.5596), Vector3(1.53458, 2.20195, 11.5596), Vector3(1.53458, 7.20195, 11.5596)]
 }
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Audio/Idle:playing")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.25),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [false, true]
+}
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_rcyei"]
 _data = {
 "RESET": SubResource("Animation_f716q"),
+"burn": SubResource("Animation_35185"),
 "open": SubResource("Animation_bnyv8")
 }
 
@@ -292,6 +516,18 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 32, -3)
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 39.7289, -0.322777)
 enable_col = true
 
+[node name="Audio" type="Node3D" parent="RailsPlayerHub/carraige"]
+
+[node name="Ambient" type="AudioStreamPlayer3D" parent="RailsPlayerHub/carraige/Audio"]
+stream = ExtResource("5_07s8g")
+volume_db = -20.0
+bus = &"sfx"
+
+[node name="Finish" type="AudioStreamPlayer3D" parent="RailsPlayerHub/carraige/Audio"]
+stream = ExtResource("6_w54mv")
+volume_db = -20.0
+bus = &"sfx"
+
 [node name="Area3D" type="Area3D" parent="RailsPlayerHub/carraige"]
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="RailsPlayerHub/carraige/Area3D"]
@@ -349,7 +585,6 @@ environment = SubResource("Environment_ppwta")
 
 [node name="Incinerator" type="Node3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -8, 13)
-visible = false
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="Incinerator"]
 libraries = {
@@ -374,14 +609,14 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.41675, -0.401999)
 light_color = Color(0.835528, 0.446337, 0.167556, 1)
 light_energy = 1000.0
 shadow_enabled = true
-omni_range = 10.444
+omni_range = 10.0
 
 [node name="SpotLight3D" type="SpotLight3D" parent="Incinerator"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 10.2655, -0.413293)
 light_color = Color(0.842648, 0.457309, 0.28702, 1)
-light_energy = 13.49
+light_energy = 14.0
 shadow_enabled = true
-spot_range = 12.1544
+spot_range = 12.0
 spot_angle = 69.02
 
 [node name="GPUParticleCollisions" type="Node3D" parent="Incinerator"]
@@ -410,9 +645,14 @@ size = Vector3(9.68892, 0.815273, 5.16859)
 
 [node name="Idle" type="AudioStreamPlayer3D" parent="Incinerator/Audio"]
 stream = ExtResource("10_1jfbo")
+volume_db = -20.0
+bus = &"sfx"
 
 [node name="Burn" type="AudioStreamPlayer3D" parent="Incinerator/Audio"]
-stream = ExtResource("11_poehm")
+stream = ExtResource("11_mfqnx")
+volume_db = -10.0
+pitch_scale = 2.0
+bus = &"sfx"
 
 [connection signal="ObjectBurnt" from="." to="DialogueHandler" method="_on_player_hub_object_burnt"]
 [connection signal="body_entered" from="RailsPlayerHub/carraige/Area3D" to="DialogueHandler" method="_on_exit_body_entered"]

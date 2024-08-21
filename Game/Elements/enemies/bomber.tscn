@@ -1,8 +1,9 @@
-[gd_scene load_steps=26 format=3 uid="uid://dwe6hqxcxga2x"]
+[gd_scene load_steps=27 format=3 uid="uid://dwe6hqxcxga2x"]
 
 [ext_resource type="Script" path="res://Elements/enemies/bomber.gd" id="1_iqn42"]
 [ext_resource type="PackedScene" uid="uid://d03b14il32qs5" path="res://Elements/assets/gameplay/explosion.tscn" id="2_s131x"]
-[ext_resource type="AudioStream" uid="uid://b3roo26suawn4" path="res://Art/audio/enemy/bomber_buildup.wav" id="4_bujc0"]
+[ext_resource type="AudioStream" uid="uid://d0dhucp82yynj" path="res://Art/audio/enemy/bomber_buildup.wav" id="3_akrt3"]
+[ext_resource type="AudioStream" uid="uid://die3t2e5pjrof" path="res://Art/audio/enemy/bomber_buildup-2.wav" id="4_5evdm"]
 [ext_resource type="PackedScene" uid="uid://dxj1vlaxxy54b" path="res://Art/blend/assets/enemies/bomber.blend" id="5_006x1"]
 
 [sub_resource type="Gradient" id="Gradient_igh2e"]
@@ -149,7 +150,6 @@ void fragment() {
 
 }
 "
-graph_offset = Vector2(-982.958, -509.156)
 nodes/vertex/0/position = Vector2(540, 160)
 nodes/vertex/2/node = SubResource("VisualShaderNodeFloatParameter_oq3hw")
 nodes/vertex/2/position = Vector2(-1340, 480)
@@ -201,8 +201,18 @@ max_contacts_reported = 5
 script = ExtResource("1_iqn42")
 explosion = ExtResource("2_s131x")
 
+[node name="Glow" type="OmniLight3D" parent="."]
+light_color = Color(0.298213, 0.070281, 0.0652866, 1)
+light_energy = 0.0
+
 [node name="Buildup" type="AudioStreamPlayer3D" parent="."]
-stream = ExtResource("4_bujc0")
+stream = ExtResource("3_akrt3")
+volume_db = -10.0
+pitch_scale = 1.5
+bus = &"sfx"
+
+[node name="Buildup2" type="AudioStreamPlayer3D" parent="."]
+stream = ExtResource("4_5evdm")
 volume_db = -10.0
 bus = &"sfx"
 

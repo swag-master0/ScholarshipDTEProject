@@ -7,24 +7,17 @@ var incinerator_active : bool = false
 @onready var incinerator_anim = $Incinerator/AnimationPlayer
 
 
-
 func _ready():
 	var save = SaveCell.new()
 	
 	await get_tree().create_timer(1).timeout
 	
 	save.load_cell(self)
-	
-	#animation_player.play("open")
-	#animation_player.play("open", -1, -1, true) to play it backwards
-	
 
 
 func _process(_delta):
 	if Input.is_action_just_pressed("escape"):
 		save_hub_objects()
-	
-
 
 
 func save_hub_objects():
@@ -64,9 +57,6 @@ func save_hub_objects():
 
 
 func _on_portal_body_entered(body):
-	#if body is RigidBody3D:
-	#	body.queue_free()
-	
 	save_hub_objects()
 	
 	if body.is_in_group("player"):
@@ -93,6 +83,8 @@ func ActivateIncinerator(type: bool):
 
 func _on_incinerator_body_entered(body):
 	if incinerator_active:
+		incinerator_anim.play("burn")
+		
 		if body.is_in_group("player"):
 			for i in body.get_children():
 				if i.is_in_group("info"):

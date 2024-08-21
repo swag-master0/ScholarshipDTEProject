@@ -7,7 +7,6 @@ extends Control
 
 @onready var hud_health = $Health
 @onready var hud_healthwhite = $Health/HealthWhite
-@onready var hud_enemyhealth = $EnemyHealth
 
 @onready var hinttext = $Hints
 @onready var hinttimer = $Hints/Timer
@@ -22,7 +21,6 @@ extends Control
 
 @onready var indicator = $Indicator
 @onready var indicator_tutorial = $Indicator/AnimatedSprite2D
-
 
 @onready var A_OS = $"../A-OS Viewport/A-OS"
 

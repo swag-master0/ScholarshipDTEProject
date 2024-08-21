@@ -6,6 +6,9 @@ extends RigidBody3D
 @onready var raycast = $RayCast3D
 @onready var fuse = $FuseTime
 @onready var audio = $Buildup
+@onready var audio2 = $Buildup2
+@onready var glow = $Glow
+
 
 
 var player
@@ -35,6 +38,8 @@ func _on_trigger_body_entered(body):
 		fuse_triggered = true
 		fuse.start()
 		audio.play()
+		audio2.play()
+		glow.light_energy = 1
 
 
 

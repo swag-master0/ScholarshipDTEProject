@@ -3,6 +3,8 @@ extends Node3D
 @export var nextscene : PackedScene
 @export var nextscene_string : String = "res://Elements/function/main_menu.tscn"
 
+@export var objective_item: PackedScene
+
 @onready var animations = $AnimationPlayer
 @onready var trigger = $Trigger
 @onready var bottom = $Bottom
@@ -16,20 +18,14 @@ var level_change_triggered = false
 
 
 
-
 func _ready():
 	animations.play("up")
-
 
 
 func _process(_delta):
 	if player_colliding and objective_colliding and !level_change_triggered:
 		level_change_triggered = true
 		animations.play("down")
-	
-	
-
-
 
 
 func _on_player_detector_body_entered(body):
@@ -53,16 +49,10 @@ func _on_player_detector_body_exited(body):
 func _on_body_exited(body):
 	if body.is_in_group("objective"):
 		objective_colliding = false
-	
-
-
-
 
 func _on_bottom_body_entered(body):
 	if body.is_in_group("player") and level_change_triggered == true:
 		ChangeScene()
-
-
 
 
 
@@ -72,6 +62,8 @@ func ChangeScene():
 	
 	for i in trigger.get_overlapping_bodies():
 		if i is RigidBody3D:
+			if i.is_in_group("objective"):
+				continue
 			
 			# Save each object as it's own PackedScene, to save mesh data and all children of each object
 			# Otherwise, children of the RigidBody do not save so the RigidBody has no CollisionShape or MeshInstance
@@ -80,17 +72,8 @@ func ChangeScene():
 			var packed = PackedScene.new()
 			
 			for c in ObjectToSave.get_children():
-				# desperate attempt to also save the children of the children
-				# if this isn't done, errors WILL occur with objects with audio attached
-				for x in c.get_children():
-					print(x)
-					x.owner = c
-				
-				print(c)
 				c.owner = ObjectToSave
-				
-				
-				
+			
 			
 			# check if the object is not a script, or else it causes a crash
 			# this is a massive hack, but i don't care
@@ -101,7 +84,9 @@ func ChangeScene():
 			
 			packed.pack(ObjectToSave)
 			objects_to_save.append(packed)
-		
+	
+	objects_to_save.append(objective_item)
+	
 	var save = SaveCell.new()
 	save.save_cell(objects_to_save, false)
 	

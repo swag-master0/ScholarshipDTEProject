@@ -1,4 +1,4 @@
-[gd_scene load_steps=27 format=3 uid="uid://rq3g3n4qshr3"]
+[gd_scene load_steps=28 format=3 uid="uid://rq3g3n4qshr3"]
 
 [ext_resource type="PackedScene" uid="uid://bcou7suhphdrp" path="res://Elements/function/player/player.tscn" id="1_01d17"]
 [ext_resource type="PackedScene" uid="uid://c61dj4vsac881" path="res://Art/blend/levels_chapter1/c1_m1.blend" id="1_wejc2"]
@@ -21,6 +21,7 @@
 [ext_resource type="PackedScene" uid="uid://cgmhghceyys8x" path="res://Art/blend/assets/misc/powerpole.blend" id="22_4mcdc"]
 [ext_resource type="PackedScene" uid="uid://bsbl4boqt5vj4" path="res://Elements/assets/props/cone.tscn" id="22_bjjyq"]
 [ext_resource type="PackedScene" uid="uid://ctc20d63lt2h0" path="res://Elements/assets/props/bucket.tscn" id="23_fxv8a"]
+[ext_resource type="AudioStream" uid="uid://c2bnpiykqjcwb" path="res://Art/audio/misc/ambient-1.mp3" id="23_t20xf"]
 [ext_resource type="PackedScene" uid="uid://brfvkewj7bfba" path="res://Elements/assets/props/lamp_tall.tscn" id="24_lhqsg"]
 
 [sub_resource type="GDScript" id="GDScript_x6txf"]
@@ -172,6 +173,12 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 32, 1.63216, -9)
 
 [node name="powerpole" parent="." instance=ExtResource("22_4mcdc")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 19, 4, 14)
+
+[node name="Ambient" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("23_t20xf")
+volume_db = -20.0
+autoplay = true
+bus = &"ambience"
 
 [connection signal="body_entered" from="TutorialTrigger" to="." method="_on_tutorial_trigger_body_entered"]
 

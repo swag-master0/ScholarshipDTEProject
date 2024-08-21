@@ -41,7 +41,7 @@ func _ready():
 	
 	# Uncomment these lines:
 	
-	player.dialogue_queue.append(0)
+	player.dialogue_queue.append(1)
 	player.dialogue_queue.append("PLEASE COMPLETE THE FOLLOWING DIAGNOSTIC COURSE.")
 	player.dialogue_queue.append("FAILURE TO DO SO MAY LEAD TO UNEXPECTED SIDE EFFECTS, SUCH AS: DEATH")
 	player.dialogue_queue.append("DIAGNOSTIC COURSE IS NOW BEGINNING. ")

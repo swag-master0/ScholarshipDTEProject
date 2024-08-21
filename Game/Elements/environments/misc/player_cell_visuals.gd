@@ -35,8 +35,8 @@ var c1_m2_IntroDialogue_2 = [
 	"now to do that about...",
 	1, 
 	"approximately 9,471 more times.",
-	0,
-	"i'll send the lift down..ya got work to do"
+	1,
+	"get back on the lift.. ya got work to do"
 ]
 
 
