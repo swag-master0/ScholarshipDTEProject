@@ -388,6 +388,27 @@ transform = Transform3D(1, 0, 0, 3.72529e-09, 1, 0, 3.72529e-09, 2.98023e-08, 1,
 freeze = true
 freeze_mode = 1
 
+[node name="nest" parent="Props" instance=ExtResource("33_e254x")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 142.6, 0.294669, -69.4537)
+
+[node name="cone" parent="Props" instance=ExtResource("34_1tojw")]
+transform = Transform3D(0.863422, 0, 0.504482, 0, 1, 0, -0.504482, 0, 0.863422, 127.239, 0.901751, -66.907)
+
+[node name="cone2" parent="Props" instance=ExtResource("34_1tojw")]
+transform = Transform3D(0.87608, 0, -0.482167, 0, 1, 0, 0.482167, 0, 0.87608, 125.007, 0.901751, -62.6746)
+
+[node name="lamp_tall" parent="Props" instance=ExtResource("35_tkval")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 145.581, 1.63216, -71.8231)
+
+[node name="couch_small" parent="Props" instance=ExtResource("36_18hjh")]
+transform = Transform3D(-0.707107, 0, 0.707107, 0, 1, 0, -0.707107, 0, -0.707107, 139.586, 1.52474, -62.729)
+
+[node name="picture_large" parent="Props" instance=ExtResource("37_7rmub")]
+transform = Transform3D(-1, 3.82137e-15, 8.74228e-08, 8.74228e-08, 4.37114e-08, 1, 0, 1, -4.37114e-08, 143.359, 3.00298, -75)
+
+[node name="Picture_Large -rigid" parent="Props/picture_large/Picture_Large -rigid" index="0"]
+surface_material_override/1 = SubResource("ShaderMaterial_8yhyd")
+
 [node name="Decal2" type="Decal" parent="."]
 transform = Transform3D(0.899885, 0, 0.436127, 0, 1, 0, -0.436127, 0, 0.899885, 137.905, 1.58388, -67.3844)
 size = Vector3(6, 6, 6)
@@ -416,31 +437,10 @@ texture_albedo = ExtResource("32_ibswl")
 texture_normal = ExtResource("32_ibswl")
 modulate = Color(1, 1, 1, 0.443137)
 
-[node name="nest" parent="." instance=ExtResource("33_e254x")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 142.6, 0.294669, -69.4537)
-
-[node name="cone" parent="." instance=ExtResource("34_1tojw")]
-transform = Transform3D(0.863422, 0, 0.504482, 0, 1, 0, -0.504482, 0, 0.863422, 127.239, 0.901751, -66.907)
-
-[node name="cone2" parent="." instance=ExtResource("34_1tojw")]
-transform = Transform3D(0.87608, 0, -0.482167, 0, 1, 0, 0.482167, 0, 0.87608, 125.007, 0.901751, -62.6746)
-
-[node name="lamp_tall" parent="." instance=ExtResource("35_tkval")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 145.581, 1.63216, -71.8231)
-
-[node name="couch_small" parent="." instance=ExtResource("36_18hjh")]
-transform = Transform3D(-0.707107, 0, 0.707107, 0, 1, 0, -0.707107, 0, -0.707107, 139.586, 1.52474, -62.729)
-
-[node name="picture_large" parent="." instance=ExtResource("37_7rmub")]
-transform = Transform3D(-1, 3.82137e-15, 8.74228e-08, 8.74228e-08, 4.37114e-08, 1, 0, 1, -4.37114e-08, 143.359, 3.00298, -75)
-
-[node name="Picture_Large -rigid" parent="picture_large/Picture_Large -rigid" index="0"]
-surface_material_override/1 = SubResource("ShaderMaterial_8yhyd")
-
 [connection signal="body_entered" from="Trigger" to="." method="_on_trigger_body_entered"]
 [connection signal="body_entered" from="ObjectiveArea" to="." method="_on_objective_area_body_entered"]
 
 [editable path="NavigationRegion3D/c2_m4"]
 [editable path="Props/picture_small"]
 [editable path="Props/lamp"]
-[editable path="picture_large"]
+[editable path="Props/picture_large"]

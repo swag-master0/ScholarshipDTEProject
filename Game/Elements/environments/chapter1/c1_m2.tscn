@@ -39,6 +39,7 @@ script/source = "extends Node3D
 @onready var enemy1 = $EnemySpawnPoint1
 @onready var level = $\"NavigationRegion3D/level\"
 @onready var propspawnlocations = $PropSpawnLocations
+@onready var player: CharacterBody3D = $Player
 
 @export var enemy_type: PackedScene
 @export var prop : PackedScene
@@ -48,7 +49,7 @@ var example_triggered = false
 var dialogue_triggered = false
 
 
-
+# Creates enemy when object is grabbed
 func _on_trigger_body_entered(body):
 	if body.is_in_group(\"player\") and !triggered:
 		triggered = true
@@ -56,12 +57,9 @@ func _on_trigger_body_entered(body):
 		var newenemy1 = enemy_type.instantiate()
 		self.add_child(newenemy1)
 		newenemy1.global_position = enemy1.global_position
-		
-		
-	#	$Player.sendHintToPlayer(\"[wave][center][color=SILVER]Navigate back to the start with the objective item\")
-		
 
 
+# probably remove
 func _on_enemy_example_trigger_body_entered(body):
 	if body.is_in_group(\"enemy\") and !example_triggered:
 		example_triggered = true
@@ -71,12 +69,12 @@ func _on_enemy_example_trigger_body_entered(body):
 			created_prop.position = i.global_position
 			created_prop.apply_force(Vector3(0, -1000, 0))
 
-
-# unused, remove when possible
+# triggers when the player approaches the objective
 func _on_dialogue_trigger_body_entered(body):
 	if body.is_in_group(\"player\") and !dialogue_triggered:
 		dialogue_triggered = true
-	#	body.Dialogue(\"Huh. Maybe try stacking something to get up there.\")
+		player.dialogue_queue.append(\"hmm, it's up higher than you\")
+		player.dialogue_queue.append(\"try climbing on something to get up\")
 "
 
 [sub_resource type="NavigationMesh" id="NavigationMesh_a2gje"]
@@ -117,7 +115,7 @@ shader = ExtResource("23_5tkwj")
 shader_parameter/emission_strength = 0.2
 shader_parameter/picture = ExtResource("25_mb124")
 
-[node name="Level" type="Node3D"]
+[node name="Level2" type="Node3D"]
 script = SubResource("GDScript_jf0va")
 enemy_type = ExtResource("1_7b51b")
 prop = ExtResource("7_tk5jc")

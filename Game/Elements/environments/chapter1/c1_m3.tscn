@@ -22,9 +22,13 @@ resource_name = "c1_m3-functionality"
 script/source = "extends Node3D
 
 @onready var spawnarea = $SpawnLocations
+@onready var player: CharacterBody3D = $Player
+
 @export var barrel : PackedScene
 @export var chance_for_spawn : float = 75
 
+# TODO: add dialogue in this level;
+# player.dialogue_queue.append(\"try climbing on something to get up\")
 
 func _on_timer_timeout():
 	if ready:
