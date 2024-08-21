@@ -1,0 +1,59 @@
+[gd_scene load_steps=9 format=3 uid="uid://cft1b4l0aljye"]
+
+[ext_resource type="Script" path="res://Elements/function/info.gd" id="1_5y1s2"]
+[ext_resource type="AudioStream" uid="uid://b8ixk86ahq8u4" path="res://Art/audio/enemy/hurt.wav" id="2_oip5h"]
+[ext_resource type="AudioStream" uid="uid://drsyj7vacqut4" path="res://Art/audio/enemy/enemy_death.wav" id="3_bc2sx"]
+[ext_resource type="Texture2D" uid="uid://bkwnegtb7bpmu" path="res://Art/assets/assets/cartoon_particle_2.png" id="5_ssuij"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_ju8a1"]
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_2yxm7"]
+angle_max = 360.0
+direction = Vector3(0, 1, 0)
+initial_velocity_min = 5.0
+initial_velocity_max = 5.0
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_jxowt"]
+transparency = 1
+albedo_texture = ExtResource("5_ssuij")
+emission_enabled = true
+emission_texture = ExtResource("5_ssuij")
+billboard_mode = 3
+particles_anim_h_frames = 1
+particles_anim_v_frames = 1
+particles_anim_loop = false
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_kbwn3"]
+material = SubResource("StandardMaterial3D_jxowt")
+size = Vector2(1, 1)
+orientation = 2
+
+[node name="Info" type="Node3D" groups=["info"]]
+script = ExtResource("1_5y1s2")
+
+[node name="Timeout" type="Timer" parent="."]
+one_shot = true
+
+[node name="Hitbox" type="Area3D" parent="."]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Hitbox"]
+shape = SubResource("BoxShape3D_ju8a1")
+
+[node name="Hurt" type="AudioStreamPlayer3D" parent="."]
+stream = ExtResource("2_oip5h")
+volume_db = -10.0
+
+[node name="Kill" type="AudioStreamPlayer3D" parent="."]
+stream = ExtResource("3_bc2sx")
+volume_db = -25.0
+
+[node name="HurtParticles2" type="GPUParticles3D" parent="."]
+emitting = false
+amount = 3
+one_shot = true
+speed_scale = 2.0
+explosiveness = 1.0
+process_material = SubResource("ParticleProcessMaterial_2yxm7")
+draw_pass_1 = SubResource("PlaneMesh_kbwn3")
+
+[connection signal="body_entered" from="Hitbox" to="." method="_on_hitbox_body_entered"]

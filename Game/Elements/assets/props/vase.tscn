@@ -1,0 +1,30 @@
+[gd_scene load_steps=7 format=3 uid="uid://c775kwttbjh40"]
+
+[ext_resource type="PackedScene" uid="uid://bck2n8xf7lgbq" path="res://Art/blend/assets/prop/vase.blend" id="1_ejc5v"]
+[ext_resource type="Script" path="res://Elements/assets/props/template/prop.gd" id="2_3od1b"]
+[ext_resource type="AudioStream" uid="uid://bvtl3gcsvn81k" path="res://Art/audio/impact/chink_01.wav" id="3_u72p8"]
+[ext_resource type="AudioStream" uid="uid://wagg0o80e13u" path="res://Art/audio/impact/chink_02.wav" id="4_kuhbm"]
+[ext_resource type="AudioStream" uid="uid://51bkfhufensc" path="res://Art/audio/impact/chink_03.wav" id="5_56q77"]
+[ext_resource type="AudioStream" uid="uid://bibv5gbo3s8" path="res://Art/audio/impact/chink_04.wav" id="6_whpka"]
+
+[node name="vase" instance=ExtResource("1_ejc5v")]
+
+[node name="Vase -rigid" parent="." index="0"]
+mass = 10.0
+contact_monitor = true
+max_contacts_reported = 5
+script = ExtResource("2_3od1b")
+
+[node name="AudioStreamPlayer3D" type="AudioStreamPlayer3D" parent="Vase -rigid" index="2"]
+stream = ExtResource("3_u72p8")
+
+[node name="AudioStreamPlayer3D2" type="AudioStreamPlayer3D" parent="Vase -rigid" index="3"]
+stream = ExtResource("4_kuhbm")
+
+[node name="AudioStreamPlayer3D3" type="AudioStreamPlayer3D" parent="Vase -rigid" index="4"]
+stream = ExtResource("5_56q77")
+
+[node name="AudioStreamPlayer3D4" type="AudioStreamPlayer3D" parent="Vase -rigid" index="5"]
+stream = ExtResource("6_whpka")
+
+[connection signal="body_entered" from="Vase -rigid" to="Vase -rigid" method="_on_body_entered"]

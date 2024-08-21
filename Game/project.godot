@@ -10,77 +10,91 @@ config_version=5
 
 [application]
 
-config/name="WorkingTitle"
-run/main_scene="res://Elements/environments/misc/main_menu/main_menu.tscn"
-config/features=PackedStringArray("4.2", "Forward Plus")
-config/icon="res://Art/textures/icon.svg"
+config/name="Amelioration"
+config/tags=PackedStringArray("main_projects")
+run/main_scene="res://Elements/function/main_menu.tscn"
+config/features=PackedStringArray("4.3", "Forward Plus")
+config/icon="res://Art/assets/misc/icon.svg"
+
+[audio]
+
+general/text_to_speech=true
+
+[autoload]
+
+LoadingScreen="*res://Elements/function/loading_screen.gd"
+
+[display]
+
+window/size/viewport_width=1920
+window/size/viewport_height=1080
+window/size/mode=3
+window/size/window_width_override=1920
+window/size/window_height_override=1080
+window/stretch/mode="viewport"
 
 [file_customization]
 
 folder_colors={
 "res://Art/": "red",
-"res://Art/audio/": "orange",
-"res://Art/blend/": "orange",
-"res://Art/materials/": "orange",
-"res://Art/textures/": "orange",
-"res://Elements/": "red",
-"res://Elements/assets/": "orange",
-"res://Elements/assets/hostile/": "yellow",
-"res://Elements/assets/hostile/explosion/": "green",
-"res://Elements/assets/hostile/explosive_barrel/": "green",
-"res://Elements/assets/hostile/grenade/": "green",
-"res://Elements/assets/hostile/hazard/": "green",
-"res://Elements/assets/passive/": "yellow",
-"res://Elements/assets/passive/breakable_glass/": "green",
-"res://Elements/assets/passive/button/": "green",
-"res://Elements/assets/passive/jump_pad/": "green",
-"res://Elements/assets/passive/props/": "green",
-"res://Elements/enemies/": "orange",
-"res://Elements/enemies/bomber/": "green",
-"res://Elements/enemies/copycat/": "green",
-"res://Elements/enemies/copycat_v2/": "green",
-"res://Elements/enemies/enemy/": "green",
-"res://Elements/enemies/sentry/": "green",
-"res://Elements/environments/": "orange",
-"res://Elements/environments/chapter1/": "green",
-"res://Elements/environments/chapter2/": "green",
-"res://Elements/environments/misc/": "green",
-"res://Elements/function/": "orange",
-"res://Elements/function/info/": "green",
-"res://Elements/function/objective/": "green",
-"res://Elements/function/options_menu/": "green",
-"res://Elements/function/player/": "green"
+"res://Art/assets/assets/": "gray",
+"res://Art/assets/fonts/": "gray",
+"res://Art/assets/hud/": "gray",
+"res://Art/assets/misc/": "gray",
+"res://Art/audio/ambient/": "gray",
+"res://Art/audio/enemy/": "gray",
+"res://Art/audio/impact/": "gray",
+"res://Art/audio/misc/": "gray",
+"res://Art/audio/music/": "gray",
+"res://Art/audio/player/": "gray",
+"res://Art/blend/assets/": "gray",
+"res://Art/blend/levels_chapter1/": "gray",
+"res://Art/blend/levels_chapter2/": "gray",
+"res://Art/blend/misc/": "gray",
+"res://Art/materials/floor/": "gray",
+"res://Art/materials/player/": "gray",
+"res://Art/materials/props/": "gray",
+"res://Art/materials/unused/": "gray",
+"res://Art/materials/walls/": "gray",
+"res://Elements/": "blue",
+"res://Elements/assets/gameplay/": "gray",
+"res://Elements/assets/misc/": "gray",
+"res://Elements/assets/props/": "gray",
+"res://Elements/enemies/unused/": "gray",
+"res://Elements/environments/chapter1/": "gray",
+"res://Elements/environments/chapter2/": "gray",
+"res://Elements/environments/misc/": "gray"
 }
 
 [input]
 
 forward={
 "deadzone": 0.5,
-"events": [Object(InputEventKey,"resource_local_to_scene":false,"resource_name":"","device":-1,"window_id":0,"alt_pressed":false,"shift_pressed":false,"ctrl_pressed":false,"meta_pressed":false,"pressed":false,"keycode":0,"physical_keycode":87,"key_label":0,"unicode":119,"echo":false,"script":null)
-, Object(InputEventKey,"resource_local_to_scene":false,"resource_name":"","device":-1,"window_id":0,"alt_pressed":false,"shift_pressed":false,"ctrl_pressed":false,"meta_pressed":false,"pressed":false,"keycode":0,"physical_keycode":4194320,"key_label":0,"unicode":0,"echo":false,"script":null)
+"events": [Object(InputEventKey,"resource_local_to_scene":false,"resource_name":"","device":-1,"window_id":0,"alt_pressed":false,"shift_pressed":false,"ctrl_pressed":false,"meta_pressed":false,"pressed":false,"keycode":0,"physical_keycode":87,"key_label":0,"unicode":119,"location":0,"echo":false,"script":null)
+, Object(InputEventKey,"resource_local_to_scene":false,"resource_name":"","device":-1,"window_id":0,"alt_pressed":false,"shift_pressed":false,"ctrl_pressed":false,"meta_pressed":false,"pressed":false,"keycode":0,"physical_keycode":4194320,"key_label":0,"unicode":0,"location":0,"echo":false,"script":null)
 ]
 }
 backward={
 "deadzone": 0.5,
-"events": [Object(InputEventKey,"resource_local_to_scene":false,"resource_name":"","device":-1,"window_id":0,"alt_pressed":false,"shift_pressed":false,"ctrl_pressed":false,"meta_pressed":false,"pressed":false,"keycode":0,"physical_keycode":83,"key_label":0,"unicode":115,"echo":false,"script":null)
-, Object(InputEventKey,"resource_local_to_scene":false,"resource_name":"","device":-1,"window_id":0,"alt_pressed":false,"shift_pressed":false,"ctrl_pressed":false,"meta_pressed":false,"pressed":false,"keycode":0,"physical_keycode":4194322,"key_label":0,"unicode":0,"echo":false,"script":null)
+"events": [Object(InputEventKey,"resource_local_to_scene":false,"resource_name":"","device":-1,"window_id":0,"alt_pressed":false,"shift_pressed":false,"ctrl_pressed":false,"meta_pressed":false,"pressed":false,"keycode":0,"physical_keycode":83,"key_label":0,"unicode":115,"location":0,"echo":false,"script":null)
+, Object(InputEventKey,"resource_local_to_scene":false,"resource_name":"","device":-1,"window_id":0,"alt_pressed":false,"shift_pressed":false,"ctrl_pressed":false,"meta_pressed":false,"pressed":false,"keycode":0,"physical_keycode":4194322,"key_label":0,"unicode":0,"location":0,"echo":false,"script":null)
 ]
 }
 left={
 "deadzone": 0.5,
-"events": [Object(InputEventKey,"resource_local_to_scene":false,"resource_name":"","device":-1,"window_id":0,"alt_pressed":false,"shift_pressed":false,"ctrl_pressed":false,"meta_pressed":false,"pressed":false,"keycode":0,"physical_keycode":65,"key_label":0,"unicode":97,"echo":false,"script":null)
-, Object(InputEventKey,"resource_local_to_scene":false,"resource_name":"","device":-1,"window_id":0,"alt_pressed":false,"shift_pressed":false,"ctrl_pressed":false,"meta_pressed":false,"pressed":false,"keycode":0,"physical_keycode":4194319,"key_label":0,"unicode":0,"echo":false,"script":null)
+"events": [Object(InputEventKey,"resource_local_to_scene":false,"resource_name":"","device":-1,"window_id":0,"alt_pressed":false,"shift_pressed":false,"ctrl_pressed":false,"meta_pressed":false,"pressed":false,"keycode":0,"physical_keycode":65,"key_label":0,"unicode":97,"location":0,"echo":false,"script":null)
+, Object(InputEventKey,"resource_local_to_scene":false,"resource_name":"","device":-1,"window_id":0,"alt_pressed":false,"shift_pressed":false,"ctrl_pressed":false,"meta_pressed":false,"pressed":false,"keycode":0,"physical_keycode":4194319,"key_label":0,"unicode":0,"location":0,"echo":false,"script":null)
 ]
 }
 right={
 "deadzone": 0.5,
-"events": [Object(InputEventKey,"resource_local_to_scene":false,"resource_name":"","device":-1,"window_id":0,"alt_pressed":false,"shift_pressed":false,"ctrl_pressed":false,"meta_pressed":false,"pressed":false,"keycode":0,"physical_keycode":68,"key_label":0,"unicode":100,"echo":false,"script":null)
-, Object(InputEventKey,"resource_local_to_scene":false,"resource_name":"","device":-1,"window_id":0,"alt_pressed":false,"shift_pressed":false,"ctrl_pressed":false,"meta_pressed":false,"pressed":false,"keycode":0,"physical_keycode":4194321,"key_label":0,"unicode":0,"echo":false,"script":null)
+"events": [Object(InputEventKey,"resource_local_to_scene":false,"resource_name":"","device":-1,"window_id":0,"alt_pressed":false,"shift_pressed":false,"ctrl_pressed":false,"meta_pressed":false,"pressed":false,"keycode":0,"physical_keycode":68,"key_label":0,"unicode":100,"location":0,"echo":false,"script":null)
+, Object(InputEventKey,"resource_local_to_scene":false,"resource_name":"","device":-1,"window_id":0,"alt_pressed":false,"shift_pressed":false,"ctrl_pressed":false,"meta_pressed":false,"pressed":false,"keycode":0,"physical_keycode":4194321,"key_label":0,"unicode":0,"location":0,"echo":false,"script":null)
 ]
 }
 jump={
 "deadzone": 0.5,
-"events": [Object(InputEventKey,"resource_local_to_scene":false,"resource_name":"","device":-1,"window_id":0,"alt_pressed":false,"shift_pressed":false,"ctrl_pressed":false,"meta_pressed":false,"pressed":false,"keycode":0,"physical_keycode":32,"key_label":0,"unicode":32,"echo":false,"script":null)
+"events": [Object(InputEventKey,"resource_local_to_scene":false,"resource_name":"","device":-1,"window_id":0,"alt_pressed":false,"shift_pressed":false,"ctrl_pressed":false,"meta_pressed":false,"pressed":false,"keycode":0,"physical_keycode":32,"key_label":0,"unicode":32,"location":0,"echo":false,"script":null)
 ]
 }
 click={
@@ -90,7 +104,7 @@ click={
 }
 escape={
 "deadzone": 0.5,
-"events": [Object(InputEventKey,"resource_local_to_scene":false,"resource_name":"","device":-1,"window_id":0,"alt_pressed":false,"shift_pressed":false,"ctrl_pressed":false,"meta_pressed":false,"pressed":false,"keycode":0,"physical_keycode":4194305,"key_label":0,"unicode":0,"echo":false,"script":null)
+"events": [Object(InputEventKey,"resource_local_to_scene":false,"resource_name":"","device":-1,"window_id":0,"alt_pressed":false,"shift_pressed":false,"ctrl_pressed":false,"meta_pressed":false,"pressed":false,"keycode":0,"physical_keycode":4194305,"key_label":0,"unicode":0,"location":0,"echo":false,"script":null)
 ]
 }
 scroll_down={
@@ -104,7 +118,13 @@ scroll_up={
 ]
 }
 
+[layer_names]
+
+3d_physics/layer_1="world"
+3d_physics/layer_2="player"
+3d_physics/layer_3="objects"
+
 [physics]
 
-3d/physics_engine="GodotPhysics3D"
+3d/physics_engine="JoltPhysics3D"
 3d/default_gravity=14.7

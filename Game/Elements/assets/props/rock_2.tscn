@@ -1,0 +1,34 @@
+[gd_scene load_steps=8 format=3 uid="uid://bgobrloxn3vug"]
+
+[ext_resource type="PackedScene" uid="uid://cr8v022tsac6l" path="res://Art/blend/assets/prop/rock2.blend" id="1_jh3k2"]
+[ext_resource type="Script" path="res://Elements/assets/props/template/prop.gd" id="2_6mqci"]
+[ext_resource type="AudioStream" uid="uid://cmrd2tlply6v6" path="res://Art/audio/impact/thump-1.wav" id="2_nmqd0"]
+[ext_resource type="AudioStream" uid="uid://d00tijva2c6cn" path="res://Art/audio/impact/thump-2.wav" id="3_pxk8n"]
+[ext_resource type="Material" uid="uid://cjl8no2f4qs2h" path="res://Art/materials/floor.material" id="3_yaxhg"]
+[ext_resource type="AudioStream" uid="uid://cj157ctmjk6jj" path="res://Art/audio/impact/thump-3.wav" id="4_rhxp6"]
+[ext_resource type="AudioStream" uid="uid://q028ee08mw53" path="res://Art/audio/impact/thump-4.wav" id="5_3iamj"]
+
+[node name="rock2" instance=ExtResource("1_jh3k2")]
+
+[node name="Rock2-rigid" parent="." index="0"]
+mass = 20.0
+contact_monitor = true
+max_contacts_reported = 5
+script = ExtResource("2_6mqci")
+
+[node name="Rock2-rigid" parent="Rock2-rigid" index="0"]
+surface_material_override/0 = ExtResource("3_yaxhg")
+
+[node name="AudioStreamPlayer3D" type="AudioStreamPlayer3D" parent="Rock2-rigid" index="2"]
+stream = ExtResource("2_nmqd0")
+
+[node name="AudioStreamPlayer3D2" type="AudioStreamPlayer3D" parent="Rock2-rigid" index="3"]
+stream = ExtResource("3_pxk8n")
+
+[node name="AudioStreamPlayer3D3" type="AudioStreamPlayer3D" parent="Rock2-rigid" index="4"]
+stream = ExtResource("4_rhxp6")
+
+[node name="AudioStreamPlayer3D4" type="AudioStreamPlayer3D" parent="Rock2-rigid" index="5"]
+stream = ExtResource("5_3iamj")
+
+[connection signal="body_entered" from="Rock2-rigid" to="Rock2-rigid" method="_on_body_entered"]

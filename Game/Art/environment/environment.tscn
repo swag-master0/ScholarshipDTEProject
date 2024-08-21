@@ -1,0 +1,128 @@
+[gd_scene load_steps=18 format=3 uid="uid://g2jwt8atruu7"]
+
+[ext_resource type="Shader" path="res://Art/environment/environment.gdshader" id="1_cm3yc"]
+
+[sub_resource type="Gradient" id="Gradient_pgec4"]
+interpolation_mode = 1
+offsets = PackedFloat32Array(0.35443, 0.759494)
+colors = PackedColorArray(0, 0, 0, 1, 0.648095, 0.112596, 0.16397, 0.419608)
+
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_4okqe"]
+noise_type = 3
+frequency = 0.0042
+cellular_return_type = 0
+domain_warp_type = 1
+
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_6pjfi"]
+width = 1024
+height = 1024
+in_3d_space = true
+seamless = true
+color_ramp = SubResource("Gradient_pgec4")
+noise = SubResource("FastNoiseLite_4okqe")
+
+[sub_resource type="Gradient" id="Gradient_n4hhs"]
+offsets = PackedFloat32Array(0, 0.740506, 1)
+colors = PackedColorArray(0, 0.00283045, 0, 1, 0.0763027, 0.0146269, 0.00375457, 1, 0.346075, 0.0320814, 0.0322837, 1)
+
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_5sv87"]
+noise_type = 2
+fractal_type = 2
+cellular_jitter = 1.915
+domain_warp_enabled = true
+
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_uhrgb"]
+seamless = true
+color_ramp = SubResource("Gradient_n4hhs")
+noise = SubResource("FastNoiseLite_5sv87")
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_y7ns5"]
+shader = ExtResource("1_cm3yc")
+shader_parameter/cloudlayer1 = SubResource("NoiseTexture2D_6pjfi")
+shader_parameter/cloudlayer2 = SubResource("NoiseTexture2D_uhrgb")
+
+[sub_resource type="Sky" id="Sky_qpxpt"]
+sky_material = SubResource("ShaderMaterial_y7ns5")
+
+[sub_resource type="Environment" id="Environment_760ow"]
+background_mode = 2
+background_color = Color(0.359069, 0.359069, 0.359069, 1)
+sky = SubResource("Sky_qpxpt")
+ambient_light_source = 2
+ambient_light_color = Color(0.0768358, 0.0768358, 0.0768358, 1)
+glow_enabled = true
+glow_intensity = 2.5
+glow_bloom = 1.0
+fog_light_color = Color(0, 0, 0, 1)
+fog_light_energy = 0.5
+fog_density = 0.005
+fog_aerial_perspective = 1.0
+volumetric_fog_enabled = true
+volumetric_fog_density = 0.075
+volumetric_fog_albedo = Color(0.665915, 0.732849, 0.581883, 1)
+volumetric_fog_sky_affect = 0.0
+volumetric_fog_temporal_reprojection_enabled = false
+volumetric_fog_temporal_reprojection_amount = 0.739
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_enlk5"]
+shading_mode = 0
+
+[sub_resource type="SphereMesh" id="SphereMesh_s8xx5"]
+material = SubResource("StandardMaterial3D_enlk5")
+
+[sub_resource type="Curve" id="Curve_e1wfq"]
+_data = [Vector2(0, 0), 0.0, 0.0, 0, 0, Vector2(0.5, 0.178947), 0.235628, 0.235628, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
+point_count = 3
+
+[sub_resource type="CurveTexture" id="CurveTexture_keq1l"]
+curve = SubResource("Curve_e1wfq")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_5rb4k"]
+lifetime_randomness = 0.12
+emission_shape = 3
+emission_box_extents = Vector3(200, 100, 200)
+gravity = Vector3(1, 0, 1)
+scale_min = 0.0
+scale_curve = SubResource("CurveTexture_keq1l")
+turbulence_enabled = true
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_avwqc"]
+transparency = 1
+shading_mode = 0
+albedo_color = Color(0.788235, 0.788235, 0.788235, 0.505882)
+billboard_mode = 3
+particles_anim_h_frames = 1
+particles_anim_v_frames = 1
+particles_anim_loop = false
+distance_fade_mode = 1
+distance_fade_min_distance = 100.0
+distance_fade_max_distance = 0.0
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_1foml"]
+material = SubResource("StandardMaterial3D_avwqc")
+size = Vector2(0.5, 0.5)
+orientation = 2
+
+[node name="WorldEnvironment" type="WorldEnvironment"]
+environment = SubResource("Environment_760ow")
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
+transform = Transform3D(0.914182, -0.125891, 0.385257, -0.277352, 0.498815, 0.821133, -0.295545, -0.857517, 0.421092, 0, 0, 0)
+light_color = Color(0.165656, 0.165656, 0.165656, 1)
+shadow_enabled = true
+directional_shadow_mode = 1
+directional_shadow_fade_start = 0.0
+directional_shadow_pancake_size = 0.0
+sky_mode = 1
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+visible = false
+mesh = SubResource("SphereMesh_s8xx5")
+
+[node name="Wind" type="GPUParticles3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1, 0)
+visible = false
+amount = 10000
+lifetime = 20.0
+process_material = SubResource("ParticleProcessMaterial_5rb4k")
+draw_pass_1 = SubResource("PlaneMesh_1foml")

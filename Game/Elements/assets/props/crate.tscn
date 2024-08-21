@@ -1,0 +1,22 @@
+[gd_scene load_steps=5 format=3 uid="uid://dhaxwpsinvu6u"]
+
+[ext_resource type="PackedScene" uid="uid://ejqcxr4vpya" path="res://Art/blend/assets/prop/crate.blend" id="1_u8y3l"]
+[ext_resource type="Script" path="res://Elements/assets/props/template/prop.gd" id="2_bj7j1"]
+[ext_resource type="AudioStream" uid="uid://ddjpyn7uhjk7g" path="res://Art/audio/impact/clatter-wood-1.wav" id="3_dskm5"]
+[ext_resource type="AudioStream" uid="uid://ct6o1mf65ohkd" path="res://Art/audio/impact/clatter-wood-3.wav" id="4_uswjg"]
+
+[node name="crate" instance=ExtResource("1_u8y3l")]
+
+[node name="Crate -rigid" parent="." index="0"]
+mass = 15.0
+contact_monitor = true
+max_contacts_reported = 5
+script = ExtResource("2_bj7j1")
+
+[node name="AudioStreamPlayer3D" type="AudioStreamPlayer3D" parent="Crate -rigid" index="2"]
+stream = ExtResource("3_dskm5")
+
+[node name="AudioStreamPlayer3D2" type="AudioStreamPlayer3D" parent="Crate -rigid" index="3"]
+stream = ExtResource("4_uswjg")
+
+[connection signal="body_entered" from="Crate -rigid" to="Crate -rigid" method="_on_body_entered"]

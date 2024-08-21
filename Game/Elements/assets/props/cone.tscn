@@ -1,0 +1,30 @@
+[gd_scene load_steps=7 format=3 uid="uid://bsbl4boqt5vj4"]
+
+[ext_resource type="PackedScene" uid="uid://dcpwndoor4g25" path="res://Art/blend/assets/prop/cone.blend" id="1_434wn"]
+[ext_resource type="Script" path="res://Elements/assets/props/template/prop.gd" id="2_wr1e7"]
+[ext_resource type="AudioStream" uid="uid://cmrd2tlply6v6" path="res://Art/audio/impact/thump-1.wav" id="3_i0tnd"]
+[ext_resource type="AudioStream" uid="uid://d00tijva2c6cn" path="res://Art/audio/impact/thump-2.wav" id="4_pua3k"]
+[ext_resource type="AudioStream" uid="uid://cj157ctmjk6jj" path="res://Art/audio/impact/thump-3.wav" id="5_8f4eq"]
+[ext_resource type="AudioStream" uid="uid://q028ee08mw53" path="res://Art/audio/impact/thump-4.wav" id="6_eiydx"]
+
+[node name="cone" instance=ExtResource("1_434wn")]
+
+[node name="Cone -rigid" parent="." index="0"]
+mass = 15.0
+contact_monitor = true
+max_contacts_reported = 5
+script = ExtResource("2_wr1e7")
+
+[node name="AudioStreamPlayer3D" type="AudioStreamPlayer3D" parent="Cone -rigid" index="2"]
+stream = ExtResource("3_i0tnd")
+
+[node name="AudioStreamPlayer3D2" type="AudioStreamPlayer3D" parent="Cone -rigid" index="3"]
+stream = ExtResource("4_pua3k")
+
+[node name="AudioStreamPlayer3D3" type="AudioStreamPlayer3D" parent="Cone -rigid" index="4"]
+stream = ExtResource("5_8f4eq")
+
+[node name="AudioStreamPlayer3D4" type="AudioStreamPlayer3D" parent="Cone -rigid" index="5"]
+stream = ExtResource("6_eiydx")
+
+[connection signal="body_entered" from="Cone -rigid" to="Cone -rigid" method="_on_body_entered"]

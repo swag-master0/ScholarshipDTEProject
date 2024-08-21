@@ -1,0 +1,204 @@
+[gd_scene load_steps=20 format=3 uid="uid://d3qcg4xjm6x5x"]
+
+[ext_resource type="Script" path="res://Elements/function/player/a-os.gd" id="1_141mi"]
+[ext_resource type="PackedScene" uid="uid://dgj0swcywi380" path="res://Art/blend/assets/main/a-os.blend" id="2_iy2j7"]
+[ext_resource type="Shader" path="res://Art/materials/unused/a-os_white.gdshader" id="3_gxl6r"]
+[ext_resource type="Texture2D" uid="uid://b2m3i1y7uwjau" path="res://Art/assets/hud/a-os/a-os_eye_default.png" id="4_5v35e"]
+[ext_resource type="Texture2D" uid="uid://cw8qkby0quhq6" path="res://Art/assets/hud/a-os/a-os_eye_anger.png" id="4_qx2ky"]
+[ext_resource type="Texture2D" uid="uid://bumqm1fmsxt0d" path="res://Art/assets/hud/a-os/a-os_eye_closed.png" id="5_mqq5y"]
+[ext_resource type="Texture2D" uid="uid://bbbub683a5ph8" path="res://Art/assets/hud/a-os/a-os_eye_sorrow.png" id="5_wdrxd"]
+[ext_resource type="Texture2D" uid="uid://fb6x30xa5b7e" path="res://Art/assets/hud/a-os/a-os_eye_closed_happy.png" id="6_v2iua"]
+[ext_resource type="Texture2D" uid="uid://y6mkqv2ruo4v" path="res://Art/assets/hud/loading_1.png" id="9_qvsxm"]
+[ext_resource type="Texture2D" uid="uid://wa7u80kcftoh" path="res://Art/assets/hud/loading_2.png" id="10_2dy2u"]
+[ext_resource type="Texture2D" uid="uid://c3lakgb5p7fga" path="res://Art/assets/hud/loading_3.png" id="11_wl5p1"]
+[ext_resource type="Texture2D" uid="uid://dxwjejtdumpur" path="res://Art/assets/hud/loading_4.png" id="12_i3ovg"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_cm2gq"]
+render_priority = 0
+shader = ExtResource("3_gxl6r")
+shader_parameter/colour = Vector3(0.2, 0.2, 0.2)
+
+[sub_resource type="Animation" id="Animation_p6e1s"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(1, 1, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_3jkeg"]
+resource_name = "yap"
+length = 0.05
+step = 0.01
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.05),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector3(1.1, 1.1, 1.1), Vector3(1, 1, 1)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_lrclt"]
+_data = {
+"RESET": SubResource("Animation_p6e1s"),
+"yap": SubResource("Animation_3jkeg")
+}
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_mjxlo"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("4_qx2ky")
+}],
+"loop": true,
+"name": &"anger",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("5_mqq5y")
+}],
+"loop": true,
+"name": &"closed",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("6_v2iua")
+}],
+"loop": true,
+"name": &"closed_happy",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("4_5v35e")
+}],
+"loop": true,
+"name": &"idle",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("5_wdrxd")
+}],
+"loop": true,
+"name": &"sorrow",
+"speed": 5.0
+}]
+
+[sub_resource type="Environment" id="Environment_fr6e1"]
+glow_enabled = true
+glow_intensity = 8.0
+glow_bloom = 0.61
+volumetric_fog_density = 0.7664
+volumetric_fog_albedo = Color(0, 0, 0, 1)
+volumetric_fog_sky_affect = 0.165
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_kogcd"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("9_qvsxm")
+}, {
+"duration": 1.0,
+"texture": ExtResource("10_2dy2u")
+}, {
+"duration": 1.0,
+"texture": ExtResource("9_qvsxm")
+}, {
+"duration": 1.0,
+"texture": ExtResource("11_wl5p1")
+}, {
+"duration": 1.0,
+"texture": ExtResource("9_qvsxm")
+}, {
+"duration": 1.0,
+"texture": ExtResource("12_i3ovg")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[node name="A-OS" type="Node3D"]
+script = ExtResource("1_141mi")
+
+[node name="Scene" type="Node3D" parent="."]
+
+[node name="a-os" parent="Scene" instance=ExtResource("2_iy2j7")]
+
+[node name="Skeleton3D" parent="Scene/a-os/A-OS" index="0"]
+bones/0/position = Vector3(-0.000320869, -0.250338, 0)
+bones/0/rotation = Quaternion(-0.000175226, 8.76517e-05, 3.2903e-06, 1)
+
+[node name="Icosphere" parent="Scene/a-os/A-OS/Skeleton3D" index="0"]
+surface_material_override/0 = SubResource("ShaderMaterial_cm2gq")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="Scene/a-os/A-OS/Skeleton3D/Icosphere" index="0"]
+libraries = {
+"": SubResource("AnimationLibrary_lrclt")
+}
+
+[node name="AnimationPlayer" parent="Scene/a-os" index="1"]
+autoplay = "idle"
+
+[node name="FaceAttachment" type="Skeleton3D" parent="Scene"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 3, 0)
+
+[node name="Bone" type="BoneAttachment3D" parent="Scene/FaceAttachment"]
+transform = Transform3D(1, -6.61132e-06, 0.000175302, 6.54988e-06, 1, 0.000350453, -0.000175305, -0.000350451, 1, -0.000320869, -3.25034, 0)
+bone_name = "Bone"
+bone_idx = 0
+use_external_skeleton = true
+external_skeleton = NodePath("../../a-os/A-OS/Skeleton3D")
+
+[node name="EyePos" type="Node3D" parent="Scene/FaceAttachment/Bone"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.25, 0.85)
+
+[node name="EyeLeft" type="AnimatedSprite3D" parent="Scene/FaceAttachment/Bone/EyePos"]
+transform = Transform3D(0.999994, 0.000647317, -0.00339638, -0.000782048, 0.999207, -0.0398188, 0.0033679, 0.0398213, 0.999202, -0.25, 0, 0)
+pixel_size = 0.02
+texture_filter = 0
+sprite_frames = SubResource("SpriteFrames_mjxlo")
+animation = &"sorrow"
+autoplay = "idle"
+
+[node name="EyeRight" type="AnimatedSprite3D" parent="Scene/FaceAttachment/Bone/EyePos"]
+transform = Transform3D(-0.999994, 0.000647317, -0.00339637, 0.000782048, 0.999207, -0.0398189, -0.0033679, 0.0398213, 0.999201, 0.25, 0, 0)
+pixel_size = 0.02
+texture_filter = 0
+sprite_frames = SubResource("SpriteFrames_mjxlo")
+animation = &"idle"
+autoplay = "idle"
+
+[node name="Camera3D" type="Camera3D" parent="Scene"]
+transform = Transform3D(0.98768, 0, 0.156486, 0, 1, 0, -0.156486, 0, 0.98768, 0.246739, 0.175454, 2.31176)
+environment = SubResource("Environment_fr6e1")
+size = 2.54
+
+[node name="Processing" type="AnimatedSprite3D" parent="Scene"]
+visible = false
+pixel_size = 0.15
+texture_filter = 0
+sprite_frames = SubResource("SpriteFrames_kogcd")
+autoplay = "default"
+frame_progress = 0.802104
+
+[node name="OmniLight3D" type="OmniLight3D" parent="."]
+light_energy = 16.0
+omni_range = 1.795
+
+[editable path="Scene/a-os"]

@@ -1,0 +1,11 @@
+0	:	Processing
+1	:	Normal
+2	:	Sorrow
+3	:	Angry
+4	:	Wink
+5	:	Very Happy
+6	:	Odd
+7	:	Confused
+8	:	Closed
+
+

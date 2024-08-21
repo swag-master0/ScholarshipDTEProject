@@ -1,0 +1,30 @@
+[gd_scene load_steps=7 format=3 uid="uid://cggscg4u3txqj"]
+
+[ext_resource type="PackedScene" uid="uid://csdgon1s5dexu" path="res://Art/blend/assets/prop/boombox.blend" id="1_h7rgo"]
+[ext_resource type="Script" path="res://Elements/assets/props/template/prop.gd" id="2_135rg"]
+[ext_resource type="AudioStream" uid="uid://cmrd2tlply6v6" path="res://Art/audio/impact/thump-1.wav" id="3_b385b"]
+[ext_resource type="AudioStream" uid="uid://d00tijva2c6cn" path="res://Art/audio/impact/thump-2.wav" id="4_rv4no"]
+[ext_resource type="AudioStream" uid="uid://cj157ctmjk6jj" path="res://Art/audio/impact/thump-3.wav" id="5_f56cg"]
+[ext_resource type="AudioStream" uid="uid://q028ee08mw53" path="res://Art/audio/impact/thump-4.wav" id="6_e7jo5"]
+
+[node name="boombox" instance=ExtResource("1_h7rgo")]
+
+[node name="Boombox -rigid" parent="." index="0"]
+mass = 5.0
+contact_monitor = true
+max_contacts_reported = 5
+script = ExtResource("2_135rg")
+
+[node name="AudioStreamPlayer3D" type="AudioStreamPlayer3D" parent="Boombox -rigid" index="2"]
+stream = ExtResource("3_b385b")
+
+[node name="AudioStreamPlayer3D2" type="AudioStreamPlayer3D" parent="Boombox -rigid" index="3"]
+stream = ExtResource("4_rv4no")
+
+[node name="AudioStreamPlayer3D3" type="AudioStreamPlayer3D" parent="Boombox -rigid" index="4"]
+stream = ExtResource("5_f56cg")
+
+[node name="AudioStreamPlayer3D4" type="AudioStreamPlayer3D" parent="Boombox -rigid" index="5"]
+stream = ExtResource("6_e7jo5")
+
+[connection signal="body_entered" from="Boombox -rigid" to="Boombox -rigid" method="_on_body_entered"]

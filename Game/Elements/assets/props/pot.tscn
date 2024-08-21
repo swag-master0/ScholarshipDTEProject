@@ -1,0 +1,30 @@
+[gd_scene load_steps=7 format=3 uid="uid://dp2x6cakupfs6"]
+
+[ext_resource type="PackedScene" uid="uid://betoo6eh4ow5t" path="res://Art/blend/assets/prop/pot.blend" id="1_h6agt"]
+[ext_resource type="Script" path="res://Elements/assets/props/template/prop.gd" id="2_c4i2q"]
+[ext_resource type="AudioStream" uid="uid://bvtl3gcsvn81k" path="res://Art/audio/impact/chink_01.wav" id="3_gj0i4"]
+[ext_resource type="AudioStream" uid="uid://wagg0o80e13u" path="res://Art/audio/impact/chink_02.wav" id="4_3nccu"]
+[ext_resource type="AudioStream" uid="uid://51bkfhufensc" path="res://Art/audio/impact/chink_03.wav" id="5_tjalt"]
+[ext_resource type="AudioStream" uid="uid://bibv5gbo3s8" path="res://Art/audio/impact/chink_04.wav" id="6_jkckd"]
+
+[node name="pot" instance=ExtResource("1_h6agt")]
+
+[node name="Pot -rigid" parent="." index="0"]
+mass = 5.0
+contact_monitor = true
+max_contacts_reported = 5
+script = ExtResource("2_c4i2q")
+
+[node name="AudioStreamPlayer3D" type="AudioStreamPlayer3D" parent="Pot -rigid" index="2"]
+stream = ExtResource("3_gj0i4")
+
+[node name="AudioStreamPlayer3D2" type="AudioStreamPlayer3D" parent="Pot -rigid" index="3"]
+stream = ExtResource("4_3nccu")
+
+[node name="AudioStreamPlayer3D3" type="AudioStreamPlayer3D" parent="Pot -rigid" index="4"]
+stream = ExtResource("5_tjalt")
+
+[node name="AudioStreamPlayer3D4" type="AudioStreamPlayer3D" parent="Pot -rigid" index="5"]
+stream = ExtResource("6_jkckd")
+
+[connection signal="body_entered" from="Pot -rigid" to="Pot -rigid" method="_on_body_entered"]

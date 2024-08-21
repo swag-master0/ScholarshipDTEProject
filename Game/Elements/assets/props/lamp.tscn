@@ -1,0 +1,50 @@
+[gd_scene load_steps=8 format=3 uid="uid://blx6snb20uj8u"]
+
+[ext_resource type="Script" path="res://Elements/assets/props/template/prop.gd" id="1_m2sg2"]
+[ext_resource type="PackedScene" uid="uid://dp4vuieqvjwte" path="res://Art/blend/assets/prop/lamp.blend" id="2_ny8sa"]
+[ext_resource type="AudioStream" uid="uid://cmrd2tlply6v6" path="res://Art/audio/impact/thump-1.wav" id="3_wccnd"]
+[ext_resource type="AudioStream" uid="uid://d00tijva2c6cn" path="res://Art/audio/impact/thump-2.wav" id="4_pum7b"]
+[ext_resource type="AudioStream" uid="uid://cj157ctmjk6jj" path="res://Art/audio/impact/thump-3.wav" id="5_j3w3a"]
+[ext_resource type="AudioStream" uid="uid://q028ee08mw53" path="res://Art/audio/impact/thump-4.wav" id="6_kwf0e"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_ntnrf"]
+albedo_color = Color(0.995755, 0.991839, 0.861707, 1)
+disable_receive_shadows = true
+
+[node name="lamp" instance=ExtResource("2_ny8sa")]
+
+[node name="Lamp -rigid" parent="." index="0"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0)
+mass = 8.0
+contact_monitor = true
+max_contacts_reported = 5
+script = ExtResource("1_m2sg2")
+
+[node name="Lamp -rigid" parent="Lamp -rigid" index="0"]
+transform = Transform3D(0.15, 0, 0, 0, 0.15, 0, 0, 0, 0.15, 0, 0, 0)
+surface_material_override/2 = SubResource("StandardMaterial3D_ntnrf")
+
+[node name="CollisionShape3D" parent="Lamp -rigid" index="1"]
+transform = Transform3D(0.15, 0, 0, 0, 0.15, 0, 0, 0, 0.15, 0, 0, 0)
+
+[node name="OmniLight3D" type="OmniLight3D" parent="Lamp -rigid" index="2"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.828523, 0)
+light_color = Color(0.932738, 0.894484, 0.501812, 1)
+light_energy = 0.5
+shadow_enabled = true
+omni_range = 7.5
+omni_attenuation = 0.329877
+
+[node name="AudioStreamPlayer3D" type="AudioStreamPlayer3D" parent="Lamp -rigid" index="3"]
+stream = ExtResource("3_wccnd")
+
+[node name="AudioStreamPlayer3D2" type="AudioStreamPlayer3D" parent="Lamp -rigid" index="4"]
+stream = ExtResource("4_pum7b")
+
+[node name="AudioStreamPlayer3D3" type="AudioStreamPlayer3D" parent="Lamp -rigid" index="5"]
+stream = ExtResource("5_j3w3a")
+
+[node name="AudioStreamPlayer3D4" type="AudioStreamPlayer3D" parent="Lamp -rigid" index="6"]
+stream = ExtResource("6_kwf0e")
+
+[connection signal="body_entered" from="Lamp -rigid" to="Lamp -rigid" method="_on_body_entered"]

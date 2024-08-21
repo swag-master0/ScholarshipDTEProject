@@ -1,0 +1,30 @@
+[gd_scene load_steps=7 format=3 uid="uid://currpdc0rou40"]
+
+[ext_resource type="PackedScene" uid="uid://dymow0g7scca8" path="res://Art/blend/assets/prop/couch_small.blend" id="1_jtq06"]
+[ext_resource type="Script" path="res://Elements/assets/props/template/prop.gd" id="2_fysgu"]
+[ext_resource type="AudioStream" uid="uid://cmrd2tlply6v6" path="res://Art/audio/impact/thump-1.wav" id="3_vqnvj"]
+[ext_resource type="AudioStream" uid="uid://d00tijva2c6cn" path="res://Art/audio/impact/thump-2.wav" id="4_ond3t"]
+[ext_resource type="AudioStream" uid="uid://cj157ctmjk6jj" path="res://Art/audio/impact/thump-3.wav" id="5_a6wuw"]
+[ext_resource type="AudioStream" uid="uid://q028ee08mw53" path="res://Art/audio/impact/thump-4.wav" id="6_pirga"]
+
+[node name="couch_small" instance=ExtResource("1_jtq06")]
+
+[node name="CouchSmall -rigid" parent="." index="0"]
+mass = 25.0
+contact_monitor = true
+max_contacts_reported = 5
+script = ExtResource("2_fysgu")
+
+[node name="AudioStreamPlayer3D" type="AudioStreamPlayer3D" parent="CouchSmall -rigid" index="2"]
+stream = ExtResource("3_vqnvj")
+
+[node name="AudioStreamPlayer3D2" type="AudioStreamPlayer3D" parent="CouchSmall -rigid" index="3"]
+stream = ExtResource("4_ond3t")
+
+[node name="AudioStreamPlayer3D3" type="AudioStreamPlayer3D" parent="CouchSmall -rigid" index="4"]
+stream = ExtResource("5_a6wuw")
+
+[node name="AudioStreamPlayer3D4" type="AudioStreamPlayer3D" parent="CouchSmall -rigid" index="5"]
+stream = ExtResource("6_pirga")
+
+[connection signal="body_entered" from="CouchSmall -rigid" to="CouchSmall -rigid" method="_on_body_entered"]

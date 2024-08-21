@@ -1,0 +1,23 @@
+[gd_scene load_steps=5 format=3 uid="uid://bfrpck2673n1q"]
+
+[ext_resource type="PackedScene" uid="uid://xpbppyrt8yl" path="res://Art/blend/assets/prop/coffin.blend" id="1_0lmch"]
+[ext_resource type="Script" path="res://Elements/assets/props/template/prop.gd" id="2_lyttn"]
+[ext_resource type="AudioStream" uid="uid://ddjpyn7uhjk7g" path="res://Art/audio/impact/clatter-wood-1.wav" id="3_5khjj"]
+[ext_resource type="AudioStream" uid="uid://ct6o1mf65ohkd" path="res://Art/audio/impact/clatter-wood-3.wav" id="4_h3ija"]
+
+[node name="coffin" instance=ExtResource("1_0lmch")]
+
+[node name="Coffin -rigid" parent="." index="0"]
+mass = 30.0
+contact_monitor = true
+max_contacts_reported = 5
+script = ExtResource("2_lyttn")
+ungrabbable = true
+
+[node name="AudioStreamPlayer3D" type="AudioStreamPlayer3D" parent="Coffin -rigid" index="2"]
+stream = ExtResource("3_5khjj")
+
+[node name="AudioStreamPlayer3D2" type="AudioStreamPlayer3D" parent="Coffin -rigid" index="3"]
+stream = ExtResource("4_h3ija")
+
+[connection signal="body_entered" from="Coffin -rigid" to="Coffin -rigid" method="_on_body_entered"]

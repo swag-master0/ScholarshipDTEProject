@@ -1,0 +1,49 @@
+[gd_scene load_steps=7 format=3 uid="uid://7w5j5rmjk11o"]
+
+[ext_resource type="Script" path="res://Elements/enemies/unused/copycats.gd" id="1_v3iqq"]
+[ext_resource type="PackedScene" uid="uid://cft1b4l0aljye" path="res://Elements/function/info.tscn" id="2_nyqpp"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_oyknd"]
+size = Vector3(2.1, 2.1, 2.1)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_be0r0"]
+
+[sub_resource type="BoxMesh" id="BoxMesh_tyx7m"]
+material = SubResource("StandardMaterial3D_be0r0")
+size = Vector3(2, 2, 2)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_4m3wi"]
+size = Vector3(2, 2, 2)
+
+[node name="Copycat" type="CharacterBody3D" groups=["enemy"]]
+collision_priority = 2.0
+script = ExtResource("1_v3iqq")
+
+[node name="Info" parent="." instance=ExtResource("2_nyqpp")]
+
+[node name="CollisionShape3D" parent="Info/Hitbox" index="0"]
+shape = SubResource("BoxShape3D_oyknd")
+
+[node name="RayCast3D" type="RayCast3D" parent="."]
+target_position = Vector3(5, 0, 0)
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+mesh = SubResource("BoxMesh_tyx7m")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+shape = SubResource("BoxShape3D_4m3wi")
+
+[node name="NavigationAgent3D" type="NavigationAgent3D" parent="."]
+
+[node name="Timer" type="Timer" parent="."]
+wait_time = 3.0
+one_shot = true
+
+[node name="RigidBody3D" type="RigidBody3D" parent="."]
+freeze = true
+
+[connection signal="death" from="Info" to="." method="_on_info_death"]
+[connection signal="takeDamage" from="Info" to="." method="_on_info_take_damage"]
+[connection signal="body_entered" from="Info/Hitbox" to="." method="_on_hitbox_body_entered"]
+
+[editable path="Info"]

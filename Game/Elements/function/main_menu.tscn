@@ -1,0 +1,140 @@
+[gd_scene load_steps=11 format=3 uid="uid://c4ousj15h5a10"]
+
+[ext_resource type="Script" path="res://Elements/function/main_menu.gd" id="1_cvoh4"]
+[ext_resource type="Theme" uid="uid://qpcg0ktiqy0j" path="res://Art/assets/theme.tres" id="3_74hs1"]
+[ext_resource type="PackedScene" uid="uid://233quw6ftjqa" path="res://Elements/function/options_menu.tscn" id="3_lfre7"]
+[ext_resource type="Shader" uid="uid://d08hg4q0p02dx" path="res://Art/materials/main_menu.tres" id="4_mqevi"]
+[ext_resource type="Shader" path="res://Art/filters/colour_palette.gdshader" id="6_8v4ln"]
+[ext_resource type="Shader" path="res://Art/filters/pixellation.gdshader" id="7_cuoft"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_r53xp"]
+render_priority = 0
+shader = ExtResource("4_mqevi")
+shader_parameter/TimeScale = 20.0
+
+[sub_resource type="SphereMesh" id="SphereMesh_tlbkv"]
+material = SubResource("ShaderMaterial_r53xp")
+radius = 10.0
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_1pnxa"]
+shader = ExtResource("6_8v4ln")
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_rw3gl"]
+shader = ExtResource("7_cuoft")
+
+[node name="MainMenu" type="Node3D"]
+script = ExtResource("1_cvoh4")
+initial_level = "res://Elements/environments/misc/intro_cutscene.tscn"
+
+[node name="Camera3D" type="Camera3D" parent="."]
+
+[node name="GUI" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("3_74hs1")
+
+[node name="MainMenu" type="ColorRect" parent="GUI"]
+layout_mode = 1
+anchors_preset = 9
+anchor_bottom = 1.0
+offset_right = 740.0
+grow_vertical = 2
+color = Color(0.345098, 0.345098, 0.345098, 0.392157)
+
+[node name="Label" type="Label" parent="GUI/MainMenu"]
+layout_mode = 1
+offset_left = 50.0
+offset_top = 150.0
+offset_right = 556.0
+offset_bottom = 365.0
+theme_override_font_sizes/font_size = 62
+text = "Working Title"
+horizontal_alignment = 1
+vertical_alignment = 1
+clip_text = true
+
+[node name="PlayButton" type="Button" parent="GUI/MainMenu"]
+layout_mode = 1
+anchors_preset = 4
+anchor_top = 0.5
+anchor_bottom = 0.5
+offset_left = 150.0
+offset_top = -140.0
+offset_right = 600.0
+offset_bottom = -19.9998
+grow_vertical = 2
+text = "PLAY"
+
+[node name="OptionsButton" type="Button" parent="GUI/MainMenu"]
+layout_mode = 1
+anchors_preset = 4
+anchor_top = 0.5
+anchor_bottom = 0.5
+offset_left = 120.0
+offset_top = 15.5
+offset_right = 520.0
+offset_bottom = 135.5
+grow_vertical = 2
+text = "OPTIONS
+"
+
+[node name="QuitButton" type="Button" parent="GUI/MainMenu"]
+layout_mode = 1
+anchors_preset = 4
+anchor_top = 0.5
+anchor_bottom = 0.5
+offset_left = 90.0
+offset_top = 160.0
+offset_right = 440.0
+offset_bottom = 280.0
+grow_vertical = 2
+text = "QUIT
+"
+
+[node name="OptionsMenu" parent="GUI" instance=ExtResource("3_lfre7")]
+visible = false
+layout_mode = 1
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 0, -5)
+mesh = SubResource("SphereMesh_tlbkv")
+
+[node name="Filters" type="Node" parent="."]
+
+[node name="Outlines" type="CanvasLayer" parent="Filters"]
+process_mode = 3
+layer = -1
+
+[node name="ColourPallete" type="CanvasLayer" parent="Filters"]
+layer = -1
+visible = false
+
+[node name="ColourPalette" type="ColorRect" parent="Filters/ColourPallete"]
+material = SubResource("ShaderMaterial_1pnxa")
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Pixellation" type="CanvasLayer" parent="Filters"]
+layer = -1
+visible = false
+
+[node name="Pixellation" type="ColorRect" parent="Filters/Pixellation"]
+material = SubResource("ShaderMaterial_rw3gl")
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+color = Color(1, 1, 1, 0)
+
+[connection signal="pressed" from="GUI/MainMenu/PlayButton" to="." method="_on_play_button_pressed"]
+[connection signal="pressed" from="GUI/MainMenu/OptionsButton" to="." method="_on_options_button_pressed"]
+[connection signal="pressed" from="GUI/MainMenu/QuitButton" to="." method="_on_quit_button_pressed"]

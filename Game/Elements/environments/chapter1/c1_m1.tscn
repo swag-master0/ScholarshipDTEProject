@@ -1,74 +1,94 @@
-[gd_scene load_steps=11 format=3 uid="uid://rq3g3n4qshr3"]
+[gd_scene load_steps=28 format=3 uid="uid://rq3g3n4qshr3"]
 
-[ext_resource type="PackedScene" uid="uid://bcou7suhphdrp" path="res://Elements/function/player/player_v2.tscn" id="1_01d17"]
+[ext_resource type="PackedScene" uid="uid://bcou7suhphdrp" path="res://Elements/function/player/player.tscn" id="1_01d17"]
 [ext_resource type="PackedScene" uid="uid://c61dj4vsac881" path="res://Art/blend/levels_chapter1/c1_m1.blend" id="1_wejc2"]
-[ext_resource type="PackedScene" uid="uid://msdo88p274sw" path="res://Elements/function/objective/objective_level_start.tscn" id="4_5dpaq"]
+[ext_resource type="PackedScene" uid="uid://msdo88p274sw" path="res://Elements/function/objective.tscn" id="4_5dpaq"]
 [ext_resource type="PackedScene" uid="uid://cov8v6858hevf" path="res://Elements/environments/chapter1/c1_m2.tscn" id="4_ymukl"]
-[ext_resource type="PackedScene" uid="uid://bbb07r3hee2bp" path="res://Elements/assets/passive/props/prop.tscn" id="5_p2srq"]
-[ext_resource type="PackedScene" uid="uid://cihisq18677xu" path="res://Elements/function/objective/objective_item.tscn" id="6_x147h"]
+[ext_resource type="PackedScene" uid="uid://g2jwt8atruu7" path="res://Art/environment/environment.tscn" id="6_gi71d"]
+[ext_resource type="Material" uid="uid://cjl8no2f4qs2h" path="res://Art/materials/floor.material" id="6_icbmh"]
+[ext_resource type="PackedScene" uid="uid://cihisq18677xu" path="res://Elements/function/objective_item.tscn" id="6_x147h"]
+[ext_resource type="Shader" path="res://Art/materials/terrain.gdshader" id="7_jmbv3"]
+[ext_resource type="Material" uid="uid://cdpq1kptvx6j5" path="res://Art/materials/walls.material" id="8_bbgn8"]
+[ext_resource type="PackedScene" uid="uid://c775kwttbjh40" path="res://Elements/assets/props/vase.tscn" id="13_bp6gc"]
+[ext_resource type="PackedScene" uid="uid://cp8y4w0hidlhu" path="res://Elements/assets/props/picture_xlarge.tscn" id="13_umhby"]
+[ext_resource type="Shader" path="res://Art/materials/props/picture_image.gdshader" id="14_eekcq"]
+[ext_resource type="Texture2D" uid="uid://fv11y40xx78" path="res://Art/assets/misc/japan_advert.png" id="14_u6b8x"]
+[ext_resource type="PackedScene" uid="uid://blx6snb20uj8u" path="res://Elements/assets/props/lamp.tscn" id="17_6y3mn"]
+[ext_resource type="PackedScene" uid="uid://i43wpwf0q6em" path="res://Elements/assets/props/chair.tscn" id="17_34r8c"]
+[ext_resource type="PackedScene" uid="uid://dhejktumttlcs" path="res://Elements/assets/props/bench.tscn" id="18_hwqgn"]
+[ext_resource type="PackedScene" uid="uid://dp2x6cakupfs6" path="res://Elements/assets/props/pot.tscn" id="20_6rdim"]
+[ext_resource type="PackedScene" uid="uid://dqgrckw7n88n4" path="res://Elements/assets/props/table.tscn" id="21_t6n2y"]
+[ext_resource type="PackedScene" uid="uid://cgmhghceyys8x" path="res://Art/blend/assets/misc/powerpole.blend" id="22_4mcdc"]
+[ext_resource type="PackedScene" uid="uid://bsbl4boqt5vj4" path="res://Elements/assets/props/cone.tscn" id="22_bjjyq"]
+[ext_resource type="PackedScene" uid="uid://ctc20d63lt2h0" path="res://Elements/assets/props/bucket.tscn" id="23_fxv8a"]
+[ext_resource type="AudioStream" uid="uid://c2bnpiykqjcwb" path="res://Art/audio/ambient/ambient-1.mp3" id="23_t20xf"]
+[ext_resource type="PackedScene" uid="uid://brfvkewj7bfba" path="res://Elements/assets/props/lamp_tall.tscn" id="24_lhqsg"]
 
 [sub_resource type="GDScript" id="GDScript_x6txf"]
 resource_name = "c1_m1-functionality"
 script/source = "extends Node3D
 
-var dialogue_triggered = false
+var playerHasObjective = false
+var DecorDialogue : bool = false
 
-# Called when the node enters the scene tree for the first time.
+@onready var player = $Player
+
+
 func _ready():
-	for i in get_children():
-		if i.is_in_group(\"player\"):
-			await get_tree().create_timer(2).timeout
-			
-			i.sendHintToPlayer(\"[wave][center][color=SILVER]Find the objective item\")
-			
-			#i.Dialogue(\"Go get me the objective item already. It's here somewhere.\")
+	await get_tree().create_timer(2).timeout
+	
+	player.dialogue_queue.append(0)
+	player.dialogue_queue.append(\"welcome to the surface world!\")
+	player.dialogue_queue.append(\"it's a lil' messed up, but that's probably fine.\")
+	player.dialogue_queue.append(\"anyways, we're here. there should be a nest up ahead\")
 
 
-func _on_tutorial_trigger_body_entered(body):
-	if body.is_in_group(\"player\"):
-		body.sendHintToPlayer(\"[wave][center][color=SILVER]Use MOUSE 1 to pick up objects\")
-
-
-# Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(_delta):
 	for i in self.get_children():
 		if i.is_in_group(\"player\"):
-			if i.object != null and i.object.is_in_group(\"objective\") and !dialogue_triggered:
-				dialogue_triggered = true
+			if is_instance_valid(i.object) and i.object.is_in_group(\"objective\") and !playerHasObjective:
+				playerHasObjective = true
 				
-				i.sendHintToPlayer(\"[wave][center][color=SILVER]Bring it back to the start\")
+				await get_tree().create_timer(2).timeout
+				
+				player.dialogue_queue.append(0)
+				player.dialogue_queue.append(\"now, my favor for you, please bring that back here\")
+				player.dialogue_queue.append(\"the lift is waiting for you.\")
 				
 				#i.Dialogue(\"Good. Now get that thing back here.\")
 
 
+func _on_tutorial_trigger_body_entered(body):
+	if body.is_in_group(\"player\") and playerHasObjective and !DecorDialogue:
+		DecorDialogue = true
+		
+		player.dialogue_queue.append(0)
+		player.dialogue_queue.append(\"hey, by the way. if you want to keep anything around here\")
+		player.dialogue_queue.append(\"feel free to bring it back with you. the lift (should) support it\")
+		player.dialogue_queue.append(\"i'd like to see how you'd decorate that box I gave you \")
 "
 
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_8dach"]
-albedo_color = Color(0.964706, 1, 0.796078, 1)
-
-[sub_resource type="Environment" id="Environment_abqj6"]
-background_mode = 1
-ambient_light_source = 2
-ambient_light_color = Color(0.385493, 0.385492, 0.385492, 1)
-glow_bloom = 1.0
-fog_light_color = Color(0, 0, 0, 1)
-fog_density = 0.07
-volumetric_fog_density = 0.0532
-volumetric_fog_albedo = Color(0, 0, 0, 1)
-volumetric_fog_emission_energy = 0.0
-volumetric_fog_detail_spread = 6.0
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_0vtjb"]
+render_priority = 0
+shader = ExtResource("7_jmbv3")
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_m2epx"]
-size = Vector3(20, 10, 20)
+size = Vector3(31, 10, 10)
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_giiva"]
+render_priority = 0
+shader = ExtResource("14_eekcq")
+shader_parameter/emission_strength = 0.2
+shader_parameter/picture = ExtResource("14_u6b8x")
 
 [node name="BasicLevel" type="Node3D"]
 script = SubResource("GDScript_x6txf")
 
-[node name="Player_v2" parent="." instance=ExtResource("1_01d17")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2, 0)
+[node name="Player" parent="." instance=ExtResource("1_01d17")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -7.7242, 0)
 
 [node name="ObjectiveLevelStart" parent="." instance=ExtResource("4_5dpaq")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.428513, 5, 0.786789)
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 0, 0.5, 0)
 nextscene = ExtResource("4_ymukl")
 nextscene_string = "res://Elements/environments/chapter1/c1_m2.tscn"
 
@@ -77,53 +97,91 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 43.6728, 2.00001, -42.8468)
 
 [node name="basic" parent="." instance=ExtResource("1_wejc2")]
 
-[node name="Level" parent="basic" index="0"]
-material_override = SubResource("StandardMaterial3D_8dach")
+[node name="Floor " parent="basic" index="1"]
+surface_material_override/0 = ExtResource("6_icbmh")
 
-[node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
-transform = Transform3D(0.866025, 0.482963, 0.12941, 0, -0.258819, 0.965926, 0.5, -0.836516, -0.224144, -19, 7.73072, 32)
-light_color = Color(0.533333, 0.533333, 0.533333, 1)
-shadow_enabled = true
-sky_mode = 1
+[node name="Terrain " parent="basic" index="2"]
+material_override = SubResource("ShaderMaterial_0vtjb")
 
-[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
-environment = SubResource("Environment_abqj6")
+[node name="Walls " parent="basic" index="3"]
+material_override = ExtResource("8_bbgn8")
+
+[node name="WorldEnvironment" parent="." instance=ExtResource("6_gi71d")]
 
 [node name="TutorialTrigger" type="Area3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 40, 5, -40)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 17, 5, 1)
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="TutorialTrigger"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -6.5, 0, -1)
 shape = SubResource("BoxShape3D_m2epx")
 
 [node name="Props" type="Node" parent="."]
 
-[node name="Prop2" parent="Props" instance=ExtResource("5_p2srq")]
-transform = Transform3D(0.982245, 0, -0.187604, 0, 1, 0, 0.187604, 0, 0.982245, 31.6534, 1, -30.1284)
+[node name="picture_xlarge" parent="Props" instance=ExtResource("13_umhby")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 32.7995, 4.05804, -50)
 
-[node name="Prop5" parent="Props" instance=ExtResource("5_p2srq")]
-transform = Transform3D(0.994213, 0, -0.107427, 0, 1, 0, 0.107427, 0, 0.994213, 31.5113, 1, -48.3341)
+[node name="Picture_XLarge -rigid" parent="Props/picture_xlarge" index="0"]
+transform = Transform3D(1, 0, 0, 0, -1, 4.37114e-08, 0, -4.37114e-08, -1, 0, 0, 0)
 
-[node name="Prop20" parent="Props" instance=ExtResource("5_p2srq")]
-transform = Transform3D(0.839032, 0, -0.544083, 0, 1, 0, 0.544083, 0, 0.839032, 31.5113, 3, -47.4391)
+[node name="Picture_XLarge -rigid" parent="Props/picture_xlarge/Picture_XLarge -rigid" index="0"]
+surface_material_override/1 = SubResource("ShaderMaterial_giiva")
 
-[node name="Prop6" parent="Props" instance=ExtResource("5_p2srq")]
-transform = Transform3D(0.987225, 0, 0.15933, 0, 1, 0, -0.15933, 0, 0.987225, 31.5636, 1, -45.6159)
+[node name="vase" parent="Props" instance=ExtResource("13_bp6gc")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 32.7163, 1.04861, -43.8966)
 
-[node name="Prop7" parent="Props" instance=ExtResource("5_p2srq")]
-transform = Transform3D(0.873135, 0, -0.487479, 0, 1, 0, 0.487479, 0, 0.873135, 48.6284, 1, -34.6534)
+[node name="lamp" parent="Props" instance=ExtResource("17_6y3mn")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 38.2521, 0.756565, 3.57369)
 
-[node name="Prop8" parent="Props" instance=ExtResource("5_p2srq")]
-transform = Transform3D(0.9843, 0, -0.176501, 0, 1, 0, 0.176501, 0, 0.9843, 48.8217, 1, -32.3565)
+[node name="chair" parent="Props" instance=ExtResource("17_34r8c")]
+transform = Transform3D(-0.707107, 0, -0.707107, 0, 1, 0, 0.707107, 0, -0.707107, 41.9933, 1.8477, -37.4913)
 
-[node name="Prop19" parent="Props" instance=ExtResource("5_p2srq")]
-transform = Transform3D(0.792407, 0, 0.609993, 0, 1, 0, -0.609993, 0, 0.792407, 48.8217, 3, -32.3565)
+[node name="pot" parent="Props" instance=ExtResource("20_6rdim")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 41.9836, 2.14561, -37.6453)
 
-[node name="Prop9" parent="Props" instance=ExtResource("5_p2srq")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 48, 1, -48)
+[node name="vase2" parent="Props" instance=ExtResource("13_bp6gc")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 39.4324, 1.04861, -36.3556)
 
-[node name="Prop13" parent="Props" instance=ExtResource("5_p2srq")]
-transform = Transform3D(0.819812, 0, 0.572633, 0, 1, 0, -0.572633, 0, 0.819812, 31.4343, 1, -16.9251)
+[node name="pot2" parent="Props" instance=ExtResource("20_6rdim")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 40.3939, 0.690083, -41.0623)
+
+[node name="bench" parent="Props" instance=ExtResource("18_hwqgn")]
+transform = Transform3D(0.965926, 0, 0.258819, 0, 1, 0, -0.258819, 0, 0.965926, 33, 0.229656, -39)
+
+[node name="chair2" parent="Props" instance=ExtResource("17_34r8c")]
+transform = Transform3D(-0.5, 0, -0.866025, 0, 1, 0, 0.866025, 0, -0.5, 47, 1.8477, -34)
+
+[node name="lamp2" parent="Props" instance=ExtResource("17_6y3mn")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 35, 0.756565, -48)
+
+[node name="table" parent="Props" instance=ExtResource("21_t6n2y")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 37.3885, 1.0976, -39.0486)
+
+[node name="vase3" parent="Props" instance=ExtResource("13_bp6gc")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 37.2219, 2.51284, -39.055)
+
+[node name="cone" parent="Props" instance=ExtResource("22_bjjyq")]
+transform = Transform3D(0.911446, 0, 0.411419, 0, 1, 0, -0.411419, 0, 0.911446, 29.5004, 0.901751, -3.81927)
+
+[node name="chair3" parent="Props" instance=ExtResource("17_34r8c")]
+transform = Transform3D(-0.621695, 0, 0.78326, 0, 1, 0, -0.78326, 0, -0.621695, 15.0326, 1.8477, 3.29671)
+
+[node name="bucket" parent="Props" instance=ExtResource("23_fxv8a")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 31.121, 0.68668, -4.69173)
+
+[node name="lamp_tall" parent="Props" instance=ExtResource("24_lhqsg")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 32, 1.63216, -9)
+
+[node name="powerpole" parent="." instance=ExtResource("22_4mcdc")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 19, 4, 14)
+
+[node name="Ambient" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("23_t20xf")
+volume_db = -20.0
+autoplay = true
+bus = &"ambience"
+parameters/looping = true
 
 [connection signal="body_entered" from="TutorialTrigger" to="." method="_on_tutorial_trigger_body_entered"]
 
 [editable path="basic"]
+[editable path="Props/picture_xlarge"]

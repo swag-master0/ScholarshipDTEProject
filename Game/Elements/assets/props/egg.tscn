@@ -1,0 +1,16 @@
+[gd_scene load_steps=3 format=3 uid="uid://c2t01npad5qg3"]
+
+[ext_resource type="PackedScene" uid="uid://niusnw1vqp8q" path="res://Art/blend/assets/prop/egg.blend" id="1_8mw84"]
+[ext_resource type="Script" path="res://Elements/assets/props/template/prop.gd" id="2_nf3cb"]
+
+[node name="egg" instance=ExtResource("1_8mw84")]
+
+[node name="Egg -rigid" parent="." index="0"]
+mass = 25.0
+contact_monitor = true
+max_contacts_reported = 5
+script = ExtResource("2_nf3cb")
+
+[node name="Sound2" type="AudioStreamPlayer3D" parent="Egg -rigid" index="2"]
+
+[connection signal="body_entered" from="Egg -rigid" to="Egg -rigid" method="_on_body_entered"]

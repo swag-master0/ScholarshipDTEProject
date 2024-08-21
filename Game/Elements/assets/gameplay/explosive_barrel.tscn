@@ -1,0 +1,42 @@
+[gd_scene load_steps=7 format=3 uid="uid://b5c4qe603h5o"]
+
+[ext_resource type="Script" path="res://Elements/assets/gameplay/explosive_barrel.gd" id="1_q17t3"]
+[ext_resource type="PackedScene" uid="uid://d03b14il32qs5" path="res://Elements/assets/gameplay/explosion.tscn" id="2_rt6tb"]
+[ext_resource type="PackedScene" uid="uid://bcj7w8qtlukgu" path="res://Art/blend/assets/misc/barrel.blend" id="3_4m161"]
+
+[sub_resource type="PhysicsMaterial" id="PhysicsMaterial_vgn1v"]
+rough = true
+
+[sub_resource type="CylinderShape3D" id="CylinderShape3D_laxei"]
+height = 1.93726
+radius = 0.65628
+
+[sub_resource type="CylinderShape3D" id="CylinderShape3D_ubs4g"]
+height = 2.1
+radius = 0.8
+
+[node name="ExplosiveBarrel" type="RigidBody3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
+mass = 10.0
+physics_material_override = SubResource("PhysicsMaterial_vgn1v")
+script = ExtResource("1_q17t3")
+explosion = ExtResource("2_rt6tb")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.0222471, 0)
+shape = SubResource("CylinderShape3D_laxei")
+
+[node name="barrel" parent="." instance=ExtResource("3_4m161")]
+transform = Transform3D(0.65, 0, 0, 0, 0.65, 0, 0, 0, 0.65, 0, -1, 0)
+
+[node name="Area3D" type="Area3D" parent="."]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Area3D"]
+shape = SubResource("CylinderShape3D_ubs4g")
+
+[node name="Timer" type="Timer" parent="."]
+wait_time = 0.5
+one_shot = true
+
+[connection signal="body_entered" from="Area3D" to="." method="_on_area_3d_body_entered"]
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]
