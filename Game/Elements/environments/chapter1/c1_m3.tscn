@@ -1,4 +1,4 @@
-[gd_scene load_steps=46 format=3 uid="uid://w2l3dpbjub7c"]
+[gd_scene load_steps=47 format=3 uid="uid://w2l3dpbjub7c"]
 
 [ext_resource type="PackedScene" uid="uid://b5c4qe603h5o" path="res://Elements/assets/gameplay/explosive_barrel.tscn" id="1_5e1qi"]
 [ext_resource type="PackedScene" uid="uid://bcou7suhphdrp" path="res://Elements/function/player/player.tscn" id="2_adrog"]
@@ -37,6 +37,7 @@
 [ext_resource type="PackedScene" uid="uid://bfrpck2673n1q" path="res://Elements/assets/props/coffin.tscn" id="32_h8tyr"]
 [ext_resource type="PackedScene" uid="uid://cdwnv2xmk7f6k" path="res://Elements/assets/misc/nest.tscn" id="33_448hu"]
 [ext_resource type="Texture2D" uid="uid://batmtsqum2nm8" path="res://Art/assets/misc/wizard.png" id="35_rdhmn"]
+[ext_resource type="AudioStream" uid="uid://c2bnpiykqjcwb" path="res://Art/audio/ambient/ambient-1.mp3" id="38_yn2n1"]
 
 [sub_resource type="GDScript" id="GDScript_ur7ug"]
 resource_name = "c1_m3-functionality"
@@ -272,26 +273,17 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 7.93963, 2, -28.4437)
 
 [node name="Skeleton3D" parent="Enemy/spider/Armature" index="0"]
 bones/1/rotation = Quaternion(-0.120468, 0.871344, 0.386259, 0.27758)
-bones/1/scale = Vector3(1, 1, 1)
 bones/2/rotation = Quaternion(-0.851004, -0.00340442, 0.013212, 0.524981)
-bones/2/scale = Vector3(1, 1, 1)
 bones/3/rotation = Quaternion(-0.135727, -6.13512e-08, 0.00188086, 0.990745)
-bones/3/scale = Vector3(1, 1, 1)
 bones/4/scale = Vector3(1, 1, 1)
 bones/5/rotation = Quaternion(0.160542, 0.00137762, -0.836209, 0.524384)
-bones/5/scale = Vector3(1, 1, 1)
 bones/6/rotation = Quaternion(0.0230141, -7.35499e-08, -0.13309, 0.990837)
-bones/6/scale = Vector3(1, 1, 1)
 bones/7/rotation = Quaternion(-0.459967, -0.328176, -0.039048, 0.82414)
 bones/8/rotation = Quaternion(-0.754688, -0.052537, 0.295545, 0.583386)
-bones/8/scale = Vector3(1, 1, 1)
 bones/9/rotation = Quaternion(-0.128149, -1.31788e-08, 0.0689897, 0.989352)
-bones/9/scale = Vector3(1, 1, 1)
 bones/10/rotation = Quaternion(-0.459967, 0.328176, 0.039048, 0.82414)
 bones/11/rotation = Quaternion(-0.754688, 0.052537, -0.295545, 0.583386)
-bones/11/scale = Vector3(1, 1, 1)
 bones/12/rotation = Quaternion(-0.128149, 1.31788e-08, -0.0689897, 0.989352)
-bones/12/scale = Vector3(1, 1, 1)
 
 [node name="Info" parent="Enemy" index="2"]
 health = 1.0
@@ -311,6 +303,14 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 61, -2, -86)
 
 [node name="Enemy6" parent="." instance=ExtResource("5_7ns25")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 62, -2, -83)
+
+[node name="Ambient" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("38_yn2n1")
+volume_db = -30.0
+pitch_scale = 2.0
+autoplay = true
+bus = &"ambience"
+parameters/looping = true
 
 [editable path="NavigationRegion3D/level4"]
 [editable path="Props/picture_small"]

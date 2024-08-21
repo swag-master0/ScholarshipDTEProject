@@ -1,4 +1,4 @@
-[gd_scene load_steps=47 format=3 uid="uid://cov8v6858hevf"]
+[gd_scene load_steps=48 format=3 uid="uid://cov8v6858hevf"]
 
 [ext_resource type="PackedScene" uid="uid://ch7t6b0c3tjwr" path="res://Elements/enemies/enemy.tscn" id="1_7b51b"]
 [ext_resource type="PackedScene" uid="uid://g2jwt8atruu7" path="res://Art/environment/environment.tscn" id="3_1kepo"]
@@ -36,6 +36,7 @@
 [ext_resource type="PackedScene" uid="uid://hfryhtqbwdgv" path="res://Elements/assets/props/rock_3.tscn" id="34_8rjl1"]
 [ext_resource type="PackedScene" uid="uid://bgobrloxn3vug" path="res://Elements/assets/props/rock_2.tscn" id="35_c4w3h"]
 [ext_resource type="PackedScene" uid="uid://cxin5ii35rudp" path="res://Elements/assets/props/ladder.tscn" id="36_dmkc3"]
+[ext_resource type="AudioStream" uid="uid://c2bnpiykqjcwb" path="res://Art/audio/ambient/ambient-1.mp3" id="37_k3p5j"]
 
 [sub_resource type="GDScript" id="GDScript_jf0va"]
 resource_name = "c1_m2-functionality"
@@ -285,6 +286,14 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 81.1269, 5.76148, -20.715)
 
 [node name="ladder" parent="Props" instance=ExtResource("36_dmkc3")]
 transform = Transform3D(1, 0, 0, 0, 0.962308, 0.271961, 0, -0.271961, 0.962308, 75.2576, 2.90002, -39.0538)
+
+[node name="Ambient" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("37_k3p5j")
+volume_db = -20.0
+pitch_scale = 0.5
+autoplay = true
+bus = &"ambience"
+parameters/looping = true
 
 [connection signal="body_entered" from="Trigger" to="." method="_on_trigger_body_entered"]
 [connection signal="body_entered" from="DialogueTrigger" to="." method="_on_dialogue_trigger_body_entered"]

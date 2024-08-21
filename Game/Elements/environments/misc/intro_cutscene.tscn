@@ -1,4 +1,4 @@
-[gd_scene load_steps=34 format=3 uid="uid://c8axtmdbhahks"]
+[gd_scene load_steps=35 format=3 uid="uid://c8axtmdbhahks"]
 
 [ext_resource type="Script" path="res://Elements/environments/misc/player_cell.gd" id="1_kngen"]
 [ext_resource type="Script" path="res://Elements/environments/misc/introsequence.gd" id="2_r8356"]
@@ -11,6 +11,7 @@
 [ext_resource type="PackedScene" uid="uid://4lamctxd2su2" path="res://Elements/assets/misc/carraige.tscn" id="7_nnqxf"]
 [ext_resource type="Theme" uid="uid://qpcg0ktiqy0j" path="res://Art/assets/theme.tres" id="10_5he3v"]
 [ext_resource type="Texture2D" uid="uid://dp1ls6ddglxoj" path="res://Art/assets/assets/cartoon_particle_5.png" id="10_h38d2"]
+[ext_resource type="AudioStream" uid="uid://cnxylq8eed23p" path="res://Art/audio/ambient/ambient-2.mp3" id="12_bejon"]
 
 [sub_resource type="Animation" id="Animation_w48k8"]
 length = 0.001
@@ -456,6 +457,12 @@ size = Vector3(1.09074, 15.07, 5.16859)
 [node name="GPUParticlesCollisionBox3D5" type="GPUParticlesCollisionBox3D" parent="Incinerator/GPUParticleCollisions"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.119852, 13.6256, -0.203362)
 size = Vector3(9.68892, 0.815273, 5.16859)
+
+[node name="Ambient" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("12_bejon")
+volume_db = -10.0
+autoplay = true
+bus = &"ambience"
 
 [connection signal="body_entered" from="RailsPlayerHub/carraige/Area3D" to="DialogueHandler" method="_on_area_3d_body_entered"]
 [connection signal="body_entered" from="RailsPlayerHub/Crushed" to="DialogueHandler" method="_on_crushed_body_entered"]

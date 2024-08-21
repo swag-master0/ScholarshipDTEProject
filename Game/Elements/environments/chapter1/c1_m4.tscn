@@ -1,4 +1,4 @@
-[gd_scene load_steps=53 format=3 uid="uid://bkvmwrsm7nbyt"]
+[gd_scene load_steps=54 format=3 uid="uid://bkvmwrsm7nbyt"]
 
 [ext_resource type="PackedScene" uid="uid://ch7t6b0c3tjwr" path="res://Elements/enemies/enemy.tscn" id="1_45rao"]
 [ext_resource type="PackedScene" uid="uid://dwe6hqxcxga2x" path="res://Elements/enemies/bomber.tscn" id="2_np0wd"]
@@ -39,6 +39,7 @@
 [ext_resource type="PackedScene" uid="uid://currpdc0rou40" path="res://Elements/assets/props/couch_small.tscn" id="36_18hjh"]
 [ext_resource type="PackedScene" uid="uid://cdxkrkn34253v" path="res://Elements/assets/props/picture_large.tscn" id="37_7rmub"]
 [ext_resource type="Texture2D" uid="uid://3r73i8pm0van" path="res://Art/assets/misc/scenery.jpg" id="38_ffgp5"]
+[ext_resource type="AudioStream" uid="uid://c2bnpiykqjcwb" path="res://Art/audio/ambient/ambient-1.mp3" id="40_4mf6w"]
 
 [sub_resource type="GDScript" id="GDScript_w4vx7"]
 resource_name = "c2_m4-functionality"
@@ -418,6 +419,14 @@ size = Vector3(10, 10, 10)
 texture_albedo = ExtResource("32_ibswl")
 texture_normal = ExtResource("32_ibswl")
 modulate = Color(1, 1, 1, 0.443137)
+
+[node name="Ambient" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("40_4mf6w")
+volume_db = -30.0
+pitch_scale = 3.0
+autoplay = true
+bus = &"ambience"
+parameters/looping = true
 
 [connection signal="body_entered" from="Trigger" to="." method="_on_trigger_body_entered"]
 [connection signal="body_entered" from="ObjectiveArea" to="." method="_on_objective_area_body_entered"]
