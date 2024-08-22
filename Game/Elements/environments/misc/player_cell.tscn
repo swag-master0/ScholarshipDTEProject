@@ -661,6 +661,7 @@ stream = ExtResource("14_g2kid")
 volume_db = -10.0
 autoplay = true
 bus = &"ambience"
+parameters/looping = true
 
 [connection signal="ObjectBurnt" from="." to="DialogueHandler" method="_on_player_hub_object_burnt"]
 [connection signal="body_entered" from="RailsPlayerHub/carraige/Area3D" to="DialogueHandler" method="_on_exit_body_entered"]

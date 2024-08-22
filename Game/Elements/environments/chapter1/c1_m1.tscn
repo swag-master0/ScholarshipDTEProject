@@ -1,4 +1,4 @@
-[gd_scene load_steps=28 format=3 uid="uid://rq3g3n4qshr3"]
+[gd_scene load_steps=30 format=3 uid="uid://rq3g3n4qshr3"]
 
 [ext_resource type="PackedScene" uid="uid://bcou7suhphdrp" path="res://Elements/function/player/player.tscn" id="1_01d17"]
 [ext_resource type="PackedScene" uid="uid://c61dj4vsac881" path="res://Art/blend/levels_chapter1/c1_m1.blend" id="1_wejc2"]
@@ -9,10 +9,10 @@
 [ext_resource type="PackedScene" uid="uid://cihisq18677xu" path="res://Elements/function/objective_item.tscn" id="6_x147h"]
 [ext_resource type="Shader" path="res://Art/materials/terrain.gdshader" id="7_jmbv3"]
 [ext_resource type="Material" uid="uid://cdpq1kptvx6j5" path="res://Art/materials/walls.material" id="8_bbgn8"]
+[ext_resource type="Texture2D" uid="uid://bysh1ur37uogr" path="res://Art/assets/misc/real.jpg" id="12_f6hxd"]
 [ext_resource type="PackedScene" uid="uid://c775kwttbjh40" path="res://Elements/assets/props/vase.tscn" id="13_bp6gc"]
 [ext_resource type="PackedScene" uid="uid://cp8y4w0hidlhu" path="res://Elements/assets/props/picture_xlarge.tscn" id="13_umhby"]
 [ext_resource type="Shader" path="res://Art/materials/props/picture_image.gdshader" id="14_eekcq"]
-[ext_resource type="Texture2D" uid="uid://fv11y40xx78" path="res://Art/assets/misc/japan_advert.png" id="14_u6b8x"]
 [ext_resource type="PackedScene" uid="uid://blx6snb20uj8u" path="res://Elements/assets/props/lamp.tscn" id="17_6y3mn"]
 [ext_resource type="PackedScene" uid="uid://i43wpwf0q6em" path="res://Elements/assets/props/chair.tscn" id="17_34r8c"]
 [ext_resource type="PackedScene" uid="uid://dhejktumttlcs" path="res://Elements/assets/props/bench.tscn" id="18_hwqgn"]
@@ -20,7 +20,9 @@
 [ext_resource type="PackedScene" uid="uid://dqgrckw7n88n4" path="res://Elements/assets/props/table.tscn" id="21_t6n2y"]
 [ext_resource type="PackedScene" uid="uid://cgmhghceyys8x" path="res://Art/blend/assets/misc/powerpole.blend" id="22_4mcdc"]
 [ext_resource type="PackedScene" uid="uid://bsbl4boqt5vj4" path="res://Elements/assets/props/cone.tscn" id="22_bjjyq"]
+[ext_resource type="PackedScene" uid="uid://hfryhtqbwdgv" path="res://Elements/assets/props/rock_3.tscn" id="22_sxdio"]
 [ext_resource type="PackedScene" uid="uid://ctc20d63lt2h0" path="res://Elements/assets/props/bucket.tscn" id="23_fxv8a"]
+[ext_resource type="PackedScene" uid="uid://cdwnv2xmk7f6k" path="res://Elements/assets/misc/nest.tscn" id="23_lddgx"]
 [ext_resource type="AudioStream" uid="uid://c2bnpiykqjcwb" path="res://Art/audio/ambient/ambient-1.mp3" id="23_t20xf"]
 [ext_resource type="PackedScene" uid="uid://brfvkewj7bfba" path="res://Elements/assets/props/lamp_tall.tscn" id="24_lhqsg"]
 
@@ -37,8 +39,9 @@ var DecorDialogue : bool = false
 func _ready():
 	await get_tree().create_timer(2).timeout
 	
-	player.dialogue_queue.append(0)
+	player.dialogue_queue.append(5)
 	player.dialogue_queue.append(\"welcome to the surface world!\")
+	player.dialogue_queue.append(1)
 	player.dialogue_queue.append(\"it's a lil' messed up, but that's probably fine.\")
 	player.dialogue_queue.append(\"anyways, we're here. there should be a nest up ahead\")
 
@@ -51,8 +54,9 @@ func _process(_delta):
 				
 				await get_tree().create_timer(2).timeout
 				
-				player.dialogue_queue.append(0)
+				player.dialogue_queue.append(1)
 				player.dialogue_queue.append(\"now, my favor for you, please bring that back here\")
+				player.dialogue_queue.append(4)
 				player.dialogue_queue.append(\"the lift is waiting for you.\")
 				
 				#i.Dialogue(\"Good. Now get that thing back here.\")
@@ -62,9 +66,11 @@ func _on_tutorial_trigger_body_entered(body):
 	if body.is_in_group(\"player\") and playerHasObjective and !DecorDialogue:
 		DecorDialogue = true
 		
-		player.dialogue_queue.append(0)
+		player.dialogue_queue.append(1)
 		player.dialogue_queue.append(\"hey, by the way. if you want to keep anything around here\")
-		player.dialogue_queue.append(\"feel free to bring it back with you. the lift (should) support it\")
+		player.dialogue_queue.append(4)
+		player.dialogue_queue.append(\"feel free to bring it back with you. the lift [font_size=5]should[/font_size] support it\")
+		player.dialogue_queue.append(5)
 		player.dialogue_queue.append(\"i'd like to see how you'd decorate that box I gave you \")
 "
 
@@ -79,7 +85,7 @@ size = Vector3(31, 10, 10)
 render_priority = 0
 shader = ExtResource("14_eekcq")
 shader_parameter/emission_strength = 0.2
-shader_parameter/picture = ExtResource("14_u6b8x")
+shader_parameter/picture = ExtResource("12_f6hxd")
 
 [node name="BasicLevel" type="Node3D"]
 script = SubResource("GDScript_x6txf")
@@ -93,7 +99,9 @@ nextscene = ExtResource("4_ymukl")
 nextscene_string = "res://Elements/environments/chapter1/c1_m2.tscn"
 
 [node name="ObjectiveItem" parent="." instance=ExtResource("6_x147h")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 43.6728, 2.00001, -42.8468)
+transform = Transform3D(0.981262, 0.184747, 0.0547036, -0.192676, 0.940883, 0.278595, 0, -0.283915, 0.958849, 43.6728, 1.42712, -42.4665)
+freeze = true
+freeze_mode = 1
 
 [node name="basic" parent="." instance=ExtResource("1_wejc2")]
 
@@ -118,7 +126,7 @@ shape = SubResource("BoxShape3D_m2epx")
 [node name="Props" type="Node" parent="."]
 
 [node name="picture_xlarge" parent="Props" instance=ExtResource("13_umhby")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 32.7995, 4.05804, -50)
+transform = Transform3D(-1, 8.74228e-08, 0, -8.74228e-08, -1, 0, 0, 0, 1, 33.7995, 4.05804, -50)
 
 [node name="Picture_XLarge -rigid" parent="Props/picture_xlarge" index="0"]
 transform = Transform3D(1, 0, 0, 0, -1, 4.37114e-08, 0, -4.37114e-08, -1, 0, 0, 0)
@@ -170,6 +178,12 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 31.121, 0.68668, -4.69173)
 
 [node name="lamp_tall" parent="Props" instance=ExtResource("24_lhqsg")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 32, 1.63216, -9)
+
+[node name="rock3" parent="Props" instance=ExtResource("22_sxdio")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 31.4172, 1.54906, -23.8814)
+
+[node name="nest" parent="Props" instance=ExtResource("23_lddgx")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 43.6046, 0.324082, -42.402)
 
 [node name="powerpole" parent="." instance=ExtResource("22_4mcdc")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 19, 4, 14)

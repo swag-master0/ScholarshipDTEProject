@@ -463,6 +463,7 @@ stream = ExtResource("12_bejon")
 volume_db = -10.0
 autoplay = true
 bus = &"ambience"
+parameters/looping = true
 
 [connection signal="body_entered" from="RailsPlayerHub/carraige/Area3D" to="DialogueHandler" method="_on_area_3d_body_entered"]
 [connection signal="body_entered" from="RailsPlayerHub/Crushed" to="DialogueHandler" method="_on_crushed_body_entered"]

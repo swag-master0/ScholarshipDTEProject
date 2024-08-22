@@ -1,7 +1,6 @@
-[gd_scene load_steps=12 format=3 uid="uid://c4ousj15h5a10"]
+[gd_scene load_steps=11 format=3 uid="uid://c4ousj15h5a10"]
 
 [ext_resource type="Script" path="res://Elements/function/main_menu.gd" id="1_cvoh4"]
-[ext_resource type="Texture2D" uid="uid://duj8j8u4gdfeq" path="res://Art/assets/assets/logo.png" id="3_6km0x"]
 [ext_resource type="Theme" uid="uid://qpcg0ktiqy0j" path="res://Art/assets/theme.tres" id="3_74hs1"]
 [ext_resource type="PackedScene" uid="uid://233quw6ftjqa" path="res://Elements/function/options_menu.tscn" id="3_lfre7"]
 [ext_resource type="Shader" uid="uid://d08hg4q0p02dx" path="res://Art/materials/main_menu.tres" id="4_mqevi"]
@@ -112,19 +111,6 @@ grow_horizontal = 2
 grow_vertical = 2
 text = "QUIT
 "
-
-[node name="TextureRect" type="TextureRect" parent="GUI/MainMenu"]
-layout_mode = 1
-anchors_preset = 5
-anchor_left = 0.5
-anchor_right = 0.5
-offset_left = -110.0
-offset_top = 19.105
-offset_right = 110.0
-offset_bottom = 239.105
-grow_horizontal = 2
-texture = ExtResource("3_6km0x")
-expand_mode = 1
 
 [node name="OptionsMenu" parent="GUI" instance=ExtResource("3_lfre7")]
 visible = false

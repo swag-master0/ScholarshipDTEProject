@@ -32,6 +32,18 @@ tracks/0/keys = {
 "update": 0,
 "values": [Vector3(1, 1, 1)]
 }
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("../../../../FaceAttachment/Bone/EyePos:scale")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(1, 1, 1)]
+}
 
 [sub_resource type="Animation" id="Animation_3jkeg"]
 resource_name = "yap"
@@ -47,7 +59,19 @@ tracks/0/keys = {
 "times": PackedFloat32Array(0, 0.05),
 "transitions": PackedFloat32Array(1, 1),
 "update": 0,
-"values": [Vector3(1.1, 1.1, 1.1), Vector3(1, 1, 1)]
+"values": [Vector3(1.03, 1.03, 1.03), Vector3(1, 1, 1)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("../../../../FaceAttachment/Bone/EyePos:scale")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.05),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector3(1.03, 1.03, 1.03), Vector3(1, 1, 1)]
 }
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_lrclt"]
@@ -100,10 +124,10 @@ animations = [{
 }]
 
 [sub_resource type="Environment" id="Environment_fr6e1"]
-glow_enabled = true
 glow_intensity = 8.0
 glow_bloom = 0.61
-volumetric_fog_density = 0.7664
+volumetric_fog_enabled = true
+volumetric_fog_density = 0.837
 volumetric_fog_albedo = Color(0, 0, 0, 1)
 volumetric_fog_sky_affect = 0.165
 
@@ -169,16 +193,16 @@ external_skeleton = NodePath("../../a-os/A-OS/Skeleton3D")
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.25, 0.85)
 
 [node name="EyeLeft" type="AnimatedSprite3D" parent="Scene/FaceAttachment/Bone/EyePos"]
-transform = Transform3D(0.999994, 0.000647317, -0.00339638, -0.000782048, 0.999207, -0.0398188, 0.0033679, 0.0398213, 0.999202, -0.25, 0, 0)
-pixel_size = 0.02
+transform = Transform3D(0.999994, 0.000647318, -0.00339637, -0.000782048, 0.999207, -0.0398189, 0.0033679, 0.0398213, 0.999202, -0.4, 0, 0)
+pixel_size = 0.04
 texture_filter = 0
 sprite_frames = SubResource("SpriteFrames_mjxlo")
 animation = &"sorrow"
 autoplay = "idle"
 
 [node name="EyeRight" type="AnimatedSprite3D" parent="Scene/FaceAttachment/Bone/EyePos"]
-transform = Transform3D(-0.999994, 0.000647317, -0.00339637, 0.000782048, 0.999207, -0.0398189, -0.0033679, 0.0398213, 0.999201, 0.25, 0, 0)
-pixel_size = 0.02
+transform = Transform3D(-0.999994, 0.000647291, -0.00339634, 0.00078202, 0.999207, -0.0398189, -0.00336787, 0.0398213, 0.999201, 0.4, 0, 0)
+pixel_size = 0.04
 texture_filter = 0
 sprite_frames = SubResource("SpriteFrames_mjxlo")
 animation = &"idle"
