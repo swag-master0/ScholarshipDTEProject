@@ -14,7 +14,7 @@ config/name="Amelioration"
 config/tags=PackedStringArray("main_projects")
 run/main_scene="res://Elements/function/main_menu.tscn"
 config/features=PackedStringArray("4.3", "Forward Plus")
-config/icon="res://Art/assets/misc/icon.svg"
+config/icon="res://Art/assets/assets/logo.png"
 
 [audio]
 

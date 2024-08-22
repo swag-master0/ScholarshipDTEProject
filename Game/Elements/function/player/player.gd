@@ -60,6 +60,7 @@ func TOP():
 @onready var sound_footstep = $Audio/PlayerWalk
 @onready var sound_select = $Audio/PlayerSelect
 @onready var sound_hurt = $Audio/PlayerHurt
+@onready var sound_jump = $Audio/PlayerJump
 
 @onready var animation_tree = $AnimationTree
 @onready var state_machine = animation_tree.get("parameters/playback")
@@ -132,7 +133,8 @@ func _physics_process(delta):
 		
 		if Input.is_action_pressed("jump") and is_on_floor():
 			velocity.y = JUMP_VELOCITY
-			
+			sound_jump.play()
+		
 		
 		MousePosition()
 		

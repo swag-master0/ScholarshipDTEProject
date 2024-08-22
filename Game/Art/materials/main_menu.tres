@@ -7,18 +7,21 @@ default_value = 1.0
 
 [sub_resource type="Gradient" id="Gradient_2usxy"]
 interpolation_mode = 1
-offsets = PackedFloat32Array(0, 0.523207, 0.772152)
-colors = PackedColorArray(0, 0, 0, 1, 0.639216, 0.109804, 0.176471, 1, 0.985866, 0.492756, 0.470591, 1)
+offsets = PackedFloat32Array(0, 0.0497925)
+colors = PackedColorArray(0, 0, 0, 1, 0.0402707, 0.00124062, 0.00285978, 1)
 
 [sub_resource type="FastNoiseLite" id="FastNoiseLite_3erfx"]
-noise_type = 3
+noise_type = 2
+frequency = 0.0155
+fractal_type = 0
+cellular_return_type = 4
 metadata/_preview_in_3d_space_ = true
 
 [sub_resource type="NoiseTexture2D" id="NoiseTexture2D_uiryc"]
 width = 1024
 height = 1024
 in_3d_space = true
-seamless = true
+seamless_blend_skirt = 0.0
 color_ramp = SubResource("Gradient_2usxy")
 noise = SubResource("FastNoiseLite_3erfx")
 
@@ -79,7 +82,7 @@ void fragment() {
 
 }
 "
-graph_offset = Vector2(-332, 52)
+graph_offset = Vector2(-106, 58)
 nodes/fragment/0/position = Vector2(400, 140)
 nodes/fragment/4/node = SubResource("VisualShaderNodeTexture_05rwf")
 nodes/fragment/4/position = Vector2(120, 140)
