@@ -11,4 +11,3 @@ void fragment() {
 	NORMAL_MAP = textureLod(normal, UV, 1.0).rgb;
 
 }
-

@@ -2041,7 +2041,7 @@
 				},
 				{
 					"input":145,
-					"interpolation":"STEP",
+					"interpolation":"LINEAR",
 					"output":177
 				},
 				{
@@ -2101,7 +2101,7 @@
 				},
 				{
 					"input":145,
-					"interpolation":"LINEAR",
+					"interpolation":"STEP",
 					"output":189
 				},
 				{
