@@ -64,6 +64,8 @@ func _on_portal_body_entered(body):
 
 
 func ActivateIncinerator(type: bool):
+	save_hub_objects()
+	
 	if type:
 		incinerator_active = true
 		incinerator.visible = true
@@ -83,6 +85,8 @@ func ActivateIncinerator(type: bool):
 
 func _on_incinerator_body_entered(body):
 	if incinerator_active:
+		save_hub_objects()
+		
 		incinerator_anim.play("burn")
 		
 		if body.is_in_group("player"):

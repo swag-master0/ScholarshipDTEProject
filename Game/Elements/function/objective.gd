@@ -62,7 +62,9 @@ func ChangeScene():
 	
 	for i in trigger.get_overlapping_bodies():
 		if i is RigidBody3D:
+			
 			if i.is_in_group("objective"):
+				print("object found in objective group")
 				continue
 			
 			# Save each object as it's own PackedScene, to save mesh data and all children of each object
