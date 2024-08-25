@@ -5,7 +5,7 @@ class_name SaveGame
 # ...
 
 
-const save_progression_path = "user://save.tres"
+const save_progression_path = "user://save.res"
 
 # Variables are the things you want to save
 

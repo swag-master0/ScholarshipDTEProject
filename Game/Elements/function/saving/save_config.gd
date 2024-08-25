@@ -1,7 +1,7 @@
 extends Resource
 class_name SaveConfig
 
-const save_config_path = "user://config.tres"
+const save_config_path = "user://config.res"
 
 
 @export_group("Settings")

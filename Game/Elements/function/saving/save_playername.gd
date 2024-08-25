@@ -2,7 +2,7 @@ extends Resource
 class_name PlayerName
 
 
-const save_name_path = "user://save_plrname.tres"
+const save_name_path = "user://save_plrname.res"
 @export var name : String = ""
 
 

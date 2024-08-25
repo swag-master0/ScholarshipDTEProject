@@ -5,8 +5,8 @@ class_name SaveCell
 # ...
 
 
-const save_playerhub_path = "user://cell.tres"
-const save_addtoplayerhub_path = "user://cell_add.tres"
+const save_playerhub_path = "user://cell.res"
+const save_addtoplayerhub_path = "user://cell_add.res"
 
 # Variables are the things you want to save
 

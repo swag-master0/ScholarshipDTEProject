@@ -7,16 +7,17 @@ func TOP():
 
 
 #region INFO: PLAYER VARIABLES
-@export_group("Player Variables")
-@export_category("Tutorial")
+@export_category("Player Variables")
+#@export_category("Tutorial")
+@export_subgroup("Tutorial")
 @export var tutorial_mode : bool = false
 
-@export_category("Preferences")
+@export_subgroup("Preferences")
 @export var SENSITIVITY : float = 0.25
 @export var MAX_LOOK : float = 55
 @export var MIN_LOOK : float = -75
 
-@export_category("Gameplay")
+@export_subgroup("Gameplay")
 @export var SAVE_GAME : bool = true
 @export var SPEED : float = 10
 @export var JUMP_VELOCITY : float = 35
@@ -25,7 +26,7 @@ func TOP():
 @export var PICKUP_RANGE : float = 6
 @export var THROW_FORCE : float = 500
 
-@export_category("Visuals")
+@export_subgroup("Visuals")
 @export var DISPLAY_DUST: bool = true
 
 
@@ -78,11 +79,11 @@ var oldparent = null
 var canPause = true
 var levelchangetriggered = false
 
-var tutorial_proximitydrop = false
 var main_menu = "res://Elements/function/main_menu.tscn"
 
 
 # please leave object blank, but keep as export
+@export_category("Programming")
 @export_group("Programming Stuff")
 @export var isHolding = false
 @export var object : RigidBody3D
@@ -90,7 +91,7 @@ var main_menu = "res://Elements/function/main_menu.tscn"
 @export var player_hub : String = "res://Elements/environments/misc/player_cell.tscn"
 @export var dialogue_queue : Array = [] 
 
-signal DialogueFinished
+signal DialogueFinished(dialogue: String)
 #endregion
 
 
@@ -214,6 +215,7 @@ func _process(delta):
 	if (NearestObject() and NearestObject() is RigidBody3D and global_position.distance_to(NearestObject().global_position) <= PICKUP_RANGE) and isHolding == false:
 		
 		if NearestObject().is_in_group("ungrabbable"):
+			# Prevents grabbing objects marked as ungrabbable
 			return
 		
 		HUD.setCursorPosition(NearestObject().global_position, true)
@@ -229,14 +231,13 @@ func _process(delta):
 			
 			object.reparent(holdpoint)
 			object.set_freeze_enabled(true)
-			object.set_freeze_mode(0)
+			#object.set_freeze_mode(0)
+			object.set_freeze_mode(object.FreezeMode.FREEZE_MODE_STATIC)
 			object.set_collision_layer_value(1, false)
 			object.set_collision_mask_value(1, false)
-			
-			
-			
-		else:
-			pass
+
+			if tutorial_mode:
+				HUD.sendHintToPlayer("You can drop items gently when looking straight down")
 	
 	
 	if !Input.is_action_pressed("click"): 
@@ -258,15 +259,10 @@ func _process(delta):
 			object.set_collision_mask_value(1, true)
 			
 			var force = (cursor.global_position - position).normalized()
-		
-		
-			if pivot.rotation.x < -1 and is_on_floor():
+
+			if pivot.rotation.x < -0.8 and is_on_floor():
 				force = Vector3(0, 0, 0)
 				
-				if tutorial_mode and !tutorial_proximitydrop:
-					tutorial_proximitydrop = true
-					HUD.sendHintToPlayer("You can drop items gently when the cursor is over yourself")
-			
 			
 			for i in obstruction_detection.get_overlapping_bodies():
 				if i is StaticBody3D:
@@ -360,7 +356,8 @@ func QuitToMenu():
 	LoadingScreen.scene_transition()
 
 func FinishDialogue(dialogue: String):
-	emit_signal("DialogueFinished", dialogue)
+	#emit_signal("DialogueFinished", dialogue)
+	DialogueFinished.emit(dialogue)
 
 func ApplySettings():
 	var new_config = SaveConfig.new()

@@ -3,7 +3,6 @@ extends Control
 @onready var parent = $".."
 @onready var info = $"../Info"
 @onready var camera = $"../CentralCameraPoint/SpringArm3D/Camera3D"
-@onready var tutorial_mode = parent.tutorial_mode
 
 @onready var hud_health = $Health
 @onready var hud_healthwhite = $Health/HealthWhite
@@ -152,21 +151,8 @@ func PainVisuals():
 # INFO: LOCK-ON CURSOR AND ENEMY HEALTH BARS
 func setCursorPosition(pos : Vector3, visibility : bool):
 	if visibility:
-		
 		indicator.visible = true
 		indicator.position = camera.unproject_position(pos) - indicator.size / 2
-		
-		
-		if tutorial_mode:
-			indicator_tutorial.visible = true
-			
-			if !tutorial_pickup:
-				tutorial_pickup = true
-				sendHintToPlayer("Use MOUSE 1 to pick up and throw objects")
-		
-		else:
-			indicator_tutorial.visible = false
-		
 	
 	elif !visibility:
 		indicator.visible = false

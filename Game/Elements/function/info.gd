@@ -54,7 +54,7 @@ func Damage(damage: float):
 			if DisplayDamageParticles:
 				particles.emitting = true
 			
-			emit_signal("takeDamage") # TakeDamage is to be used to indicate to objects whether they're taking damage, use to activate vfx and sfx
+			takeDamage.emit() # TakeDamage is to be used to indicate to objects whether they're taking damage, use to activate vfx and sfx
 		
 		health -= damage
 		
@@ -70,8 +70,7 @@ func Damage(damage: float):
 				sound_kill.play()
 				sound_kill.reparent(self.get_parent().get_parent())
 			
-			
-			emit_signal("death") # Death is used to indicate if a object dies
+			death.emit() # Death is used to indicate if a object dies
 	
 	# These signals can be found in the 'Signals' menu on the info node, and can call functions when they get called
 	# They're used to display damage effects, ect
