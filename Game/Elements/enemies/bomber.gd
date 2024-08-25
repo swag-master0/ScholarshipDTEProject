@@ -15,9 +15,7 @@ var player
 var fuse_triggered = false
 
 # navigating
-func _physics_process(delta):
-	
-	var direction = Vector3()
+func _physics_process(_delta):
 	raycast.global_position = global_position
 	raycast.global_rotation = Vector3(0, 0, 0)
 	

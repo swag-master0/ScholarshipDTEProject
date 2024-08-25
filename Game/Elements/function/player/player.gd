@@ -8,7 +8,6 @@ func TOP():
 
 #region INFO: PLAYER VARIABLES
 @export_category("Player Variables")
-#@export_category("Tutorial")
 @export_subgroup("Tutorial")
 @export var tutorial_mode : bool = false
 
@@ -20,8 +19,8 @@ func TOP():
 @export_subgroup("Gameplay")
 @export var SAVE_GAME : bool = true
 @export var SPEED : float = 10
-@export var JUMP_VELOCITY : float = 35
-@export var JUMP_FALLMULTIPLIER : float = 10
+@export var JUMP_VELOCITY : float = 30
+@export var JUMP_FALLMULTIPLIER : float = 15
 @export var TURN_VELOCITY : float = 50
 @export var PICKUP_RANGE : float = 6
 @export var THROW_FORCE : float = 500
@@ -155,7 +154,7 @@ func _physics_process(delta):
 		var input_dir = Input.get_vector("left", "right", "forward", "backward")
 		var direction = (transform.basis * Vector3(input_dir.x, 0, input_dir.y)).normalized()
 		
-		
+
 		if direction and !isHolding:
 			velocity.x = direction.x * SPEED
 			velocity.z = direction.z * SPEED
@@ -210,7 +209,7 @@ func _process(delta):
 	
 	holdpoint_pivot.rotation.x = clamp(-pivot.rotation.x, deg_to_rad(-60), deg_to_rad(0))
 	
-	
+	# Grab Object
 	if (NearestObject() and NearestObject() is RigidBody3D and global_position.distance_to(NearestObject().global_position) <= PICKUP_RANGE) and isHolding == false:
 		
 		if NearestObject().is_in_group("ungrabbable"):
@@ -219,7 +218,7 @@ func _process(delta):
 		
 		HUD.setCursorPosition(NearestObject().global_position, true)
 		
-		
+		# When the player initially grabs an object
 		if Input.is_action_just_pressed("click"):
 			sound_select.play()
 			isHolding = true
@@ -230,7 +229,6 @@ func _process(delta):
 			
 			object.reparent(holdpoint)
 			object.set_freeze_enabled(true)
-			#object.set_freeze_mode(0)
 			object.set_freeze_mode(object.FreezeMode.FREEZE_MODE_STATIC)
 			object.set_collision_layer_value(1, false)
 			object.set_collision_mask_value(1, false)
@@ -238,13 +236,14 @@ func _process(delta):
 			if tutorial_mode:
 				HUD.sendHintToPlayer("You can drop items gently when looking straight down")
 	
-	
+	# Throw Object
 	if !Input.is_action_pressed("click"): 
+		# Mandatory check to see if the object still exists (and hasn't been deleted)
 		if !is_instance_valid(object):
 			object = null
 			isHolding = false
 		
-		
+		# Release the object
 		if object and isHolding == true and object is RigidBody3D:
 			
 			isHolding = false
@@ -269,7 +268,7 @@ func _process(delta):
 			
 			
 			object.apply_impulse(force * THROW_FORCE)
-			
+
 			object = null
 	
 	

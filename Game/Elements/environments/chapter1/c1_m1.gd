@@ -25,7 +25,7 @@ func _process(_delta):
 				await get_tree().create_timer(2).timeout
 				
 				player.dialogue_queue.append(1)
-				player.dialogue_queue.append("now, my favor for you, please bring that back here")
+				player.dialogue_queue.append("now, my favor for you, [i]please bring [color=YELLOW_GREEN]that egg[/color] back here")
 				player.dialogue_queue.append(4)
 				player.dialogue_queue.append("the lift is waiting for you.")
 				
@@ -39,6 +39,6 @@ func _on_tutorial_trigger_body_entered(body):
 		player.dialogue_queue.append(1)
 		player.dialogue_queue.append("hey, by the way. if you want to keep anything around here")
 		player.dialogue_queue.append(4)
-		player.dialogue_queue.append("feel free to bring it back with you. the lift [font_size=5]should[/font_size] support it")
+		player.dialogue_queue.append("feel free to bring it back with you. the lift [font_size=7]should[/font_size] support it")
 		player.dialogue_queue.append(5)
 		player.dialogue_queue.append("i'd like to see how you'd decorate that box I gave you ")
