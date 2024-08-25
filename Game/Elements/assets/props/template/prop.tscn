@@ -13,8 +13,8 @@ size = Vector3(2, 2, 2)
 [node name="Prop" type="RigidBody3D"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
 mass = 10.0
-max_contacts_reported = 1
 contact_monitor = true
+max_contacts_reported = 1
 script = ExtResource("1_hjtkc")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]

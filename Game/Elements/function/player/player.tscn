@@ -1,4 +1,4 @@
-[gd_scene load_steps=103 format=3 uid="uid://bcou7suhphdrp"]
+[gd_scene load_steps=102 format=3 uid="uid://bcou7suhphdrp"]
 
 [ext_resource type="Script" path="res://Elements/function/player/player.gd" id="1_0ncw4"]
 [ext_resource type="PackedScene" uid="uid://4lv8cegk7f53" path="res://Art/blend/assets/main/player.blend" id="2_ww4ji"]
@@ -359,10 +359,6 @@ animations = [{
 [sub_resource type="BoxShape3D" id="BoxShape3D_virh7"]
 size = Vector3(0.75, 1, 3)
 
-[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_xqya7"]
-radius = 0.861523
-height = 2.48431
-
 [sub_resource type="BoxShape3D" id="BoxShape3D_2e1ws"]
 size = Vector3(4, 3, 4)
 
@@ -563,7 +559,9 @@ size = Vector2(0.25, 0.25)
 orientation = 2
 
 [node name="Player" type="CharacterBody3D" groups=["player"]]
-floor_max_angle = 1.22173
+collision_mask = 3
+wall_min_slide_angle = 0.0
+floor_max_angle = 1.309
 script = ExtResource("1_0ncw4")
 
 [node name="AnimationTree" type="AnimationTree" parent="."]
@@ -590,21 +588,21 @@ editor_description = "The playermodel, containing data like the mesh, skeleton, 
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1, 0)
 
 [node name="Skeleton3D" parent="PlayerModel/player/Armature" index="0"]
-bones/0/position = Vector3(-0.00183521, -0.0773794, 0)
-bones/1/rotation = Quaternion(0.00054268, -0.000803355, 0.817617, 0.575762)
-bones/2/rotation = Quaternion(-0.000993361, -0.000662965, 0.286837, 0.957979)
-bones/3/rotation = Quaternion(-0.00106774, -0.000180913, 0.394508, 0.918892)
+bones/0/position = Vector3(-0.00183521, -0.073805, 0)
+bones/1/rotation = Quaternion(0.000392181, -0.000580497, 0.818172, 0.574973)
+bones/2/rotation = Quaternion(-0.000614868, -0.000410417, 0.289229, 0.95726)
+bones/3/rotation = Quaternion(-0.000636451, -0.000107787, 0.400453, 0.916317)
 bones/4/rotation = Quaternion(-6.35795e-06, -2.53072e-07, 0.0895676, 0.995981)
-bones/5/rotation = Quaternion(0.000742769, 0.00092833, -0.840606, 0.541646)
-bones/6/rotation = Quaternion(-0.000935884, 0.000672305, -0.275482, 0.961306)
-bones/7/rotation = Quaternion(-0.00114219, 0.000179504, -0.353311, 0.935505)
-bones/8/rotation = Quaternion(-0.000195872, 7.16883e-06, -0.0787638, 0.996893)
-bones/9/rotation = Quaternion(0.00676841, 0, 0, 0.999977)
-bones/10/rotation = Quaternion(0.706884, -0.0180753, -0.706852, 0.0186678)
-bones/11/rotation = Quaternion(-0.000135102, 2.72488e-05, -0.0787301, 0.996896)
+bones/5/rotation = Quaternion(0.000442807, 0.000553438, -0.843776, 0.536695)
+bones/6/rotation = Quaternion(-0.000601506, 0.000432094, -0.278326, 0.960486)
+bones/7/rotation = Quaternion(-0.000718946, 0.000112986, -0.351452, 0.936206)
+bones/8/rotation = Quaternion(-0.000146292, 5.35417e-06, -0.0777119, 0.996976)
+bones/9/rotation = Quaternion(0.00403545, 0, 0, 0.999992)
+bones/10/rotation = Quaternion(0.707099, 0.00472898, -0.707088, -0.00405953)
+bones/11/rotation = Quaternion(-2.81004e-05, 2.62333e-05, -0.0159447, 0.999873)
 bones/12/rotation = Quaternion(2.13178e-09, -1.13731e-12, -0.0279828, 0.999608)
-bones/13/rotation = Quaternion(0.706978, 0.0135655, 0.706974, 0.0136631)
-bones/14/rotation = Quaternion(-1.80495e-05, -4.38781e-06, 0.0655865, 0.997847)
+bones/13/rotation = Quaternion(0.707047, -0.00930319, 0.707046, -0.00919299)
+bones/14/rotation = Quaternion(-7.32887e-07, -4.28525e-06, 0.00260144, 0.999997)
 bones/15/rotation = Quaternion(2.11414e-09, 1.70597e-13, 0.0280121, 0.999608)
 
 [node name="Player" parent="PlayerModel/player/Armature/Skeleton3D" index="0"]
@@ -614,7 +612,7 @@ surface_material_override/1 = ExtResource("4_oor3j")
 surface_material_override/2 = ExtResource("5_mq2xk")
 
 [node name="FaceAttachment" type="BoneAttachment3D" parent="PlayerModel/player/Armature/Skeleton3D" index="1"]
-transform = Transform3D(1, 0, 0, 0, 0.999908, -0.0135365, 0, 0.0135365, 0.999908, -0.00183521, 0.507164, 0)
+transform = Transform3D(1, 0, 0, 0, 0.999967, -0.00807083, 0, 0.00807083, 0.999967, -0.00183521, 0.510739, 0)
 bone_name = "Head"
 bone_idx = 9
 
@@ -646,12 +644,6 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 2)
 [node name="OmniLight3D" type="OmniLight3D" parent="PlayerModel"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.43653, 0)
 light_color = Color(0.23, 0.23, 0.23, 1)
-
-[node name="SoftPush" type="Area3D" parent="PlayerModel"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.673798, 0)
-
-[node name="CollisionShape3D" type="CollisionShape3D" parent="PlayerModel/SoftPush"]
-shape = SubResource("CapsuleShape3D_xqya7")
 
 [node name="CentralCameraPoint" type="Marker3D" parent="."]
 editor_description = "The pivot point used for the camera"

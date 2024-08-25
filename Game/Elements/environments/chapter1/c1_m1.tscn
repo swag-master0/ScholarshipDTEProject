@@ -1,4 +1,4 @@
-[gd_scene load_steps=30 format=3 uid="uid://rq3g3n4qshr3"]
+[gd_scene load_steps=32 format=3 uid="uid://rq3g3n4qshr3"]
 
 [ext_resource type="PackedScene" uid="uid://bcou7suhphdrp" path="res://Elements/function/player/player.tscn" id="1_01d17"]
 [ext_resource type="PackedScene" uid="uid://c61dj4vsac881" path="res://Art/blend/levels_chapter1/c1_m1.blend" id="1_wejc2"]
@@ -39,6 +39,12 @@ render_priority = 0
 shader = ExtResource("14_eekcq")
 shader_parameter/emission_strength = 0.2
 shader_parameter/picture = ExtResource("12_f6hxd")
+
+[sub_resource type="BoxMesh" id="BoxMesh_f02ee"]
+size = Vector3(2, 2, 2)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_3nxb6"]
+size = Vector3(2, 2, 2)
 
 [node name="BasicLevel" type="Node3D"]
 script = ExtResource("1_yf2id")
@@ -147,6 +153,16 @@ volume_db = -20.0
 autoplay = true
 bus = &"ambience"
 parameters/looping = true
+
+[node name="RigidBody3D" type="RigidBody3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 13, 1, 0)
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="RigidBody3D"]
+mesh = SubResource("BoxMesh_f02ee")
+skeleton = NodePath("../..")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="RigidBody3D"]
+shape = SubResource("BoxShape3D_3nxb6")
 
 [connection signal="body_entered" from="TutorialTrigger" to="." method="_on_tutorial_trigger_body_entered"]
 

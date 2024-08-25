@@ -35,7 +35,6 @@ func TOP():
 @onready var holdpoint = $PlayerModel/HoldPointPivot/HoldPoint
 @onready var holdpoint_backup = $PlayerModel/HoldPointPivot/Backup
 @onready var obstruction_detection = $PlayerModel/ObstructionDetector
-@onready var soft_push = $PlayerModel/SoftPush
 
 # Camera
 @onready var pivot = $CentralCameraPoint
@@ -135,9 +134,7 @@ func _physics_process(delta):
 			velocity.y = JUMP_VELOCITY
 			sound_jump.play()
 		
-		
 		MousePosition()
-		
 		
 		if (Input.is_action_pressed("forward") or Input.is_action_pressed("left") or Input.is_action_pressed("right") or Input.is_action_pressed("backward")):
 			faceDirection = Vector3(Input.get_action_strength("right") - Input.get_action_strength("left"), 0 ,Input.get_action_strength("backward") - Input.get_action_strength("forward")).normalized()
@@ -159,17 +156,27 @@ func _physics_process(delta):
 			velocity.x = direction.x * SPEED
 			velocity.z = direction.z * SPEED
 		elif direction and isHolding:
-			var slowdown = clamp(object.mass / 4, 4, 5)
+			var slowdown = clamp(object.mass / 4, 2.5, 4) # slows the player down depending on the mass of the object they're carrying
 			velocity.x = direction.x * SPEED / (slowdown - 3)
 			velocity.z = direction.z * SPEED / (slowdown - 3)
-			
 		else:
 			velocity.x = move_toward(velocity.x, 0, SPEED)
 			velocity.z = move_toward(velocity.z, 0, SPEED)
 		
 		move_and_slide()
 		
-		
+		# Rigid Body Collisions
+		if is_on_floor():
+			for i in get_slide_collision_count():
+				var collisionObject = get_slide_collision(i).get_collider()
+
+				if collisionObject is RigidBody3D:
+				#if collisionObject.get_collision_layer_value(2):
+					var push_direction = (collisionObject.global_transform.origin - global_transform.origin).normalized()
+					collisionObject.apply_impulse(push_direction * (collisionObject.mass * 0.15), Vector3.ZERO)
+
+
+		#region AnimationTree
 		
 		if !isHolding:
 			animation_tree.set("parameters/fall/Blend2/blend_amount", 0.0)
@@ -203,8 +210,10 @@ func _physics_process(delta):
 			
 			state_machine.travel("idle")
 		
+		#endregion
+		
 
-func _process(delta):
+func _process(_delta):
 	HUD.Dialogue()
 	
 	holdpoint_pivot.rotation.x = clamp(-pivot.rotation.x, deg_to_rad(-60), deg_to_rad(0))
@@ -289,13 +298,6 @@ func _process(delta):
 	var distance = $CentralCameraPoint/Wind.global_position.distance_to(camera.global_position)
 	tween.tween_property($Audio/CameraWind, "pitch_scale", clamp(distance, 0.05, 2), 0.3)
 	
-	
-	for i in soft_push.get_overlapping_bodies():
-		if !(i.get_parent().is_in_group("player")):
-			if i is RigidBody3D:
-				i.apply_impulse(((i.global_position - global_position).normalized() * 250) * delta)
-			elif i is PhysicalBone3D:
-				i.apply_impulse(((i.global_position - global_position).normalized() * 10) * delta)
 	
 	
 	if DISPLAY_DUST and dust.visible != true:
