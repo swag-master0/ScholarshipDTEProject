@@ -155,15 +155,14 @@ func _physics_process(delta):
 		var input_dir = Input.get_vector("left", "right", "forward", "backward")
 		var direction = (transform.basis * Vector3(input_dir.x, 0, input_dir.y)).normalized()
 		
-		#if direction:
-		#	velocity.x = direction.x * SPEED
-		#	velocity.z = direction.z * SPEED
+		
 		if direction and !isHolding:
 			velocity.x = direction.x * SPEED
 			velocity.z = direction.z * SPEED
 		elif direction and isHolding:
-			velocity.x = direction.x * SPEED / (clamp(object.mass / 4, 4, 5) - 3)
-			velocity.z = direction.z * SPEED / (clamp(object.mass / 4, 4, 10) - 3)
+			var slowdown = clamp(object.mass / 4, 4, 5)
+			velocity.x = direction.x * SPEED / (slowdown - 3)
+			velocity.z = direction.z * SPEED / (slowdown - 3)
 			
 		else:
 			velocity.x = move_toward(velocity.x, 0, SPEED)
