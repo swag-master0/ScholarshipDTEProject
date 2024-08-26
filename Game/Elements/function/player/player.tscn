@@ -588,21 +588,21 @@ editor_description = "The playermodel, containing data like the mesh, skeleton, 
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1, 0)
 
 [node name="Skeleton3D" parent="PlayerModel/player/Armature" index="0"]
-bones/0/position = Vector3(-0.00183521, -0.073805, 0)
-bones/1/rotation = Quaternion(0.000392181, -0.000580497, 0.818172, 0.574973)
-bones/2/rotation = Quaternion(-0.000614868, -0.000410417, 0.289229, 0.95726)
-bones/3/rotation = Quaternion(-0.000636451, -0.000107787, 0.400453, 0.916317)
+bones/0/position = Vector3(-0.00183521, -0.0709807, 0)
+bones/1/rotation = Quaternion(0.000221129, -0.000327204, 0.818801, 0.574077)
+bones/2/rotation = Quaternion(-0.000337504, -0.000225347, 0.290981, 0.956729)
+bones/3/rotation = Quaternion(-0.000349307, -5.9102e-05, 0.404401, 0.914582)
 bones/4/rotation = Quaternion(-6.35795e-06, -2.53072e-07, 0.0895676, 0.995981)
-bones/5/rotation = Quaternion(0.000442807, 0.000553438, -0.843776, 0.536695)
-bones/6/rotation = Quaternion(-0.000601506, 0.000432094, -0.278326, 0.960486)
-bones/7/rotation = Quaternion(-0.000718946, 0.000112986, -0.351452, 0.936206)
-bones/8/rotation = Quaternion(-0.000146292, 5.35417e-06, -0.0777119, 0.996976)
-bones/9/rotation = Quaternion(0.00403545, 0, 0, 0.999992)
-bones/10/rotation = Quaternion(0.707099, 0.00472898, -0.707088, -0.00405953)
-bones/11/rotation = Quaternion(-2.81004e-05, 2.62333e-05, -0.0159447, 0.999873)
+bones/5/rotation = Quaternion(0.000243094, 0.000303838, -0.845871, 0.533388)
+bones/6/rotation = Quaternion(-0.000330271, 0.000237245, -0.280631, 0.959816)
+bones/7/rotation = Quaternion(-0.000413264, 6.49449e-05, -0.350108, 0.936709)
+bones/8/rotation = Quaternion(-8.0328e-05, 2.93983e-06, -0.0763121, 0.997084)
+bones/9/rotation = Quaternion(0.00221575, 0, 0, 0.999998)
+bones/10/rotation = Quaternion(0.70705, 0.00959069, -0.707043, -0.008904)
+bones/11/rotation = Quaternion(-4.57463e-06, 2.61834e-05, -0.00256154, 0.999997)
 bones/12/rotation = Quaternion(2.13178e-09, -1.13731e-12, -0.0279828, 0.999608)
-bones/13/rotation = Quaternion(0.707047, -0.00930319, 0.707046, -0.00919299)
-bones/14/rotation = Quaternion(-7.32887e-07, -4.28525e-06, 0.00260144, 0.999997)
+bones/13/rotation = Quaternion(0.707047, -0.00930307, 0.707046, -0.0091929)
+bones/14/rotation = Quaternion(-7.32739e-07, -4.27268e-06, 0.00259387, 0.999997)
 bones/15/rotation = Quaternion(2.11414e-09, 1.70597e-13, 0.0280121, 0.999608)
 
 [node name="Player" parent="PlayerModel/player/Armature/Skeleton3D" index="0"]
@@ -612,7 +612,7 @@ surface_material_override/1 = ExtResource("4_oor3j")
 surface_material_override/2 = ExtResource("5_mq2xk")
 
 [node name="FaceAttachment" type="BoneAttachment3D" parent="PlayerModel/player/Armature/Skeleton3D" index="1"]
-transform = Transform3D(1, 0, 0, 0, 0.999967, -0.00807083, 0, 0.00807083, 0.999967, -0.00183521, 0.510739, 0)
+transform = Transform3D(1, 0, 0, 0, 0.99999, -0.00443149, 0, 0.00443149, 0.99999, -0.00183521, 0.513563, 0)
 bone_name = "Head"
 bone_idx = 9
 
