@@ -1,7 +1,7 @@
 extends Node3D
 
+# Maybe rework this into the player script
 
-# -- Loading Screen Variables
 var loading_screen = preload("res://Elements/function/loading_screen.tscn")
 var next_scene : String = "res://Elements/function/main_menu.tscn"
 
@@ -12,7 +12,7 @@ var transition_time : float = 0.5
 var old_scene
 
 
-# -- Process
+# Track progress of loading screen
 func _process(_delta):
 	# track progress of game load
 	var progress = []
@@ -55,10 +55,14 @@ func scene_transition():
 
 
 func transition(fade_out : bool):
+	var screen = loading_screen.instantiate()
+	get_tree().current_scene.add_child(screen)
+
 	if fade_out == true:
-		var screen = loading_screen.instantiate()
-		get_tree().current_scene.add_child(screen)
-		
+		pass
+
+		# Try using get_node() to try get better outcome, instead of searching for children and playing the animation
+
 		for i in screen.get_child(0).get_children():
 			if i is AnimationPlayer:
 				i.play("fade_out")
@@ -67,9 +71,8 @@ func transition(fade_out : bool):
 		
 	
 	if fade_out == false:
-		var screen = loading_screen.instantiate()
-		get_tree().current_scene.add_child(screen)
-		
+		pass
+
 		for i in screen.get_child(0).get_children():
 			if i is AnimationPlayer:
 				i.play("fade_in")

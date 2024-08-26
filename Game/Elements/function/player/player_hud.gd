@@ -44,6 +44,8 @@ var skipBBCode = false
 func _ready():
 	hud_dialogue_box.visible = false
 	hurt_vfx.visible = false
+
+	
 	
 
 
@@ -76,6 +78,8 @@ func _process(_delta):
 			hud_healthwhite.value = hud_health.value
 			
 			healthvisualindicator = false
+	
+
 
 func sendHintToPlayer(hint):
 	hinttext.text = hint
