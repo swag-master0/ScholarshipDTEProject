@@ -38,6 +38,7 @@ var healthvisualindicator = false
 var selectionsound = false
 
 var skipBBCode = false
+var skip_dialogue = false
 
 
 
@@ -45,26 +46,25 @@ func _ready():
 	hud_dialogue_box.visible = false
 	hurt_vfx.visible = false
 
-	
-	
-
 
 func _process(_delta):
 	if get_tree().current_scene.scene_file_path == "res://Elements/environments/misc/intro_cutscene.tscn":
 		a_os_name.visible = false
+	
+	if Input.is_action_just_pressed("dialogue_skip"):
+		skip_dialogue = true
 	
 	if ready: 
 		var currenthealth = info.health
 		
 		hud_health.value = currenthealth
 		hud_health.max_value = max_health
-		#hud_healthwhite.max_value = max_health
+		
 		
 		if currenthealth == max_health:
 			hud_health.visible = false
 		else:
 			hud_health.visible = true
-		
 		
 		
 		if hud_healthwhite.value != hud_health.value and !healthvisualindicator:
@@ -78,7 +78,6 @@ func _process(_delta):
 			hud_healthwhite.value = hud_health.value
 			
 			healthvisualindicator = false
-	
 
 
 func sendHintToPlayer(hint):
@@ -125,13 +124,20 @@ func Dialogue(text_speed : float = 0.025, time_until_continue : float = 1.5):
 					sound_dialogue.play()
 					A_OS.Yap()
 					
+					# Delay dialogue on certain characters for added effect
 					if formatted_string[x] == "-":
 						hud_dialoguedelay.wait_time = 0
 					elif formatted_string[x] == "." or formatted_string[x] == "," or formatted_string[x] == "{" or formatted_string[x] == "}":
 						hud_dialoguedelay.wait_time += 0.25
 					
+					# TODO
+					if skip_dialogue: # Skip Dialogue is TAB by default
+						continue
+					
 					hud_dialoguedelay.start()
 					await hud_dialoguedelay.timeout
+			
+			skip_dialogue = false
 			
 			parent.FinishDialogue(dialogue)
 			if dialogue is String:

@@ -665,9 +665,6 @@ autoplay = true
 bus = &"ambience"
 parameters/looping = true
 
-[node name="Marker3D" type="Marker3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 66, 0)
-
 [connection signal="ObjectBurnt" from="." to="DialogueHandler" method="_on_player_hub_object_burnt"]
 [connection signal="body_entered" from="RailsPlayerHub/carraige/Area3D" to="DialogueHandler" method="_on_exit_body_entered"]
 [connection signal="body_entered" from="Portal" to="." method="_on_portal_body_entered"]
