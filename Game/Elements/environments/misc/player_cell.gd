@@ -5,12 +5,17 @@ signal ObjectBurnt
 var incinerator_active : bool = false
 @onready var incinerator = $Incinerator
 @onready var incinerator_anim = $Incinerator/AnimationPlayer
+@export var objective_item : PackedScene
 
 
 func _ready():
 	var save = SaveCell.new()
 	
 	await get_tree().create_timer(1).timeout
+	
+	var new_objective = objective_item.instantiate()
+	self.add_child(new_objective)
+	new_objective.global_position = Vector3(0, 60, 0)
 	
 	save.load_cell(self)
 
@@ -25,6 +30,9 @@ func save_hub_objects():
 	
 	for i in get_children():
 		if i is RigidBody3D:
+			
+			if i.is_in_group("objective"):
+				continue
 			
 			# Save each object as it's own PackedScene, to save mesh data and all children of each object
 			# Otherwise, children of the RigidBody do not save so the RigidBody has no CollisionShape or MeshInstance

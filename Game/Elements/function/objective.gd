@@ -87,7 +87,7 @@ func ChangeScene():
 			packed.pack(ObjectToSave)
 			objects_to_save.append(packed)
 	
-	objects_to_save.append(objective_item)
+	#objects_to_save.append(objective_item)
 	
 	var save = SaveCell.new()
 	save.save_cell(objects_to_save, false)

@@ -1,4 +1,4 @@
-[gd_scene load_steps=103 format=3 uid="uid://bcou7suhphdrp"]
+[gd_scene load_steps=102 format=3 uid="uid://bcou7suhphdrp"]
 
 [ext_resource type="Script" path="res://Elements/function/player/player.gd" id="1_0ncw4"]
 [ext_resource type="PackedScene" uid="uid://4lv8cegk7f53" path="res://Art/blend/assets/main/player.blend" id="2_ww4ji"]
@@ -22,7 +22,6 @@
 [ext_resource type="Shader" path="res://Art/filters/quantisation.gdshader" id="16_dvf37"]
 [ext_resource type="Shader" path="res://Art/filters/sobel_outlines.gdshader" id="17_5fr21"]
 [ext_resource type="AudioStream" uid="uid://w2v2x3att67l" path="res://Art/audio/player/click.wav" id="19_588om"]
-[ext_resource type="PackedScene" uid="uid://dtv4p32mm05mt" path="res://Elements/function/loading_screen.tscn" id="19_ve368"]
 [ext_resource type="PackedScene" uid="uid://d3qcg4xjm6x5x" path="res://Elements/function/player/a-os.tscn" id="20_sjfsg"]
 [ext_resource type="AudioStream" uid="uid://bdxfhhvgttnt5" path="res://Art/audio/player/player_death.wav" id="21_3msr6"]
 [ext_resource type="AudioStream" uid="uid://b35mb8jxo68sl" path="res://Art/audio/player/player_jump.wav" id="21_kf52g"]
@@ -589,21 +588,21 @@ editor_description = "The playermodel, containing data like the mesh, skeleton, 
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1, 0)
 
 [node name="Skeleton3D" parent="PlayerModel/player/Armature" index="0"]
-bones/0/position = Vector3(-0.00183521, -0.0730068, 0)
-bones/1/rotation = Quaternion(0.000332533, -0.00049217, 0.818392, 0.574661)
-bones/2/rotation = Quaternion(-0.000533923, -0.000356406, 0.289741, 0.957105)
-bones/3/rotation = Quaternion(-0.000555281, -9.40249e-05, 0.40157, 0.915828)
+bones/0/position = Vector3(-0.00183521, -0.0774132, 0)
+bones/1/rotation = Quaternion(0.000558547, -0.000826851, 0.817558, 0.575845)
+bones/2/rotation = Quaternion(-0.00101394, -0.000676696, 0.286706, 0.958018)
+bones/3/rotation = Quaternion(-0.00106471, -0.000180399, 0.39455, 0.918874)
 bones/4/rotation = Quaternion(-6.35795e-06, -2.53072e-07, 0.0895676, 0.995981)
-bones/5/rotation = Quaternion(0.000386355, 0.000482885, -0.84437, 0.535761)
-bones/6/rotation = Quaternion(-0.000524849, 0.000377026, -0.278977, 0.960297)
-bones/7/rotation = Quaternion(-0.000621586, 9.7685e-05, -0.351024, 0.936366)
-bones/8/rotation = Quaternion(-0.000127042, 4.64961e-06, -0.0773034, 0.997008)
-bones/9/rotation = Quaternion(0.00350441, 0, 0, 0.999994)
-bones/10/rotation = Quaternion(0.70705, 0.00959081, -0.707043, -0.00890401)
-bones/11/rotation = Quaternion(-4.57532e-06, 2.62277e-05, -0.00256581, 0.999997)
+bones/5/rotation = Quaternion(0.000740662, 0.000925697, -0.840628, 0.541611)
+bones/6/rotation = Quaternion(-0.000933539, 0.00067062, -0.275502, 0.9613)
+bones/7/rotation = Quaternion(-0.00115422, 0.000181395, -0.353364, 0.935485)
+bones/8/rotation = Quaternion(-0.000199806, 7.31282e-06, -0.0788472, 0.996887)
+bones/9/rotation = Quaternion(0.00670635, 0, 0, 0.999978)
+bones/10/rotation = Quaternion(0.70688, -0.0182234, -0.706849, 0.0188154)
+bones/11/rotation = Quaternion(-0.000135768, 2.72563e-05, -0.0791374, 0.996864)
 bones/12/rotation = Quaternion(2.13178e-09, -1.13731e-12, -0.0279828, 0.999608)
-bones/13/rotation = Quaternion(0.707047, -0.00930304, 0.707046, -0.00919288)
-bones/14/rotation = Quaternion(-7.32708e-07, -4.27002e-06, 0.00259228, 0.999997)
+bones/13/rotation = Quaternion(0.706974, 0.0137527, 0.70697, 0.0138502)
+bones/14/rotation = Quaternion(-1.81886e-05, -4.38899e-06, 0.0661015, 0.997813)
 bones/15/rotation = Quaternion(2.11414e-09, 1.70597e-13, 0.0280121, 0.999608)
 
 [node name="Player" parent="PlayerModel/player/Armature/Skeleton3D" index="0"]
@@ -613,7 +612,7 @@ surface_material_override/1 = ExtResource("4_oor3j")
 surface_material_override/2 = ExtResource("5_mq2xk")
 
 [node name="FaceAttachment" type="BoneAttachment3D" parent="PlayerModel/player/Armature/Skeleton3D" index="1"]
-transform = Transform3D(1, 0, 0, 0, 0.999975, -0.00700878, 0, 0.00700878, 0.999975, -0.00183521, 0.511537, 0)
+transform = Transform3D(1, 0, 0, 0, 0.99991, -0.0134124, 0, 0.0134124, 0.99991, -0.00183521, 0.50713, 0)
 bone_name = "Head"
 bone_idx = 9
 
@@ -991,8 +990,6 @@ offset_right = 1.0
 offset_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-
-[node name="LoadingScreen" parent="HUD" instance=ExtResource("19_ve368")]
 
 [node name="Audio" type="Node" parent="."]
 

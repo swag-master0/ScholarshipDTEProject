@@ -8,14 +8,9 @@ class_name SaveCell
 const save_playerhub_path = "user://cell.res"
 const save_addtoplayerhub_path = "user://cell_add.res"
 
-# Variables are the things you want to save
-
-
 @export_group("Player Hub Objects")
 @export var player_hub_objects : Array = []   # Array of objects, which are turned into PackedScenes to maintain their children's properties
 @export var add_new_objects : Array = []
-
-
 
 
 
@@ -62,8 +57,6 @@ func load_cell(root_node):
 				var new_object = i.instantiate()
 				root_node.add_child(new_object)
 				print_rich("[color=GREY]Loaded Object: ", new_object)
-		
-		
 	
 	
 	if ResourceLoader.exists(save_addtoplayerhub_path):
@@ -80,7 +73,6 @@ func load_cell(root_node):
 		
 		add_new_objects = []
 		DirAccess.remove_absolute(save_addtoplayerhub_path)
-		#ResourceSaver.save(self, save_addtoplayerhub_path)
 	
 	
 	else:

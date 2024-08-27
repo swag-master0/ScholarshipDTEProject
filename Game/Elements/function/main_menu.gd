@@ -5,6 +5,7 @@ extends Node3D
 @onready var options_menu = $GUI/OptionsMenu
 
 @export var initial_level : String
+@export var player_hub : String = "res://Elements/environments/misc/player_cell.tscn"
 
 func _ready():
 	Input.set_mouse_mode(Input.MOUSE_MODE_VISIBLE)
@@ -17,12 +18,19 @@ func _on_play_button_pressed():
 	if save.load_game() == null:
 		NewGame()
 	
-	
 	else:
 		# Save file found
 		if save.load_game().level:
-			LoadingScreen.next_scene = save.load_game().level
-			LoadingScreen.scene_transition()
+			if save.load_game().level == "res://Elements/environments/chapter1/c1_m1.tscn":
+				LoadingScreen.next_scene = save.load_game().level
+				LoadingScreen.scene_transition()
+			
+			else:
+				LoadingScreen.next_scene = player_hub
+				LoadingScreen.scene_transition()
+				
+			
+		# If save file found, but bad data (corrupted, or something generally wrong)
 		else:
 			NewGame()
 	

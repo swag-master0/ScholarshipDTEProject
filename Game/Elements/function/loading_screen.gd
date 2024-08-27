@@ -83,7 +83,3 @@ func transition(fade_out : bool):
 				Engine.time_scale = 1
 		
 	
-
-
-
-
