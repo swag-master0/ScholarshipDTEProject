@@ -37,9 +37,9 @@ var tutorial_pickup = false
 var healthvisualindicator = false
 var selectionsound = false
 
-var skipBBCode = false
 var skip_dialogue = false
 
+signal NextDialogue
 
 
 func _ready():
@@ -51,8 +51,13 @@ func _process(_delta):
 	if get_tree().current_scene.scene_file_path == "res://Elements/environments/misc/intro_cutscene.tscn":
 		a_os_name.visible = false
 	
+
 	if Input.is_action_just_pressed("dialogue_skip"):
+		_on_remove_characters_timeout()
+
 		skip_dialogue = true
+		#hud_dialogueremove.time_left = 0.01
+
 	
 	if ready: 
 		var currenthealth = info.health
@@ -92,7 +97,7 @@ func _hinttext_timeout():
 
 
 # INFO: DIALOGUE SYSTEM
-func Dialogue(text_speed : float = 0.025, time_until_continue : float = 1.5):
+func Dialogue(text_speed : float = 0.05, time_until_continue : float = 1.5):
 	
 	if dialoguespeaking == false and !dialogue_queue.is_empty():
 		dialoguespeaking = true
@@ -101,7 +106,8 @@ func Dialogue(text_speed : float = 0.025, time_until_continue : float = 1.5):
 		
 		for i in dialogue_queue:
 			var dialogue = dialogue_queue.pop_front()
-			
+			skip_dialogue = false
+
 			if dialogue is int:
 				A_OS.ApplyMood(dialogue)
 				continue
@@ -111,9 +117,6 @@ func Dialogue(text_speed : float = 0.025, time_until_continue : float = 1.5):
 				hud_dialogue.text = dialogue
 				hud_dialoguedelay.wait_time = text_speed
 				
-				# I was gonna have some over-complicated mechanism here that filtered the RichTextLabel's BBCode to format correctly
-				# But turns out Godot just automatically does it lmao
-				# I have to do this or else it includes each bb code character when emitting the audio and effects, meaning it sounds like there's more letters than there actually are
 				var formatted_string = hud_dialogue.get_parsed_text()
 				
 				for x in formatted_string.length():
@@ -130,29 +133,40 @@ func Dialogue(text_speed : float = 0.025, time_until_continue : float = 1.5):
 					elif formatted_string[x] == "." or formatted_string[x] == "," or formatted_string[x] == "{" or formatted_string[x] == "}":
 						hud_dialoguedelay.wait_time += 0.25
 					
+					
 					# TODO
-					if skip_dialogue: # Skip Dialogue is TAB by default
+					if skip_dialogue: 
 						continue
 					
+
 					hud_dialoguedelay.start()
 					await hud_dialoguedelay.timeout
 			
-			skip_dialogue = false
 			
 			parent.FinishDialogue(dialogue)
+
 			if dialogue is String:
-				if dialogue.ends_with("-"):
+				if dialogue.ends_with("-") or skip_dialogue:
 					continue
 				else:
-					await get_tree().create_timer(text_speed * dialogue.length() + time_until_continue).timeout
+					hud_dialogueremove.start(text_speed * dialogue.length() + time_until_continue)
+
+					await NextDialogue
+
 		
 		dialoguespeaking = false
 		hud_dialogue_box.visible = false
 		
 
 func _on_remove_characters_timeout():
+	print("ran func")
+	
 	hud_dialogue.visible = false
 	hud_dialogue.text = ""
+
+	NextDialogue.emit()
+
+
 
 func PainVisuals():
 	hurt_vfx.visible = true
