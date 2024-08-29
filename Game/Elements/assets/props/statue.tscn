@@ -1,0 +1,45 @@
+[gd_scene load_steps=9 format=3 uid="uid://csfrnccn5ur7r"]
+
+[ext_resource type="PackedScene" uid="uid://kjugxmndg2vr" path="res://Art/blend/assets/prop/statue.blend" id="1_rs41k"]
+[ext_resource type="Script" path="res://Elements/assets/props/template/prop.gd" id="2_s3l4p"]
+[ext_resource type="AudioStream" uid="uid://cmrd2tlply6v6" path="res://Art/audio/impact/thump-1.wav" id="3_nrqde"]
+[ext_resource type="AudioStream" uid="uid://d00tijva2c6cn" path="res://Art/audio/impact/thump-2.wav" id="4_dvone"]
+[ext_resource type="AudioStream" uid="uid://cj157ctmjk6jj" path="res://Art/audio/impact/thump-3.wav" id="5_tjcaa"]
+[ext_resource type="AudioStream" uid="uid://q028ee08mw53" path="res://Art/audio/impact/thump-4.wav" id="6_skgc4"]
+[ext_resource type="Texture2D" uid="uid://b7b8lqiwyngpq" path="res://Art/assets/assets/player_eyes-1.png" id="7_kqeqo"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_kqlfe"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("7_kqeqo")
+}],
+"loop": true,
+"name": &"default",
+"speed": 4.0
+}]
+
+[node name="statue" instance=ExtResource("1_rs41k")]
+
+[node name="statue-rigid" parent="." index="0"]
+mass = 25.0
+script = ExtResource("2_s3l4p")
+
+[node name="AudioStreamPlayer3D" type="AudioStreamPlayer3D" parent="statue-rigid" index="2"]
+stream = ExtResource("3_nrqde")
+
+[node name="AudioStreamPlayer3D2" type="AudioStreamPlayer3D" parent="statue-rigid" index="3"]
+stream = ExtResource("4_dvone")
+
+[node name="AudioStreamPlayer3D3" type="AudioStreamPlayer3D" parent="statue-rigid" index="4"]
+stream = ExtResource("5_tjcaa")
+
+[node name="AudioStreamPlayer3D4" type="AudioStreamPlayer3D" parent="statue-rigid" index="5"]
+stream = ExtResource("6_skgc4")
+
+[node name="AnimatedSprite3D" type="AnimatedSprite3D" parent="statue-rigid" index="6"]
+transform = Transform3D(0.845, 0, 0, 0, 0.845, 0, 0, 0, 0.845, 0.00183521, 0.0155698, 0.972206)
+shaded = true
+texture_filter = 0
+sprite_frames = SubResource("SpriteFrames_kqlfe")
+autoplay = "default"
