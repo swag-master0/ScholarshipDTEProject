@@ -1,0 +1,137 @@
+[gd_scene load_steps=26 format=3 uid="uid://b1xr3fo1efvpm"]
+
+[ext_resource type="Script" path="res://Elements/environments/chapter1/c1_m1.gd" id="1_nkxu8"]
+[ext_resource type="PackedScene" uid="uid://b25c61h2tqpn4" path="res://Art/blend/levels_chapter1/c1_m5.blend" id="2_kcr1l"]
+[ext_resource type="PackedScene" uid="uid://bcou7suhphdrp" path="res://Elements/function/player/player.tscn" id="2_t54vu"]
+[ext_resource type="PackedScene" uid="uid://msdo88p274sw" path="res://Elements/function/objective.tscn" id="3_n3hfm"]
+[ext_resource type="PackedScene" uid="uid://cov8v6858hevf" path="res://Elements/environments/chapter1/c1_m2.tscn" id="4_y7mr7"]
+[ext_resource type="PackedScene" uid="uid://cihisq18677xu" path="res://Elements/function/objective_item.tscn" id="5_4txtg"]
+[ext_resource type="PackedScene" uid="uid://g2jwt8atruu7" path="res://Art/environment/environment.tscn" id="10_72qn3"]
+[ext_resource type="PackedScene" uid="uid://cp8y4w0hidlhu" path="res://Elements/assets/props/picture_xlarge.tscn" id="11_6t5rv"]
+[ext_resource type="Shader" path="res://Art/materials/props/picture_image.gdshader" id="12_i7xw6"]
+[ext_resource type="Texture2D" uid="uid://bysh1ur37uogr" path="res://Art/assets/misc/real.jpg" id="13_34g3p"]
+[ext_resource type="PackedScene" uid="uid://c775kwttbjh40" path="res://Elements/assets/props/vase.tscn" id="14_gqb6f"]
+[ext_resource type="PackedScene" uid="uid://blx6snb20uj8u" path="res://Elements/assets/props/lamp.tscn" id="15_tvpff"]
+[ext_resource type="PackedScene" uid="uid://i43wpwf0q6em" path="res://Elements/assets/props/chair.tscn" id="16_npngw"]
+[ext_resource type="PackedScene" uid="uid://dp2x6cakupfs6" path="res://Elements/assets/props/pot.tscn" id="17_gmemf"]
+[ext_resource type="PackedScene" uid="uid://dhejktumttlcs" path="res://Elements/assets/props/bench.tscn" id="18_iv0ac"]
+[ext_resource type="PackedScene" uid="uid://dqgrckw7n88n4" path="res://Elements/assets/props/table.tscn" id="19_3wa3k"]
+[ext_resource type="PackedScene" uid="uid://bsbl4boqt5vj4" path="res://Elements/assets/props/cone.tscn" id="20_uyiwk"]
+[ext_resource type="PackedScene" uid="uid://ctc20d63lt2h0" path="res://Elements/assets/props/bucket.tscn" id="21_av4sl"]
+[ext_resource type="PackedScene" uid="uid://brfvkewj7bfba" path="res://Elements/assets/props/lamp_tall.tscn" id="22_xgh6t"]
+[ext_resource type="PackedScene" uid="uid://hfryhtqbwdgv" path="res://Elements/assets/props/rock_3.tscn" id="23_6pxbf"]
+[ext_resource type="PackedScene" uid="uid://cdwnv2xmk7f6k" path="res://Elements/assets/misc/nest.tscn" id="24_uo8cg"]
+[ext_resource type="PackedScene" uid="uid://cgmhghceyys8x" path="res://Art/blend/assets/misc/powerpole.blend" id="25_0k20y"]
+[ext_resource type="AudioStream" uid="uid://c2bnpiykqjcwb" path="res://Art/audio/ambient/ambient-1.mp3" id="26_pcb5w"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_m2epx"]
+size = Vector3(31, 10, 10)
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_giiva"]
+render_priority = 0
+shader = ExtResource("12_i7xw6")
+shader_parameter/emission_strength = 0.2
+shader_parameter/picture = ExtResource("13_34g3p")
+
+[node name="BasicLevel" type="Node3D"]
+script = ExtResource("1_nkxu8")
+
+[node name="c1_m5" parent="." instance=ExtResource("2_kcr1l")]
+
+[node name="Player" parent="." instance=ExtResource("2_t54vu")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -7.7242, 0)
+
+[node name="ObjectiveLevelStart" parent="." instance=ExtResource("3_n3hfm")]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 0, 0.5, 0)
+nextscene = ExtResource("4_y7mr7")
+nextscene_string = "res://Elements/environments/chapter1/c1_m2.tscn"
+
+[node name="ObjectiveItem" parent="." instance=ExtResource("5_4txtg")]
+transform = Transform3D(0.981262, 0.184747, 0.0547036, -0.192676, 0.940883, 0.278595, 0, -0.283915, 0.958849, 43.6728, 1.42712, -42.4665)
+freeze = true
+freeze_mode = 1
+
+[node name="WorldEnvironment" parent="." instance=ExtResource("10_72qn3")]
+
+[node name="TutorialTrigger" type="Area3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 17, 5, 1)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="TutorialTrigger"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -6.5, 0, -1)
+shape = SubResource("BoxShape3D_m2epx")
+
+[node name="Props" type="Node" parent="."]
+
+[node name="picture_xlarge" parent="Props" instance=ExtResource("11_6t5rv")]
+transform = Transform3D(-1, 8.74228e-08, 0, -8.74228e-08, -1, 0, 0, 0, 1, 33.7995, 4.05804, -50)
+
+[node name="Picture_XLarge -rigid" parent="Props/picture_xlarge" index="0"]
+transform = Transform3D(1, 0, 0, 0, -1, 4.37114e-08, 0, -4.37114e-08, -1, 0, 0, 0)
+
+[node name="Picture_XLarge -rigid" parent="Props/picture_xlarge/Picture_XLarge -rigid" index="0"]
+surface_material_override/1 = SubResource("ShaderMaterial_giiva")
+
+[node name="vase" parent="Props" instance=ExtResource("14_gqb6f")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 32.7163, 1.04861, -43.8966)
+
+[node name="lamp" parent="Props" instance=ExtResource("15_tvpff")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 38.2521, 0.756565, 3.57369)
+
+[node name="chair" parent="Props" instance=ExtResource("16_npngw")]
+transform = Transform3D(-0.707107, 0, -0.707107, 0, 1, 0, 0.707107, 0, -0.707107, 41.9933, 1.8477, -37.4913)
+
+[node name="pot" parent="Props" instance=ExtResource("17_gmemf")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 41.9836, 2.14561, -37.6453)
+
+[node name="vase2" parent="Props" instance=ExtResource("14_gqb6f")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 39.4324, 1.04861, -36.3556)
+
+[node name="pot2" parent="Props" instance=ExtResource("17_gmemf")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 40.3939, 0.690083, -41.0623)
+
+[node name="bench" parent="Props" instance=ExtResource("18_iv0ac")]
+transform = Transform3D(0.965926, 0, 0.258819, 0, 1, 0, -0.258819, 0, 0.965926, 33, 0.229656, -39)
+
+[node name="chair2" parent="Props" instance=ExtResource("16_npngw")]
+transform = Transform3D(-0.5, 0, -0.866025, 0, 1, 0, 0.866025, 0, -0.5, 47, 1.8477, -34)
+
+[node name="lamp2" parent="Props" instance=ExtResource("15_tvpff")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 35, 0.756565, -48)
+
+[node name="table" parent="Props" instance=ExtResource("19_3wa3k")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 37.3885, 1.0976, -39.0486)
+
+[node name="vase3" parent="Props" instance=ExtResource("14_gqb6f")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 37.2219, 2.51284, -39.055)
+
+[node name="cone" parent="Props" instance=ExtResource("20_uyiwk")]
+transform = Transform3D(0.911446, 0, 0.411419, 0, 1, 0, -0.411419, 0, 0.911446, 29.5004, 0.901751, -3.81927)
+
+[node name="chair3" parent="Props" instance=ExtResource("16_npngw")]
+transform = Transform3D(-0.621695, 0, 0.78326, 0, 1, 0, -0.78326, 0, -0.621695, 15.0326, 1.8477, 3.29671)
+
+[node name="bucket" parent="Props" instance=ExtResource("21_av4sl")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 31.121, 0.68668, -4.69173)
+
+[node name="lamp_tall" parent="Props" instance=ExtResource("22_xgh6t")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 32, 1.63216, -9)
+
+[node name="rock3" parent="Props" instance=ExtResource("23_6pxbf")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 31.4172, 1.54906, -23.8814)
+
+[node name="nest" parent="Props" instance=ExtResource("24_uo8cg")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 43.6046, 0.324082, -42.402)
+
+[node name="powerpole" parent="." instance=ExtResource("25_0k20y")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 19, 4, 14)
+
+[node name="Ambient" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("26_pcb5w")
+volume_db = -20.0
+autoplay = true
+bus = &"ambience"
+parameters/looping = true
+
+[connection signal="body_entered" from="TutorialTrigger" to="." method="_on_tutorial_trigger_body_entered"]
+
+[editable path="Props/picture_xlarge"]
