@@ -13,11 +13,13 @@ func _ready():
 	
 	await get_tree().create_timer(1).timeout
 	
-	var new_objective = objective_item.instantiate()
-	self.add_child(new_objective)
-	new_objective.global_position = Vector3(0, 60, 0)
-	
-	save.load_cell(self)
+	if ready:
+		if get_tree().current_scene.scene_file_path == "res://Elements/environments/misc/player_cell.tscn":
+			var new_objective = objective_item.instantiate()
+			self.add_child(new_objective)
+			new_objective.global_position = Vector3(0, 60, 0)
+		
+		save.load_cell(self)
 
 
 func _process(_delta):

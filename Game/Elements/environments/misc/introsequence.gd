@@ -160,9 +160,7 @@ func _on_player_dialogue_finished(dialogue : String):
 
 
 func _on_crushed_body_entered(body):
-	for i in body.get_children():
-		if i.is_in_group("info"):
-			i.Damage(99999)
+	body.global_position += Vector3(0, 5, 0)
 
 
 func _on_area_3d_body_entered(body):

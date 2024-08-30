@@ -54,6 +54,7 @@ func _process(_delta):
 
 	if Input.is_action_just_pressed("dialogue_skip"):
 		_on_remove_characters_timeout()
+		hud_dialogueremove.stop()
 
 		skip_dialogue = true
 		#hud_dialogueremove.time_left = 0.01
@@ -97,7 +98,7 @@ func _hinttext_timeout():
 
 
 # INFO: DIALOGUE SYSTEM
-func Dialogue(text_speed : float = 0.05, time_until_continue : float = 1.5):
+func Dialogue(text_speed : float = 0.02, time_until_continue : float = 2.5):
 	
 	if dialoguespeaking == false and !dialogue_queue.is_empty():
 		dialoguespeaking = true
@@ -129,9 +130,9 @@ func Dialogue(text_speed : float = 0.05, time_until_continue : float = 1.5):
 					
 					# Delay dialogue on certain characters for added effect
 					if formatted_string[x] == "-":
-						hud_dialoguedelay.wait_time = 0
+						hud_dialoguedelay.wait_time = 0.01
 					elif formatted_string[x] == "." or formatted_string[x] == "," or formatted_string[x] == "{" or formatted_string[x] == "}":
-						hud_dialoguedelay.wait_time += 0.25
+						hud_dialoguedelay.wait_time += 0.125
 					
 					
 					# TODO

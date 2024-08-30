@@ -155,7 +155,7 @@ _data = {
 size = Vector3(3, 6, 3)
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_qrjw0"]
-size = Vector3(3.39905, 0.794922, 3.79041)
+size = Vector3(5, 1, 5)
 
 [sub_resource type="GDScript" id="GDScript_l0f3f"]
 resource_name = "portal"
@@ -310,10 +310,10 @@ enable_col = true
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.5, 0)
 shape = SubResource("BoxShape3D_e6j31")
 
-[node name="Crushed" type="Area3D" parent="RailsPlayerHub"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1, 0)
+[node name="Crushed" type="Area3D" parent="RailsPlayerHub/carraige"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1.07083, 0.322098)
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="RailsPlayerHub/Crushed"]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="RailsPlayerHub/carraige/Crushed"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.000427246, -0.102539, -0.240051)
 shape = SubResource("BoxShape3D_qrjw0")
 
@@ -466,7 +466,7 @@ bus = &"ambience"
 parameters/looping = true
 
 [connection signal="body_entered" from="RailsPlayerHub/carraige/Area3D" to="DialogueHandler" method="_on_area_3d_body_entered"]
-[connection signal="body_entered" from="RailsPlayerHub/Crushed" to="DialogueHandler" method="_on_crushed_body_entered"]
+[connection signal="body_entered" from="RailsPlayerHub/carraige/Crushed" to="DialogueHandler" method="_on_crushed_body_entered"]
 [connection signal="body_entered" from="Portal" to="." method="_on_portal_body_entered"]
 [connection signal="DialogueFinished" from="Player" to="DialogueHandler" method="_on_player_dialogue_finished"]
 [connection signal="text_submitted" from="Control/ColorRect/LineEdit" to="DialogueHandler" method="_on_line_edit_text_submitted"]
