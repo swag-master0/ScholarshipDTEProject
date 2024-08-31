@@ -48,6 +48,7 @@ agent_max_slope = 70.0
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_pcbh4"]
 render_priority = 0
 shader = ExtResource("8_e1yx6")
+shader_parameter/wall_colour = Color(2, 4, 2, 1)
 shader_parameter/amount = 1.0
 shader_parameter/noise = ExtResource("9_5uvtt")
 shader_parameter/normal_tex = ExtResource("10_qke8v")

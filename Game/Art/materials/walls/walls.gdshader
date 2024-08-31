@@ -1,13 +1,14 @@
 shader_type spatial;
 //render_mode diffuse_toon, specular_toon;
 
-const vec3 wall_colour = vec3(2.0, 4.0, 2.0);
+//const vec3 wall_colour = vec3(2.0, 4.0, 2.0);
+uniform vec3 wall_colour : source_color = vec3(2.0, 4.0, 2.0);
 uniform sampler2D noise;
 uniform sampler2D normal_tex;
 uniform float amount = 1.0;
 
 void fragment() {
-	vec3 noise_colour = textureLod(noise, UV, 1).rgb;
+	vec3 noise_colour = textureLod(noise, UV * amount, 1).rgb;
 
 	vec3 colour = mix(wall_colour, noise_colour, 0.5);
 	ALBEDO = colour * 4.0 + vec3(1.0, 1.0, 1.5);

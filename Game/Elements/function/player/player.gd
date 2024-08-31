@@ -155,7 +155,7 @@ func _physics_process(delta):
 		if direction and !isHolding:
 			velocity.x = direction.x * SPEED
 			velocity.z = direction.z * SPEED
-		elif direction and isHolding:
+		elif direction and isHolding and is_instance_valid(object):
 			var slowdown = 10 / clampf(object.mass, 10, 30) # slows the player down depending on the mass of the object they're carrying
 
 			velocity.x = direction.x * (SPEED * slowdown)
