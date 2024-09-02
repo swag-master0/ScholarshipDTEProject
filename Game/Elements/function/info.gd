@@ -2,6 +2,7 @@ extends Node3D
 
 signal takeDamage
 signal death
+signal dealtDamage
 
 var projectileDamage = 3
 var hasDied = false
@@ -85,3 +86,4 @@ func _on_hitbox_body_entered(body):
 		for i in body.get_children():
 			if i.is_in_group("info"):
 				i.Damage(damage_from_collision)
+				dealtDamage.emit()

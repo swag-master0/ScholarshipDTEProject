@@ -12,7 +12,7 @@
 [ext_resource type="PackedScene" uid="uid://fg26bpnnc3lq" path="res://Elements/assets/props/rock_1.tscn" id="10_n8mri"]
 [ext_resource type="PackedScene" uid="uid://bgobrloxn3vug" path="res://Elements/assets/props/rock_2.tscn" id="11_8xys3"]
 [ext_resource type="PackedScene" uid="uid://hfryhtqbwdgv" path="res://Elements/assets/props/rock_3.tscn" id="12_72fdf"]
-[ext_resource type="PackedScene" uid="uid://dwe6hqxcxga2x" path="res://Elements/enemies/bomber.tscn" id="13_ighjf"]
+[ext_resource type="PackedScene" uid="uid://c6busq7mdau5y" path="res://Elements/enemies/bird.tscn" id="13_32845"]
 
 [sub_resource type="GDScript" id="GDScript_uw2g3"]
 resource_name = "dev_room"
@@ -126,5 +126,5 @@ spot_angle = 36.2547
 [node name="Prop2" parent="." instance=ExtResource("9_cslja")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.62811, 1.5, 6.38285)
 
-[node name="Bomber" parent="." instance=ExtResource("13_ighjf")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 16.2498, 3.5, 0.893082)
+[node name="Bird" parent="." instance=ExtResource("13_32845")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 13.413, 5.53754, 3.90929)
