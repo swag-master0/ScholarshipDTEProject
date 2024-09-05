@@ -18,7 +18,6 @@
 resource_name = "dev_room"
 script/source = "extends Node3D
 
-@onready var ragdoll = $Ragdoll
 
 func _ready():
 	pass

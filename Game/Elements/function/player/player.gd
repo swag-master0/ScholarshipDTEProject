@@ -235,7 +235,8 @@ func _process(_delta):
 			object = NearestObject()
 			oldparent = object.get_parent()
 			
-			object.global_transform = holdpoint.global_transform
+			object.global_position = holdpoint.global_position
+			object.global_rotation = holdpoint.global_rotation
 			
 			object.reparent(holdpoint)
 			object.set_freeze_enabled(true)

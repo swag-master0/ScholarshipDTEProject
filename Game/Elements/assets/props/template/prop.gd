@@ -5,13 +5,12 @@ extends RigidBody3D
 
 var ungrabbable_group = "ungrabbable"
 
+
 func _ready():
 	self.sleeping = true
 	
 	if ungrabbable:
 		self.add_to_group(ungrabbable_group)
-	
-
 
 func _on_body_entered(_body):
 	var vel = abs(self.get_linear_velocity())
@@ -27,7 +26,6 @@ func _on_body_entered(_body):
 				i.bus = "sfx"
 				i.pitch_scale = (randf_range(0.75, 2.5) * (15 / self.mass))
 				i.play()
-
 
 func _process(_delta):
 	if self.position.y < -500:
