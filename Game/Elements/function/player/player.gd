@@ -170,9 +170,8 @@ func _physics_process(delta):
 		if is_on_floor():
 			for i in get_slide_collision_count():
 				var collisionObject = get_slide_collision(i).get_collider()
-
-				if collisionObject is RigidBody3D:
-				#if collisionObject.get_collision_layer_value(2):
+				
+				if collisionObject is RigidBody3D and !collisionObject.is_in_group("ungrabbable"):
 					var push_direction = (collisionObject.global_transform.origin - global_transform.origin).normalized()
 					collisionObject.apply_impulse(push_direction * (collisionObject.mass * 0.15), Vector3.ZERO)
 

@@ -1,0 +1,36 @@
+[gd_scene load_steps=6 format=3 uid="uid://cu0gxksefb5l6"]
+
+[sub_resource type="Environment" id="Environment_72n2g"]
+background_mode = 1
+glow_enabled = true
+glow_intensity = 1.25
+glow_bloom = 1.0
+volumetric_fog_enabled = true
+volumetric_fog_density = 0.01
+volumetric_fog_albedo = Color(0, 0, 0, 1)
+
+[sub_resource type="Gradient" id="Gradient_gy8nb"]
+
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_xteds"]
+frequency = 0.1072
+
+[sub_resource type="NoiseTexture3D" id="NoiseTexture3D_mrcci"]
+invert = true
+color_ramp = SubResource("Gradient_gy8nb")
+noise = SubResource("FastNoiseLite_xteds")
+
+[sub_resource type="FogMaterial" id="FogMaterial_e0ijj"]
+density = 0.5
+albedo = Color(0, 0, 0, 1)
+density_texture = SubResource("NoiseTexture3D_mrcci")
+
+[node name="WorldEnvironment" type="WorldEnvironment"]
+environment = SubResource("Environment_72n2g")
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
+light_color = Color(0, 0, 0, 1)
+directional_shadow_mode = 0
+
+[node name="FogVolume" type="FogVolume" parent="."]
+shape = 4
+material = SubResource("FogMaterial_e0ijj")

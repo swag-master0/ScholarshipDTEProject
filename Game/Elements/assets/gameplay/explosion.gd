@@ -11,12 +11,13 @@ extends Node3D
 var triggered = false
 var affected = []
 
-# Called every frame. 'delta' is the elapsed time since the previous frame.
+
 func _process(_delta):
 	for i in $Area3D.get_overlapping_bodies():
 		
 		if i is RigidBody3D and !(affected.has(i)):
-			i.apply_force((i.global_position - center.global_position).normalized() * force)
+			i.apply_impulse((i.global_position - center.global_position).normalized() * force)
+			i.set_freeze_enabled(false)
 			affected.append(i)
 		if i is PhysicalBone3D and !(affected.has(i)):
 			i.apply_impulse((i.global_position - center.global_position).normalized() * ragdoll_force)
@@ -40,7 +41,7 @@ func _process(_delta):
 		
 		
 		timer.start() # not doing this results in timer constantly restarting, which means it never deletes itself.
-	
+
 
 func _on_particles_finished():
 	await get_tree().create_timer(0.1).timeout
@@ -48,10 +49,3 @@ func _on_particles_finished():
 
 func _on_timer_timeout():
 	self.queue_free()
-
-
-
-
-
-
-

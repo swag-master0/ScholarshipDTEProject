@@ -1,6 +1,6 @@
 extends RigidBody3D
 
-@export var speed = 1000
+@export var speed = 300
 
 @export var explosion : PackedScene 
 @onready var raycast = $RayCast3D
@@ -27,9 +27,8 @@ func _physics_process(_delta):
 
 func _process(delta):
 	if raycast.get_collider() == player and get_colliding_bodies().size() > 0:
-		print("applying force")
 		self.apply_impulse(((player.global_position - global_position).normalized() * delta) * speed)
-	
+
 
 func _on_trigger_body_entered(body):
 	if body.is_in_group("player") and fuse_triggered == false:
@@ -38,7 +37,6 @@ func _on_trigger_body_entered(body):
 		audio.play()
 		audio2.play()
 		glow.light_energy = 1
-
 
 
 func _on_delay_timeout():

@@ -193,8 +193,8 @@ radius = 1.0
 [sub_resource type="SphereShape3D" id="SphereShape3D_gw4d5"]
 radius = 4.0
 
-[node name="Bomber" type="RigidBody3D" groups=["enemy"]]
-mass = 45.0
+[node name="Bomber" type="RigidBody3D" groups=["bomber", "enemy"]]
+mass = 15.0
 can_sleep = false
 contact_monitor = true
 max_contacts_reported = 5
