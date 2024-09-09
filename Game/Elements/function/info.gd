@@ -47,7 +47,7 @@ func Damage(damage: float):
 	if timer.is_stopped():
 		
 		# doesn't play the hurt sfx if it takes a miniscule amount of damage
-		if health - (health - damage) > 1:
+		if health - (health - damage) >= 1:
 			if PlayHurtSound:
 				sound_hurt.pitch_scale = randf_range(75, 125) / 100
 				sound_hurt.play()

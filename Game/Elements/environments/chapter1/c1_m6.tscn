@@ -1,4 +1,4 @@
-[gd_scene load_steps=37 format=3 uid="uid://c3jh1kk8goxry"]
+[gd_scene load_steps=34 format=3 uid="uid://c3jh1kk8goxry"]
 
 [ext_resource type="Script" path="res://Elements/environments/chapter1/c1_m6.gd" id="1_xcaqp"]
 [ext_resource type="PackedScene" uid="uid://dwe6hqxcxga2x" path="res://Elements/enemies/bomber.tscn" id="2_gwmm0"]
@@ -7,9 +7,11 @@
 [ext_resource type="PackedScene" uid="uid://e1ifpcaik1si" path="res://Elements/environments/chapter1/c1_m7.tscn" id="4_e8vjx"]
 [ext_resource type="PackedScene" uid="uid://cihisq18677xu" path="res://Elements/function/objective_item.tscn" id="5_4k3gg"]
 [ext_resource type="PackedScene" uid="uid://dkteohkuoghg0" path="res://Art/blend/levels_chapter1/c1_m6.blend" id="6_rjm0f"]
-[ext_resource type="Shader" uid="uid://cdkq2fgt0sjnp" path="res://Art/materials/walls/walls_underground.tres" id="7_ad452"]
 [ext_resource type="PackedScene" uid="uid://bbb07r3hee2bp" path="res://Elements/assets/props/template/prop.tscn" id="7_fmmaf"]
 [ext_resource type="PackedScene" uid="uid://cu0gxksefb5l6" path="res://Art/environment/environment_underground.tscn" id="8_sc1fh"]
+[ext_resource type="Shader" path="res://Art/materials/walls/walls.gdshader" id="8_useqk"]
+[ext_resource type="Texture2D" uid="uid://bebs4m6uaixb7" path="res://Art/materials/walls/walls_noise.tres" id="9_1cx1q"]
+[ext_resource type="Texture2D" uid="uid://ydrsdeeq0ayc" path="res://Art/materials/walls/walls_normal.tres" id="10_0y12l"]
 [ext_resource type="Material" uid="uid://dvlj73j848yaf" path="res://Art/materials/props/wood_1.tres" id="10_lf24c"]
 [ext_resource type="PackedScene" uid="uid://brfvkewj7bfba" path="res://Elements/assets/props/lamp_tall.tscn" id="10_ntufy"]
 [ext_resource type="PackedScene" uid="uid://blx6snb20uj8u" path="res://Elements/assets/props/lamp.tscn" id="11_utict"]
@@ -27,45 +29,14 @@
 [ext_resource type="PackedScene" uid="uid://bsmhlbfqb0hvo" path="res://Elements/assets/props/anvil.tscn" id="24_eygn0"]
 [ext_resource type="PackedScene" uid="uid://cdwnv2xmk7f6k" path="res://Elements/assets/misc/nest.tscn" id="26_jg6s7"]
 
-[sub_resource type="Gradient" id="Gradient_asdg3"]
-interpolation_mode = 1
-offsets = PackedFloat32Array(0, 0.253731)
-colors = PackedColorArray(0, 0, 0, 1, 0.215902, 0.215902, 0.215902, 1)
-
-[sub_resource type="FastNoiseLite" id="FastNoiseLite_tugqo"]
-noise_type = 2
-frequency = 0.0316
-fractal_type = 0
-cellular_return_type = 4
-
-[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_whpt4"]
-width = 1024
-height = 1024
-in_3d_space = true
-seamless = true
-color_ramp = SubResource("Gradient_asdg3")
-noise = SubResource("FastNoiseLite_tugqo")
-
-[sub_resource type="Gradient" id="Gradient_84r7y"]
-interpolation_mode = 1
-offsets = PackedFloat32Array(0, 0.253731)
-
-[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_beo5b"]
-width = 1024
-height = 1024
-in_3d_space = true
-seamless = true
-as_normal_map = true
-color_ramp = SubResource("Gradient_84r7y")
-noise = SubResource("FastNoiseLite_tugqo")
-
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_3vws4"]
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_vyq7x"]
 render_priority = 0
-shader = ExtResource("7_ad452")
-shader_parameter/BaseColour = Color(0.289446, 0.604828, 0.273517, 1)
-shader_parameter/UV_Scale = 10.0
-shader_parameter/ColourTexture = SubResource("NoiseTexture2D_whpt4")
-shader_parameter/NormalTexture = SubResource("NoiseTexture2D_beo5b")
+shader = ExtResource("8_useqk")
+shader_parameter/wall_colour = Color(0.50578, 0.938209, 0.725007, 1)
+shader_parameter/colour_add = 1.0
+shader_parameter/amount = 1.0
+shader_parameter/noise = ExtResource("9_1cx1q")
+shader_parameter/normal_tex = ExtResource("10_0y12l")
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_y7c7v"]
 size = Vector3(6, 6, 1)
@@ -103,7 +74,7 @@ freeze_mode = 1
 [node name="c2_m1" parent="." instance=ExtResource("6_rjm0f")]
 
 [node name="Level" parent="c2_m1" index="1"]
-surface_material_override/0 = SubResource("ShaderMaterial_3vws4")
+surface_material_override/0 = SubResource("ShaderMaterial_vyq7x")
 
 [node name="Barrier" parent="." instance=ExtResource("7_fmmaf")]
 transform = Transform3D(1, 0, 0, 0, 0.977327, 0.211734, 0, -0.211734, 0.977327, 37.6822, 3, -23.8435)

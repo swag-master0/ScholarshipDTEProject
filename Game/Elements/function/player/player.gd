@@ -125,6 +125,16 @@ func _input(event):
 
 func _physics_process(delta):
 	if info.health > 0:
+		
+		# There's a massive problem with this, or somewhere else, that cause 
+		# physics oddities while standing on the edge of Rigid Bodies.
+		# Don't know why.
+		# 
+		# Solutions people online have come up with are stuff that I've already tried.
+		# Another option is to replace my entire character controller with a Rigid Body character controller...
+		# NOPE. That'd involve rewriting my entire character controller! (and make life hell)
+		# I'm not sure what to do here then, the problem's kinda bad (makes c1_m7 really hard/borderline impossible)
+		
 		if !is_on_floor():
 			velocity.y -= gravity * delta * JUMP_FALLMULTIPLIER
 			velocity.y = clamp(velocity.y, -38, 500)
@@ -157,7 +167,7 @@ func _physics_process(delta):
 			velocity.z = direction.z * SPEED
 		elif direction and isHolding and is_instance_valid(object):
 			var slowdown = 10 / clampf(object.mass, 10, 30) # slows the player down depending on the mass of the object they're carrying
-
+			
 			velocity.x = direction.x * (SPEED * slowdown)
 			velocity.z = direction.z * (SPEED * slowdown)
 		else:
@@ -174,8 +184,8 @@ func _physics_process(delta):
 				if collisionObject is RigidBody3D and !collisionObject.is_in_group("ungrabbable"):
 					var push_direction = (collisionObject.global_transform.origin - global_transform.origin).normalized()
 					collisionObject.apply_impulse(push_direction * (collisionObject.mass * 0.15), Vector3.ZERO)
-
-
+		
+		
 		#region AnimationTree
 		
 		if !isHolding:
@@ -195,11 +205,9 @@ func _physics_process(delta):
 			state_machine.travel("fall")
 			animation_tree.set("parameters/fall/FallDirection/blend_amount", clamp(velocity.y, 0, 1))
 			
-			
-			
+		
 		elif velocity and is_on_floor():
 			state_machine.travel("run")
-			
 			
 			if footstep_delay.is_stopped() and is_on_floor():
 				footstep_delay.start()
