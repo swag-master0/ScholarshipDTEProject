@@ -80,7 +80,7 @@ var levelchangetriggered = false
 var main_menu = "res://Elements/function/main_menu.tscn"
 
 
-# please leave object blank, but keep as export
+# leave object blank, but keep as export
 @export_category("Programming")
 @export_group("Programming Stuff")
 @export var isHolding = false
@@ -126,19 +126,9 @@ func _input(event):
 func _physics_process(delta):
 	if info.health > 0:
 		
-		# There's a massive problem with this, or somewhere else, that cause 
-		# physics oddities while standing on the edge of Rigid Bodies.
-		# Don't know why.
-		# 
-		# Solutions people online have come up with are stuff that I've already tried.
-		# Another option is to replace my entire character controller with a Rigid Body character controller...
-		# NOPE. That'd involve rewriting my entire character controller! (and make life hell)
-		# I'm not sure what to do here then, the problem's kinda bad (makes c1_m7 really hard/borderline impossible)
-		
 		if !is_on_floor():
 			velocity.y -= gravity * delta * JUMP_FALLMULTIPLIER
 			velocity.y = clamp(velocity.y, -38, 500)
-		
 		
 		if Input.is_action_pressed("jump") and is_on_floor():
 			velocity.y = JUMP_VELOCITY
@@ -161,7 +151,7 @@ func _physics_process(delta):
 		var input_dir = Input.get_vector("left", "right", "forward", "backward")
 		var direction = (transform.basis * Vector3(input_dir.x, 0, input_dir.y)).normalized()
 		
-
+		
 		if direction and !isHolding:
 			velocity.x = direction.x * SPEED
 			velocity.z = direction.z * SPEED

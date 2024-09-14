@@ -7,10 +7,14 @@ var ungrabbable_group = "ungrabbable"
 
 
 func _ready():
-	self.sleeping = true
+	sleeping = true
+	
+	#set_collision_layer_value(2, true)
+	#set_collision_layer_value(1, false)
+	
 	
 	if ungrabbable:
-		self.add_to_group(ungrabbable_group)
+		add_to_group(ungrabbable_group)
 
 func _on_body_entered(_body):
 	var vel = abs(self.get_linear_velocity())

@@ -251,9 +251,8 @@ states/run/position = Vector2(1484, 95)
 transitions = ["idle", "run", SubResource("AnimationNodeStateMachineTransition_h1bte"), "run", "idle", SubResource("AnimationNodeStateMachineTransition_p6kwk"), "Start", "idle", SubResource("AnimationNodeStateMachineTransition_dgmis"), "land", "idle", SubResource("AnimationNodeStateMachineTransition_rr3lq"), "idle", "land", SubResource("AnimationNodeStateMachineTransition_n3x8u"), "land", "fall", SubResource("AnimationNodeStateMachineTransition_0xway"), "fall", "land", SubResource("AnimationNodeStateMachineTransition_tw7kb")]
 graph_offset = Vector2(897, -42)
 
-[sub_resource type="CylinderShape3D" id="CylinderShape3D_mr4h1"]
-height = 2.27
-radius = 0.655
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_ar2oh"]
+height = 2.335
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_n15er"]
 animations = [{
@@ -559,9 +558,10 @@ size = Vector2(0.25, 0.25)
 orientation = 2
 
 [node name="Player" type="CharacterBody3D" groups=["player"]]
-collision_mask = 3
+collision_priority = 0.0
 wall_min_slide_angle = 0.0
 floor_max_angle = 1.309
+safe_margin = 0.1
 script = ExtResource("1_0ncw4")
 
 [node name="AnimationTree" type="AnimationTree" parent="."]
@@ -579,7 +579,7 @@ parameters/run/TimeScale/scale = 2.0
 [node name="CollisionShape" type="CollisionShape3D" parent="."]
 editor_description = "Main Collision Shape for the player"
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.148464, 0)
-shape = SubResource("CylinderShape3D_mr4h1")
+shape = SubResource("CapsuleShape3D_ar2oh")
 
 [node name="PlayerModel" type="Node3D" parent="."]
 editor_description = "The playermodel, containing data like the mesh, skeleton, and various other stuff"
@@ -588,23 +588,22 @@ editor_description = "The playermodel, containing data like the mesh, skeleton, 
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1, 0)
 
 [node name="Skeleton3D" parent="PlayerModel/player/Armature" index="0"]
-bones/0/position = Vector3(-0.00183521, -0.263149, 0)
-bones/0/rotation = Quaternion(0, -0.213019, 0, 0.977048)
-bones/1/rotation = Quaternion(-0.145181, -0.205511, 0.622558, 0.741019)
-bones/2/rotation = Quaternion(0.0999244, -0.0513394, 0.0736718, 0.990935)
-bones/3/rotation = Quaternion(0.731573, -0.0219659, 0.186462, 0.655402)
-bones/4/rotation = Quaternion(0.157226, -0.00204761, 0.0371327, 0.986862)
-bones/5/rotation = Quaternion(-0.00733414, -0.133639, -0.59029, 0.796018)
-bones/6/rotation = Quaternion(0.0355755, -0.109654, -0.049441, 0.992102)
-bones/7/rotation = Quaternion(0.0430717, -0.111926, -0.624894, 0.771444)
-bones/8/rotation = Quaternion(0.0178162, -0.00539915, -0.171156, 0.985068)
-bones/9/rotation = Quaternion(0.000195199, -0.321257, 6.62192e-05, 0.946992)
-bones/10/rotation = Quaternion(0.671581, -0.221185, -0.671676, 0.22115)
-bones/11/rotation = Quaternion(0.00108778, -3.4657e-05, -0.557941, 0.82988)
-bones/12/rotation = Quaternion(2.1982e-09, 2.73683e-09, -0.0279828, 0.999608)
-bones/13/rotation = Quaternion(0.906926, 0.244921, 0.332904, 0.0817008)
-bones/14/rotation = Quaternion(0.0345155, 0.00125418, 0.55031, 0.834246)
-bones/15/rotation = Quaternion(2.6786e-09, 3.0571e-09, 0.0280121, 0.999608)
+bones/0/position = Vector3(-0.00183521, -0.0773842, 0)
+bones/1/rotation = Quaternion(0.00054495, -0.000806716, 0.817609, 0.575774)
+bones/2/rotation = Quaternion(-0.000996305, -0.000664929, 0.286818, 0.957984)
+bones/3/rotation = Quaternion(-0.00107394, -0.000181964, 0.394423, 0.918929)
+bones/4/rotation = Quaternion(-6.35795e-06, -2.53072e-07, 0.0895676, 0.995981)
+bones/5/rotation = Quaternion(0.000747082, 0.00093372, -0.84056, 0.541717)
+bones/6/rotation = Quaternion(-0.000935548, 0.000672064, -0.275485, 0.961305)
+bones/7/rotation = Quaternion(-0.00114391, 0.000179775, -0.353319, 0.935502)
+bones/8/rotation = Quaternion(-0.000196435, 7.18945e-06, -0.0787757, 0.996892)
+bones/9/rotation = Quaternion(0.00680736, 0, 0, 0.999977)
+bones/10/rotation = Quaternion(0.706877, -0.0183437, -0.706845, 0.0189353)
+bones/11/rotation = Quaternion(-0.000136296, 2.72632e-05, -0.0794681, 0.996837)
+bones/12/rotation = Quaternion(2.13178e-09, -1.13731e-12, -0.0279828, 0.999608)
+bones/13/rotation = Quaternion(0.706971, 0.0138965, 0.706967, 0.013994)
+bones/14/rotation = Quaternion(-1.8292e-05, -4.3901e-06, 0.0664975, 0.997787)
+bones/15/rotation = Quaternion(2.11414e-09, 1.70597e-13, 0.0280121, 0.999608)
 
 [node name="Player" parent="PlayerModel/player/Armature/Skeleton3D" index="0"]
 lod_bias = 128.0
@@ -613,7 +612,7 @@ surface_material_override/1 = ExtResource("4_oor3j")
 surface_material_override/2 = ExtResource("5_mq2xk")
 
 [node name="FaceAttachment" type="BoneAttachment3D" parent="PlayerModel/player/Armature/Skeleton3D" index="1"]
-transform = Transform3D(0.468292, -0.000364254, -0.883574, -5.82077e-11, 1, -0.000412251, 0.883574, 0.000193054, 0.468292, -0.00183521, 0.321394, 0)
+transform = Transform3D(1, 0, 0, 0, 0.999907, -0.0136144, 0, 0.0136144, 0.999907, -0.00183521, 0.507159, 0)
 bone_name = "Head"
 bone_idx = 9
 
@@ -673,7 +672,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -20)
 [node name="RayCast3D" type="RayCast3D" parent="CentralCameraPoint/SpringArm3D/Camera3D"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -1.67509)
 target_position = Vector3(0, 0, -1000)
-collision_mask = 513
+hit_back_faces = false
 debug_shape_custom_color = Color(1, 0, 0, 1)
 
 [node name="Cursor" type="Marker3D" parent="."]
