@@ -1,4 +1,4 @@
-[gd_scene load_steps=41 format=4 uid="uid://e1ifpcaik1si"]
+[gd_scene load_steps=42 format=4 uid="uid://e1ifpcaik1si"]
 
 [ext_resource type="Script" path="res://Elements/environments/chapter1/c1_m7.gd" id="1_6r3yi"]
 [ext_resource type="PackedScene" uid="uid://fng1tq0dr424" path="res://Art/blend/levels_chapter1/c1_m7.blend" id="1_phkl0"]
@@ -34,6 +34,7 @@
 [ext_resource type="PackedScene" uid="uid://dqaxkncc187ot" path="res://Elements/assets/props/picture_small.tscn" id="32_4yb0u"]
 [ext_resource type="PackedScene" uid="uid://vku0vf2hc070" path="res://Elements/assets/props/microwave.tscn" id="33_xl312"]
 [ext_resource type="PackedScene" uid="uid://cdxkrkn34253v" path="res://Elements/assets/props/picture_large.tscn" id="34_gnuqd"]
+[ext_resource type="PackedScene" uid="uid://c6busq7mdau5y" path="res://Elements/enemies/bird.tscn" id="35_ovuxq"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_kg3la"]
 render_priority = 0
@@ -95,7 +96,7 @@ data = PackedVector3Array(-1, 0, 5, -1, 1, 10, -1, 0, 10, -1, 0, 5, -1, 1, 5, -1
 script = ExtResource("1_6r3yi")
 
 [node name="Player" parent="." instance=ExtResource("1_puvkk")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 108.272, 1.54838, 3.08176)
 
 [node name="ObjectiveLevelStart" parent="." instance=ExtResource("2_i5unj")]
 transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 0.119442, 0.159454, 0.0185945)
@@ -152,7 +153,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 29.6075, 2.13215, -1.72272)
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 106.135, -1.09673e-05, 7.7288)
 
 [node name="lamp2" parent="Props" instance=ExtResource("12_kn1f7")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 103.383, 0.75655, 6.23503)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 102.668, 0.756551, 3.11564)
 
 [node name="coffin2" parent="Props" instance=ExtResource("14_ysvxj")]
 transform = Transform3D(0.948329, 0, 0.317288, 0, 1, 0, -0.317288, 0, 0.948329, 107.533, -1.00334, 1.83977)
@@ -345,6 +346,10 @@ freeze = true
 freeze_mode = 1
 
 [node name="WorldEnvironment" parent="." instance=ExtResource("11_ac2r6")]
+
+[node name="Bird" parent="." instance=ExtResource("35_ovuxq")]
+transform = Transform3D(0.426884, 0, 0.904306, 0, 1, 0, -0.904306, 0, 0.426884, 103.789, 0.499993, 6.20959)
+attack_dmg = 1.0
 
 [connection signal="body_entered" from="Pain" to="." method="_on_pain_body_entered"]
 

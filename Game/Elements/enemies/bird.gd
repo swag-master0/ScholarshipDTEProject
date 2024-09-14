@@ -1,6 +1,7 @@
 extends CharacterBody3D
 
 @export var speed: float = 5
+@export var attack_dmg: float = 5
 @export var attack_dist: float = 12
 @export var attack_speed: float = 200
 @export var retreat_multiplier: float = 2
@@ -29,6 +30,8 @@ func _ready():
 	anims.play("idle")
 	corpse.visible = false
 	corpse_col.disabled = true
+	
+	$Info.damage_from_collision = attack_dmg
 	
 	for i in get_parent().get_children():
 		if i.is_in_group("player"):
