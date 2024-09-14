@@ -1,0 +1,51 @@
+[gd_scene load_steps=13 format=3 uid="uid://s5se47gv822a"]
+
+[ext_resource type="PackedScene" uid="uid://djpnvlcx4jkca" path="res://Art/blend/levels_chapter1/c1_m8.blend" id="1_tr5mb"]
+[ext_resource type="Script" path="res://Elements/environments/chapter1/c1_m8.gd" id="1_ws6ln"]
+[ext_resource type="PackedScene" uid="uid://cihisq18677xu" path="res://Elements/function/objective_item.tscn" id="2_0rn7l"]
+[ext_resource type="PackedScene" uid="uid://msdo88p274sw" path="res://Elements/function/objective.tscn" id="2_2or8d"]
+[ext_resource type="PackedScene" uid="uid://bcou7suhphdrp" path="res://Elements/function/player/player.tscn" id="3_o00ce"]
+[ext_resource type="Shader" uid="uid://civrqhnjvpsv2" path="res://Art/materials/floor_wet.tres" id="5_7s0kl"]
+[ext_resource type="Shader" path="res://Art/materials/walls/walls.gdshader" id="5_g6uuq"]
+[ext_resource type="Texture2D" uid="uid://bebs4m6uaixb7" path="res://Art/materials/walls/walls_noise.tres" id="6_ehgtx"]
+[ext_resource type="PackedScene" uid="uid://g2jwt8atruu7" path="res://Art/environment/environment.tscn" id="6_lvbkw"]
+[ext_resource type="Texture2D" uid="uid://ydrsdeeq0ayc" path="res://Art/materials/walls/walls_normal.tres" id="7_e0w4h"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_v3hro"]
+render_priority = 0
+shader = ExtResource("5_7s0kl")
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_3k3vw"]
+render_priority = 0
+shader = ExtResource("5_g6uuq")
+shader_parameter/wall_colour = Color(0.553332, 0.868922, 0.699245, 1)
+shader_parameter/colour_add = 4.0
+shader_parameter/amount = 2.0
+shader_parameter/noise = ExtResource("6_ehgtx")
+shader_parameter/normal_tex = ExtResource("7_e0w4h")
+
+[node name="c1_m8" type="Node3D"]
+script = ExtResource("1_ws6ln")
+
+[node name="ObjectiveLevelStart" parent="." instance=ExtResource("2_2or8d")]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 0, 0, 0)
+
+[node name="Player" parent="." instance=ExtResource("3_o00ce")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -2.87115, 0)
+
+[node name="c1_m8" parent="." instance=ExtResource("1_tr5mb")]
+
+[node name="Floor" parent="c1_m8" index="1"]
+surface_material_override/0 = SubResource("ShaderMaterial_v3hro")
+
+[node name="Walls" parent="c1_m8" index="2"]
+surface_material_override/0 = SubResource("ShaderMaterial_3k3vw")
+
+[node name="ObjectiveItem" parent="." instance=ExtResource("2_0rn7l")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 120.81, 4.3, -6.1896)
+
+[node name="WorldEnvironment" parent="." instance=ExtResource("6_lvbkw")]
+
+[node name="Props" type="Node" parent="."]
+
+[editable path="c1_m8"]
