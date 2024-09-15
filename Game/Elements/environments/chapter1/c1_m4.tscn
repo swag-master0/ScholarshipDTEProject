@@ -1,4 +1,4 @@
-[gd_scene load_steps=54 format=3 uid="uid://bkvmwrsm7nbyt"]
+[gd_scene load_steps=56 format=3 uid="uid://bkvmwrsm7nbyt"]
 
 [ext_resource type="PackedScene" uid="uid://ch7t6b0c3tjwr" path="res://Elements/enemies/enemy.tscn" id="1_45rao"]
 [ext_resource type="Script" path="res://Elements/environments/chapter1/c1_m4.gd" id="1_yjfoc"]
@@ -15,7 +15,8 @@
 [ext_resource type="Shader" path="res://Art/materials/walls/walls.gdshader" id="12_hyycs"]
 [ext_resource type="Texture2D" uid="uid://bebs4m6uaixb7" path="res://Art/materials/walls/walls_noise.tres" id="13_3j7b3"]
 [ext_resource type="Texture2D" uid="uid://ydrsdeeq0ayc" path="res://Art/materials/walls/walls_normal.tres" id="14_ebveu"]
-[ext_resource type="PackedScene" uid="uid://55v8i8yx4j0v" path="res://Art/blend/assets/misc/tree.blend" id="17_bjc4n"]
+[ext_resource type="Shader" uid="uid://cauq81cpr1xjv" path="res://Art/materials/dirt.tres" id="15_hipys"]
+[ext_resource type="PackedScene" uid="uid://b4m1cj2hvwg7w" path="res://Elements/assets/props/tree.tscn" id="15_pjw6e"]
 [ext_resource type="PackedScene" uid="uid://g57jyhpuwnhx" path="res://Art/blend/assets/prop/brick.blend" id="19_abone"]
 [ext_resource type="PackedScene" uid="uid://bsmhlbfqb0hvo" path="res://Elements/assets/props/anvil.tscn" id="22_3a5lf"]
 [ext_resource type="PackedScene" uid="uid://i43wpwf0q6em" path="res://Elements/assets/props/chair.tscn" id="23_qn8xk"]
@@ -61,9 +62,14 @@ shader_parameter/normal = ExtResource("11_mqdt5")
 render_priority = 0
 shader = ExtResource("12_hyycs")
 shader_parameter/wall_colour = Color(2, 4, 2, 1)
+shader_parameter/colour_add = 4.0
 shader_parameter/amount = 1.0
 shader_parameter/noise = ExtResource("13_3j7b3")
 shader_parameter/normal_tex = ExtResource("14_ebveu")
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_05k6x"]
+render_priority = 0
+shader = ExtResource("15_hipys")
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_hccy0"]
 size = Vector3(10, 15, 30)
@@ -93,7 +99,7 @@ shader = ExtResource("28_7sodc")
 shader_parameter/emission_strength = 0.2
 shader_parameter/picture = ExtResource("38_ffgp5")
 
-[node name="Level" type="Node3D"]
+[node name="c1_m4" type="Node3D"]
 script = ExtResource("1_yjfoc")
 enemy = ExtResource("1_45rao")
 bombers = ExtResource("2_np0wd")
@@ -124,8 +130,11 @@ surface_material_override/0 = SubResource("ShaderMaterial_ppbwq")
 [node name="Walls " parent="NavigationRegion3D/c2_m4" index="3"]
 material_override = SubResource("ShaderMaterial_d65qo")
 
-[node name="tree" parent="NavigationRegion3D" instance=ExtResource("17_bjc4n")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 70, 0.110033, -35)
+[node name="Dirt " parent="NavigationRegion3D/c2_m4" index="4"]
+surface_material_override/0 = SubResource("ShaderMaterial_05k6x")
+
+[node name="tree2" parent="NavigationRegion3D" instance=ExtResource("15_pjw6e")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 70, 0, -35)
 
 [node name="Trigger" type="Area3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 56, 1, -37)

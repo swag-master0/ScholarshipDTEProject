@@ -1,0 +1,13 @@
+[gd_scene load_steps=4 format=3 uid="uid://b4m1cj2hvwg7w"]
+
+[ext_resource type="PackedScene" uid="uid://55v8i8yx4j0v" path="res://Art/blend/assets/misc/tree.blend" id="1_sicqk"]
+[ext_resource type="Shader" uid="uid://c1a17tbjjff5c" path="res://Art/materials/props/tree.tres" id="2_32sth"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_r8n7s"]
+render_priority = 0
+shader = ExtResource("2_32sth")
+
+[node name="tree" instance=ExtResource("1_sicqk")]
+
+[node name="Tree " parent="." index="0"]
+surface_material_override/0 = SubResource("ShaderMaterial_r8n7s")
