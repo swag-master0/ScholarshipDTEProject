@@ -1,0 +1,675 @@
+[gd_scene load_steps=38 format=3 uid="uid://b525133sxoobn"]
+
+[ext_resource type="Script" path="res://Elements/levels/misc/player_cell.gd" id="1_vgvtl"]
+[ext_resource type="PackedScene" uid="uid://bcou7suhphdrp" path="res://Elements/function/player/player.tscn" id="2_anjfi"]
+[ext_resource type="PackedScene" uid="uid://cihisq18677xu" path="res://Elements/function/objective_item.tscn" id="2_cci08"]
+[ext_resource type="Script" path="res://Elements/levels/misc/player_cell_visuals.gd" id="2_fxe48"]
+[ext_resource type="PackedScene" uid="uid://no1bk2mkfory" path="res://Art/blend/misc/player_hub.blend" id="3_ff6h1"]
+[ext_resource type="Shader" uid="uid://dtjh0fi6sbiji" path="res://Art/materials/floor/floor.tres" id="4_6os4k"]
+[ext_resource type="Texture2D" uid="uid://bfujcpxg1vljk" path="res://Art/materials/floor/floor_normal.tres" id="5_3k8u3"]
+[ext_resource type="AudioStream" uid="uid://csoer2bqta4xr" path="res://Art/audio/misc/elevator_idle.wav" id="5_07s8g"]
+[ext_resource type="PackedScene" uid="uid://bmgk0u34rg2cy" path="res://Art/blend/assets/misc/rail.blend" id="6_g5gla"]
+[ext_resource type="AudioStream" uid="uid://co1bf3eh4kfj8" path="res://Art/audio/misc/short-beep-tone-47916.mp3" id="6_w54mv"]
+[ext_resource type="PackedScene" uid="uid://4lamctxd2su2" path="res://Elements/assets/misc/carraige.tscn" id="7_6hx2v"]
+[ext_resource type="Texture2D" uid="uid://dp1ls6ddglxoj" path="res://Art/assets/assets/cartoon_particle_5.png" id="9_pm47k"]
+[ext_resource type="AudioStream" uid="uid://bfa3bwv64pyvo" path="res://Art/audio/misc/incinerator_idle.mp3" id="10_1jfbo"]
+[ext_resource type="AudioStream" uid="uid://my2rr4u66o2y" path="res://Art/audio/misc/incinerator_burn.wav" id="11_mfqnx"]
+[ext_resource type="AudioStream" uid="uid://cnxylq8eed23p" path="res://Art/audio/ambient/ambient-2.mp3" id="14_g2kid"]
+
+[sub_resource type="Animation" id="Animation_w48k8"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("RailsPlayerHub/carraige:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(0, 39.7289, -0.322777)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("RailsPlayerHub/rail:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(0, 32, -3)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("RailsPlayerHub/SpotLight3D:light_energy")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.0]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("RailsPlayerHub/carraige:enable_col")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("RailsPlayerHub/carraige/Audio/Ambient:playing")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/5/type = "value"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("RailsPlayerHub/carraige/Audio/Finish:playing")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+
+[sub_resource type="Animation" id="Animation_2l42s"]
+resource_name = "down"
+length = 2.0
+step = 0.1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("RailsPlayerHub/carraige:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1.2, 1.5, 2),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 0,
+"values": [Vector3(0, 29.7289, -0.322777), Vector3(0, 8.74577, -0.322955), Vector3(0, 3.90467, -0.322983), Vector3(0, 1, -0.323)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("RailsPlayerHub/rail:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.4, 0.5, 0.7),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 0,
+"values": [Vector3(0, 32, -3), Vector3(0, 0, -3), Vector3(0, 1.98314, -3), Vector3(0, 0, -3)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("RailsPlayerHub/SpotLight3D:light_energy")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 0.1, 1.5),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 1,
+"values": [0.0, 4.0, 0.0]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("RailsPlayerHub/carraige:enable_col")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0, 2),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [true, false]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("RailsPlayerHub/carraige/Audio/Ambient:playing")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0, 0.1, 2),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 1,
+"values": [false, true, false]
+}
+tracks/5/type = "value"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("RailsPlayerHub/carraige/Audio/Finish:playing")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"times": PackedFloat32Array(2),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+
+[sub_resource type="Animation" id="Animation_wjo43"]
+resource_name = "up"
+length = 5.0
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("RailsPlayerHub/carraige:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0.5, 2, 5),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Vector3(0, 1, -0.323), Vector3(0, 9.5, -0.323), Vector3(0, 63, -0.323)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("RailsPlayerHub/carraige:enable_col")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 5),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [true, true]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("RailsPlayerHub/carraige/Audio/Ambient:playing")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 0.0666667, 5),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 1,
+"values": [false, true, false]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("RailsPlayerHub/carraige/Audio/Finish:playing")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(5),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_ik50q"]
+_data = {
+"RESET": SubResource("Animation_w48k8"),
+"down": SubResource("Animation_2l42s"),
+"up": SubResource("Animation_wjo43")
+}
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_5dmfk"]
+size = Vector3(3, 6, 3)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_eeenf"]
+size = Vector3(3.39905, 0.794922, 3.79041)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_080nk"]
+size = Vector3(5, 6.30652, 5)
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_hrqgb"]
+render_priority = 0
+shader = ExtResource("4_6os4k")
+shader_parameter/uv_scale = 1.0
+shader_parameter/normal = ExtResource("5_3k8u3")
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_cidha"]
+render_priority = 0
+shader = ExtResource("4_6os4k")
+shader_parameter/uv_scale = 0.3
+shader_parameter/normal = ExtResource("5_3k8u3")
+
+[sub_resource type="Environment" id="Environment_ppwta"]
+background_mode = 1
+
+[sub_resource type="Animation" id="Animation_f716q"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("../player_hub/Cube:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(1.53458, 2.20195, 11)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Audio/Idle:playing")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("OmniLight3D:light_energy")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [1000.0]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("OmniLight3D:omni_range")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [10.0]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("Audio/Burn:playing")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/5/type = "value"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("SpotLight3D:spot_range")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [12.0]
+}
+tracks/6/type = "value"
+tracks/6/imported = false
+tracks/6/enabled = true
+tracks/6/path = NodePath("SpotLight3D:light_energy")
+tracks/6/interp = 1
+tracks/6/loop_wrap = true
+tracks/6/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [14.0]
+}
+
+[sub_resource type="Animation" id="Animation_35185"]
+resource_name = "burn"
+step = 0.05
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("OmniLight3D:light_energy")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.5, 1),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [1000.0, 250.0, 1000.0]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("OmniLight3D:omni_range")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.5, 1),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [10.0, 20.0, 10.0]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Audio/Burn:playing")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("SpotLight3D:spot_range")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0, 0.5, 1),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [12.0, 24.0, 12.0]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("SpotLight3D:light_energy")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0, 0.5, 1),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [14.0, 20.0, 14.0]
+}
+
+[sub_resource type="Animation" id="Animation_bnyv8"]
+resource_name = "open"
+step = 0.05
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("../player_hub/Cube:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.25, 0.45),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 0,
+"values": [Vector3(1.53458, 2.20195, 11), Vector3(1.53458, 2.20195, 11.5596), Vector3(1.53458, 2.20195, 11.5596), Vector3(1.53458, 7.20195, 11.5596)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Audio/Idle:playing")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.25),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [false, true]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_rcyei"]
+_data = {
+"RESET": SubResource("Animation_f716q"),
+"burn": SubResource("Animation_35185"),
+"open": SubResource("Animation_bnyv8")
+}
+
+[sub_resource type="Gradient" id="Gradient_xv5l3"]
+colors = PackedColorArray(0.941176, 0.0431373, 0.0313726, 1, 0.949195, 0.896106, 0.0984805, 1)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_5tlkn"]
+gradient = SubResource("Gradient_xv5l3")
+
+[sub_resource type="Curve" id="Curve_x54d0"]
+_data = [Vector2(0, 0.726316), 0.0, 0.0, 0, 0, Vector2(0.22449, 1), 0.0, 0.0, 0, 0, Vector2(1, 0.126316), 0.0, 0.0, 0, 0]
+point_count = 3
+
+[sub_resource type="CurveTexture" id="CurveTexture_66nmj"]
+curve = SubResource("Curve_x54d0")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_6oiw8"]
+emission_shape = 3
+emission_box_extents = Vector3(3.5, 0, 2)
+angle_min = 1.07288e-05
+angle_max = 360.0
+direction = Vector3(0, 1, 0)
+spread = 15.0
+initial_velocity_min = 30.0
+initial_velocity_max = 30.0
+gravity = Vector3(0, 0, 0)
+damping_max = 1.0
+scale_curve = SubResource("CurveTexture_66nmj")
+color_ramp = SubResource("GradientTexture1D_5tlkn")
+turbulence_enabled = true
+turbulence_noise_strength = 0.25
+turbulence_noise_scale = 1.5
+turbulence_noise_speed = Vector3(0.5, 0, 0.5)
+collision_mode = 1
+collision_friction = 0.0
+collision_bounce = 0.0
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_7jxyr"]
+transparency = 1
+shading_mode = 0
+vertex_color_use_as_albedo = true
+albedo_texture = ExtResource("9_pm47k")
+billboard_mode = 3
+billboard_keep_scale = true
+particles_anim_h_frames = 1
+particles_anim_v_frames = 1
+particles_anim_loop = false
+
+[sub_resource type="QuadMesh" id="QuadMesh_hwlvd"]
+material = SubResource("StandardMaterial3D_7jxyr")
+size = Vector2(5, 5)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_lp3hl"]
+size = Vector3(7, 5, 4)
+
+[node name="PlayerHub" type="Node3D"]
+script = ExtResource("1_vgvtl")
+objective_item = ExtResource("2_cci08")
+
+[node name="DialogueHandler" type="Node" parent="."]
+script = ExtResource("2_fxe48")
+
+[node name="RailsPlayerHub" type="Node3D" parent="."]
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="RailsPlayerHub"]
+root_node = NodePath("../..")
+libraries = {
+"": SubResource("AnimationLibrary_ik50q")
+}
+
+[node name="SpotLight3D" type="SpotLight3D" parent="RailsPlayerHub"]
+transform = Transform3D(1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 0, 36.7038, 0)
+light_color = Color(1, 0, 0, 1)
+light_energy = 0.0
+shadow_enabled = true
+spot_range = 134.984
+spot_angle = 14.4
+
+[node name="rail" parent="RailsPlayerHub" instance=ExtResource("6_g5gla")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 32, -3)
+
+[node name="carraige" parent="RailsPlayerHub" instance=ExtResource("7_6hx2v")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 39.7289, -0.322777)
+enable_col = true
+
+[node name="Audio" type="Node3D" parent="RailsPlayerHub/carraige"]
+
+[node name="Ambient" type="AudioStreamPlayer3D" parent="RailsPlayerHub/carraige/Audio"]
+stream = ExtResource("5_07s8g")
+volume_db = -20.0
+bus = &"sfx"
+
+[node name="Finish" type="AudioStreamPlayer3D" parent="RailsPlayerHub/carraige/Audio"]
+stream = ExtResource("6_w54mv")
+volume_db = -20.0
+bus = &"sfx"
+
+[node name="Area3D" type="Area3D" parent="RailsPlayerHub/carraige"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="RailsPlayerHub/carraige/Area3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.5, 0)
+shape = SubResource("BoxShape3D_5dmfk")
+
+[node name="Crushed" type="Area3D" parent="RailsPlayerHub"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1, 0)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="RailsPlayerHub/Crushed"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.000427246, -0.102539, -0.240051)
+shape = SubResource("BoxShape3D_eeenf")
+
+[node name="Portal" type="Area3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 58.2261, 0)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Portal"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 4.34674, 0)
+shape = SubResource("BoxShape3D_080nk")
+
+[node name="Player" parent="." instance=ExtResource("2_anjfi")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 33, 0)
+SAVE_GAME = false
+DISPLAY_DUST = false
+
+[node name="player_hub" parent="." instance=ExtResource("3_ff6h1")]
+
+[node name="Room" parent="player_hub" index="0"]
+surface_material_override/0 = SubResource("ShaderMaterial_hrqgb")
+
+[node name="Cube" parent="player_hub" index="3"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.53458, 2.20195, 11)
+surface_material_override/0 = SubResource("ShaderMaterial_cidha")
+
+[node name="Light2" type="SpotLight3D" parent="."]
+transform = Transform3D(-4.37114e-08, -0.788011, 0.615662, 0, 0.615662, 0.788011, -1, 3.4445e-08, -2.69114e-08, 9, 11, 0)
+light_energy = 1.5
+light_specular = 0.0
+shadow_enabled = true
+shadow_reverse_cull_face = true
+spot_range = 25.0
+spot_angle = 60.0
+
+[node name="Light" type="SpotLight3D" parent="."]
+transform = Transform3D(-4.37114e-08, 0.788011, -0.615662, 0, 0.615662, 0.788011, 1, 3.4445e-08, -2.69114e-08, -9, 11, 0)
+light_energy = 1.5
+light_specular = 0.0
+shadow_enabled = true
+shadow_reverse_cull_face = true
+spot_range = 25.0
+spot_angle = 60.0
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource("Environment_ppwta")
+
+[node name="Incinerator" type="Node3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -8, 13)
+visible = false
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="Incinerator"]
+libraries = {
+"": SubResource("AnimationLibrary_rcyei")
+}
+
+[node name="FireParticles" type="GPUParticles3D" parent="Incinerator"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.63445, 1.0478)
+amount = 500
+visibility_aabb = AABB(-8, -4, -4, 16, 22.49, 8)
+process_material = SubResource("ParticleProcessMaterial_6oiw8")
+draw_pass_1 = SubResource("QuadMesh_hwlvd")
+
+[node name="Deletion" type="Area3D" parent="Incinerator"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Incinerator/Deletion"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2, 0)
+shape = SubResource("BoxShape3D_lp3hl")
+
+[node name="OmniLight3D" type="OmniLight3D" parent="Incinerator"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.41675, -0.401999)
+light_color = Color(0.835528, 0.446337, 0.167556, 1)
+light_energy = 1000.0
+shadow_enabled = true
+omni_range = 10.0
+
+[node name="SpotLight3D" type="SpotLight3D" parent="Incinerator"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 10.2655, -0.413293)
+light_color = Color(0.842648, 0.457309, 0.28702, 1)
+light_energy = 14.0
+shadow_enabled = true
+spot_range = 12.0
+spot_angle = 69.02
+
+[node name="GPUParticleCollisions" type="Node3D" parent="Incinerator"]
+
+[node name="GPUParticlesCollisionBox3D" type="GPUParticlesCollisionBox3D" parent="Incinerator/GPUParticleCollisions"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.45726, 6.49828, 2.38275)
+size = Vector3(9.9838, 15.07, 0.83606)
+
+[node name="GPUParticlesCollisionBox3D2" type="GPUParticlesCollisionBox3D" parent="Incinerator/GPUParticleCollisions"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4.10184, 6.49828, 0.00656128)
+size = Vector3(1.09092, 15.07, 5.58844)
+
+[node name="GPUParticlesCollisionBox3D3" type="GPUParticlesCollisionBox3D" parent="Incinerator/GPUParticleCollisions"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0386553, 6.49828, -1.99511)
+size = Vector3(9.37191, 15.07, 1.58509)
+
+[node name="GPUParticlesCollisionBox3D4" type="GPUParticlesCollisionBox3D" parent="Incinerator/GPUParticleCollisions"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4.17924, 6.49828, -0.203362)
+size = Vector3(1.09074, 15.07, 5.16859)
+
+[node name="GPUParticlesCollisionBox3D5" type="GPUParticlesCollisionBox3D" parent="Incinerator/GPUParticleCollisions"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.119852, 13.6256, -0.203362)
+size = Vector3(9.68892, 0.815273, 5.16859)
+
+[node name="Audio" type="Node3D" parent="Incinerator"]
+
+[node name="Idle" type="AudioStreamPlayer3D" parent="Incinerator/Audio"]
+stream = ExtResource("10_1jfbo")
+volume_db = -20.0
+bus = &"sfx"
+
+[node name="Burn" type="AudioStreamPlayer3D" parent="Incinerator/Audio"]
+stream = ExtResource("11_mfqnx")
+volume_db = -10.0
+pitch_scale = 2.0
+bus = &"sfx"
+
+[node name="Ambient" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("14_g2kid")
+volume_db = -10.0
+autoplay = true
+bus = &"ambience"
+parameters/looping = true
+
+[connection signal="ObjectBurnt" from="." to="DialogueHandler" method="_on_player_hub_object_burnt"]
+[connection signal="body_entered" from="RailsPlayerHub/carraige/Area3D" to="DialogueHandler" method="_on_exit_body_entered"]
+[connection signal="body_entered" from="Portal" to="." method="_on_portal_body_entered"]
+[connection signal="DialogueFinished" from="Player" to="DialogueHandler" method="_on_player_dialogue_finished"]
+[connection signal="body_entered" from="Incinerator/Deletion" to="." method="_on_incinerator_body_entered"]
+
+[editable path="RailsPlayerHub/carraige"]
+[editable path="player_hub"]

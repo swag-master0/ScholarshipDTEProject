@@ -1,0 +1,89 @@
+[gd_scene load_steps=10 format=3 uid="uid://c6busq7mdau5y"]
+
+[ext_resource type="Script" path="res://Elements/function/enemies/bird.gd" id="1_xg4k0"]
+[ext_resource type="PackedScene" uid="uid://cft1b4l0aljye" path="res://Elements/function/info.tscn" id="2_lxgba"]
+[ext_resource type="PackedScene" uid="uid://cxmm64yjk3q22" path="res://Art/blend/assets/enemies/bird.blend" id="2_ushjs"]
+[ext_resource type="Script" path="res://Elements/assets/props/template/prop.gd" id="3_8vs6r"]
+[ext_resource type="AudioStream" uid="uid://b8ixk86ahq8u4" path="res://Art/audio/enemy/hurt.wav" id="4_rlake"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_4lrx2"]
+size = Vector3(1.25, 1.25, 1.25)
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_tgmnk"]
+
+[sub_resource type="PrismMesh" id="PrismMesh_bvolq"]
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_flgqy"]
+radius = 2.5
+
+[node name="Bird" type="CharacterBody3D"]
+script = ExtResource("1_xg4k0")
+
+[node name="bird" parent="." instance=ExtResource("2_ushjs")]
+transform = Transform3D(0.6, 0, 0, 0, 0.6, 0, 0, 0, 0.6, 0, 0, -0.187581)
+
+[node name="Mesh-rigid" parent="bird" index="0"]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 0, 0, 0)
+visible = false
+mass = 10.0
+freeze = true
+contact_monitor = true
+max_contacts_reported = 5
+script = ExtResource("3_8vs6r")
+
+[node name="Mesh-rigid" parent="bird/Mesh-rigid" index="0"]
+transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 0, 0, 0)
+
+[node name="CollisionShape3D" parent="bird/Mesh-rigid" index="1"]
+transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 0, 0, 0)
+
+[node name="CollisionSound" type="AudioStreamPlayer3D" parent="bird/Mesh-rigid" index="2"]
+stream = ExtResource("4_rlake")
+
+[node name="Armature" parent="bird" index="1"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0)
+
+[node name="Skeleton3D" parent="bird/Armature" index="0"]
+bones/1/rotation = Quaternion(-0.133226, 3.15029e-08, -1.63052e-07, 0.991086)
+bones/1/scale = Vector3(1, 1, 1)
+bones/2/rotation = Quaternion(0.150376, -7.46395e-08, 1.7747e-07, 0.988629)
+bones/4/rotation = Quaternion(0.508588, 0.508587, -0.491262, 0.491263)
+bones/4/scale = Vector3(1, 1, 1)
+
+[node name="Info" parent="." instance=ExtResource("2_lxgba")]
+health = 1.0
+max_health = 1.0
+damage_from_collision = 5.0
+PlayKillSound = true
+PlayHurtSound = true
+DisplayDamageParticles = true
+
+[node name="CollisionShape3D" parent="Info/Hitbox" index="0"]
+shape = SubResource("BoxShape3D_4lrx2")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+shape = SubResource("SphereShape3D_tgmnk")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 0, 0)
+visible = false
+mesh = SubResource("PrismMesh_bvolq")
+
+[node name="Ray" type="RayCast3D" parent="."]
+top_level = true
+
+[node name="OmniLight3D" type="OmniLight3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.692103, 0)
+light_color = Color(1, 0, 0, 1)
+light_energy = 0.5
+
+[node name="Push" type="Area3D" parent="."]
+
+[node name="CollisionShape3D2" type="CollisionShape3D" parent="Push"]
+shape = SubResource("SphereShape3D_flgqy")
+
+[connection signal="dealtDamage" from="Info" to="." method="_on_info_dealt_damage"]
+[connection signal="death" from="Info" to="." method="_on_info_death"]
+
+[editable path="bird"]
+[editable path="Info"]

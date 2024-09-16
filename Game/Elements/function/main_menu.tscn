@@ -24,7 +24,8 @@ shader = ExtResource("7_cuoft")
 
 [node name="MainMenu" type="Node3D"]
 script = ExtResource("1_cvoh4")
-initial_level = "res://Elements/environments/misc/intro_cutscene.tscn"
+initial_level = "res://Elements/levels/misc/intro_cutscene.tscn"
+player_hub = "res://Elements/levels/misc/player_cell.tscn"
 
 [node name="Camera3D" type="Camera3D" parent="."]
 

@@ -1,0 +1,13 @@
+[gd_scene load_steps=4 format=3 uid="uid://bm4nvc6a0a5xh"]
+
+[ext_resource type="Script" path="res://Elements/levels/chapter1/c1_m9.gd" id="1_00x8d"]
+[ext_resource type="PackedScene" uid="uid://djjb8lyxcrrby" path="res://Art/blend/levels_chapter1/c1_m9.blend" id="2_hcg6c"]
+[ext_resource type="PackedScene" uid="uid://bcou7suhphdrp" path="res://Elements/function/player/player.tscn" id="3_4785u"]
+
+[node name="c1_m9" type="Node3D"]
+script = ExtResource("1_00x8d")
+
+[node name="c1_m9" parent="." instance=ExtResource("2_hcg6c")]
+
+[node name="Player" parent="." instance=ExtResource("3_4785u")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2, 0)
