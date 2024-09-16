@@ -1,13 +1,75 @@
-[gd_scene load_steps=4 format=3 uid="uid://bm4nvc6a0a5xh"]
+[gd_scene load_steps=17 format=3 uid="uid://bm4nvc6a0a5xh"]
 
 [ext_resource type="Script" path="res://Elements/levels/chapter1/c1_m9.gd" id="1_00x8d"]
 [ext_resource type="PackedScene" uid="uid://djjb8lyxcrrby" path="res://Art/blend/levels_chapter1/c1_m9.blend" id="2_hcg6c"]
+[ext_resource type="PackedScene" uid="uid://g2jwt8atruu7" path="res://Art/environment/environment.tscn" id="2_kxgvx"]
 [ext_resource type="PackedScene" uid="uid://bcou7suhphdrp" path="res://Elements/function/player/player.tscn" id="3_4785u"]
+[ext_resource type="PackedScene" uid="uid://msdo88p274sw" path="res://Elements/function/objective.tscn" id="3_bo2oa"]
+[ext_resource type="PackedScene" uid="uid://cihisq18677xu" path="res://Elements/function/objective_item.tscn" id="4_b833i"]
+[ext_resource type="Shader" path="res://Art/materials/walls/walls.gdshader" id="4_f3iw6"]
+[ext_resource type="Shader" uid="uid://civrqhnjvpsv2" path="res://Art/materials/floor_wet.tres" id="4_vfwlv"]
+[ext_resource type="Texture2D" uid="uid://bebs4m6uaixb7" path="res://Art/materials/walls/walls_noise.tres" id="5_wlial"]
+[ext_resource type="Texture2D" uid="uid://ydrsdeeq0ayc" path="res://Art/materials/walls/walls_normal.tres" id="6_1sin6"]
+[ext_resource type="Shader" uid="uid://cauq81cpr1xjv" path="res://Art/materials/dirt.tres" id="8_0vls7"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_dbhqn"]
+render_priority = 0
+shader = ExtResource("4_vfwlv")
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_8u42y"]
+render_priority = 0
+shader = ExtResource("4_f3iw6")
+shader_parameter/wall_colour = Color(0.553332, 0.868922, 0.699245, 1)
+shader_parameter/colour_add = 4.0
+shader_parameter/amount = 1.5
+shader_parameter/noise = ExtResource("5_wlial")
+shader_parameter/normal_tex = ExtResource("6_1sin6")
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_tsfc4"]
+render_priority = 0
+shader = ExtResource("8_0vls7")
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_jsdmk"]
+render_priority = 0
+shader = ExtResource("8_0vls7")
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_artde"]
+render_priority = 0
+shader = ExtResource("8_0vls7")
 
 [node name="c1_m9" type="Node3D"]
 script = ExtResource("1_00x8d")
 
+[node name="WorldEnvironment" parent="." instance=ExtResource("2_kxgvx")]
+
+[node name="ObjectiveLevelStart" parent="." instance=ExtResource("3_bo2oa")]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 0, 0.264878, 0)
+
+[node name="ObjectiveItem" parent="." instance=ExtResource("4_b833i")]
+transform = Transform3D(0.984378, -0.152871, -0.0873588, 0.128254, 0.96249, -0.239091, 0.120632, 0.224152, 0.967059, 79.4287, 0.834753, 50.8492)
+freeze = true
+freeze_mode = 1
+
 [node name="c1_m9" parent="." instance=ExtResource("2_hcg6c")]
+
+[node name="Floor" parent="c1_m9" index="1"]
+surface_material_override/0 = SubResource("ShaderMaterial_dbhqn")
+
+[node name="Walls" parent="c1_m9" index="2"]
+surface_material_override/0 = SubResource("ShaderMaterial_8u42y")
+
+[node name="Dirt1" parent="c1_m9" index="4"]
+surface_material_override/0 = SubResource("ShaderMaterial_tsfc4")
+
+[node name="Dirt2" parent="c1_m9" index="5"]
+surface_material_override/0 = SubResource("ShaderMaterial_jsdmk")
+
+[node name="Dirt3" parent="c1_m9" index="6"]
+surface_material_override/0 = SubResource("ShaderMaterial_artde")
 
 [node name="Player" parent="." instance=ExtResource("3_4785u")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2, 0)
+
+[node name="Props" type="Node" parent="."]
+
+[editable path="c1_m9"]
