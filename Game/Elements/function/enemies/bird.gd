@@ -44,19 +44,20 @@ func _physics_process(delta):
 	
 	
 	if ray.is_colliding():
-		if ray.get_collider().is_in_group("player"):
-			mesh.look_at(ray.get_collider().global_position, Vector3.UP, true)
-			
-			var distance = global_position.distance_to(ray.get_collider().global_position) / 5
-			velocity += ((ray.get_collider().global_position - global_position).normalized() * speed * distance) * delta 
-			velocity += Vector3(0, speed / 2, 0) * delta
-			
-			# Close enough to attack
-			if global_position.distance_to(ray.get_collider().global_position) < attack_dist:
-				if !attack_cooldown:
-					velocity = ((ray.get_collider().global_position - global_position).normalized() * speed * attack_speed) * delta
-				else:
-					velocity = -((ray.get_collider().global_position - global_position).normalized() * speed * (attack_speed * retreat_multiplier)) * delta
+		if is_instance_valid(ray.get_collider()) and is_instance_valid(ray):
+			if ray.get_collider().is_in_group("player"):
+				mesh.look_at(ray.get_collider().global_position, Vector3.UP, true)
+				
+				var distance = global_position.distance_to(ray.get_collider().global_position) / 5
+				velocity += ((ray.get_collider().global_position - global_position).normalized() * speed * distance) * delta 
+				velocity += Vector3(0, speed / 2, 0) * delta
+				
+				# Close enough to attack
+				if global_position.distance_to(ray.get_collider().global_position) < attack_dist:
+					if !attack_cooldown:
+						velocity = ((ray.get_collider().global_position - global_position).normalized() * speed * attack_speed) * delta
+					else:
+						velocity = -((ray.get_collider().global_position - global_position).normalized() * speed * (attack_speed * retreat_multiplier)) * delta
 	
 	
 	# Push itself away from nearby objects (to prevent the bird from getting stuck)

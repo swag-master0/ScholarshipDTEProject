@@ -1,4 +1,4 @@
-[gd_scene load_steps=41 format=3 uid="uid://s5se47gv822a"]
+[gd_scene load_steps=53 format=4 uid="uid://s5se47gv822a"]
 
 [ext_resource type="PackedScene" uid="uid://djpnvlcx4jkca" path="res://Art/blend/levels_chapter1/c1_m8.blend" id="1_tr5mb"]
 [ext_resource type="Script" path="res://Elements/levels/chapter1/c1_m8.gd" id="1_ws6ln"]
@@ -25,7 +25,6 @@
 [ext_resource type="PackedScene" uid="uid://bgobrloxn3vug" path="res://Elements/assets/props/rock_2.tscn" id="14_2g1ko"]
 [ext_resource type="PackedScene" uid="uid://dhejktumttlcs" path="res://Elements/assets/props/bench.tscn" id="15_mcbci"]
 [ext_resource type="PackedScene" uid="uid://dqgrckw7n88n4" path="res://Elements/assets/props/table.tscn" id="19_c4t14"]
-[ext_resource type="PackedScene" uid="uid://cp8y4w0hidlhu" path="res://Elements/assets/props/picture_xlarge.tscn" id="20_gto0a"]
 [ext_resource type="PackedScene" uid="uid://blx6snb20uj8u" path="res://Elements/assets/props/lamp.tscn" id="21_gl0lj"]
 [ext_resource type="PackedScene" uid="uid://1k5dw6s6pdvj" path="res://Elements/assets/props/stool_1.tscn" id="22_24buq"]
 [ext_resource type="PackedScene" uid="uid://dqaxkncc187ot" path="res://Elements/assets/props/picture_small.tscn" id="23_l5750"]
@@ -34,6 +33,11 @@
 [ext_resource type="PackedScene" uid="uid://bfrpck2673n1q" path="res://Elements/assets/props/coffin.tscn" id="26_5ggyq"]
 [ext_resource type="PackedScene" uid="uid://dhaxwpsinvu6u" path="res://Elements/assets/props/crate.tscn" id="27_4hm1j"]
 [ext_resource type="PackedScene" uid="uid://i43wpwf0q6em" path="res://Elements/assets/props/chair.tscn" id="28_ybr3k"]
+[ext_resource type="Script" path="res://Elements/assets/props/template/prop.gd" id="29_gliox"]
+[ext_resource type="Shader" path="res://Art/materials/props/picture_image.gdshader" id="30_spdq7"]
+[ext_resource type="Material" uid="uid://dvlj73j848yaf" path="res://Art/materials/props/wood_1.tres" id="30_tnf5o"]
+[ext_resource type="AudioStream" uid="uid://ddjpyn7uhjk7g" path="res://Art/audio/impact/clatter-wood-1.wav" id="32_c5qpf"]
+[ext_resource type="AudioStream" uid="uid://ct6o1mf65ohkd" path="res://Art/audio/impact/clatter-wood-3.wav" id="33_4jtx3"]
 [ext_resource type="PackedScene" uid="uid://cdxkrkn34253v" path="res://Elements/assets/props/picture_large.tscn" id="34_iaifl"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_xdtlt"]
@@ -60,9 +64,102 @@ shader = ExtResource("11_v1oqg")
 render_priority = 0
 shader = ExtResource("11_v1oqg")
 
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_mn1ov"]
+resource_name = "Frame"
+cull_mode = 2
+albedo_color = Color(0.210223, 0.112664, 0.0589565, 1)
+roughness = 0.5
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_okvuv"]
+resource_name = "Picture"
+cull_mode = 2
+albedo_color = Color(0.906332, 0.906332, 0.906332, 1)
+roughness = 0.5
+
+[sub_resource type="ArrayMesh" id="ArrayMesh_up4vl"]
+_surfaces = [{
+"aabb": AABB(-2, 0, -2, 4, 0.218409, 4),
+"format": 34359742465,
+"index_count": 78,
+"index_data": PackedByteArray("AAADAAIAAAABAAMABwAMAAQABwAPAAwAAQALAAMAAQAKAAsAAgAJAAAAAgAIAAkAAwAIAAIAAwALAAgAAAAKAAEAAAAJAAoABQAIAAQABQAJAAgABgAJAAUABgAKAAkABwAKAAYABwALAAoABAALAAcABAAIAAsABQAOAAYABQANAA4ABgAPAAcABgAOAA8ABAANAAUABAAMAA0A"),
+"name": "Frame",
+"primitive": 3,
+"uv_scale": Vector4(0, 0, 0, 0),
+"vertex_count": 16,
+"vertex_data": PackedByteArray("AAAAwAAAAAAAAABAAAAAQAAAAAAAAABAAAAAwAAAAAAAAADAAAAAQAAAAAAAAADAdZnbvzkgBz51mdu/dZnbvzkgBz51mds/dZnbPzkgBz51mds/dZnbPzkgBz51mdu/AAAAwIGmXz4AAADAAAAAwIGmXz4AAABAAAAAQIGmXz4AAABAAAAAQIGmXz4AAADAdZnbvzaSrT11mdu/dZnbvzaSrT11mds/dZnbPzaSrT11mds/dZnbPzaSrT11mdu/")
+}, {
+"aabb": AABB(-1.71562, 0.0847515, -1.71562, 3.43124, 1e-05, 3.43124),
+"format": 34896613377,
+"index_count": 6,
+"index_data": PackedByteArray("AQADAAIAAQAAAAMA"),
+"name": "Picture",
+"primitive": 3,
+"uv_scale": Vector4(0, 0, 0, 0),
+"vertex_count": 4,
+"vertex_data": PackedByteArray("AAAAAAAAAAAAAAAA//8AAP//AAD//wAA//8AAAAAAAA=")
+}]
+blend_shape_mode = 0
+
+[sub_resource type="ArrayMesh" id="ArrayMesh_uy6jh"]
+resource_name = "picture_xlarge_Plane"
+_surfaces = [{
+"aabb": AABB(-2, 0, -2, 4, 0.218409, 4),
+"attribute_data": PackedByteArray("AAAAAAAAgD8AAAAAAACAPwAAAAAAAIA/AACAPwAAgD8AAIA/AACAPwAAgD8AAIA/AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAACAPwAAAAAAAIA/AAAAAAAAgD8AAAAALJqRPSiakT0smpE9KJqRPSyakT0ompE9LJqRPSiakT0smpE9usxtPyyakT26zG0/LJqRPbrMbT8smpE9usxtP7vMbT+6zG0/u8xtP7rMbT+7zG0/usxtP7vMbT+6zG0/u8xtPyiakT27zG0/KJqRPbvMbT8ompE9u8xtPyiakT0AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAIA/AAAAAAAAgD8AAAAAAACAPwAAAAAAAIA/AACAPwAAgD8AAIA/AACAPwAAgD8AAIA/AACAPwAAgD8AAIA/AAAAAAAAgD8AAAAAAACAPwAAAAAAAIA/AAAAACyakT0ompE9LJqRPSiakT0smpE9usxtPyyakT26zG0/u8xtP7rMbT+7zG0/usxtP7vMbT8ompE9u8xtPyiakT0="),
+"format": 34359742487,
+"index_count": 78,
+"index_data": PackedByteArray("AQAKAAcAAQAEAAoAGAAsAAwAGAAyACwABQAqAAsABQAmACoACAAjAAIACAAfACMACQAcAAYACQAoABwAAAAkAAMAAAAgACQAEgAeAA4AEgAiAB4AFQAhABEAFQAlACEAGgAnABYAGgArACcADQApABkADQAdACkAEAAwABQAEAAuADAAFwAzABsAFwAxADMADwAvABMADwAtAC8A"),
+"material": SubResource("StandardMaterial3D_mn1ov"),
+"name": "Frame",
+"primitive": 3,
+"uv_scale": Vector4(0, 0, 0, 0),
+"vertex_count": 52,
+"vertex_data": PackedByteArray("AAAAwAAAAAAAAABAAAAAwAAAAAAAAABAAAAAwAAAAAAAAABAAAAAQAAAAAAAAABAAAAAQAAAAAAAAABAAAAAQAAAAAAAAABAAAAAwAAAAAAAAADAAAAAwAAAAAAAAADAAAAAwAAAAAAAAADAAAAAQAAAAAAAAADAAAAAQAAAAAAAAADAAAAAQAAAAAAAAADAdZnbvzkgBz51mdu/dZnbvzkgBz51mdu/dZnbvzkgBz51mdu/dZnbvzkgBz51mdu/dZnbvzkgBz51mds/dZnbvzkgBz51mds/dZnbvzkgBz51mds/dZnbvzkgBz51mds/dZnbPzkgBz51mds/dZnbPzkgBz51mds/dZnbPzkgBz51mds/dZnbPzkgBz51mds/dZnbPzkgBz51mdu/dZnbPzkgBz51mdu/dZnbPzkgBz51mdu/dZnbPzkgBz51mdu/AAAAwIGmXz4AAADAAAAAwIGmXz4AAADAAAAAwIGmXz4AAADAAAAAwIGmXz4AAADAAAAAwIGmXz4AAABAAAAAwIGmXz4AAABAAAAAwIGmXz4AAABAAAAAwIGmXz4AAABAAAAAQIGmXz4AAABAAAAAQIGmXz4AAABAAAAAQIGmXz4AAABAAAAAQIGmXz4AAABAAAAAQIGmXz4AAADAAAAAQIGmXz4AAADAAAAAQIGmXz4AAADAAAAAQIGmXz4AAADAdZnbvzaSrT11mdu/dZnbvzaSrT11mdu/dZnbvzaSrT11mds/dZnbvzaSrT11mds/dZnbPzaSrT11mds/dZnbPzaSrT11mds/dZnbPzaSrT11mdu/dZnbPzaSrT11mdu//3//f////z//fwAA////PwAA/3////+//3//f////z//fwAA////P////3////+//////////z//fwAA////PwAA/3////+//////////z//fwAA////P////3////+//3//f////z//fyfi////v9edJ+In4hOx////f////7//////////P9ed//////+/150n4ifiE7H///9/////v/////////8/153//////78nYifiJ+LrzgAA/3////+//3//f////z//fyfi////vydiJ+In4uvOAAD/f////7//////////P/9/J+L///+/150n4ifiE7EAAP9/////v/9//3////8/153//////7/XnSfiJ+ITsQAA/3////+//3//f////z/Xnf//////v////3////+/J2In4ifi687/////////P/9/J+L///+/////f////78nYifiJ+Lrzv9//3////8/////f////7//////////P////3////+//////////z8AAP9/////v/9//3////8/AAD/f////78=")
+}, {
+"aabb": AABB(-1.71562, 0.0847515, -1.71562, 3.43124, 1e-05, 3.43124),
+"attribute_data": PackedByteArray("MxIzEjMSy+3L7cvty+0zEg=="),
+"format": 34896613399,
+"index_count": 6,
+"index_data": PackedByteArray("AQADAAIAAQAAAAMA"),
+"material": SubResource("StandardMaterial3D_okvuv"),
+"name": "Picture",
+"primitive": 3,
+"uv_scale": Vector4(0, 0, 0, 0),
+"vertex_count": 4,
+"vertex_data": PackedByteArray("AAAAAAAA/78AAAAA////v///AAD///+///8AAAAA/7////9/////f////3////9/")
+}]
+blend_shape_mode = 0
+shadow_mesh = SubResource("ArrayMesh_up4vl")
+
+[sub_resource type="ViewportTexture" id="ViewportTexture_xlsn8"]
+viewport_path = NodePath("SubViewport")
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_xhw2j"]
+resource_local_to_scene = true
+render_priority = 0
+shader = ExtResource("30_spdq7")
+shader_parameter/emission_strength = 0.2
+shader_parameter/picture = SubResource("ViewportTexture_xlsn8")
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_8r31l"]
+size = Vector3(4.06372, 0.415466, 4.04401)
+
+[sub_resource type="GDScript" id="GDScript_ee0kc"]
+resource_name = "painting"
+script/source = "extends SubViewport
+
+@onready var player_camera = $\"../Player/CentralCameraPoint/SpringArm3D/Camera3D\"
+@onready var camera = $Camera3D
+
+func _process(_delta):
+	camera.global_transform = player_camera.global_transform
+"
+
 [node name="c1_m8" type="Node3D"]
 script = ExtResource("1_ws6ln")
 bird = ExtResource("2_kq6k0")
+
+[node name="Player" parent="." instance=ExtResource("3_o00ce")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -2.87115, 0)
 
 [node name="Trigger" type="Area3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 118, 4, -5)
@@ -76,9 +173,6 @@ wait_time = 5.0
 
 [node name="ObjectiveLevelStart" parent="." instance=ExtResource("2_2or8d")]
 transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 0, 0, 0)
-
-[node name="Player" parent="." instance=ExtResource("3_o00ce")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -2.87115, 0)
 
 [node name="c1_m8" parent="." instance=ExtResource("1_tr5mb")]
 
@@ -215,8 +309,37 @@ transform = Transform3D(0.686682, 0, 0.369957, 0, 0.78, 0, -0.369957, 0, 0.68668
 [node name="table" parent="Props" instance=ExtResource("19_c4t14")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 120.373, 3.88979, -4.73336)
 
-[node name="picture_xlarge" parent="Props" instance=ExtResource("20_gto0a")]
+[node name="picture_xlarge" type="Node3D" parent="Props"]
 transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 125, 7.69342, -4.6063)
+
+[node name="Picture_XLarge -rigid" type="RigidBody3D" parent="Props/picture_xlarge"]
+transform = Transform3D(1, -2.06632e-07, 1.19209e-07, 2.06632e-07, 1, 4.37114e-08, -1.19209e-07, -4.37114e-08, 1, 0, 0, 0)
+mass = 30.0
+freeze = true
+freeze_mode = 1
+continuous_cd = true
+contact_monitor = true
+max_contacts_reported = 5
+script = ExtResource("29_gliox")
+
+[node name="Picture_XLarge -rigid" type="MeshInstance3D" parent="Props/picture_xlarge/Picture_XLarge -rigid"]
+transform = Transform3D(-1, 4.13264e-07, -3.25841e-07, 3.25841e-07, 4.37113e-08, -1, -4.13264e-07, -1, -4.37114e-08, 0, 0, 0)
+mesh = SubResource("ArrayMesh_uy6jh")
+skeleton = NodePath("")
+surface_material_override/0 = ExtResource("30_tnf5o")
+surface_material_override/1 = SubResource("ShaderMaterial_xhw2j")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Props/picture_xlarge/Picture_XLarge -rigid"]
+transform = Transform3D(-1, 4.13264e-07, -3.25841e-07, 3.25828e-07, 4.37113e-08, -1, -4.13264e-07, -1, -4.37114e-08, 0.000122148, 0.0169983, -0.17453)
+shape = SubResource("BoxShape3D_8r31l")
+
+[node name="AudioStreamPlayer3D" type="AudioStreamPlayer3D" parent="Props/picture_xlarge/Picture_XLarge -rigid"]
+transform = Transform3D(1, 5.21079e-15, -7.10543e-15, 5.21079e-15, 1, 2.4869e-14, 0, 0, 1, 0, 0, 0)
+stream = ExtResource("32_c5qpf")
+
+[node name="AudioStreamPlayer3D2" type="AudioStreamPlayer3D" parent="Props/picture_xlarge/Picture_XLarge -rigid"]
+transform = Transform3D(1, 5.21079e-15, -7.10543e-15, 5.21079e-15, 1, 2.4869e-14, 0, 0, 1, 0, 0, 0)
+stream = ExtResource("33_4jtx3")
 
 [node name="lamp" parent="Props" instance=ExtResource("21_gl0lj")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 108.895, 0.756553, -11.7629)
@@ -376,7 +499,13 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 18, 18, -18)
 [node name="Marker3D29" type="Marker3D" parent="Spawns"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 17, 18, -7)
 
+[node name="SubViewport" type="SubViewport" parent="."]
+script = SubResource("GDScript_ee0kc")
+
+[node name="Camera3D" type="Camera3D" parent="SubViewport"]
+
 [connection signal="body_entered" from="Trigger" to="." method="_on_trigger_body_entered"]
 [connection signal="timeout" from="SpawnCooldown" to="." method="_on_spawn_cooldown_timeout"]
+[connection signal="body_entered" from="Props/picture_xlarge/Picture_XLarge -rigid" to="Props/picture_xlarge/Picture_XLarge -rigid" method="_on_body_entered"]
 
 [editable path="c1_m8"]
