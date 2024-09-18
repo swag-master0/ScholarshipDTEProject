@@ -1,0 +1,9 @@
+[gd_scene load_steps=3 format=3 uid="uid://e0q2iffvt7qr"]
+
+[ext_resource type="PackedScene" uid="uid://k4l3uo63ncq5" path="res://Art/blend/levels_chapter1/c1_m10.blend" id="1_sx3bw"]
+[ext_resource type="Script" path="res://Elements/levels/chapter1/c1_m10.gd" id="1_w1821"]
+
+[node name="c1_m10" type="Node3D"]
+script = ExtResource("1_w1821")
+
+[node name="c1_m10" parent="." instance=ExtResource("1_sx3bw")]
