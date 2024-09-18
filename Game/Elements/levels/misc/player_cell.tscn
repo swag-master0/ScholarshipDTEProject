@@ -440,14 +440,14 @@ _data = {
 [sub_resource type="Gradient" id="Gradient_xv5l3"]
 colors = PackedColorArray(0.941176, 0.0431373, 0.0313726, 1, 0.949195, 0.896106, 0.0984805, 1)
 
-[sub_resource type="GradientTexture1D" id="GradientTexture1D_5tlkn"]
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_jk7qn"]
 gradient = SubResource("Gradient_xv5l3")
 
 [sub_resource type="Curve" id="Curve_x54d0"]
 _data = [Vector2(0, 0.726316), 0.0, 0.0, 0, 0, Vector2(0.22449, 1), 0.0, 0.0, 0, 0, Vector2(1, 0.126316), 0.0, 0.0, 0, 0]
 point_count = 3
 
-[sub_resource type="CurveTexture" id="CurveTexture_66nmj"]
+[sub_resource type="CurveTexture" id="CurveTexture_hdwbj"]
 curve = SubResource("Curve_x54d0")
 
 [sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_6oiw8"]
@@ -461,8 +461,8 @@ initial_velocity_min = 30.0
 initial_velocity_max = 30.0
 gravity = Vector3(0, 0, 0)
 damping_max = 1.0
-scale_curve = SubResource("CurveTexture_66nmj")
-color_ramp = SubResource("GradientTexture1D_5tlkn")
+scale_curve = SubResource("CurveTexture_hdwbj")
+color_ramp = SubResource("GradientTexture1D_jk7qn")
 turbulence_enabled = true
 turbulence_noise_strength = 0.25
 turbulence_noise_scale = 1.5
@@ -471,7 +471,7 @@ collision_mode = 1
 collision_friction = 0.0
 collision_bounce = 0.0
 
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_7jxyr"]
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_lv0kp"]
 transparency = 1
 shading_mode = 0
 vertex_color_use_as_albedo = true
@@ -483,7 +483,7 @@ particles_anim_v_frames = 1
 particles_anim_loop = false
 
 [sub_resource type="QuadMesh" id="QuadMesh_hwlvd"]
-material = SubResource("StandardMaterial3D_7jxyr")
+material = SubResource("StandardMaterial3D_lv0kp")
 size = Vector2(5, 5)
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_lp3hl"]

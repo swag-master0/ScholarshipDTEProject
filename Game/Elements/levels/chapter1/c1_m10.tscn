@@ -1,9 +1,139 @@
-[gd_scene load_steps=3 format=3 uid="uid://e0q2iffvt7qr"]
+[gd_scene load_steps=23 format=3 uid="uid://e0q2iffvt7qr"]
 
 [ext_resource type="PackedScene" uid="uid://k4l3uo63ncq5" path="res://Art/blend/levels_chapter1/c1_m10.blend" id="1_sx3bw"]
 [ext_resource type="Script" path="res://Elements/levels/chapter1/c1_m10.gd" id="1_w1821"]
+[ext_resource type="Shader" uid="uid://cxc0ggxlkoqeh" path="res://Art/materials/charred_ground.tres" id="3_qbrm1"]
+[ext_resource type="Material" uid="uid://cjl8no2f4qs2h" path="res://Art/materials/floor.material" id="4_tqamr"]
+[ext_resource type="PackedScene" uid="uid://g2jwt8atruu7" path="res://Art/environment/environment.tscn" id="4_vr460"]
+[ext_resource type="Material" uid="uid://cdpq1kptvx6j5" path="res://Art/materials/walls.material" id="5_ief0f"]
+[ext_resource type="Shader" path="res://Art/environment/environment.gdshader" id="7_bptsf"]
+[ext_resource type="PackedScene" uid="uid://bcou7suhphdrp" path="res://Elements/function/player/player.tscn" id="7_ygspv"]
+[ext_resource type="PackedScene" uid="uid://bu6bhrpspw5wb" path="res://Art/blend/misc/bomb.blend" id="9_0ctbo"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_nj7b7"]
+render_priority = 0
+shader = ExtResource("3_qbrm1")
+
+[sub_resource type="Gradient" id="Gradient_pgec4"]
+interpolation_mode = 1
+offsets = PackedFloat32Array(0.35443, 0.759494)
+colors = PackedColorArray(0, 0, 0, 1, 0.648095, 0.112596, 0.16397, 0.419608)
+
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_4okqe"]
+noise_type = 3
+frequency = 0.0042
+cellular_return_type = 0
+domain_warp_type = 1
+
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_6pjfi"]
+width = 1024
+height = 1024
+in_3d_space = true
+seamless = true
+color_ramp = SubResource("Gradient_pgec4")
+noise = SubResource("FastNoiseLite_4okqe")
+
+[sub_resource type="Gradient" id="Gradient_n4hhs"]
+offsets = PackedFloat32Array(0, 0.740506, 1)
+colors = PackedColorArray(0, 0.00283045, 0, 1, 0.0763027, 0.0146269, 0.00375457, 1, 0.346075, 0.0320814, 0.0322837, 1)
+
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_5sv87"]
+noise_type = 2
+fractal_type = 2
+cellular_jitter = 1.915
+domain_warp_enabled = true
+
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_uhrgb"]
+seamless = true
+color_ramp = SubResource("Gradient_n4hhs")
+noise = SubResource("FastNoiseLite_5sv87")
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_y7ns5"]
+shader = ExtResource("7_bptsf")
+shader_parameter/cloudlayer1 = SubResource("NoiseTexture2D_6pjfi")
+shader_parameter/cloudlayer2 = SubResource("NoiseTexture2D_uhrgb")
+
+[sub_resource type="Sky" id="Sky_qpxpt"]
+sky_material = SubResource("ShaderMaterial_y7ns5")
+
+[sub_resource type="Environment" id="Environment_a155t"]
+background_mode = 2
+background_color = Color(0.703808, 0.703808, 0.703808, 1)
+sky = SubResource("Sky_qpxpt")
+ambient_light_source = 2
+ambient_light_color = Color(0.0768358, 0.0768358, 0.0768358, 1)
+glow_enabled = true
+glow_intensity = 1.25
+glow_bloom = 1.0
+fog_light_color = Color(0, 0, 0, 1)
+fog_light_energy = 0.5
+fog_density = 0.005
+fog_aerial_perspective = 1.0
+volumetric_fog_enabled = true
+volumetric_fog_density = 0.1
+volumetric_fog_albedo = Color(0.665915, 0.732849, 0.581883, 1)
+volumetric_fog_emission_energy = 0.0
+volumetric_fog_sky_affect = 0.0
+volumetric_fog_temporal_reprojection_enabled = false
+volumetric_fog_temporal_reprojection_amount = 0.739
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_i13ir"]
+emission_shape = 3
+emission_box_extents = Vector3(10, 1, 10)
+direction = Vector3(0, 1, 0)
+initial_velocity_min = 5.0
+initial_velocity_max = 5.0
+gravity = Vector3(0, 0, 0)
+turbulence_noise_strength = 17.86
+turbulence_noise_scale = 2.453
+turbulence_noise_speed = Vector3(4.985, 0, 0)
+collision_mode = 1
+collision_friction = 0.0
+collision_bounce = 0.0
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_vuu04"]
+albedo_color = Color(0.953882, 0.445922, 0.248027, 1)
+emission_enabled = true
+emission = Color(0.739298, 0.295672, 0.121221, 1)
+emission_energy_multiplier = 16.0
+billboard_mode = 2
+
+[sub_resource type="QuadMesh" id="QuadMesh_g0o1m"]
+material = SubResource("StandardMaterial3D_vuu04")
+size = Vector2(0.4, 0.4)
 
 [node name="c1_m10" type="Node3D"]
 script = ExtResource("1_w1821")
 
 [node name="c1_m10" parent="." instance=ExtResource("1_sx3bw")]
+
+[node name="Ground" parent="c1_m10" index="1"]
+surface_material_override/0 = SubResource("ShaderMaterial_nj7b7")
+
+[node name="Floor" parent="c1_m10" index="3"]
+surface_material_override/0 = ExtResource("4_tqamr")
+
+[node name="Walls" parent="c1_m10" index="4"]
+surface_material_override/0 = ExtResource("5_ief0f")
+
+[node name="WorldEnvironment" parent="." instance=ExtResource("4_vr460")]
+environment = SubResource("Environment_a155t")
+
+[node name="Player" parent="." instance=ExtResource("7_ygspv")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2, 0)
+
+[node name="GPUParticles3D" type="GPUParticles3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -50.3266, -2.41898, 0)
+amount = 50
+lifetime = 5.1
+process_material = SubResource("ParticleProcessMaterial_i13ir")
+draw_pass_1 = SubResource("QuadMesh_g0o1m")
+
+[node name="GPUParticlesCollisionBox3D" type="GPUParticlesCollisionBox3D" parent="GPUParticles3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 21, 9, 0)
+size = Vector3(16, 20, 18)
+
+[node name="bomb" parent="." instance=ExtResource("9_0ctbo")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 11, 1, 2)
+
+[editable path="c1_m10"]
