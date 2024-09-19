@@ -10,7 +10,6 @@
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_r53xp"]
 render_priority = 0
 shader = ExtResource("4_mqevi")
-shader_parameter/TimeScale = 20.0
 
 [sub_resource type="SphereMesh" id="SphereMesh_tlbkv"]
 material = SubResource("ShaderMaterial_r53xp")
