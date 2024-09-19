@@ -15,7 +15,8 @@
 				4,
 				5,
 				6,
-				7
+				7,
+				8
 			]
 		}
 	],
@@ -91,6 +92,15 @@
 			"translation":[
 				-130,
 				0,
+				0
+			]
+		},
+		{
+			"mesh":8,
+			"name":"Dirt-col",
+			"translation":[
+				0,
+				-1,
 				0
 			]
 		}
@@ -252,6 +262,20 @@
 					},
 					"indices":46,
 					"material":1
+				}
+			]
+		},
+		{
+			"name":"Plane.003",
+			"primitives":[
+				{
+					"attributes":{
+						"POSITION":47,
+						"NORMAL":48,
+						"TEXCOORD_0":49,
+						"TANGENT":50
+					},
+					"indices":51
 				}
 			]
 		}
@@ -638,6 +662,46 @@
 			"componentType":5123,
 			"count":54,
 			"type":"SCALAR"
+		},
+		{
+			"bufferView":47,
+			"componentType":5126,
+			"count":2124,
+			"max":[
+				40,
+				5.2362236976623535,
+				20
+			],
+			"min":[
+				-15,
+				0,
+				-35
+			],
+			"type":"VEC3"
+		},
+		{
+			"bufferView":48,
+			"componentType":5126,
+			"count":2124,
+			"type":"VEC3"
+		},
+		{
+			"bufferView":49,
+			"componentType":5126,
+			"count":2124,
+			"type":"VEC2"
+		},
+		{
+			"bufferView":50,
+			"componentType":5126,
+			"count":2124,
+			"type":"VEC4"
+		},
+		{
+			"bufferView":51,
+			"componentType":5123,
+			"count":3186,
+			"type":"SCALAR"
 		}
 	],
 	"bufferViews":[
@@ -922,11 +986,41 @@
 			"byteLength":108,
 			"byteOffset":242508,
 			"target":34963
+		},
+		{
+			"buffer":0,
+			"byteLength":25488,
+			"byteOffset":242616,
+			"target":34962
+		},
+		{
+			"buffer":0,
+			"byteLength":25488,
+			"byteOffset":268104,
+			"target":34962
+		},
+		{
+			"buffer":0,
+			"byteLength":16992,
+			"byteOffset":293592,
+			"target":34962
+		},
+		{
+			"buffer":0,
+			"byteLength":33984,
+			"byteOffset":310584,
+			"target":34962
+		},
+		{
+			"buffer":0,
+			"byteLength":6372,
+			"byteOffset":344568,
+			"target":34963
 		}
 	],
 	"buffers":[
 		{
-			"byteLength":242616,
+			"byteLength":350940,
 			"uri":"c1_m10-586803f20e3fe768d74a60950052e6e4.bin"
 		}
 	]

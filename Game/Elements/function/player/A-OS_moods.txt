@@ -7,5 +7,3 @@
 6	:	Odd
 7	:	Confused
 8	:	Closed
-
-
