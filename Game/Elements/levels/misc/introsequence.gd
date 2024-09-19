@@ -18,9 +18,6 @@ var activate_throwing_tutorial = false
 var held = false
 var threw = false
 
-# INFO: I'd like to rewrite the entire dialogue sequence for this:
-# 		Think more like Portal 2's opening. (actually, just rip quotes lmao)
-
 
 func _ready():
 	

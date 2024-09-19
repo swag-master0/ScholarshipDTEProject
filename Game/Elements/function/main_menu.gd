@@ -21,7 +21,7 @@ func _on_play_button_pressed():
 	else:
 		# Save file found
 		if save.load_game().level:
-			if save.load_game().level == "res://Elements/environments/chapter1/c1_m1.tscn":
+			if save.load_game().level == "res://Elements/environments/main_levels/c1_m1.tscn":
 				LoadingScreen.next_scene = save.load_game().level
 				LoadingScreen.scene_transition()
 			

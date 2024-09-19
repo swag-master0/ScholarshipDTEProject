@@ -12,11 +12,11 @@ extends Control
 @onready var save_data_reset = $ScrollContainer/VBoxContainer/SaveDataReset
 
 
-const save_progression_path = "user://save.tres"
-const save_config_path = "user://config.tres"
-const save_playerhub_path = "user://cell.tres"
-const save_addtoplayerhub_path = "user://cell_add.tres"
-const save_name_path = "user://save_plrname.tres"
+const save_progression_path = "user://save.res"
+const save_config_path = "user://config.res"
+const save_playerhub_path = "user://cell.res"
+const save_addtoplayerhub_path = "user://cell_add.res"
+const save_name_path = "user://save_plrname.res"
 
 
 var default_sensitivity = 0.15
@@ -102,6 +102,13 @@ func ClearSaveData():
 	OS.move_to_trash(ProjectSettings.globalize_path(save_addtoplayerhub_path))
 	OS.move_to_trash(ProjectSettings.globalize_path(save_name_path))
 	
+	OS.alert(
+		"Save data has been deleted.
+
+Amelioration will now close.
+If this was a mistake, you can restore your files; They are located in your Recycling Bin",
+		 "Success!"
+		)
 	get_tree().quit()
 
 

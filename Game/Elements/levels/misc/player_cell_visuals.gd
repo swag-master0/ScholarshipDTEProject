@@ -13,7 +13,7 @@ var furnaceActivationKeywords = ["furnace", "toaster", "oven", "burn"]
 
 #region Dialogue Hell
 
-var c1_m1_IntroDialogue = [
+var L1_IntroDialogue = [
 	# This shouldn't trigger, but is here anyway to prevent major bugs
 	1,
 	"i don't think something's right",
@@ -23,7 +23,7 @@ var c1_m1_IntroDialogue = [
 ]
 
 
-var c1_m2_IntroDialogue = [
+var L2_IntroDialogue = [
 	5,
 	"sweet!",
 	8,
@@ -31,7 +31,7 @@ var c1_m2_IntroDialogue = [
 	5,
 	"please place the egg inside the [i][color=YELLOW_GREEN][wave]handy-dandy furnace!" ]
 	#[wave amp=50.0 freq=5.0 connected=1]
-var c1_m2_IntroDialogue_2 = [
+var L2_IntroDialogue_2 = [
 	0,
 	"...",
 	5,
@@ -45,13 +45,13 @@ var c1_m2_IntroDialogue_2 = [
 ]
 
 
-var c1_m3_IntroDialogue = [
+var L3_IntroDialogue = [
 	0, 
 	"...",
 	8, 
 	"just burn it. "
 ]
-var c1_m3_IntroDialogue_2 = [
+var L3_IntroDialogue_2 = [
 	0, 
 	"...",
 	2,
@@ -66,26 +66,26 @@ var c1_m3_IntroDialogue_2 = [
 	"get back on the lift, we still have work to do."
 ]
 
-var c1_m4_IntroDialogue = [
+var L4_IntroDialogue = [
 	1,
 	"hey, that went reasonable well. [wave]nice fighting",
 	5,
 	"opening the furnace!"
 ]
-var c1_m4_IntroDialogue_2 = [
+var L4_IntroDialogue_2 = [
 	5,
 	"you're getting the hang of this",
 	1,
 	"this next one should be a piece of cake for you!"
 ]
 
-var endPath_IntroDialogue = [
+var L5_IntroDialogue = [
 	0,
 	"...",
 	2,
 	"burn that again please... "
 ]
-var endPath_IntroDialogue_2 = [
+var L5_IntroDialogue_2 = [
 	0,
 	"...",
 	2,
@@ -100,10 +100,16 @@ var endPath_IntroDialogue_2 = [
 
 var allow_exit = false
 
-var c1_m1Path = "res://Elements/levels/chapter1/c1_m1.tscn"
-var c1_m2Path = "res://Elements/levels/chapter1/c1_m2.tscn"
-var c1_m3Path = "res://Elements/levels/chapter1/c1_m3.tscn"
-var c1_m4Path = "res://Elements/levels/chapter1/c1_m4.tscn"
+var PathL1 = "res://Elements/levels/main_levels/L1.tscn"
+var PathL2 = "res://Elements/levels/main_levels/L2.tscn"
+var PathL3 = "res://Elements/levels/main_levels/L3.tscn"
+var PathL4 = "res://Elements/levels/main_levels/L4.tscn"
+var PathL5 = "res://Elements/levels/main_levels/L5.tscn"
+var PathL6 = "res://Elements/levels/main_levels/L6.tscn"
+var PathL7 = "res://Elements/levels/main_levels/L7.tscn"
+var PathL8 = "res://Elements/levels/main_levels/L8.tscn"
+var PathL9 = "res://Elements/levels/main_levels/L9.tscn"
+var PathL10 = "res://Elements/levels/main_levels/L10.tscn"
 var endPath = "res://Elements/function/demo_complete_screen.tscn"
 
 
@@ -117,48 +123,48 @@ func _ready():
 	if save.load_game() == null:
 		rail_anims.play("down")
 	else:
-		if save.load_game().level == c1_m1Path:
+		if save.load_game().level == PathL1:
 			await get_tree().create_timer(3).timeout
-			player.dialogue_queue.append_array(c1_m1_IntroDialogue)
-		elif save.load_game().level == c1_m2Path:
+			player.dialogue_queue.append_array(L1_IntroDialogue)
+		elif save.load_game().level == PathL2:
 			await get_tree().create_timer(3).timeout
-			player.dialogue_queue.append_array(c1_m2_IntroDialogue)
-		elif save.load_game().level == c1_m3Path:
+			player.dialogue_queue.append_array(L2_IntroDialogue)
+		elif save.load_game().level == PathL3:
 			await get_tree().create_timer(3).timeout
-			player.dialogue_queue.append_array(c1_m3_IntroDialogue)
-		elif save.load_game().level == c1_m4Path:
+			player.dialogue_queue.append_array(L3_IntroDialogue)
+		elif save.load_game().level == PathL4:
 			await get_tree().create_timer(3).timeout
-			player.dialogue_queue.append_array(c1_m4_IntroDialogue)
-		elif save.load_game().level == endPath:
+			player.dialogue_queue.append_array(L4_IntroDialogue)
+		elif save.load_game().level == PathL5:
 			await get_tree().create_timer(3).timeout
-			player.dialogue_queue.append_array(endPath_IntroDialogue)
+			player.dialogue_queue.append_array(L5_IntroDialogue)
 
 func BurnedObjective():
 	var save = SaveGame.new()
 	
-	if save.load_game().level == c1_m2Path:
+	if save.load_game().level == PathL2:
 		await get_tree().create_timer(3).timeout
-		player.dialogue_queue.append_array(c1_m2_IntroDialogue_2)
-	elif save.load_game().level == c1_m3Path:
+		player.dialogue_queue.append_array(L2_IntroDialogue_2)
+	elif save.load_game().level == PathL3:
 		await get_tree().create_timer(3).timeout
-		player.dialogue_queue.append_array(c1_m3_IntroDialogue_2)
-	elif save.load_game().level == c1_m4Path:
+		player.dialogue_queue.append_array(L3_IntroDialogue_2)
+	elif save.load_game().level == PathL4:
 		await get_tree().create_timer(3).timeout
-		player.dialogue_queue.append_array(c1_m4_IntroDialogue_2)
-	elif save.load_game().level == endPath:
+		player.dialogue_queue.append_array(L4_IntroDialogue_2)
+	elif save.load_game().level == PathL5:
 		await get_tree().create_timer(3).timeout
-		player.dialogue_queue.append_array(endPath_IntroDialogue_2)
+		player.dialogue_queue.append_array(L5_IntroDialogue_2)
 
 func _on_player_dialogue_finished(dialogue: String):
-	if dialogue == c1_m1_IntroDialogue.back():
+	if dialogue == L1_IntroDialogue.back():
 		allow_exit = true
-	elif dialogue == c1_m2_IntroDialogue_2.back():
+	elif dialogue == L2_IntroDialogue_2.back():
 		allow_exit = true
-	elif dialogue == c1_m3_IntroDialogue_2.back():
+	elif dialogue == L3_IntroDialogue_2.back():
 		allow_exit = true
-	elif dialogue == c1_m4_IntroDialogue_2.back():
+	elif dialogue == L4_IntroDialogue_2.back():
 		allow_exit = true
-	elif dialogue == endPath_IntroDialogue_2.back():
+	elif dialogue == L5_IntroDialogue_2.back():
 		allow_exit = true
 	
 	for i in furnaceActivationKeywords:

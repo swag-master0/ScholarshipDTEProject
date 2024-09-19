@@ -161,7 +161,7 @@ size = Vector3(5, 1, 5)
 resource_name = "portal"
 script/source = "extends Area3D
 
-@export var nextscene_string: String = \"res://Elements/environments/chapter1/c1_m1.tscn\"
+@export var nextscene_string: String = \"res://Elements/levels/main_levels/L1.tscn\"
 "
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_080nk"]

@@ -40,7 +40,7 @@ func _enter_tree():
 
 
 func scene_transition():
-	print_rich("[color=PINK]Scene transition... ")
+	print_rich("[color=PINK]Scene transition... Going to ", next_scene)
 	print("")
 	print("")
 	transition(false)

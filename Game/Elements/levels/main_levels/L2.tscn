@@ -1,43 +1,43 @@
 [gd_scene load_steps=48 format=3 uid="uid://cov8v6858hevf"]
 
-[ext_resource type="Script" path="res://Elements/levels/chapter1/c1_m2.gd" id="1_7q6n5"]
-[ext_resource type="PackedScene" uid="uid://ch7t6b0c3tjwr" path="res://Elements/function/enemies/enemy.tscn" id="2_0nxiy"]
-[ext_resource type="PackedScene" uid="uid://g2jwt8atruu7" path="res://Art/environment/environment.tscn" id="3_1kepo"]
-[ext_resource type="PackedScene" uid="uid://bcou7suhphdrp" path="res://Elements/function/player/player.tscn" id="3_voxtl"]
-[ext_resource type="PackedScene" uid="uid://m8urk0gkn6ut" path="res://Art/blend/levels_chapter1/c1_m2.blend" id="4_y0qnk"]
-[ext_resource type="PackedScene" uid="uid://cihisq18677xu" path="res://Elements/function/objective_item.tscn" id="5_0wf4d"]
-[ext_resource type="PackedScene" uid="uid://msdo88p274sw" path="res://Elements/function/objective.tscn" id="6_ey64y"]
-[ext_resource type="PackedScene" uid="uid://w2l3dpbjub7c" path="res://Elements/levels/chapter1/c1_m3.tscn" id="7_3aj01"]
-[ext_resource type="Shader" path="res://Art/materials/walls/walls.gdshader" id="8_e1yx6"]
-[ext_resource type="Texture2D" uid="uid://bebs4m6uaixb7" path="res://Art/materials/walls/walls_noise.tres" id="9_5uvtt"]
-[ext_resource type="Texture2D" uid="uid://ydrsdeeq0ayc" path="res://Art/materials/walls/walls_normal.tres" id="10_qke8v"]
-[ext_resource type="Shader" uid="uid://dtjh0fi6sbiji" path="res://Art/materials/floor/floor.tres" id="11_ei1hd"]
-[ext_resource type="Texture2D" uid="uid://bfujcpxg1vljk" path="res://Art/materials/floor/floor_normal.tres" id="12_mqm84"]
-[ext_resource type="Shader" path="res://Art/materials/terrain.gdshader" id="14_iwppb"]
-[ext_resource type="PackedScene" uid="uid://blx6snb20uj8u" path="res://Elements/assets/props/lamp.tscn" id="15_r5nck"]
-[ext_resource type="PackedScene" uid="uid://c1h8mvyaciq6r" path="res://Elements/assets/props/stool_2.tscn" id="16_2agqp"]
-[ext_resource type="PackedScene" uid="uid://1k5dw6s6pdvj" path="res://Elements/assets/props/stool_1.tscn" id="17_8lj30"]
-[ext_resource type="PackedScene" uid="uid://dp2x6cakupfs6" path="res://Elements/assets/props/pot.tscn" id="18_u417g"]
-[ext_resource type="PackedScene" uid="uid://b121pmvvvcf8i" path="res://Elements/assets/props/table_2.tscn" id="19_mdoal"]
-[ext_resource type="PackedScene" uid="uid://dqgrckw7n88n4" path="res://Elements/assets/props/table.tscn" id="20_44o3j"]
-[ext_resource type="PackedScene" uid="uid://c775kwttbjh40" path="res://Elements/assets/props/vase.tscn" id="21_jcqp2"]
-[ext_resource type="PackedScene" uid="uid://cp8y4w0hidlhu" path="res://Elements/assets/props/picture_xlarge.tscn" id="22_yam4c"]
-[ext_resource type="Shader" path="res://Art/materials/props/picture_image.gdshader" id="23_5tkwj"]
-[ext_resource type="PackedScene" uid="uid://dhaxwpsinvu6u" path="res://Elements/assets/props/crate.tscn" id="23_ncaea"]
-[ext_resource type="Texture2D" uid="uid://dk6dn3hd6uy1h" path="res://Art/assets/misc/suffering.png" id="25_mb124"]
-[ext_resource type="PackedScene" uid="uid://dmkhkm80jpdqd" path="res://Elements/assets/props/shelf.tscn" id="26_08g6o"]
-[ext_resource type="PackedScene" uid="uid://currpdc0rou40" path="res://Elements/assets/props/couch_small.tscn" id="27_8kips"]
-[ext_resource type="PackedScene" uid="uid://cggscg4u3txqj" path="res://Elements/assets/props/boombox.tscn" id="28_880h2"]
-[ext_resource type="PackedScene" uid="uid://dqaxkncc187ot" path="res://Elements/assets/props/picture_small.tscn" id="28_lbb36"]
-[ext_resource type="PackedScene" uid="uid://cdxkrkn34253v" path="res://Elements/assets/props/picture_large.tscn" id="29_uht8y"]
-[ext_resource type="PackedScene" uid="uid://h5siu0krokek" path="res://Elements/assets/props/table_3.tscn" id="29_walm4"]
-[ext_resource type="Texture2D" uid="uid://bcsw4ar8qveyg" path="res://Art/assets/misc/caveman.jpg" id="31_nea55"]
-[ext_resource type="PackedScene" uid="uid://bsmhlbfqb0hvo" path="res://Elements/assets/props/anvil.tscn" id="32_ndmct"]
-[ext_resource type="PackedScene" uid="uid://fg26bpnnc3lq" path="res://Elements/assets/props/rock_1.tscn" id="33_hcwbc"]
-[ext_resource type="PackedScene" uid="uid://hfryhtqbwdgv" path="res://Elements/assets/props/rock_3.tscn" id="34_8rjl1"]
-[ext_resource type="PackedScene" uid="uid://bgobrloxn3vug" path="res://Elements/assets/props/rock_2.tscn" id="35_c4w3h"]
-[ext_resource type="PackedScene" uid="uid://cxin5ii35rudp" path="res://Elements/assets/props/ladder.tscn" id="36_dmkc3"]
-[ext_resource type="AudioStream" uid="uid://c2bnpiykqjcwb" path="res://Art/audio/ambient/ambient-1.mp3" id="37_k3p5j"]
+[ext_resource type="Script" path="res://Elements/levels/main_levels/L2.gd" id="1_a40my"]
+[ext_resource type="PackedScene" uid="uid://ch7t6b0c3tjwr" path="res://Elements/function/enemies/enemy.tscn" id="2_gwuau"]
+[ext_resource type="PackedScene" uid="uid://g2jwt8atruu7" path="res://Art/environment/environment.tscn" id="3_lupjv"]
+[ext_resource type="PackedScene" uid="uid://bcou7suhphdrp" path="res://Elements/function/player/player.tscn" id="4_7vy10"]
+[ext_resource type="PackedScene" uid="uid://cihisq18677xu" path="res://Elements/function/objective_item.tscn" id="5_yi206"]
+[ext_resource type="PackedScene" uid="uid://msdo88p274sw" path="res://Elements/function/objective.tscn" id="6_obwl5"]
+[ext_resource type="PackedScene" uid="uid://w2l3dpbjub7c" path="res://Elements/levels/main_levels/L3.tscn" id="7_yp5hp"]
+[ext_resource type="PackedScene" uid="uid://m8urk0gkn6ut" path="res://Art/blend/levels_chapter1/c1_m2.blend" id="8_w5e6q"]
+[ext_resource type="Shader" path="res://Art/materials/walls/walls.gdshader" id="9_6rcqs"]
+[ext_resource type="Texture2D" uid="uid://bebs4m6uaixb7" path="res://Art/materials/walls/walls_noise.tres" id="10_elu7e"]
+[ext_resource type="Texture2D" uid="uid://ydrsdeeq0ayc" path="res://Art/materials/walls/walls_normal.tres" id="11_t1ks0"]
+[ext_resource type="Shader" uid="uid://dtjh0fi6sbiji" path="res://Art/materials/floor/floor.tres" id="12_gnv2k"]
+[ext_resource type="Texture2D" uid="uid://bfujcpxg1vljk" path="res://Art/materials/floor/floor_normal.tres" id="13_ykpds"]
+[ext_resource type="Shader" path="res://Art/materials/terrain.gdshader" id="14_176b3"]
+[ext_resource type="PackedScene" uid="uid://blx6snb20uj8u" path="res://Elements/assets/props/lamp.tscn" id="15_rpebb"]
+[ext_resource type="PackedScene" uid="uid://c1h8mvyaciq6r" path="res://Elements/assets/props/stool_2.tscn" id="16_jf7d7"]
+[ext_resource type="PackedScene" uid="uid://1k5dw6s6pdvj" path="res://Elements/assets/props/stool_1.tscn" id="17_4jrwa"]
+[ext_resource type="PackedScene" uid="uid://dp2x6cakupfs6" path="res://Elements/assets/props/pot.tscn" id="18_jhrw5"]
+[ext_resource type="PackedScene" uid="uid://b121pmvvvcf8i" path="res://Elements/assets/props/table_2.tscn" id="19_4hogm"]
+[ext_resource type="PackedScene" uid="uid://dqgrckw7n88n4" path="res://Elements/assets/props/table.tscn" id="20_0ha2v"]
+[ext_resource type="PackedScene" uid="uid://c775kwttbjh40" path="res://Elements/assets/props/vase.tscn" id="21_8r518"]
+[ext_resource type="PackedScene" uid="uid://dhaxwpsinvu6u" path="res://Elements/assets/props/crate.tscn" id="22_sm710"]
+[ext_resource type="PackedScene" uid="uid://cp8y4w0hidlhu" path="res://Elements/assets/props/picture_xlarge.tscn" id="23_f1frq"]
+[ext_resource type="Shader" path="res://Art/materials/props/picture_image.gdshader" id="24_dbxl1"]
+[ext_resource type="Texture2D" uid="uid://dk6dn3hd6uy1h" path="res://Art/assets/misc/suffering.png" id="25_5d2fp"]
+[ext_resource type="PackedScene" uid="uid://dmkhkm80jpdqd" path="res://Elements/assets/props/shelf.tscn" id="26_cshrr"]
+[ext_resource type="PackedScene" uid="uid://currpdc0rou40" path="res://Elements/assets/props/couch_small.tscn" id="27_lv4tm"]
+[ext_resource type="PackedScene" uid="uid://cggscg4u3txqj" path="res://Elements/assets/props/boombox.tscn" id="28_2quub"]
+[ext_resource type="PackedScene" uid="uid://h5siu0krokek" path="res://Elements/assets/props/table_3.tscn" id="29_y3ykv"]
+[ext_resource type="PackedScene" uid="uid://dqaxkncc187ot" path="res://Elements/assets/props/picture_small.tscn" id="30_duevi"]
+[ext_resource type="PackedScene" uid="uid://cdxkrkn34253v" path="res://Elements/assets/props/picture_large.tscn" id="31_airdi"]
+[ext_resource type="Texture2D" uid="uid://bcsw4ar8qveyg" path="res://Art/assets/misc/caveman.jpg" id="32_5qu2q"]
+[ext_resource type="PackedScene" uid="uid://bsmhlbfqb0hvo" path="res://Elements/assets/props/anvil.tscn" id="33_65p2y"]
+[ext_resource type="PackedScene" uid="uid://fg26bpnnc3lq" path="res://Elements/assets/props/rock_1.tscn" id="34_fwgbw"]
+[ext_resource type="PackedScene" uid="uid://hfryhtqbwdgv" path="res://Elements/assets/props/rock_3.tscn" id="35_0toh6"]
+[ext_resource type="PackedScene" uid="uid://bgobrloxn3vug" path="res://Elements/assets/props/rock_2.tscn" id="36_f2cjv"]
+[ext_resource type="PackedScene" uid="uid://cxin5ii35rudp" path="res://Elements/assets/props/ladder.tscn" id="37_kpmif"]
+[ext_resource type="AudioStream" uid="uid://c2bnpiykqjcwb" path="res://Art/audio/ambient/ambient-1.mp3" id="38_0qgar"]
 
 [sub_resource type="NavigationMesh" id="NavigationMesh_a2gje"]
 vertices = PackedVector3Array(60.5, 17.5, -51.5, 60.5, 17.5, -42.25, 61.5, 17.5, -42.25, 61.5, 17.5, -51.5, 62.5, 20.25, -51.5, 62.5, 20.25, -51, 69.25, 19.5, -51.25, 79.5, 17.5, -51.5, 78.75, 17.5, -51.5, 78.5, 17.5, -49.75, 78.5, 17.5, -42.25, 79.5, 17.5, -42.25, 67.75, 26, -50.25, 62.5, 25.75, -50, 62.5, 26, -42.25, 77.5, 26, -42.25, 77.5, 25.75, -50, 71.9803, 26.25, -46.0223, 63.25, 8.5, -49.25, 63.25, 8.5, -40.25, 77, 8.5, -40.25, 77, 8.5, -49.25, 45.5, 15.5, -26.75, 40.75, 15.5, -26.5, 46.5, 15.5, -26, 54.75, 15.5, -41.25, 54.75, 15.5, -43.5, 53.5, 15.5, -43.5, 54, 15.5, -41, 46.5, 15.5, -26, 54, 15.5, -32.25, 53.5, 15.5, -32.75, 45.5, 15.5, -26.75, 54, 15.5, -41, 53.5, 15.5, -43.5, 53.5, 15.5, -32.75, 54, 15.5, -32.25, 55.75, 12.5, -43.5, 55.75, 12.5, -42.5, 59.5, 12.5, -42.5, 59.5, 12.5, -43.5, 80.75, 12.5, -43.5, 80.75, 12.5, -42.5, 84.5, 12.5, -42.5, 84.5, 12.5, -43.5, 86.5, 15.5, -43.5, 85.5, 15.5, -43.5, 86.25, 15.5, -34.5, 86.25, 15.5, -34.5, 86, 15.5, -24.5, 86.5, 15.5, -24.5, 86.5, 15.5, -43.5, 47, 26, -25, 45.75, 26, -25, 45.75, 26, -18, 62.25, 26, -40, 55, 25.75, -40, 55, 26, -31.75, 77.75, 26, -40, 77.5, 26, -42.25, 62.5, 26, -42.25, 62.25, 26, -40, 69.2955, 26.5, -40, 77.75, 26, -40, 62.25, 26, -40, 55, 26, -31.75, 45.75, 26, -18, 85, 25.75, -18, 79.1094, 26.25, -35.875, 69.2955, 26.5, -40, 71.9903, 25.75, -35.5064, 73.5052, 26.25, -36.9772, 55, 26, -31.75, 47, 26, -25, 45.75, 26, -18, 85, 25.75, -18, 85, 25.75, -40, 77.75, 26, -40, 79.1094, 26.25, -35.875, 47.5, 0.5, -24.25, 46, 0.5, -24.25, 46.25, 0.5, -18.5, 55.75, 0.5, -31.5, 47.5, 0.5, -24.25, 46.25, 0.5, -18.5, 84.5, 0.5, -18.5, 84.5, 0.5, -39.25, 84.5, 0.5, -39.25, 55.75, 0.5, -39.25, 55.75, 0.5, -31.5, 28.5, 16.5, -26.5, 28.5, 16.5, -18.25, 29.25, 16.5, -26, 28.5, 16.5, -26.5, 29.25, 16.5, -26, 39.5, 16.5, -26.25, 39.75, 26, -17.75, 40.25, 26, -18.25, 40.25, 26, -25.25, 30, 25.75, -25, 29.75, 26, -17.75, 40.25, 26, -18.25, 45.75, 26, -18, 45.75, 26, -25, 40.25, 26, -25.25, 39.5, 0.5, -18.25, 41.25, 0.5, -18.5, 41, 0.5, -24.25, 30.75, 0.5, -24.25, 30.75, 0.5, -4.75, 30.25, 0.5, -4.25, 39.5, 0.5, -4.25, 39.5, 0.5, -18.25, 30.75, 0.5, -24.25, 30.75, 0.5, -4.75, 39.5, 0.5, -4.25, 41.25, 0.5, -18.5, 46.25, 0.5, -18.5, 46, 0.5, -24.25, 41, 0.5, -24.25, 86.5, 17.25, -23.5, 86, 17.25, -23.5, 85.75, 16.5, -17, 86.5, 16.5, -16.5, 86.5, 16.5, -19.3, 78.5, 16.5, -16.5, 86.5, 16.5, -16.5, 85.75, 16.5, -17, 78.5, 16.5, -17, 30.25, 26, -5.25, 40.25, 26, -5.25, 39.75, 26, -17.75, 29.75, 26, -17.75, 28.5, 15.5, -17.25, 28.5, 15.5, -13.5, 29, 15.5, -13.5, 41, 15.5, -17, 41, 15.5, -0.5, 41.5, 15.5, -0.5, 41.5, 15.5, -17, 42.5, 17.5, -17, 42.5, 17.5, -16.5, 54.5, 17.5, -16.5, 55.75, 16.5, -16.75, 69.5, 16.5, -16.5, 69.5, 16.5, -17, 70.75, 15.5, -17, 70.75, 15.5, -16.5, 77.5, 15.5, -16.5, 77.5, 15.5, -17, 28.5, 16.5, -12.5, 28.5, 16.5, -7.5, 29, 16.5, -7.5, 29, 16.5, -12.5, -11.5, 13.5, -11.5, -11.5, 13.5, -10.5, -10.75, 13.5, -11, -10.75, 13.5, -11, -5.5, 13.5, -11, -5.5, 13.5, -11.5, -11.5, 13.5, -11.5, -4.5, 16.5, -11.5, -4.5, 16.5, -11, -0.5, 16.5, -11, -0.5, 16.5, -11.5, 10.75, 15.5, -11, 10.75, 15.5, -6, 11.5, 15.5, -6, 11.5, 15.5, -11.5, 0.75, 13.5, -11.5, 0.75, 13.5, -11, 10.75, 15.5, -11, 11.5, 15.5, -11.5, 12.25, 26, 5, 12.25, 26, -5, 10, 26, -5.25, 10, 26, 5.25, 10, 26, -5.25, -10, 25.75, -10, -10, 25.75, 10, 10, 26, 5.25, 10, 26, -5.25, 10, 26, -10, -10, 25.75, -10, -10, 25.75, 10, 10, 26, 10, 10, 26, 5.25, -11.5, 14.5, -9.5, -11.5, 14.5, -5.5, -11, 14.5, -5.5, -11, 14.5, -9.5, -9.25, 0.5, -1, -3.25, 0.5, -1, -3.25, 0.5, -3, -3.25, 0.5, -3, -1, 0.5, -3.25, -1, 0.5, -9.25, -3.25, 0.5, -3, -1, 0.5, -9.25, -9.25, 0.5, -9.25, -9.25, 0.5, -1, 3.25, 0.5, -2.25, 10, 0.5, -4.25, 9.5, 0.5, -4.5, 3, 0.5, -3.25, -1, 0.5, -9.25, -1, 0.5, -3.25, 3, 0.5, -3.25, 9.5, 0.5, -4.5, 9.5, 0.5, -9.25, 12.5, 17.5, -6.5, 12.5, 17.5, -6, 19.5, 17.5, -6, 19.5, 17.5, -6.5, 29.25, 15.5, -5.75, 29, 15.5, -6.25, 27.75, 15.5, -6.5, 20.75, 15.5, -6.5, 20.75, 15.5, -5.75, 30, 26, -4.75, 28, 26, -4.75, 28, 26, 5.25, 40.25, 26, -5.25, 30.25, 26, -5.25, 30, 26, -4.75, 28, 26, 5.25, 40, 25.75, 5, 12.25, 26, 5, 28, 26, 5.25, 28, 26, -4.75, 12.25, 26, -5, -11.5, 13.5, -4.25, -11.5, 13.5, 4.5, -11, 13.5, 4.5, -11, 13.5, -4.25, 3.25, 0.5, -2.25, 3.25, 0.5, 2.5, 10, 0.5, 4.5, 11.5, 0.5, 4.5, 11.5, 0.5, -4.25, 10, 0.5, -4.25, 11.5, 0.5, 4.5, 29, 0.5, 4.5, 28.75, 0.5, -4.25, 11.5, 0.5, -4.25, 30.25, 0.5, -4.25, 28.75, 0.5, -4.25, 29, 0.5, 4.5, 39.5, 0.5, 4.5, 39.5, 0.5, -4.25, 30.25, 0.5, -4.25, 29, 0.5, 4.5, -2.25, -24.75, -2.25, -2.25, -24.75, 2.25, 2.25, -24.75, 2.25, 2.25, -24.75, -2.25, -1.75, 0.5, 9.5, -1.5, 0.5, 3.25, -3.25, 0.5, 3, -3.25, 0.5, 3, -3.25, 0.5, -1, -9.25, 0.5, -1, -3.25, 0.5, 3, -9.25, 0.5, -1, -9.25, 0.5, 9.5, -1.75, 0.5, 9.5, 40.75, 17.5, 6, 35.5, 17.5, 6, 35.5, 17.5, 6.5, 41.5, 17.5, 6.5, 41.5, 17.5, 0.5, 41, 17.5, 0.5, 40.75, 17.5, 6, 41.5, 17.5, 6.5, 9.5, 0.5, 4.75, 10, 0.5, 4.5, 3.25, 0.5, 2.5, 3, 0.5, 3.25, 3, 0.5, 3.25, -1.5, 0.5, 3.25, -1.75, 0.5, 9.5, 9.5, 0.5, 9.5, 9.5, 0.5, 4.75, -11.5, 16.5, 11.5, -10.5, 16.5, 11.5, -11, 16.5, 10.75, -11.5, 16.5, 5.5, -11.5, 16.5, 11.5, -11, 16.5, 10.75, -11, 16.5, 5.5, 10.75, 16.5, 6, 10.75, 16.5, 6.5, 11.75, 16.5, 6.5, 11.75, 16.5, 6, 12.75, 15.5, 6, 12.75, 15.5, 6.5, 19.5, 15.5, 6.5, 19.5, 15.5, 6, 20.5, 17.5, 6, 20.5, 17.5, 6.5, 29.5, 17.5, 6.5, 30.75, 15.5, 6.25, 34.5, 15.5, 6.5, 34.5, 15.5, 6, 10.75, 15.5, 7.75, 10.75, 15.5, 11.5, 11.5, 15.5, 11.5, 11.5, 15.5, 7.75, -9.25, 13.5, 11, -9.25, 13.5, 11.5, -0.5, 15.25, 11.5, -0.5, 15.25, 11, -3.41667, 13.75, 11, -3.41667, 13.75, 11.5, 0.5, 16.5, 11, 0.5, 16.5, 11.5, 9.5, 16.5, 11.5, 9.5, 16.5, 11)
@@ -47,22 +47,22 @@ agent_max_slope = 70.0
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_pcbh4"]
 render_priority = 0
-shader = ExtResource("8_e1yx6")
+shader = ExtResource("9_6rcqs")
 shader_parameter/wall_colour = Color(2, 4, 2, 1)
 shader_parameter/colour_add = 4.0
 shader_parameter/amount = 1.0
-shader_parameter/noise = ExtResource("9_5uvtt")
-shader_parameter/normal_tex = ExtResource("10_qke8v")
+shader_parameter/noise = ExtResource("10_elu7e")
+shader_parameter/normal_tex = ExtResource("11_t1ks0")
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_0i6hu"]
 render_priority = 0
-shader = ExtResource("11_ei1hd")
+shader = ExtResource("12_gnv2k")
 shader_parameter/uv_scale = 1.0
-shader_parameter/normal = ExtResource("12_mqm84")
+shader_parameter/normal = ExtResource("13_ykpds")
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_lynqq"]
 render_priority = 0
-shader = ExtResource("14_iwppb")
+shader = ExtResource("14_176b3")
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_fw0uv"]
 size = Vector3(29.615, 18.725, 33.845)
@@ -75,38 +75,38 @@ size = Vector3(3.915, 10.635, 12.815)
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_wuyxa"]
 render_priority = 0
-shader = ExtResource("23_5tkwj")
+shader = ExtResource("24_dbxl1")
 shader_parameter/emission_strength = 0.2
-shader_parameter/picture = ExtResource("25_mb124")
+shader_parameter/picture = ExtResource("25_5d2fp")
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_7fb66"]
 render_priority = 0
-shader = ExtResource("23_5tkwj")
+shader = ExtResource("24_dbxl1")
 shader_parameter/emission_strength = 0.2
-shader_parameter/picture = ExtResource("31_nea55")
+shader_parameter/picture = ExtResource("32_5qu2q")
 
-[node name="Level2" type="Node3D"]
-script = ExtResource("1_7q6n5")
-enemy_type = ExtResource("2_0nxiy")
+[node name="L2" type="Node3D"]
+script = ExtResource("1_a40my")
+enemy_type = ExtResource("2_gwuau")
 
-[node name="WorldEnvironment" parent="." instance=ExtResource("3_1kepo")]
+[node name="WorldEnvironment" parent="." instance=ExtResource("3_lupjv")]
 
-[node name="Player" parent="." instance=ExtResource("3_voxtl")]
+[node name="Player" parent="." instance=ExtResource("4_7vy10")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -9.95398, 0)
 tutorial_mode = true
 
-[node name="ObjectiveItem" parent="." instance=ExtResource("5_0wf4d")]
+[node name="ObjectiveItem" parent="." instance=ExtResource("5_yi206")]
 transform = Transform3D(0.103175, 0, 0.994663, 0, 1, 0, -0.994663, 0, 0.103175, 63.4424, 13.8643, -45.3473)
 
-[node name="ObjectiveLevelStart" parent="." instance=ExtResource("6_ey64y")]
+[node name="ObjectiveLevelStart" parent="." instance=ExtResource("6_obwl5")]
 transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 0, 0.65, 0)
-nextscene = ExtResource("7_3aj01")
-nextscene_string = "res://Elements/levels/chapter1/c1_m3.tscn"
+nextscene = ExtResource("7_yp5hp")
+nextscene_string = "res://Elements/levels/main_levels/L3.tscn"
 
 [node name="NavigationRegion3D" type="NavigationRegion3D" parent="."]
 navigation_mesh = SubResource("NavigationMesh_a2gje")
 
-[node name="level" parent="NavigationRegion3D" instance=ExtResource("4_y0qnk")]
+[node name="level" parent="NavigationRegion3D" instance=ExtResource("8_w5e6q")]
 
 [node name="Floor " parent="NavigationRegion3D/level" index="1"]
 surface_material_override/0 = SubResource("ShaderMaterial_pcbh4")
@@ -154,83 +154,83 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 25.5284, 10, 3.05913)
 
 [node name="Props" type="Node" parent="."]
 
-[node name="lamp" parent="Props" instance=ExtResource("15_r5nck")]
+[node name="lamp" parent="Props" instance=ExtResource("15_rpebb")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 60, 0.756561, -32)
 
-[node name="stool_2" parent="Props" instance=ExtResource("16_2agqp")]
+[node name="stool_2" parent="Props" instance=ExtResource("16_jf7d7")]
 transform = Transform3D(0.865379, 0, 0.501118, 0, 1, 0, -0.501118, 0, 0.865379, 63, 0.473011, -28)
 
-[node name="stool_1" parent="Props" instance=ExtResource("17_8lj30")]
+[node name="stool_1" parent="Props" instance=ExtResource("17_4jrwa")]
 transform = Transform3D(0.994185, 0, -0.107687, 0, 1, 0, 0.107687, 0, 0.994185, 63, 2.56566, -28)
 
-[node name="pot" parent="Props" instance=ExtResource("18_u417g")]
+[node name="pot" parent="Props" instance=ExtResource("18_jhrw5")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 68, 0.690079, -20)
 
-[node name="table_2" parent="Props" instance=ExtResource("19_mdoal")]
+[node name="table_2" parent="Props" instance=ExtResource("19_4hogm")]
 transform = Transform3D(0.892893, 0, 0.45027, 0, 1, 0, -0.45027, 0, 0.892893, 73, 1.11552, -30)
 
-[node name="table" parent="Props" instance=ExtResource("20_44o3j")]
+[node name="table" parent="Props" instance=ExtResource("20_0ha2v")]
 transform = Transform3D(0.896626, 0, 0.44279, 0, 1, 0, -0.44279, 0, 0.896626, 66, 0.889785, -33)
 
-[node name="vase" parent="Props" instance=ExtResource("21_jcqp2")]
+[node name="vase" parent="Props" instance=ExtResource("21_8r518")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 66, 2.30502, -33)
 
-[node name="crate" parent="Props" instance=ExtResource("23_ncaea")]
+[node name="crate" parent="Props" instance=ExtResource("22_sm710")]
 transform = Transform3D(0.958532, 0, 0.284986, 0, 1, 0, -0.284986, 0, 0.958532, 59, 1, -38)
 
-[node name="picture_xlarge2" parent="Props" instance=ExtResource("22_yam4c")]
+[node name="picture_xlarge2" parent="Props" instance=ExtResource("23_f1frq")]
 transform = Transform3D(-1, 0, 8.74228e-08, 0, 1, 0, -8.74228e-08, 0, -1, 66.716, 12.3225, -50.0246)
 
 [node name="Picture_XLarge -rigid" parent="Props/picture_xlarge2/Picture_XLarge -rigid" index="0"]
 surface_material_override/1 = SubResource("ShaderMaterial_wuyxa")
 
-[node name="lamp2" parent="Props" instance=ExtResource("15_r5nck")]
+[node name="lamp2" parent="Props" instance=ExtResource("15_rpebb")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 76.8683, 8.75656, -41.5694)
 
-[node name="shelf" parent="Props" instance=ExtResource("26_08g6o")]
+[node name="shelf" parent="Props" instance=ExtResource("26_cshrr")]
 transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 63.2859, 10.6401, -44.9494)
 
-[node name="couch_small" parent="Props" instance=ExtResource("27_8kips")]
+[node name="couch_small" parent="Props" instance=ExtResource("27_lv4tm")]
 transform = Transform3D(0.965926, 0, -0.258819, 0, 1, 0, 0.258819, 0, 0.965926, 74.641, 9.52473, -47)
 
-[node name="vase2" parent="Props" instance=ExtResource("21_jcqp2")]
+[node name="vase2" parent="Props" instance=ExtResource("21_8r518")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 71.7207, 1.0486, -37.9967)
 
-[node name="boombox" parent="Props" instance=ExtResource("28_880h2")]
+[node name="boombox" parent="Props" instance=ExtResource("28_2quub")]
 transform = Transform3D(0.670854, 0, 0.74159, 0, 1, 0, -0.74159, 0, 0.670854, 58.9733, 2.79335, -38.0077)
 
-[node name="table_3" parent="Props" instance=ExtResource("29_walm4")]
+[node name="table_3" parent="Props" instance=ExtResource("29_y3ykv")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 69.9976, 8.73407, -43.8873)
 
-[node name="picture_small" parent="Props" instance=ExtResource("28_lbb36")]
+[node name="picture_small" parent="Props" instance=ExtResource("30_duevi")]
 transform = Transform3D(1, 0, 0, 0, 0.275117, -0.961411, 0, 0.961411, 0.275117, 56.4674, 0.961411, -39.7611)
 
-[node name="picture_large" parent="Props" instance=ExtResource("29_uht8y")]
+[node name="picture_large" parent="Props" instance=ExtResource("31_airdi")]
 transform = Transform3D(-0.753826, 0.656842, 0.0174843, 0.0203214, -0.00329107, 0.999788, 0.65676, 0.754022, -0.0108671, 51.6826, 5, -29.1144)
 
 [node name="Picture_Large -rigid" parent="Props/picture_large/Picture_Large -rigid" index="0"]
 surface_material_override/1 = SubResource("ShaderMaterial_7fb66")
 
-[node name="anvil" parent="Props" instance=ExtResource("32_ndmct")]
+[node name="anvil" parent="Props" instance=ExtResource("33_65p2y")]
 transform = Transform3D(0.0376727, 0, -0.99929, 0, 1, 0, 0.99929, 0, 0.0376727, 57.4181, 1, -34.5757)
 
-[node name="rock1" parent="Props" instance=ExtResource("33_hcwbc")]
+[node name="rock1" parent="Props" instance=ExtResource("34_fwgbw")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 74.9485, 0.718356, -22.5852)
 
-[node name="rock3" parent="Props" instance=ExtResource("34_8rjl1")]
+[node name="rock3" parent="Props" instance=ExtResource("35_0toh6")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 83.111, 1.54905, -22.1226)
 
-[node name="rock2" parent="Props" instance=ExtResource("35_c4w3h")]
+[node name="rock2" parent="Props" instance=ExtResource("36_f2cjv")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 80.8557, 1.35602, -20.7455)
 
-[node name="rock4" parent="Props" instance=ExtResource("35_c4w3h")]
+[node name="rock4" parent="Props" instance=ExtResource("36_f2cjv")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 81.1269, 5.76148, -20.715)
 
-[node name="ladder" parent="Props" instance=ExtResource("36_dmkc3")]
+[node name="ladder" parent="Props" instance=ExtResource("37_kpmif")]
 transform = Transform3D(1, 0, 0, 0, 0.962308, 0.271961, 0, -0.271961, 0.962308, 75.2576, 2.90002, -39.0538)
 
 [node name="Ambient" type="AudioStreamPlayer" parent="."]
-stream = ExtResource("37_k3p5j")
+stream = ExtResource("38_0qgar")
 volume_db = -20.0
 pitch_scale = 0.5
 autoplay = true
@@ -241,7 +241,6 @@ parameters/looping = true
 [connection signal="body_entered" from="DialogueTrigger" to="." method="_on_dialogue_trigger_body_entered"]
 [connection signal="body_entered" from="EnemyExampleTrigger" to="." method="_on_enemy_example_trigger_body_entered"]
 
-[editable path="WorldEnvironment"]
 [editable path="NavigationRegion3D/level"]
 [editable path="Props/picture_xlarge2"]
 [editable path="Props/picture_large"]

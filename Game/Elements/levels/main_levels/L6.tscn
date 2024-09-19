@@ -1,42 +1,42 @@
 [gd_scene load_steps=34 format=3 uid="uid://c3jh1kk8goxry"]
 
-[ext_resource type="Script" path="res://Elements/levels/chapter1/c1_m6.gd" id="1_xcaqp"]
-[ext_resource type="PackedScene" uid="uid://dwe6hqxcxga2x" path="res://Elements/function/enemies/bomber.tscn" id="2_gwmm0"]
-[ext_resource type="PackedScene" uid="uid://bcou7suhphdrp" path="res://Elements/function/player/player.tscn" id="2_wtppc"]
-[ext_resource type="PackedScene" uid="uid://msdo88p274sw" path="res://Elements/function/objective.tscn" id="3_yanud"]
-[ext_resource type="PackedScene" uid="uid://e1ifpcaik1si" path="res://Elements/levels/chapter1/c1_m7.tscn" id="4_e8vjx"]
-[ext_resource type="PackedScene" uid="uid://cihisq18677xu" path="res://Elements/function/objective_item.tscn" id="5_4k3gg"]
-[ext_resource type="PackedScene" uid="uid://dkteohkuoghg0" path="res://Art/blend/levels_chapter1/c1_m6.blend" id="6_rjm0f"]
-[ext_resource type="PackedScene" uid="uid://bbb07r3hee2bp" path="res://Elements/assets/props/template/prop.tscn" id="7_fmmaf"]
-[ext_resource type="PackedScene" uid="uid://cu0gxksefb5l6" path="res://Art/environment/environment_underground.tscn" id="8_sc1fh"]
-[ext_resource type="Shader" path="res://Art/materials/walls/walls.gdshader" id="8_useqk"]
-[ext_resource type="Texture2D" uid="uid://bebs4m6uaixb7" path="res://Art/materials/walls/walls_noise.tres" id="9_1cx1q"]
-[ext_resource type="Texture2D" uid="uid://ydrsdeeq0ayc" path="res://Art/materials/walls/walls_normal.tres" id="10_0y12l"]
-[ext_resource type="Material" uid="uid://dvlj73j848yaf" path="res://Art/materials/props/wood_1.tres" id="10_lf24c"]
-[ext_resource type="PackedScene" uid="uid://brfvkewj7bfba" path="res://Elements/assets/props/lamp_tall.tscn" id="10_ntufy"]
-[ext_resource type="PackedScene" uid="uid://blx6snb20uj8u" path="res://Elements/assets/props/lamp.tscn" id="11_utict"]
-[ext_resource type="PackedScene" uid="uid://dhaxwpsinvu6u" path="res://Elements/assets/props/crate.tscn" id="14_n07ts"]
-[ext_resource type="PackedScene" uid="uid://currpdc0rou40" path="res://Elements/assets/props/couch_small.tscn" id="15_xtlp2"]
-[ext_resource type="PackedScene" uid="uid://dmkhkm80jpdqd" path="res://Elements/assets/props/shelf.tscn" id="16_15nsd"]
-[ext_resource type="PackedScene" uid="uid://dqgrckw7n88n4" path="res://Elements/assets/props/table.tscn" id="17_cd4re"]
-[ext_resource type="PackedScene" uid="uid://dp2x6cakupfs6" path="res://Elements/assets/props/pot.tscn" id="18_ierjc"]
-[ext_resource type="PackedScene" uid="uid://cp8y4w0hidlhu" path="res://Elements/assets/props/picture_xlarge.tscn" id="19_o3ha7"]
-[ext_resource type="Shader" path="res://Art/materials/props/picture_image.gdshader" id="20_3cv2x"]
-[ext_resource type="PackedScene" uid="uid://vku0vf2hc070" path="res://Elements/assets/props/microwave.tscn" id="20_jpgti"]
-[ext_resource type="Texture2D" uid="uid://uom10tomjepm" path="res://Art/assets/misc/Russian-sleep-experiment-3-320.webp" id="21_ewvtr"]
-[ext_resource type="PackedScene" uid="uid://b121pmvvvcf8i" path="res://Elements/assets/props/table_2.tscn" id="22_vrpm4"]
-[ext_resource type="PackedScene" uid="uid://dhejktumttlcs" path="res://Elements/assets/props/bench.tscn" id="23_gpj3r"]
-[ext_resource type="PackedScene" uid="uid://bsmhlbfqb0hvo" path="res://Elements/assets/props/anvil.tscn" id="24_eygn0"]
-[ext_resource type="PackedScene" uid="uid://cdwnv2xmk7f6k" path="res://Elements/assets/misc/nest.tscn" id="26_jg6s7"]
+[ext_resource type="Script" path="res://Elements/levels/main_levels/L6.gd" id="1_dcfpn"]
+[ext_resource type="PackedScene" uid="uid://dwe6hqxcxga2x" path="res://Elements/function/enemies/bomber.tscn" id="2_diawe"]
+[ext_resource type="PackedScene" uid="uid://bcou7suhphdrp" path="res://Elements/function/player/player.tscn" id="3_n17ti"]
+[ext_resource type="PackedScene" uid="uid://msdo88p274sw" path="res://Elements/function/objective.tscn" id="4_07bxd"]
+[ext_resource type="PackedScene" uid="uid://e1ifpcaik1si" path="res://Elements/levels/main_levels/L7.tscn" id="5_v51iw"]
+[ext_resource type="PackedScene" uid="uid://cihisq18677xu" path="res://Elements/function/objective_item.tscn" id="6_1cdcq"]
+[ext_resource type="PackedScene" uid="uid://dkteohkuoghg0" path="res://Art/blend/levels_chapter1/c1_m6.blend" id="7_nrp11"]
+[ext_resource type="Shader" path="res://Art/materials/walls/walls.gdshader" id="8_8084u"]
+[ext_resource type="Texture2D" uid="uid://bebs4m6uaixb7" path="res://Art/materials/walls/walls_noise.tres" id="9_mdrde"]
+[ext_resource type="Texture2D" uid="uid://ydrsdeeq0ayc" path="res://Art/materials/walls/walls_normal.tres" id="10_sb4wv"]
+[ext_resource type="PackedScene" uid="uid://bbb07r3hee2bp" path="res://Elements/assets/props/template/prop.tscn" id="11_gdwfj"]
+[ext_resource type="Material" uid="uid://dvlj73j848yaf" path="res://Art/materials/props/wood_1.tres" id="12_kcj1q"]
+[ext_resource type="PackedScene" uid="uid://cu0gxksefb5l6" path="res://Art/environment/environment_underground.tscn" id="13_hbpwx"]
+[ext_resource type="PackedScene" uid="uid://dhaxwpsinvu6u" path="res://Elements/assets/props/crate.tscn" id="14_71cw6"]
+[ext_resource type="PackedScene" uid="uid://blx6snb20uj8u" path="res://Elements/assets/props/lamp.tscn" id="15_41hbh"]
+[ext_resource type="PackedScene" uid="uid://brfvkewj7bfba" path="res://Elements/assets/props/lamp_tall.tscn" id="16_jxmi3"]
+[ext_resource type="PackedScene" uid="uid://currpdc0rou40" path="res://Elements/assets/props/couch_small.tscn" id="17_adpqk"]
+[ext_resource type="PackedScene" uid="uid://dmkhkm80jpdqd" path="res://Elements/assets/props/shelf.tscn" id="18_w2rfb"]
+[ext_resource type="PackedScene" uid="uid://dqgrckw7n88n4" path="res://Elements/assets/props/table.tscn" id="19_ft3hx"]
+[ext_resource type="PackedScene" uid="uid://dp2x6cakupfs6" path="res://Elements/assets/props/pot.tscn" id="20_62a5v"]
+[ext_resource type="PackedScene" uid="uid://cp8y4w0hidlhu" path="res://Elements/assets/props/picture_xlarge.tscn" id="21_fb2un"]
+[ext_resource type="Shader" path="res://Art/materials/props/picture_image.gdshader" id="22_osjki"]
+[ext_resource type="Texture2D" uid="uid://uom10tomjepm" path="res://Art/assets/misc/Russian-sleep-experiment-3-320.webp" id="23_6332l"]
+[ext_resource type="PackedScene" uid="uid://b121pmvvvcf8i" path="res://Elements/assets/props/table_2.tscn" id="24_6221b"]
+[ext_resource type="PackedScene" uid="uid://dhejktumttlcs" path="res://Elements/assets/props/bench.tscn" id="25_nmxl6"]
+[ext_resource type="PackedScene" uid="uid://bsmhlbfqb0hvo" path="res://Elements/assets/props/anvil.tscn" id="26_xa5ef"]
+[ext_resource type="PackedScene" uid="uid://vku0vf2hc070" path="res://Elements/assets/props/microwave.tscn" id="27_yjjke"]
+[ext_resource type="PackedScene" uid="uid://cdwnv2xmk7f6k" path="res://Elements/assets/misc/nest.tscn" id="28_v4xgu"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_vyq7x"]
 render_priority = 0
-shader = ExtResource("8_useqk")
+shader = ExtResource("8_8084u")
 shader_parameter/wall_colour = Color(0.50578, 0.938209, 0.725007, 1)
 shader_parameter/colour_add = 1.0
 shader_parameter/amount = 1.0
-shader_parameter/noise = ExtResource("9_1cx1q")
-shader_parameter/normal_tex = ExtResource("10_0y12l")
+shader_parameter/noise = ExtResource("9_mdrde")
+shader_parameter/normal_tex = ExtResource("10_sb4wv")
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_y7c7v"]
 size = Vector3(6, 6, 1)
@@ -46,37 +46,37 @@ size = Vector3(6, 6, 1)
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_7k6or"]
 render_priority = 0
-shader = ExtResource("20_3cv2x")
+shader = ExtResource("22_osjki")
 shader_parameter/emission_strength = 0.0
-shader_parameter/picture = ExtResource("21_ewvtr")
+shader_parameter/picture = ExtResource("23_6332l")
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_6rln7"]
 size = Vector3(5.44043, 7.22778, 4.9021)
 
-[node name="c1_m6" type="Node3D"]
-script = ExtResource("1_xcaqp")
-bomber = ExtResource("2_gwmm0")
+[node name="L6" type="Node3D"]
+script = ExtResource("1_dcfpn")
+bomber = ExtResource("2_diawe")
 
-[node name="Player" parent="." instance=ExtResource("2_wtppc")]
+[node name="Player" parent="." instance=ExtResource("3_n17ti")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.86789, 1, -2.66306)
 DISPLAY_DUST = false
 
-[node name="ObjectiveLevelStart" parent="." instance=ExtResource("3_yanud")]
+[node name="ObjectiveLevelStart" parent="." instance=ExtResource("4_07bxd")]
 transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 2.75828, -0.514481, -2.67114)
-nextscene = ExtResource("4_e8vjx")
-nextscene_string = "res://Elements/levels/chapter2/c2_m2.tscn"
+nextscene = ExtResource("5_v51iw")
+nextscene_string = "res://Elements/levels/main_levels/L7.tscn"
 
-[node name="ObjectiveItem" parent="." instance=ExtResource("5_4k3gg")]
+[node name="ObjectiveItem" parent="." instance=ExtResource("6_1cdcq")]
 transform = Transform3D(0.251472, 0.236567, 0.938508, -0.162459, 0.966229, -0.200024, -0.954132, -0.102169, 0.281412, 37.4137, 0.300008, -57.9908)
 freeze = true
 freeze_mode = 1
 
-[node name="c2_m1" parent="." instance=ExtResource("6_rjm0f")]
+[node name="c2_m1" parent="." instance=ExtResource("7_nrp11")]
 
 [node name="Level" parent="c2_m1" index="1"]
 surface_material_override/0 = SubResource("ShaderMaterial_vyq7x")
 
-[node name="Barrier" parent="." instance=ExtResource("7_fmmaf")]
+[node name="Barrier" parent="." instance=ExtResource("11_gdwfj")]
 transform = Transform3D(1, 0, 0, 0, 0.977327, 0.211734, 0, -0.211734, 0.977327, 37.6822, 3, -23.8435)
 mass = 40.0
 ungrabbable = true
@@ -86,113 +86,113 @@ shape = SubResource("BoxShape3D_y7c7v")
 
 [node name="MeshInstance3D" parent="Barrier" index="1"]
 mesh = SubResource("BoxMesh_0h1yy")
-surface_material_override/0 = ExtResource("10_lf24c")
+surface_material_override/0 = ExtResource("12_kcj1q")
 
-[node name="WorldEnvironment" parent="." instance=ExtResource("8_sc1fh")]
+[node name="WorldEnvironment" parent="." instance=ExtResource("13_hbpwx")]
 
 [node name="SpawnPosition" type="Marker3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 15, 26, -20)
 
 [node name="Props" type="Node" parent="."]
 
-[node name="crate" parent="Props" instance=ExtResource("14_n07ts")]
+[node name="crate" parent="Props" instance=ExtResource("14_71cw6")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 16.3533, 7.7486e-06, -1.24231)
 
-[node name="lamp2" parent="Props" instance=ExtResource("11_utict")]
+[node name="lamp2" parent="Props" instance=ExtResource("15_41hbh")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 16.6112, 1.75657, -1.44651)
 
-[node name="lamp_tall" parent="Props" instance=ExtResource("10_ntufy")]
+[node name="lamp_tall" parent="Props" instance=ExtResource("16_jxmi3")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 7.20588, 0.632159, -4.24339)
 
-[node name="lamp" parent="Props" instance=ExtResource("11_utict")]
+[node name="lamp" parent="Props" instance=ExtResource("15_41hbh")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 7.03459, -0.243432, -0.833263)
 
-[node name="couch_small" parent="Props" instance=ExtResource("15_xtlp2")]
+[node name="couch_small" parent="Props" instance=ExtResource("17_adpqk")]
 transform = Transform3D(0.866025, 0, 0.5, 0, 1, 0, -0.5, 0, 0.866025, 35, -9.47526, -53)
 
-[node name="shelf" parent="Props" instance=ExtResource("16_15nsd")]
+[node name="shelf" parent="Props" instance=ExtResource("18_w2rfb")]
 transform = Transform3D(0.996418, 0, 0.0845648, 0, 1, 0, -0.0845648, 0, 0.996418, 40.4549, -8.35985, -45.1577)
 
-[node name="shelf2" parent="Props" instance=ExtResource("16_15nsd")]
+[node name="shelf2" parent="Props" instance=ExtResource("18_w2rfb")]
 transform = Transform3D(0.988715, 0, -0.149811, 0, 1, 0, 0.149811, 0, 0.988715, 36.0902, -8.35985, -45.1577)
 
-[node name="crate2" parent="Props" instance=ExtResource("14_n07ts")]
+[node name="crate2" parent="Props" instance=ExtResource("14_71cw6")]
 transform = Transform3D(0.965926, 0, 0.258819, 0, 1, 0, -0.258819, 0, 0.965926, 40.8413, -10, -54.49)
 
-[node name="crate3" parent="Props" instance=ExtResource("14_n07ts")]
+[node name="crate3" parent="Props" instance=ExtResource("14_71cw6")]
 transform = Transform3D(0.962047, 0, 0.272885, 0, 1, 0, -0.272885, 0, 0.962047, 41.6602, -5.43566, -45.2306)
 
-[node name="crate4" parent="Props" instance=ExtResource("14_n07ts")]
+[node name="crate4" parent="Props" instance=ExtResource("14_71cw6")]
 transform = Transform3D(0.97671, 0, -0.214565, 0, 1, 0, 0.214565, 0, 0.97671, 38.9289, -5.43566, -45.2306)
 
-[node name="crate5" parent="Props" instance=ExtResource("14_n07ts")]
+[node name="crate5" parent="Props" instance=ExtResource("14_71cw6")]
 transform = Transform3D(0.988167, 0, -0.153382, 0, 1, 0, 0.153382, 0, 0.988167, 41.6602, -3.43566, -45.2306)
 
-[node name="lamp3" parent="Props" instance=ExtResource("11_utict")]
+[node name="lamp3" parent="Props" instance=ExtResource("15_41hbh")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 34.8481, -5.6791, -45.287)
 
-[node name="lamp_tall2" parent="Props" instance=ExtResource("10_ntufy")]
+[node name="lamp_tall2" parent="Props" instance=ExtResource("16_jxmi3")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 33.0276, 0.632159, -43.2084)
 
-[node name="table" parent="Props" instance=ExtResource("17_cd4re")]
+[node name="table" parent="Props" instance=ExtResource("19_ft3hx")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 38.2141, -10.1102, -50.3408)
 
-[node name="pot" parent="Props" instance=ExtResource("18_ierjc")]
+[node name="pot" parent="Props" instance=ExtResource("20_62a5v")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 38.3675, -9.0535, -50.3468)
 
-[node name="crate6" parent="Props" instance=ExtResource("14_n07ts")]
+[node name="crate6" parent="Props" instance=ExtResource("14_71cw6")]
 transform = Transform3D(0.941229, 0, -0.337769, 0, 1, 0, 0.337769, 0, 0.941229, 40.8365, -8, -54.5925)
 
-[node name="shelf3" parent="Props" instance=ExtResource("16_15nsd")]
+[node name="shelf3" parent="Props" instance=ExtResource("18_w2rfb")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 18.8133, 1.64015, -24.1078)
 
-[node name="picture_xlarge" parent="Props" instance=ExtResource("19_o3ha7")]
+[node name="picture_xlarge" parent="Props" instance=ExtResource("21_fb2un")]
 transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 24.0452, 2.12875, -25)
 
 [node name="Picture_XLarge -rigid" parent="Props/picture_xlarge/Picture_XLarge -rigid" index="0"]
 transform = Transform3D(-1, 4.13264e-07, -3.25841e-07, 3.25841e-07, 4.37113e-08, -1, -4.13264e-07, -1, -4.37114e-08, 11.2219, 3.41581, 7.62939e-06)
 surface_material_override/1 = SubResource("ShaderMaterial_7k6or")
 
-[node name="crate" parent="Props/picture_xlarge/Picture_XLarge -rigid" index="4" instance=ExtResource("14_n07ts")]
+[node name="crate" parent="Props/picture_xlarge/Picture_XLarge -rigid" index="4" instance=ExtResource("14_71cw6")]
 transform = Transform3D(-0.973343, 2.06632e-07, -0.229353, 1.91099e-07, 1, 8.99379e-08, 0.229353, 4.37114e-08, -0.973343, -12.0676, -2.12874, 7.27819)
 
-[node name="table_2" parent="Props/picture_xlarge/Picture_XLarge -rigid" index="5" instance=ExtResource("22_vrpm4")]
+[node name="table_2" parent="Props/picture_xlarge/Picture_XLarge -rigid" index="5" instance=ExtResource("24_6221b")]
 transform = Transform3D(-0.0984338, 2.06632e-07, 0.995144, 6.38387e-08, 1, -2.01326e-07, -0.995144, 4.37114e-08, -0.0984338, -14.6137, -2.01322, 8.99609)
 
-[node name="bench" parent="Props/picture_xlarge/Picture_XLarge -rigid" index="6" instance=ExtResource("23_gpj3r")]
+[node name="bench" parent="Props/picture_xlarge/Picture_XLarge -rigid" index="6" instance=ExtResource("25_nmxl6")]
 transform = Transform3D(-1.6292e-07, 2.06632e-07, -1, -4.37114e-08, 1, 2.06632e-07, 1, 4.37114e-08, -1.6292e-07, -13.4551, -1.55376, 9.51026)
 
-[node name="anvil" parent="Props/picture_xlarge/Picture_XLarge -rigid" index="7" instance=ExtResource("24_eygn0")]
+[node name="anvil" parent="Props/picture_xlarge/Picture_XLarge -rigid" index="7" instance=ExtResource("26_xa5ef")]
 transform = Transform3D(-1, 2.06632e-07, 2.06632e-07, 2.06632e-07, 1, 4.37114e-08, -2.06632e-07, 4.37114e-08, -1, -13.7279, 0.33676, 7.64361)
 
-[node name="lamp4" parent="Props" instance=ExtResource("11_utict")]
+[node name="lamp4" parent="Props" instance=ExtResource("15_41hbh")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 12.745, -0.243432, -16.1637)
 
-[node name="lamp_tall3" parent="Props" instance=ExtResource("10_ntufy")]
+[node name="lamp_tall3" parent="Props" instance=ExtResource("16_jxmi3")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 11.8641, 0.632159, -23.3379)
 
-[node name="lamp_tall4" parent="Props" instance=ExtResource("10_ntufy")]
+[node name="lamp_tall4" parent="Props" instance=ExtResource("16_jxmi3")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 11.159, 0.632159, -17.4422)
 
-[node name="lamp5" parent="Props" instance=ExtResource("11_utict")]
+[node name="lamp5" parent="Props" instance=ExtResource("15_41hbh")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 10.8998, -0.243432, -22.2691)
 
-[node name="lamp6" parent="Props" instance=ExtResource("11_utict")]
+[node name="lamp6" parent="Props" instance=ExtResource("15_41hbh")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 15.0605, -0.243432, -23.4521)
 
-[node name="lamp7" parent="Props" instance=ExtResource("11_utict")]
+[node name="lamp7" parent="Props" instance=ExtResource("15_41hbh")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 17.3286, 4.32091, -24.3289)
 
-[node name="lamp_tall5" parent="Props" instance=ExtResource("10_ntufy")]
+[node name="lamp_tall5" parent="Props" instance=ExtResource("16_jxmi3")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 33.268, 0.632159, -23.5344)
 
-[node name="lamp8" parent="Props" instance=ExtResource("11_utict")]
+[node name="lamp8" parent="Props" instance=ExtResource("15_41hbh")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 41.1133, -0.243432, -21.3652)
 
-[node name="microwave" parent="Props" instance=ExtResource("20_jpgti")]
+[node name="microwave" parent="Props" instance=ExtResource("27_yjjke")]
 transform = Transform3D(-0.162276, 0, -0.986745, 0, 1, 0, 0.986745, 0, -0.162276, 40.5541, -0.536908, -16.015)
 
-[node name="nest" parent="Props" instance=ExtResource("26_jg6s7")]
+[node name="nest" parent="Props" instance=ExtResource("28_v4xgu")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 37.4587, -0.634775, -58.0292)
 
 [node name="CollisionShape3D" parent="Props/nest/Nest/StaticBody3D" index="0"]

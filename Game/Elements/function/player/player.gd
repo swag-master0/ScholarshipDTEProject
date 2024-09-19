@@ -86,7 +86,7 @@ var main_menu = "res://Elements/function/main_menu.tscn"
 @export var isHolding = false
 @export var object : RigidBody3D
 @export var level_completed : bool = false
-@export var player_hub : String = "res://Elements/environments/misc/player_cell.tscn"
+@export var player_hub : String = "res://Elements/levels/misc/player_cell.tscn"
 @export var dialogue_queue : Array = [] 
 
 signal DialogueFinished(dialogue: String)
@@ -392,7 +392,7 @@ func Nextlevel():
 				var save = SaveGame.new()
 				save.save_game(i.nextscene_string)
 			
-				if get_tree().current_scene.scene_file_path == "res://Elements/environments/misc/intro_cutscene.tscn":
+				if get_tree().current_scene.scene_file_path == "res://Elements/levels/misc/intro_cutscene.tscn":
 					LoadingScreen.next_scene = save.load_game().level
 					LoadingScreen.scene_transition()
 				

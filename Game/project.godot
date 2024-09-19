@@ -62,9 +62,9 @@ folder_colors={
 "res://Elements/assets/misc/": "gray",
 "res://Elements/assets/props/": "gray",
 "res://Elements/function/enemies/unused/": "gray",
-"res://Elements/levels/chapter1/": "gray",
-"res://Elements/levels/chapter2/": "gray",
-"res://Elements/levels/misc/": "gray"
+"res://Elements/levels/main_levels/": "gray",
+"res://Elements/levels/misc/": "gray",
+"res://Elements/levels/misc/unused_levels/": "gray"
 }
 
 [input]

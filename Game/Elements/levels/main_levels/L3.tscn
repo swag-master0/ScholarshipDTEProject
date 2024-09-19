@@ -1,44 +1,44 @@
 [gd_scene load_steps=47 format=3 uid="uid://w2l3dpbjub7c"]
 
-[ext_resource type="PackedScene" uid="uid://b5c4qe603h5o" path="res://Elements/assets/gameplay/explosive_barrel.tscn" id="1_5e1qi"]
-[ext_resource type="Script" path="res://Elements/levels/chapter1/c1_m3.gd" id="1_xxacf"]
-[ext_resource type="PackedScene" uid="uid://bcou7suhphdrp" path="res://Elements/function/player/player.tscn" id="2_adrog"]
-[ext_resource type="PackedScene" uid="uid://g2jwt8atruu7" path="res://Art/environment/environment.tscn" id="2_prdrn"]
-[ext_resource type="PackedScene" uid="uid://bkvmwrsm7nbyt" path="res://Elements/levels/chapter1/c1_m4.tscn" id="3_bf0fb"]
-[ext_resource type="PackedScene" uid="uid://ch7t6b0c3tjwr" path="res://Elements/function/enemies/enemy.tscn" id="5_7ns25"]
-[ext_resource type="Texture2D" uid="uid://bebs4m6uaixb7" path="res://Art/materials/walls/walls_noise.tres" id="5_a325w"]
-[ext_resource type="PackedScene" uid="uid://bs5hdiefi57co" path="res://Art/blend/levels_chapter1/c1_m3.blend" id="5_lwdk2"]
-[ext_resource type="Shader" path="res://Art/materials/walls/walls.gdshader" id="5_rluke"]
-[ext_resource type="Shader" path="res://Art/materials/terrain.gdshader" id="6_x4xlk"]
-[ext_resource type="PackedScene" uid="uid://msdo88p274sw" path="res://Elements/function/objective.tscn" id="7_8sx0s"]
-[ext_resource type="Texture2D" uid="uid://ydrsdeeq0ayc" path="res://Art/materials/walls/walls_normal.tres" id="7_n6goo"]
-[ext_resource type="PackedScene" uid="uid://cihisq18677xu" path="res://Elements/function/objective_item.tscn" id="8_jt0ca"]
-[ext_resource type="Shader" uid="uid://dtjh0fi6sbiji" path="res://Art/materials/floor/floor.tres" id="8_p125n"]
-[ext_resource type="Texture2D" uid="uid://bfujcpxg1vljk" path="res://Art/materials/floor/floor_normal.tres" id="9_tp3n3"]
-[ext_resource type="PackedScene" uid="uid://dhejktumttlcs" path="res://Elements/assets/props/bench.tscn" id="11_5tcnc"]
-[ext_resource type="PackedScene" uid="uid://b8yxaet5rm1ae" path="res://Elements/assets/props/brick.tscn" id="15_bshir"]
-[ext_resource type="PackedScene" uid="uid://dhaxwpsinvu6u" path="res://Elements/assets/props/crate.tscn" id="16_yt6xi"]
-[ext_resource type="PackedScene" uid="uid://hfryhtqbwdgv" path="res://Elements/assets/props/rock_3.tscn" id="17_y4j3k"]
-[ext_resource type="PackedScene" uid="uid://fg26bpnnc3lq" path="res://Elements/assets/props/rock_1.tscn" id="18_qf8qy"]
-[ext_resource type="PackedScene" uid="uid://brfvkewj7bfba" path="res://Elements/assets/props/lamp_tall.tscn" id="19_oc114"]
-[ext_resource type="PackedScene" uid="uid://bsbl4boqt5vj4" path="res://Elements/assets/props/cone.tscn" id="20_bxpiy"]
-[ext_resource type="PackedScene" uid="uid://blx6snb20uj8u" path="res://Elements/assets/props/lamp.tscn" id="21_uoqaq"]
-[ext_resource type="PackedScene" uid="uid://dqaxkncc187ot" path="res://Elements/assets/props/picture_small.tscn" id="22_t030r"]
-[ext_resource type="PackedScene" uid="uid://cxin5ii35rudp" path="res://Elements/assets/props/ladder.tscn" id="23_8r866"]
-[ext_resource type="PackedScene" uid="uid://1k5dw6s6pdvj" path="res://Elements/assets/props/stool_1.tscn" id="24_tfvvr"]
-[ext_resource type="Texture2D" uid="uid://c60vvo7qajvij" path="res://Art/assets/misc/horse.jpg" id="25_04g6n"]
-[ext_resource type="PackedScene" uid="uid://dmkhkm80jpdqd" path="res://Elements/assets/props/shelf.tscn" id="25_w3mq2"]
-[ext_resource type="PackedScene" uid="uid://cp8y4w0hidlhu" path="res://Elements/assets/props/picture_xlarge.tscn" id="26_hbro3"]
-[ext_resource type="PackedScene" uid="uid://currpdc0rou40" path="res://Elements/assets/props/couch_small.tscn" id="27_6xc1o"]
-[ext_resource type="Shader" path="res://Art/materials/props/picture_image.gdshader" id="28_gn5o5"]
-[ext_resource type="PackedScene" uid="uid://h5siu0krokek" path="res://Elements/assets/props/table_3.tscn" id="29_da2dw"]
-[ext_resource type="Texture2D" uid="uid://djeshrquf34c6" path="res://Art/assets/misc/knight.jpg" id="29_twajg"]
-[ext_resource type="PackedScene" uid="uid://dp2x6cakupfs6" path="res://Elements/assets/props/pot.tscn" id="30_jnpws"]
-[ext_resource type="PackedScene" uid="uid://c775kwttbjh40" path="res://Elements/assets/props/vase.tscn" id="31_sq4dc"]
-[ext_resource type="PackedScene" uid="uid://bfrpck2673n1q" path="res://Elements/assets/props/coffin.tscn" id="32_h8tyr"]
-[ext_resource type="PackedScene" uid="uid://cdwnv2xmk7f6k" path="res://Elements/assets/misc/nest.tscn" id="33_448hu"]
-[ext_resource type="Texture2D" uid="uid://batmtsqum2nm8" path="res://Art/assets/misc/wizard.png" id="35_rdhmn"]
-[ext_resource type="AudioStream" uid="uid://c2bnpiykqjcwb" path="res://Art/audio/ambient/ambient-1.mp3" id="38_yn2n1"]
+[ext_resource type="Script" path="res://Elements/levels/main_levels/L3.gd" id="1_jv3k1"]
+[ext_resource type="PackedScene" uid="uid://g2jwt8atruu7" path="res://Art/environment/environment.tscn" id="2_cqwrx"]
+[ext_resource type="PackedScene" uid="uid://bcou7suhphdrp" path="res://Elements/function/player/player.tscn" id="3_5fsm6"]
+[ext_resource type="PackedScene" uid="uid://bs5hdiefi57co" path="res://Art/blend/levels_chapter1/c1_m3.blend" id="4_cqrtp"]
+[ext_resource type="Shader" path="res://Art/materials/walls/walls.gdshader" id="5_japnt"]
+[ext_resource type="Texture2D" uid="uid://bebs4m6uaixb7" path="res://Art/materials/walls/walls_noise.tres" id="6_3dae8"]
+[ext_resource type="Texture2D" uid="uid://ydrsdeeq0ayc" path="res://Art/materials/walls/walls_normal.tres" id="7_5aoed"]
+[ext_resource type="Shader" uid="uid://dtjh0fi6sbiji" path="res://Art/materials/floor/floor.tres" id="8_1kpqn"]
+[ext_resource type="Texture2D" uid="uid://bfujcpxg1vljk" path="res://Art/materials/floor/floor_normal.tres" id="9_4ajbk"]
+[ext_resource type="Shader" path="res://Art/materials/terrain.gdshader" id="10_q0dgb"]
+[ext_resource type="PackedScene" uid="uid://b5c4qe603h5o" path="res://Elements/assets/gameplay/explosive_barrel.tscn" id="11_rgvlx"]
+[ext_resource type="PackedScene" uid="uid://dhejktumttlcs" path="res://Elements/assets/props/bench.tscn" id="12_tfgq2"]
+[ext_resource type="PackedScene" uid="uid://hfryhtqbwdgv" path="res://Elements/assets/props/rock_3.tscn" id="13_5yfi3"]
+[ext_resource type="PackedScene" uid="uid://brfvkewj7bfba" path="res://Elements/assets/props/lamp_tall.tscn" id="14_5705d"]
+[ext_resource type="PackedScene" uid="uid://b8yxaet5rm1ae" path="res://Elements/assets/props/brick.tscn" id="15_y3niv"]
+[ext_resource type="PackedScene" uid="uid://dhaxwpsinvu6u" path="res://Elements/assets/props/crate.tscn" id="16_oiovf"]
+[ext_resource type="PackedScene" uid="uid://fg26bpnnc3lq" path="res://Elements/assets/props/rock_1.tscn" id="17_g5ua3"]
+[ext_resource type="PackedScene" uid="uid://bsbl4boqt5vj4" path="res://Elements/assets/props/cone.tscn" id="18_r1d0i"]
+[ext_resource type="PackedScene" uid="uid://blx6snb20uj8u" path="res://Elements/assets/props/lamp.tscn" id="19_jbce1"]
+[ext_resource type="PackedScene" uid="uid://dqaxkncc187ot" path="res://Elements/assets/props/picture_small.tscn" id="20_cqyur"]
+[ext_resource type="Shader" path="res://Art/materials/props/picture_image.gdshader" id="21_40qo6"]
+[ext_resource type="Texture2D" uid="uid://c60vvo7qajvij" path="res://Art/assets/misc/horse.jpg" id="22_loc55"]
+[ext_resource type="PackedScene" uid="uid://cxin5ii35rudp" path="res://Elements/assets/props/ladder.tscn" id="23_8phf0"]
+[ext_resource type="PackedScene" uid="uid://1k5dw6s6pdvj" path="res://Elements/assets/props/stool_1.tscn" id="24_k16mk"]
+[ext_resource type="PackedScene" uid="uid://dmkhkm80jpdqd" path="res://Elements/assets/props/shelf.tscn" id="25_pdqgb"]
+[ext_resource type="PackedScene" uid="uid://cp8y4w0hidlhu" path="res://Elements/assets/props/picture_xlarge.tscn" id="26_le2c5"]
+[ext_resource type="Texture2D" uid="uid://djeshrquf34c6" path="res://Art/assets/misc/knight.jpg" id="27_6mnnt"]
+[ext_resource type="PackedScene" uid="uid://currpdc0rou40" path="res://Elements/assets/props/couch_small.tscn" id="28_1cei6"]
+[ext_resource type="PackedScene" uid="uid://h5siu0krokek" path="res://Elements/assets/props/table_3.tscn" id="29_u8pmi"]
+[ext_resource type="PackedScene" uid="uid://dp2x6cakupfs6" path="res://Elements/assets/props/pot.tscn" id="30_qohbi"]
+[ext_resource type="PackedScene" uid="uid://c775kwttbjh40" path="res://Elements/assets/props/vase.tscn" id="31_qe5wi"]
+[ext_resource type="PackedScene" uid="uid://bfrpck2673n1q" path="res://Elements/assets/props/coffin.tscn" id="32_6ccs4"]
+[ext_resource type="Texture2D" uid="uid://batmtsqum2nm8" path="res://Art/assets/misc/wizard.png" id="33_yekld"]
+[ext_resource type="PackedScene" uid="uid://cdwnv2xmk7f6k" path="res://Elements/assets/misc/nest.tscn" id="34_tc1dv"]
+[ext_resource type="PackedScene" uid="uid://msdo88p274sw" path="res://Elements/function/objective.tscn" id="35_g7hfe"]
+[ext_resource type="PackedScene" uid="uid://bkvmwrsm7nbyt" path="res://Elements/levels/main_levels/L4.tscn" id="36_sn4ne"]
+[ext_resource type="PackedScene" uid="uid://cihisq18677xu" path="res://Elements/function/objective_item.tscn" id="37_idwqn"]
+[ext_resource type="PackedScene" uid="uid://ch7t6b0c3tjwr" path="res://Elements/function/enemies/enemy.tscn" id="38_e0wby"]
+[ext_resource type="AudioStream" uid="uid://c2bnpiykqjcwb" path="res://Art/audio/ambient/ambient-1.mp3" id="39_ovjsg"]
 
 [sub_resource type="NavigationMesh" id="NavigationMesh_pq4er"]
 vertices = PackedVector3Array(40.75, -2.75, -79, 49.5, -2.75, -78.75, 49.75, -3.5, -80.5, 40.75, -3.5, -95.25, 40.75, -3.5, -80.4773, 69.5, -3.5, -80.5, 69.5, -3.5, -95.25, 48.75, -3, -76.25, 49.25, -3, -76.25, 49.25, -3.5, -77, 50, -3.5, -77, 50, -5.5, -79.5, 39.75, -5.25, -85.5, 39, -1.75, -75, 44.5714, -3.75, -75.7143, 44.875, -6.5, -82.5, 39.375, -5.25, -80.25, 39.2813, -4.75, -78.9375, 42.9851, -6, -79.5091, 46.0051, -6.25, -79.4871, 53, -5.25, -79.5, 53.25, -6.5, -85.25, 45.15, -6.5, -85.4, 48.75, -2.25, -75, 44.5714, -3.25, -75, 39.25, -5, -93.75, 39.6667, -5, -86.875, 39.0769, -5.25, -80.7692, 39.0577, -5, -79.3269, 66.75, -5.25, -80.25, 69, -5.25, -81.25, 69.75, -5.25, -83.75, 70.25, -5.25, -90, 56.5, -6, -86.25, 56.5, -6.5, -85.25, 65.4751, -6.5, -85.5151, 64.01, -6.25, -87.014, 70.75, -5, -83.75, 71, -5, -91.25, 45.5, -5.25, -86.5, 55.25, -5.25, -79, 66.75, -5, -79.25, 40.75, 0, -74.75, 49.5, -0.25, -75, 67.25, -1, -74.5, 70, -0.75, -74.75, 67.5, -0.75, -75.5, 65.75, -1, -75, 69.75, -1.25, -70.25, 59.25, -1.25, -75, 59.25, -1.5, -62, 60, -1.5, -61.5, 71, -1.25, -61.5, 59.25, -2.5, -69.2222, 65.5, -2.5, -61.5, 65.4803, -2.5, -67.5223, 62.4804, -2.5, -64.5124, 66.9802, -2, -70.4822, 67.25, -1.25, -73.5, 69, -1.25, -72.75, 70.75, -1, -70.25, 51.5, -1.25, -74, 51.5, -1.25, -61, 54.75, -1.25, -61, 52.5, -0.75, -75.25, 51.5, -2.5, -66.7778, 53.5051, -2.25, -70.4871, 44, -1.25, -63, 44.75, -1, -61, 39.25, -0.75, -64.25, 39.5, -1, -67, 39.0833, -1, -73.6667, 39.0313, -1, -73.6563, 40.5, -1.25, -67, 48.75, -1.5, -73.75, 44.625, -2.5, -70.375, 44.48, -2.25, -73.492, 46.015, -2.25, -73.481, 45.9951, -2.5, -67.4932, 47.495, -2.5, -70.503, 49.5, 0.5, -73.5, 51, 0.5, -62.5, 51.25, 0.5, -73.25, 40.75, 0.5, -62.5, 40.75, 0.5, -73.3889, 59, 0.5, -62.5, 59.25, 0.5, -73.25, 60.5, 0.5, -62.5, 60.75, 0.5, -60.75, 69.5, 0.5, -61, 69.5, 0.5, -73.25, 58.75, -0.75, -59.25, 60, -1.5, -56.75, 71, -1.25, -56.75, 65.5, -2.5, -56.75, 63.9901, -2.5, -58.4761, 60.75, 0.5, -57.25, 69.5, 0.5, -57, 59, -1.5, -56, 57.25, -0.75, -57.5, 55.75, -1.25, -57, 60.25, -1.75, -47.75, 60, -1.5, -56.5, 59.75, -1.5, -56, 60.0833, -2.5, -50.5, 60.1667, -2.5, -50.6667, 59.8333, -2.5, -50.5, 49.5, -1.25, -57, 49.25, -2.5, -49.75, 56.5103, -2.5, -50.9943, 40, -1.5, -50.75, 41.5, -1.75, -50.75, 42.25, -2, -51, 40.5, -1.25, -53.5, 39.75, -1, -53.5, 46.5, -1.25, -57.25, 42.75, -1, -56.5, 42.75, -1.25, -55.5, 41.25, -1.25, -55, 45.05, -2.5, -50.5, 40.5, -0.75, -56.75, 60.75, 0.5, -55.75, 60.25, 0.5, -55.25, 58.75, 0.5, -55.25, 59, 0.5, -46.5, 69.5, 0.5, -46.5, 64.75, -1.25, -46.75, 69, -1.25, -46.75, 69.75, -1.25, -48.5, 67.25, -1.75, -47.625, 70.75, -1, -48.5, 65.4752, -2.5, -51.0053, 63.995, -2.5, -55.503, 62.5201, -2, -53.9981, 40.25, 0.5, -49.25, 38.75, 0.5, -49.25, 39, 0.5, -46.5, 40.75, 0.5, -49.75, 40.75, 0.5, -55.25, 36, -1.25, -50.75, 31.75, -0.75, -50.75, 35, -1.25, -50.25, 33.5, -1.25, -46.75, 35, -1.25, -45.5, 35.25, -1.25, -46, 39.75, -1.25, -50, 41.75, -1.25, -49.75, 38.25, -1.25, -50, 36.75, -1.25, -46, 40.25, -1.25, -45, 42.5, -1.25, -46.25, 42.25, -1, -45, 48.75, -1.25, -48.25, 48.25, -1.25, -48.75, 34.5, 0.5, -46.25, 30.75, 0.5, -49.25, 30.5, 0.5, -30.5, 34.5, 0.5, -30.25, 30, -1.25, -31.25, 33.25, -1.25, -28.75, 34.75, -1.25, -30.25, 29.75, -1.25, -45.75, 35.75, -1, -30.25, 29.25, -1, -48.25, 10, -1.25, -32, 6.75, -0.75, -31.75, 9, -1, -31.5, 30.25, -1, -25, 30.75, -1, -25.25, 30.75, -1.25, -26.25, 26, -1.5, -31, 9, -1.25, -30.75, 10.5, -1.5, -26, 9.75, -1.25, -18.25, 10, -1.25, -17.75, 10.5, -1.25, -18, 4.5, -1.25, -23, 4.75, -1.25, -23, 5.25, -1.25, -24, 5.5, -1.25, -27, 4.5, -1, -27, 7.5, -1.25, -19.75, 8.75, -1.25, -17.75, 9, -1.25, -18.25, 8.25, -1.25, -20.25, 4.25, -1, -28.75, 6.25, -1.25, -23.25, 7.5, -1.25, -21.25, 8.25, -1.25, -21, 10, -1.25, -25.75, 6, -1.25, -24, 34.5, 0.5, -26.5, 11, 0.5, -30.25, 11.25, 0.5, -26.5, 5.75, 0.5, -25, 9.5, 0.5, -24.75, 9.5, 0.5, -26.25, 5.75, 0.5, -30.25, 5.75, 0.5, -16.25, 9.5, 0.5, -16, 5, -1.25, -22.5, 9.75, -1.25, -17, 9.25, -1.25, -15, 10.75, -1, -15, 5.75, -1.25, -22.5, 6.75, -1.25, -20.75, 6.75, -1.25, -20, 5, -1.25, -17.25, 5, -1.25, -15.25, 6, -1.25, -13.25, 4.5, -1.25, -15, 9, -1.25, -17, -10, -1.25, -18, -15, -1.25, -18, -10.75, -1.25, -16.5, -10, -1.25, -15.5, -11, -1.25, -8.75, 5, -1.25, -10.75, 5, -1, -9.25, -8.25, -1.25, -15, -9.75, -1.25, -9.75, -10, -1.25, -7, -18.25, -1.25, -8.5, -19.25, -1.25, -7, -10.5, 0.5, -9.75, -11.75, 0.5, -10, -12, 0.5, -9.25, -10.5, 0.5, -7.5, -12, 0.5, -15.75, -11.75, 0.5, -14.25, -10.25, 0.5, -14.25, -10.5, 0.5, -17.25, -19.25, 0.5, -7.5, -18, 0.5, -9.25, -18.25, 0.5, -15.5, -19.25, 0.5, -17.25, 5.75, 0.5, -14.75, 5.25, 0.5, -14.25, 3.75, 0.5, -14.25, 4, 0.5, -10.5, 9.5, 0.5, -10.5, -17.25, -29.5, -14.75, -17.25, -29.5, -10.25, -12.75, -29.5, -10.25, -12.75, -29.5, -14.75, -10.25, 0.5, -10.5)
@@ -47,47 +47,47 @@ geometry_parsed_geometry_type = 1
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_ckdr7"]
 render_priority = 0
-shader = ExtResource("5_rluke")
+shader = ExtResource("5_japnt")
 shader_parameter/wall_colour = Color(2, 4, 2, 1)
 shader_parameter/colour_add = 4.0
 shader_parameter/amount = 3.0
-shader_parameter/noise = ExtResource("5_a325w")
-shader_parameter/normal_tex = ExtResource("7_n6goo")
+shader_parameter/noise = ExtResource("6_3dae8")
+shader_parameter/normal_tex = ExtResource("7_5aoed")
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_ifph6"]
 render_priority = 0
-shader = ExtResource("8_p125n")
+shader = ExtResource("8_1kpqn")
 shader_parameter/uv_scale = 1.0
-shader_parameter/normal = ExtResource("9_tp3n3")
+shader_parameter/normal = ExtResource("9_4ajbk")
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_mv353"]
 render_priority = 0
-shader = ExtResource("6_x4xlk")
+shader = ExtResource("10_q0dgb")
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_nxbob"]
 render_priority = 0
-shader = ExtResource("28_gn5o5")
+shader = ExtResource("21_40qo6")
 shader_parameter/emission_strength = 0.2
-shader_parameter/picture = ExtResource("25_04g6n")
+shader_parameter/picture = ExtResource("22_loc55")
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_h4r4k"]
 render_priority = 0
-shader = ExtResource("28_gn5o5")
+shader = ExtResource("21_40qo6")
 shader_parameter/emission_strength = 0.2
-shader_parameter/picture = ExtResource("29_twajg")
+shader_parameter/picture = ExtResource("27_6mnnt")
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_14ien"]
 render_priority = 0
-shader = ExtResource("28_gn5o5")
+shader = ExtResource("21_40qo6")
 shader_parameter/emission_strength = 0.2
-shader_parameter/picture = ExtResource("35_rdhmn")
+shader_parameter/picture = ExtResource("33_yekld")
 
-[node name="c1_m3" type="Node3D"]
-script = ExtResource("1_xxacf")
+[node name="L3" type="Node3D"]
+script = ExtResource("1_jv3k1")
 
-[node name="WorldEnvironment" parent="." instance=ExtResource("2_prdrn")]
+[node name="WorldEnvironment" parent="." instance=ExtResource("2_cqwrx")]
 
-[node name="Player" parent="." instance=ExtResource("2_adrog")]
+[node name="Player" parent="." instance=ExtResource("3_5fsm6")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -15, -12.5267, -12)
 
 [node name="Timer" type="Timer" parent="."]
@@ -97,7 +97,7 @@ autostart = true
 [node name="NavigationRegion3D" type="NavigationRegion3D" parent="."]
 navigation_mesh = SubResource("NavigationMesh_pq4er")
 
-[node name="level4" parent="NavigationRegion3D" instance=ExtResource("5_lwdk2")]
+[node name="level4" parent="NavigationRegion3D" instance=ExtResource("4_cqrtp")]
 
 [node name="Mesh" parent="NavigationRegion3D/level4" index="1"]
 surface_material_override/0 = SubResource("ShaderMaterial_ckdr7")
@@ -108,149 +108,149 @@ material_override = SubResource("ShaderMaterial_mv353")
 
 [node name="Props" type="Node" parent="."]
 
-[node name="ExplosiveBarrel" parent="Props" instance=ExtResource("1_5e1qi")]
+[node name="ExplosiveBarrel" parent="Props" instance=ExtResource("11_rgvlx")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 39, 1.05, -49)
 
-[node name="ExplosiveBarrel10" parent="Props" instance=ExtResource("1_5e1qi")]
+[node name="ExplosiveBarrel10" parent="Props" instance=ExtResource("11_rgvlx")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 47.5846, 1.05, -54)
 
-[node name="ExplosiveBarrel11" parent="Props" instance=ExtResource("1_5e1qi")]
+[node name="ExplosiveBarrel11" parent="Props" instance=ExtResource("11_rgvlx")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 43.6663, 5.61434, -54)
 
-[node name="ExplosiveBarrel4" parent="Props" instance=ExtResource("1_5e1qi")]
+[node name="ExplosiveBarrel4" parent="Props" instance=ExtResource("11_rgvlx")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 40, 1.05, -47)
 
-[node name="ExplosiveBarrel5" parent="Props" instance=ExtResource("1_5e1qi")]
+[node name="ExplosiveBarrel5" parent="Props" instance=ExtResource("11_rgvlx")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 44, -2.95, -88)
 
-[node name="ExplosiveBarrel6" parent="Props" instance=ExtResource("1_5e1qi")]
+[node name="ExplosiveBarrel6" parent="Props" instance=ExtResource("11_rgvlx")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 51, -2.95, -82)
 
-[node name="ExplosiveBarrel7" parent="Props" instance=ExtResource("1_5e1qi")]
+[node name="ExplosiveBarrel7" parent="Props" instance=ExtResource("11_rgvlx")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 42, 1.05, -70.1766)
 
-[node name="ExplosiveBarrel8" parent="Props" instance=ExtResource("1_5e1qi")]
+[node name="ExplosiveBarrel8" parent="Props" instance=ExtResource("11_rgvlx")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 42, 1.05, -72.1766)
 
-[node name="ExplosiveBarrel9" parent="Props" instance=ExtResource("1_5e1qi")]
+[node name="ExplosiveBarrel9" parent="Props" instance=ExtResource("11_rgvlx")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 42, 3.05, -71.1766)
 
-[node name="ExplosiveBarrel2" parent="Props" instance=ExtResource("1_5e1qi")]
+[node name="ExplosiveBarrel2" parent="Props" instance=ExtResource("11_rgvlx")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 41.0577, 1.05, -48.1252)
 
-[node name="ExplosiveBarrel3" parent="Props" instance=ExtResource("1_5e1qi")]
+[node name="ExplosiveBarrel3" parent="Props" instance=ExtResource("11_rgvlx")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 39.9843, 3.05, -48.0685)
 
-[node name="bench" parent="Props" instance=ExtResource("11_5tcnc")]
+[node name="bench" parent="Props" instance=ExtResource("12_tfgq2")]
 transform = Transform3D(0.165771, 0, 0.986164, 0, 1, 0, -0.986164, 0, 0.165771, 42.8278, -2.38419e-06, -63.7888)
 
-[node name="rock3" parent="Props" instance=ExtResource("17_y4j3k")]
+[node name="rock3" parent="Props" instance=ExtResource("13_5yfi3")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 42.2943, -2.45095, -83.3194)
 
-[node name="lamp_tall" parent="Props" instance=ExtResource("19_oc114")]
+[node name="lamp_tall" parent="Props" instance=ExtResource("14_5705d")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 53.226, -2.36785, -94.0497)
 
-[node name="brick" parent="Props" instance=ExtResource("15_bshir")]
+[node name="brick" parent="Props" instance=ExtResource("15_y3niv")]
 transform = Transform3D(0.96481, 0, 0.262947, 0, 1, 0, -0.262947, 0, 0.96481, -5.70403, 0.313987, -13.7471)
 
-[node name="crate" parent="Props" instance=ExtResource("16_yt6xi")]
+[node name="crate" parent="Props" instance=ExtResource("16_oiovf")]
 transform = Transform3D(0.952199, 0, 0.305479, 0, 1, 0, -0.305479, 0, 0.952199, -7.28395, 0.999998, -11.5706)
 
-[node name="rock4" parent="Props" instance=ExtResource("17_y4j3k")]
+[node name="rock4" parent="Props" instance=ExtResource("13_5yfi3")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4.3188, 1.54905, -13.7958)
 
-[node name="rock1" parent="Props" instance=ExtResource("18_qf8qy")]
+[node name="rock1" parent="Props" instance=ExtResource("17_g5ua3")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 8.75403, 0.718354, -16.5422)
 
-[node name="lamp_tall2" parent="Props" instance=ExtResource("19_oc114")]
+[node name="lamp_tall2" parent="Props" instance=ExtResource("14_5705d")]
 transform = Transform3D(0.990941, 0, -0.134298, 0, 1, 0, 0.134298, 0, 0.990941, 9.12194, 1.63215, -11.1879)
 
-[node name="cone" parent="Props" instance=ExtResource("20_bxpiy")]
+[node name="cone" parent="Props" instance=ExtResource("18_r1d0i")]
 transform = Transform3D(0.949639, 0, -0.313346, 0, 1, 0, 0.313346, 0, 0.949639, 14.8642, 0.901745, -29.6924)
 
-[node name="lamp" parent="Props" instance=ExtResource("21_uoqaq")]
+[node name="lamp" parent="Props" instance=ExtResource("19_jbce1")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 27.4232, 0.756559, -27.4804)
 
-[node name="rock2" parent="Props" instance=ExtResource("18_qf8qy")]
+[node name="rock2" parent="Props" instance=ExtResource("17_g5ua3")]
 transform = Transform3D(-0.402954, 0, 0.91522, 0, 1, 0, -0.91522, 0, -0.402954, 24.1061, 0.718354, -29.6855)
 
-[node name="picture_small" parent="Props" instance=ExtResource("22_t030r")]
+[node name="picture_small" parent="Props" instance=ExtResource("20_cqyur")]
 transform = Transform3D(-4.37114e-08, -1, 0, -4.37114e-08, 1.91069e-15, -1, 1, -4.37114e-08, -4.37114e-08, 35, 6.63682, -28.8369)
 
 [node name="Picture_Small -rigid" parent="Props/picture_small/Picture_Small -rigid" index="0"]
 surface_material_override/1 = SubResource("ShaderMaterial_nxbob")
 
-[node name="ladder" parent="Props" instance=ExtResource("23_8r866")]
+[node name="ladder" parent="Props" instance=ExtResource("23_8phf0")]
 transform = Transform3D(-4.30055e-08, 0.178991, -0.983851, 7.82395e-09, 0.983851, 0.178991, 1, 0, -4.37114e-08, 34.2787, 2.95503, -31.0002)
 
-[node name="stool_1" parent="Props" instance=ExtResource("24_tfvvr")]
+[node name="stool_1" parent="Props" instance=ExtResource("24_k16mk")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 31.5417, 1.34378, -48.1123)
 
-[node name="shelf" parent="Props" instance=ExtResource("25_w3mq2")]
+[node name="shelf" parent="Props" instance=ExtResource("25_pdqgb")]
 transform = Transform3D(0.991229, 0, 0.132153, 0, 1, 0, -0.132153, 0, 0.991229, 44.3015, 2.64014, -54.0003)
 
-[node name="shelf2" parent="Props" instance=ExtResource("25_w3mq2")]
+[node name="shelf2" parent="Props" instance=ExtResource("25_pdqgb")]
 transform = Transform3D(0.997131, 0, -0.0756923, 0, 1, 0, 0.0756923, 0, 0.997131, 54.8621, 2.64014, -54.3053)
 
-[node name="lamp2" parent="Props" instance=ExtResource("21_uoqaq")]
+[node name="lamp2" parent="Props" instance=ExtResource("19_jbce1")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 56.2226, 5.3209, -54.0048)
 
-[node name="picture_xlarge" parent="Props" instance=ExtResource("26_hbro3")]
+[node name="picture_xlarge" parent="Props" instance=ExtResource("26_le2c5")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 53.1727, 5.57188, -46)
 
 [node name="Picture_XLarge -rigid" parent="Props/picture_xlarge/Picture_XLarge -rigid" index="0"]
 surface_material_override/1 = SubResource("ShaderMaterial_h4r4k")
 
-[node name="couch_small" parent="Props" instance=ExtResource("27_6xc1o")]
+[node name="couch_small" parent="Props" instance=ExtResource("28_1cei6")]
 transform = Transform3D(0.632056, 0, -0.774922, 0, 1, 0, 0.774922, 0, 0.632056, 68.0475, 1.52474, -71.1489)
 
-[node name="cone2" parent="Props" instance=ExtResource("20_bxpiy")]
+[node name="cone2" parent="Props" instance=ExtResource("18_r1d0i")]
 transform = Transform3D(0.93228, 0, 0.361738, 0, 1, 0, -0.361738, 0, 0.93228, 64.8863, 0.901745, -71.3981)
 
-[node name="cone3" parent="Props" instance=ExtResource("20_bxpiy")]
+[node name="cone3" parent="Props" instance=ExtResource("18_r1d0i")]
 transform = Transform3D(0.776091, 0, -0.630622, 0, 1, 0, 0.630622, 0, 0.776091, 65.8666, 0.901745, -68.2735)
 
-[node name="cone4" parent="Props" instance=ExtResource("20_bxpiy")]
+[node name="cone4" parent="Props" instance=ExtResource("18_r1d0i")]
 transform = Transform3D(0.967055, 0, -0.254568, 0, 1, 0, 0.254568, 0, 0.967055, 68.5152, 0.901745, -68.1201)
 
-[node name="table_3" parent="Props" instance=ExtResource("29_da2dw")]
+[node name="table_3" parent="Props" instance=ExtResource("29_u8pmi")]
 transform = Transform3D(0.99591, 0, -0.0903545, 0, 1, 0, 0.0903545, 0, 0.99591, 57.4868, -3.26593, -92.5837)
 
-[node name="table_4" parent="Props" instance=ExtResource("29_da2dw")]
+[node name="table_4" parent="Props" instance=ExtResource("29_u8pmi")]
 transform = Transform3D(0.990056, 0, 0.140677, 0, 1, 0, -0.140677, 0, 0.990056, 54.4399, -3.26593, -85.512)
 
-[node name="pot" parent="Props" instance=ExtResource("30_jnpws")]
+[node name="pot" parent="Props" instance=ExtResource("30_qohbi")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 55.4858, -2.29957, -85.6289)
 
-[node name="pot2" parent="Props" instance=ExtResource("30_jnpws")]
+[node name="pot2" parent="Props" instance=ExtResource("30_qohbi")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 53.2207, -2.29958, -85.1836)
 
-[node name="vase" parent="Props" instance=ExtResource("31_sq4dc")]
+[node name="vase" parent="Props" instance=ExtResource("31_qe5wi")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 57.5393, -1.94105, -92.6045)
 
-[node name="coffin" parent="Props" instance=ExtResource("32_h8tyr")]
+[node name="coffin" parent="Props" instance=ExtResource("32_6ccs4")]
 transform = Transform3D(0.960323, 0, -0.278891, 0, 1, 0, 0.278891, 0, 0.960323, 67.4249, -3.00333, -84.6421)
 
-[node name="picture_xlarge2" parent="Props" instance=ExtResource("26_hbro3")]
+[node name="picture_xlarge2" parent="Props" instance=ExtResource("26_le2c5")]
 transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 70, 0.963384, -89.6441)
 
 [node name="Picture_XLarge -rigid" parent="Props/picture_xlarge2/Picture_XLarge -rigid" index="0"]
 surface_material_override/1 = SubResource("ShaderMaterial_14ien")
 
-[node name="nest" parent="Props" instance=ExtResource("33_448hu")]
+[node name="nest" parent="Props" instance=ExtResource("34_tc1dv")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 66.4403, -3.15323, -91.1007)
 
-[node name="ObjectiveLevelStart" parent="." instance=ExtResource("7_8sx0s")]
+[node name="ObjectiveLevelStart" parent="." instance=ExtResource("35_g7hfe")]
 transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -15, 0.55, -12.5)
-nextscene = ExtResource("3_bf0fb")
-nextscene_string = "res://Elements/levels/chapter1/c1_m4.tscn"
+nextscene = ExtResource("36_sn4ne")
+nextscene_string = "res://Elements/levels/main_levels/L4.tscn"
 
-[node name="ObjectiveItem" parent="." instance=ExtResource("8_jt0ca")]
+[node name="ObjectiveItem" parent="." instance=ExtResource("37_idwqn")]
 transform = Transform3D(0.986518, 0.0418376, -0.158215, 0, 0.96677, 0.255648, 0.163653, -0.252202, 0.953736, 66.5349, -2.28092, -91.1177)
 freeze = true
 freeze_mode = 1
 
-[node name="Enemy" parent="." instance=ExtResource("5_7ns25")]
+[node name="Enemy" parent="." instance=ExtResource("38_e0wby")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 7.93963, 2, -28.4437)
 
 [node name="Skeleton3D" parent="Enemy/spider/Armature" index="0"]
@@ -271,23 +271,23 @@ bones/12/rotation = Quaternion(-0.128149, 1.31788e-08, -0.0689897, 0.989352)
 health = 1.0
 max_health = 1.0
 
-[node name="Enemy2" parent="." instance=ExtResource("5_7ns25")]
+[node name="Enemy2" parent="." instance=ExtResource("38_e0wby")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 62, 1, -53)
 
-[node name="Enemy3" parent="." instance=ExtResource("5_7ns25")]
+[node name="Enemy3" parent="." instance=ExtResource("38_e0wby")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 61, 1, -49)
 
-[node name="Enemy4" parent="." instance=ExtResource("5_7ns25")]
+[node name="Enemy4" parent="." instance=ExtResource("38_e0wby")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 61, -2, -90)
 
-[node name="Enemy5" parent="." instance=ExtResource("5_7ns25")]
+[node name="Enemy5" parent="." instance=ExtResource("38_e0wby")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 61, -2, -86)
 
-[node name="Enemy6" parent="." instance=ExtResource("5_7ns25")]
+[node name="Enemy6" parent="." instance=ExtResource("38_e0wby")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 62, -2, -83)
 
 [node name="Ambient" type="AudioStreamPlayer" parent="."]
-stream = ExtResource("38_yn2n1")
+stream = ExtResource("39_ovjsg")
 volume_db = -30.0
 pitch_scale = 2.0
 autoplay = true
