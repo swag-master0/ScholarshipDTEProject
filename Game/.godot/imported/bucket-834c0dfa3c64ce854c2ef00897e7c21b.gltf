@@ -54,7 +54,7 @@
 		{
 			"bufferView":0,
 			"componentType":5126,
-			"count":236,
+			"count":304,
 			"max":[
 				0.5846514701843262,
 				0.2238386869430542,
@@ -70,13 +70,13 @@
 		{
 			"bufferView":1,
 			"componentType":5126,
-			"count":236,
+			"count":304,
 			"type":"VEC3"
 		},
 		{
 			"bufferView":2,
 			"componentType":5126,
-			"count":236,
+			"count":304,
 			"type":"VEC2"
 		},
 		{
@@ -89,32 +89,32 @@
 	"bufferViews":[
 		{
 			"buffer":0,
-			"byteLength":2832,
+			"byteLength":3648,
 			"byteOffset":0,
 			"target":34962
 		},
 		{
 			"buffer":0,
-			"byteLength":2832,
-			"byteOffset":2832,
+			"byteLength":3648,
+			"byteOffset":3648,
 			"target":34962
 		},
 		{
 			"buffer":0,
-			"byteLength":1888,
-			"byteOffset":5664,
+			"byteLength":2432,
+			"byteOffset":7296,
 			"target":34962
 		},
 		{
 			"buffer":0,
 			"byteLength":1488,
-			"byteOffset":7552,
+			"byteOffset":9728,
 			"target":34963
 		}
 	],
 	"buffers":[
 		{
-			"byteLength":9040,
+			"byteLength":11216,
 			"uri":"bucket-834c0dfa3c64ce854c2ef00897e7c21b.bin"
 		}
 	]

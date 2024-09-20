@@ -1,11 +1,16 @@
-[gd_scene load_steps=7 format=3 uid="uid://b8yxaet5rm1ae"]
+[gd_scene load_steps=9 format=3 uid="uid://b8yxaet5rm1ae"]
 
 [ext_resource type="PackedScene" uid="uid://g57jyhpuwnhx" path="res://Art/blend/assets/prop/brick.blend" id="1_5flym"]
 [ext_resource type="Script" path="res://Elements/assets/props/template/prop.gd" id="2_gjisr"]
+[ext_resource type="Shader" uid="uid://w3xnigg80u7h" path="res://Art/materials/props/stone.tres" id="3_78bha"]
 [ext_resource type="AudioStream" uid="uid://cmrd2tlply6v6" path="res://Art/audio/impact/thump-1.wav" id="3_eqoa4"]
 [ext_resource type="AudioStream" uid="uid://d00tijva2c6cn" path="res://Art/audio/impact/thump-2.wav" id="4_xm52r"]
 [ext_resource type="AudioStream" uid="uid://cj157ctmjk6jj" path="res://Art/audio/impact/thump-3.wav" id="5_fft25"]
 [ext_resource type="AudioStream" uid="uid://q028ee08mw53" path="res://Art/audio/impact/thump-4.wav" id="6_8kkk0"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_g0jg1"]
+render_priority = 0
+shader = ExtResource("3_78bha")
 
 [node name="brick" instance=ExtResource("1_5flym")]
 
@@ -14,6 +19,9 @@ mass = 15.0
 contact_monitor = true
 max_contacts_reported = 5
 script = ExtResource("2_gjisr")
+
+[node name="Brick -rigid" parent="Brick -rigid" index="0"]
+surface_material_override/0 = SubResource("ShaderMaterial_g0jg1")
 
 [node name="AudioStreamPlayer3D" type="AudioStreamPlayer3D" parent="Brick -rigid" index="2"]
 stream = ExtResource("3_eqoa4")
@@ -26,5 +34,3 @@ stream = ExtResource("5_fft25")
 
 [node name="AudioStreamPlayer3D4" type="AudioStreamPlayer3D" parent="Brick -rigid" index="5"]
 stream = ExtResource("6_8kkk0")
-
-[connection signal="body_entered" from="Brick -rigid" to="Brick -rigid" method="_on_body_entered"]

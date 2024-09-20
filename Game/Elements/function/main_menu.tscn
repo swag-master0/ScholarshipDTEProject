@@ -1,4 +1,4 @@
-[gd_scene load_steps=11 format=3 uid="uid://c4ousj15h5a10"]
+[gd_scene load_steps=13 format=3 uid="uid://c4ousj15h5a10"]
 
 [ext_resource type="Script" path="res://Elements/function/main_menu.gd" id="1_cvoh4"]
 [ext_resource type="Theme" uid="uid://qpcg0ktiqy0j" path="res://Art/assets/theme.tres" id="3_74hs1"]
@@ -6,6 +6,18 @@
 [ext_resource type="Shader" uid="uid://d08hg4q0p02dx" path="res://Art/materials/main_menu.tres" id="4_mqevi"]
 [ext_resource type="Shader" path="res://Art/filters/colour_palette.gdshader" id="6_8v4ln"]
 [ext_resource type="Shader" path="res://Art/filters/pixellation.gdshader" id="7_cuoft"]
+
+[sub_resource type="Gradient" id="Gradient_c4ufp"]
+offsets = PackedFloat32Array(0.520737, 1)
+colors = PackedColorArray(0, 0, 0, 0, 0, 0, 0, 0.564706)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_8gebc"]
+gradient = SubResource("Gradient_c4ufp")
+width = 128
+height = 128
+fill = 1
+fill_from = Vector2(0.5, 0.5)
+metadata/_snap_enabled = true
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_r53xp"]
 render_priority = 0
@@ -36,6 +48,16 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 theme = ExtResource("3_74hs1")
+
+[node name="TextureRect" type="TextureRect" parent="GUI"]
+z_index = -1
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = SubResource("GradientTexture2D_8gebc")
 
 [node name="MainMenu" type="ColorRect" parent="GUI"]
 layout_mode = 1

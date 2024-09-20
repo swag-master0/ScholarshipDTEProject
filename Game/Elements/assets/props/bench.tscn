@@ -1,19 +1,30 @@
-[gd_scene load_steps=9 format=3 uid="uid://dhejktumttlcs"]
+[gd_scene load_steps=13 format=3 uid="uid://dhejktumttlcs"]
 
 [ext_resource type="Script" path="res://Elements/assets/props/template/prop.gd" id="2_ebi8x"]
 [ext_resource type="PackedScene" uid="uid://v7xe0iekhe20" path="res://Art/blend/assets/prop/bench.blend" id="2_xfdru"]
 [ext_resource type="AudioStream" uid="uid://b3l5ttx8c8jjr" path="res://Art/audio/impact/clang-metallic-1.wav" id="3_c2247"]
+[ext_resource type="Shader" uid="uid://brbveivwvsrsg" path="res://Art/materials/props/metal_bright.tres" id="3_ob34b"]
+[ext_resource type="Shader" uid="uid://be5pc5hywy8x4" path="res://Art/materials/props/wood.tres" id="3_sm82h"]
 [ext_resource type="AudioStream" uid="uid://bhucfve8tudyx" path="res://Art/audio/impact/clang-metallic-2.wav" id="4_a8wi2"]
 [ext_resource type="AudioStream" uid="uid://cmrd2tlply6v6" path="res://Art/audio/impact/thump-1.wav" id="5_b8l1k"]
 [ext_resource type="AudioStream" uid="uid://d00tijva2c6cn" path="res://Art/audio/impact/thump-2.wav" id="6_rr7jh"]
 [ext_resource type="AudioStream" uid="uid://cj157ctmjk6jj" path="res://Art/audio/impact/thump-3.wav" id="7_0vl5y"]
 [ext_resource type="AudioStream" uid="uid://q028ee08mw53" path="res://Art/audio/impact/thump-4.wav" id="8_h425a"]
 
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_tf5jq"]
+render_priority = 0
+shader = ExtResource("3_sm82h")
+shader_parameter/Colour = Color(0.671019, 0.442464, 0.252637, 1)
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_w7bo2"]
+render_priority = 0
+shader = ExtResource("3_ob34b")
+
 [node name="bench" instance=ExtResource("2_xfdru")]
 transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 0, 0, 0)
 
 [node name="Bench -rigid" parent="." index="0"]
-transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 0, 1, 0)
+transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 0, 0, 0)
 mass = 25.0
 contact_monitor = true
 max_contacts_reported = 5
@@ -21,6 +32,8 @@ script = ExtResource("2_ebi8x")
 
 [node name="Bench -rigid" parent="Bench -rigid" index="0"]
 transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 0, 0, 0)
+surface_material_override/0 = SubResource("ShaderMaterial_tf5jq")
+surface_material_override/1 = SubResource("ShaderMaterial_w7bo2")
 
 [node name="CollisionShape3D" parent="Bench -rigid" index="1"]
 transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 0, 0, 0)
@@ -48,5 +61,3 @@ stream = ExtResource("7_0vl5y")
 [node name="AudioStreamPlayer3D6" type="AudioStreamPlayer3D" parent="Bench -rigid" index="7"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.823671, -0.857975, 0)
 stream = ExtResource("8_h425a")
-
-[connection signal="body_entered" from="Bench -rigid" to="Bench -rigid" method="_on_body_entered"]

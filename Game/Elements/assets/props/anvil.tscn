@@ -1,9 +1,14 @@
-[gd_scene load_steps=5 format=3 uid="uid://bsmhlbfqb0hvo"]
+[gd_scene load_steps=7 format=3 uid="uid://bsmhlbfqb0hvo"]
 
 [ext_resource type="PackedScene" uid="uid://cpnjtrlw2h02x" path="res://Art/blend/assets/prop/anvil.blend" id="1_k5dfb"]
 [ext_resource type="Script" path="res://Elements/assets/props/template/prop.gd" id="2_i0ysq"]
+[ext_resource type="Shader" uid="uid://brbveivwvsrsg" path="res://Art/materials/props/metal_bright.tres" id="3_h66ml"]
 [ext_resource type="AudioStream" uid="uid://b3l5ttx8c8jjr" path="res://Art/audio/impact/clang-metallic-1.wav" id="3_yb8s8"]
 [ext_resource type="AudioStream" uid="uid://bhucfve8tudyx" path="res://Art/audio/impact/clang-metallic-2.wav" id="4_1gxwa"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_l8f3d"]
+render_priority = 0
+shader = ExtResource("3_h66ml")
 
 [node name="anvil" instance=ExtResource("1_k5dfb")]
 
@@ -13,6 +18,9 @@ contact_monitor = true
 max_contacts_reported = 5
 script = ExtResource("2_i0ysq")
 
+[node name="Anvil -rigid" parent="Anvil -rigid" index="0"]
+surface_material_override/0 = SubResource("ShaderMaterial_l8f3d")
+
 [node name="AudioStreamPlayer3D" type="AudioStreamPlayer3D" parent="Anvil -rigid" index="2"]
 stream = ExtResource("3_yb8s8")
 pitch_scale = 0.5
@@ -20,5 +28,3 @@ pitch_scale = 0.5
 [node name="AudioStreamPlayer3D2" type="AudioStreamPlayer3D" parent="Anvil -rigid" index="3"]
 stream = ExtResource("4_1gxwa")
 pitch_scale = 0.5
-
-[connection signal="body_entered" from="Anvil -rigid" to="Anvil -rigid" method="_on_body_entered"]
