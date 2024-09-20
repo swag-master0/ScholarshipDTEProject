@@ -1,4 +1,4 @@
-[gd_scene load_steps=39 format=3 uid="uid://b1xr3fo1efvpm"]
+[gd_scene load_steps=46 format=3 uid="uid://b1xr3fo1efvpm"]
 
 [ext_resource type="Script" path="res://Elements/levels/main_levels/L5.gd" id="1_ts3et"]
 [ext_resource type="PackedScene" uid="uid://b25c61h2tqpn4" path="res://Art/blend/levels_chapter1/c1_m5.blend" id="2_jf7k8"]
@@ -21,11 +21,15 @@
 [ext_resource type="PackedScene" uid="uid://bsbl4boqt5vj4" path="res://Elements/assets/props/cone.tscn" id="19_unrj5"]
 [ext_resource type="PackedScene" uid="uid://dqaxkncc187ot" path="res://Elements/assets/props/picture_small.tscn" id="20_rmg25"]
 [ext_resource type="PackedScene" uid="uid://cp8y4w0hidlhu" path="res://Elements/assets/props/picture_xlarge.tscn" id="21_e8k6y"]
+[ext_resource type="Shader" path="res://Art/materials/props/picture_image.gdshader" id="21_qiqtk"]
+[ext_resource type="Texture2D" uid="uid://ymrbso5wixts" path="res://Art/assets/misc/shoe.jpg" id="22_8dfdh"]
 [ext_resource type="PackedScene" uid="uid://cdxkrkn34253v" path="res://Elements/assets/props/picture_large.tscn" id="22_vwcgk"]
 [ext_resource type="PackedScene" uid="uid://dhejktumttlcs" path="res://Elements/assets/props/bench.tscn" id="23_y6wxr"]
+[ext_resource type="Texture2D" uid="uid://fv11y40xx78" path="res://Art/assets/misc/japan_advert.png" id="24_jus8q"]
 [ext_resource type="PackedScene" uid="uid://c775kwttbjh40" path="res://Elements/assets/props/vase.tscn" id="24_wecyb"]
 [ext_resource type="PackedScene" uid="uid://bfrpck2673n1q" path="res://Elements/assets/props/coffin.tscn" id="25_npmdy"]
 [ext_resource type="PackedScene" uid="uid://h5siu0krokek" path="res://Elements/assets/props/table_3.tscn" id="26_tpqlo"]
+[ext_resource type="Texture2D" uid="uid://uom10tomjepm" path="res://Art/assets/misc/Russian-sleep-experiment-3-320.webp" id="26_ymeva"]
 [ext_resource type="PackedScene" uid="uid://bsmhlbfqb0hvo" path="res://Elements/assets/props/anvil.tscn" id="27_mvv4y"]
 [ext_resource type="PackedScene" uid="uid://cggscg4u3txqj" path="res://Elements/assets/props/boombox.tscn" id="28_1iiqu"]
 [ext_resource type="PackedScene" uid="uid://i43wpwf0q6em" path="res://Elements/assets/props/chair.tscn" id="29_cngdb"]
@@ -47,6 +51,24 @@ shader = ExtResource("3_dyvlv")
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_m2epx"]
 size = Vector3(31, 10, 10)
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_nxun6"]
+render_priority = 0
+shader = ExtResource("21_qiqtk")
+shader_parameter/emission_strength = 0.2
+shader_parameter/picture = ExtResource("22_8dfdh")
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_soybn"]
+render_priority = 0
+shader = ExtResource("21_qiqtk")
+shader_parameter/emission_strength = 0.2
+shader_parameter/picture = ExtResource("24_jus8q")
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_hu3xe"]
+render_priority = 0
+shader = ExtResource("21_qiqtk")
+shader_parameter/emission_strength = 0.2
+shader_parameter/picture = ExtResource("26_ymeva")
 
 [node name="L5" type="Node3D"]
 script = ExtResource("1_ts3et")
@@ -157,31 +179,34 @@ freeze = true
 ungrabbable = true
 
 [node name="picture_small" parent="Props" instance=ExtResource("20_rmg25")]
-transform = Transform3D(1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, 7.89601, 7.553, -4.30493)
+transform = Transform3D(-4.37114e-08, 1, -4.37114e-08, 0, -4.37114e-08, -1, -1, -4.37114e-08, 1.91069e-15, -4.84643, 4.553, -3.09952)
 
 [node name="Picture_Small -rigid" parent="Props/picture_small" index="0"]
 ungrabbable = true
 
 [node name="Picture_Small -rigid" parent="Props/picture_small/Picture_Small -rigid" index="0"]
-transform = Transform3D(4.37114e-08, -1, -8.74228e-08, -4.37114e-08, 8.74228e-08, -1, 1, 4.37114e-08, -4.37114e-08, 12.7827, -2.6717, -1.32439)
+transform = Transform3D(-1, -8.74228e-08, 3.82137e-15, 0, -4.37114e-08, -1, 8.74228e-08, -1, 4.37114e-08, 0, 0, 0)
+surface_material_override/1 = SubResource("ShaderMaterial_nxun6")
 
 [node name="picture_xlarge" parent="Props" instance=ExtResource("21_e8k6y")]
-transform = Transform3D(-1, 0, 8.74228e-08, 0, 1, 0, -8.74228e-08, 0, -1, 4.26001, 9.75827, -4.30493)
+transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, -4.84643, 6.75827, 0.536476)
 
 [node name="Picture_XLarge -rigid" parent="Props/picture_xlarge" index="0"]
 ungrabbable = true
 
 [node name="Picture_XLarge -rigid" parent="Props/picture_xlarge/Picture_XLarge -rigid" index="0"]
-transform = Transform3D(-3.69553e-07, -1, -2.06632e-07, 7.54977e-08, 2.06632e-07, -1, 1, -3.69553e-07, 7.54976e-08, 9.14665, -2.05979, -4.80411)
+transform = Transform3D(-1, 3.89414e-07, -1.70218e-14, 0, -4.37114e-08, -1, -3.89414e-07, -1, 4.37114e-08, 0, 0, 0)
+surface_material_override/1 = SubResource("ShaderMaterial_soybn")
 
 [node name="picture_large" parent="Props" instance=ExtResource("22_vwcgk")]
-transform = Transform3D(-1, -8.74228e-08, -3.82137e-15, 0, -4.37114e-08, 1, -8.74228e-08, 1, 4.37114e-08, 2.99894, 6.34736, -4.30493)
+transform = Transform3D(-4.37114e-08, 1, 4.37114e-08, 0, -4.37114e-08, 1, 1, 4.37114e-08, 1.91068e-15, -4.84643, 3.34736, 1.79755)
 
 [node name="Picture_Large -rigid" parent="Props/picture_large" index="0"]
 ungrabbable = true
 
 [node name="Picture_Large -rigid" parent="Props/picture_large/Picture_Large -rigid" index="0"]
-transform = Transform3D(4.37114e-08, -1, 5.37316e-16, 4.37114e-08, 1.64203e-15, -1, 1, 4.37114e-08, 4.37114e-08, 7.88558, -2.48418, -5.5258)
+transform = Transform3D(-1, -8.74228e-08, 3.82137e-15, 0, -4.37114e-08, -1, 8.74228e-08, -1, 4.37114e-08, 0, 0, 0)
+surface_material_override/1 = SubResource("ShaderMaterial_hu3xe")
 
 [node name="bench" parent="Props" instance=ExtResource("23_y6wxr")]
 transform = Transform3D(1.86024e-15, 1, -4.37114e-08, -0.951648, -1.34277e-08, -0.307191, -0.307191, 4.15979e-08, 0.951648, 6.31414, 8.61274, 18.7446)
