@@ -1,11 +1,22 @@
-[gd_scene load_steps=7 format=3 uid="uid://bsbl4boqt5vj4"]
+[gd_scene load_steps=10 format=3 uid="uid://bsbl4boqt5vj4"]
 
 [ext_resource type="PackedScene" uid="uid://dcpwndoor4g25" path="res://Art/blend/assets/prop/cone.blend" id="1_434wn"]
 [ext_resource type="Script" path="res://Elements/assets/props/template/prop.gd" id="2_wr1e7"]
+[ext_resource type="Shader" uid="uid://b65rf2f2vvi2g" path="res://Art/materials/props/plastic.tres" id="3_8rr58"]
 [ext_resource type="AudioStream" uid="uid://cmrd2tlply6v6" path="res://Art/audio/impact/thump-1.wav" id="3_i0tnd"]
 [ext_resource type="AudioStream" uid="uid://d00tijva2c6cn" path="res://Art/audio/impact/thump-2.wav" id="4_pua3k"]
 [ext_resource type="AudioStream" uid="uid://cj157ctmjk6jj" path="res://Art/audio/impact/thump-3.wav" id="5_8f4eq"]
 [ext_resource type="AudioStream" uid="uid://q028ee08mw53" path="res://Art/audio/impact/thump-4.wav" id="6_eiydx"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_fdnn1"]
+render_priority = 0
+shader = ExtResource("3_8rr58")
+shader_parameter/BaseColour = Color(0.800647, 0.292422, 0.104936, 1)
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_gqh77"]
+render_priority = 0
+shader = ExtResource("3_8rr58")
+shader_parameter/BaseColour = Color(1, 1, 1, 1)
 
 [node name="cone" instance=ExtResource("1_434wn")]
 
@@ -14,6 +25,10 @@ mass = 15.0
 contact_monitor = true
 max_contacts_reported = 5
 script = ExtResource("2_wr1e7")
+
+[node name="Cone -rigid" parent="Cone -rigid" index="0"]
+surface_material_override/0 = SubResource("ShaderMaterial_fdnn1")
+surface_material_override/1 = SubResource("ShaderMaterial_gqh77")
 
 [node name="AudioStreamPlayer3D" type="AudioStreamPlayer3D" parent="Cone -rigid" index="2"]
 stream = ExtResource("3_i0tnd")
@@ -26,5 +41,3 @@ stream = ExtResource("5_8f4eq")
 
 [node name="AudioStreamPlayer3D4" type="AudioStreamPlayer3D" parent="Cone -rigid" index="5"]
 stream = ExtResource("6_eiydx")
-
-[connection signal="body_entered" from="Cone -rigid" to="Cone -rigid" method="_on_body_entered"]

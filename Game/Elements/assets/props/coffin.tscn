@@ -1,9 +1,15 @@
-[gd_scene load_steps=5 format=3 uid="uid://bfrpck2673n1q"]
+[gd_scene load_steps=7 format=3 uid="uid://bfrpck2673n1q"]
 
 [ext_resource type="PackedScene" uid="uid://xpbppyrt8yl" path="res://Art/blend/assets/prop/coffin.blend" id="1_0lmch"]
 [ext_resource type="Script" path="res://Elements/assets/props/template/prop.gd" id="2_lyttn"]
 [ext_resource type="AudioStream" uid="uid://ddjpyn7uhjk7g" path="res://Art/audio/impact/clatter-wood-1.wav" id="3_5khjj"]
+[ext_resource type="Shader" uid="uid://be5pc5hywy8x4" path="res://Art/materials/props/wood.tres" id="3_ebemq"]
 [ext_resource type="AudioStream" uid="uid://ct6o1mf65ohkd" path="res://Art/audio/impact/clatter-wood-3.wav" id="4_h3ija"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_rdr6l"]
+render_priority = 0
+shader = ExtResource("3_ebemq")
+shader_parameter/Colour = Color(0.159549, 0.0535503, 0.00925527, 1)
 
 [node name="coffin" instance=ExtResource("1_0lmch")]
 
@@ -13,6 +19,9 @@ contact_monitor = true
 max_contacts_reported = 5
 script = ExtResource("2_lyttn")
 ungrabbable = true
+
+[node name="Coffin -rigid" parent="Coffin -rigid" index="0"]
+surface_material_override/0 = SubResource("ShaderMaterial_rdr6l")
 
 [node name="AudioStreamPlayer3D" type="AudioStreamPlayer3D" parent="Coffin -rigid" index="2"]
 stream = ExtResource("3_5khjj")

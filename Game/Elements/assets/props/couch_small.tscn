@@ -1,11 +1,22 @@
-[gd_scene load_steps=7 format=3 uid="uid://currpdc0rou40"]
+[gd_scene load_steps=10 format=3 uid="uid://currpdc0rou40"]
 
 [ext_resource type="PackedScene" uid="uid://dymow0g7scca8" path="res://Art/blend/assets/prop/couch_small.blend" id="1_jtq06"]
 [ext_resource type="Script" path="res://Elements/assets/props/template/prop.gd" id="2_fysgu"]
+[ext_resource type="Shader" uid="uid://dkv03bnv17s5v" path="res://Art/materials/props/fabric.tres" id="3_a1l38"]
 [ext_resource type="AudioStream" uid="uid://cmrd2tlply6v6" path="res://Art/audio/impact/thump-1.wav" id="3_vqnvj"]
 [ext_resource type="AudioStream" uid="uid://d00tijva2c6cn" path="res://Art/audio/impact/thump-2.wav" id="4_ond3t"]
 [ext_resource type="AudioStream" uid="uid://cj157ctmjk6jj" path="res://Art/audio/impact/thump-3.wav" id="5_a6wuw"]
 [ext_resource type="AudioStream" uid="uid://q028ee08mw53" path="res://Art/audio/impact/thump-4.wav" id="6_pirga"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_kskob"]
+render_priority = 0
+shader = ExtResource("3_a1l38")
+shader_parameter/BaseColour = Color(0.224901, 0.513907, 0.356029, 1)
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_l7nu6"]
+render_priority = 0
+shader = ExtResource("3_a1l38")
+shader_parameter/BaseColour = Color(0.104874, 0.353326, 0.268918, 1)
 
 [node name="couch_small" instance=ExtResource("1_jtq06")]
 
@@ -14,6 +25,10 @@ mass = 25.0
 contact_monitor = true
 max_contacts_reported = 5
 script = ExtResource("2_fysgu")
+
+[node name="CouchSmall -rigid" parent="CouchSmall -rigid" index="0"]
+surface_material_override/0 = SubResource("ShaderMaterial_kskob")
+surface_material_override/1 = SubResource("ShaderMaterial_l7nu6")
 
 [node name="AudioStreamPlayer3D" type="AudioStreamPlayer3D" parent="CouchSmall -rigid" index="2"]
 stream = ExtResource("3_vqnvj")
@@ -26,5 +41,3 @@ stream = ExtResource("5_a6wuw")
 
 [node name="AudioStreamPlayer3D4" type="AudioStreamPlayer3D" parent="CouchSmall -rigid" index="5"]
 stream = ExtResource("6_pirga")
-
-[connection signal="body_entered" from="CouchSmall -rigid" to="CouchSmall -rigid" method="_on_body_entered"]

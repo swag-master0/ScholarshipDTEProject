@@ -1,9 +1,15 @@
-[gd_scene load_steps=6 format=3 uid="uid://cxin5ii35rudp"]
+[gd_scene load_steps=8 format=3 uid="uid://cxin5ii35rudp"]
 
 [ext_resource type="PackedScene" uid="uid://caxopdvvjcnvu" path="res://Art/blend/assets/prop/ladder.blend" id="1_3vqmb"]
 [ext_resource type="Script" path="res://Elements/assets/props/template/prop.gd" id="2_03xcp"]
+[ext_resource type="Shader" uid="uid://be5pc5hywy8x4" path="res://Art/materials/props/wood.tres" id="3_8v7vl"]
 [ext_resource type="AudioStream" uid="uid://ddjpyn7uhjk7g" path="res://Art/audio/impact/clatter-wood-1.wav" id="3_603o0"]
 [ext_resource type="AudioStream" uid="uid://ct6o1mf65ohkd" path="res://Art/audio/impact/clatter-wood-3.wav" id="4_qyh3d"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_542qv"]
+render_priority = 0
+shader = ExtResource("3_8v7vl")
+shader_parameter/Colour = Color(0.296681, 0.150465, 0.0616897, 1)
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_x6kkm"]
 size = Vector3(1.69666, 6.00574, 0.327148)
@@ -17,6 +23,9 @@ contact_monitor = true
 max_contacts_reported = 5
 script = ExtResource("2_03xcp")
 
+[node name="Ladder -rigid" parent="Ladder -rigid" index="0"]
+surface_material_override/0 = SubResource("ShaderMaterial_542qv")
+
 [node name="CollisionShape3D" parent="Ladder -rigid" index="1"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.00616455, 0.00750732, 0.00830078)
 shape = SubResource("BoxShape3D_x6kkm")
@@ -26,5 +35,3 @@ stream = ExtResource("3_603o0")
 
 [node name="AudioStreamPlayer3D2" type="AudioStreamPlayer3D" parent="Ladder -rigid" index="3"]
 stream = ExtResource("4_qyh3d")
-
-[connection signal="body_entered" from="Ladder -rigid" to="Ladder -rigid" method="_on_body_entered"]

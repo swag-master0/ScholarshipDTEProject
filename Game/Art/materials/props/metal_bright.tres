@@ -1,4 +1,4 @@
-[gd_resource type="VisualShader" load_steps=8 format=3 uid="uid://brbveivwvsrsg"]
+[gd_resource type="VisualShader" load_steps=9 format=3 uid="uid://brbveivwvsrsg"]
 
 [sub_resource type="VisualShaderNodeFloatConstant" id="VisualShaderNodeFloatConstant_kom5b"]
 constant = 1.0
@@ -25,15 +25,24 @@ texture_type = 2
 [sub_resource type="VisualShaderNodeInput" id="VisualShaderNodeInput_s2uvx"]
 input_name = "uv"
 
+[sub_resource type="VisualShaderNodeColorParameter" id="VisualShaderNodeColorParameter_rtqvk"]
+parameter_name = "BaseColour"
+default_value_enabled = true
+
 [resource]
 code = "shader_type spatial;
 render_mode blend_mix, depth_draw_opaque, cull_back, diffuse_lambert, specular_schlick_ggx;
 
+uniform vec4 BaseColour : source_color = vec4(1.000000, 1.000000, 1.000000, 1.000000);
 uniform sampler2D tex_frg_4 : hint_normal;
 
 
 
 void fragment() {
+// ColorParameter:6
+	vec4 n_out6p0 = BaseColour;
+
+
 // FloatConstant:2
 	float n_out2p0 = 1.000000;
 
@@ -51,6 +60,7 @@ void fragment() {
 
 
 // Output:0
+	ALBEDO = vec3(n_out6p0.xyz);
 	METALLIC = n_out2p0;
 	ROUGHNESS = n_out3p0;
 	NORMAL_MAP = vec3(n_out4p0.xyz);
@@ -58,13 +68,15 @@ void fragment() {
 
 }
 "
-graph_offset = Vector2(-157.678, 207.836)
+graph_offset = Vector2(-517, -210)
 nodes/fragment/2/node = SubResource("VisualShaderNodeFloatConstant_kom5b")
-nodes/fragment/2/position = Vector2(160, 200)
+nodes/fragment/2/position = Vector2(120, 240)
 nodes/fragment/3/node = SubResource("VisualShaderNodeFloatConstant_rk2no")
-nodes/fragment/3/position = Vector2(160, 300)
+nodes/fragment/3/position = Vector2(120, 340)
 nodes/fragment/4/node = SubResource("VisualShaderNodeTexture_px77g")
 nodes/fragment/4/position = Vector2(-240, 340)
 nodes/fragment/5/node = SubResource("VisualShaderNodeInput_s2uvx")
 nodes/fragment/5/position = Vector2(-560, 380)
-nodes/fragment/connections = PackedInt32Array(2, 0, 0, 2, 3, 0, 0, 3, 4, 0, 0, 9, 5, 0, 4, 0)
+nodes/fragment/6/node = SubResource("VisualShaderNodeColorParameter_rtqvk")
+nodes/fragment/6/position = Vector2(60, 20)
+nodes/fragment/connections = PackedInt32Array(2, 0, 0, 2, 3, 0, 0, 3, 4, 0, 0, 9, 5, 0, 4, 0, 6, 0, 0, 0)

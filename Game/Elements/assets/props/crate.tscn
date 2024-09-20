@@ -1,9 +1,20 @@
-[gd_scene load_steps=5 format=3 uid="uid://dhaxwpsinvu6u"]
+[gd_scene load_steps=8 format=3 uid="uid://dhaxwpsinvu6u"]
 
 [ext_resource type="PackedScene" uid="uid://ejqcxr4vpya" path="res://Art/blend/assets/prop/crate.blend" id="1_u8y3l"]
 [ext_resource type="Script" path="res://Elements/assets/props/template/prop.gd" id="2_bj7j1"]
 [ext_resource type="AudioStream" uid="uid://ddjpyn7uhjk7g" path="res://Art/audio/impact/clatter-wood-1.wav" id="3_dskm5"]
+[ext_resource type="Shader" uid="uid://be5pc5hywy8x4" path="res://Art/materials/props/wood.tres" id="3_nc0u2"]
 [ext_resource type="AudioStream" uid="uid://ct6o1mf65ohkd" path="res://Art/audio/impact/clatter-wood-3.wav" id="4_uswjg"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_7rhtq"]
+render_priority = 0
+shader = ExtResource("3_nc0u2")
+shader_parameter/Colour = Color(0.306585, 0.170864, 0.0575046, 1)
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_48l1a"]
+render_priority = 0
+shader = ExtResource("3_nc0u2")
+shader_parameter/Colour = Color(0.806548, 0.57845, 0.463141, 1)
 
 [node name="crate" instance=ExtResource("1_u8y3l")]
 
@@ -12,6 +23,10 @@ mass = 15.0
 contact_monitor = true
 max_contacts_reported = 5
 script = ExtResource("2_bj7j1")
+
+[node name="Crate -rigid" parent="Crate -rigid" index="0"]
+surface_material_override/0 = SubResource("ShaderMaterial_7rhtq")
+surface_material_override/1 = SubResource("ShaderMaterial_48l1a")
 
 [node name="AudioStreamPlayer3D" type="AudioStreamPlayer3D" parent="Crate -rigid" index="2"]
 stream = ExtResource("3_dskm5")

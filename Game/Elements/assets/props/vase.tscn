@@ -1,11 +1,17 @@
-[gd_scene load_steps=7 format=3 uid="uid://c775kwttbjh40"]
+[gd_scene load_steps=9 format=3 uid="uid://c775kwttbjh40"]
 
 [ext_resource type="PackedScene" uid="uid://bck2n8xf7lgbq" path="res://Art/blend/assets/prop/vase.blend" id="1_ejc5v"]
 [ext_resource type="Script" path="res://Elements/assets/props/template/prop.gd" id="2_3od1b"]
+[ext_resource type="Shader" uid="uid://b65rf2f2vvi2g" path="res://Art/materials/props/plastic.tres" id="3_5mk3k"]
 [ext_resource type="AudioStream" uid="uid://bvtl3gcsvn81k" path="res://Art/audio/impact/chink_01.wav" id="3_u72p8"]
 [ext_resource type="AudioStream" uid="uid://wagg0o80e13u" path="res://Art/audio/impact/chink_02.wav" id="4_kuhbm"]
 [ext_resource type="AudioStream" uid="uid://51bkfhufensc" path="res://Art/audio/impact/chink_03.wav" id="5_56q77"]
 [ext_resource type="AudioStream" uid="uid://bibv5gbo3s8" path="res://Art/audio/impact/chink_04.wav" id="6_whpka"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_4vhhn"]
+render_priority = 0
+shader = ExtResource("3_5mk3k")
+shader_parameter/BaseColour = Color(0.497296, 0.300494, 0.171328, 1)
 
 [node name="vase" instance=ExtResource("1_ejc5v")]
 
@@ -14,6 +20,9 @@ mass = 10.0
 contact_monitor = true
 max_contacts_reported = 5
 script = ExtResource("2_3od1b")
+
+[node name="Vase -rigid" parent="Vase -rigid" index="0"]
+surface_material_override/0 = SubResource("ShaderMaterial_4vhhn")
 
 [node name="AudioStreamPlayer3D" type="AudioStreamPlayer3D" parent="Vase -rigid" index="2"]
 stream = ExtResource("3_u72p8")

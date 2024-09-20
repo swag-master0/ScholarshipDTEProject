@@ -1,9 +1,21 @@
-[gd_scene load_steps=5 format=3 uid="uid://vku0vf2hc070"]
+[gd_scene load_steps=9 format=3 uid="uid://vku0vf2hc070"]
 
 [ext_resource type="PackedScene" uid="uid://cedwmd0538nrs" path="res://Art/blend/assets/prop/microwave.blend" id="1_knviw"]
 [ext_resource type="Script" path="res://Elements/assets/props/template/prop.gd" id="2_003d4"]
+[ext_resource type="Shader" uid="uid://b65rf2f2vvi2g" path="res://Art/materials/props/plastic.tres" id="3_013fx"]
 [ext_resource type="AudioStream" uid="uid://b3l5ttx8c8jjr" path="res://Art/audio/impact/clang-metallic-1.wav" id="3_u0ok8"]
 [ext_resource type="AudioStream" uid="uid://bhucfve8tudyx" path="res://Art/audio/impact/clang-metallic-2.wav" id="4_e2ekw"]
+[ext_resource type="Shader" uid="uid://brbveivwvsrsg" path="res://Art/materials/props/metal_bright.tres" id="4_se15r"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_rq4ar"]
+render_priority = 0
+shader = ExtResource("3_013fx")
+shader_parameter/BaseColour = Color(0.154876, 0.154876, 0.154876, 1)
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_u6web"]
+render_priority = 0
+shader = ExtResource("4_se15r")
+shader_parameter/BaseColour = Color(1, 1, 1, 1)
 
 [node name="microwave" instance=ExtResource("1_knviw")]
 
@@ -12,6 +24,10 @@ mass = 15.0
 contact_monitor = true
 max_contacts_reported = 5
 script = ExtResource("2_003d4")
+
+[node name="Microwave -rigid" parent="Microwave -rigid" index="0"]
+surface_material_override/0 = SubResource("ShaderMaterial_rq4ar")
+surface_material_override/2 = SubResource("ShaderMaterial_u6web")
 
 [node name="AudioStreamPlayer3D" type="AudioStreamPlayer3D" parent="Microwave -rigid" index="2"]
 stream = ExtResource("3_u0ok8")

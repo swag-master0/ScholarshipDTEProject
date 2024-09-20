@@ -9,7 +9,7 @@
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_d15pi"]
 render_priority = 0
 shader = ExtResource("3_n3tpf")
-shader_parameter/Colour = Color(0.652881, 0.36512, 0.192519, 1)
+shader_parameter/Colour = Color(0.321944, 0.165302, 0.0702222, 1)
 
 [node name="chair" instance=ExtResource("1_52he4")]
 

@@ -1,4 +1,4 @@
-[gd_resource type="VisualShader" load_steps=6 format=3 uid="uid://w3xnigg80u7h"]
+[gd_resource type="VisualShader" load_steps=7 format=3 uid="uid://w3xnigg80u7h"]
 
 [sub_resource type="Gradient" id="Gradient_r2yoi"]
 interpolation_mode = 1
@@ -19,15 +19,24 @@ texture = SubResource("NoiseTexture2D_xx5k3")
 [sub_resource type="VisualShaderNodeInput" id="VisualShaderNodeInput_ow6a7"]
 input_name = "uv"
 
+[sub_resource type="VisualShaderNodeColorParameter" id="VisualShaderNodeColorParameter_lj4v5"]
+parameter_name = "BaseColour"
+default_value_enabled = true
+
 [resource]
 code = "shader_type spatial;
 render_mode blend_mix, depth_draw_opaque, cull_back, diffuse_lambert, specular_schlick_ggx;
 
+uniform vec4 BaseColour : source_color = vec4(1.000000, 1.000000, 1.000000, 1.000000);
 uniform sampler2D tex_frg_2;
 
 
 
 void fragment() {
+// ColorParameter:4
+	vec4 n_out4p0 = BaseColour;
+
+
 // Input:3
 	vec2 n_out3p0 = UV;
 
@@ -37,14 +46,17 @@ void fragment() {
 
 
 // Output:0
+	ALBEDO = vec3(n_out4p0.xyz);
 	NORMAL_MAP = vec3(n_out2p0.xyz);
 
 
 }
 "
-graph_offset = Vector2(-376.865, 108.875)
+graph_offset = Vector2(-644, -163)
 nodes/fragment/2/node = SubResource("VisualShaderNodeTexture_ww8ji")
-nodes/fragment/2/position = Vector2(-120, 280)
+nodes/fragment/2/position = Vector2(-140, 440)
 nodes/fragment/3/node = SubResource("VisualShaderNodeInput_ow6a7")
-nodes/fragment/3/position = Vector2(-480, 380)
-nodes/fragment/connections = PackedInt32Array(3, 0, 2, 0, 2, 0, 0, 9)
+nodes/fragment/3/position = Vector2(-500, 540)
+nodes/fragment/4/node = SubResource("VisualShaderNodeColorParameter_lj4v5")
+nodes/fragment/4/position = Vector2(0, 80)
+nodes/fragment/connections = PackedInt32Array(3, 0, 2, 0, 2, 0, 0, 9, 4, 0, 0, 0)

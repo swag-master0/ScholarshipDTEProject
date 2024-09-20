@@ -1,9 +1,21 @@
-[gd_scene load_steps=5 format=3 uid="uid://brfvkewj7bfba"]
+[gd_scene load_steps=9 format=3 uid="uid://brfvkewj7bfba"]
 
 [ext_resource type="PackedScene" uid="uid://b7y7x8qaskmjm" path="res://Art/blend/assets/prop/lamp_tall.blend" id="1_54vn6"]
 [ext_resource type="Script" path="res://Elements/assets/props/template/prop.gd" id="2_ljhby"]
 [ext_resource type="AudioStream" uid="uid://b3l5ttx8c8jjr" path="res://Art/audio/impact/clang-metallic-1.wav" id="3_1jq2s"]
+[ext_resource type="Shader" uid="uid://dkv03bnv17s5v" path="res://Art/materials/props/fabric.tres" id="3_8jtln"]
+[ext_resource type="Shader" uid="uid://brbveivwvsrsg" path="res://Art/materials/props/metal_bright.tres" id="3_wjple"]
 [ext_resource type="AudioStream" uid="uid://bhucfve8tudyx" path="res://Art/audio/impact/clang-metallic-2.wav" id="4_cyita"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_xi0r8"]
+render_priority = 0
+shader = ExtResource("3_wjple")
+shader_parameter/BaseColour = Color(0.344076, 0.344076, 0.344076, 1)
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_e4347"]
+render_priority = 0
+shader = ExtResource("3_8jtln")
+shader_parameter/BaseColour = Color(0.616038, 0.538631, 0.327532, 1)
 
 [node name="lamp_tall" instance=ExtResource("1_54vn6")]
 
@@ -12,6 +24,10 @@ mass = 25.0
 contact_monitor = true
 max_contacts_reported = 5
 script = ExtResource("2_ljhby")
+
+[node name="LampTall -rigid" parent="LampTall -rigid" index="0"]
+surface_material_override/0 = SubResource("ShaderMaterial_xi0r8")
+surface_material_override/2 = SubResource("ShaderMaterial_e4347")
 
 [node name="OmniLight3D2" type="OmniLight3D" parent="LampTall -rigid" index="2"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.28866, 0)

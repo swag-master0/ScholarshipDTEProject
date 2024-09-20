@@ -325,9 +325,6 @@ transform = Transform3D(0.159985, -0.98712, 0, 0.98712, 0.159985, 0, 0, 0, 1, 30
 [node name="tree7" parent="Props" instance=ExtResource("35_ejx53")]
 transform = Transform3D(0.775727, 0, 0.631069, 0, 1, 0, -0.631069, 0, 0.775727, 22.7387, 1.47511, -3.07911)
 
-[node name="bench2" parent="Props" instance=ExtResource("23_y6wxr")]
-transform = Transform3D(0.980864, 0, -0.194697, 0, 1, 0, 0.194697, 0, 0.980864, 18.7823, 1.47511, -12.8436)
-
 [node name="Ambient" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("32_kl47l")
 volume_db = -20.0

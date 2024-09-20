@@ -1,9 +1,15 @@
-[gd_scene load_steps=5 format=3 uid="uid://c1h8mvyaciq6r"]
+[gd_scene load_steps=7 format=3 uid="uid://c1h8mvyaciq6r"]
 
 [ext_resource type="PackedScene" uid="uid://l0oixnl8fjcg" path="res://Art/blend/assets/prop/stool_2.blend" id="1_7bfmt"]
 [ext_resource type="Script" path="res://Elements/assets/props/template/prop.gd" id="2_kpqji"]
+[ext_resource type="Shader" uid="uid://be5pc5hywy8x4" path="res://Art/materials/props/wood.tres" id="3_o1vxc"]
 [ext_resource type="AudioStream" uid="uid://ddjpyn7uhjk7g" path="res://Art/audio/impact/clatter-wood-1.wav" id="3_wuq16"]
 [ext_resource type="AudioStream" uid="uid://ct6o1mf65ohkd" path="res://Art/audio/impact/clatter-wood-3.wav" id="4_miycn"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_a3in1"]
+render_priority = 0
+shader = ExtResource("3_o1vxc")
+shader_parameter/Colour = Color(0.347266, 0.180195, 0.078819, 1)
 
 [node name="stool_2" instance=ExtResource("1_7bfmt")]
 
@@ -13,10 +19,11 @@ contact_monitor = true
 max_contacts_reported = 5
 script = ExtResource("2_kpqji")
 
+[node name="Stool_2 -rigid" parent="Stool_2 -rigid" index="0"]
+surface_material_override/0 = SubResource("ShaderMaterial_a3in1")
+
 [node name="AudioStreamPlayer3D" type="AudioStreamPlayer3D" parent="Stool_2 -rigid" index="2"]
 stream = ExtResource("3_wuq16")
 
 [node name="AudioStreamPlayer3D2" type="AudioStreamPlayer3D" parent="Stool_2 -rigid" index="3"]
 stream = ExtResource("4_miycn")
-
-[connection signal="body_entered" from="Stool_2 -rigid" to="Stool_2 -rigid" method="_on_body_entered"]

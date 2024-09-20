@@ -8,8 +8,8 @@
 [ext_resource type="Shader" path="res://Art/filters/pixellation.gdshader" id="7_cuoft"]
 
 [sub_resource type="Gradient" id="Gradient_c4ufp"]
-offsets = PackedFloat32Array(0.520737, 1)
-colors = PackedColorArray(0, 0, 0, 0, 0, 0, 0, 0.564706)
+offsets = PackedFloat32Array(0.327801, 1)
+colors = PackedColorArray(0, 0, 0, 0, 0, 0, 0, 1)
 
 [sub_resource type="GradientTexture2D" id="GradientTexture2D_8gebc"]
 gradient = SubResource("Gradient_c4ufp")
