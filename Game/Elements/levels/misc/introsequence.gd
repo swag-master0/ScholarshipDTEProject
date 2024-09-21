@@ -3,10 +3,8 @@ extends Node
 @onready var rail_anims = $"../RailsPlayerHub/AnimationPlayer"
 @onready var rail_carriage = $"../RailsPlayerHub/carraige"
 
-@onready var lights = [
-	$"../Light",
-	$"../Light2"
-]
+@onready var blackout = $"../Blackout"
+
 @onready var root = $".."
 @onready var player = $"../Player"
 
@@ -20,23 +18,13 @@ var threw = false
 
 
 func _ready():
-	
-	for i in lights:
-		i.light_energy = 0
+	await get_tree().create_timer(3).timeout
+	blackout.queue_free()
+	$"../LightSound".play()
 	
 	
 	await get_tree().create_timer(3).timeout
 	
-	for i in lights:
-		i.light_energy = 1.5
-	
-	await get_tree().create_timer(3).timeout
-	
-	# NOTE: this is just for debugging reasons. 
-	# Please remember to remove this when finished!
-	#tutorial_finished()
-	
-	# Uncomment these lines:
 	
 	player.dialogue_queue.append(0)
 	player.dialogue_queue.append("GOOD MORNING.")
