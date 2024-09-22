@@ -48,6 +48,7 @@ folder_colors={
 "res://Art/audio/misc/": "gray",
 "res://Art/audio/music/": "gray",
 "res://Art/audio/player/": "gray",
+"res://Art/audio/ui/": "gray",
 "res://Art/blend/assets/": "gray",
 "res://Art/blend/levels_chapter1/": "gray",
 "res://Art/blend/levels_chapter2/": "gray",
