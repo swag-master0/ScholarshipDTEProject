@@ -266,7 +266,7 @@ func _process(_delta):
 			object.set_collision_mask_value(1, true)
 			
 			var force = (cursor.global_position - position).normalized()
-
+			
 			if pivot.rotation.x < -0.8 and is_on_floor():
 				force = Vector3(0, 0, 0)
 				
@@ -451,7 +451,7 @@ func _on_info_death():
 		var save = SaveGame.new()
 		save.save_game(get_tree().current_scene.scene_file_path)
 	
-	LoadingScreen.next_scene = player_hub
+	LoadingScreen.next_scene = get_tree().current_scene.scene_file_path
 	LoadingScreen.scene_transition()
 
 #endregion
