@@ -26,7 +26,8 @@ func TOP():
 @export var THROW_FORCE : float = 500
 
 @export_subgroup("Visuals")
-@export var DISPLAY_DUST: bool = true
+@export var DISPLAY_DUST : bool = true
+@export var WIND_AUDIO : bool = true
 
 
 # Player Model
@@ -291,12 +292,14 @@ func _process(_delta):
 		PauseMenu(true)
 	
 	
-	
-	var tween = get_tree().create_tween()
-	tween.tween_property($CentralCameraPoint/Wind, "position", camera.global_position, 0.05)
-	var distance = $CentralCameraPoint/Wind.global_position.distance_to(camera.global_position)
-	tween.tween_property($Audio/CameraWind, "pitch_scale", clamp(distance, 0.05, 2), 0.3)
-	
+	if WIND_AUDIO:
+		var tween = get_tree().create_tween()
+		tween.tween_property($CentralCameraPoint/Wind, "position", camera.global_position, 0.05)
+		var distance = $CentralCameraPoint/Wind.global_position.distance_to(camera.global_position)
+		tween.tween_property($Audio/CameraWind, "pitch_scale", clamp(distance, 0.05, 2), 0.3)
+	else:
+		$Audio/CameraWind.autoplay = false
+		$Audio/CameraWind.stop()
 	
 	
 	if DISPLAY_DUST and dust.visible != true:
