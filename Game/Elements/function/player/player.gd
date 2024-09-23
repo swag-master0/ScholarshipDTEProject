@@ -62,6 +62,15 @@ func TOP():
 @onready var sound_hurt = $Audio/PlayerHurt
 @onready var sound_jump = $Audio/PlayerJump
 
+@onready var pause_close: AudioStreamPlayer = $HUD/UIAudio/PauseClose
+@onready var pause_open: AudioStreamPlayer = $HUD/UIAudio/PauseOpen
+@onready var ui_hover_1: AudioStreamPlayer = $HUD/UIAudio/UIHover1
+@onready var ui_hover_2: AudioStreamPlayer = $HUD/UIAudio/UIHover2
+@onready var ui_hover_3: AudioStreamPlayer = $HUD/UIAudio/UIHover3
+@onready var ui_hover_4: AudioStreamPlayer = $HUD/UIAudio/UIHover4
+@onready var ui_select: AudioStreamPlayer = $HUD/UIAudio/UISelect
+
+
 @onready var animation_tree = $AnimationTree
 @onready var state_machine = animation_tree.get("parameters/playback")
 
@@ -381,8 +390,10 @@ func PauseMenu(toggle : bool):
 		
 		if toggle == true:
 			Input.set_mouse_mode(Input.MOUSE_MODE_VISIBLE)
+			pause_open.play()
 		else:
 			Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
+			pause_close.play()
 
 func Nextlevel():
 	if levelchangetriggered == false:
@@ -415,15 +426,33 @@ func Nextlevel():
 
 func _on_resume_button_pressed():
 	PauseMenu(false)
+	ui_select.play()
 
 func _on_restart_button_pressed():
 	RestartLevel()
+	ui_select.play()
 
 func _on_quit_button_pressed():
 	QuitToMenu()
+	ui_select.play()
 
 func _on_options_button_pressed():
 	options_menu.visible = true
+	ui_select.play()
+
+
+func _on_resume_button_mouse_entered() -> void:
+	ui_hover_1.play()
+
+func _on_restart_button_mouse_entered() -> void:
+	ui_hover_2.play()
+
+func _on_options_button_mouse_entered() -> void:
+	ui_hover_3.play()
+
+func _on_quit_button_mouse_entered() -> void:
+	ui_hover_4.play()
+
 
 #endregion
 

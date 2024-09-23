@@ -1,7 +1,12 @@
-[gd_scene load_steps=3 format=3 uid="uid://233quw6ftjqa"]
+[gd_scene load_steps=8 format=3 uid="uid://233quw6ftjqa"]
 
 [ext_resource type="Script" path="res://Elements/function/options_menu.gd" id="1_aepko"]
 [ext_resource type="Theme" uid="uid://qpcg0ktiqy0j" path="res://Art/assets/theme.tres" id="1_ir0ne"]
+[ext_resource type="AudioStream" uid="uid://bj4b5bmpxphcf" path="res://Art/audio/ui/ui_hover1.ogg" id="3_rhetk"]
+[ext_resource type="AudioStream" uid="uid://cufoclxovpt1j" path="res://Art/audio/ui/ui_hover2.ogg" id="4_0kcgq"]
+[ext_resource type="AudioStream" uid="uid://bllh1f76x6r5p" path="res://Art/audio/ui/ui_hover3.ogg" id="5_u1wbk"]
+[ext_resource type="AudioStream" uid="uid://vufvvpt52rm2" path="res://Art/audio/ui/ui_hover4.ogg" id="6_mpcft"]
+[ext_resource type="AudioStream" uid="uid://chq4t5bvnn3qx" path="res://Art/audio/ui/ui_select.ogg" id="7_ggsai"]
 
 [node name="OptionsMenu" type="Control"]
 process_mode = 3
@@ -171,8 +176,24 @@ offset_bottom = -27.5
 grow_vertical = 2
 text = "BACK"
 
+[node name="Audio" type="Node" parent="."]
+
+[node name="UiHover1" type="AudioStreamPlayer" parent="Audio"]
+stream = ExtResource("3_rhetk")
+
+[node name="UIHover2" type="AudioStreamPlayer" parent="Audio"]
+stream = ExtResource("4_0kcgq")
+
+[node name="UIHover3" type="AudioStreamPlayer" parent="Audio"]
+stream = ExtResource("5_u1wbk")
+
+[node name="UIHover4" type="AudioStreamPlayer" parent="Audio"]
+stream = ExtResource("6_mpcft")
+
+[node name="UISelect" type="AudioStreamPlayer" parent="Audio"]
+stream = ExtResource("7_ggsai")
+
 [connection signal="drag_ended" from="ScrollContainer/VBoxContainer/SensitivitySlider" to="." method="_on_sensitivity_slider_drag_ended"]
-[connection signal="value_changed" from="ScrollContainer/VBoxContainer/SensitivitySlider" to="." method="_on_sensitivity_slider_value_changed"]
 [connection signal="pressed" from="ScrollContainer/VBoxContainer/FullscreenButton" to="." method="_on_windowed_button_pressed"]
 [connection signal="drag_ended" from="ScrollContainer/VBoxContainer/MusicSlider" to="." method="_on_music_slider_drag_ended"]
 [connection signal="drag_ended" from="ScrollContainer/VBoxContainer/SFXSlider" to="." method="_on_sfx_slider_drag_ended"]

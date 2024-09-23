@@ -1,4 +1,4 @@
-[gd_scene load_steps=102 format=3 uid="uid://bcou7suhphdrp"]
+[gd_scene load_steps=109 format=3 uid="uid://bcou7suhphdrp"]
 
 [ext_resource type="Script" path="res://Elements/function/player/player.gd" id="1_0ncw4"]
 [ext_resource type="PackedScene" uid="uid://4lv8cegk7f53" path="res://Art/blend/assets/main/player.blend" id="2_ww4ji"]
@@ -22,12 +22,19 @@
 [ext_resource type="Shader" path="res://Art/filters/quantisation.gdshader" id="16_dvf37"]
 [ext_resource type="Shader" path="res://Art/filters/sobel_outlines.gdshader" id="17_5fr21"]
 [ext_resource type="AudioStream" uid="uid://w2v2x3att67l" path="res://Art/audio/player/click.wav" id="19_588om"]
+[ext_resource type="AudioStream" uid="uid://oij1llnp3ywu" path="res://Art/audio/ui/pause_close.ogg" id="19_gl1hd"]
+[ext_resource type="AudioStream" uid="uid://btj4e047e7k0h" path="res://Art/audio/ui/pause_open.ogg" id="20_qfhp5"]
 [ext_resource type="PackedScene" uid="uid://d3qcg4xjm6x5x" path="res://Elements/function/player/a-os.tscn" id="20_sjfsg"]
 [ext_resource type="AudioStream" uid="uid://bdxfhhvgttnt5" path="res://Art/audio/player/player_death.wav" id="21_3msr6"]
 [ext_resource type="AudioStream" uid="uid://b35mb8jxo68sl" path="res://Art/audio/player/player_jump.wav" id="21_kf52g"]
+[ext_resource type="AudioStream" uid="uid://bj4b5bmpxphcf" path="res://Art/audio/ui/ui_hover1.ogg" id="21_riicd"]
 [ext_resource type="AudioStream" uid="uid://bwu6q554kl8jd" path="res://Art/audio/player/player_hurt.wav" id="22_6jsqo"]
+[ext_resource type="AudioStream" uid="uid://cufoclxovpt1j" path="res://Art/audio/ui/ui_hover2.ogg" id="22_f1qnt"]
 [ext_resource type="AudioStream" uid="uid://bk7fdh3m3au1n" path="res://Art/audio/player/dialogue.wav" id="23_6dhoq"]
+[ext_resource type="AudioStream" uid="uid://bllh1f76x6r5p" path="res://Art/audio/ui/ui_hover3.ogg" id="23_ag5f7"]
 [ext_resource type="Shader" path="res://Art/filters/pixellation.gdshader" id="23_cil3e"]
+[ext_resource type="AudioStream" uid="uid://vufvvpt52rm2" path="res://Art/audio/ui/ui_hover4.ogg" id="24_wcpcc"]
+[ext_resource type="AudioStream" uid="uid://chq4t5bvnn3qx" path="res://Art/audio/ui/ui_select.ogg" id="25_0ii2m"]
 
 [sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_ijhnm"]
 animation = &"grab"
@@ -588,22 +595,23 @@ editor_description = "The playermodel, containing data like the mesh, skeleton, 
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1, 0)
 
 [node name="Skeleton3D" parent="PlayerModel/player/Armature" index="0"]
-bones/0/position = Vector3(-0.00183521, -0.0774101, 0)
-bones/1/rotation = Quaternion(0.000557101, -0.00082471, 0.817564, 0.575837)
-bones/2/rotation = Quaternion(-0.00101206, -0.000675444, 0.286718, 0.958014)
-bones/3/rotation = Quaternion(-0.00106569, -0.000180565, 0.394536, 0.91888)
-bones/4/rotation = Quaternion(-6.35795e-06, -2.53072e-07, 0.0895676, 0.995981)
-bones/5/rotation = Quaternion(0.000741345, 0.00092655, -0.840621, 0.541622)
-bones/6/rotation = Quaternion(-0.000933753, 0.000670774, -0.2755, 0.9613)
-bones/7/rotation = Quaternion(-0.00115313, 0.000181223, -0.35336, 0.935487)
-bones/8/rotation = Quaternion(-0.000199448, 7.29973e-06, -0.0788396, 0.996887)
-bones/9/rotation = Quaternion(0.00671709, 0, 0, 0.999978)
-bones/10/rotation = Quaternion(0.70688, -0.0182362, -0.706848, 0.0188282)
-bones/11/rotation = Quaternion(-0.000135824, 2.72571e-05, -0.0791726, 0.996861)
-bones/12/rotation = Quaternion(2.13178e-09, -1.13731e-12, -0.0279828, 0.999608)
-bones/13/rotation = Quaternion(0.706974, 0.0137679, 0.70697, 0.0138654)
-bones/14/rotation = Quaternion(-1.81996e-05, -4.38911e-06, 0.0661436, 0.99781)
-bones/15/rotation = Quaternion(2.11414e-09, 1.70597e-13, 0.0280121, 0.999608)
+bones/0/position = Vector3(-0.00183521, -0.352673, 0)
+bones/0/rotation = Quaternion(0, -0.197865, 0, 0.980229)
+bones/1/rotation = Quaternion(-0.135207, -0.191397, 0.639717, 0.732017)
+bones/2/rotation = Quaternion(0.09286, -0.0477125, 0.0897793, 0.990475)
+bones/3/rotation = Quaternion(0.692963, -0.0208071, 0.207656, 0.690107)
+bones/4/rotation = Quaternion(0.145958, -0.00190089, 0.0409736, 0.98844)
+bones/5/rotation = Quaternion(-0.0068341, -0.124556, -0.612299, 0.780723)
+bones/6/rotation = Quaternion(0.0330662, -0.101925, -0.0665726, 0.992011)
+bones/7/rotation = Quaternion(0.0400955, -0.104198, -0.607208, 0.78666)
+bones/8/rotation = Quaternion(0.0165298, -0.00500945, -0.164224, 0.986272)
+bones/9/rotation = Quaternion(0.000196698, -0.298962, 6.16238e-05, 0.954265)
+bones/10/rotation = Quaternion(0.654998, -0.266017, -0.655311, 0.266046)
+bones/11/rotation = Quaternion(0.00107569, -2.83215e-05, -0.661639, 0.749822)
+bones/12/rotation = Quaternion(2.1982e-09, 2.73683e-09, -0.0279828, 0.999608)
+bones/13/rotation = Quaternion(0.877768, 0.299292, 0.355691, 0.115897)
+bones/14/rotation = Quaternion(0.039658, 0.00116811, 0.655692, 0.753985)
+bones/15/rotation = Quaternion(2.6786e-09, 3.0571e-09, 0.0280121, 0.999608)
 
 [node name="Player" parent="PlayerModel/player/Armature/Skeleton3D" index="0"]
 lod_bias = 128.0
@@ -612,7 +620,7 @@ surface_material_override/1 = ExtResource("4_oor3j")
 surface_material_override/2 = ExtResource("5_mq2xk")
 
 [node name="FaceAttachment" type="BoneAttachment3D" parent="PlayerModel/player/Armature/Skeleton3D" index="1"]
-transform = Transform3D(1, 0, 0, 0, 0.99991, -0.0134339, 0, 0.0134339, 0.99991, -0.00183521, 0.507133, 0)
+transform = Transform3D(0.535607, -0.000348133, -0.844467, -2.18279e-11, 1, -0.000412251, 0.844467, 0.000220805, 0.535607, -0.00183521, 0.231871, 0)
 bone_name = "Head"
 bone_idx = 9
 
@@ -993,6 +1001,29 @@ offset_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 
+[node name="UIAudio" type="Node" parent="HUD"]
+
+[node name="PauseClose" type="AudioStreamPlayer" parent="HUD/UIAudio"]
+stream = ExtResource("19_gl1hd")
+
+[node name="PauseOpen" type="AudioStreamPlayer" parent="HUD/UIAudio"]
+stream = ExtResource("20_qfhp5")
+
+[node name="UIHover1" type="AudioStreamPlayer" parent="HUD/UIAudio"]
+stream = ExtResource("21_riicd")
+
+[node name="UIHover2" type="AudioStreamPlayer" parent="HUD/UIAudio"]
+stream = ExtResource("22_f1qnt")
+
+[node name="UIHover3" type="AudioStreamPlayer" parent="HUD/UIAudio"]
+stream = ExtResource("23_ag5f7")
+
+[node name="UIHover4" type="AudioStreamPlayer" parent="HUD/UIAudio"]
+stream = ExtResource("24_wcpcc")
+
+[node name="UISelect" type="AudioStreamPlayer" parent="HUD/UIAudio"]
+stream = ExtResource("25_0ii2m")
+
 [node name="Audio" type="Node" parent="."]
 
 [node name="CameraWind" type="AudioStreamPlayer" parent="Audio"]
@@ -1113,9 +1144,13 @@ draw_pass_1 = SubResource("PlaneMesh_4twoe")
 [connection signal="timeout" from="HUD/DialogueBox/RemoveCharacters" to="HUD" method="_on_remove_characters_timeout"]
 [connection signal="timeout" from="HUD/Hints/Timer" to="." method="_hinttext_timeout"]
 [connection signal="timeout" from="HUD/Hints/Timer" to="HUD" method="_hinttext_timeout"]
+[connection signal="mouse_entered" from="HUD/PauseMenu/ResumeButton" to="." method="_on_resume_button_mouse_entered"]
 [connection signal="pressed" from="HUD/PauseMenu/ResumeButton" to="." method="_on_resume_button_pressed"]
+[connection signal="mouse_entered" from="HUD/PauseMenu/RestartButton" to="." method="_on_restart_button_mouse_entered"]
 [connection signal="pressed" from="HUD/PauseMenu/RestartButton" to="." method="_on_restart_button_pressed"]
+[connection signal="mouse_entered" from="HUD/PauseMenu/OptionsButton" to="." method="_on_options_button_mouse_entered"]
 [connection signal="pressed" from="HUD/PauseMenu/OptionsButton" to="." method="_on_options_button_pressed"]
+[connection signal="mouse_entered" from="HUD/PauseMenu/QuitButton" to="." method="_on_quit_button_mouse_entered"]
 [connection signal="pressed" from="HUD/PauseMenu/QuitButton" to="." method="_on_quit_button_pressed"]
 
 [editable path="PlayerModel/player"]

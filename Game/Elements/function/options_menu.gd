@@ -12,6 +12,13 @@ extends Control
 @onready var save_data_reset = $ScrollContainer/VBoxContainer/SaveDataReset
 
 
+@onready var ui_hover_1: AudioStreamPlayer = $Audio/UiHover1
+@onready var ui_hover_2: AudioStreamPlayer = $Audio/UIHover2
+@onready var ui_hover_3: AudioStreamPlayer = $Audio/UIHover3
+@onready var ui_hover_4: AudioStreamPlayer = $Audio/UIHover4
+@onready var ui_select: AudioStreamPlayer = $Audio/UISelect
+
+
 const save_progression_path = "user://save.res"
 const save_config_path = "user://config.res"
 const save_playerhub_path = "user://cell.res"
@@ -31,6 +38,7 @@ func _input(event):
 		CloseMenu()
 
 func _on_back_button_pressed():
+	ui_select.play()
 	SaveCurrentSettings()
 	CloseMenu()
 
@@ -51,10 +59,6 @@ func _ready():
 	music_slider.value = loaded_config.VOLUME_MUSIC
 	sfx_slider.value = loaded_config.VOLUME_SFX
 	ambience_slider.value = loaded_config.VOLUME_AMBIENCE
-	
-	
-	
-
 
 
 func _on_sensitivity_slider_drag_ended(value_changed):
@@ -63,6 +67,8 @@ func _on_sensitivity_slider_drag_ended(value_changed):
 		SaveCurrentSettings()
 
 func _on_windowed_button_pressed():
+	ui_select.play()
+	
 	if get_window().mode == get_window().MODE_WINDOWED:
 		get_window().mode = get_window().MODE_FULLSCREEN
 		fullscreen_button.button_pressed = true

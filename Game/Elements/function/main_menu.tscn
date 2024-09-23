@@ -1,11 +1,16 @@
-[gd_scene load_steps=13 format=3 uid="uid://c4ousj15h5a10"]
+[gd_scene load_steps=18 format=3 uid="uid://c4ousj15h5a10"]
 
 [ext_resource type="Script" path="res://Elements/function/main_menu.gd" id="1_cvoh4"]
 [ext_resource type="Theme" uid="uid://qpcg0ktiqy0j" path="res://Art/assets/theme.tres" id="3_74hs1"]
 [ext_resource type="PackedScene" uid="uid://233quw6ftjqa" path="res://Elements/function/options_menu.tscn" id="3_lfre7"]
 [ext_resource type="Shader" uid="uid://d08hg4q0p02dx" path="res://Art/materials/main_menu.tres" id="4_mqevi"]
 [ext_resource type="Shader" path="res://Art/filters/colour_palette.gdshader" id="6_8v4ln"]
+[ext_resource type="AudioStream" uid="uid://chq4t5bvnn3qx" path="res://Art/audio/ui/ui_select.ogg" id="7_4pn1u"]
 [ext_resource type="Shader" path="res://Art/filters/pixellation.gdshader" id="7_cuoft"]
+[ext_resource type="AudioStream" uid="uid://bj4b5bmpxphcf" path="res://Art/audio/ui/ui_hover1.ogg" id="8_wtbcj"]
+[ext_resource type="AudioStream" uid="uid://cufoclxovpt1j" path="res://Art/audio/ui/ui_hover2.ogg" id="9_8vpj3"]
+[ext_resource type="AudioStream" uid="uid://bllh1f76x6r5p" path="res://Art/audio/ui/ui_hover3.ogg" id="10_uo3tp"]
+[ext_resource type="AudioStream" uid="uid://vufvvpt52rm2" path="res://Art/audio/ui/ui_hover4.ogg" id="11_mnd5y"]
 
 [sub_resource type="Gradient" id="Gradient_c4ufp"]
 offsets = PackedFloat32Array(0.327801, 1)
@@ -174,6 +179,26 @@ grow_vertical = 2
 mouse_filter = 2
 color = Color(1, 1, 1, 0)
 
+[node name="Audio" type="Node" parent="."]
+
+[node name="UISelect" type="AudioStreamPlayer" parent="Audio"]
+stream = ExtResource("7_4pn1u")
+
+[node name="UIHover1" type="AudioStreamPlayer" parent="Audio"]
+stream = ExtResource("8_wtbcj")
+
+[node name="UIHover2" type="AudioStreamPlayer" parent="Audio"]
+stream = ExtResource("9_8vpj3")
+
+[node name="UIHover3" type="AudioStreamPlayer" parent="Audio"]
+stream = ExtResource("10_uo3tp")
+
+[node name="UIHover4" type="AudioStreamPlayer" parent="Audio"]
+stream = ExtResource("11_mnd5y")
+
+[connection signal="mouse_entered" from="GUI/MainMenu/PlayButton" to="." method="_on_play_button_mouse_entered"]
 [connection signal="pressed" from="GUI/MainMenu/PlayButton" to="." method="_on_play_button_pressed"]
+[connection signal="mouse_entered" from="GUI/MainMenu/OptionsButton" to="." method="_on_options_button_mouse_entered"]
 [connection signal="pressed" from="GUI/MainMenu/OptionsButton" to="." method="_on_options_button_pressed"]
+[connection signal="mouse_entered" from="GUI/MainMenu/QuitButton" to="." method="_on_quit_button_mouse_entered"]
 [connection signal="pressed" from="GUI/MainMenu/QuitButton" to="." method="_on_quit_button_pressed"]
