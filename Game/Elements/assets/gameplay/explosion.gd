@@ -40,7 +40,7 @@ func _process(_delta):
 		$ExplosionSFX.reparent(self.get_parent())
 		
 		
-		timer.start() # not doing this results in timer constantly restarting, which means it never deletes itself.
+		timer.start()
 
 
 func _on_particles_finished():
