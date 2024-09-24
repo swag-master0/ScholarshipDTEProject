@@ -28,6 +28,9 @@ func TOP():
 @export_subgroup("Visuals")
 @export var DISPLAY_DUST : bool = true
 @export var WIND_AUDIO : bool = true
+@export var DISABLE_QUANTISATION : bool = false
+@export var DISABLE_OUTLINES : bool = false
+@export var DISABLE_PIXELISATION : bool = false
 
 
 # Player Model
@@ -114,6 +117,14 @@ func _ready():
 	Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
 	
 	ApplySettings()
+	
+	if DISABLE_QUANTISATION:
+		$Filters/Quantisation.visible = false
+	elif DISABLE_OUTLINES:
+		$Filters/Outlines.visible = false
+	elif DISABLE_PIXELISATION:
+		$Filters/Pixelisation.visible = false
+	
 	
 	if SAVE_GAME:
 		var save_system = SaveGame.new()
@@ -213,9 +224,8 @@ func _physics_process(delta):
 				footstep_delay.start()
 				sound_footstep.pitch_scale = randf_range(75, 125) / 100
 				sound_footstep.play()
-			
+		
 		else:
-			
 			state_machine.travel("idle")
 		
 		#endregion
@@ -286,7 +296,7 @@ func _process(_delta):
 			
 			
 			object.apply_impulse(force * THROW_FORCE)
-
+			
 			object = null
 	
 	
