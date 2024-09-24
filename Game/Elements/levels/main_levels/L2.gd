@@ -13,7 +13,10 @@ var dialogue_triggered = false
 
 
 func _ready():
-	await get_tree().create_timer(10).timeout
+	await get_tree().create_timer(5).timeout
+	$Music.play()
+	
+	await get_tree().create_timer(5).timeout
 	
 	player.dialogue_queue.append(7)
 	player.dialogue_queue.append("did you know i attempt to decorate these places myself?")

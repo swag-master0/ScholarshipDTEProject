@@ -30,8 +30,10 @@ func _ready():
 	player.dialogue_queue.append("GOOD MORNING.")
 	player.dialogue_queue.append("YOU HAVE BEEN ALIVE FOR [color=DIM_GRAY]{96.72}[/color] SECONDS.")
 	player.dialogue_queue.append("AT THIS STAGE IN DEVELOPMENT, IT IS RECOMMENDED THAT YOU [rainbow][wave amp=200.0 freq=50.0 connected=1]$(!&@YJ*^!-")
-	player.dialogue_queue.append("BASIC DIAGNOSTIC COURSE WILL BEGIN IN: 
-3")
+	player.dialogue_queue.append(
+		"BASIC DIAGNOSTIC COURSE WILL BEGIN IN: 
+3"
+	)
 	player.dialogue_queue.append("2")
 	player.dialogue_queue.append("1")
 
@@ -92,8 +94,7 @@ func tutorial_finished():
 	player.dialogue_queue.append(2)
 	player.dialogue_queue.append("sorry for the scare about that 'diagnostic test', I didn't want to get attached incase it was another dud.")
 	player.dialogue_queue.append(1)
-	player.dialogue_queue.append("anyway, i guess i should introduce myself.
-I am A-OS!")
+	player.dialogue_queue.append("anyway, i guess i should introduce myself. I am A-OS!")
 	$"../Player/HUD/DialogueBox/Name".visible = true
 	player.dialogue_queue.append(7)
 	player.dialogue_queue.append("i never gave you a name myself, would you like to?")
@@ -142,6 +143,10 @@ func _on_player_dialogue_finished(dialogue : String):
 	
 	elif dialogue == "lemme send down the lift... we're going to the surface!":
 		rail_anims.play("down")
+	
+	elif dialogue == "anyway, i guess i should introduce myself. I am A-OS!":
+		$"../Music".play()
+		# play music
 
 
 func _on_crushed_body_entered(body):
