@@ -75,4 +75,3 @@ func _on_objective_area_body_entered(body):
 		player.dialogue_queue.append("i dunno what it is, but something's not right")
 		player.dialogue_queue.append(1)
 		player.dialogue_queue.append(str("[i]be careful, ", PlayerName.new().fetch_name(), "!"))
-

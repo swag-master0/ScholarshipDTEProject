@@ -1,8 +1,13 @@
-[gd_scene load_steps=11 format=3 uid="uid://cwc6x527gqoqr"]
+[gd_scene load_steps=21 format=3 uid="uid://cwc6x527gqoqr"]
 
 [ext_resource type="PackedScene" uid="uid://bcou7suhphdrp" path="res://Elements/function/player/player.tscn" id="1_ljocu"]
 [ext_resource type="Script" path="res://Elements/levels/misc/ending.gd" id="1_pyfbg"]
 [ext_resource type="Shader" uid="uid://b4vq284yqw1m6" path="res://Art/materials/ending.tres" id="2_6rlfr"]
+[ext_resource type="PackedScene" uid="uid://r7bbb0liv11i" path="res://Art/blend/misc/ending.blend" id="4_df1fk"]
+[ext_resource type="PackedScene" uid="uid://6fu0klnektwn" path="res://Art/blend/misc/grave.blend" id="5_y7vip"]
+[ext_resource type="FontFile" uid="uid://dag4y2am0w7ij" path="res://Art/assets/fonts/dm_mono/DMMono-Light.ttf" id="6_1e2fm"]
+[ext_resource type="FontFile" uid="uid://dle4pso7gvret" path="res://Art/assets/fonts/pixelify_sans/PixelifySans-Bold.ttf" id="7_wa5e1"]
+[ext_resource type="FontFile" uid="uid://bcsmocjtnjm7c" path="res://Art/assets/fonts/pixelify_sans/PixelifySans-Regular.ttf" id="8_lxvfl"]
 
 [sub_resource type="Environment" id="Environment_r1e84"]
 background_mode = 1
@@ -11,7 +16,10 @@ ambient_light_source = 1
 glow_enabled = true
 glow_intensity = 4.48
 volumetric_fog_enabled = true
+volumetric_fog_density = 0.0408
 volumetric_fog_emission = Color(1, 1, 1, 1)
+volumetric_fog_emission_energy = 1.95
+volumetric_fog_length = 160.46
 
 [sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_8su00"]
 emission_shape = 3
@@ -42,6 +50,21 @@ size = Vector3(9999, 1, 9999)
 [sub_resource type="ConcavePolygonShape3D" id="ConcavePolygonShape3D_0lrad"]
 data = PackedVector3Array(-4999.5, 0.5, 4999.5, 4999.5, 0.5, 4999.5, -4999.5, -0.5, 4999.5, 4999.5, 0.5, 4999.5, 4999.5, -0.5, 4999.5, -4999.5, -0.5, 4999.5, 4999.5, 0.5, -4999.5, -4999.5, 0.5, -4999.5, 4999.5, -0.5, -4999.5, -4999.5, 0.5, -4999.5, -4999.5, -0.5, -4999.5, 4999.5, -0.5, -4999.5, 4999.5, 0.5, 4999.5, 4999.5, 0.5, -4999.5, 4999.5, -0.5, 4999.5, 4999.5, 0.5, -4999.5, 4999.5, -0.5, -4999.5, 4999.5, -0.5, 4999.5, -4999.5, 0.5, -4999.5, -4999.5, 0.5, 4999.5, -4999.5, -0.5, -4999.5, -4999.5, 0.5, 4999.5, -4999.5, -0.5, 4999.5, -4999.5, -0.5, -4999.5, 4999.5, 0.5, 4999.5, -4999.5, 0.5, 4999.5, 4999.5, 0.5, -4999.5, -4999.5, 0.5, 4999.5, -4999.5, 0.5, -4999.5, 4999.5, 0.5, -4999.5, -4999.5, -0.5, 4999.5, 4999.5, -0.5, 4999.5, -4999.5, -0.5, -4999.5, 4999.5, -0.5, 4999.5, 4999.5, -0.5, -4999.5, -4999.5, -0.5, -4999.5)
 
+[sub_resource type="BoxShape3D" id="BoxShape3D_x51qc"]
+size = Vector3(44, 11, 26)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_wot7f"]
+size = Vector3(44, 11, 26)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_5s1bh"]
+size = Vector3(14, 11, 61)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_ht2k6"]
+size = Vector3(14, 11, 42)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_07fyc"]
+size = Vector3(18, 11, 21)
+
 [node name="Ending" type="Node3D"]
 script = ExtResource("1_pyfbg")
 
@@ -50,14 +73,28 @@ environment = SubResource("Environment_r1e84")
 
 [node name="Particles" type="GPUParticles3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -15, 1.519, 0)
+visible = false
 cast_shadow = 0
-amount = 250
+amount = 500
 lifetime = 5.0
 visibility_aabb = AABB(-49, -39, -54, 98, 78, 108)
 process_material = SubResource("ParticleProcessMaterial_8su00")
 draw_pass_1 = SubResource("QuadMesh_x2gfi")
 
+[node name="Player" parent="." instance=ExtResource("1_ljocu")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.51904, 0)
+SAVE_GAME = false
+SPEED = 6.0
+JUMP_VELOCITY = 0.0
+TURN_VELOCITY = 25.0
+PICKUP_RANGE = 0.0
+THROW_FORCE = 0.0
+DISPLAY_DUST = false
+WIND_AUDIO = false
+DISABLE_QUANTISATION = true
+
 [node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.5, 0)
 material_override = SubResource("ShaderMaterial_vc7xi")
 mesh = SubResource("BoxMesh_6ykm2")
 
@@ -65,13 +102,6 @@ mesh = SubResource("BoxMesh_6ykm2")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="MeshInstance3D/StaticBody3D"]
 shape = SubResource("ConcavePolygonShape3D_0lrad")
-
-[node name="Player" parent="." instance=ExtResource("1_ljocu")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.51904, 0)
-SAVE_GAME = false
-DISPLAY_DUST = false
-WIND_AUDIO = false
-DISABLE_QUANTISATION = true
 
 [node name="Black" type="CanvasLayer" parent="."]
 layer = 10
@@ -83,3 +113,441 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 color = Color(0, 0, 0, 1)
+
+[node name="TextLayer" type="CanvasLayer" parent="."]
+
+[node name="Text" type="RichTextLabel" parent="TextLayer"]
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -375.0
+offset_top = 100.0
+offset_right = 375.0
+offset_bottom = 450.0
+grow_horizontal = 2
+theme_override_colors/default_color = Color(1, 1, 1, 1)
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 19
+theme_override_fonts/normal_font = ExtResource("6_1e2fm")
+theme_override_font_sizes/normal_font_size = 55
+bbcode_enabled = true
+text = "[center][wave]word"
+
+[node name="Timer" type="Timer" parent="TextLayer"]
+wait_time = 6.0
+
+[node name="ending" parent="." instance=ExtResource("4_df1fk")]
+
+[node name="Props" type="Node" parent="."]
+
+[node name="grave23" parent="Props" instance=ExtResource("5_y7vip")]
+transform = Transform3D(0.707107, 5.27643e-08, 0.707107, -4.2222e-08, 1, -3.2398e-08, -0.707107, -6.94649e-09, 0.707107, -5.5335, 0, 16.6718)
+
+[node name="grave25" parent="Props" instance=ExtResource("5_y7vip")]
+transform = Transform3D(-0.258819, 2.03663e-08, 0.965926, -4.2222e-08, 1, -3.2398e-08, -0.965926, -4.91685e-08, -0.258819, -9.5335, 0, 13.6718)
+
+[node name="grave30" parent="Props" instance=ExtResource("5_y7vip")]
+transform = Transform3D(0.258819, 4.2222e-08, 0.965926, -4.2222e-08, 1, -3.2398e-08, -0.965926, -3.2398e-08, 0.258819, -15.5335, 0, 31.6718)
+
+[node name="grave33" parent="Props" instance=ExtResource("5_y7vip")]
+transform = Transform3D(0.258819, 4.2222e-08, 0.965926, -4.2222e-08, 1, -3.2398e-08, -0.965926, -3.2398e-08, 0.258819, -19.5335, 0, 43.6718)
+
+[node name="grave37" parent="Props" instance=ExtResource("5_y7vip")]
+transform = Transform3D(-0.94425, -2.92017e-08, 0.329229, -4.2222e-08, 1, -3.2398e-08, -0.329229, -4.44925e-08, -0.94425, -5.5335, 0, 54.6718)
+
+[node name="grave42" parent="Props" instance=ExtResource("5_y7vip")]
+transform = Transform3D(-0.64023, -2.14414e-09, 0.768183, -4.2222e-08, 1, -3.2398e-08, -0.768183, -5.31764e-08, -0.64023, -6.5335, 0, 61.6718)
+
+[node name="grave43" parent="Props" instance=ExtResource("5_y7vip")]
+transform = Transform3D(-4.47035e-08, 3.23981e-08, 1, -4.2222e-08, 1, -3.2398e-08, -1, -4.22219e-08, -4.47035e-08, -4.5335, 0, 66.6718)
+
+[node name="grave44" parent="Props" instance=ExtResource("5_y7vip")]
+transform = Transform3D(0.258819, 4.2222e-08, 0.965926, -4.2222e-08, 1, -3.2398e-08, -0.965926, -3.2398e-08, 0.258819, -7.5335, 0, 70.6718)
+
+[node name="grave45" parent="Props" instance=ExtResource("5_y7vip")]
+transform = Transform3D(-0.5, 6.94662e-09, 0.866025, -4.2222e-08, 1, -3.2398e-08, -0.866025, -5.27643e-08, -0.5, 7.4665, 0, 54.6718)
+
+[node name="grave46" parent="Props" instance=ExtResource("5_y7vip")]
+transform = Transform3D(0.707107, 5.27643e-08, 0.707107, -4.2222e-08, 1, -3.2398e-08, -0.707107, -6.94649e-09, 0.707107, 10.4665, 0, 49.6718)
+
+[node name="grave47" parent="Props" instance=ExtResource("5_y7vip")]
+transform = Transform3D(-0.258819, 2.03663e-08, 0.965926, -4.2222e-08, 1, -3.2398e-08, -0.965926, -4.91685e-08, -0.258819, 20.4665, 0, 50.6718)
+
+[node name="grave48" parent="Props" instance=ExtResource("5_y7vip")]
+transform = Transform3D(0.707107, 5.27643e-08, 0.707107, -4.2222e-08, 1, -3.2398e-08, -0.707107, -6.94649e-09, 0.707107, 18.4665, 0, 38.6718)
+
+[node name="grave52" parent="Props" instance=ExtResource("5_y7vip")]
+transform = Transform3D(-0.258819, 2.03663e-08, 0.965926, -4.2222e-08, 1, -3.2398e-08, -0.965926, -4.91685e-08, -0.258819, 9.4665, 0, 68.6718)
+
+[node name="grave53" parent="Props" instance=ExtResource("5_y7vip")]
+transform = Transform3D(0.258819, 4.2222e-08, 0.965926, -4.2222e-08, 1, -3.2398e-08, -0.965926, -3.2398e-08, 0.258819, 7.4665, 0, 74.6718)
+
+[node name="grave54" parent="Props" instance=ExtResource("5_y7vip")]
+transform = Transform3D(0.258819, 4.2222e-08, 0.965926, -4.2222e-08, 1, -3.2398e-08, -0.965926, -3.2398e-08, 0.258819, 5.4665, 0, 80.6718)
+
+[node name="grave55" parent="Props" instance=ExtResource("5_y7vip")]
+transform = Transform3D(0.707107, 5.27643e-08, 0.707107, -4.2222e-08, 1, -3.2398e-08, -0.707107, -6.94649e-09, 0.707107, 3.4665, 0, 84.6718)
+
+[node name="grave56" parent="Props" instance=ExtResource("5_y7vip")]
+transform = Transform3D(0.258819, 4.2222e-08, 0.965926, -4.2222e-08, 1, -3.2398e-08, -0.965926, -3.2398e-08, 0.258819, 2.4665, 0, 94.6718)
+
+[node name="grave57" parent="Props" instance=ExtResource("5_y7vip")]
+transform = Transform3D(-0.258819, 2.03663e-08, 0.965926, -4.2222e-08, 1, -3.2398e-08, -0.965926, -4.91685e-08, -0.258819, 4.4665, 0, 100.672)
+
+[node name="grave58" parent="Props" instance=ExtResource("5_y7vip")]
+transform = Transform3D(-0.5, 6.94662e-09, 0.866025, -4.2222e-08, 1, -3.2398e-08, -0.866025, -5.27643e-08, -0.5, 4.4665, 0, 107.672)
+
+[node name="grave59" parent="Props" instance=ExtResource("5_y7vip")]
+transform = Transform3D(0.258819, 4.2222e-08, 0.965926, -4.2222e-08, 1, -3.2398e-08, -0.965926, -3.2398e-08, 0.258819, 3.4665, 0, 112.672)
+
+[node name="grave60" parent="Props" instance=ExtResource("5_y7vip")]
+transform = Transform3D(-0.5, 6.94662e-09, 0.866025, -4.2222e-08, 1, -3.2398e-08, -0.866025, -5.27643e-08, -0.5, -9.5335, 0, 110.672)
+
+[node name="grave61" parent="Props" instance=ExtResource("5_y7vip")]
+transform = Transform3D(0.258819, 4.2222e-08, 0.965926, -4.2222e-08, 1, -3.2398e-08, -0.965926, -3.2398e-08, 0.258819, -9.5335, 0, 104.672)
+
+[node name="grave62" parent="Props" instance=ExtResource("5_y7vip")]
+transform = Transform3D(0.258819, 4.2222e-08, 0.965926, -4.2222e-08, 1, -3.2398e-08, -0.965926, -3.2398e-08, 0.258819, -9.5335, 0, 98.6718)
+
+[node name="grave63" parent="Props" instance=ExtResource("5_y7vip")]
+transform = Transform3D(-0.258819, 2.03663e-08, 0.965926, -4.2222e-08, 1, -3.2398e-08, -0.965926, -4.91685e-08, -0.258819, -9.5335, 0, 91.6718)
+
+[node name="grave64" parent="Props" instance=ExtResource("5_y7vip")]
+transform = Transform3D(0.258819, 4.2222e-08, 0.965926, -4.2222e-08, 1, -3.2398e-08, -0.965926, -3.2398e-08, 0.258819, -7.5335, 0, 84.6718)
+
+[node name="grave65" parent="Props" instance=ExtResource("5_y7vip")]
+transform = Transform3D(-0.258819, 2.03663e-08, 0.965926, -4.2222e-08, 1, -3.2398e-08, -0.965926, -4.91685e-08, -0.258819, -7.5335, 0, 78.6718)
+
+[node name="grave67" parent="Props" instance=ExtResource("5_y7vip")]
+transform = Transform3D(0.5, 4.91685e-08, 0.866026, -4.2222e-08, 1, -3.2398e-08, -0.866026, -2.03662e-08, 0.5, -13.5335, 0, 85.6718)
+
+[node name="grave68" parent="Props" instance=ExtResource("5_y7vip")]
+transform = Transform3D(0.258819, 4.2222e-08, 0.965926, -4.2222e-08, 1, -3.2398e-08, -0.965926, -3.2398e-08, 0.258819, -18.5335, 0, 92.6718)
+
+[node name="grave69" parent="Props" instance=ExtResource("5_y7vip")]
+transform = Transform3D(-0.258819, 2.03663e-08, 0.965926, -4.2222e-08, 1, -3.2398e-08, -0.965926, -4.91685e-08, -0.258819, -15.5335, 0, 98.6718)
+
+[node name="grave71" parent="Props" instance=ExtResource("5_y7vip")]
+transform = Transform3D(0.258819, 4.2222e-08, 0.965926, -4.2222e-08, 1, -3.2398e-08, -0.965926, -3.2398e-08, 0.258819, -19.5335, 0, 105.672)
+
+[node name="grave70" parent="Props" instance=ExtResource("5_y7vip")]
+transform = Transform3D(0.258819, 4.2222e-08, 0.965926, -4.2222e-08, 1, -3.2398e-08, -0.965926, -3.2398e-08, 0.258819, -13.5335, 0, 106.672)
+
+[node name="grave75" parent="Props" instance=ExtResource("5_y7vip")]
+transform = Transform3D(0.258819, 4.2222e-08, 0.965926, -4.2222e-08, 1, -3.2398e-08, -0.965926, -3.2398e-08, 0.258819, -7.5335, 0, 116.672)
+
+[node name="grave76" parent="Props" instance=ExtResource("5_y7vip")]
+transform = Transform3D(-0.5, 6.94662e-09, 0.866025, -4.2222e-08, 1, -3.2398e-08, -0.866025, -5.27643e-08, -0.5, -6.5335, 0, 122.672)
+
+[node name="grave77" parent="Props" instance=ExtResource("5_y7vip")]
+transform = Transform3D(-0.5, 6.94662e-09, 0.866025, -4.2222e-08, 1, -3.2398e-08, -0.866025, -5.27643e-08, -0.5, -2.5335, 0, 129.672)
+
+[node name="grave78" parent="Props" instance=ExtResource("5_y7vip")]
+transform = Transform3D(0.258819, 4.2222e-08, 0.965926, -4.2222e-08, 1, -3.2398e-08, -0.965926, -3.2398e-08, 0.258819, -8.5335, 0, 128.672)
+
+[node name="grave79" parent="Props" instance=ExtResource("5_y7vip")]
+transform = Transform3D(0.258819, 4.2222e-08, 0.965926, -4.2222e-08, 1, -3.2398e-08, -0.965926, -3.2398e-08, 0.258819, -15.5335, 0, 120.672)
+
+[node name="grave80" parent="Props" instance=ExtResource("5_y7vip")]
+transform = Transform3D(-0.258819, 2.03663e-08, 0.965926, -4.2222e-08, 1, -3.2398e-08, -0.965926, -4.91685e-08, -0.258819, -14.5335, 0, 112.672)
+
+[node name="grave81" parent="Props" instance=ExtResource("5_y7vip")]
+transform = Transform3D(-0.5, 6.94662e-09, 0.866025, -4.2222e-08, 1, -3.2398e-08, -0.866025, -5.27643e-08, -0.5, 7.4665, 0, 139.672)
+
+[node name="grave82" parent="Props" instance=ExtResource("5_y7vip")]
+transform = Transform3D(0.707107, 5.27643e-08, 0.707107, -4.2222e-08, 1, -3.2398e-08, -0.707107, -6.94649e-09, 0.707107, 24.4665, 0, 143.672)
+
+[node name="grave83" parent="Props" instance=ExtResource("5_y7vip")]
+transform = Transform3D(-0.258819, 2.03663e-08, 0.965926, -4.2222e-08, 1, -3.2398e-08, -0.965926, -4.91685e-08, -0.258819, 20.4665, 0, 125.672)
+
+[node name="grave84" parent="Props" instance=ExtResource("5_y7vip")]
+transform = Transform3D(-0.258819, 2.03663e-08, 0.965926, -4.2222e-08, 1, -3.2398e-08, -0.965926, -4.91685e-08, -0.258819, 32.4665, 0, 131.672)
+
+[node name="grave85" parent="Props" instance=ExtResource("5_y7vip")]
+transform = Transform3D(0.258819, 4.2222e-08, 0.965926, -4.2222e-08, 1, -3.2398e-08, -0.965926, -3.2398e-08, 0.258819, 36.4665, 0, 143.672)
+
+[node name="grave86" parent="Props" instance=ExtResource("5_y7vip")]
+transform = Transform3D(0.258819, 4.2222e-08, 0.965926, -4.2222e-08, 1, -3.2398e-08, -0.965926, -3.2398e-08, 0.258819, 43.4665, 0, 130.672)
+
+[node name="grave87" parent="Props" instance=ExtResource("5_y7vip")]
+transform = Transform3D(0.258819, 4.2222e-08, 0.965926, -4.2222e-08, 1, -3.2398e-08, -0.965926, -3.2398e-08, 0.258819, 46.4665, 0, 145.672)
+
+[node name="grave88" parent="Props" instance=ExtResource("5_y7vip")]
+transform = Transform3D(0.866025, 5.27643e-08, 0.5, -4.2222e-08, 1, -3.2398e-08, -0.5, 6.94661e-09, 0.866025, 50.4665, 0, 131.672)
+
+[node name="grave89" parent="Props" instance=ExtResource("5_y7vip")]
+transform = Transform3D(0.258819, 4.2222e-08, 0.965926, -4.2222e-08, 1, -3.2398e-08, -0.965926, -3.2398e-08, 0.258819, 56.4665, 0, 132.672)
+
+[node name="grave90" parent="Props" instance=ExtResource("5_y7vip")]
+transform = Transform3D(0.258819, 4.2222e-08, 0.965926, -4.2222e-08, 1, -3.2398e-08, -0.965926, -3.2398e-08, 0.258819, 52.4665, 0, 145.672)
+
+[node name="grave91" parent="Props" instance=ExtResource("5_y7vip")]
+transform = Transform3D(0.707107, 5.27643e-08, 0.707107, -4.2222e-08, 1, -3.2398e-08, -0.707107, -6.94649e-09, 0.707107, 55.4665, 0, 149.672)
+
+[node name="grave92" parent="Props" instance=ExtResource("5_y7vip")]
+transform = Transform3D(0.707107, 5.27643e-08, 0.707107, -4.2222e-08, 1, -3.2398e-08, -0.707107, -6.94649e-09, 0.707107, 59.4665, 0, 146.672)
+
+[node name="grave93" parent="Props" instance=ExtResource("5_y7vip")]
+transform = Transform3D(0.258819, 4.2222e-08, 0.965926, -4.2222e-08, 1, -3.2398e-08, -0.965926, -3.2398e-08, 0.258819, 59.4665, 0, 151.672)
+
+[node name="grave94" parent="Props" instance=ExtResource("5_y7vip")]
+transform = Transform3D(0.5, 4.91685e-08, 0.866026, -4.2222e-08, 1, -3.2398e-08, -0.866026, -2.03662e-08, 0.5, 62.4665, 0, 151.672)
+
+[node name="grave95" parent="Props" instance=ExtResource("5_y7vip")]
+transform = Transform3D(0.258819, 4.2222e-08, 0.965926, -4.2222e-08, 1, -3.2398e-08, -0.965926, -3.2398e-08, 0.258819, 64.4665, 0, 148.672)
+
+[node name="grave96" parent="Props" instance=ExtResource("5_y7vip")]
+transform = Transform3D(0.258819, 4.2222e-08, 0.965926, -4.2222e-08, 1, -3.2398e-08, -0.965926, -3.2398e-08, 0.258819, 62.4665, 0, 134.672)
+
+[node name="grave97" parent="Props" instance=ExtResource("5_y7vip")]
+transform = Transform3D(-0.5, 6.94662e-09, 0.866025, -4.2222e-08, 1, -3.2398e-08, -0.866025, -5.27643e-08, -0.5, 63.4665, 0, 128.672)
+
+[node name="grave98" parent="Props" instance=ExtResource("5_y7vip")]
+transform = Transform3D(-0.258819, 2.03663e-08, 0.965926, -4.2222e-08, 1, -3.2398e-08, -0.965926, -4.91685e-08, -0.258819, 57.4665, 0, 125.672)
+
+[node name="grave99" parent="Props" instance=ExtResource("5_y7vip")]
+transform = Transform3D(0.258819, 4.2222e-08, 0.965926, -4.2222e-08, 1, -3.2398e-08, -0.965926, -3.2398e-08, 0.258819, 53.4665, 0, 126.672)
+
+[node name="grave100" parent="Props" instance=ExtResource("5_y7vip")]
+transform = Transform3D(-0.707107, -6.94649e-09, 0.707107, -4.2222e-08, 1, -3.2398e-08, -0.707107, -5.27643e-08, -0.707107, 47.4665, 0, 126.672)
+
+[node name="grave101" parent="Props" instance=ExtResource("5_y7vip")]
+transform = Transform3D(0.258819, 4.2222e-08, 0.965926, -4.2222e-08, 1, -3.2398e-08, -0.965926, -3.2398e-08, 0.258819, 47.4665, 0, 131.672)
+
+[node name="grave102" parent="Props" instance=ExtResource("5_y7vip")]
+transform = Transform3D(-0.866025, -2.03662e-08, 0.5, -4.2222e-08, 1, -3.2398e-08, -0.5, -4.91685e-08, -0.866025, 66.4665, 0, 135.672)
+
+[node name="grave103" parent="Props" instance=ExtResource("5_y7vip")]
+transform = Transform3D(0.258819, 4.2222e-08, 0.965926, -4.2222e-08, 1, -3.2398e-08, -0.965926, -3.2398e-08, 0.258819, 67.4665, 0, 129.672)
+
+[node name="grave104" parent="Props" instance=ExtResource("5_y7vip")]
+transform = Transform3D(0.258819, 4.2222e-08, 0.965926, -4.2222e-08, 1, -3.2398e-08, -0.965926, -3.2398e-08, 0.258819, 65.4665, 0, 121.672)
+
+[node name="grave105" parent="Props" instance=ExtResource("5_y7vip")]
+transform = Transform3D(-0.258819, 2.03663e-08, 0.965926, -4.2222e-08, 1, -3.2398e-08, -0.965926, -4.91685e-08, -0.258819, 58.4665, 0, 120.672)
+
+[node name="grave106" parent="Props" instance=ExtResource("5_y7vip")]
+transform = Transform3D(-0.258819, 2.03663e-08, 0.965926, -4.2222e-08, 1, -3.2398e-08, -0.965926, -4.91685e-08, -0.258819, 51.4665, 0, 119.672)
+
+[node name="grave107" parent="Props" instance=ExtResource("5_y7vip")]
+transform = Transform3D(0.258819, 4.2222e-08, 0.965926, -4.2222e-08, 1, -3.2398e-08, -0.965926, -3.2398e-08, 0.258819, 44.4665, 0, 122.672)
+
+[node name="grave108" parent="Props" instance=ExtResource("5_y7vip")]
+transform = Transform3D(-0.5, 6.94662e-09, 0.866025, -4.2222e-08, 1, -3.2398e-08, -0.866025, -5.27643e-08, -0.5, 37.4665, 0, 123.672)
+
+[node name="grave109" parent="Props" instance=ExtResource("5_y7vip")]
+transform = Transform3D(0.258819, 4.2222e-08, 0.965926, -4.2222e-08, 1, -3.2398e-08, -0.965926, -3.2398e-08, 0.258819, 37.6433, 0, 127.561)
+
+[node name="grave110" parent="Props" instance=ExtResource("5_y7vip")]
+transform = Transform3D(0.336465, 5.48886e-08, 1.2557, -5.48886e-08, 1.3, -4.21175e-08, -1.2557, -4.21175e-08, 0.336465, 70.3471, 0, 142.41)
+
+[node name="grave153" parent="Props" instance=ExtResource("5_y7vip")]
+transform = Transform3D(-4.37114e-08, 3.23981e-08, 1, -4.2222e-08, 1, -3.23981e-08, -1, -4.2222e-08, -4.37114e-08, 124.347, 0, 143.41)
+
+[node name="grave111" parent="Props" instance=ExtResource("5_y7vip")]
+transform = Transform3D(-0.707107, -6.94649e-09, 0.707107, -4.2222e-08, 1, -3.2398e-08, -0.707107, -5.27643e-08, -0.707107, 24.3471, 0, 131.41)
+
+[node name="grave112" parent="Props" instance=ExtResource("5_y7vip")]
+transform = Transform3D(0.258819, 4.2222e-08, 0.965926, -4.2222e-08, 1, -3.2398e-08, -0.965926, -3.2398e-08, 0.258819, 29.3471, 0, 127.41)
+
+[node name="grave113" parent="Props" instance=ExtResource("5_y7vip")]
+transform = Transform3D(0.258819, 4.2222e-08, 0.965926, -4.2222e-08, 1, -3.2398e-08, -0.965926, -3.2398e-08, 0.258819, 22.3471, 0, 121.41)
+
+[node name="grave114" parent="Props" instance=ExtResource("5_y7vip")]
+transform = Transform3D(-0.258819, 2.03663e-08, 0.965926, -4.2222e-08, 1, -3.2398e-08, -0.965926, -4.91685e-08, -0.258819, 11.3471, 0, 123.41)
+
+[node name="grave115" parent="Props" instance=ExtResource("5_y7vip")]
+transform = Transform3D(-0.258819, 2.03663e-08, 0.965926, -4.2222e-08, 1, -3.2398e-08, -0.965926, -4.91685e-08, -0.258819, 6.34714, 0, 120.41)
+
+[node name="grave116" parent="Props" instance=ExtResource("5_y7vip")]
+transform = Transform3D(0.258819, 4.2222e-08, 0.965926, -4.2222e-08, 1, -3.2398e-08, -0.965926, -3.2398e-08, 0.258819, 11.3471, 0, 115.41)
+
+[node name="grave117" parent="Props" instance=ExtResource("5_y7vip")]
+transform = Transform3D(0.258819, 4.2222e-08, 0.965926, -4.2222e-08, 1, -3.2398e-08, -0.965926, -3.2398e-08, 0.258819, 17.3471, 0, 117.41)
+
+[node name="grave118" parent="Props" instance=ExtResource("5_y7vip")]
+transform = Transform3D(0.258819, 4.2222e-08, 0.965926, -4.2222e-08, 1, -3.2398e-08, -0.965926, -3.2398e-08, 0.258819, 37.3471, 0, 116.41)
+
+[node name="grave119" parent="Props" instance=ExtResource("5_y7vip")]
+transform = Transform3D(0.258819, 4.2222e-08, 0.965926, -4.2222e-08, 1, -3.2398e-08, -0.965926, -3.2398e-08, 0.258819, 49.3471, 0, 111.41)
+
+[node name="grave120" parent="Props" instance=ExtResource("5_y7vip")]
+transform = Transform3D(0.258819, 4.2222e-08, 0.965926, -4.2222e-08, 1, -3.2398e-08, -0.965926, -3.2398e-08, 0.258819, 55.3471, 0, 113.41)
+
+[node name="grave121" parent="Props" instance=ExtResource("5_y7vip")]
+transform = Transform3D(0.258819, 4.2222e-08, 0.965926, -4.2222e-08, 1, -3.2398e-08, -0.965926, -3.2398e-08, 0.258819, 54.3471, 0, 118.41)
+
+[node name="grave122" parent="Props" instance=ExtResource("5_y7vip")]
+transform = Transform3D(0.258819, 4.2222e-08, 0.965926, -4.2222e-08, 1, -3.2398e-08, -0.965926, -3.2398e-08, 0.258819, 63.3471, 0, 118.41)
+
+[node name="grave123" parent="Props" instance=ExtResource("5_y7vip")]
+transform = Transform3D(-1, -4.22219e-08, -1.19209e-07, -4.2222e-08, 1, -3.2398e-08, 1.19209e-07, -3.23981e-08, -1, 62.3471, 0, 123.41)
+
+[node name="grave124" parent="Props" instance=ExtResource("5_y7vip")]
+transform = Transform3D(-0.5, 6.94662e-09, 0.866025, -4.2222e-08, 1, -3.2398e-08, -0.866025, -5.27643e-08, -0.5, 46.3471, 0, 117.41)
+
+[node name="grave125" parent="Props" instance=ExtResource("5_y7vip")]
+transform = Transform3D(0.258819, 4.2222e-08, 0.965926, -4.2222e-08, 1, -3.2398e-08, -0.965926, -3.2398e-08, 0.258819, 42.3471, 0, 115.41)
+
+[node name="grave126" parent="Props" instance=ExtResource("5_y7vip")]
+transform = Transform3D(0.258819, 4.2222e-08, 0.965926, -4.2222e-08, 1, -3.2398e-08, -0.965926, -3.2398e-08, 0.258819, 37.3471, 0, 149.41)
+
+[node name="grave128" parent="Props" instance=ExtResource("5_y7vip")]
+transform = Transform3D(0.707107, 5.27643e-08, 0.707107, -4.2222e-08, 1, -3.2398e-08, -0.707107, -6.94649e-09, 0.707107, 43.3471, 0, 152.41)
+
+[node name="grave129" parent="Props" instance=ExtResource("5_y7vip")]
+transform = Transform3D(0.258819, 4.2222e-08, 0.965926, -4.2222e-08, 1, -3.2398e-08, -0.965926, -3.2398e-08, 0.258819, 50.3471, 0, 156.41)
+
+[node name="grave130" parent="Props" instance=ExtResource("5_y7vip")]
+transform = Transform3D(0.5, 4.91685e-08, 0.866026, -4.2222e-08, 1, -3.2398e-08, -0.866026, -2.03662e-08, 0.5, 58.3471, 0, 158.41)
+
+[node name="grave131" parent="Props" instance=ExtResource("5_y7vip")]
+transform = Transform3D(0.258819, 4.2222e-08, 0.965926, -4.2222e-08, 1, -3.2398e-08, -0.965926, -3.2398e-08, 0.258819, 55.3471, 0, 165.41)
+
+[node name="grave132" parent="Props" instance=ExtResource("5_y7vip")]
+transform = Transform3D(0.258819, 4.2222e-08, 0.965926, -4.2222e-08, 1, -3.2398e-08, -0.965926, -3.2398e-08, 0.258819, 49.3471, 0, 164.41)
+
+[node name="grave133" parent="Props" instance=ExtResource("5_y7vip")]
+transform = Transform3D(0.707107, 5.27643e-08, 0.707107, -4.2222e-08, 1, -3.2398e-08, -0.707107, -6.94649e-09, 0.707107, 53.3471, 0, 160.41)
+
+[node name="grave134" parent="Props" instance=ExtResource("5_y7vip")]
+transform = Transform3D(0.258819, 4.2222e-08, 0.965926, -4.2222e-08, 1, -3.2398e-08, -0.965926, -3.2398e-08, 0.258819, 48.3471, 0, 150.41)
+
+[node name="grave135" parent="Props" instance=ExtResource("5_y7vip")]
+transform = Transform3D(0.258819, 4.2222e-08, 0.965926, -4.2222e-08, 1, -3.2398e-08, -0.965926, -3.2398e-08, 0.258819, 41.3471, 0, 158.41)
+
+[node name="grave136" parent="Props" instance=ExtResource("5_y7vip")]
+transform = Transform3D(0.258819, 4.2222e-08, 0.965926, -4.2222e-08, 1, -3.2398e-08, -0.965926, -3.2398e-08, 0.258819, 34.3471, 0, 154.41)
+
+[node name="grave137" parent="Props" instance=ExtResource("5_y7vip")]
+transform = Transform3D(0.258819, 4.2222e-08, 0.965926, -4.2222e-08, 1, -3.2398e-08, -0.965926, -3.2398e-08, 0.258819, 28.3471, 0, 159.41)
+
+[node name="grave138" parent="Props" instance=ExtResource("5_y7vip")]
+transform = Transform3D(0.866025, 5.27643e-08, 0.5, -4.2222e-08, 1, -3.2398e-08, -0.5, 6.94661e-09, 0.866025, 43.3471, 0, 165.41)
+
+[node name="grave139" parent="Props" instance=ExtResource("5_y7vip")]
+transform = Transform3D(0.258819, 4.2222e-08, 0.965926, -4.2222e-08, 1, -3.2398e-08, -0.965926, -3.2398e-08, 0.258819, 35.3471, 0, 163.41)
+
+[node name="grave140" parent="Props" instance=ExtResource("5_y7vip")]
+transform = Transform3D(0.258819, 4.2222e-08, 0.965926, -4.2222e-08, 1, -3.2398e-08, -0.965926, -3.2398e-08, 0.258819, 37.3471, 0, 158.41)
+
+[node name="grave141" parent="Props" instance=ExtResource("5_y7vip")]
+transform = Transform3D(0.258819, 4.2222e-08, 0.965926, -4.2222e-08, 1, -3.2398e-08, -0.965926, -3.2398e-08, 0.258819, 29.3471, 0, 151.41)
+
+[node name="grave142" parent="Props" instance=ExtResource("5_y7vip")]
+transform = Transform3D(0.707107, 5.27643e-08, 0.707107, -4.2222e-08, 1, -3.2398e-08, -0.707107, -6.94649e-09, 0.707107, 33.3471, 0, 147.41)
+
+[node name="grave143" parent="Props" instance=ExtResource("5_y7vip")]
+transform = Transform3D(0.965926, 4.91685e-08, 0.258819, -4.2222e-08, 1, -3.2398e-08, -0.258819, 2.03663e-08, 0.965926, 30.3471, 0, 143.41)
+
+[node name="grave144" parent="Props" instance=ExtResource("5_y7vip")]
+transform = Transform3D(0.707107, 5.27643e-08, 0.707107, -4.2222e-08, 1, -3.2398e-08, -0.707107, -6.94649e-09, 0.707107, 21.3471, 0, 149.41)
+
+[node name="grave145" parent="Props" instance=ExtResource("5_y7vip")]
+transform = Transform3D(0.258819, 4.2222e-08, 0.965926, -4.2222e-08, 1, -3.2398e-08, -0.965926, -3.2398e-08, 0.258819, 16.3471, 0, 143.41)
+
+[node name="grave146" parent="Props" instance=ExtResource("5_y7vip")]
+transform = Transform3D(0.258819, 4.2222e-08, 0.965926, -4.2222e-08, 1, -3.2398e-08, -0.965926, -3.2398e-08, 0.258819, 16.3471, 0, 151.41)
+
+[node name="grave147" parent="Props" instance=ExtResource("5_y7vip")]
+transform = Transform3D(0.5, 4.91685e-08, 0.866026, -4.2222e-08, 1, -3.2398e-08, -0.866026, -2.03662e-08, 0.5, 20.3471, 0, 144.41)
+
+[node name="grave148" parent="Props" instance=ExtResource("5_y7vip")]
+transform = Transform3D(0.258819, 4.2222e-08, 0.965926, -4.2222e-08, 1, -3.2398e-08, -0.965926, -3.2398e-08, 0.258819, 21.3471, 0, 158.41)
+
+[node name="grave149" parent="Props" instance=ExtResource("5_y7vip")]
+transform = Transform3D(0.258819, 4.2222e-08, 0.965926, -4.2222e-08, 1, -3.2398e-08, -0.965926, -3.2398e-08, 0.258819, 25.3471, 0, 153.41)
+
+[node name="grave150" parent="Props" instance=ExtResource("5_y7vip")]
+transform = Transform3D(0.258819, 4.2222e-08, 0.965926, -4.2222e-08, 1, -3.2398e-08, -0.965926, -3.2398e-08, 0.258819, 25.3471, 0, 164.41)
+
+[node name="grave151" parent="Props" instance=ExtResource("5_y7vip")]
+transform = Transform3D(0.965926, 4.91685e-08, 0.258819, -4.2222e-08, 1, -3.2398e-08, -0.258819, 2.03663e-08, 0.965926, 0.347137, 0, 145.41)
+
+[node name="grave152" parent="Props" instance=ExtResource("5_y7vip")]
+transform = Transform3D(0.258819, 4.2222e-08, 0.965926, -4.2222e-08, 1, -3.2398e-08, -0.965926, -3.2398e-08, 0.258819, 27.3471, 0, 117.41)
+
+[node name="grave127" parent="Props" instance=ExtResource("5_y7vip")]
+transform = Transform3D(0.258819, 4.2222e-08, 0.965926, -4.2222e-08, 1, -3.2398e-08, -0.965926, -3.2398e-08, 0.258819, 42.3471, 0, 145.41)
+
+[node name="grave5" parent="Props" instance=ExtResource("5_y7vip")]
+transform = Transform3D(0.258819, 4.2222e-08, 0.965926, -4.2222e-08, 1, -3.2398e-08, -0.965926, -3.2398e-08, 0.258819, -10.5335, 0, 25.6718)
+
+[node name="grave6" parent="Props" instance=ExtResource("5_y7vip")]
+transform = Transform3D(-0.866026, -2.03662e-08, 0.5, -4.2222e-08, 1, -3.2398e-08, -0.5, -4.91685e-08, -0.866026, 5.4665, 0, 31.6718)
+
+[node name="grave7" parent="Props" instance=ExtResource("5_y7vip")]
+transform = Transform3D(-0.258819, 2.03663e-08, 0.965926, -4.2222e-08, 1, -3.2398e-08, -0.965926, -4.91685e-08, -0.258819, -0.533501, 0, 28.6718)
+
+[node name="grave8" parent="Props" instance=ExtResource("5_y7vip")]
+transform = Transform3D(0.258819, 4.2222e-08, 0.965926, -4.2222e-08, 1, -3.2398e-08, -0.965926, -3.2398e-08, 0.258819, 1.4665, 0, 38.6718)
+
+[node name="grave11" parent="Props" instance=ExtResource("5_y7vip")]
+transform = Transform3D(-0.5, 6.94662e-09, 0.866025, -4.2222e-08, 1, -3.2398e-08, -0.866025, -5.27643e-08, -0.5, 21.4665, 0, 24.6718)
+
+[node name="grave21" parent="Props" instance=ExtResource("5_y7vip")]
+transform = Transform3D(-4.47035e-08, 3.23981e-08, 1, -4.2222e-08, 1, -3.2398e-08, -1, -4.22219e-08, -4.47035e-08, 13.4665, 0, 18.6718)
+
+[node name="grave22" parent="Props" instance=ExtResource("5_y7vip")]
+transform = Transform3D(-0.5, 6.94662e-09, 0.866025, -4.2222e-08, 1, -3.2398e-08, -0.866025, -5.27643e-08, -0.5, 8.4665, 0, 13.6718)
+
+[node name="Trigger1" type="Area3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, 30)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Trigger1"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.5, 5, -0.5)
+shape = SubResource("BoxShape3D_x51qc")
+
+[node name="Trigger2" type="Area3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, 79)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Trigger2"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.5, 5, -0.5)
+shape = SubResource("BoxShape3D_wot7f")
+
+[node name="Trigger3" type="Area3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 27, 0.5, 141)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Trigger3"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.5, 5, -8)
+shape = SubResource("BoxShape3D_5s1bh")
+
+[node name="Trigger4" type="Area3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 67, 0.5, 145)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Trigger4"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.5, 5, -4.5)
+shape = SubResource("BoxShape3D_ht2k6")
+
+[node name="Trigger5" type="Area3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 115, 0.5, 145)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Trigger5"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 8.5, 5, -1)
+shape = SubResource("BoxShape3D_07fyc")
+
+[node name="HumanityGraveLabel" type="Label3D" parent="."]
+transform = Transform3D(-0.258819, 0, -0.965926, 0, 1, 0, 0.965926, 0, -0.258819, 70.1061, 1.65693, 142.435)
+shaded = true
+texture_filter = 0
+modulate = Color(0.706796, 0.939247, 0.666184, 1)
+text = "h u m a n i t y"
+font = ExtResource("7_wa5e1")
+font_size = 52
+
+[node name="YourGraveLabel" type="Label3D" parent="."]
+transform = Transform3D(-2.98023e-08, 0, -1, 0, 1, 0, 1, 0, -2.98023e-08, 124.106, 1.45585, 143.435)
+shaded = true
+texture_filter = 0
+modulate = Color(0.706796, 0.939247, 0.666184, 1)
+text = "you"
+font = ExtResource("8_lxvfl")
+font_size = 60
+
+[connection signal="timeout" from="TextLayer/Timer" to="." method="_on_timer_timeout"]
+[connection signal="body_entered" from="Trigger1" to="." method="_on_trigger_1_body_entered"]
+[connection signal="body_entered" from="Trigger2" to="." method="_on_trigger_2_body_entered"]
+[connection signal="body_entered" from="Trigger3" to="." method="_on_trigger_3_body_entered"]
+[connection signal="body_entered" from="Trigger4" to="." method="_on_trigger_4_body_entered"]
+[connection signal="body_entered" from="Trigger5" to="." method="_on_trigger_5_body_entered"]

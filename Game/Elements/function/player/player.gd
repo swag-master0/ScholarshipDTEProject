@@ -19,6 +19,7 @@ func TOP():
 @export_subgroup("Gameplay")
 @export var SAVE_GAME : bool = true
 @export var SPEED : float = 10
+@export var GRAVITY : float = 9.8
 @export var JUMP_VELOCITY : float = 30
 @export var JUMP_FALLMULTIPLIER : float = 15
 @export var TURN_VELOCITY : float = 50
@@ -81,10 +82,7 @@ func TOP():
 @onready var dust = $Dust
 
 
-
-var gravity = ProjectSettings.get_setting("physics/3d/default_gravity")
 var faceDirection = Vector3.FORWARD
-
 var oldparent = null
 
 var canPause = true
@@ -147,11 +145,11 @@ func _input(event):
 func _physics_process(delta):
 	if info.health > 0:
 		
-		if !is_on_floor():
-			velocity.y -= gravity * delta * JUMP_FALLMULTIPLIER
+		if !is_on_floor() or GRAVITY < 0:
+			velocity.y -= GRAVITY * delta * JUMP_FALLMULTIPLIER
 			velocity.y = clamp(velocity.y, -38, 500)
 		
-		if Input.is_action_pressed("jump") and is_on_floor():
+		if Input.is_action_pressed("jump") and is_on_floor() and JUMP_VELOCITY != 0:
 			velocity.y = JUMP_VELOCITY
 			sound_jump.play()
 		
@@ -219,9 +217,12 @@ func _physics_process(delta):
 		
 		elif velocity and is_on_floor():
 			state_machine.travel("run")
+			animation_tree.set("parameters/run/TimeScale/scale", SPEED / 5)
 			
 			if footstep_delay.is_stopped() and is_on_floor():
-				footstep_delay.start()
+				
+				footstep_delay.start(0.1 / (SPEED / 10))
+				print(0.1 / (10 / SPEED))
 				sound_footstep.pitch_scale = randf_range(75, 125) / 100
 				sound_footstep.play()
 		
@@ -307,7 +308,7 @@ func _process(_delta):
 	if self.global_position.y <= -1000:
 		info.Damage(9999)
 	
-	if Input.is_action_just_pressed("escape"):
+	if Input.is_action_just_pressed("escape") and $HUD/PauseMenu/PauseDelay.is_stopped():
 		PauseMenu(true)
 	
 	
@@ -395,6 +396,7 @@ func PauseMenu(toggle : bool):
 	
 	if canPause == true:
 		Input.set_mouse_mode(Input.MOUSE_MODE_VISIBLE)
+		$HUD/PauseMenu/PauseDelay.start()
 		get_tree().paused = toggle
 		pausemenu.visible = toggle
 		

@@ -67,4 +67,4 @@ func _on_options_button_mouse_entered():
 	ui_hover_2.play()
 
 func _on_quit_button_mouse_entered():
-	ui_hover_3
+	ui_hover_3.play()
