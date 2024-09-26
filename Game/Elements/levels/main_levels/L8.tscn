@@ -1,4 +1,4 @@
-[gd_scene load_steps=53 format=4 uid="uid://s5se47gv822a"]
+[gd_scene load_steps=54 format=4 uid="uid://s5se47gv822a"]
 
 [ext_resource type="Script" path="res://Elements/levels/main_levels/L8.gd" id="1_7cqyq"]
 [ext_resource type="PackedScene" uid="uid://c6busq7mdau5y" path="res://Elements/function/enemies/bird.tscn" id="2_i1qrk"]
@@ -39,6 +39,7 @@
 [ext_resource type="PackedScene" uid="uid://dhaxwpsinvu6u" path="res://Elements/assets/props/crate.tscn" id="37_urgl5"]
 [ext_resource type="PackedScene" uid="uid://i43wpwf0q6em" path="res://Elements/assets/props/chair.tscn" id="38_qe8w7"]
 [ext_resource type="PackedScene" uid="uid://cdxkrkn34253v" path="res://Elements/assets/props/picture_large.tscn" id="39_76px6"]
+[ext_resource type="AudioStream" uid="uid://c2bnpiykqjcwb" path="res://Art/audio/ambient/ambient-1.mp3" id="40_xy2rb"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_xdtlt"]
 size = Vector3(10, 7, 10)
@@ -504,6 +505,14 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 17, 18, -7)
 script = SubResource("GDScript_ee0kc")
 
 [node name="Camera3D" type="Camera3D" parent="SubViewport"]
+
+[node name="Ambient" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("40_xy2rb")
+volume_db = -30.0
+pitch_scale = 0.3
+autoplay = true
+bus = &"ambience"
+parameters/looping = true
 
 [connection signal="body_entered" from="Trigger" to="." method="_on_trigger_body_entered"]
 [connection signal="timeout" from="SpawnCooldown" to="." method="_on_spawn_cooldown_timeout"]

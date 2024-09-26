@@ -1,4 +1,4 @@
-[gd_scene load_steps=51 format=3 uid="uid://e0q2iffvt7qr"]
+[gd_scene load_steps=52 format=3 uid="uid://e0q2iffvt7qr"]
 
 [ext_resource type="Script" path="res://Elements/levels/main_levels/L10.gd" id="1_1wb2c"]
 [ext_resource type="PackedScene" uid="uid://k4l3uo63ncq5" path="res://Art/blend/levels_chapter1/c1_m10.blend" id="2_sr2kr"]
@@ -28,6 +28,7 @@
 [ext_resource type="AudioStream" uid="uid://die3t2e5pjrof" path="res://Art/audio/enemy/bomber_buildup-2.wav" id="26_06cbc"]
 [ext_resource type="AudioStream" uid="uid://pghiaut11xhv" path="res://Art/audio/misc/loud_ending_explosion.wav" id="26_h5xxs"]
 [ext_resource type="AudioStream" uid="uid://co1bf3eh4kfj8" path="res://Art/audio/misc/short-beep-tone-47916.mp3" id="27_e6j0y"]
+[ext_resource type="AudioStream" uid="uid://c2bnpiykqjcwb" path="res://Art/audio/ambient/ambient-1.mp3" id="29_rolqk"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_nj7b7"]
 render_priority = 0
@@ -332,6 +333,14 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 color = Color(0, 0, 0, 1)
+
+[node name="Ambient" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("29_rolqk")
+volume_db = -30.0
+pitch_scale = 0.2
+autoplay = true
+bus = &"ambience"
+parameters/looping = true
 
 [connection signal="animation_finished" from="ObjectiveLevelStart/AnimationPlayer" to="." method="_on_animation_player_animation_finished"]
 [connection signal="body_entered" from="DialogueTrigger" to="." method="_on_trigger_body_entered"]

@@ -1,4 +1,4 @@
-[gd_scene load_steps=34 format=3 uid="uid://c3jh1kk8goxry"]
+[gd_scene load_steps=35 format=3 uid="uid://c3jh1kk8goxry"]
 
 [ext_resource type="Script" path="res://Elements/levels/main_levels/L6.gd" id="1_dcfpn"]
 [ext_resource type="PackedScene" uid="uid://dwe6hqxcxga2x" path="res://Elements/function/enemies/bomber.tscn" id="2_diawe"]
@@ -28,6 +28,7 @@
 [ext_resource type="PackedScene" uid="uid://bsmhlbfqb0hvo" path="res://Elements/assets/props/anvil.tscn" id="26_xa5ef"]
 [ext_resource type="PackedScene" uid="uid://vku0vf2hc070" path="res://Elements/assets/props/microwave.tscn" id="27_yjjke"]
 [ext_resource type="PackedScene" uid="uid://cdwnv2xmk7f6k" path="res://Elements/assets/misc/nest.tscn" id="28_v4xgu"]
+[ext_resource type="AudioStream" uid="uid://c2bnpiykqjcwb" path="res://Art/audio/ambient/ambient-1.mp3" id="29_nlbob"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_vyq7x"]
 render_priority = 0
@@ -263,6 +264,14 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 39, 0, -61)
 [node name="CollisionShape3D" type="CollisionShape3D" parent="EggArea"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.52912, 2.4425, 2.35852)
 shape = SubResource("BoxShape3D_6rln7")
+
+[node name="Ambient" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("29_nlbob")
+volume_db = -30.0
+pitch_scale = 3.0
+autoplay = true
+bus = &"ambience"
+parameters/looping = true
 
 [editable path="c2_m1"]
 [editable path="Barrier"]

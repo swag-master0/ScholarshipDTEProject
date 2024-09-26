@@ -1,4 +1,4 @@
-[gd_scene load_steps=42 format=4 uid="uid://e1ifpcaik1si"]
+[gd_scene load_steps=43 format=4 uid="uid://e1ifpcaik1si"]
 
 [ext_resource type="Script" path="res://Elements/levels/main_levels/L7.gd" id="1_6r3yi"]
 [ext_resource type="PackedScene" uid="uid://fng1tq0dr424" path="res://Art/blend/levels_chapter1/c1_m7.blend" id="1_phkl0"]
@@ -35,6 +35,7 @@
 [ext_resource type="PackedScene" uid="uid://vku0vf2hc070" path="res://Elements/assets/props/microwave.tscn" id="33_xl312"]
 [ext_resource type="PackedScene" uid="uid://cdxkrkn34253v" path="res://Elements/assets/props/picture_large.tscn" id="34_gnuqd"]
 [ext_resource type="PackedScene" uid="uid://c6busq7mdau5y" path="res://Elements/function/enemies/bird.tscn" id="35_ovuxq"]
+[ext_resource type="AudioStream" uid="uid://c2bnpiykqjcwb" path="res://Art/audio/ambient/ambient-1.mp3" id="36_n6sgo"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_kg3la"]
 render_priority = 0
@@ -350,6 +351,13 @@ freeze_mode = 1
 [node name="Bird" parent="." instance=ExtResource("35_ovuxq")]
 transform = Transform3D(0.426884, 0, 0.904306, 0, 1, 0, -0.904306, 0, 0.426884, 103.789, 0.499993, 6.20959)
 attack_dmg = 1.0
+
+[node name="Ambient" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("36_n6sgo")
+volume_db = -30.0
+autoplay = true
+bus = &"ambience"
+parameters/looping = true
 
 [connection signal="body_entered" from="Pain" to="." method="_on_pain_body_entered"]
 
