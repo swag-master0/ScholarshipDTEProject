@@ -61,7 +61,7 @@ shader_parameter/normal = ExtResource("11_s83hg")
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_d65qo"]
 render_priority = 0
 shader = ExtResource("12_8v23a")
-shader_parameter/wall_colour = Color(2, 4, 2, 1)
+shader_parameter/wall_colour = Color(0.553332, 0.868922, 0.699245, 1)
 shader_parameter/colour_add = 4.0
 shader_parameter/amount = 1.0
 shader_parameter/noise = ExtResource("13_b2yxs")

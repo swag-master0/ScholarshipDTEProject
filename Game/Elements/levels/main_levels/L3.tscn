@@ -48,7 +48,7 @@ geometry_parsed_geometry_type = 1
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_ckdr7"]
 render_priority = 0
 shader = ExtResource("5_japnt")
-shader_parameter/wall_colour = Color(2, 4, 2, 1)
+shader_parameter/wall_colour = Color(0.553332, 0.868922, 0.699245, 1)
 shader_parameter/colour_add = 4.0
 shader_parameter/amount = 3.0
 shader_parameter/noise = ExtResource("6_3dae8")
