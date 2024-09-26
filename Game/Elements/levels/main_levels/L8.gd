@@ -3,13 +3,15 @@ extends Node3D
 @export var bird: PackedScene
 @onready var locations = $Spawns
 @onready var spawn_cooldown = $SpawnCooldown
+@onready var player = $Player
+
 
 var triggered: bool = false
 
 
 func _ready():
-	pass
-	# dialogue
+	await get_tree().create_timer(5).timeout
+	player.dialogue_queue.append("it's stopped raining")
 
 func _on_trigger_body_entered(body):
 	if !triggered:

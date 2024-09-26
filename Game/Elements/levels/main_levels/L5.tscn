@@ -381,9 +381,11 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 67.7634, 0.592223, -12.3272)
 [node name="Enemy3" parent="." instance=ExtResource("34_gyij3")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 66.3711, 0.685593, -6.39323)
 
+[connection signal="animation_finished" from="ObjectiveLevelStart/AnimationPlayer" to="." method="_on_animation_player_animation_finished"]
 [connection signal="body_entered" from="TutorialTrigger" to="." method="_on_tutorial_trigger_body_entered"]
 
 [editable path="NavigationRegion3D/c1_m5"]
+[editable path="ObjectiveLevelStart"]
 [editable path="Props/shelf"]
 [editable path="Props/couch_small"]
 [editable path="Props/lamp_tall"]

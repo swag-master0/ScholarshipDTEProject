@@ -8,7 +8,8 @@ extends Node3D
 var bomber_present = false
 
 func _ready():
-	player.dialogue_queue.append("fag")
+	player.dialogue_queue.append("hey, it's started raining above ground.")
+	player.dialogue_queue.append("that stuff's pretty bad, so we'll grab the ones down here")
 
 func spawnBomber():
 	var new_bomber = bomber.instantiate()

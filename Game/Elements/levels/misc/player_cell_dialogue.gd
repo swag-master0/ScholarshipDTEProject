@@ -270,20 +270,21 @@ var L7_IntroDialogue = [
 	0,
 	"...",
 	1,
-	"burn it"
+	"i n c i n e r a t e"
 ]
 var L7_IntroDialogue_2 = [
 	0,
 	"...",
 	1,
-	"epic."
+	"splendid.",
+	"on the elevator-"
 ]
 
 var L8_IntroDialogue = [
 	0,
 	"...",
 	1,
-	"burn it"
+	"burn the child"
 ]
 var L8_IntroDialogue_2 = [
 	0,
@@ -295,8 +296,6 @@ var L8_IntroDialogue_2 = [
 var L9_IntroDialogue = [
 	0,
 	"...",
-	1,
-	"burn it"
 ]
 var L9_IntroDialogue_2 = [
 	0,
@@ -309,7 +308,7 @@ var L10_IntroDialogue = [
 	0,
 	"...",
 	1,
-	"burn it"
+	"remove it"
 ]
 var L10_IntroDialogue_2 = [
 	0,

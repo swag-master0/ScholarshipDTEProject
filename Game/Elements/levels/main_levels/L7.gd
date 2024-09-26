@@ -1,12 +1,19 @@
 extends Node3D
 
 @onready var area = $Pain
+@onready var player = $Player
 
 @export var player_floor_damage : float = 1
 @export var player_fling_velocity : float = 35
 @export var enemy_floor_damage : float = 9999
 @export var prop_fling_velocity : float = 50
 
+
+func _ready():
+	await get_tree().create_timer(5).timeout
+	player.dialogue_queue.append("the ground's not completely solid, and can leak moisture through")
+	player.dialogue_queue.append("this next area's kinda flooded")
+	player.dialogue_queue.append("don't jump in, it's kinda dangerous")
 
 func _process(_delta):
 	for i in area.get_overlapping_bodies():
