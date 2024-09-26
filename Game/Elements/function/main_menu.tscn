@@ -1,6 +1,7 @@
-[gd_scene load_steps=18 format=3 uid="uid://c4ousj15h5a10"]
+[gd_scene load_steps=19 format=3 uid="uid://c4ousj15h5a10"]
 
 [ext_resource type="Script" path="res://Elements/function/main_menu.gd" id="1_cvoh4"]
+[ext_resource type="Texture2D" uid="uid://bpg6a11ri7cd4" path="res://Art/assets/assets/title.png" id="3_2rwee"]
 [ext_resource type="Theme" uid="uid://qpcg0ktiqy0j" path="res://Art/assets/theme.tres" id="3_74hs1"]
 [ext_resource type="PackedScene" uid="uid://233quw6ftjqa" path="res://Elements/function/options_menu.tscn" id="3_lfre7"]
 [ext_resource type="Shader" uid="uid://d08hg4q0p02dx" path="res://Art/materials/main_menu.tres" id="4_mqevi"]
@@ -79,18 +80,18 @@ grow_horizontal = 2
 grow_vertical = 2
 color = Color(0.345098, 0.345098, 0.345098, 0)
 
-[node name="Label" type="RichTextLabel" parent="GUI/MainMenu"]
+[node name="TextureRect" type="TextureRect" parent="GUI/MainMenu"]
+texture_filter = 1
 layout_mode = 1
 anchors_preset = 5
 anchor_left = 0.5
 anchor_right = 0.5
-offset_left = -519.0
-offset_top = 221.0
-offset_right = 519.0
-offset_bottom = 415.0
+offset_left = -600.0
+offset_top = 150.0
+offset_right = 600.0
+offset_bottom = 450.0
 grow_horizontal = 2
-bbcode_enabled = true
-text = "[center][shake][font_size=120][b]Amelioration"
+texture = ExtResource("3_2rwee")
 
 [node name="PlayButton" type="Button" parent="GUI/MainMenu"]
 layout_mode = 1
