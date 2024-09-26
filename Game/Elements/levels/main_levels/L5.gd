@@ -4,10 +4,15 @@ extends Node3D
 
 func _ready():
 	await get_tree().create_timer(1).timeout
-	player.dialogue_queue.append("you're gonna like this-")
+	player.dialogue_queue.append("you're gonna like this")
 
 
 func _on_animation_player_animation_finished(anim_name):
 	if anim_name == "up":
 		player.dialogue_queue.append("surprise :)")
 		player.dialogue_queue.append("")
+
+
+func _on_music_trigger_body_entered(body):
+	if body.is_in_group("player"):
+		$Music.play()

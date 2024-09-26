@@ -17,6 +17,8 @@ extends Control
 @onready var hud_dialogueremove = $DialogueBox/RemoveCharacters
 @onready var hud_AOSvisual = $"DialogueBox/A-OS Visual"
 @onready var sound_dialogue = $"../Audio/Dialogue"
+@onready var continue_prompt = $DialogueBox/ContinuePrompt
+
 
 @onready var indicator = $Indicator
 @onready var indicator_tutorial = $Indicator/AnimatedSprite2D
@@ -41,6 +43,7 @@ var skip_dialogue = false
 
 signal NextDialogue
 
+signal SkipDialogue
 
 func _ready():
 	hud_dialogue_box.visible = false
@@ -53,12 +56,8 @@ func _process(_delta):
 	
 
 	if Input.is_action_just_pressed("dialogue_skip"):
-		_on_remove_characters_timeout()
-		hud_dialogueremove.stop()
-
-		skip_dialogue = true
-		#hud_dialogueremove.time_left = 0.01
-
+		SkipDialogue.emit()
+	
 	
 	if ready: 
 		var currenthealth = info.health
@@ -98,7 +97,7 @@ func _hinttext_timeout():
 
 
 # INFO: DIALOGUE SYSTEM
-func Dialogue(text_speed : float = 0.02, time_until_continue : float = 2.5):
+func Dialogue(text_speed : float = 0.02):
 	
 	if dialoguespeaking == false and !dialogue_queue.is_empty():
 		dialoguespeaking = true
@@ -106,6 +105,8 @@ func Dialogue(text_speed : float = 0.02, time_until_continue : float = 2.5):
 		hud_dialogue_box.visible = true
 		
 		for i in dialogue_queue:
+			continue_prompt.visible = false
+			
 			var dialogue = dialogue_queue.pop_front()
 			skip_dialogue = false
 			
@@ -135,38 +136,24 @@ func Dialogue(text_speed : float = 0.02, time_until_continue : float = 2.5):
 						hud_dialoguedelay.wait_time += 0.125
 					
 					
-					# TODO
-					if skip_dialogue: 
-						continue
-					
-
 					hud_dialoguedelay.start()
 					await hud_dialoguedelay.timeout
 			
 			
 			parent.FinishDialogue(dialogue)
-
+			
 			if dialogue is String:
-				if dialogue.ends_with("-") or skip_dialogue:
+				if dialogue.ends_with("-"):
 					continue
 				else:
-					hud_dialogueremove.start(text_speed * dialogue.length() + time_until_continue)
-
-					await NextDialogue
-
+					continue_prompt.visible = true
+					await SkipDialogue
+					continue_prompt.visible = false
+					NextDialogue.emit()
 		
 		dialoguespeaking = false
 		hud_dialogue_box.visible = false
 		
-
-func _on_remove_characters_timeout():
-	print("ran func")
-	
-	hud_dialogue.visible = false
-	hud_dialogue.text = ""
-
-	NextDialogue.emit()
-
 
 
 func PainVisuals():

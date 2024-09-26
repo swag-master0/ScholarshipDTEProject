@@ -28,8 +28,9 @@ func _ready():
 	
 	player.process_mode = Node.PROCESS_MODE_INHERIT
 	await get_tree().create_timer(1).timeout
-	#black.queue_free()
 	black.visible = false
+	$DistortedMusic.play()
+	$LightTurnOn.play()
 
 func _process(_delta):
 	particles.global_position = player.global_position + Vector3(-25, 0, 0)
@@ -39,6 +40,8 @@ func _process(_delta):
 		
 		if scene_transition_triggered == false:
 			scene_transition_triggered = true
+			$DistortedMusic.stop()
+			$EndingStinger.stop()
 			
 			await get_tree().create_timer(5).timeout
 			LoadingScreen.next_scene = "res://Elements/function/demo_complete_screen.tscn"
@@ -79,6 +82,7 @@ func _on_trigger_5_body_entered(body):
 		await get_tree().create_timer(4).timeout
 		
 		player.GRAVITY = -0.3
+		$EndingStinger.play()
 
 
 func _on_timer_timeout():

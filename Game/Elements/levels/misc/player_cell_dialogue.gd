@@ -120,21 +120,21 @@ func _on_player_dialogue_finished(dialogue: String):
 	
 	if dialogue == L2_IntroDialogue.back():
 		player_hub.ActivateIncinerator(true)
-	elif dialogue == L3_IntroDialogue_2.back():
+	elif dialogue == L3_IntroDialogue.back():
 		player_hub.ActivateIncinerator(true)
-	elif dialogue == L4_IntroDialogue_2.back():
+	elif dialogue == L4_IntroDialogue.back():
 		player_hub.ActivateIncinerator(true)
-	elif dialogue == L5_IntroDialogue_2.back():
+	elif dialogue == L5_IntroDialogue.back():
 		player_hub.ActivateIncinerator(true)
-	elif dialogue == L6_IntroDialogue_2.back():
+	elif dialogue == L6_IntroDialogue.back():
 		player_hub.ActivateIncinerator(true)
-	elif dialogue == L7_IntroDialogue_2.back():
+	elif dialogue == L7_IntroDialogue.back():
 		player_hub.ActivateIncinerator(true)
-	elif dialogue == L8_IntroDialogue_2.back():
+	elif dialogue == L8_IntroDialogue.back():
 		player_hub.ActivateIncinerator(true)
-	elif dialogue == L9_IntroDialogue_2.back():
+	elif dialogue == L9_IntroDialogue.back():
 		player_hub.ActivateIncinerator(true)
-	elif dialogue == L10_IntroDialogue_2.back():
+	elif dialogue == L10_IntroDialogue.back():
 		player_hub.ActivateIncinerator(true)
 	
 	if dialogue == L1_IntroDialogue.back():
@@ -296,6 +296,8 @@ var L8_IntroDialogue_2 = [
 var L9_IntroDialogue = [
 	0,
 	"...",
+	1,
+	"pls burn"
 ]
 var L9_IntroDialogue_2 = [
 	0,
