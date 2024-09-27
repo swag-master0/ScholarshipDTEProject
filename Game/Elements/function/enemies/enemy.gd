@@ -36,8 +36,10 @@ func _process(_delta):
 	
 	if velocity and !($spider/AnimationPlayer.current_animation == "attack"):
 		$spider/AnimationPlayer.play("walk")
+		$EnemyWalk.play()
 	elif !velocity and !($spider/AnimationPlayer.current_animation == "attack"):
 		$spider/AnimationPlayer.play("idle")
+		$EnemyWalk.stop()
 
 
 

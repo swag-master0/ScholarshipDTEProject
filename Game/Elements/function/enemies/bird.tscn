@@ -1,10 +1,11 @@
-[gd_scene load_steps=10 format=3 uid="uid://c6busq7mdau5y"]
+[gd_scene load_steps=11 format=3 uid="uid://c6busq7mdau5y"]
 
 [ext_resource type="Script" path="res://Elements/function/enemies/bird.gd" id="1_xg4k0"]
 [ext_resource type="PackedScene" uid="uid://cft1b4l0aljye" path="res://Elements/function/info.tscn" id="2_lxgba"]
 [ext_resource type="PackedScene" uid="uid://cxmm64yjk3q22" path="res://Art/blend/assets/enemies/bird.blend" id="2_ushjs"]
 [ext_resource type="Script" path="res://Elements/assets/props/template/prop.gd" id="3_8vs6r"]
 [ext_resource type="AudioStream" uid="uid://b8ixk86ahq8u4" path="res://Art/audio/enemy/hurt.wav" id="4_rlake"]
+[ext_resource type="AudioStream" uid="uid://dcyi8gvkfp27q" path="res://Art/audio/enemy/bird_idle.mp3" id="6_0t4mf"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_4lrx2"]
 size = Vector3(1.25, 1.25, 1.25)
@@ -81,6 +82,10 @@ light_energy = 0.5
 
 [node name="CollisionShape3D2" type="CollisionShape3D" parent="Push"]
 shape = SubResource("SphereShape3D_flgqy")
+
+[node name="BirdIdle" type="AudioStreamPlayer3D" parent="."]
+stream = ExtResource("6_0t4mf")
+pitch_scale = 4.0
 
 [connection signal="dealtDamage" from="Info" to="." method="_on_info_dealt_damage"]
 [connection signal="death" from="Info" to="." method="_on_info_death"]

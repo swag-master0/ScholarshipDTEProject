@@ -1,4 +1,4 @@
-[gd_scene load_steps=14 format=3 uid="uid://ch7t6b0c3tjwr"]
+[gd_scene load_steps=15 format=3 uid="uid://ch7t6b0c3tjwr"]
 
 [ext_resource type="Script" path="res://Elements/function/enemies/enemy.gd" id="1_nn6r1"]
 [ext_resource type="PackedScene" uid="uid://dcmdw7jaornc0" path="res://Elements/function/enemies/enemy_ragdoll.tscn" id="2_asn15"]
@@ -7,6 +7,7 @@
 [ext_resource type="Material" uid="uid://cdh2wbqo2jjpj" path="res://Art/materials/skin.material" id="4_8u4a5"]
 [ext_resource type="Texture2D" uid="uid://bwo3oarpasixk" path="res://Art/assets/assets/enemy_eyes-1.png" id="4_bcnof"]
 [ext_resource type="Material" uid="uid://bi7cy033dy1o5" path="res://Art/materials/player_limbs.material" id="5_cfog0"]
+[ext_resource type="AudioStream" uid="uid://c0j55qy04c13w" path="res://Art/audio/enemy/enemy_walk.mp3" id="8_6ie83"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_n31ol"]
 size = Vector3(1.255, 1.185, 1.335)
@@ -67,24 +68,26 @@ shape = SubResource("BoxShape3D_n31ol")
 transform = Transform3D(-3.36578e-08, 0, 0.77, 0, 0.77, 0, -0.77, 0, -3.36578e-08, 0, 0, 0)
 
 [node name="Skeleton3D" parent="spider/Armature" index="0"]
-bones/1/rotation = Quaternion(-0.149018, 0.782433, 0.505362, 0.331966)
+bones/1/rotation = Quaternion(-0.120468, 0.871344, 0.386259, 0.27758)
 bones/1/scale = Vector3(1, 1, 1)
-bones/2/rotation = Quaternion(-0.702285, -0.0862438, -0.0275889, 0.706113)
+bones/2/rotation = Quaternion(-0.851004, -0.00340441, 0.0132121, 0.524981)
 bones/2/scale = Vector3(1, 1, 1)
-bones/3/rotation = Quaternion(-0.0728106, -0.00221087, -0.0128997, 0.99726)
+bones/3/rotation = Quaternion(-0.135727, -5.38783e-08, 0.00188086, 0.990745)
 bones/3/scale = Vector3(1, 1, 1)
-bones/5/rotation = Quaternion(0.160542, 0.0013776, -0.836209, 0.524384)
+bones/4/rotation = Quaternion(0.218255, -0.347949, -0.340695, 0.845708)
+bones/5/rotation = Quaternion(0.160542, 0.00137759, -0.836209, 0.524385)
 bones/5/scale = Vector3(1, 1, 1)
-bones/6/rotation = Quaternion(0.0230141, -8.12204e-08, -0.13309, 0.990837)
+bones/6/rotation = Quaternion(0.0230141, -8.1261e-08, -0.13309, 0.990837)
 bones/6/scale = Vector3(1, 1, 1)
+bones/7/rotation = Quaternion(-0.459967, -0.328176, -0.039048, 0.82414)
 bones/8/rotation = Quaternion(-0.754688, -0.0525371, 0.295545, 0.583386)
 bones/8/scale = Vector3(1, 1, 1)
-bones/9/rotation = Quaternion(-0.128149, -1.39438e-08, 0.0689897, 0.989352)
+bones/9/rotation = Quaternion(-0.128149, -1.3129e-08, 0.0689897, 0.989352)
 bones/9/scale = Vector3(1, 1, 1)
-bones/10/rotation = Quaternion(-0.573347, 0.392601, 0.0485376, 0.717483)
-bones/11/rotation = Quaternion(-0.624861, 0.153984, -0.194082, 0.740385)
+bones/10/rotation = Quaternion(-0.459967, 0.328176, 0.039048, 0.82414)
+bones/11/rotation = Quaternion(-0.754688, 0.0525371, -0.295545, 0.583386)
 bones/11/scale = Vector3(1, 1, 1)
-bones/12/rotation = Quaternion(-0.0759253, 0.00272062, -0.0234733, 0.996834)
+bones/12/rotation = Quaternion(-0.128149, 1.3129e-08, -0.0689897, 0.989352)
 bones/12/scale = Vector3(1, 1, 1)
 
 [node name="Mesh" parent="spider/Armature/Skeleton3D" index="0"]
@@ -139,6 +142,11 @@ target_position = Vector3(5, 0, 0)
 libraries = {
 "": SubResource("AnimationLibrary_7yuj8")
 }
+
+[node name="EnemyWalk" type="AudioStreamPlayer3D" parent="."]
+stream = ExtResource("8_6ie83")
+pitch_scale = 1.5
+bus = &"sfx"
 
 [node name="AttackDelay" type="Timer" parent="."]
 wait_time = 0.7
