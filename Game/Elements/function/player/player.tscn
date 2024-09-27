@@ -507,12 +507,12 @@ events = [SubResource("InputEventAction_j4auf")]
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_m2pfy"]
 shader = ExtResource("16_dvf37")
 
-[sub_resource type="Gradient" id="Gradient_8ar3y"]
+[sub_resource type="Gradient" id="Gradient_iyymx"]
 offsets = PackedFloat32Array(0.60066, 1)
 colors = PackedColorArray(0, 0, 0, 0, 0, 0, 0, 0.694118)
 
 [sub_resource type="GradientTexture2D" id="GradientTexture2D_0kq1m"]
-gradient = SubResource("Gradient_8ar3y")
+gradient = SubResource("Gradient_iyymx")
 fill = 1
 fill_from = Vector2(0.5, 0.5)
 metadata/_snap_enabled = true
@@ -523,14 +523,14 @@ shader = ExtResource("17_5fr21")
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_01co8"]
 shader = ExtResource("23_cil3e")
 
-[sub_resource type="Gradient" id="Gradient_qecpu"]
+[sub_resource type="Gradient" id="Gradient_stoim"]
 interpolation_mode = 1
 offsets = PackedFloat32Array(0, 0.5)
 colors = PackedColorArray(0, 0, 0, 0.117647, 1, 1, 1, 0)
 metadata/_snap_enabled = true
 
 [sub_resource type="GradientTexture2D" id="GradientTexture2D_xainu"]
-gradient = SubResource("Gradient_qecpu")
+gradient = SubResource("Gradient_stoim")
 width = 7
 height = 7
 fill_from = Vector2(0.5, 0)
@@ -602,21 +602,21 @@ editor_description = "The playermodel, containing data like the mesh, skeleton, 
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1, 0)
 
 [node name="Skeleton3D" parent="PlayerModel/player/Armature" index="0"]
-bones/0/position = Vector3(-0.00183521, -0.0688037, 0)
-bones/1/rotation = Quaternion(0.000121566, -0.000179771, 0.819167, 0.573555)
-bones/2/rotation = Quaternion(-0.000195679, -0.000130714, 0.291877, 0.956456)
-bones/3/rotation = Quaternion(-0.000128033, -2.1585e-05, 0.407439, 0.913233)
+bones/0/position = Vector3(-0.00183521, -0.0751072, 0)
+bones/1/rotation = Quaternion(0.000471314, -0.000697676, 0.81788, 0.575388)
+bones/2/rotation = Quaternion(-0.000742754, -0.000495748, 0.288421, 0.957503)
+bones/3/rotation = Quaternion(-0.000770827, -0.000130571, 0.398603, 0.917123)
 bones/4/rotation = Quaternion(-6.35795e-06, -2.53072e-07, 0.0895676, 0.995981)
-bones/5/rotation = Quaternion(8.91885e-05, 0.000111488, -0.847476, 0.530834)
-bones/6/rotation = Quaternion(-0.000121222, 8.7068e-05, -0.282406, 0.959295)
-bones/7/rotation = Quaternion(-0.000297869, 4.68094e-05, -0.3496, 0.936899)
-bones/8/rotation = Quaternion(-3.82022e-05, 1.39801e-06, -0.0754182, 0.997152)
-bones/9/rotation = Quaternion(0.00128527, 0, 0, 0.999999)
-bones/10/rotation = Quaternion(0.70705, 0.00959057, -0.707043, -0.00890399)
-bones/11/rotation = Quaternion(-4.57385e-06, 2.61334e-05, -0.00255671, 0.999997)
+bones/5/rotation = Quaternion(0.000536268, 0.000670246, -0.842792, 0.538239)
+bones/6/rotation = Quaternion(-0.000722629, 0.000519107, -0.277296, 0.960784)
+bones/7/rotation = Quaternion(-0.000863716, 0.000135738, -0.352088, 0.935966)
+bones/8/rotation = Quaternion(-0.000176264, 6.45116e-06, -0.0783477, 0.996926)
+bones/9/rotation = Quaternion(0.00487451, 0, 0, 0.999988)
+bones/10/rotation = Quaternion(0.707114, -0.000119982, -0.707099, 0.000772842)
+bones/11/rotation = Quaternion(-5.16079e-05, 2.65649e-05, -0.0293189, 0.99957)
 bones/12/rotation = Quaternion(2.13178e-09, -1.13731e-12, -0.0279828, 0.999608)
-bones/13/rotation = Quaternion(0.707047, -0.0093031, 0.707046, -0.00919292)
-bones/14/rotation = Quaternion(-7.32774e-07, -4.27567e-06, 0.00259568, 0.999997)
+bones/13/rotation = Quaternion(0.707062, -0.00807971, 0.707061, -0.00797023)
+bones/14/rotation = Quaternion(-1.67823e-06, -4.27626e-06, 0.00596452, 0.999982)
 bones/15/rotation = Quaternion(2.11414e-09, 1.70597e-13, 0.0280121, 0.999608)
 
 [node name="Player" parent="PlayerModel/player/Armature/Skeleton3D" index="0"]
@@ -626,7 +626,7 @@ surface_material_override/1 = ExtResource("4_oor3j")
 surface_material_override/2 = ExtResource("5_mq2xk")
 
 [node name="FaceAttachment" type="BoneAttachment3D" parent="PlayerModel/player/Armature/Skeleton3D" index="1"]
-transform = Transform3D(1, 0, 0, 0, 0.999997, -0.00257053, 0, 0.00257053, 0.999997, -0.00183521, 0.51574, 0)
+transform = Transform3D(1, 0, 0, 0, 0.999952, -0.00974889, 0, 0.00974889, 0.999952, -0.00183521, 0.509436, 0)
 bone_name = "Head"
 bone_idx = 9
 
