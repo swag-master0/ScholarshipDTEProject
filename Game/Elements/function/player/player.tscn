@@ -1,4 +1,4 @@
-[gd_scene load_steps=111 format=3 uid="uid://bcou7suhphdrp"]
+[gd_scene load_steps=112 format=3 uid="uid://bcou7suhphdrp"]
 
 [ext_resource type="Script" path="res://Elements/function/player/player.gd" id="1_0ncw4"]
 [ext_resource type="PackedScene" uid="uid://4lv8cegk7f53" path="res://Art/blend/assets/main/player.blend" id="2_ww4ji"]
@@ -35,6 +35,7 @@
 [ext_resource type="Shader" path="res://Art/filters/pixellation.gdshader" id="23_cil3e"]
 [ext_resource type="AudioStream" uid="uid://vufvvpt52rm2" path="res://Art/audio/ui/ui_hover4.ogg" id="24_wcpcc"]
 [ext_resource type="AudioStream" uid="uid://chq4t5bvnn3qx" path="res://Art/audio/ui/ui_select.ogg" id="25_0ii2m"]
+[ext_resource type="AudioStream" uid="uid://c32tohqs83knp" path="res://Art/audio/player/player_throw.wav" id="32_gjbt6"]
 
 [sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_ijhnm"]
 animation = &"grab"
@@ -601,21 +602,21 @@ editor_description = "The playermodel, containing data like the mesh, skeleton, 
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1, 0)
 
 [node name="Skeleton3D" parent="PlayerModel/player/Armature" index="0"]
-bones/0/position = Vector3(-0.00183521, -0.069056, 0)
-bones/1/rotation = Quaternion(0.000118055, -0.000174573, 0.81918, 0.573536)
-bones/2/rotation = Quaternion(-0.000148497, -9.92327e-05, 0.292175, 0.956365)
-bones/3/rotation = Quaternion(-0.000153675, -2.59326e-05, 0.407087, 0.913389)
+bones/0/position = Vector3(-0.00183521, -0.0688037, 0)
+bones/1/rotation = Quaternion(0.000121566, -0.000179771, 0.819167, 0.573555)
+bones/2/rotation = Quaternion(-0.000195679, -0.000130714, 0.291877, 0.956456)
+bones/3/rotation = Quaternion(-0.000128033, -2.1585e-05, 0.407439, 0.913233)
 bones/4/rotation = Quaternion(-6.35795e-06, -2.53072e-07, 0.0895676, 0.995981)
-bones/5/rotation = Quaternion(0.000107024, 0.000133778, -0.84729, 0.53113)
-bones/6/rotation = Quaternion(-0.000145447, 0.000104471, -0.2822, 0.959356)
-bones/7/rotation = Quaternion(-0.000173853, 2.73188e-05, -0.349055, 0.937102)
-bones/8/rotation = Quaternion(-4.39598e-05, 1.60876e-06, -0.0755404, 0.997143)
-bones/9/rotation = Quaternion(0.00097572, 0, 0, 1)
-bones/10/rotation = Quaternion(0.70705, 0.00958848, -0.707043, -0.00890403)
-bones/11/rotation = Quaternion(-4.56045e-06, 2.52549e-05, -0.00247133, 0.999997)
+bones/5/rotation = Quaternion(8.91885e-05, 0.000111488, -0.847476, 0.530834)
+bones/6/rotation = Quaternion(-0.000121222, 8.7068e-05, -0.282406, 0.959295)
+bones/7/rotation = Quaternion(-0.000297869, 4.68094e-05, -0.3496, 0.936899)
+bones/8/rotation = Quaternion(-3.82022e-05, 1.39801e-06, -0.0754182, 0.997152)
+bones/9/rotation = Quaternion(0.00128527, 0, 0, 0.999999)
+bones/10/rotation = Quaternion(0.70705, 0.00959057, -0.707043, -0.00890399)
+bones/11/rotation = Quaternion(-4.57385e-06, 2.61334e-05, -0.00255671, 0.999997)
 bones/12/rotation = Quaternion(2.13178e-09, -1.13731e-12, -0.0279828, 0.999608)
-bones/13/rotation = Quaternion(0.707047, -0.00930151, 0.707046, -0.00919181)
-bones/14/rotation = Quaternion(-7.29536e-07, -4.07592e-06, 0.00247439, 0.999997)
+bones/13/rotation = Quaternion(0.707047, -0.0093031, 0.707046, -0.00919292)
+bones/14/rotation = Quaternion(-7.32774e-07, -4.27567e-06, 0.00259568, 0.999997)
 bones/15/rotation = Quaternion(2.11414e-09, 1.70597e-13, 0.0280121, 0.999608)
 
 [node name="Player" parent="PlayerModel/player/Armature/Skeleton3D" index="0"]
@@ -625,7 +626,7 @@ surface_material_override/1 = ExtResource("4_oor3j")
 surface_material_override/2 = ExtResource("5_mq2xk")
 
 [node name="FaceAttachment" type="BoneAttachment3D" parent="PlayerModel/player/Armature/Skeleton3D" index="1"]
-transform = Transform3D(1, 0, 0, 0, 0.999998, -0.00195144, 0, 0.00195144, 0.999998, -0.00183521, 0.515488, 0)
+transform = Transform3D(1, 0, 0, 0, 0.999997, -0.00257053, 0, 0.00257053, 0.999997, -0.00183521, 0.51574, 0)
 bone_name = "Head"
 bone_idx = 9
 
@@ -1082,6 +1083,11 @@ bus = &"sfx"
 [node name="PlayerHurt" type="AudioStreamPlayer" parent="Audio"]
 stream = ExtResource("22_6jsqo")
 volume_db = -20.0
+bus = &"sfx"
+
+[node name="PlayerThrow" type="AudioStreamPlayer" parent="Audio"]
+stream = ExtResource("32_gjbt6")
+pitch_scale = 0.6
 bus = &"sfx"
 
 [node name="Dialogue" type="AudioStreamPlayer" parent="Audio"]

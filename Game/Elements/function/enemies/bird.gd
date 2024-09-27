@@ -48,6 +48,7 @@ func _physics_process(delta):
 			if ray.get_collider().is_in_group("player"):
 				mesh.look_at(ray.get_collider().global_position, Vector3.UP, true)
 				
+				
 				var distance = global_position.distance_to(ray.get_collider().global_position) / 5
 				velocity += ((ray.get_collider().global_position - global_position).normalized() * speed * distance) * delta 
 				velocity += Vector3(0, speed / 2, 0) * delta
@@ -67,6 +68,7 @@ func _physics_process(delta):
 				velocity -= ((i.global_position - self.global_position) * delta) * 10
 	
 	move_and_slide()
+	
 
 func _on_info_death():
 	corpse.visible = true

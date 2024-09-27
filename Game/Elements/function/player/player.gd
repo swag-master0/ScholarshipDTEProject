@@ -63,6 +63,7 @@ func TOP():
 @onready var footstep_delay = $Audio/FootstepDelay
 @onready var sound_footstep = $Audio/PlayerWalk
 @onready var sound_select = $Audio/PlayerSelect
+@onready var sound_throw = $Audio/PlayerThrow
 @onready var sound_hurt = $Audio/PlayerHurt
 @onready var sound_jump = $Audio/PlayerJump
 
@@ -277,7 +278,7 @@ func _process(_delta):
 			
 			isHolding = false
 			
-			sound_select.play()
+			sound_throw.play()
 			
 			object.set_freeze_enabled(false)
 			object.reparent(oldparent)
