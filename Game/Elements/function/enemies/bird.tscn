@@ -1,11 +1,13 @@
-[gd_scene load_steps=11 format=3 uid="uid://c6busq7mdau5y"]
+[gd_scene load_steps=13 format=3 uid="uid://c6busq7mdau5y"]
 
 [ext_resource type="Script" path="res://Elements/function/enemies/bird.gd" id="1_xg4k0"]
 [ext_resource type="PackedScene" uid="uid://cft1b4l0aljye" path="res://Elements/function/info.tscn" id="2_lxgba"]
 [ext_resource type="PackedScene" uid="uid://cxmm64yjk3q22" path="res://Art/blend/assets/enemies/bird.blend" id="2_ushjs"]
 [ext_resource type="Script" path="res://Elements/assets/props/template/prop.gd" id="3_8vs6r"]
 [ext_resource type="AudioStream" uid="uid://b8ixk86ahq8u4" path="res://Art/audio/enemy/hurt.wav" id="4_rlake"]
+[ext_resource type="Material" uid="uid://cdh2wbqo2jjpj" path="res://Art/materials/skin.material" id="5_uokpp"]
 [ext_resource type="AudioStream" uid="uid://dcyi8gvkfp27q" path="res://Art/audio/enemy/bird_idle.mp3" id="6_0t4mf"]
+[ext_resource type="Material" uid="uid://bi7cy033dy1o5" path="res://Art/materials/player_limbs.material" id="6_ues6k"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_4lrx2"]
 size = Vector3(1.25, 1.25, 1.25)
@@ -34,6 +36,8 @@ script = ExtResource("3_8vs6r")
 
 [node name="Mesh-rigid" parent="bird/Mesh-rigid" index="0"]
 transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 0, 0, 0)
+surface_material_override/0 = ExtResource("5_uokpp")
+surface_material_override/1 = ExtResource("6_ues6k")
 
 [node name="CollisionShape3D" parent="bird/Mesh-rigid" index="1"]
 transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 0, 0, 0)
@@ -50,6 +54,10 @@ bones/1/scale = Vector3(1, 1, 1)
 bones/2/rotation = Quaternion(0.150376, -7.46395e-08, 1.7747e-07, 0.988629)
 bones/4/rotation = Quaternion(0.508588, 0.508587, -0.491262, 0.491263)
 bones/4/scale = Vector3(1, 1, 1)
+
+[node name="Model" parent="bird/Armature/Skeleton3D" index="0"]
+surface_material_override/0 = ExtResource("5_uokpp")
+surface_material_override/1 = ExtResource("6_ues6k")
 
 [node name="Info" parent="." instance=ExtResource("2_lxgba")]
 health = 1.0
