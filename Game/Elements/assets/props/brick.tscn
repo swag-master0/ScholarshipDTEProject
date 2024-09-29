@@ -11,6 +11,7 @@
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_g0jg1"]
 render_priority = 0
 shader = ExtResource("3_78bha")
+shader_parameter/BaseColour = Color(1, 1, 1, 1)
 
 [node name="brick" instance=ExtResource("1_5flym")]
 
@@ -34,3 +35,5 @@ stream = ExtResource("5_fft25")
 
 [node name="AudioStreamPlayer3D4" type="AudioStreamPlayer3D" parent="Brick -rigid" index="5"]
 stream = ExtResource("6_8kkk0")
+
+[connection signal="body_entered" from="Brick -rigid" to="Brick -rigid" method="_on_body_entered"]

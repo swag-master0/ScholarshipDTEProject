@@ -1,7 +1,9 @@
-[gd_scene load_steps=11 format=4 uid="uid://cihisq18677xu"]
+[gd_scene load_steps=13 format=4 uid="uid://cihisq18677xu"]
 
 [ext_resource type="Script" path="res://Elements/function/objective_item.gd" id="1_xm2n2"]
 [ext_resource type="Shader" uid="uid://bfjvmltt1hwcl" path="res://Art/materials/props/egg.tres" id="2_3mbic"]
+[ext_resource type="AudioStream" uid="uid://dmpnu4axil4t8" path="res://Art/audio/impact/objective_01.wav" id="3_hw4cn"]
+[ext_resource type="AudioStream" uid="uid://dxeeuximj4vbd" path="res://Art/audio/impact/objective_02.wav" id="4_jnwpd"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_wwf4h"]
 resource_name = "Material"
@@ -71,6 +73,8 @@ size = Vector2(0.2, 0.2)
 
 [node name="ObjectiveItem" type="RigidBody3D" groups=["objective"]]
 mass = 10.0
+contact_monitor = true
+max_contacts_reported = 5
 script = ExtResource("1_xm2n2")
 
 [node name="Egg -rigid" type="MeshInstance3D" parent="."]
@@ -90,3 +94,13 @@ visible = false
 emitting = false
 process_material = SubResource("ParticleProcessMaterial_2dm2q")
 draw_pass_1 = SubResource("QuadMesh_naq6r")
+
+[node name="Impact01" type="AudioStreamPlayer3D" parent="."]
+stream = ExtResource("3_hw4cn")
+volume_db = -20.0
+
+[node name="Impact02" type="AudioStreamPlayer3D" parent="."]
+stream = ExtResource("4_jnwpd")
+volume_db = -20.0
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]

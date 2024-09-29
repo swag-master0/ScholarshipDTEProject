@@ -7,8 +7,8 @@ extends Node
 
 @onready var root = $".."
 @onready var player = $"../Player"
-
-@export var object: PackedScene
+@onready var object = $"../Crate"
+#@export var object: PackedScene
 
 var activate_movement_tutorial = false
 var activate_jumping_tutorial = false
@@ -115,6 +115,9 @@ func name_picked():
 
 
 func _on_player_dialogue_finished(dialogue : String):
+	print("_on_player_dialogue_fisnished activated")
+	print(dialogue)
+
 	if dialogue == "1":
 		movement_tutorial()
 	elif dialogue == "PLEASE [color=DIM_GRAY]{simulate the act of walking}[/color]":
@@ -124,9 +127,9 @@ func _on_player_dialogue_finished(dialogue : String):
 		player.SendHintToPlayer("Use SPACE to jump")
 		activate_jumping_tutorial = true
 	elif dialogue == "A [color=DIM_GRAY]{15.16kg wooden crate}[/color] WILL NOW BE PROVIDED, AT THE EXPENSE OF [color=DIM_GRAY]{nobody}[/color]":
-		var new_object = object.instantiate()
-		root.add_child(new_object)
-		new_object.global_position = Vector3(0, 20, 0)
+		object.freeze = false
+		object.visible = true
+		object.global_position = Vector3(0, 20, 0)
 		print("added new object")
 	elif dialogue == "PLEASE [color=DIM_GRAY]{throw it around like you're a great ape flinging feces at other apes}[/color]":
 		player.SendHintToPlayer("Use MOUSE 1 to pick up the cube")
@@ -144,9 +147,9 @@ func _on_player_dialogue_finished(dialogue : String):
 	elif dialogue == "lemme send down the lift... we're going to the surface!":
 		rail_anims.play("down")
 	
-	elif dialogue == "anyway, i guess i should introduce myself. I am A-OS!":
-		$"../Music".play()
-		# play music
+	if dialogue.containsn("A-OS!"):
+		print("activated music")
+		$"../Music".playing = true
 
 
 func _on_crushed_body_entered(body):
@@ -156,6 +159,8 @@ func _on_crushed_body_entered(body):
 func _on_area_3d_body_entered(body):
 	if body.is_in_group("player"):
 		rail_anims.play("up")
+		await get_tree().create_timer(3).timeout
+		$"../Music".playing = false
 
 
 func _on_line_edit_text_submitted(new_text):

@@ -15,6 +15,7 @@
 render_priority = 0
 shader = ExtResource("3_a4qst")
 shader_parameter/wall_colour = Color(0.553332, 0.868922, 0.699245, 1)
+shader_parameter/colour_add = 4.0
 shader_parameter/amount = 0.1
 shader_parameter/noise = ExtResource("4_hysy8")
 shader_parameter/normal_tex = ExtResource("5_w8yis")
@@ -81,3 +82,5 @@ shaded = true
 texture_filter = 0
 sprite_frames = SubResource("SpriteFrames_kqlfe")
 autoplay = "default"
+
+[connection signal="body_entered" from="statue-rigid" to="statue-rigid" method="_on_body_entered"]

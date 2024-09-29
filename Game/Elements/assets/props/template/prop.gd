@@ -24,7 +24,6 @@ func _on_body_entered(_body):
 		# the worlds most dumbest way to do this
 		for i in get_children():
 			if i is AudioStreamPlayer3D:
-				#audio.append(i)
 				
 				i.volume_db = linear_to_db(0.1)
 				i.bus = "sfx"

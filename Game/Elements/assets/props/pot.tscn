@@ -35,3 +35,5 @@ stream = ExtResource("5_tjalt")
 
 [node name="AudioStreamPlayer3D4" type="AudioStreamPlayer3D" parent="Pot -rigid" index="5"]
 stream = ExtResource("6_jkckd")
+
+[connection signal="body_entered" from="Pot -rigid" to="Pot -rigid" method="_on_body_entered"]

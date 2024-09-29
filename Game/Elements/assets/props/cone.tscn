@@ -41,3 +41,5 @@ stream = ExtResource("5_8f4eq")
 
 [node name="AudioStreamPlayer3D4" type="AudioStreamPlayer3D" parent="Cone -rigid" index="5"]
 stream = ExtResource("6_eiydx")
+
+[connection signal="body_entered" from="Cone -rigid" to="Cone -rigid" method="_on_body_entered"]

@@ -12,8 +12,8 @@ func _on_area_3d_body_entered(body):
 	
 	var magnitude = sqrt(vel.x + vel.y + vel.z) # calculate magnitude of the force
 	
-	if magnitude > minimum:
-		$Timer.start(0.01)
+	if magnitude > minimum and !(body.is_in_group("player")):
+		$Timer.start(0.2)
 
 func _on_timer_timeout():
 	explode()

@@ -19,6 +19,7 @@ shader_parameter/Colour = Color(0.671019, 0.442464, 0.252637, 1)
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_w7bo2"]
 render_priority = 0
 shader = ExtResource("3_ob34b")
+shader_parameter/BaseColour = Color(1, 1, 1, 1)
 
 [node name="bench" instance=ExtResource("2_xfdru")]
 transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 0, 0, 0)
@@ -61,3 +62,5 @@ stream = ExtResource("7_0vl5y")
 [node name="AudioStreamPlayer3D6" type="AudioStreamPlayer3D" parent="Bench -rigid" index="7"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.823671, -0.857975, 0)
 stream = ExtResource("8_h425a")
+
+[connection signal="body_entered" from="Bench -rigid" to="Bench -rigid" method="_on_body_entered"]

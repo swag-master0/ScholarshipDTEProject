@@ -31,7 +31,7 @@ func save_hub_objects():
 	var objects_to_save = []
 	
 	for i in get_children():
-		if i is RigidBody3D:
+		if i is RigidBody3D and i.freeze == false:
 			
 			if i.is_in_group("objective"):
 				continue

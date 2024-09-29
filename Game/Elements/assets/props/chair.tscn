@@ -27,3 +27,5 @@ stream = ExtResource("3_hh8dc")
 
 [node name="AudioStreamPlayer3D2" type="AudioStreamPlayer3D" parent="Chair -rigid" index="3"]
 stream = ExtResource("4_pq6kf")
+
+[connection signal="body_entered" from="Chair -rigid" to="Chair -rigid" method="_on_body_entered"]

@@ -43,8 +43,8 @@ func _process(_delta):
 			$DistortedMusic.stop()
 			$EndingStinger.stop()
 			
-			await get_tree().create_timer(5).timeout
-			LoadingScreen.next_scene = "res://Elements/function/demo_complete_screen.tscn"
+			await get_tree().create_timer(8).timeout
+			LoadingScreen.next_scene = "res://Elements/function/credits.tscn"
 			LoadingScreen.scene_transition()
 		
 

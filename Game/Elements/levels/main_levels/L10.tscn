@@ -305,8 +305,9 @@ wait_time = 5.0
 
 [node name="Explosion" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("26_h5xxs")
-volume_db = 24.0
+volume_db = 10.0
 pitch_scale = 0.32
+bus = &"sfx"
 
 [node name="ExplosionParticles" type="GPUParticles3D" parent="."]
 transform = Transform3D(1.54, 0, 0, 0, 1.54, 0, 0, 0, 1.54, 11, 2, 0)

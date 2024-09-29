@@ -9,6 +9,7 @@
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_dnwtp"]
 render_priority = 0
 shader = ExtResource("3_i1f44")
+shader_parameter/BaseColour = Color(1, 1, 1, 1)
 
 [node name="bucket" instance=ExtResource("1_33c5a")]
 
@@ -26,3 +27,5 @@ stream = ExtResource("3_g8u7a")
 
 [node name="AudioStreamPlayer3D2" type="AudioStreamPlayer3D" parent="Bucket -rigid" index="3"]
 stream = ExtResource("4_ux0fi")
+
+[connection signal="body_entered" from="Bucket -rigid" to="Bucket -rigid" method="_on_body_entered"]
