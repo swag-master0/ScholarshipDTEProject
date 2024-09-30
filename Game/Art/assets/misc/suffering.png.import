@@ -4,15 +4,16 @@ importer="texture"
 type="CompressedTexture2D"
 uid="uid://dk6dn3hd6uy1h"
 path.s3tc="res://.godot/imported/suffering.png-97dcf971ce3a32efbb755c28533d1951.s3tc.ctex"
+path.etc2="res://.godot/imported/suffering.png-97dcf971ce3a32efbb755c28533d1951.etc2.ctex"
 metadata={
-"imported_formats": ["s3tc_bptc"],
+"imported_formats": ["s3tc_bptc", "etc2_astc"],
 "vram_texture": true
 }
 
 [deps]
 
 source_file="res://Art/assets/misc/suffering.png"
-dest_files=["res://.godot/imported/suffering.png-97dcf971ce3a32efbb755c28533d1951.s3tc.ctex"]
+dest_files=["res://.godot/imported/suffering.png-97dcf971ce3a32efbb755c28533d1951.s3tc.ctex", "res://.godot/imported/suffering.png-97dcf971ce3a32efbb755c28533d1951.etc2.ctex"]
 
 [params]
 

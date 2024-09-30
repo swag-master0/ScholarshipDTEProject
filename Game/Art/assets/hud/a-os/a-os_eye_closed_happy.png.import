@@ -4,15 +4,16 @@ importer="texture"
 type="CompressedTexture2D"
 uid="uid://fb6x30xa5b7e"
 path.s3tc="res://.godot/imported/a-os_eye_closed_happy.png-bebeefcf526dbd964ff6f812dfa26303.s3tc.ctex"
+path.etc2="res://.godot/imported/a-os_eye_closed_happy.png-bebeefcf526dbd964ff6f812dfa26303.etc2.ctex"
 metadata={
-"imported_formats": ["s3tc_bptc"],
+"imported_formats": ["s3tc_bptc", "etc2_astc"],
 "vram_texture": true
 }
 
 [deps]
 
 source_file="res://Art/assets/hud/a-os/a-os_eye_closed_happy.png"
-dest_files=["res://.godot/imported/a-os_eye_closed_happy.png-bebeefcf526dbd964ff6f812dfa26303.s3tc.ctex"]
+dest_files=["res://.godot/imported/a-os_eye_closed_happy.png-bebeefcf526dbd964ff6f812dfa26303.s3tc.ctex", "res://.godot/imported/a-os_eye_closed_happy.png-bebeefcf526dbd964ff6f812dfa26303.etc2.ctex"]
 
 [params]
 

@@ -4,15 +4,16 @@ importer="texture"
 type="CompressedTexture2D"
 uid="uid://dpqber6f3xes2"
 path.s3tc="res://.godot/imported/moai.png-8fc59649beb023e3bf01c9fc46939b20.s3tc.ctex"
+path.etc2="res://.godot/imported/moai.png-8fc59649beb023e3bf01c9fc46939b20.etc2.ctex"
 metadata={
-"imported_formats": ["s3tc_bptc"],
+"imported_formats": ["s3tc_bptc", "etc2_astc"],
 "vram_texture": true
 }
 
 [deps]
 
 source_file="res://Art/assets/misc/moai.png"
-dest_files=["res://.godot/imported/moai.png-8fc59649beb023e3bf01c9fc46939b20.s3tc.ctex"]
+dest_files=["res://.godot/imported/moai.png-8fc59649beb023e3bf01c9fc46939b20.s3tc.ctex", "res://.godot/imported/moai.png-8fc59649beb023e3bf01c9fc46939b20.etc2.ctex"]
 
 [params]
 
