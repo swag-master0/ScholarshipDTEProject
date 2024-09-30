@@ -4,15 +4,16 @@ importer="texture"
 type="CompressedTexture2D"
 uid="uid://bvapu74ntnlx1"
 path.s3tc="res://.godot/imported/bean.jpg-03ae7fe7b72f0e20e387bfbcbd2b079d.s3tc.ctex"
+path.etc2="res://.godot/imported/bean.jpg-03ae7fe7b72f0e20e387bfbcbd2b079d.etc2.ctex"
 metadata={
-"imported_formats": ["s3tc_bptc"],
+"imported_formats": ["s3tc_bptc", "etc2_astc"],
 "vram_texture": true
 }
 
 [deps]
 
 source_file="res://Art/assets/misc/bean.jpg"
-dest_files=["res://.godot/imported/bean.jpg-03ae7fe7b72f0e20e387bfbcbd2b079d.s3tc.ctex"]
+dest_files=["res://.godot/imported/bean.jpg-03ae7fe7b72f0e20e387bfbcbd2b079d.s3tc.ctex", "res://.godot/imported/bean.jpg-03ae7fe7b72f0e20e387bfbcbd2b079d.etc2.ctex"]
 
 [params]
 

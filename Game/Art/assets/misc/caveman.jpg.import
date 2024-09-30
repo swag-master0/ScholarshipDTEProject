@@ -4,15 +4,16 @@ importer="texture"
 type="CompressedTexture2D"
 uid="uid://bcsw4ar8qveyg"
 path.s3tc="res://.godot/imported/caveman.jpg-dabe0c5598a6f3f78165f08d10c2b8ee.s3tc.ctex"
+path.etc2="res://.godot/imported/caveman.jpg-dabe0c5598a6f3f78165f08d10c2b8ee.etc2.ctex"
 metadata={
-"imported_formats": ["s3tc_bptc"],
+"imported_formats": ["s3tc_bptc", "etc2_astc"],
 "vram_texture": true
 }
 
 [deps]
 
 source_file="res://Art/assets/misc/caveman.jpg"
-dest_files=["res://.godot/imported/caveman.jpg-dabe0c5598a6f3f78165f08d10c2b8ee.s3tc.ctex"]
+dest_files=["res://.godot/imported/caveman.jpg-dabe0c5598a6f3f78165f08d10c2b8ee.s3tc.ctex", "res://.godot/imported/caveman.jpg-dabe0c5598a6f3f78165f08d10c2b8ee.etc2.ctex"]
 
 [params]
 

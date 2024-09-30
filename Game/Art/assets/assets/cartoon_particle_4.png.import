@@ -4,15 +4,16 @@ importer="texture"
 type="CompressedTexture2D"
 uid="uid://bo4icliqjvhvr"
 path.s3tc="res://.godot/imported/cartoon_particle_4.png-45bbc9e9868608b1a0ccf3027a710a06.s3tc.ctex"
+path.etc2="res://.godot/imported/cartoon_particle_4.png-45bbc9e9868608b1a0ccf3027a710a06.etc2.ctex"
 metadata={
-"imported_formats": ["s3tc_bptc"],
+"imported_formats": ["s3tc_bptc", "etc2_astc"],
 "vram_texture": true
 }
 
 [deps]
 
 source_file="res://Art/assets/assets/cartoon_particle_4.png"
-dest_files=["res://.godot/imported/cartoon_particle_4.png-45bbc9e9868608b1a0ccf3027a710a06.s3tc.ctex"]
+dest_files=["res://.godot/imported/cartoon_particle_4.png-45bbc9e9868608b1a0ccf3027a710a06.s3tc.ctex", "res://.godot/imported/cartoon_particle_4.png-45bbc9e9868608b1a0ccf3027a710a06.etc2.ctex"]
 
 [params]
 

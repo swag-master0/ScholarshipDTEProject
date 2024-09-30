@@ -4,15 +4,16 @@ importer="texture"
 type="CompressedTexture2D"
 uid="uid://bvffinmsdmocx"
 path.s3tc="res://.godot/imported/cartoon_particle_3.png-033daf05aab0949741a4b6ed80595820.s3tc.ctex"
+path.etc2="res://.godot/imported/cartoon_particle_3.png-033daf05aab0949741a4b6ed80595820.etc2.ctex"
 metadata={
-"imported_formats": ["s3tc_bptc"],
+"imported_formats": ["s3tc_bptc", "etc2_astc"],
 "vram_texture": true
 }
 
 [deps]
 
 source_file="res://Art/assets/assets/cartoon_particle_3.png"
-dest_files=["res://.godot/imported/cartoon_particle_3.png-033daf05aab0949741a4b6ed80595820.s3tc.ctex"]
+dest_files=["res://.godot/imported/cartoon_particle_3.png-033daf05aab0949741a4b6ed80595820.s3tc.ctex", "res://.godot/imported/cartoon_particle_3.png-033daf05aab0949741a4b6ed80595820.etc2.ctex"]
 
 [params]
 

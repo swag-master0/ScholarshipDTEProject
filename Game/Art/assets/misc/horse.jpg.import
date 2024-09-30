@@ -4,15 +4,16 @@ importer="texture"
 type="CompressedTexture2D"
 uid="uid://c60vvo7qajvij"
 path.s3tc="res://.godot/imported/horse.jpg-4c4ce5ec2718144a6ab8b9a3e335edc3.s3tc.ctex"
+path.etc2="res://.godot/imported/horse.jpg-4c4ce5ec2718144a6ab8b9a3e335edc3.etc2.ctex"
 metadata={
-"imported_formats": ["s3tc_bptc"],
+"imported_formats": ["s3tc_bptc", "etc2_astc"],
 "vram_texture": true
 }
 
 [deps]
 
 source_file="res://Art/assets/misc/horse.jpg"
-dest_files=["res://.godot/imported/horse.jpg-4c4ce5ec2718144a6ab8b9a3e335edc3.s3tc.ctex"]
+dest_files=["res://.godot/imported/horse.jpg-4c4ce5ec2718144a6ab8b9a3e335edc3.s3tc.ctex", "res://.godot/imported/horse.jpg-4c4ce5ec2718144a6ab8b9a3e335edc3.etc2.ctex"]
 
 [params]
 

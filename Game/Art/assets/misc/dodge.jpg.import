@@ -4,15 +4,16 @@ importer="texture"
 type="CompressedTexture2D"
 uid="uid://cmo1iau07a6ue"
 path.s3tc="res://.godot/imported/dodge.jpg-d6da8f110465123ccceb9bfb7d5bdb2a.s3tc.ctex"
+path.etc2="res://.godot/imported/dodge.jpg-d6da8f110465123ccceb9bfb7d5bdb2a.etc2.ctex"
 metadata={
-"imported_formats": ["s3tc_bptc"],
+"imported_formats": ["s3tc_bptc", "etc2_astc"],
 "vram_texture": true
 }
 
 [deps]
 
 source_file="res://Art/assets/misc/dodge.jpg"
-dest_files=["res://.godot/imported/dodge.jpg-d6da8f110465123ccceb9bfb7d5bdb2a.s3tc.ctex"]
+dest_files=["res://.godot/imported/dodge.jpg-d6da8f110465123ccceb9bfb7d5bdb2a.s3tc.ctex", "res://.godot/imported/dodge.jpg-d6da8f110465123ccceb9bfb7d5bdb2a.etc2.ctex"]
 
 [params]
 
