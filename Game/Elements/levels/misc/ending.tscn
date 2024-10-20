@@ -8,7 +8,7 @@
 [ext_resource type="FontFile" uid="uid://dag4y2am0w7ij" path="res://Art/assets/fonts/dm_mono/DMMono-Light.ttf" id="6_1e2fm"]
 [ext_resource type="FontFile" uid="uid://dle4pso7gvret" path="res://Art/assets/fonts/pixelify_sans/PixelifySans-Bold.ttf" id="7_wa5e1"]
 [ext_resource type="FontFile" uid="uid://bcsmocjtnjm7c" path="res://Art/assets/fonts/pixelify_sans/PixelifySans-Regular.ttf" id="8_lxvfl"]
-[ext_resource type="AudioStream" uid="uid://b4qfdf6vd62a4" path="res://Art/audio/music/a-os.wav" id="9_osyy7"]
+[ext_resource type="AudioStream" uid="uid://b4qfdf6vd62a4" path="res://Art/audio/music/1.wav" id="9_osyy7"]
 [ext_resource type="AudioStream" uid="uid://die3t2e5pjrof" path="res://Art/audio/enemy/bomber_buildup-2.wav" id="10_1vy77"]
 [ext_resource type="AudioStream" uid="uid://c76h8jh6aiorb" path="res://Art/audio/ambient/light_turnon.wav" id="11_jh6yh"]
 

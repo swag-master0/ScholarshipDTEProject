@@ -12,7 +12,7 @@
 [ext_resource type="Texture2D" uid="uid://dp1ls6ddglxoj" path="res://Art/assets/assets/cartoon_particle_5.png" id="10_h38d2"]
 [ext_resource type="AudioStream" uid="uid://cnxylq8eed23p" path="res://Art/audio/ambient/ambient-2.mp3" id="12_bejon"]
 [ext_resource type="AudioStream" uid="uid://c76h8jh6aiorb" path="res://Art/audio/ambient/light_turnon.wav" id="13_l1al4"]
-[ext_resource type="AudioStream" uid="uid://b4qfdf6vd62a4" path="res://Art/audio/music/a-os.wav" id="14_chus5"]
+[ext_resource type="AudioStream" uid="uid://b4qfdf6vd62a4" path="res://Art/audio/music/1.wav" id="14_chus5"]
 [ext_resource type="Script" path="res://Elements/assets/props/template/prop.gd" id="15_l7dhu"]
 [ext_resource type="Shader" uid="uid://be5pc5hywy8x4" path="res://Art/materials/props/wood.tres" id="16_fumcj"]
 [ext_resource type="AudioStream" uid="uid://ddjpyn7uhjk7g" path="res://Art/audio/impact/clatter-wood-1.wav" id="17_eeqpv"]
